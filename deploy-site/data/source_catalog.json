@@ -1,0 +1,356 @@
+{
+  "generatedAt": "2026-07-13T18:28:49+00:00",
+  "step": "Step 0",
+  "title": "Data Source Inventory",
+  "sources": [
+    {
+      "id": "thermo-news",
+      "group": "Competitor official",
+      "source": "Thermo Fisher corporate press releases",
+      "competitor": "Thermo Fisher",
+      "signalCoverage": [
+        "Product launches",
+        "Partnerships",
+        "Strategic initiatives"
+      ],
+      "url": "https://newsroom.thermofisher.com/newsroom/press-releases/default.aspx",
+      "health": "good",
+      "status": "verified",
+      "issue": "",
+      "nextAction": "Use as primary Thermo corporate, product, partnership, and capital-allocation announcement source.",
+      "extractionStatus": "blocked",
+      "extractionReason": "No usable press-release feed or extractable index: HTTP 200 (https://newsroom.thermofisher.com/newsroom/press-releases/default.aspx).",
+      "extractedRecords": 0,
+      "fetchMethod": "press_release_index",
+      "lastExtractionCheck": "2026-07-13T18:28:47+00:00"
+    },
+    {
+      "id": "thermo-ms-products",
+      "group": "Competitor official",
+      "source": "Thermo Fisher mass spectrometry products",
+      "competitor": "Thermo Fisher",
+      "signalCoverage": [
+        "Product positioning",
+        "Hardware innovations",
+        "Product updates"
+      ],
+      "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry.html",
+      "health": "good",
+      "status": "200",
+      "issue": "",
+      "nextAction": "Use as portfolio-level product source; add product-detail URLs only after verification.",
+      "extractionStatus": "extracted",
+      "extractionReason": "Official US sitemap parsed; 41 LC/LC-MS product pages tracked.",
+      "extractedRecords": 41,
+      "fetchMethod": "product_sitemap_xml",
+      "lastExtractionCheck": "2026-07-13T18:28:47+00:00"
+    },
+    {
+      "id": "thermo-lc-insights",
+      "group": "Competitor official",
+      "source": "Thermo Fisher liquid chromatography insights",
+      "competitor": "Thermo Fisher",
+      "signalCoverage": [
+        "LC and UHPLC workflows",
+        "Vanquish positioning",
+        "LC-MS applications"
+      ],
+      "url": "https://www.thermofisher.com/blog/analyteguru/liquid-chromatography/feed/",
+      "health": "good",
+      "status": "monitored",
+      "issue": "",
+      "nextAction": "Extract dated, relevant LC and LC-MS technical posts and diff their canonical URLs daily.",
+      "extractionStatus": "extracted",
+      "extractionReason": "Official dated RSS feed parsed; 7 relevant LC/MS records extracted.",
+      "extractedRecords": 7,
+      "fetchMethod": "rss_feed",
+      "lastExtractionCheck": "2026-07-13T18:28:48+00:00"
+    },
+    {
+      "id": "thermo-ms-insights",
+      "group": "Competitor official",
+      "source": "Thermo Fisher mass spectrometry insights",
+      "competitor": "Thermo Fisher",
+      "signalCoverage": [
+        "Orbitrap and TSQ positioning",
+        "LC-MS workflows",
+        "Application proof points"
+      ],
+      "url": "https://www.thermofisher.com/blog/analyteguru/mass-spectrometry/feed/",
+      "health": "good",
+      "status": "monitored",
+      "issue": "",
+      "nextAction": "Extract dated, relevant LC-MS technical posts and diff their canonical URLs daily.",
+      "extractionStatus": "extracted",
+      "extractionReason": "Official dated RSS feed parsed; 5 relevant LC/MS records extracted.",
+      "extractedRecords": 5,
+      "fetchMethod": "rss_feed",
+      "lastExtractionCheck": "2026-07-13T18:28:48+00:00"
+    },
+    {
+      "id": "thermo-proteomics-insights",
+      "group": "Competitor official",
+      "source": "Thermo Fisher proteomics insights",
+      "competitor": "Thermo Fisher",
+      "signalCoverage": [
+        "Proteomics LC-MS workflows",
+        "Instrument and software proof points",
+        "Application expansion"
+      ],
+      "url": "https://www.thermofisher.com/blog/analyteguru/proteomics/feed/",
+      "health": "good",
+      "status": "monitored",
+      "issue": "",
+      "nextAction": "Extract dated proteomics LC-MS posts and diff their canonical URLs daily.",
+      "extractionStatus": "extracted",
+      "extractionReason": "Official dated RSS feed parsed; 7 relevant LC/MS records extracted.",
+      "extractedRecords": 7,
+      "fetchMethod": "rss_feed",
+      "lastExtractionCheck": "2026-07-13T18:28:48+00:00"
+    },
+    {
+      "id": "agilent-newsroom",
+      "group": "Competitor official",
+      "source": "Agilent newsroom",
+      "competitor": "Agilent",
+      "signalCoverage": [
+        "Product launches",
+        "Corporate updates",
+        "Partnerships"
+      ],
+      "url": "https://www.agilent.com/about/newsroom/presrel.html",
+      "health": "good",
+      "status": "monitored",
+      "issue": "",
+      "fetchMethod": "dated_press_index",
+      "reliabilityNote": "Authoritative Agilent source. A 403 from a browser-like HTTP client is a WAF artifact and is not a source-quality penalty.",
+      "nextAction": "Diff the dated press-release index daily and extract new product, partnership, and strategic announcements.",
+      "extractionStatus": "extracted",
+      "extractionReason": "Official dated press-release index parsed; 10 releases tracked.",
+      "extractedRecords": 10,
+      "lastExtractionCheck": "2026-07-13T18:28:46+00:00"
+    },
+    {
+      "id": "agilent-lcms",
+      "group": "Product detail",
+      "source": "Agilent product sitemap",
+      "competitor": "Agilent",
+      "signalCoverage": [
+        "Product additions",
+        "Product updates",
+        "Possible discontinuations"
+      ],
+      "url": "https://www.agilent.com/products0.xml",
+      "health": "good",
+      "status": "monitored",
+      "issue": "",
+      "fetchMethod": "product_sitemap_xml",
+      "reliabilityNote": "Authoritative Agilent source. WAF behavior on human-facing pages does not reduce source quality.",
+      "nextAction": "Diff English LC/MS URLs and last-modified dates daily; manually confirm any apparent discontinuation.",
+      "extractionStatus": "extracted",
+      "extractionReason": "Official product sitemaps parsed; 49 LC/MS product pages tracked.",
+      "extractedRecords": 49,
+      "lastExtractionCheck": "2026-07-13T18:28:46+00:00"
+    },
+    {
+      "id": "shimadzu-news",
+      "group": "Competitor official",
+      "source": "Shimadzu news",
+      "competitor": "Shimadzu",
+      "signalCoverage": [
+        "Product launches",
+        "Corporate updates",
+        "Technology announcements"
+      ],
+      "url": "https://www.shimadzu.com/news/",
+      "health": "good",
+      "status": "200",
+      "issue": "",
+      "nextAction": "Use as primary Shimadzu launch source.",
+      "extractionStatus": "extracted",
+      "extractionReason": "Official dated news index parsed; 4 relevant releases extracted.",
+      "extractedRecords": 4,
+      "fetchMethod": "dated_press_index",
+      "lastExtractionCheck": "2026-07-13T18:28:49+00:00"
+    },
+    {
+      "id": "shimadzu-lcms",
+      "group": "Product detail",
+      "source": "Shimadzu LC-MS solutions",
+      "competitor": "Shimadzu",
+      "signalCoverage": [
+        "Product positioning",
+        "Hardware innovations"
+      ],
+      "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/index.html",
+      "health": "good",
+      "status": "200",
+      "issue": "",
+      "nextAction": "Use as portfolio-level product source.",
+      "extractionStatus": "extracted",
+      "extractionReason": "Official analytical sitemap parsed; 78 LC/LC-MS/software product pages tracked.",
+      "extractedRecords": 78,
+      "fetchMethod": "product_sitemap_xml",
+      "lastExtractionCheck": "2026-07-13T18:28:49+00:00"
+    },
+    {
+      "id": "sciex-news",
+      "group": "Competitor official",
+      "source": "SCIEX press releases",
+      "competitor": "SCIEX",
+      "signalCoverage": [
+        "Product launches",
+        "Software releases",
+        "Partnerships"
+      ],
+      "url": "https://sciex.com/about-us/press-releases",
+      "health": "good",
+      "status": "200",
+      "issue": "",
+      "nextAction": "Use as primary SCIEX launch source.",
+      "extractionStatus": "extracted",
+      "extractionReason": "Official dated press index parsed; 3 relevant releases extracted.",
+      "extractedRecords": 3,
+      "fetchMethod": "dated_press_index",
+      "lastExtractionCheck": "2026-07-13T18:28:49+00:00"
+    },
+    {
+      "id": "sciex-products",
+      "group": "Product detail",
+      "source": "SCIEX mass spectrometers",
+      "competitor": "SCIEX",
+      "signalCoverage": [
+        "Product positioning",
+        "Hardware innovations"
+      ],
+      "url": "https://sciex.com/products/mass-spectrometers",
+      "health": "good",
+      "status": "200",
+      "issue": "",
+      "nextAction": "Use as portfolio-level product source.",
+      "extractionStatus": "extracted",
+      "extractionReason": "Official sitemap parsed; 66 MS/LC/software product pages tracked.",
+      "extractedRecords": 66,
+      "fetchMethod": "product_sitemap_xml",
+      "lastExtractionCheck": "2026-07-13T18:28:49+00:00"
+    },
+    {
+      "id": "perkinelmer-news",
+      "group": "Competitor official",
+      "source": "PerkinElmer news / corporate announcements",
+      "competitor": "PerkinElmer",
+      "signalCoverage": [
+        "Corporate updates",
+        "Product launches",
+        "Partnerships"
+      ],
+      "url": "https://www.perkinelmer.com/corporate-and-newsroom",
+      "health": "good",
+      "status": "verified",
+      "issue": "",
+      "nextAction": "Use as official PerkinElmer corporate, product, partnership, and strategic initiative source."
+    },
+    {
+      "id": "perkinelmer-lc-products",
+      "group": "Competitor official",
+      "source": "PerkinElmer liquid chromatography products",
+      "competitor": "PerkinElmer",
+      "signalCoverage": [
+        "Product positioning",
+        "LC portfolio",
+        "Product updates"
+      ],
+      "url": "https://www.perkinelmer.com/category/liquid-chromatography",
+      "health": "good",
+      "status": "200",
+      "issue": "",
+      "nextAction": "Use as PerkinElmer LC product portfolio source."
+    },
+    {
+      "id": "pubmed",
+      "group": "Scientific publications",
+      "source": "PubMed E-utilities",
+      "competitor": "Market-wide",
+      "signalCoverage": [
+        "Scientific application trends",
+        "Technology adoption themes"
+      ],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/",
+      "health": "good",
+      "status": "200",
+      "issue": "",
+      "nextAction": "Keep as structured trend source."
+    },
+    {
+      "id": "sec-search",
+      "group": "Investor relations / filings",
+      "source": "SEC EDGAR search",
+      "competitor": "Public-company parents",
+      "signalCoverage": [
+        "10-K",
+        "10-Q",
+        "8-K",
+        "Acquisitions",
+        "Investments"
+      ],
+      "url": "https://www.sec.gov/edgar/search/",
+      "health": "blocked",
+      "status": "403",
+      "issue": "Search page returned rate-threshold page during audit.",
+      "nextAction": "Use data.sec.gov submissions API with appropriate user agent instead of the search page."
+    },
+    {
+      "id": "conferences",
+      "group": "Conferences",
+      "source": "Waters Next Gen LC conference source map",
+      "competitor": "All",
+      "signalCoverage": [
+        "Conference presentations",
+        "New launches",
+        "Application themes",
+        "Sponsor activity",
+        "Poster and abstract trends",
+        "Customer user meetings"
+      ],
+      "url": "data/conference_sources.json",
+      "health": "manual",
+      "status": "source_map_created",
+      "issue": "",
+      "nextAction": "Monitor the extracted conference websites for agenda, sponsor, exhibitor, poster, abstract, and launch signals."
+    },
+    {
+      "id": "trade-publications",
+      "group": "Scientific and trade publications",
+      "source": "LCGC, BioPharma International, Separation Science, LabRoots, Lab Manager, Pharmaceutical Online, The Analytical Scientist, European Pharmaceutical Review, American Pharmaceutical Review",
+      "competitor": "Market-wide",
+      "signalCoverage": [
+        "Application trends",
+        "Messaging",
+        "Customer language",
+        "Buying criteria",
+        "Workflow education"
+      ],
+      "url": "data/journal_sources.json",
+      "health": "manual",
+      "status": "source_map_created",
+      "issue": "Outlet-level homepage links and PM use cases are mapped. Automated ingestion still requires RSS/search validation and terms/access review.",
+      "nextAction": "Validate outlet search/RSS endpoints and begin article-level capture for LC, UHPLC, LC-MS, software, workflow, and customer-language signals."
+    },
+    {
+      "id": "customer-voice",
+      "group": "Customer voice",
+      "source": "SelectScience, Chromatography Forum, LabWrench, Waters support, Reddit, and public lab communities",
+      "competitor": "All",
+      "signalCoverage": [
+        "Customer feedback",
+        "Adoption patterns",
+        "Pain points"
+      ],
+      "url": "data/customer_voice.json",
+      "health": "manual",
+      "status": "source_map_created",
+      "issue": "Public source map and directional signal starter are available. Forum, Reddit, ResearchGate, and LinkedIn ingestion still require approved access, terms review, and careful handling of user-generated content.",
+      "nextAction": "Extract article/thread-level URLs, de-duplicate customer-language evidence, and keep community sources policy-gated until collection is approved."
+    }
+  ]
+}

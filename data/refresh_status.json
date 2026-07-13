@@ -1,0 +1,23 @@
+{
+  "cadence": "daily",
+  "status": "success",
+  "lastAttemptAt": "2026-07-13T18:29:05+00:00",
+  "lastSuccessfulRefreshAt": "2026-07-13T18:29:05+00:00",
+  "startedAt": "2026-07-13T18:27:08+00:00",
+  "automatedDomains": [
+    "PubMed publication trends and competitor-linked publications",
+    "SEC filing discovery",
+    "Registered competitor source availability checks",
+    "Agilent LC/MS product sitemap and press-release change detection",
+    "Thermo Fisher, Shimadzu, and SCIEX product sitemap and press-release extraction",
+    "Thermo Fisher LC/MS technical insight RSS extraction"
+  ],
+  "curatedDomains": [
+    "Product-launch interpretation and machine comparisons",
+    "Partnership interpretation",
+    "Conference preparation",
+    "Customer voice",
+    "PM recommendations"
+  ],
+  "message": "Automated refresh completed (PubMed: success, SEC: success, source checks: success, Agilent: partial_refresh); curated PM intelligence was preserved."
+}
