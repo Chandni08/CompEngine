@@ -1,0 +1,150 @@
+{
+  "generatedAt": "2026-06-30T22:30:00-04:00",
+  "purpose": "Publication, forum, webinar, and trade-media source map for Waters Next Gen LC competitive intelligence.",
+  "sources": [
+    {
+      "id": "lcgc",
+      "name": "LCGC",
+      "sourceType": "Chromatography trade publication",
+      "homepage": "https://www.chromatographyonline.com/",
+      "monitoringMode": "Search articles, columns, application coverage, conference reporting, and vendor mentions.",
+      "pmDecisionUse": "Track LC, HPLC, UHPLC, LC-MS, method-development, column, detector, and workflow themes that may signal where customer methods are moving.",
+      "primarySignals": ["LC methods", "UHPLC adoption", "Column and detector trends", "Vendor positioning"],
+      "coverage": ["LC", "UHPLC", "LC-MS", "Method development"],
+      "watchQuestions": [
+        "Are competitors owning a method-development or workflow narrative before Waters does?",
+        "Which recurring LC pain points or application themes should become roadmap inputs?"
+      ],
+      "ingestionStatus": "Source mapped",
+      "confidenceUse": "High for topic trend monitoring; validate any customer claim with article-level source review."
+    },
+    {
+      "id": "biopharma-international",
+      "name": "BioPharma International",
+      "sourceType": "Biopharma trade publication",
+      "homepage": "https://www.biopharminternational.com/",
+      "monitoringMode": "Monitor CMC, QC, manufacturing, regulatory, and analytical development coverage.",
+      "pmDecisionUse": "Surface biopharma and CDMO analytical workflow needs that could influence LC, LC-MS, compliance, informatics, and method-transfer priorities.",
+      "primarySignals": ["CMC analytics", "QC workflows", "Biologics characterization", "Regulated method transfer"],
+      "coverage": ["Biopharma", "CDMO", "QC", "Regulatory"],
+      "watchQuestions": [
+        "Which biopharma workflows are moving from specialist methods into routine QC?",
+        "Where should Waters package instrument, software, and application proof together?"
+      ],
+      "ingestionStatus": "Source mapped",
+      "confidenceUse": "High for market and workflow direction; use with launch and customer evidence before changing roadmap priority."
+    },
+    {
+      "id": "separation-science",
+      "name": "Separation Science",
+      "sourceType": "Separation science publication and learning platform",
+      "homepage": "https://www.sepscience.com/",
+      "monitoringMode": "Monitor LC, LC-MS, webinars, technical articles, and vendor education content.",
+      "pmDecisionUse": "Identify application education themes, method pain points, and competitor workflow messaging around separation performance and usability.",
+      "primarySignals": ["Application education", "LC-MS workflows", "Method troubleshooting", "Vendor webinars"],
+      "coverage": ["LC", "LC-MS", "Training", "Applications"],
+      "watchQuestions": [
+        "Which training gaps are vendors using to shape customer preference?",
+        "Do Waters support, methods, or templates need clearer educational packaging?"
+      ],
+      "ingestionStatus": "Source mapped",
+      "confidenceUse": "Medium-high for application and training signals; validate commercial importance with customer evidence."
+    },
+    {
+      "id": "labroots",
+      "name": "LabRoots",
+      "sourceType": "Scientific webinar and community platform",
+      "homepage": "https://www.labroots.com/",
+      "monitoringMode": "Monitor webinars, virtual events, expert talks, and community discussion themes.",
+      "pmDecisionUse": "Track customer language around lab productivity, automation, software, compliance, and application workflows that may show unmet needs.",
+      "primarySignals": ["Webinar themes", "Lab productivity", "Automation", "Community language"],
+      "coverage": ["Academic", "Pharma", "Biopharma", "Lab operations"],
+      "watchQuestions": [
+        "Which workflow pains are showing up in customer-facing education and discussion?",
+        "Where should Waters make setup, troubleshooting, or workflow execution easier?"
+      ],
+      "ingestionStatus": "Source mapped",
+      "confidenceUse": "Medium for customer-language and education themes; avoid treating discussion volume as market share."
+    },
+    {
+      "id": "lab-manager",
+      "name": "Lab Manager",
+      "sourceType": "Lab operations publication",
+      "homepage": "https://www.labmanager.com/",
+      "monitoringMode": "Monitor purchasing, staffing, maintenance, automation, safety, sustainability, and lab operations coverage.",
+      "pmDecisionUse": "Capture buying criteria beyond instrument specs, especially uptime, ease of use, training, maintenance burden, and total operating cost.",
+      "primarySignals": ["Buying criteria", "Lab operations", "Service burden", "Training"],
+      "coverage": ["Lab management", "Procurement", "Operations", "Service"],
+      "watchQuestions": [
+        "Which operational pain points should influence next-gen LC requirements?",
+        "Are competitors winning on reliability, service, or ease-of-use narratives?"
+      ],
+      "ingestionStatus": "Source mapped",
+      "confidenceUse": "High for buying-criteria context; validate product-specific claims with direct source links."
+    },
+    {
+      "id": "pharmaceutical-online",
+      "name": "Pharmaceutical Online",
+      "sourceType": "Pharmaceutical industry portal",
+      "homepage": "https://www.pharmaceuticalonline.com/",
+      "monitoringMode": "Monitor sponsor content, technical articles, QC/manufacturing coverage, and vendor solution narratives.",
+      "pmDecisionUse": "Track how vendors package LC, informatics, consumables, and services for pharma workflows and regulated environments.",
+      "primarySignals": ["Vendor solution packaging", "QC workflows", "Regulated operations", "CDMO needs"],
+      "coverage": ["Pharma", "CDMO", "Manufacturing", "QC"],
+      "watchQuestions": [
+        "Which competitor messages are moving from product specs to full workflow offers?",
+        "Where does Waters need stronger proof for pharma productivity or compliance?"
+      ],
+      "ingestionStatus": "Source mapped",
+      "confidenceUse": "Medium for messaging and sponsor activity; distinguish editorial coverage from sponsored content."
+    },
+    {
+      "id": "the-analytical-scientist",
+      "name": "The Analytical Scientist",
+      "sourceType": "Analytical science publication",
+      "homepage": "https://theanalyticalscientist.com/",
+      "monitoringMode": "Monitor expert interviews, trend pieces, technology commentary, and conference coverage.",
+      "pmDecisionUse": "Detect emerging narratives in analytical science that may influence buyer expectations for LC, LC-MS, informatics, and automation.",
+      "primarySignals": ["Expert commentary", "Technology narratives", "Conference readouts", "Emerging applications"],
+      "coverage": ["LC", "LC-MS", "Informatics", "Automation"],
+      "watchQuestions": [
+        "Which emerging analytical narratives should Waters defend or lead?",
+        "Are competitors associated with a future-state workflow before Waters is?"
+      ],
+      "ingestionStatus": "Source mapped",
+      "confidenceUse": "Medium-high for strategic narrative; pair with product launches and application notes."
+    },
+    {
+      "id": "european-pharmaceutical-review",
+      "name": "European Pharmaceutical Review",
+      "sourceType": "Pharmaceutical trade publication",
+      "homepage": "https://www.europeanpharmaceuticalreview.com/",
+      "monitoringMode": "Monitor analytical development, quality, regulatory, manufacturing, and European pharma coverage.",
+      "pmDecisionUse": "Track regional regulatory and pharma QC themes that may affect Waters LC positioning in Europe and global regulated markets.",
+      "primarySignals": ["Regulatory expectations", "Pharma QC", "European market themes", "Analytical methods"],
+      "coverage": ["Europe", "Pharma", "QC", "Regulatory"],
+      "watchQuestions": [
+        "Which European regulatory or QC expectations should shape LC software and compliance requirements?",
+        "Where should Waters prepare region-specific proof points?"
+      ],
+      "ingestionStatus": "Source mapped",
+      "confidenceUse": "Medium-high for regional and regulatory context; validate with official regulatory sources when used for compliance decisions."
+    },
+    {
+      "id": "american-pharmaceutical-review",
+      "name": "American Pharmaceutical Review",
+      "sourceType": "Pharmaceutical trade publication",
+      "homepage": "https://www.americanpharmaceuticalreview.com/",
+      "monitoringMode": "Monitor analytical development, formulation, quality, manufacturing, and vendor contributed content.",
+      "pmDecisionUse": "Identify North America pharma workflow themes and vendor narratives around LC analytics, quality, compliance, and operational productivity.",
+      "primarySignals": ["Pharma analytics", "Quality workflows", "Vendor narratives", "Compliance support"],
+      "coverage": ["North America", "Pharma", "QC", "Compliance"],
+      "watchQuestions": [
+        "Which pharma application themes are becoming repeatable enough for product packaging?",
+        "Do Waters methods, kits, or software templates need stronger evidence for routine regulated use?"
+      ],
+      "ingestionStatus": "Source mapped",
+      "confidenceUse": "Medium-high for pharma analytical trend monitoring; distinguish editorial evidence from sponsored material."
+    }
+  ]
+}

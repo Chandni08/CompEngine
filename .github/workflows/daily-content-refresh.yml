@@ -1,0 +1,57 @@
+name: Daily competitive-intelligence refresh
+
+on:
+  schedule:
+    - cron: "15 10 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-competitive-intelligence-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out the website
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install link-check dependencies
+        run: python -m pip install "requests>=2.32,<3" "certifi>=2024.7.4"
+
+      - name: Set up Chromium fallback for WAF-challenged official pages
+        run: |
+          npm install --no-save --no-package-lock playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Refresh and validate public intelligence
+        env:
+          AGILENT_HEADED: "1"
+        run: xvfb-run --auto-servernum python scripts/refresh_daily.py
+
+      - name: Save the validated daily data
+        run: |
+          git config user.name "competitive-intelligence-refresh"
+          git config user.email "competitive-intelligence-refresh@users.noreply.github.com"
+          git add data deploy-site/data
+          git diff --cached --quiet || git commit -m "data: daily competitive-intelligence refresh"
+          git push
+
+      - name: Trigger Vercel deployment when a deploy hook is configured
+        env:
+          VERCEL_DEPLOY_HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+        run: |
+          if [ -n "$VERCEL_DEPLOY_HOOK" ]; then
+            curl --fail --silent --show-error --request POST "$VERCEL_DEPLOY_HOOK"
+          else
+            echo "No deploy hook configured; relying on the Vercel Git integration."
+          fi

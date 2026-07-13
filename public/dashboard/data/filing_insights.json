@@ -1,0 +1,122 @@
+{
+  "generatedAt": "2026-06-26T14:55:00",
+  "source": "SEC filings reviewed for roadmap, product, market, and competitor strategy implications",
+  "insights": [
+    {
+      "id": "agilent-lc-lcms-pharma-apac-growth-2026-q2",
+      "date": "2026-06-01",
+      "competitor": "Agilent",
+      "filingType": "10-Q",
+      "sourceName": "Agilent 10-Q",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1090872/000109087226000055/a-20260430.htm",
+      "headline": "Agilent says LC and LC-MS are helping drive pharma, APAC, and advanced-materials growth",
+      "evidence": "Agilent reported product revenue growth led by liquid chromatography and said pharma growth was led by LC, LC-MS, and Advanced Therapeutics; Asia Pacific growth also included LC and LC-MS.",
+      "filingNavigation": {
+        "searchTerms": ["liquid chromatography", "LC-MS", "Advanced Therapeutics", "Asia Pacific", "pharmaceutical"],
+        "whereToLook": "Management's discussion of Life Sciences and Applied Markets Group revenue by product line, end market, and geography.",
+        "whyThisSurfacesTheInsight": "Those phrases locate the passages where Agilent connects LC/LC-MS directly to pharma, APAC, and advanced-therapeutics growth instead of treating LC as a mature background portfolio.",
+        "watersReadout": "Use the passage to compare Waters roadmap proof against Agilent's stated LC/LC-MS growth engines in pharma, APAC, and advanced materials."
+      },
+      "whyItMatters": "This is direct evidence that Agilent sees LC and LC-MS as growth engines, not just mature portfolio lines.",
+      "pmImplication": "Waters should compare roadmap proof points against Agilent in pharma LC/LC-MS, APAC growth, and chemical/advanced-materials workflows.",
+      "marketSegment": "Pharma",
+      "technology": "LC-MS",
+      "impactScore": 88,
+      "priority": "High"
+    },
+    {
+      "id": "agilent-crosslab-service-growth-2026-q2",
+      "date": "2026-06-01",
+      "competitor": "Agilent",
+      "filingType": "10-Q",
+      "sourceName": "Agilent 10-Q",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1090872/000109087226000055/a-20260430.htm",
+      "headline": "Agilent CrossLab and services growth points to lifecycle/service differentiation",
+      "evidence": "Agilent reported services and other revenue increased 10% for both the three- and six-month periods, with growth from contract repair, consulting, and preventative maintenance.",
+      "filingNavigation": {
+        "searchTerms": ["services and other revenue", "contract repair", "consulting", "preventative maintenance", "CrossLab"],
+        "whereToLook": "Revenue discussion for Agilent CrossLab / services and other revenue in the quarterly operating results.",
+        "whyThisSurfacesTheInsight": "These terms surface the evidence that Agilent is growing through lifecycle services, consulting, and maintenance, which affects instrument buying criteria beyond hardware performance.",
+        "watersReadout": "Use the passage to test whether Waters roadmap and PMM messages connect LC systems with service lifecycle, uptime, compliance, and workflow continuity."
+      },
+      "whyItMatters": "Competitor value is extending beyond instruments into uptime, compliance, consulting, and lifecycle economics.",
+      "pmImplication": "PMs should evaluate whether Waters roadmap and positioning clearly connect instruments, service, compliance, and workflow continuity.",
+      "marketSegment": "Pharma",
+      "technology": "Portfolio",
+      "impactScore": 80,
+      "priority": "High"
+    },
+    {
+      "id": "thermo-bioproduction-chrom-ms-2026-q1",
+      "date": "2026-05-01",
+      "competitor": "Thermo Fisher",
+      "filingType": "10-Q",
+      "sourceName": "Thermo Fisher 10-Q",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/97745/000009774526000092/tmo-20260328.htm",
+      "headline": "Thermo is pairing bioproduction investment with chromatography and MS resilience",
+      "evidence": "Thermo described a 2025 filtration and separation acquisition strengthening bioproduction, and reported chromatography and mass spectrometry growth offsetting weakness elsewhere in Analytical Instruments.",
+      "filingNavigation": {
+        "searchTerms": ["filtration and separation", "bioproduction", "chromatography", "mass spectrometry", "Analytical Instruments"],
+        "whereToLook": "Acquisition/business overview language plus Analytical Instruments segment revenue discussion.",
+        "whyThisSurfacesTheInsight": "The combined terms connect Thermo's bioproduction expansion with chromatography and MS resilience, which is the strategic threat to Waters' biopharma workflow positioning.",
+        "watersReadout": "Use the passage to pressure-test Waters LNP, biologics, and bioprocess LC-MS workflow coverage against Thermo's broader end-to-end biopharma story."
+      },
+      "whyItMatters": "Thermo's bioproduction and chromatography/MS story creates pressure around end-to-end biopharma workflows, not only individual instruments.",
+      "pmImplication": "Waters should inspect LNP, biologics, and bioprocess workflow coverage against Thermo's combined bioproduction plus chromatography/MS positioning.",
+      "marketSegment": "Biopharma",
+      "technology": "LC-MS",
+      "impactScore": 86,
+      "priority": "High"
+    },
+    {
+      "id": "thermo-analytical-instruments-margin-pressure-2026-q1",
+      "date": "2026-05-01",
+      "competitor": "Thermo Fisher",
+      "filingType": "10-Q",
+      "sourceName": "Thermo Fisher 10-Q",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/97745/000009774526000092/tmo-20260328.htm",
+      "headline": "Thermo Analytical Instruments was flat with margin pressure despite chromatography/MS growth",
+      "evidence": "Thermo reported Analytical Instruments revenue was essentially flat, with lower margin tied to tariffs, business mix, and lower volume; chromatography and MS growth largely offset electron microscopy weakness.",
+      "filingNavigation": {
+        "searchTerms": ["Analytical Instruments", "chromatography", "mass spectrometry", "tariffs", "business mix", "lower volume"],
+        "whereToLook": "Analytical Instruments segment operating results and margin commentary.",
+        "whyThisSurfacesTheInsight": "These terms identify the mixed signal: chromatography/MS growth is real, but segment economics are pressured by volume, mix, and tariffs.",
+        "watersReadout": "Use the passage to refine Waters pricing, margin, and value messaging in instrument-heavy markets, especially academic, government, and China-exposed workflows."
+      },
+      "whyItMatters": "This suggests a mixed competitive picture: chromatography/MS demand exists, but pricing, mix, and end-market demand may pressure profitability.",
+      "pmImplication": "Waters should stress-test pricing, margin, and value messaging in instrument-heavy segments, especially academia/government and China-exposed workflows.",
+      "marketSegment": "Academic",
+      "technology": "LC-MS",
+      "impactScore": 76,
+      "priority": "Medium"
+    },
+    {
+      "id": "revvity-software-ai-life-sciences-2026",
+      "date": "2026-05-12",
+      "competitor": "PerkinElmer",
+      "filingType": "10-Q / 10-K",
+      "sourceName": "PerkinElmer-related SEC filings",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/31791/000003179126000019/revv-20260405.htm",
+      "headline": "PerkinElmer-related life-science software and AI signals are rising",
+      "evidence": "Public filing evidence points to Life Sciences Solutions and Software growth, plus AI, acquisitions/licensing, and software platforms that support analytical and chromatography workflows.",
+      "filingNavigation": {
+        "searchTerms": ["Life Sciences Solutions", "Software", "AI", "licensing", "platform", "analytics"],
+        "whereToLook": "Business segment discussion, software revenue commentary, and strategy/acquisition sections.",
+        "whyThisSurfacesTheInsight": "These terms find the places where PerkinElmer-related filings describe workflow software, AI, and analytical platforms rather than LC hardware refreshes.",
+        "watersReadout": "Use the passage to monitor whether competition is shifting toward vendor-neutral software, AI-assisted decision support, chromatography data workflows, and lab productivity."
+      },
+      "whyItMatters": "PerkinElmer-related competition may show up less as LC hardware refreshes and more as software, automation, and lab workflow ecosystems.",
+      "pmImplication": "Waters should track software-enabled analytical workflow gaps, including vendor-neutral data processing, chromatography method development, and AI-assisted decision support.",
+      "marketSegment": "Pharma",
+      "technology": "Software",
+      "impactScore": 84,
+      "priority": "High"
+    }
+  ],
+  "suppressedFilingTypes": [
+    {
+      "filingType": "8-K",
+      "reason": "Generic 8-K rows are suppressed unless the content contains a product, partnership, acquisition, investment, customer, or strategy signal."
+    }
+  ]
+}

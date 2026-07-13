@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.wrangler/
+.pw-browsers/
+audit-output/
+logs/
+*.zip
+__pycache__/
+*.py[cod]
+.DS_Store
