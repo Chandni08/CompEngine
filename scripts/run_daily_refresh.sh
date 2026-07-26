@@ -19,6 +19,6 @@ fi
 
 echo "$(date -Iseconds) Starting daily competitive-intelligence refresh"
 /usr/bin/caffeinate -i "$PYTHON" "$ROOT/scripts/refresh_daily.py"
-status=$?
-echo "$(date -Iseconds) Daily refresh finished with status $status"
-exit $status
+refresh_status=$?
+echo "$(date -Iseconds) Daily refresh finished with status $refresh_status"
+exit $refresh_status

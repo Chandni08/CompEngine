@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-07-13T12:44:44-04:00",
-  "asOfDate": "2026-07-13",
-  "scope": "Public customer voice and market-signal starter set for Waters LC product management. Evidence rows are theme-level public signals from mapped sources; direct customer-quote extraction and de-duplication still require an approved collection pass.",
+  "generatedAt": "2026-07-23T14:30:00-04:00",
+  "asOfDate": "2026-07-23",
+  "scope": "Exact public LC and LC-MS user discussions and troubleshooting records for Waters product management. Source URLs are deduplicated in the interface, and displayed wording is validated against each linked page.",
   "sources": [
     {
       "id": "selectscience-lc-reviews",
@@ -34,16 +34,6 @@
       "nextAction": "Map equipment pages for ACQUITY UPLC, Alliance/e2695, Agilent 1260/1290, Thermo Vanquish, Shimadzu Nexera/Prominence, and SCIEX ExionLC."
     },
     {
-      "id": "waters-support-kb",
-      "sourceName": "Waters public support knowledge base",
-      "sourceType": "Official support knowledge base",
-      "url": "https://support.waters.com/",
-      "coverage": "Public troubleshooting and support evidence for Waters LC systems, modules, Empower/Breeze workflows, and known service topics.",
-      "status": "source_mapped",
-      "confidence": "Medium",
-      "nextAction": "Extract support topics into issue categories and link repeated issues to product families."
-    },
-    {
       "id": "reddit-lab-communities",
       "sourceName": "Reddit lab/science communities",
       "sourceType": "Public community discussions",
@@ -52,66 +42,6 @@
       "status": "access_policy_needed",
       "confidence": "Low",
       "nextAction": "Confirm compliant collection method before ingesting user-generated content."
-    },
-    {
-      "id": "waters-acquity-product",
-      "sourceName": "Waters ACQUITY UPLC product information",
-      "sourceType": "Official product page",
-      "url": "https://www.waters.com/nextgen/us/en/products/chromatography-systems/acquity-uplc-systems.html",
-      "coverage": "Waters positioning and product claims for ACQUITY UPLC systems.",
-      "status": "source_mapped",
-      "confidence": "Medium",
-      "nextAction": "Compare customer-voice themes against official positioning claims."
-    },
-    {
-      "id": "waters-arc-product",
-      "sourceName": "Waters Arc HPLC product information",
-      "sourceType": "Official product page",
-      "url": "https://www.waters.com/nextgen/us/en/products/chromatography-systems/arc-hplc-system.html",
-      "coverage": "Waters positioning and product claims for Arc HPLC method modernization and routine LC workflows.",
-      "status": "source_mapped",
-      "confidence": "Medium",
-      "nextAction": "Compare customer-voice themes around method modernization, legacy transfer, and routine HPLC ease of use."
-    },
-    {
-      "id": "agilent-infinitylab-product",
-      "sourceName": "Agilent InfinityLab LC systems",
-      "sourceType": "Official competitor product page",
-      "url": "https://www.agilent.com/en/product/liquid-chromatography/hplc-systems",
-      "coverage": "Competitor positioning for Agilent 1260/1290 InfinityLab LC systems.",
-      "status": "source_mapped",
-      "confidence": "Medium",
-      "nextAction": "Compare public customer themes against Agilent reliability, workflow, and service positioning."
-    },
-    {
-      "id": "thermo-vanquish-product",
-      "sourceName": "Thermo Vanquish HPLC/UHPLC systems",
-      "sourceType": "Official competitor product page",
-      "url": "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-system-features.html",
-      "coverage": "Competitor positioning for Thermo Vanquish and related LC ecosystem claims.",
-      "status": "source_mapped",
-      "confidence": "Medium",
-      "nextAction": "Track customer comments around ecosystem integration, Chromeleon workflows, complexity, and service."
-    },
-    {
-      "id": "shimadzu-nexera-product",
-      "sourceName": "Shimadzu Nexera / Prominence LC systems",
-      "sourceType": "Official competitor product page",
-      "url": "https://www.shimadzu.com/an/products/liquid-chromatography/hplcuhplc/nexera-series/index.html",
-      "coverage": "Competitor positioning for Shimadzu LC/UHPLC platform family.",
-      "status": "source_mapped",
-      "confidence": "Medium",
-      "nextAction": "Track public comments around value, robustness, service, software, and method-transfer experience."
-    },
-    {
-      "id": "sciex-exionlc-product",
-      "sourceName": "SCIEX ExionLC and HPLC products",
-      "sourceType": "Official competitor product page",
-      "url": "https://sciex.com/products/hplc-products",
-      "coverage": "Competitor positioning for SCIEX LC systems used with LC-MS workflows.",
-      "status": "source_mapped",
-      "confidence": "Medium",
-      "nextAction": "Track customer comments around LC-MS integration, uptime, service, and software handoff."
     }
   ],
   "feedback": [
@@ -121,12 +51,25 @@
       "company": "Waters",
       "product": "ACQUITY UPLC",
       "platform": "UHPLC",
-      "sourceIds": ["waters-support-kb", "chromforum-lc-discussions"],
-      "sourceName": "Waters support + public chromatography discussions",
-      "sourceUrl": "https://support.waters.com/",
+      "sourceIds": [
+        "chromforum-lc-discussions"
+      ],
+      "sourceName": "Independent customer-authored discussions",
+      "sourceUrl": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1uk333s/update_uplc_waters_high_pressure_problem/",
       "evidenceRecords": [
-        { "label": "Waters support: ACQUITY pressure fluctuates (WKB4833)", "url": "https://support.waters.com/KB_Inst/Chromatography/WKB4833_ACQUITY_BSM_or_QSM_Unstable_Pressure", "recordType": "Official troubleshooting article", "sourceDate": "2026-04-04", "dateType": "Updated" },
-        { "label": "Reddit discussion: Waters ACQUITY high and unstable pressure", "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1uk333s/update_uplc_waters_high_pressure_problem/", "recordType": "Public user discussion", "sourceDate": "2026-06-30", "dateType": "Published" }
+        {
+          "label": "Reddit discussion: UPLC Waters high-pressure problem",
+          "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1uk333s/update_uplc_waters_high_pressure_problem/",
+          "sourceKeywords": [
+            "Waters UPLC",
+            "high and unstable pressure",
+            "column issue",
+            "needle seal readiness test"
+          ],
+          "recordType": "Public user discussion",
+          "sourceDate": "2026-06-30",
+          "dateType": "Published"
+        }
       ],
       "sentiment": "Negative",
       "category": "Reliability / leaks / pressure stability",
@@ -148,12 +91,24 @@
       "company": "Waters",
       "product": "ACQUITY UPLC / LC modules",
       "platform": "UHPLC",
-      "sourceIds": ["waters-support-kb", "chromforum-lc-discussions"],
-      "sourceName": "Waters support + public chromatography discussions",
-      "sourceUrl": "https://support.waters.com/",
+      "sourceIds": [
+        "chromforum-lc-discussions"
+      ],
+      "sourceName": "Independent customer-authored discussions",
+      "sourceUrl": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1h1i93y/waters_acquity_uplc_beh_17_um_21_x_100_mm_column/",
       "evidenceRecords": [
-        { "label": "Waters support: ACQUITY H-Class carryover solution (WKB193162)", "url": "https://support.waters.com/KB_Inst/Chromatography/WKB193162_Carryover_solution_that_can_be_performed_by_user_with_ACQUITY_UPLC_H-Class", "recordType": "Official troubleshooting article", "sourceDate": "2026-04-04", "dateType": "Updated" },
-        { "label": "Reddit discussion: ACQUITY carryover after a non-routine injection", "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1h1i93y/waters_acquity_uplc_beh_17_um_21_x_100_mm_column/", "recordType": "Public user discussion", "sourceDate": "2024-11-27", "dateType": "Published" }
+        {
+          "label": "Reddit discussion: Waters ACQUITY UPLC column or needle issues",
+          "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1h1i93y/waters_acquity_uplc_beh_17_um_21_x_100_mm_column/",
+          "sourceKeywords": [
+            "Waters ACQUITY UPLC",
+            "column",
+            "needle issues"
+          ],
+          "recordType": "Public user discussion",
+          "sourceDate": "2024-11-27",
+          "dateType": "Published"
+        }
       ],
       "sentiment": "Negative",
       "category": "Carryover / autosampler",
@@ -175,12 +130,35 @@
       "company": "Waters",
       "product": "Empower / Breeze-connected LC workflows",
       "platform": "Software",
-      "sourceIds": ["waters-support-kb", "reddit-lab-communities"],
-      "sourceName": "Waters support + public lab communities",
-      "sourceUrl": "https://support.waters.com/",
+      "sourceIds": [
+        "reddit-lab-communities"
+      ],
+      "sourceName": "Independent customer-authored discussions",
+      "sourceUrl": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1e3y2sy/getting_started_with_empower_3/",
       "evidenceRecords": [
-        { "label": "Reddit discussion: Getting started with Empower 3", "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1e3y2sy/getting_started_with_empower_3/", "recordType": "Public user discussion", "sourceDate": "2024-07-15", "dateType": "Published" },
-        { "label": "Reddit discussion: Is Waters training worth it?", "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1ion27e/is_getting_training_from_waters_worth_it/", "recordType": "Public user discussion", "sourceDate": "2025-02-13", "dateType": "Published" }
+        {
+          "label": "Reddit discussion: Getting started with Empower 3",
+          "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1e3y2sy/getting_started_with_empower_3/",
+          "sourceKeywords": [
+            "getting started",
+            "Empower 3"
+          ],
+          "recordType": "Public user discussion",
+          "sourceDate": "2024-07-15",
+          "dateType": "Published"
+        },
+        {
+          "label": "Reddit discussion: Is Waters training worth it?",
+          "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1ion27e/is_getting_training_from_waters_worth_it/",
+          "sourceKeywords": [
+            "training",
+            "Waters",
+            "worth it"
+          ],
+          "recordType": "Public user discussion",
+          "sourceDate": "2025-02-13",
+          "dateType": "Published"
+        }
       ],
       "sentiment": "Mixed",
       "category": "Software usability / data integrity",
@@ -202,12 +180,36 @@
       "company": "Waters",
       "product": "Alliance HPLC / e2695",
       "platform": "LC",
-      "sourceIds": ["labwrench-equipment-qa", "waters-support-kb"],
-      "sourceName": "LabWrench equipment Q&A + Waters support",
-      "sourceUrl": "https://www.labwrench.com/",
+      "sourceIds": [
+        "labwrench-equipment-qa"
+      ],
+      "sourceName": "Independent customer-authored discussions",
+      "sourceUrl": "https://www.labwrench.com/thread/135698/hplc-pump-and-autosampler-preventative-performance-maintenance",
       "evidenceRecords": [
-        { "label": "LabWrench: Waters 2690/2695 pump and autosampler maintenance discussion", "url": "https://www.labwrench.com/thread/135698/hplc-pump-and-autosampler-preventative-performance-maintenance", "recordType": "Public equipment discussion", "sourceDate": "2016-05-11", "dateType": "Published" },
-        { "label": "LabWrench: Waters 2695 seal-wash operation discussion", "url": "https://www.labwrench.com/thread/187926/waters-alliance-2695-seal-wash-pump-on-during-operation", "recordType": "Public equipment discussion", "sourceDate": "2018-12-28", "dateType": "Published" }
+        {
+          "label": "LabWrench: HPLC pump and autosampler maintenance",
+          "url": "https://www.labwrench.com/thread/135698/hplc-pump-and-autosampler-preventative-performance-maintenance",
+          "sourceKeywords": [
+            "HPLC pump",
+            "autosampler",
+            "maintenance"
+          ],
+          "recordType": "Public equipment discussion",
+          "sourceDate": "2016-05-11",
+          "dateType": "Published"
+        },
+        {
+          "label": "LabWrench: Waters Alliance 2695 seal-wash pump operation",
+          "url": "https://www.labwrench.com/thread/187926/waters-alliance-2695-seal-wash-pump-on-during-operation",
+          "sourceKeywords": [
+            "Waters Alliance 2695",
+            "seal wash pump",
+            "operation"
+          ],
+          "recordType": "Public equipment discussion",
+          "sourceDate": "2018-12-28",
+          "dateType": "Published"
+        }
       ],
       "sentiment": "Mixed",
       "category": "Legacy system maintenance / service experience",
@@ -229,12 +231,38 @@
       "company": "Waters",
       "product": "Arc HPLC",
       "platform": "LC",
-      "sourceIds": ["waters-arc-product", "waters-support-kb", "chromforum-lc-discussions"],
-      "sourceName": "Waters Arc product information + public troubleshooting sources",
-      "sourceUrl": "https://www.waters.com/nextgen/us/en/products/chromatography-systems/arc-hplc-system.html",
+      "sourceIds": [
+        "chromforum-lc-discussions"
+      ],
+      "sourceName": "Independent customer-authored discussions",
+      "sourceUrl": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1somxpf/waters_acquity_arc_lcms_214_nm_uv_baseline/",
       "evidenceRecords": [
-        { "label": "Reddit discussion: ACQUITY Arc LC-MS baseline troubleshooting", "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1somxpf/waters_acquity_arc_lcms_214_nm_uv_baseline/", "recordType": "Public user discussion", "sourceDate": "2026-04-18", "dateType": "Published" },
-        { "label": "Reddit discussion: transferring methods between Waters and Agilent systems", "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1tk17h8/how_to_solve_the_problem_of_compatibility_between/", "recordType": "Public user discussion", "sourceDate": "2026-05-21", "dateType": "Published" }
+        {
+          "label": "Reddit discussion: Waters ACQUITY Arc LCMS UV baseline oscillations",
+          "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1somxpf/waters_acquity_arc_lcms_214_nm_uv_baseline/",
+          "sourceKeywords": [
+            "Waters ACQUITY Arc",
+            "LCMS",
+            "UV baseline",
+            "oscillations"
+          ],
+          "recordType": "Public user discussion",
+          "sourceDate": "2026-04-18",
+          "dateType": "Published"
+        },
+        {
+          "label": "Reddit discussion: compatibility between Waters and Agilent testing methods",
+          "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1tk17h8/how_to_solve_the_problem_of_compatibility_between/",
+          "sourceKeywords": [
+            "compatibility",
+            "Waters",
+            "Agilent",
+            "testing methods"
+          ],
+          "recordType": "Public user discussion",
+          "sourceDate": "2026-05-21",
+          "dateType": "Published"
+        }
       ],
       "sentiment": "Mixed",
       "category": "Method transfer / routine LC modernization",
@@ -256,12 +284,35 @@
       "company": "Waters",
       "product": "ACQUITY UPLC",
       "platform": "UHPLC",
-      "sourceIds": ["waters-acquity-product", "selectscience-lc-reviews"],
-      "sourceName": "Waters product claims + review-source monitoring",
-      "sourceUrl": "https://www.waters.com/nextgen/us/en/products/chromatography-systems/acquity-uplc-systems.html",
+      "sourceIds": [
+        "selectscience-lc-reviews"
+      ],
+      "sourceName": "Independent customer-authored discussions",
+      "sourceUrl": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/xlr4pf/best_uhplc_on_the_market/",
       "evidenceRecords": [
-        { "label": "Reddit discussion: best UHPLC on the market", "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/xlr4pf/best_uhplc_on_the_market/", "recordType": "Public multi-vendor discussion", "sourceDate": "2022-09-23", "dateType": "Published" },
-        { "label": "Chromatography Forum: UHPLC and ACQUITY performance discussion", "url": "https://www.chromforum.org/viewtopic.php?t=8508", "recordType": "Public technical discussion", "sourceDate": "2008-05-27", "dateType": "Published" }
+        {
+          "label": "Reddit discussion: Best UHPLC on the market?",
+          "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/xlr4pf/best_uhplc_on_the_market/",
+          "sourceKeywords": [
+            "UHPLC",
+            "market"
+          ],
+          "recordType": "Public multi-vendor discussion",
+          "sourceDate": "2022-09-23",
+          "dateType": "Published"
+        },
+        {
+          "label": "Chromatography Forum: Agilent 1200, Waters UPLC, or Thermo Fisher fast system",
+          "url": "https://www.chromforum.org/viewtopic.php?t=8508",
+          "sourceKeywords": [
+            "Agilent 1200",
+            "Waters UPLC",
+            "ThermoFisher"
+          ],
+          "recordType": "Public technical discussion",
+          "sourceDate": "2008-05-27",
+          "dateType": "Published"
+        }
       ],
       "sentiment": "Positive",
       "category": "Performance / separation quality",
@@ -283,12 +334,37 @@
       "company": "Agilent",
       "product": "InfinityLab 1260/1290",
       "platform": "LC / UHPLC",
-      "sourceIds": ["agilent-infinitylab-product", "selectscience-lc-reviews", "chromforum-lc-discussions"],
-      "sourceName": "Agilent product page + public review/forum source map",
-      "sourceUrl": "https://www.agilent.com/en/product/liquid-chromatography/hplc-systems",
+      "sourceIds": [
+        "selectscience-lc-reviews",
+        "chromforum-lc-discussions"
+      ],
+      "sourceName": "Independent customer-authored discussions",
+      "sourceUrl": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1q24noh/reccomendations_for_new_hplc_system_for_routine/",
       "evidenceRecords": [
-        { "label": "Reddit discussion: routine HPLC system recommendations", "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1q24noh/reccomendations_for_new_hplc_system_for_routine/", "recordType": "Public multi-vendor discussion", "sourceDate": "2026-01-02", "dateType": "Published" },
-        { "label": "Reddit discussion: Agilent 1260 versus Thermo Vanquish", "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1h6lnr0/agilent_1260_hplc_vs_thermo_vanquish_flex/", "recordType": "Public multi-vendor discussion", "sourceDate": "2024-12-04", "dateType": "Published" }
+        {
+          "label": "Reddit discussion: New HPLC system for routine work",
+          "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1q24noh/reccomendations_for_new_hplc_system_for_routine/",
+          "sourceKeywords": [
+            "Agilent",
+            "1260",
+            "repairability",
+            "durability"
+          ],
+          "recordType": "Public multi-vendor discussion",
+          "sourceDate": "2026-01-02",
+          "dateType": "Published"
+        },
+        {
+          "label": "Reddit discussion: Agilent 1260 HPLC versus Thermo Vanquish Flex",
+          "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1h6lnr0/agilent_1260_hplc_vs_thermo_vanquish_flex/",
+          "sourceKeywords": [
+            "Agilent 1260 HPLC",
+            "Thermo Vanquish Flex"
+          ],
+          "recordType": "Public multi-vendor discussion",
+          "sourceDate": "2024-12-04",
+          "dateType": "Published"
+        }
       ],
       "sentiment": "Positive",
       "category": "Reliability / ease of use",
@@ -310,12 +386,36 @@
       "company": "Agilent",
       "product": "InfinityLab LC + OpenLab workflows",
       "platform": "Software",
-      "sourceIds": ["agilent-infinitylab-product", "reddit-lab-communities"],
-      "sourceName": "Agilent product page + public lab communities",
-      "sourceUrl": "https://www.agilent.com/en/product/liquid-chromatography/hplc-systems",
+      "sourceIds": [
+        "reddit-lab-communities"
+      ],
+      "sourceName": "Independent customer-authored discussions",
+      "sourceUrl": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1q24noh/reccomendations_for_new_hplc_system_for_routine/",
       "evidenceRecords": [
-        { "label": "Reddit discussion: routine HPLC software, service, and upgrade costs", "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1q24noh/reccomendations_for_new_hplc_system_for_routine/", "recordType": "Public multi-vendor discussion", "sourceDate": "2026-01-02", "dateType": "Published" },
-        { "label": "Reddit discussion: Agilent 1260 repair and service", "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1cdniok/agilent_1260_repair_pm/", "recordType": "Public user discussion", "sourceDate": "2024-04-26", "dateType": "Published" }
+        {
+          "label": "Reddit discussion: New HPLC system for routine work",
+          "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1q24noh/reccomendations_for_new_hplc_system_for_routine/",
+          "sourceKeywords": [
+            "Agilent",
+            "software",
+            "annoying or expensive",
+            "software pricing"
+          ],
+          "recordType": "Public multi-vendor discussion",
+          "sourceDate": "2026-01-02",
+          "dateType": "Published"
+        },
+        {
+          "label": "Reddit discussion: Agilent 1260 repair",
+          "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1cdniok/agilent_1260_repair_pm/",
+          "sourceKeywords": [
+            "Agilent 1260",
+            "repair"
+          ],
+          "recordType": "Public user discussion",
+          "sourceDate": "2024-04-26",
+          "dateType": "Published"
+        }
       ],
       "sentiment": "Mixed",
       "category": "Software / cost of ownership",
@@ -337,12 +437,35 @@
       "company": "Thermo Fisher",
       "product": "Vanquish / UltiMate LC",
       "platform": "UHPLC",
-      "sourceIds": ["thermo-vanquish-product", "chromforum-lc-discussions"],
-      "sourceName": "Thermo product page + public forum source map",
-      "sourceUrl": "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-system-features.html",
+      "sourceIds": [
+        "chromforum-lc-discussions"
+      ],
+      "sourceName": "Independent customer-authored discussions",
+      "sourceUrl": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1h6lnr0/agilent_1260_hplc_vs_thermo_vanquish_flex/",
       "evidenceRecords": [
-        { "label": "Reddit discussion: Agilent 1260 versus Thermo Vanquish", "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1h6lnr0/agilent_1260_hplc_vs_thermo_vanquish_flex/", "recordType": "Public multi-vendor discussion", "sourceDate": "2024-12-04", "dateType": "Published" },
-        { "label": "Reddit discussion: Waters versus Thermo LC-MS purchase", "url": "https://www.reddit.com/r/Chempros/comments/157qppk/purchase_of_watersthermo_lcms_system/", "recordType": "Public multi-vendor discussion", "sourceDate": "2023-07-23", "dateType": "Published" }
+        {
+          "label": "Reddit discussion: Agilent 1260 HPLC versus Thermo Vanquish Flex",
+          "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1h6lnr0/agilent_1260_hplc_vs_thermo_vanquish_flex/",
+          "sourceKeywords": [
+            "Agilent 1260 HPLC",
+            "Thermo Vanquish Flex"
+          ],
+          "recordType": "Public multi-vendor discussion",
+          "sourceDate": "2024-12-04",
+          "dateType": "Published"
+        },
+        {
+          "label": "Reddit discussion: Purchase of Waters/Thermo LC-MS system",
+          "url": "https://www.reddit.com/r/Chempros/comments/157qppk/purchase_of_watersthermo_lcms_system/",
+          "sourceKeywords": [
+            "Waters",
+            "Thermo",
+            "LC-MS system"
+          ],
+          "recordType": "Public multi-vendor discussion",
+          "sourceDate": "2023-07-23",
+          "dateType": "Published"
+        }
       ],
       "sentiment": "Positive",
       "category": "Ecosystem integration / throughput",
@@ -364,12 +487,36 @@
       "company": "Thermo Fisher",
       "product": "Vanquish / Chromeleon workflows",
       "platform": "Software",
-      "sourceIds": ["thermo-vanquish-product", "reddit-lab-communities"],
-      "sourceName": "Thermo product page + public lab communities",
-      "sourceUrl": "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-system-features.html",
+      "sourceIds": [
+        "reddit-lab-communities"
+      ],
+      "sourceName": "Independent customer-authored discussions",
+      "sourceUrl": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1q24noh/reccomendations_for_new_hplc_system_for_routine/",
       "evidenceRecords": [
-        { "label": "Reddit discussion: Vanquish hardware and Chromeleon learning curve", "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1q24noh/reccomendations_for_new_hplc_system_for_routine/", "recordType": "Public multi-vendor discussion", "sourceDate": "2026-01-02", "dateType": "Published" },
-        { "label": "Reddit discussion: Vanquish reliability and Chromeleon experience", "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1h6lnr0/agilent_1260_hplc_vs_thermo_vanquish_flex/", "recordType": "Public multi-vendor discussion", "sourceDate": "2024-12-04", "dateType": "Published" }
+        {
+          "label": "Reddit discussion: New HPLC system for routine work",
+          "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1q24noh/reccomendations_for_new_hplc_system_for_routine/",
+          "sourceKeywords": [
+            "Thermo",
+            "Vanquish",
+            "Chromeleon",
+            "learning curve"
+          ],
+          "recordType": "Public multi-vendor discussion",
+          "sourceDate": "2026-01-02",
+          "dateType": "Published"
+        },
+        {
+          "label": "Reddit discussion: Agilent 1260 HPLC versus Thermo Vanquish Flex",
+          "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1h6lnr0/agilent_1260_hplc_vs_thermo_vanquish_flex/",
+          "sourceKeywords": [
+            "Agilent 1260 HPLC",
+            "Thermo Vanquish Flex"
+          ],
+          "recordType": "Public multi-vendor discussion",
+          "sourceDate": "2024-12-04",
+          "dateType": "Published"
+        }
       ],
       "sentiment": "Mixed",
       "category": "Software usability / training",
@@ -391,12 +538,37 @@
       "company": "Shimadzu",
       "product": "Nexera / Prominence",
       "platform": "LC / UHPLC",
-      "sourceIds": ["shimadzu-nexera-product", "selectscience-lc-reviews"],
-      "sourceName": "Shimadzu product page + review-source monitoring",
-      "sourceUrl": "https://www.shimadzu.com/an/products/liquid-chromatography/hplcuhplc/nexera-series/index.html",
+      "sourceIds": [
+        "selectscience-lc-reviews"
+      ],
+      "sourceName": "Independent customer-authored discussions",
+      "sourceUrl": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1q24noh/reccomendations_for_new_hplc_system_for_routine/",
       "evidenceRecords": [
-        { "label": "Reddit discussion: Shimadzu routine-LC robustness and serviceability", "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1q24noh/reccomendations_for_new_hplc_system_for_routine/", "recordType": "Public multi-vendor discussion", "sourceDate": "2026-01-02", "dateType": "Published" },
-        { "label": "Reddit discussion: Nexera XS inert versus Agilent 1290 Bio", "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/17v4dij/shimadzu_nexera_xs_inert_vs_agilent_1290_bio/", "recordType": "Public multi-vendor discussion", "sourceDate": "2023-11-14", "dateType": "Published" }
+        {
+          "label": "Reddit discussion: New HPLC system for routine work",
+          "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1q24noh/reccomendations_for_new_hplc_system_for_routine/",
+          "sourceKeywords": [
+            "Shimadzu",
+            "i-Series",
+            "robust",
+            "easy to use"
+          ],
+          "recordType": "Public multi-vendor discussion",
+          "sourceDate": "2026-01-02",
+          "dateType": "Published"
+        },
+        {
+          "label": "Reddit discussion: Shimadzu Nexera XS inert versus Agilent 1290 Bio",
+          "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/17v4dij/shimadzu_nexera_xs_inert_vs_agilent_1290_bio/",
+          "sourceKeywords": [
+            "Shimadzu Nexera XS inert",
+            "Agilent 1290 Bio",
+            "help me choose"
+          ],
+          "recordType": "Public multi-vendor discussion",
+          "sourceDate": "2023-11-14",
+          "dateType": "Published"
+        }
       ],
       "sentiment": "Positive",
       "category": "Value / reliability",
@@ -418,12 +590,36 @@
       "company": "Shimadzu",
       "product": "Nexera / LabSolutions workflows",
       "platform": "Software",
-      "sourceIds": ["shimadzu-nexera-product", "chromforum-lc-discussions"],
-      "sourceName": "Shimadzu product page + public forum source map",
-      "sourceUrl": "https://www.shimadzu.com/an/products/liquid-chromatography/hplcuhplc/nexera-series/index.html",
+      "sourceIds": [
+        "chromforum-lc-discussions"
+      ],
+      "sourceName": "Independent customer-authored discussions",
+      "sourceUrl": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1i7ixun/lab_solutions_frustration/",
       "evidenceRecords": [
-        { "label": "Reddit discussion: LabSolutions workflow frustration", "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1i7ixun/lab_solutions_frustration/", "recordType": "Public user discussion", "sourceDate": "2025-01-22", "dateType": "Published" },
-        { "label": "Reddit discussion: comparing LabSolutions with other CDS options", "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1q24noh/reccomendations_for_new_hplc_system_for_routine/", "recordType": "Public multi-vendor discussion", "sourceDate": "2026-01-02", "dateType": "Published" }
+        {
+          "label": "Reddit discussion: Lab Solutions frustration",
+          "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1i7ixun/lab_solutions_frustration/",
+          "sourceKeywords": [
+            "Lab Solutions",
+            "frustration"
+          ],
+          "recordType": "Public user discussion",
+          "sourceDate": "2025-01-22",
+          "dateType": "Published"
+        },
+        {
+          "label": "Reddit discussion: New HPLC system for routine work",
+          "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1q24noh/reccomendations_for_new_hplc_system_for_routine/",
+          "sourceKeywords": [
+            "Shimadzu",
+            "LabSolutions",
+            "software",
+            "training"
+          ],
+          "recordType": "Public multi-vendor discussion",
+          "sourceDate": "2026-01-02",
+          "dateType": "Published"
+        }
       ],
       "sentiment": "Mixed",
       "category": "Software / method transfer",
@@ -445,12 +641,34 @@
       "company": "SCIEX",
       "product": "ExionLC",
       "platform": "LC-MS workflow",
-      "sourceIds": ["sciex-exionlc-product", "chromforum-lc-discussions"],
-      "sourceName": "SCIEX product page + public forum source map",
-      "sourceUrl": "https://sciex.com/products/hplc-products",
+      "sourceIds": [
+        "chromforum-lc-discussions"
+      ],
+      "sourceName": "Independent customer-authored discussions",
+      "sourceUrl": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1f4airi/which_hplcmsms/",
       "evidenceRecords": [
-        { "label": "Reddit discussion: choosing an HPLC-MS/MS system for PFAS", "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1f4airi/which_hplcmsms/", "recordType": "Public multi-vendor discussion", "sourceDate": "2024-08-29", "dateType": "Published" },
-        { "label": "Reddit discussion: SCIEX LC-MS troubleshooting and LC-stack checks", "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/14w7fxn/lcms_help_sciex_6500/", "recordType": "Public user discussion", "sourceDate": "2023-07-10", "dateType": "Published" }
+        {
+          "label": "Reddit discussion: Which HPLC-MS/MS?",
+          "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1f4airi/which_hplcmsms/",
+          "sourceKeywords": [
+            "HPLC",
+            "MS/MS"
+          ],
+          "recordType": "Public multi-vendor discussion",
+          "sourceDate": "2024-08-29",
+          "dateType": "Published"
+        },
+        {
+          "label": "Reddit discussion: LC/MS help for SCIEX 6500",
+          "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/14w7fxn/lcms_help_sciex_6500/",
+          "sourceKeywords": [
+            "LC/MS",
+            "SCIEX 6500"
+          ],
+          "recordType": "Public user discussion",
+          "sourceDate": "2023-07-10",
+          "dateType": "Published"
+        }
       ],
       "sentiment": "Positive",
       "category": "LC-MS integration",
@@ -472,12 +690,37 @@
       "company": "Market-wide",
       "product": "LC / UHPLC systems",
       "platform": "LC",
-      "sourceIds": ["chromforum-lc-discussions", "reddit-lab-communities", "labwrench-equipment-qa"],
-      "sourceName": "Public forums and lab communities",
-      "sourceUrl": "https://www.chromforum.org/",
+      "sourceIds": [
+        "chromforum-lc-discussions",
+        "reddit-lab-communities",
+        "labwrench-equipment-qa"
+      ],
+      "sourceName": "Independent customer-authored discussions",
+      "sourceUrl": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1q24noh/reccomendations_for_new_hplc_system_for_routine/",
       "evidenceRecords": [
-        { "label": "Reddit discussion: training and troubleshooting needs in routine HPLC", "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1q24noh/reccomendations_for_new_hplc_system_for_routine/", "recordType": "Public multi-vendor discussion", "sourceDate": "2026-01-02", "dateType": "Published" },
-        { "label": "Reddit discussion: Waters training and troubleshooting confidence", "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1ion27e/is_getting_training_from_waters_worth_it/", "recordType": "Public user discussion", "sourceDate": "2025-02-13", "dateType": "Published" }
+        {
+          "label": "Reddit discussion: New HPLC system for routine work",
+          "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1q24noh/reccomendations_for_new_hplc_system_for_routine/",
+          "sourceKeywords": [
+            "new HPLC system",
+            "routine work"
+          ],
+          "recordType": "Public multi-vendor discussion",
+          "sourceDate": "2026-01-02",
+          "dateType": "Published"
+        },
+        {
+          "label": "Reddit discussion: Is Waters training worth it?",
+          "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1ion27e/is_getting_training_from_waters_worth_it/",
+          "sourceKeywords": [
+            "training",
+            "Waters",
+            "worth it"
+          ],
+          "recordType": "Public user discussion",
+          "sourceDate": "2025-02-13",
+          "dateType": "Published"
+        }
       ],
       "sentiment": "Negative",
       "category": "Training / ease of use",
@@ -499,12 +742,37 @@
       "company": "Market-wide",
       "product": "LC / UHPLC systems",
       "platform": "LC",
-      "sourceIds": ["selectscience-lc-reviews", "reddit-lab-communities", "labwrench-equipment-qa"],
-      "sourceName": "Public reviews, Q&A, and lab communities",
-      "sourceUrl": "https://www.selectscience.net/",
+      "sourceIds": [
+        "selectscience-lc-reviews",
+        "reddit-lab-communities",
+        "labwrench-equipment-qa"
+      ],
+      "sourceName": "Independent customer-authored discussions",
+      "sourceUrl": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1uu27p8/which_lc_ms_brand_is_reliable_and_affordable/",
       "evidenceRecords": [
-        { "label": "Reddit discussion: LC-MS reliability, service, and operating cost", "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1uu27p8/which_lc_ms_brand_is_reliable_and_affordable/", "recordType": "Public multi-vendor discussion", "sourceDate": "2026-07-12", "dateType": "Published" },
-        { "label": "Reddit discussion: HPLC software, parts, and training costs", "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1onikdf/looking_for_a_hplc_machine/", "recordType": "Public multi-vendor discussion", "sourceDate": "2025-11-03", "dateType": "Published" }
+        {
+          "label": "Reddit discussion: Which LC-MS brand is reliable and affordable?",
+          "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1uu27p8/which_lc_ms_brand_is_reliable_and_affordable/",
+          "sourceKeywords": [
+            "LC MS brand",
+            "reliable",
+            "affordable"
+          ],
+          "recordType": "Public multi-vendor discussion",
+          "sourceDate": "2026-07-12",
+          "dateType": "Published"
+        },
+        {
+          "label": "Reddit discussion: Looking for an HPLC machine",
+          "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1onikdf/looking_for_a_hplc_machine/",
+          "sourceKeywords": [
+            "looking for",
+            "HPLC machine"
+          ],
+          "recordType": "Public multi-vendor discussion",
+          "sourceDate": "2025-11-03",
+          "dateType": "Published"
+        }
       ],
       "sentiment": "Negative",
       "category": "Consumables cost / operating cost",
@@ -519,6 +787,526 @@
       "geography": "Global",
       "confidence": 56,
       "evidenceStatus": "Directional public-source synthesis"
+    },
+    {
+      "id": "cv-waters-targetlynx-data-review",
+      "dateCaptured": "2026-07-23",
+      "company": "Waters",
+      "product": "MassLynx / TargetLynx / waters_connect",
+      "platform": "LC-MS software",
+      "sourceIds": [
+        "reddit-lab-communities"
+      ],
+      "sourceName": "Independent customer-authored discussions",
+      "sourceUrl": "https://www.reddit.com/r/massspectrometry/comments/1uxyipd/efficient_quant_workflow_for_targetlynx/",
+      "evidenceRecords": [
+        {
+          "label": "Reddit discussion: Efficient quantitation workflow for TargetLynx",
+          "url": "https://www.reddit.com/r/massspectrometry/comments/1uxyipd/efficient_quant_workflow_for_targetlynx/",
+          "sourceKeywords": [
+            "TargetLynx",
+            "MassLynx",
+            "waters_connect",
+            "150 analytes"
+          ],
+          "recordType": "Public user discussion",
+          "sourceDate": "2026-07-16",
+          "dateType": "Published"
+        }
+      ],
+      "sentiment": "Mixed",
+      "category": "Software workflow / data review",
+      "estimatedMentions5y": 1,
+      "theme": "Large targeted panels make manual review and integration time a visible software burden",
+      "customerLanguageSignal": "A user processing more than 100 samples across 150 analytes described TargetLynx review as tedious and asked for a faster workflow.",
+      "pmInterpretation": "Quantitation workflow speed, exception review, and batch-scale usability should be measured directly.",
+      "labType": "Clinical",
+      "userRole": "Analyst",
+      "buyingPriority": "Ease of use",
+      "productMaturity": "Current Waters users",
+      "geography": "Global",
+      "confidence": 82,
+      "evidenceStatus": "Exact public user discussion"
+    },
+    {
+      "id": "cv-waters-unifi-data-access",
+      "dateCaptured": "2026-07-23",
+      "company": "Waters",
+      "product": "UNIFI / waters_connect / MassLynx",
+      "platform": "LC-MS software",
+      "sourceIds": [
+        "reddit-lab-communities"
+      ],
+      "sourceName": "Independent customer-authored discussions",
+      "sourceUrl": "https://www.reddit.com/r/massspectrometry/comments/1ux1imr/most_frustrating_thing_about_mass_spectrometry/",
+      "evidenceRecords": [
+        {
+          "label": "Reddit discussion: Most frustrating thing about mass spectrometry",
+          "url": "https://www.reddit.com/r/massspectrometry/comments/1ux1imr/most_frustrating_thing_about_mass_spectrometry/",
+          "sourceKeywords": [
+            "UNIFI",
+            "MassLynx",
+            "waters_connect",
+            "MS Quan"
+          ],
+          "recordType": "Public multi-user discussion",
+          "sourceDate": "2026-07-15",
+          "dateType": "Published"
+        }
+      ],
+      "sentiment": "Mixed",
+      "category": "Software access / data review",
+      "estimatedMentions5y": 1,
+      "theme": "Users contrast improved quantitation workflows with access, upgrade, and software-environment friction",
+      "customerLanguageSignal": "The discussion contrasts MS Quan improvements with concerns about UNIFI, MassLynx, waters_connect, and service-only access.",
+      "pmInterpretation": "Software modernization must preserve data access, serviceability, and a low-friction upgrade path.",
+      "labType": "Biopharma",
+      "userRole": "Method developer",
+      "buyingPriority": "Ease of use",
+      "productMaturity": "Current Waters users",
+      "geography": "Global",
+      "confidence": 80,
+      "evidenceStatus": "Exact public multi-user discussion"
+    },
+    {
+      "id": "cv-waters-synapt-fluidics",
+      "dateCaptured": "2026-07-23",
+      "company": "Waters",
+      "product": "SYNAPT G2-Si",
+      "platform": "LC-MS",
+      "sourceIds": [
+        "reddit-lab-communities"
+      ],
+      "sourceName": "Independent customer-authored discussions",
+      "sourceUrl": "https://www.reddit.com/r/massspectrometry/comments/1u1dpq6/synapt_nonresponsive_fluidics_purge_issue/",
+      "evidenceRecords": [
+        {
+          "label": "Reddit discussion: SYNAPT non-responsive fluidics purge issue",
+          "url": "https://www.reddit.com/r/massspectrometry/comments/1u1dpq6/synapt_nonresponsive_fluidics_purge_issue/",
+          "sourceKeywords": [
+            "Synapt",
+            "fluidics stopped",
+            "purging",
+            "source pressure test"
+          ],
+          "recordType": "Public troubleshooting discussion",
+          "sourceDate": "2026-06-09",
+          "dateType": "Published"
+        }
+      ],
+      "sentiment": "Negative",
+      "category": "Instrument fluidics / troubleshooting",
+      "estimatedMentions5y": 1,
+      "theme": "A misleading fluidics error required community diagnosis of a failed source-pressure test",
+      "customerLanguageSignal": "The user could not clear a fluidics-stopped loop until the source-pressure test was identified as the underlying cause.",
+      "pmInterpretation": "Diagnostics should expose the true upstream cause rather than only the downstream recovery message.",
+      "labType": "Academic",
+      "userRole": "Analyst",
+      "buyingPriority": "Reliability",
+      "productMaturity": "Current Waters users",
+      "geography": "Global",
+      "confidence": 86,
+      "evidenceStatus": "Exact public troubleshooting discussion"
+    },
+    {
+      "id": "cv-waters-cross-vendor-control",
+      "dateCaptured": "2026-07-23",
+      "company": "Waters",
+      "product": "Xevo TQ-S with third-party chromatography",
+      "platform": "LC-MS integration",
+      "sourceIds": [
+        "reddit-lab-communities"
+      ],
+      "sourceName": "Independent customer-authored discussions",
+      "sourceUrl": "https://www.reddit.com/r/massspectrometry/comments/1up1dlw/best_software_to_use_agilent_g3540a_gc_with/",
+      "evidenceRecords": [
+        {
+          "label": "Reddit discussion: Software for Agilent chromatography with Waters Xevo",
+          "url": "https://www.reddit.com/r/massspectrometry/comments/1up1dlw/best_software_to_use_agilent_g3540a_gc_with/",
+          "sourceKeywords": [
+            "Waters Xevo TQ-S",
+            "MassLynx",
+            "ChemStation",
+            "contact closure"
+          ],
+          "recordType": "Public integration discussion",
+          "sourceDate": "2026-07-06",
+          "dateType": "Published"
+        }
+      ],
+      "sentiment": "Mixed",
+      "category": "Cross-vendor integration",
+      "estimatedMentions5y": 1,
+      "theme": "Mixed-vendor instrument control can require split software and contact-closure workarounds",
+      "customerLanguageSignal": "Users described coordinating MassLynx with ChemStation and contact closure to run mixed-vendor hardware.",
+      "pmInterpretation": "Cross-vendor control and synchronization should be a documented, testable workflow rather than an expert workaround.",
+      "labType": "Chemical/materials",
+      "userRole": "Method developer",
+      "buyingPriority": "Method transfer",
+      "productMaturity": "Current Waters users",
+      "geography": "Global",
+      "confidence": 78,
+      "evidenceStatus": "Exact public integration discussion"
+    },
+    {
+      "id": "cv-market-vendor-service-comparison",
+      "dateCaptured": "2026-07-23",
+      "company": "Market-wide",
+      "product": "LC / UHPLC vendor experience",
+      "platform": "LC / UHPLC",
+      "sourceIds": [
+        "reddit-lab-communities"
+      ],
+      "sourceName": "Independent customer-authored discussions",
+      "sourceUrl": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1sbtsdx/comparing_vendors_and_systems_thoughts/",
+      "evidenceRecords": [
+        {
+          "label": "Reddit discussion: Comparing vendors and systems",
+          "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1sbtsdx/comparing_vendors_and_systems_thoughts/",
+          "sourceKeywords": [
+            "instrument",
+            "consumables",
+            "software",
+            "human support"
+          ],
+          "recordType": "Public multi-vendor discussion",
+          "sourceDate": "2026-04-03",
+          "dateType": "Published"
+        }
+      ],
+      "sentiment": "Mixed",
+      "category": "Service / software / parts availability",
+      "estimatedMentions5y": 1,
+      "theme": "Vendor preference is shaped by regional service, parts access, software, and consumables—not specifications alone",
+      "customerLanguageSignal": "The discussion explicitly asks users to compare instruments, consumables, software, and human support.",
+      "pmInterpretation": "Competitive proof should include local service readiness, parts availability, and software experience.",
+      "labType": "Pharma",
+      "userRole": "Lab manager",
+      "buyingPriority": "Reliability",
+      "productMaturity": "Upgrade candidates",
+      "geography": "Global",
+      "confidence": 82,
+      "evidenceStatus": "Exact public multi-vendor discussion"
+    },
+    {
+      "id": "cv-waters-masslynx-conversion-speed",
+      "dateCaptured": "2026-07-23",
+      "company": "Waters",
+      "product": "MassLynx raw-data workflows",
+      "platform": "LC-MS software",
+      "sourceIds": [
+        "reddit-lab-communities"
+      ],
+      "sourceName": "Independent customer-authored discussions",
+      "sourceUrl": "https://www.reddit.com/r/massspectrometry/comments/1sognqt/what_is_the_fastest_way_to_convert_raw_files_to/",
+      "evidenceRecords": [
+        {
+          "label": "Reddit discussion: Converting Waters raw files to mzML",
+          "url": "https://www.reddit.com/r/massspectrometry/comments/1sognqt/what_is_the_fastest_way_to_convert_raw_files_to/",
+          "sourceKeywords": [
+            "MassLynx",
+            "mzml",
+            "lock mass correction",
+            "centroiding"
+          ],
+          "recordType": "Public data-processing discussion",
+          "sourceDate": "2026-04-17",
+          "dateType": "Published"
+        }
+      ],
+      "sentiment": "Mixed",
+      "category": "Data conversion / processing speed",
+      "estimatedMentions5y": 1,
+      "theme": "Users need faster, clearer routes from proprietary raw data into interoperable processing formats",
+      "customerLanguageSignal": "The user compared MassLynx and open conversion tools for mzML conversion, lock-mass correction, and centroiding.",
+      "pmInterpretation": "Data export speed and interoperability should be treated as workflow performance measures.",
+      "labType": "Academic",
+      "userRole": "Data scientist",
+      "buyingPriority": "Throughput",
+      "productMaturity": "Current Waters users",
+      "geography": "Global",
+      "confidence": 78,
+      "evidenceStatus": "Exact public data-processing discussion"
+    },
+    {
+      "id": "cv-waters-imms-data-portability",
+      "dateCaptured": "2026-07-23",
+      "company": "Waters",
+      "product": "UNIFI / waters_connect ion-mobility workflows",
+      "platform": "Ion mobility LC-MS",
+      "sourceIds": [
+        "reddit-lab-communities"
+      ],
+      "sourceName": "Independent customer-authored discussions",
+      "sourceUrl": "https://www.reddit.com/r/massspectrometry/comments/1rembme/imms_options/",
+      "evidenceRecords": [
+        {
+          "label": "Reddit discussion: IM-MS options",
+          "url": "https://www.reddit.com/r/massspectrometry/comments/1rembme/imms_options/",
+          "sourceKeywords": [
+            "Waters",
+            "UNIFI",
+            "waters_connect",
+            "mzML"
+          ],
+          "recordType": "Public multi-vendor discussion",
+          "sourceDate": "2026-02-25",
+          "dateType": "Published"
+        }
+      ],
+      "sentiment": "Negative",
+      "category": "Data portability / software lock-in",
+      "estimatedMentions5y": 1,
+      "theme": "Ion-mobility buyers consider downstream data access and open-format support alongside instrument capability",
+      "customerLanguageSignal": "Users raised UNIFI and waters_connect export constraints while comparing IM-MS platforms and analysis options.",
+      "pmInterpretation": "Open-format export and third-party analysis compatibility should be visible buying proof points.",
+      "labType": "Academic",
+      "userRole": "Data scientist",
+      "buyingPriority": "Ease of use",
+      "productMaturity": "Current Waters users",
+      "geography": "Global",
+      "confidence": 82,
+      "evidenceStatus": "Exact public multi-vendor discussion"
+    },
+    {
+      "id": "cv-waters-columns-driver-integration",
+      "dateCaptured": "2026-07-23",
+      "company": "Waters",
+      "product": "LC systems, columns, and mixed-vendor drivers",
+      "platform": "LC-MS workflow",
+      "sourceIds": [
+        "reddit-lab-communities"
+      ],
+      "sourceName": "Independent customer-authored discussions",
+      "sourceUrl": "https://www.reddit.com/r/massspectrometry/comments/1tausv5/ms_is_half_the_equation/",
+      "evidenceRecords": [
+        {
+          "label": "Reddit discussion: MS is half the equation",
+          "url": "https://www.reddit.com/r/massspectrometry/comments/1tausv5/ms_is_half_the_equation/",
+          "sourceKeywords": [
+            "Waters LCs",
+            "LC-MS consumables",
+            "software",
+            "driver integration"
+          ],
+          "recordType": "Public multi-user discussion",
+          "sourceDate": "2026-05-12",
+          "dateType": "Published"
+        }
+      ],
+      "sentiment": "Mixed",
+      "category": "Consumables strength / software integration",
+      "estimatedMentions5y": 1,
+      "theme": "Users can value Waters LC hardware and consumables while criticizing software and mixed-vendor driver integration",
+      "customerLanguageSignal": "The discussion praises Waters LC and consumables but calls the software and third-party driver integration inconsistent.",
+      "pmInterpretation": "Hardware and chemistry strengths need an equally credible cross-vendor software experience.",
+      "labType": "Biopharma",
+      "userRole": "Method developer",
+      "buyingPriority": "Method transfer",
+      "productMaturity": "Current Waters users",
+      "geography": "Global",
+      "confidence": 82,
+      "evidenceStatus": "Exact public multi-user discussion"
+    },
+    {
+      "id": "cv-market-lcms-vendor-ranking",
+      "dateCaptured": "2026-07-23",
+      "company": "Market-wide",
+      "product": "LC-MS vendor selection",
+      "platform": "LC-MS",
+      "sourceIds": [
+        "reddit-lab-communities"
+      ],
+      "sourceName": "Independent customer-authored discussions",
+      "sourceUrl": "https://www.reddit.com/r/massspectrometry/comments/1p15xrz/which_company_ranked_1_for_lcms/",
+      "evidenceRecords": [
+        {
+          "label": "Reddit discussion: Which company ranks first for LC-MS?",
+          "url": "https://www.reddit.com/r/massspectrometry/comments/1p15xrz/which_company_ranked_1_for_lcms/",
+          "sourceKeywords": [
+            "LCMS",
+            "technical support",
+            "software",
+            "hardware"
+          ],
+          "recordType": "Public multi-vendor discussion",
+          "sourceDate": "2025-11-19",
+          "dateType": "Published"
+        }
+      ],
+      "sentiment": "Mixed",
+      "category": "Vendor selection / local support",
+      "estimatedMentions5y": 1,
+      "theme": "LC-MS vendor choice depends on application, software, serviceability, and local technical support",
+      "customerLanguageSignal": "Users rejected a single overall ranking and compared vendors by application, hardware, software, and local support.",
+      "pmInterpretation": "Positioning should be segmented by application and supported with regional service proof.",
+      "labType": "Government",
+      "userRole": "Lab manager",
+      "buyingPriority": "Reliability",
+      "productMaturity": "Upgrade candidates",
+      "geography": "Global",
+      "confidence": 84,
+      "evidenceStatus": "Exact public multi-vendor discussion"
+    },
+    {
+      "id": "cv-thermo-sciex-proteomics-fit",
+      "dateCaptured": "2026-07-23",
+      "company": "Thermo Fisher",
+      "product": "Orbitrap / Vanquish Flex versus SCIEX ZenoTOF",
+      "platform": "Proteomics LC-MS",
+      "sourceIds": [
+        "reddit-lab-communities"
+      ],
+      "sourceName": "Independent customer-authored discussions",
+      "sourceUrl": "https://www.reddit.com/r/massspectrometry/comments/1pw3739/sciex_or_thermo_for_proteomics/",
+      "evidenceRecords": [
+        {
+          "label": "Reddit discussion: SCIEX or Thermo for proteomics",
+          "url": "https://www.reddit.com/r/massspectrometry/comments/1pw3739/sciex_or_thermo_for_proteomics/",
+          "sourceKeywords": [
+            "SCIEX",
+            "Thermo",
+            "Proteomics",
+            "Vanquish Flex"
+          ],
+          "recordType": "Public multi-vendor discussion",
+          "sourceDate": "2025-12-26",
+          "dateType": "Published"
+        }
+      ],
+      "sentiment": "Mixed",
+      "category": "Proteomics workflow / LC flow range",
+      "estimatedMentions5y": 1,
+      "theme": "Proteomics buyers compare fragmentation, software, support, and the practical limits of nano- and micro-flow LC configurations",
+      "customerLanguageSignal": "Users compared Thermo and SCIEX systems while discussing Vanquish flow capability, stability, service, and application fit.",
+      "pmInterpretation": "Proteomics positioning needs explicit proof for flow-range switching, retention-time stability, and software workflow fit.",
+      "labType": "Biopharma",
+      "userRole": "Method developer",
+      "buyingPriority": "Throughput",
+      "productMaturity": "Competitor users",
+      "geography": "Global",
+      "confidence": 80,
+      "evidenceStatus": "Exact public multi-vendor discussion"
+    },
+    {
+      "id": "cv-market-new-lab-ms-selection",
+      "dateCaptured": "2026-07-23",
+      "company": "Market-wide",
+      "product": "HRMS / TOF platform selection",
+      "platform": "LC-MS",
+      "sourceIds": [
+        "reddit-lab-communities"
+      ],
+      "sourceName": "Independent customer-authored discussions",
+      "sourceUrl": "https://www.reddit.com/r/massspectrometry/comments/1nlcb3p/new_lab_ms_option_help/",
+      "evidenceRecords": [
+        {
+          "label": "Reddit discussion: New lab mass-spectrometer options",
+          "url": "https://www.reddit.com/r/massspectrometry/comments/1nlcb3p/new_lab_ms_option_help/",
+          "sourceKeywords": [
+            "New Lab",
+            "MS",
+            "service",
+            "repairs"
+          ],
+          "recordType": "Public multi-vendor discussion",
+          "sourceDate": "2025-09-19",
+          "dateType": "Published"
+        }
+      ],
+      "sentiment": "Mixed",
+      "category": "Instrument selection / service continuity",
+      "estimatedMentions5y": 1,
+      "theme": "New-platform decisions weigh workflow redundancy and application fit against regional service and repair experience",
+      "customerLanguageSignal": "Users emphasized local service and repair experience alongside TOF, Orbitrap, and application-workflow differences.",
+      "pmInterpretation": "System-selection proof should include uptime, redundancy, service access, and application-specific workflow evidence.",
+      "labType": "Biopharma",
+      "userRole": "Lab manager",
+      "buyingPriority": "Reliability",
+      "productMaturity": "New buyers",
+      "geography": "Global",
+      "confidence": 78,
+      "evidenceStatus": "Exact public multi-vendor discussion"
+    },
+    {
+      "id": "cv-agilent-secondhand-serviceability",
+      "dateCaptured": "2026-07-23",
+      "company": "Agilent",
+      "product": "Agilent 6550 Q-TOF",
+      "platform": "LC-MS",
+      "sourceIds": [
+        "reddit-lab-communities"
+      ],
+      "sourceName": "Independent customer-authored discussions",
+      "sourceUrl": "https://www.reddit.com/r/massspectrometry/comments/1mzna4c/a_record_of_fixing_a_secondhand_agilent_ms/",
+      "evidenceRecords": [
+        {
+          "label": "Reddit discussion: Repairing a second-hand Agilent 6550",
+          "url": "https://www.reddit.com/r/massspectrometry/comments/1mzna4c/a_record_of_fixing_a_secondhand_agilent_ms/",
+          "sourceKeywords": [
+            "Agilent 6550",
+            "mass spectrometer",
+            "net connection",
+            "embedded PC"
+          ],
+          "recordType": "Public troubleshooting record",
+          "sourceDate": "2025-08-25",
+          "dateType": "Published"
+        }
+      ],
+      "sentiment": "Mixed",
+      "category": "Serviceability / legacy systems",
+      "estimatedMentions5y": 1,
+      "theme": "Second-hand LC-MS users value diagnosability and access to hardware and connectivity components",
+      "customerLanguageSignal": "A user documented restoring network communication on a second-hand Agilent 6550 through embedded-PC troubleshooting.",
+      "pmInterpretation": "Long-life serviceability, diagnostics, and recovery documentation can influence used-system and budget-constrained buyers.",
+      "labType": "Academic",
+      "userRole": "Instrument specialist",
+      "buyingPriority": "Reliability",
+      "productMaturity": "Legacy competitor users",
+      "geography": "Global",
+      "confidence": 84,
+      "evidenceStatus": "Exact public troubleshooting record"
+    },
+    {
+      "id": "cv-market-service-contracts",
+      "dateCaptured": "2026-07-23",
+      "company": "Market-wide",
+      "product": "Multi-vendor chromatography service",
+      "platform": "LC / LC-MS service",
+      "sourceIds": [
+        "reddit-lab-communities"
+      ],
+      "sourceName": "Independent customer-authored discussions",
+      "sourceUrl": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1peddhs/who_consistently_gives_the_best_highest_quality/",
+      "evidenceRecords": [
+        {
+          "label": "Reddit discussion: Best service and preventive maintenance",
+          "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1peddhs/who_consistently_gives_the_best_highest_quality/",
+          "sourceKeywords": [
+            "service contracts",
+            "Agilent",
+            "reliable",
+            "equipment"
+          ],
+          "recordType": "Public service-experience discussion",
+          "sourceDate": "2025-12-04",
+          "dateType": "Published"
+        }
+      ],
+      "sentiment": "Mixed",
+      "category": "Service contracts / response time",
+      "estimatedMentions5y": 1,
+      "theme": "Labs judge service contracts by response time, repair quality, multi-vendor coverage, and total cost",
+      "customerLanguageSignal": "The discussion compares service providers and OEM contracts for a mixed chromatography fleet.",
+      "pmInterpretation": "Service positioning should publish response-time expectations, escalation routes, and multi-vendor coverage boundaries.",
+      "labType": "Pharma",
+      "userRole": "Lab manager",
+      "buyingPriority": "Reliability",
+      "productMaturity": "Current multi-vendor users",
+      "geography": "Global",
+      "confidence": 80,
+      "evidenceStatus": "Exact public service-experience discussion"
     }
   ],
   "insights": [
@@ -529,7 +1317,11 @@
       "priority": "High",
       "whatItMeans": "Leaks, pressure stability, carryover, autosampler behavior, and detector issues repeatedly point to time-to-diagnosis as a customer pain point.",
       "pmAction": "Define next-gen LC requirements for embedded diagnostics, root-cause guidance, consumables state, and service-ready event logs.",
-      "evidenceIds": ["cv-waters-acquity-pressure-leaks", "cv-waters-acquity-carryover-autosampler", "cv-cross-vendor-training"],
+      "evidenceIds": [
+        "cv-waters-acquity-pressure-leaks",
+        "cv-waters-acquity-carryover-autosampler",
+        "cv-cross-vendor-training"
+      ],
       "confidence": 68
     },
     {
@@ -539,7 +1331,11 @@
       "priority": "High",
       "whatItMeans": "Waters can defend compliance credibility, but user-facing software setup, templates, training, and data-review friction need to be made more visible and easier.",
       "pmAction": "Prioritize role-based templates for analyst, method developer, and QA workflows; measure setup time and review time as product KPIs.",
-      "evidenceIds": ["cv-waters-empower-breeze-software", "cv-thermo-vanquish-complexity", "cv-agilent-cost-software"],
+      "evidenceIds": [
+        "cv-waters-empower-breeze-software",
+        "cv-thermo-vanquish-complexity",
+        "cv-agilent-cost-software"
+      ],
       "confidence": 62
     },
     {
@@ -549,7 +1345,12 @@
       "priority": "Medium",
       "whatItMeans": "Alliance/e2695 and other legacy users are likely to delay replacement if migration risk, service continuity, and data-system compatibility are unclear.",
       "pmAction": "Create a next-gen LC migration offer: method-transfer checklist, validation template, service path, data-system compatibility guide, and upgrade ROI story.",
-      "evidenceIds": ["cv-waters-alliance-legacy-service", "cv-waters-arc-method-modernization", "cv-shimadzu-software-integration", "cv-cross-vendor-consumables-cost"],
+      "evidenceIds": [
+        "cv-waters-alliance-legacy-service",
+        "cv-waters-arc-method-modernization",
+        "cv-shimadzu-software-integration",
+        "cv-cross-vendor-consumables-cost"
+      ],
       "confidence": 60
     },
     {
@@ -559,7 +1360,11 @@
       "priority": "Medium",
       "whatItMeans": "Agilent is a reliability/usability benchmark, while Shimadzu is a value/reliability benchmark. Waters should not use one generic competitive message for both.",
       "pmAction": "Build two PMM proof packs: reliability/ease-of-use comparison versus Agilent and total workflow productivity/value comparison versus Shimadzu.",
-      "evidenceIds": ["cv-agilent-infinity-reliability", "cv-shimadzu-nexera-value", "cv-waters-acquity-performance"],
+      "evidenceIds": [
+        "cv-agilent-infinity-reliability",
+        "cv-shimadzu-nexera-value",
+        "cv-waters-acquity-performance"
+      ],
       "confidence": 62
     },
     {
@@ -569,7 +1374,11 @@
       "priority": "Medium",
       "whatItMeans": "SCIEX and Thermo position LC value through broader workflow fit. Waters should show how LC, MS, informatics, service, and consumables work together.",
       "pmAction": "Create LC-MS workflow bundles for biopharma and environmental use cases with method setup, data review, service, and consumables proof points.",
-      "evidenceIds": ["cv-sciex-exionlc-lcms-fit", "cv-thermo-vanquish-ecosystem", "cv-waters-acquity-performance"],
+      "evidenceIds": [
+        "cv-sciex-exionlc-lcms-fit",
+        "cv-thermo-vanquish-ecosystem",
+        "cv-waters-acquity-performance"
+      ],
       "confidence": 61
     }
   ]

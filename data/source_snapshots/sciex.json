@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-07-13T18:28:49+00:00",
+  "capturedAt": "2026-07-26T11:55:20+00:00",
   "initialized": true,
   "products": {
     "https://sciex.com/products/mass-spectrometers/qtof-systems": "",
@@ -69,6 +69,8 @@
     "https://sciex.com/products/software/sciex-os-software/sciex-os-tips-and-tricks": "",
     "https://sciex.com/products/software/partner-software": ""
   },
+  "productMetadata": {},
+  "monitoredFamilies": [],
   "pressReleases": {
     "https://sciex.com/about-us/press-releases/2026/sciex-launches-its-5th-generation-of-nominal-mass-novus-v55-system-with-sciexos-5-0-software": {
       "date": "2026-06-01",

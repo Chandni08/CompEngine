@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-07-13T18:28:49+00:00",
+  "capturedAt": "2026-07-26T11:55:19+00:00",
   "initialized": true,
   "products": {
     "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/index.html": "2026-07-09",
@@ -81,7 +81,15 @@
     "https://www.shimadzu.com/an/products/liquid-chromatography/hplcuhplc/nexera-series/index.html": "2026-07-09",
     "https://www.shimadzu.com/an/products/liquid-chromatography/hplcuhplc/nexera-x4/index.html": "2026-07-09"
   },
+  "productMetadata": {},
+  "monitoredFamilies": [],
   "pressReleases": {
+    "https://www.shimadzu.com/news/2026/rqlmu84w5ry4eew_.html": {
+      "date": "2026-07-14",
+      "title": "Industry-Leading Detection Performance and Flexibility for Diverse Analytical Needs Shimadzu Releases the GCMS-TQ RX Series Gas Chromatograph-Mass Spectrometer",
+      "url": "https://www.shimadzu.com/news/2026/rqlmu84w5ry4eew_.html",
+      "classification": "corporate"
+    },
     "https://www.shimadzu.com/news/2026/kl7r0r4uj64q9kpv.html": {
       "date": "2026-03-23",
       "title": "Development of a MALDI Mass Spectrometry Method for Serotype Identification of Gene Therapy Vectors Collaborative Study Published in Analytical Chemistry",

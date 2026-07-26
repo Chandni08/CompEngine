@@ -5,26 +5,37 @@ const state = {
   conferenceData: null,
   conferencePrep: null,
   journalSources: null,
+  competitorApplicationNotes: null,
+  marketApplicationSources: null,
   productComparisons: null,
+  historicalProductCatalog: null,
+  historicalWatersCatalog: null,
   technicalComparisons: null,
   filingInsights: null,
   customerVoice: null,
   refreshStatus: null,
   view: "Product",
-  viewDepth: "quick",
   activeComparisonLaunchId: null,
   activeWatersComparatorId: null,
-  activeThirdComparatorId: "",
-  launchDrilldown: "all",
   activeDecisionBreakdown: null,
   overallTrendCandidates: [],
   competitorIntentProfiles: [],
+  activeIntentCompetitor: "",
+  roadmapImpactEvidence: [],
+  roadmapImpactSort: { column: 2, direction: "desc" },
   activeCustomerVoiceTab: "summary",
+  conferencePage: 1,
+  conferencePageSize: 4,
+  strategicEvidencePage: 1,
+  strategicEvidencePageSize: 6,
+  signalPage: 1,
+  signalPageSize: 10,
 };
 
 let customerVoiceSearchTerm = "";
 let lastDecisionPacketText = "";
 let publishedDataCheckTimer = null;
+let journalSourceResizeObserver = null;
 
 const filters = {
   role: document.querySelector("#roleFilter"),
@@ -37,31 +48,31 @@ const filters = {
 
 const viewCopy = {
   Leadership: {
-    title: "Leadership View: Strategic Market Decisions",
+    title: "Leadership: Market decisions",
     viewLabel: "Leadership view",
-    subtitle: "Strategic market shifts, competitor threats, and decisions requiring leadership attention for Waters Next Gen LC.",
-    decisionQuestion: "Where should Waters allocate attention, resources, or validation capacity next?",
+    subtitle: "Market shifts, threats, and decisions for Next Gen LC.",
+    decisionQuestion: "Where should Waters focus next?",
     categories: ["Scientific application intelligence", "Market intelligence", "Corporate intelligence", "Product intelligence"],
   },
   Product: {
-    title: "Product Management View: Roadmap & Whitespace",
+    title: "Product: Roadmap and whitespace",
     viewLabel: "Product Management view",
-    subtitle: "Roadmap priorities, competitor product moves, and whitespace opportunities for Waters Next Gen LC.",
-    decisionQuestion: "Which roadmap capability, workflow, or whitespace area needs a PM decision?",
+    subtitle: "Informing Roadmap priorities, competitor moves, and whitespace for Next Gen LC.",
+    decisionQuestion: "Which roadmap choice needs a decision?",
     categories: ["Scientific application intelligence", "Market intelligence", "Corporate intelligence", "Product intelligence"],
   },
   Engineering: {
-    title: "Engineering View: Capability & Technology Priorities",
+    title: "Engineering: Capability priorities",
     viewLabel: "Engineering view",
-    subtitle: "Competitor capabilities, technical gaps, and engineering questions requiring validation for Waters Next Gen LC.",
-    decisionQuestion: "Which hardware, software, automation, or informatics capability needs technical validation?",
+    subtitle: "Competitor capabilities, technical gaps, and validation needs.",
+    decisionQuestion: "Which capability needs validation?",
     categories: ["Scientific application intelligence", "Market intelligence", "Corporate intelligence", "Product intelligence"],
   },
   Marketing: {
-    title: "Product Marketing View: Positioning & Campaign Readiness",
+    title: "Marketing: Positioning and readiness",
     viewLabel: "Product Marketing view",
-    subtitle: "Competitor positioning, customer language, and market narratives requiring a Waters response.",
-    decisionQuestion: "Which competitor narrative or customer buying criterion should PMM respond to?",
+    subtitle: "Competitor claims, customer language, and response priorities.",
+    decisionQuestion: "Which claim or buying criterion needs a response?",
     categories: ["Scientific application intelligence", "Market intelligence", "Corporate intelligence", "Product intelligence"],
   },
 };
@@ -177,25 +188,6 @@ function setPanelCollapsed(panel, collapsed) {
   button.title = collapsed ? `Expand ${getPanelTitle(panel)}` : `Collapse ${getPanelTitle(panel)}`;
 }
 
-function setViewDepth(depth) {
-  state.viewDepth = depth;
-  document.querySelectorAll(".quick-reveal").forEach((panel) => panel.classList.remove("quick-reveal"));
-  document.body.classList.toggle("view-depth-quick", depth === "quick");
-  document.body.classList.toggle("view-depth-deep", depth === "deep");
-  const description = byId("viewDepthDescription");
-  if (description) description.textContent = depth === "quick" ? "Decisions only" : "All analysis and evidence";
-  document.querySelectorAll("#viewDepthControls button").forEach((button) => {
-    const active = button.dataset.viewDepth === depth;
-    button.classList.toggle("active", active);
-    button.setAttribute("aria-pressed", String(active));
-  });
-
-  document.querySelectorAll("[data-collapsible='true']").forEach((panel) => {
-    const shouldOpen = depth === "deep" || panel.dataset.quickOpen === "true";
-    setPanelCollapsed(panel, !shouldOpen);
-  });
-}
-
 function setupCollapsiblePanels() {
   document.querySelectorAll("[data-collapsible='true']").forEach((panel) => {
     if (panel.dataset.collapseReady === "true") return;
@@ -239,11 +231,6 @@ function setupCollapsiblePanels() {
     panel.dataset.collapseReady = "true";
   });
 
-  document.querySelectorAll("#viewDepthControls button").forEach((button) => {
-    button.addEventListener("click", () => setViewDepth(button.dataset.viewDepth));
-  });
-
-  setViewDepth(state.viewDepth);
 }
 
 function setActiveSectionNav(targetId) {
@@ -255,92 +242,229 @@ function setActiveSectionNav(targetId) {
   });
 }
 
+let navigationSelectionLockId = "";
+let navigationSelectionLockTimer;
+let sectionNavRefreshFrame;
+let navigationFocusTarget;
+let sectionNavigatorTargets = [];
+let sidebarViewportQuery;
+
+function sectionAnchorOffset() {
+  return Number.parseFloat(window.getComputedStyle(document.documentElement)
+    .getPropertyValue("--section-anchor-offset")) || 24;
+}
+
+function isRenderedSection(target) {
+  return Boolean(target && target.getClientRects().length && window.getComputedStyle(target).display !== "none");
+}
+
+function refreshActiveSectionNav() {
+  if (navigationSelectionLockId) {
+    setActiveSectionNav(navigationSelectionLockId);
+    return;
+  }
+
+  const rendered = sectionNavigatorTargets
+    .filter(isRenderedSection)
+    .map((target) => ({
+      target,
+      top: window.scrollY + target.getBoundingClientRect().top,
+    }))
+    .sort((a, b) => a.top - b.top);
+  if (!rendered.length) {
+    setActiveSectionNav("");
+    return;
+  }
+
+  const atDocumentEnd = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
+  if (atDocumentEnd) {
+    setActiveSectionNav(rendered[rendered.length - 1].target.id);
+    return;
+  }
+
+  const activationLine = window.scrollY + sectionAnchorOffset() + 8;
+  const current = rendered.reduce((match, item) => (
+    item.top <= activationLine ? item : match
+  ), rendered[0]);
+  setActiveSectionNav(current.target.id);
+}
+
+function scheduleSectionNavRefresh() {
+  if (!sectionNavigatorTargets.length || sectionNavRefreshFrame) return;
+  sectionNavRefreshFrame = window.requestAnimationFrame(() => {
+    sectionNavRefreshFrame = 0;
+    refreshActiveSectionNav();
+  });
+}
+
+function lockActiveSectionNav(targetId, duration = 1400) {
+  window.clearTimeout(navigationSelectionLockTimer);
+  navigationSelectionLockId = targetId;
+  setActiveSectionNav(targetId);
+  navigationSelectionLockTimer = window.setTimeout(() => {
+    if (navigationSelectionLockId !== targetId) return;
+    navigationSelectionLockId = "";
+    scheduleSectionNavRefresh();
+  }, duration);
+}
+
+function updateSectionAnchorOffset() {
+  const stickyFilters = document.querySelector(".filters");
+  const sidebar = document.querySelector(".sidebar");
+  const filterPosition = stickyFilters ? window.getComputedStyle(stickyFilters).position : "static";
+  const sidebarPosition = sidebar ? window.getComputedStyle(sidebar).position : "static";
+  const stickyHeight = stickyFilters && ["sticky", "fixed"].includes(filterPosition)
+    ? Math.ceil(stickyFilters.getBoundingClientRect().height)
+    : 0;
+  const stickySidebarHeight = sidebar && sidebarPosition === "sticky"
+    ? Math.ceil(sidebar.getBoundingClientRect().height)
+    : 0;
+  document.documentElement.style.setProperty("--section-anchor-offset", `${stickyHeight + stickySidebarHeight + 24}px`);
+}
+
+function showSectionArrival(target) {
+  if (navigationFocusTarget && navigationFocusTarget !== target) {
+    navigationFocusTarget.removeAttribute("tabindex");
+  }
+  target.setAttribute("tabindex", "-1");
+  target.focus({ preventScroll: true });
+  navigationFocusTarget = target;
+}
+
+function scrollToDashboardSection(target, behavior = "smooth") {
+  updateSectionAnchorOffset();
+  showSectionArrival(target);
+  target.scrollIntoView({ behavior, block: "start" });
+}
+
+function revealDashboardSection(target) {
+  if (target.classList.contains("is-collapsed")) setPanelCollapsed(target, false);
+}
+
+function navigateToDashboardSection(targetId, { behavior = "smooth", updateHistory = true } = {}) {
+  const target = byId(targetId);
+  if (!target) return false;
+  revealDashboardSection(target);
+  lockActiveSectionNav(targetId, behavior === "auto" ? 100 : 1400);
+  if (updateHistory) window.history.replaceState(null, "", `#${targetId}`);
+  scrollToDashboardSection(target, behavior);
+  return true;
+}
+
+function setSidebarNavigationOpen(open, { restoreFocus = false } = {}) {
+  const sidebar = document.querySelector(".sidebar");
+  const toggle = byId("sidebarNavigationToggle");
+  if (!sidebar || !toggle) return;
+  const shouldOpen = Boolean(open && sidebarViewportQuery?.matches);
+  sidebar.classList.toggle("is-navigation-open", shouldOpen);
+  toggle.setAttribute("aria-expanded", String(shouldOpen));
+  toggle.querySelector("[aria-hidden]").textContent = shouldOpen ? "⌃" : "⌄";
+  updateSectionAnchorOffset();
+  if (restoreFocus) toggle.focus({ preventScroll: true });
+}
+
+function setupSidebarNavigation() {
+  const sidebar = document.querySelector(".sidebar");
+  const toggle = byId("sidebarNavigationToggle");
+  if (!sidebar || !toggle) return;
+  sidebarViewportQuery = window.matchMedia("(max-width: 1180px)");
+  toggle.addEventListener("click", () => {
+    setSidebarNavigationOpen(!sidebar.classList.contains("is-navigation-open"));
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape" || !sidebar.classList.contains("is-navigation-open")) return;
+    setSidebarNavigationOpen(false, { restoreFocus: true });
+  });
+  sidebarViewportQuery.addEventListener("change", () => setSidebarNavigationOpen(false));
+  setSidebarNavigationOpen(false);
+}
+
 function setupSectionNavigator() {
   const navigator = document.querySelector(".section-navigator");
   if (!navigator) return;
 
+  updateSectionAnchorOffset();
+  window.addEventListener("resize", updateSectionAnchorOffset);
+  if (window.ResizeObserver) {
+    const filterObserver = new ResizeObserver(updateSectionAnchorOffset);
+    const filtersElement = document.querySelector(".filters");
+    const sidebarElement = document.querySelector(".sidebar");
+    if (filtersElement) filterObserver.observe(filtersElement);
+    if (sidebarElement) filterObserver.observe(sidebarElement);
+  }
+
   navigator.addEventListener("click", (event) => {
     const link = event.target.closest("[data-section-nav]");
     if (!link) return;
-    const target = byId(link.dataset.sectionNav);
-    if (!target) return;
+    const targetId = link.dataset.sectionNav;
+    if (!byId(targetId)) return;
     event.preventDefault();
-
-    if (state.viewDepth === "quick" && target.dataset.quickOpen === "false") {
-      document.querySelectorAll(".quick-reveal").forEach((panel) => panel.classList.remove("quick-reveal"));
-      target.classList.add("quick-reveal");
-      byId("viewDepthDescription").textContent = `Decisions plus ${getPanelTitle(target)}`;
-    }
-    if (target.classList.contains("is-collapsed")) setPanelCollapsed(target, false);
-    setActiveSectionNav(target.id);
-    window.history.replaceState(null, "", `#${target.id}`);
-    target.scrollIntoView({ behavior: "smooth", block: "start" });
+    setSidebarNavigationOpen(false);
+    navigateToDashboardSection(targetId);
   });
 
-  const targets = [...navigator.querySelectorAll("[data-section-nav]")]
+  sectionNavigatorTargets = [...navigator.querySelectorAll("[data-section-nav]")]
     .map((link) => byId(link.dataset.sectionNav))
     .filter(Boolean);
-  const observer = new IntersectionObserver((entries) => {
-    const visible = entries
-      .filter((entry) => entry.isIntersecting)
-      .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-    if (visible[0]) setActiveSectionNav(visible[0].target.id);
-  }, { rootMargin: "-12% 0px -72% 0px", threshold: [0, 0.1, 0.25] });
-  targets.forEach((target) => observer.observe(target));
+  window.addEventListener("scroll", scheduleSectionNavRefresh, { passive: true });
+  window.addEventListener("resize", scheduleSectionNavRefresh);
+  window.addEventListener("scrollend", () => {
+    if (!navigationSelectionLockId) return;
+    window.clearTimeout(navigationSelectionLockTimer);
+    navigationSelectionLockId = "";
+    scheduleSectionNavRefresh();
+  });
 
   const initialId = window.location.hash.slice(1);
-  const initialTarget = targets.find((target) => target.id === initialId);
+  const initialTarget = sectionNavigatorTargets.find((target) => target.id === initialId);
   if (initialTarget) {
-    if (state.viewDepth === "quick" && initialTarget.dataset.quickOpen === "false") {
-      initialTarget.classList.add("quick-reveal");
-      byId("viewDepthDescription").textContent = `Decisions plus ${getPanelTitle(initialTarget)}`;
-    }
-    if (initialTarget.classList.contains("is-collapsed")) setPanelCollapsed(initialTarget, false);
-    setActiveSectionNav(initialId);
-  }
+    navigateToDashboardSection(initialId, { behavior: "auto", updateHistory: false });
+  } else refreshActiveSectionNav();
+
+  window.addEventListener("hashchange", () => {
+    const targetId = window.location.hash.slice(1);
+    if (sectionNavigatorTargets.some((target) => target.id === targetId)) {
+      navigateToDashboardSection(targetId, { behavior: "auto", updateHistory: false });
+    } else scheduleSectionNavRefresh();
+  });
 }
 
 function setupSourceCountLinks() {
   byId("sourceCounts").addEventListener("click", (event) => {
     const link = event.target.closest("a[data-evidence-target]");
     if (!link) return;
-    const target = byId(link.dataset.evidenceTarget);
-    if (target?.dataset.quickOpen === "false" && state.viewDepth === "quick") setViewDepth("deep");
-    if (target?.classList.contains("is-collapsed")) setPanelCollapsed(target, false);
+    event.preventDefault();
+    navigateToDashboardSection(link.dataset.evidenceTarget);
   });
 }
 
 function setupMetricDrilldowns() {
   byId("metricGrid").addEventListener("click", (event) => {
-    const trigger = event.target.closest("[data-launch-view]");
+    const trigger = event.target.closest("[data-launch-evidence]");
     if (!trigger) return;
     event.preventDefault();
-    state.launchDrilldown = trigger.dataset.launchView || "all";
-    const target = byId("launch-evidence");
-    if (state.viewDepth === "quick") {
-      target?.classList.add("quick-reveal");
-      const description = byId("viewDepthDescription");
-      if (description) description.textContent = "Decisions plus selected launch evidence";
-    }
-    renderLaunchTimeline();
-    if (target?.classList.contains("is-collapsed")) setPanelCollapsed(target, false);
-    target?.scrollIntoView({ behavior: "auto", block: "start" });
-  });
-
-  byId("launchTimeline").addEventListener("click", (event) => {
-    const clear = event.target.closest("[data-clear-launch-view]");
-    if (!clear) return;
-    state.launchDrilldown = "all";
-    renderLaunchTimeline();
+    openLaunchMetricEvidenceModal(trigger.dataset.launchEvidence || "all");
   });
 }
 
 function setupDecisionEvidenceDrilldowns() {
   byId("decisionPacket").addEventListener("click", (event) => {
+    const sectionLink = event.target.closest("a[data-leadership-target]");
+    if (sectionLink) {
+      event.preventDefault();
+      const targetId = sectionLink.dataset.leadershipTarget;
+      navigateToDashboardSection(targetId);
+      return;
+    }
     const trigger = event.target.closest("[data-decision-evidence]");
     if (!trigger) return;
     event.preventDefault();
     openDecisionEvidenceModal(trigger.dataset.decisionEvidence);
+  });
+  byId("decisionQueue").addEventListener("click", (event) => {
+    const trigger = event.target.closest("button[data-decision-urgency-sources]");
+    if (!trigger) return;
+    openDecisionUrgencySources(Number(trigger.dataset.decisionUrgencySources));
   });
   byId("hideDecisionEvidence").addEventListener("click", hideDecisionEvidenceModal);
   byId("decisionEvidenceModal").addEventListener("click", (event) => {
@@ -366,7 +490,7 @@ function setupOverallTrendEvidenceLinks() {
           <a href="${escapeHtml(item.url)}" target="_blank" rel="noreferrer">
             <strong>${escapeHtml(item.title)}</strong>
             <span>${escapeHtml(item.detail)}</span>
-            <small>Open exact record ↗</small>
+            <small>${item.sourceLinkLabel || "Open exact record ↗"}</small>
           </a>
         `).join("")
       : `<div class="empty">No linked public records are available for this evidence type.</div>`;
@@ -378,6 +502,34 @@ function setupOverallTrendEvidenceLinks() {
 
 function setupCompetitorIntentEvidenceLinks() {
   byId("competitorIntent").addEventListener("click", (event) => {
+    const competitorTrigger = event.target.closest("button[data-intent-select]");
+    if (competitorTrigger) {
+      state.activeIntentCompetitor = competitorTrigger.dataset.intentSelect;
+      renderCompetitorIntentCards(currentSignals());
+      return;
+    }
+    const themeTrigger = event.target.closest("button[data-intent-theme-sources]");
+    if (themeTrigger) {
+      const profile = state.competitorIntentProfiles.find((item) => item.competitor === themeTrigger.dataset.competitor);
+      const themeIndex = Number(themeTrigger.dataset.intentThemeSources);
+      const theme = profile ? competitorActivityThemes(profile)[themeIndex] : null;
+      if (!profile || !theme) return;
+      byId("decisionEvidenceTitle").textContent = `${profile.competitor}: ${theme.title}`;
+      byId("decisionEvidenceSummary").textContent = `${theme.items.length} exact public source${theme.items.length === 1 ? "" : "s"} support this activity summary.`;
+      byId("decisionEvidenceList").innerHTML = theme.items.length
+        ? theme.items.map((item) => `
+            <a href="${escapeHtml(item.url)}" target="_blank" rel="noreferrer">
+              <strong>${escapeHtml(item.title)}</strong>
+              <span>${escapeHtml(formatDate(item.date))} · ${escapeHtml(item.sourceName || "Public source")}</span>
+              <small>${item.sourceLinkLabel || "Open exact source ↗"}</small>
+            </a>
+          `).join("")
+        : `<div class="empty">No linked public sources are available for this activity.</div>`;
+      byId("decisionEvidenceModal").hidden = false;
+      document.body.classList.add("modal-open");
+      byId("hideDecisionEvidence").focus();
+      return;
+    }
     const trigger = event.target.closest("a[data-intent-evidence-type]");
     if (!trigger) return;
     event.preventDefault();
@@ -391,10 +543,93 @@ function setupCompetitorIntentEvidenceLinks() {
           <a href="${escapeHtml(item.url)}" target="_blank" rel="noreferrer">
             <strong>${escapeHtml(item.title)}</strong>
             <span>${escapeHtml(formatDate(item.date))} · ${escapeHtml(item.sourceName || "Public source")}</span>
-            <small>Open exact record ↗</small>
+            <small>${item.sourceLinkLabel || "Open exact record ↗"}</small>
           </a>
         `).join("")
       : `<div class="empty">No linked public records match this evidence category.</div>`;
+    byId("decisionEvidenceModal").hidden = false;
+    document.body.classList.add("modal-open");
+    byId("hideDecisionEvidence").focus();
+  });
+}
+
+function setupRoadmapImpactEvidenceLinks() {
+  byId("featureGapMatrix").addEventListener("click", (event) => {
+    const sortTrigger = event.target.closest("button[data-impact-sort]");
+    if (sortTrigger) {
+      const column = Number(sortTrigger.dataset.impactSort);
+      const sameColumn = state.roadmapImpactSort.column === column;
+      const defaultDirection = [1, 2, 3].includes(column) ? "desc" : "asc";
+      state.roadmapImpactSort = {
+        column,
+        direction: sameColumn
+          ? (state.roadmapImpactSort.direction === "asc" ? "desc" : "asc")
+          : defaultDirection,
+      };
+      renderFeatureGapMatrix(currentSignals());
+      return;
+    }
+    const trigger = event.target.closest("button[data-roadmap-evidence]");
+    if (!trigger) return;
+    const capability = trigger.dataset.roadmapEvidence;
+    const entry = state.roadmapImpactEvidence.find((item) => item.capability === capability);
+    if (!entry) return;
+    byId("decisionEvidenceTitle").textContent = `${capability} evidence`;
+    byId("decisionEvidenceSummary").textContent = `${entry.records.length} linked public record${entry.records.length === 1 ? "" : "s"} match this capability under the active filters. Open the records before using the roadmap recommendation.`;
+    byId("decisionEvidenceList").innerHTML = entry.records.length
+      ? entry.records.map((record) => `
+          <a href="${escapeHtml(record.url)}" target="_blank" rel="noreferrer">
+            <strong>${escapeHtml(record.title)}</strong>
+            <span>${escapeHtml(record.type)}${record.date ? ` · ${escapeHtml(formatDate(record.date))}` : ""}</span>
+            <small>${record.sourceLinkLabel || "Open exact record ↗"}</small>
+          </a>
+        `).join("")
+      : `<div class="empty">No linked public records match this capability. Treat the row as a monitoring hypothesis, not a roadmap conclusion.</div>`;
+    byId("decisionEvidenceModal").hidden = false;
+    document.body.classList.add("modal-open");
+    byId("hideDecisionEvidence").focus();
+  });
+}
+
+function setupMarketSourceLinks() {
+  byId("trendList").addEventListener("click", (event) => {
+    const signalTrigger = event.target.closest("a[data-non-pubmed-theme]");
+    if (signalTrigger) {
+      event.preventDefault();
+      const signalData = currentNonPubmedSignalData();
+      const signal = signalData.signals.find((item) => item.id === signalTrigger.dataset.nonPubmedTheme);
+      if (!signal) return;
+      byId("decisionEvidenceTitle").textContent = `${signal.label} — exact non-PubMed records`;
+      byId("decisionEvidenceSummary").textContent = `${signal.records.length} dated records from ${signal.journalCount} peer-reviewed journal${signal.journalCount === 1 ? "" : "s"} match the transparent title-keyword rule shown on the card. These records show current topic concentration, not market size or growth.`;
+      byId("decisionEvidenceList").innerHTML = signal.records.map((record) => `
+        <a href="${escapeHtml(record.sourceUrl)}" target="_blank" rel="noreferrer">
+          <strong>${escapeHtml(record.title)}</strong>
+          <span>${escapeHtml(record.journal)} · ${escapeHtml(formatDate(record.date))}</span>
+          <small>Open exact DOI record ↗</small>
+        </a>
+      `).join("");
+      byId("decisionEvidenceModal").hidden = false;
+      document.body.classList.add("modal-open");
+      byId("hideDecisionEvidence").focus();
+      return;
+    }
+    const trigger = event.target.closest("a[data-market-source-list]");
+    if (!trigger) return;
+    event.preventDefault();
+    const market = trigger.dataset.marketSourceList;
+    const sources = currentMarketApplicationSources()
+      .filter((source) => (source.marketSegments || []).includes(market));
+    byId("decisionEvidenceTitle").textContent = `${market} market sources`;
+    byId("decisionEvidenceSummary").textContent = `${sources.length} mapped non-PubMed sources contribute evidence for ${market}. Open any source below to review the exact publisher page.`;
+    byId("decisionEvidenceList").innerHTML = sources.length
+      ? sources.map((source) => `
+          <a href="${escapeHtml(source.url)}" target="_blank" rel="noreferrer">
+            <strong>${escapeHtml(source.name)}</strong>
+            <span>${escapeHtml(source.publisher)} · ${escapeHtml(source.sourceType)}</span>
+            <small>Open exact source ↗</small>
+          </a>
+        `).join("")
+      : `<div class="empty">No mapped sources are available for ${escapeHtml(market)}.</div>`;
     byId("decisionEvidenceModal").hidden = false;
     document.body.classList.add("modal-open");
     byId("hideDecisionEvidence").focus();
@@ -420,16 +655,34 @@ function setupCustomerVoiceSummaryDrilldowns() {
   });
 }
 
+function setupCompanyVoiceDrilldowns() {
+  byId("customerCompetitorChart").addEventListener("click", (event) => {
+    const trigger = event.target.closest("[data-company-voice-sources]");
+    if (!trigger) return;
+    openCompanyVoiceEvidence(trigger.dataset.companyVoiceSources);
+  });
+}
+
 function setCustomerVoiceTab(tabName) {
-  state.activeCustomerVoiceTab = tabName;
+  const marketingView = state.view === "Marketing";
+  const activeTab = !marketingView && tabName === "positioning" ? "summary" : tabName;
+  const tabList = byId("customerVoiceTabs");
+  tabList.classList.toggle("has-positioning-tab", marketingView);
+
+  state.activeCustomerVoiceTab = activeTab;
   document.querySelectorAll("[data-customer-voice-tab]").forEach((button) => {
-    const active = button.dataset.customerVoiceTab === tabName;
+    const marketingOnly = button.dataset.customerVoiceTab === "positioning";
+    const visible = !marketingOnly || marketingView;
+    const active = button.dataset.customerVoiceTab === activeTab;
+    button.hidden = !visible;
+    button.setAttribute("aria-hidden", String(!visible));
     button.classList.toggle("active", active);
     button.setAttribute("aria-selected", String(active));
-    button.tabIndex = active ? 0 : -1;
+    button.tabIndex = visible && active ? 0 : -1;
   });
   document.querySelectorAll("[data-customer-voice-panel]").forEach((panel) => {
-    panel.hidden = panel.dataset.customerVoicePanel !== tabName;
+    const marketingOnly = panel.dataset.customerVoicePanel === "positioning";
+    panel.hidden = (marketingOnly && !marketingView) || panel.dataset.customerVoicePanel !== activeTab;
   });
 }
 
@@ -443,21 +696,54 @@ function setupCustomerVoiceTabs() {
 }
 
 function comparisonLaunches() {
-  return currentLaunches();
+  const currentProducts = state.productData?.launches || [];
+  const historicalProducts = (state.historicalProductCatalog?.products || []).map((product) => ({
+    geography: "Global",
+    marketSegment: "All",
+    signalType: "Historical product introduction",
+    date: `${product.introducedYear}-01-01`,
+    ...product,
+  }));
+  return [...currentProducts, ...historicalProducts]
+    .filter((product) => geographyMatches(product.geography))
+    .filter((product) => filters.segment.value === "All" || itemMarketSegments(product).includes(filters.segment.value))
+    .filter((product) => technologyMatchesFilter(
+      product.technology,
+      filters.technology.value,
+      `${product.product} ${product.signalType || ""} ${itemMarketSegments(product).join(" ")} ${product.subtechnology || ""}`,
+    ))
+    .filter((product) => filters.competitor.value === "All" || product.competitor === filters.competitor.value)
+    .sort((a, b) => new Date(b.date) - new Date(a.date));
 }
 
 function comparisonByLaunchId(launchId) {
   return (state.productComparisons?.launchComparisons || []).find((item) => item.launchId === launchId);
 }
 
-function watersComparatorById(id) {
-  return (state.productComparisons?.watersSystems || []).find((item) => item.id === id);
+function watersComparisonSystems() {
+  const currentSystems = state.productComparisons?.watersSystems || [];
+  const historicalSystems = (state.historicalWatersCatalog?.products || []).map((product) => ({
+    decisionRole: "Historical Waters product reference",
+    bestFor: [product.technology, "Portfolio history"],
+    strengths: ["Officially sourced Waters portfolio record for like-for-like historical comparison."],
+    watchouts: ["Confirm current availability, configuration, support status, and specifications before using this system in a purchasing recommendation."],
+    ...product,
+  }));
+  const seenIds = new Set();
+  const seenNames = new Set();
+  return [...currentSystems, ...historicalSystems]
+    .filter((item) => {
+      const name = String(item.product || "").trim().toLowerCase();
+      if (!item.id || seenIds.has(item.id) || seenNames.has(name)) return false;
+      seenIds.add(item.id);
+      seenNames.add(name);
+      return true;
+    })
+    .sort((a, b) => (b.introducedYear || 0) - (a.introducedYear || 0) || a.product.localeCompare(b.product));
 }
 
-function thirdComparatorById(id) {
-  const waters = state.productComparisons?.watersSystems || [];
-  const competitors = state.productComparisons?.thirdComparators || [];
-  return [...competitors, ...waters].find((item) => item.id === id);
+function watersComparatorById(id) {
+  return watersComparisonSystems().find((item) => item.id === id);
 }
 
 function defaultWatersComparatorForLaunch(launch) {
@@ -478,32 +764,33 @@ function launchComparisonTitle(launch) {
   return `${launch.competitor}: ${launch.product}`;
 }
 
-function optionLabelForComparator(item) {
-  return `${item.company}: ${item.product}`;
+function comparisonDateLabel(product) {
+  if (!product?.introducedYear) return formatDate(product?.date);
+  const dateBasis = product.dateBasis || (product.earliestOfficialRecord ? "Earliest official record" : "Introduction");
+  return `${product.introducedYear} ${dateBasis.toLowerCase()}`;
 }
 
 function populateComparisonControls() {
   const launches = comparisonLaunches();
-  const watersSystems = state.productComparisons?.watersSystems || [];
-  const thirdOptions = [
-    ...(state.productComparisons?.thirdComparators || []),
-    ...watersSystems,
-  ];
+  const watersSystems = watersComparisonSystems();
+  const catalogProducts = state.historicalProductCatalog?.products || [];
+  const legacyCount = catalogProducts.filter((product) => product.legacyReference).length;
+  const trackedCount = (state.productData?.launches || []).length + catalogProducts.length - legacyCount;
+
+  const catalogNote = byId("comparisonCatalogNote");
+  if (catalogNote) {
+    catalogNote.innerHTML = `<strong>30-year catalog:</strong> ${trackedCount} competitor products · ${watersSystems.length} Waters systems${legacyCount ? ` · ${legacyCount} older legacy references` : ""} · 1996–2026`;
+  }
 
   byId("comparisonLaunchSelect").innerHTML = launches
-    .map((launch) => `<option value="${escapeHtml(launch.id)}">${escapeHtml(formatDate(launch.date))} · ${escapeHtml(launchComparisonTitle(launch))}</option>`)
+    .map((launch) => `<option value="${escapeHtml(launch.id)}">${escapeHtml(comparisonDateLabel(launch))} · ${escapeHtml(launchComparisonTitle(launch))}</option>`)
     .join("");
   byId("comparisonWatersSelect").innerHTML = watersSystems
-    .map((item) => `<option value="${escapeHtml(item.id)}">${escapeHtml(item.product)}</option>`)
+    .map((item) => `<option value="${escapeHtml(item.id)}">${escapeHtml(comparisonDateLabel(item))} · ${escapeHtml(item.product)}</option>`)
     .join("");
-  byId("comparisonThirdSelect").innerHTML = `
-    <option value="">No third comparator</option>
-    ${thirdOptions.map((item) => `<option value="${escapeHtml(item.id)}">${escapeHtml(optionLabelForComparator(item))}</option>`).join("")}
-  `;
 
   byId("comparisonLaunchSelect").value = state.activeComparisonLaunchId || launches[0]?.id || "";
   byId("comparisonWatersSelect").value = state.activeWatersComparatorId || "";
-  byId("comparisonThirdSelect").value = state.activeThirdComparatorId || "";
 }
 
 function comparisonMetricCard(label, value, note) {
@@ -553,16 +840,6 @@ function shortHorizonDefenseMarkup(launch, comparison, compact = false) {
   const actionItems = compact ? defense.immediateDefenseActions.slice(0, 2) : defense.immediateDefenseActions;
   const weakItems = compact ? defense.stillWeak.slice(0, 2) : defense.stillWeak;
   return `
-    <div class="defense-old-new">
-      <article>
-        <span>Old baseline</span>
-        <strong>${escapeHtml(defense.priorMachine)}</strong>
-      </article>
-      <article>
-        <span>New signal</span>
-        <strong>${escapeHtml(defense.newMachine)}</strong>
-      </article>
-    </div>
     <div class="defense-grid">
       <article>
         <span>What changed</span>
@@ -620,55 +897,15 @@ function renderShortHorizonDefense() {
   `;
 }
 
-function technicalEvidenceLabel(type) {
-  return {
-    verified: "Verified public specifications",
-    "vendor-claim": "Vendor claims; validate in testing",
-    "conditions-differ": "Published values; test conditions differ",
-    mixed: "Partial public specification",
-  }[type] || "Source review required";
-}
-
-function technicalEvidenceClass(type) {
-  return ["verified", "vendor-claim", "conditions-differ", "mixed"].includes(type) ? type : "mixed";
-}
-
-function technicalComparisonFallback(launch, waters) {
-  const isMassSpec = /MS/i.test(launch.technology || "") || /mass spectrometer/i.test(launch.product || "");
-  const dimensions = isMassSpec
-    ? "mass range, analyzer type, resolving power, acquisition or MRM rate, sensitivity test conditions, source options, robustness, footprint, utilities, software, and compliance"
-    : "pressure, flow range and precision, gradient delay volume, injection range and cycle time, carryover under a common protocol, sample capacity, temperature control, detectors, software, and service diagnostics";
-  return `
-    <section class="technical-comparison technical-comparison-pending">
-      <div class="technical-comparison-heading">
-        <div>
-          <h4>Technical comparison</h4>
-          <p class="panel-helper">Specification record still being completed.</p>
-          <p>A verified row-by-row comparison is not yet loaded for ${escapeHtml(launch.product)} versus ${escapeHtml(waters?.product || "the selected Waters system")}.</p>
-        </div>
-        <span class="technical-status mixed">Source review required</span>
-      </div>
-      <p><strong>Required technical review:</strong> ${escapeHtml(dimensions)}. Until these values are sourced under comparable conditions, use the workflow interpretation below only as a discussion guide.</p>
-    </section>
-  `;
-}
-
 function technicalComparisonMarkup(profile, launch, waters) {
-  if (!profile) return technicalComparisonFallback(launch, waters);
+  const resolvedProfile = profile || ComparisonLogic.buildGeneratedTechnicalProfile(launch, waters);
 
   return `
     <section class="technical-comparison">
       <div class="technical-comparison-heading">
         <div>
-          <h4>Technical comparison</h4>
+          <h4>Technical Comparison</h4>
           <p class="panel-helper">Published specifications, test limits, and product implications.</p>
-          <p>${escapeHtml(profile.comparisonBasis)} Reviewed ${escapeHtml(formatDate(profile.asOfDate))}.</p>
-        </div>
-        <div class="technical-legend" aria-label="Evidence labels">
-          <span class="technical-status verified">Verified specification</span>
-          <span class="technical-status vendor-claim">Vendor claim</span>
-          <span class="technical-status conditions-differ">Conditions differ</span>
-          <span class="technical-status mixed">Partial specification</span>
         </div>
       </div>
       <div class="comparison-table-wrap technical-table-wrap">
@@ -677,13 +914,12 @@ function technicalComparisonMarkup(profile, launch, waters) {
             <tr>
               <th>Technical dimension</th>
               <th>${escapeHtml(launch.competitor)}: ${escapeHtml(launch.product)}</th>
-              <th>Waters: ${escapeHtml(profile.watersProduct || waters?.product || "selected system")}</th>
+              <th>Waters: ${escapeHtml(resolvedProfile.watersProduct || waters?.product || "selected system")}</th>
               <th>What the PM should conclude</th>
-              <th>Evidence quality</th>
             </tr>
           </thead>
           <tbody>
-            ${(profile.rows || []).map((row) => `
+            ${(resolvedProfile.rows || []).map((row) => `
               <tr>
                 <td><strong>${escapeHtml(row.dimension)}</strong></td>
                 <td>
@@ -695,7 +931,6 @@ function technicalComparisonMarkup(profile, launch, waters) {
                   <a href="${escapeHtml(row.watersSourceUrl)}" target="_blank" rel="noreferrer">Waters source</a>
                 </td>
                 <td>${escapeHtml(row.interpretation)}</td>
-                <td><span class="technical-status ${technicalEvidenceClass(row.evidenceType)}">${escapeHtml(technicalEvidenceLabel(row.evidenceType))}</span></td>
               </tr>
             `).join("")}
           </tbody>
@@ -703,7 +938,7 @@ function technicalComparisonMarkup(profile, launch, waters) {
       </div>
       <details class="comparison-limits">
         <summary>Comparison limits</summary>
-        <ul>${(profile.limitations || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+        <ul>${(resolvedProfile.limitations || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
       </details>
     </section>
   `;
@@ -717,52 +952,48 @@ function renderComparisonBody() {
     return;
   }
 
-  const comparison = comparisonByLaunchId(launch.id) || {};
+  const curatedComparison = comparisonByLaunchId(launch.id);
   const waters = watersComparatorById(state.activeWatersComparatorId) || watersComparatorById(defaultWatersComparatorForLaunch(launch));
-  const third = state.activeThirdComparatorId ? thirdComparatorById(state.activeThirdComparatorId) : null;
-  const thirdColumn = third
-    ? `<th>${escapeHtml(third.company || "Third")}</th>`
-    : "";
-  const thirdCells = third
-    ? (comparison.dimensions || []).map((row) => `<td>${escapeHtml(row.third || third.decisionRole || third.strengths?.[0] || "Use as manual benchmark.")}</td>`)
-    : [];
+  const comparison = ComparisonLogic.resolvePairComparison(launch, waters, curatedComparison);
   const sourceUrl = timelineUrlForLaunch(launch);
+  const impactValue = comparison.impactValue || `${comparison.threatLevel || "Directional"} impact`;
+  const impactNote = comparison.impactRationale;
+  const watersMeaning = comparison.pmRead;
+  const watersPositioning = comparison.watersPositioning;
   const technicalProfile = (state.technicalComparisons?.profiles || []).find(
     (item) => item.launchId === launch.id && (!item.watersId || item.watersId === waters?.id),
-  );
+  ) || ComparisonLogic.buildGeneratedTechnicalProfile(launch, waters);
 
-  byId("comparisonSubtitle").textContent = `${launch.competitor} launch · ${formatDate(launch.date)} · ${launch.technology} · ${launch.marketSegment}`;
   byId("comparisonSnapshots").innerHTML = `
-    ${comparatorSnapshotCard("Competitor", {
+    ${comparatorSnapshotCard("Competitor product", {
       company: launch.competitor,
       product: launch.product,
       technology: launch.technology,
     }, sourceUrl)}
     ${comparatorSnapshotCard("Waters", waters, waters?.sourceUrl)}
-    ${third ? comparatorSnapshotCard("Third comparator", third, third.sourceUrl) : ""}
   `;
 
   byId("comparisonBody").innerHTML = `
     <div class="comparison-readout">
-      ${comparisonMetricCard("Potential impact on Waters", comparison.threatLevel || "Needs review", "How strongly this launch may affect Waters product priorities or positioning.")}
-      ${comparisonMetricCard("Public-source confidence", launch.confidence ? `${launch.confidence}/100` : "Not scored", "How strongly the linked public source supports the launch record; detailed feature differences still require specification review.")}
+      ${comparisonMetricCard("Potential impact on Waters", impactValue, impactNote)}
+      ${comparisonMetricCard("Launch-evidence confidence", launch.confidence ? `${launch.confidence}/100` : "Not scored", "This score confirms that the source supports the product introduction record. It does not score product superiority or competitive impact on Waters.")}
     </div>
     <section class="comparison-positioning">
       <div>
-        <h4>What this means for Waters</h4>
-        <p>${escapeHtml(comparison.pmRead || launch.pmImplication)}</p>
+        <h4>What This Means for Waters</h4>
+        <p>${escapeHtml(watersMeaning)}</p>
+        ${comparison.evidenceBasis ? `<small class="comparison-evidence-note"><strong>Evidence basis:</strong> ${escapeHtml(comparison.evidenceBasis)}</small>` : ""}
       </div>
       <div>
-        <h4>How to position Waters</h4>
-        <p>${escapeHtml(comparison.watersPositioning || "Position Waters around complete workflow value, not only instrument specifications.")}</p>
+        <h4>How to Position Waters</h4>
+        <p>${escapeHtml(watersPositioning)}</p>
       </div>
     </section>
     ${
       comparison.shortHorizonDefense
         ? `<section class="comparison-defense-section">
             <div class="mini-header">
-              <h4>Short-horizon defense</h4>
-              <p class="panel-helper">Old versus new, the immediate Waters action, and where the competitor is still weak.</p>
+              <h4>Short-Horizon Defense</h4>
             </div>
             ${shortHorizonDefenseMarkup(launch, comparison)}
           </section>`
@@ -771,8 +1002,7 @@ function renderComparisonBody() {
     ${technicalComparisonMarkup(technicalProfile, launch, waters)}
     <section>
       <div class="mini-header">
-        <h4>Commercial and workflow interpretation</h4>
-        <p class="panel-helper">How the technical evidence changes the product decision.</p>
+        <h4>Commercial and Workflow Interpretation</h4>
       </div>
       <div class="comparison-table-wrap">
         <table class="comparison-table">
@@ -781,18 +1011,16 @@ function renderComparisonBody() {
               <th>Decision dimension</th>
               <th>${escapeHtml(launch.competitor)}</th>
               <th>Waters</th>
-              ${thirdColumn}
               <th>Why this matters for Waters</th>
             </tr>
           </thead>
           <tbody>
             ${(comparison.dimensions || [])
-              .map((row, index) => `
+              .map((row) => `
                 <tr>
                   <td><strong>${escapeHtml(row.dimension)}</strong></td>
                   <td>${escapeHtml(row.competitor)}</td>
                   <td>${escapeHtml(row.waters)}</td>
-                  ${third ? thirdCells[index] : ""}
                   <td>${escapeHtml(row.pmRead)}</td>
                 </tr>
               `)
@@ -824,11 +1052,9 @@ function renderProductComparator() {
   if (!launches.length) {
     byId("comparisonLaunchSelect").innerHTML = "";
     byId("comparisonWatersSelect").innerHTML = "";
-    byId("comparisonThirdSelect").innerHTML = `<option value="">No third comparator</option>`;
     byId("comparisonTitle").textContent = "Product comparator";
-    byId("comparisonSubtitle").textContent = "Change the horizon, technology, market, or competitor filter to see available comparisons.";
     byId("comparisonSnapshots").innerHTML = "";
-    byId("comparisonBody").innerHTML = `<div class="empty">No competitor launches with comparison data match the active filters.</div>`;
+    byId("comparisonBody").innerHTML = `<div class="empty">No products in the all-time comparison catalog match the active non-time filters.</div>`;
     return;
   }
 
@@ -848,17 +1074,13 @@ function openComparisonPanel(launchId) {
   const comparison = comparisonByLaunchId(launch.id);
   state.activeComparisonLaunchId = launch.id;
   state.activeWatersComparatorId = comparison?.closestWatersId || defaultWatersComparatorForLaunch(launch);
-  state.activeThirdComparatorId = comparison?.defaultThirdComparatorId || "";
   populateComparisonControls();
   renderComparisonBody();
   const panel = byId("product-comparator");
-  if (state.viewDepth === "quick") {
-    panel.classList.add("quick-reveal");
-    byId("viewDepthDescription").textContent = "Decisions plus selected product comparison";
-  }
   if (panel.classList.contains("is-collapsed")) setPanelCollapsed(panel, false);
-  panel.scrollIntoView({ behavior: "smooth", block: "start" });
-  byId("comparisonWatersSelect").focus();
+  lockActiveSectionNav(panel.id);
+  window.history.replaceState(null, "", `#${panel.id}`);
+  scrollToDashboardSection(panel);
 }
 
 function setupComparisonPanel() {
@@ -875,16 +1097,11 @@ function setupComparisonPanel() {
     const comparison = comparisonByLaunchId(event.target.value);
     state.activeComparisonLaunchId = event.target.value;
     state.activeWatersComparatorId = comparison?.closestWatersId || defaultWatersComparatorForLaunch(launch);
-    state.activeThirdComparatorId = comparison?.defaultThirdComparatorId || "";
     populateComparisonControls();
     renderComparisonBody();
   });
   byId("comparisonWatersSelect").addEventListener("change", (event) => {
     state.activeWatersComparatorId = event.target.value;
-    renderComparisonBody();
-  });
-  byId("comparisonThirdSelect").addEventListener("change", (event) => {
-    state.activeThirdComparatorId = event.target.value;
     renderComparisonBody();
   });
 }
@@ -919,11 +1136,11 @@ function evidenceLinksForCompetitor(competitor) {
 
   const launchLinks = launches
     .filter((launch) => launch.competitor === competitor)
-    .filter((launch) => isHttpUrl(launch.sourceUrl) && !badUrls.has(launch.sourceUrl))
+    .filter((launch) => isHttpUrl(launch.pressReleaseUrl) && !badUrls.has(launch.pressReleaseUrl))
     .sort((a, b) => new Date(b.date) - new Date(a.date))
     .map((launch) => ({
       label: launch.product,
-      url: launch.sourceUrl,
+      url: launch.pressReleaseUrl,
       title: `${launch.signalType}: ${launch.product}`,
     }));
 
@@ -946,9 +1163,32 @@ function evidenceLinksForCompetitor(competitor) {
     .slice(0, 3);
 }
 
+function pressReleaseUrlForLaunch(launch) {
+  return isHttpUrl(launch?.pressReleaseUrl) ? launch.pressReleaseUrl : "";
+}
+
+function discoveryUrlForLaunch(launch) {
+  return isHttpUrl(launch?.sourceUrl) ? launch.sourceUrl : "";
+}
+
+function sameSourceUrl(firstUrl, secondUrl) {
+  const normalize = (url) => String(url || "").replace(/\/$/, "");
+  return Boolean(firstUrl && secondUrl && normalize(firstUrl) === normalize(secondUrl));
+}
+
+function launchPressReleaseEvidenceUrl(launch) {
+  const pressReleaseUrl = pressReleaseUrlForLaunch(launch);
+  if (!pressReleaseUrl) return "";
+  return isHttpUrl(launch?.sourceAnchorUrl) && launch.sourceAnchorUrl.startsWith(pressReleaseUrl)
+    ? launch.sourceAnchorUrl
+    : pressReleaseUrl;
+}
+
 function timelineUrlForLaunch(launch) {
   const sources = state.sourceCatalog?.sources || [];
   const badUrls = new Set(sources.filter((source) => source.health === "bad").map((source) => source.url));
+  const pressReleaseUrl = pressReleaseUrlForLaunch(launch);
+  if (pressReleaseUrl && !badUrls.has(pressReleaseUrl)) return pressReleaseUrl;
   if (isHttpUrl(launch.sourceUrl) && !badUrls.has(launch.sourceUrl)) return launch.sourceUrl;
   const fallback = sources.find((source) => source.competitor === launch.competitor && source.health === "good" && isHttpUrl(source.url));
   return fallback?.url || launch.sourceUrl;
@@ -973,6 +1213,60 @@ function horizonLabel() {
   return filters.horizon.options[filters.horizon.selectedIndex].text;
 }
 
+function horizonContext(horizonValue = filters.horizon.value) {
+  return {
+    "30d": {
+      summaryLabel: "New evidence in the last 30 days",
+      mode: "New alert",
+      interpretation: "Treat this as a recent change to triage, not a sustained market conclusion.",
+      decisionRule: "Respond only to a dated competitor move or a clearly accelerating signal; otherwise keep monitoring.",
+      customerRule: "Verify the exact recent record before treating this as a product strength or gap.",
+    },
+    "60d": {
+      summaryLabel: "Emerging pattern across 60 days",
+      mode: "Emerging pattern",
+      interpretation: "Look for a second independent signal before opening roadmap validation.",
+      decisionRule: "Escalate only when the same problem repeats across sources or a competitor move changes the comparison.",
+      customerRule: "Check whether the theme repeats across more than one recent source before acting.",
+    },
+    "90d": {
+      summaryLabel: "Quarterly competitive pattern",
+      mode: "Quarterly signal",
+      interpretation: "Use the quarter to separate repeated competitive movement from one-off announcements.",
+      decisionRule: "Move repeated, cross-source themes into a defined product-validation artifact.",
+      customerRule: "Use the quarter's records to decide whether a product-gap validation is warranted.",
+    },
+    "1y": {
+      summaryLabel: "One-year roadmap pattern",
+      mode: "Annual pattern",
+      interpretation: "Use the year to identify repeated buying criteria, launch themes, and workflow claims.",
+      decisionRule: "Prioritize themes that persist across evidence types and affect the next roadmap cycle.",
+      customerRule: "Compare the public pattern with annual win/loss, service, and field evidence before prioritizing.",
+    },
+    "3y": {
+      summaryLabel: "Sustained three-year shift",
+      mode: "Structural shift",
+      interpretation: "Use three years to distinguish durable platform and workflow shifts from short-lived campaigns.",
+      decisionRule: "Consider portfolio investment only where the theme persists across product generations and independent sources.",
+      customerRule: "Treat only repeated multi-year themes as structural; isolate recent exceptions from the long-term pattern.",
+    },
+  }[horizonValue] || {
+    summaryLabel: `${horizonLabel()} evidence pattern`,
+    mode: "Evidence pattern",
+    interpretation: "Interpret the evidence within the selected time window.",
+    decisionRule: "Validate the linked records before changing roadmap priority.",
+    customerRule: "Verify the linked records before acting.",
+  };
+}
+
+function horizonTrendTitle(title) {
+  return String(title || "").replace(/^./, (character) => character.toUpperCase());
+}
+
+function horizonCustomerAction(baseAction) {
+  return `${baseAction} ${horizonContext().customerRule}`;
+}
+
 function trendMomentum(trend, horizon) {
   const count = trend.counts[horizon] || 0;
   const oneYear = trend.counts["1y"] || 0;
@@ -988,32 +1282,6 @@ function trendMomentum(trend, horizon) {
   if (ratio >= 1.18) return { label: "Accelerating", tone: "high", note: "publishing faster than its recent baseline" };
   if (ratio <= 0.82) return { label: "Cooling", tone: "medium", note: "publishing slower than its recent baseline" };
   return { label: "Steady", tone: "steady", note: "publishing near its recent baseline" };
-}
-
-function pullStrengthLabel(score) {
-  if (score >= 70) return "High roadmap relevance";
-  if (score >= 55) return "Medium roadmap relevance";
-  return "Low roadmap relevance based on current public evidence";
-}
-
-function trendPmQuestion(trend) {
-  const theme = trend.theme.toLowerCase();
-  if (theme.includes("lnp") || theme.includes("rna")) {
-    return "Do we need clearer LC-MS workflow coverage for RNA therapeutics and LNP characterization?";
-  }
-  if (theme.includes("oligonucleotide") || theme.includes("nucleic")) {
-    return "Should oligo analytics move higher in application kits, methods, and software workflow planning?";
-  }
-  if (theme.includes("pfas") || theme.includes("environmental")) {
-    return "Is the roadmap strong enough for regulated PFAS sensitivity, throughput, and compliance needs?";
-  }
-  if (theme.includes("proteomics") || theme.includes("metabolomics")) {
-    return "Where should Waters defend high-resolution LC-MS discovery workflows versus competitor platforms?";
-  }
-  if (theme.includes("automation") || theme.includes("software")) {
-    return "Which software and automation capabilities should become product-level differentiators?";
-  }
-  return "What product capability, workflow proof, or application note should this trend change?";
 }
 
 function recommendationPriorityRank(priority) {
@@ -1039,15 +1307,6 @@ function sourceHealthLabel(health) {
   if (health === "blocked") return "Manual source";
   if (health === "bad") return "Needs replacement";
   return "Manual evidence";
-}
-
-function sourceStatusCopy(status) {
-  return {
-    access_policy_needed: "Access policy needed",
-    needs_source_map: "Needs source map",
-    needs_source_discovery: "Needs source discovery",
-    source_map_created: "Source map ready",
-  }[status] || status || "Pending";
 }
 
 function recommendationEvidenceLinks(rec) {
@@ -1101,71 +1360,6 @@ function recommendationEvidenceSummary(rec) {
   return rec.evidenceBasis || rec.why || "Linked public evidence supports this recommendation.";
 }
 
-function renderCoverageGaps() {
-  const sources = state.sourceCatalog?.sources || [];
-  const sourceIssues = sources.filter((source) => ["bad", "blocked"].includes(source.health)).length;
-  const activeExtractors = sources.filter((source) => source.extractionStatus === "extracted").length;
-  const blockedExtractors = sources.filter((source) => source.extractionStatus === "blocked").length;
-  const hasRetirements = state.productData.launches.some((launch) => /retirement/i.test(launch.signalType));
-  const customerVoice = sources.find((source) => source.id === "customer-voice");
-  const tradePublications = sources.find((source) => source.id === "trade-publications");
-  const perkinelmerNews = sources.find((source) => source.id === "perkinelmer-news");
-  const items = [
-    {
-      status: "Ready",
-      title: "Product launches, updates, and workflow launches",
-      detail: `${state.productData.launches.length} tracked competitor launches and product changes are visible and linked to public source pages where available.`,
-      tone: "ready",
-    },
-    {
-      status: hasRetirements ? "Ready" : "Gap",
-      title: "Product retirement announcements",
-      detail: hasRetirements
-        ? "Retirement signals are present in the product intelligence data."
-        : "No verified retirement announcements are in the current data set; do not infer whitespace from retirements yet.",
-      tone: hasRetirements ? "ready" : "gap",
-    },
-    {
-      status: sourceStatusCopy(customerVoice?.status),
-      title: "Customer voice and adoption patterns",
-      detail: customerVoice?.issue || "Customer forums, ResearchGate, LinkedIn, and adoption signals need approved collection before PM scoring.",
-      tone: "watch",
-    },
-    {
-      status: sourceStatusCopy(tradePublications?.status),
-      title: "Trade-publication and analyst-like coverage",
-      detail: tradePublications?.nextAction || "Prioritize the most useful feeds before treating market narratives as a measured trend.",
-      tone: "watch",
-    },
-    {
-      status: sourceStatusCopy(perkinelmerNews?.status),
-      title: "Competitor news extraction balance",
-      detail: `${activeExtractors} official sources are actively extracted; ${blockedExtractors} are reachable or registered but cannot currently be extracted. A health check alone is never counted as monitoring.`,
-      tone: blockedExtractors ? "watch" : "ready",
-    },
-    {
-      status: `${sourceIssues} issues`,
-      title: "Source reliability impact",
-      detail: "Blocked or bad sources are flagged for review without subtracting points from recommendation scores.",
-      tone: sourceIssues ? "watch" : "ready",
-    },
-  ];
-
-  byId("coverageGaps").innerHTML = items
-    .map(
-      (item) => `
-        <article class="coverage-item ${item.tone}">
-          <span>${escapeHtml(item.status)}</span>
-          <div>
-            <strong>${escapeHtml(item.title)}</strong>
-            <p>${escapeHtml(item.detail)}</p>
-          </div>
-        </article>
-      `,
-    )
-    .join("");
-}
-
 function currentSignals() {
   return filteredSignalsForHorizon(filters.horizon.value);
 }
@@ -1178,6 +1372,11 @@ function geographyMatches(itemGeography) {
   return geography === selectedGeography || geography === "Global";
 }
 
+function itemMarketSegments(item) {
+  if (Array.isArray(item?.marketSegments) && item.marketSegments.length) return item.marketSegments;
+  return [item?.marketSegment || "All"];
+}
+
 function filteredSignalsForHorizon(horizonValue) {
   if (!state.data) return [];
   const allowedCategories = viewCopy[state.view].categories;
@@ -1185,8 +1384,12 @@ function filteredSignalsForHorizon(horizonValue) {
     const categoryMatch = allowedCategories.includes(signal.category);
     const horizonMatch = inHorizon(signal.date, horizonValue);
     const geoMatch = geographyMatches(signal.geography);
-    const segmentMatch = filters.segment.value === "All" || signal.marketSegment === filters.segment.value;
-    const technologyMatch = filters.technology.value === "All" || signal.technology === filters.technology.value;
+    const segmentMatch = filters.segment.value === "All" || itemMarketSegments(signal).includes(filters.segment.value);
+    const technologyMatch = technologyMatchesFilter(
+      signal.technology,
+      filters.technology.value,
+      `${signal.title} ${signal.summary} ${signal.signalType} ${signal.pmImplication || ""}`,
+    );
     const competitorMatch = filters.competitor.value === "All" || signal.competitor === filters.competitor.value;
     return categoryMatch && horizonMatch && geoMatch && segmentMatch && technologyMatch && competitorMatch;
   });
@@ -1232,24 +1435,28 @@ function currentLaunches() {
 function filteredLaunchesForHorizon(horizonValue) {
   if (!state.productData) return [];
   return state.productData.launches
+    .filter((launch) => launch.launchEvidenceEligible !== false && pressReleaseUrlForLaunch(launch))
     .filter((launch) => inHorizon(launch.date, horizonValue))
     .filter((launch) => geographyMatches(launch.geography))
     .filter((launch) => filters.segment.value === "All" || launch.marketSegment === filters.segment.value)
-    .filter((launch) => filters.technology.value === "All" || launch.technology === filters.technology.value)
+    .filter((launch) => technologyMatchesFilter(
+      launch.technology,
+      filters.technology.value,
+      `${launch.product} ${launch.launchType} ${launch.marketSegment || ""}`,
+    ))
     .filter((launch) => filters.competitor.value === "All" || launch.competitor === filters.competitor.value)
     .sort((a, b) => new Date(b.date) - new Date(a.date));
 }
 
 function currentConferenceSources() {
   const events = state.conferencePrep?.events || [];
+  const asOfValue = state.conferencePrep?.asOfDate || state.data?.asOfDate || new Date().toISOString().slice(0, 10);
   return events
+    .filter((event) => (event.endDate || event.startDate) >= asOfValue)
     .filter((event) => filters.segment.value === "All" || event.marketSegments.includes(filters.segment.value))
-    .filter((event) => filters.technology.value === "All" || event.technologyFocus.some((technology) => technology.includes(filters.technology.value)))
+    .filter((event) => filters.technology.value === "All" || event.technologyFocus.some((technology) => technologyMatchesFilter(technology, filters.technology.value, event.eventName)))
     .filter((event) => filters.competitor.value === "All" || event.competitorWatch.some((competitor) => competitor.name === filters.competitor.value))
-    .sort((a, b) => {
-      const tierRank = a.tier === b.tier ? 0 : a.tier === "Tier 1" ? -1 : 1;
-      return tierRank || new Date(a.startDate) - new Date(b.startDate);
-    });
+    .sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
 }
 
 function currentFilingInsights() {
@@ -1262,10 +1469,11 @@ function filteredFilingInsightsForHorizon(horizonValue) {
     .filter((insight) => inHorizon(insight.date, horizonValue))
     .filter((insight) => filters.segment.value === "All" || insight.marketSegment === filters.segment.value)
     .filter((insight) => {
-      if (filters.technology.value === "All") return true;
-      if (insight.technology === filters.technology.value) return true;
-      if (insight.technology !== "Portfolio") return false;
-      return textMatchesTechnology(`${insight.headline} ${insight.evidence} ${insight.whyItMatters} ${insight.pmImplication}`, filters.technology.value);
+      return technologyMatchesFilter(
+        insight.technology,
+        filters.technology.value,
+        `${insight.headline} ${insight.evidence} ${insight.whyItMatters} ${insight.pmImplication}`,
+      );
     })
     .filter((insight) => filters.competitor.value === "All" || insight.competitor === filters.competitor.value)
     .sort((a, b) => (b.impactScore || 0) - (a.impactScore || 0));
@@ -1275,7 +1483,7 @@ function currentTrends() {
   const horizon = filters.horizon.value;
   return state.data.trends.themes
     .filter((trend) => filters.segment.value === "All" || trend.marketSegment === filters.segment.value)
-    .filter((trend) => filters.technology.value === "All" || trend.technology === filters.technology.value)
+    .filter((trend) => technologyMatchesFilter(trend.technology, filters.technology.value, `${trend.theme} ${trend.query || ""}`))
     .sort((a, b) => (b.counts[horizon] || 0) - (a.counts[horizon] || 0));
 }
 
@@ -1283,27 +1491,29 @@ function textMatchesTechnology(text, technology) {
   if (technology === "All") return true;
   const haystack = String(text || "").toLowerCase();
   const needle = technology.toLowerCase();
-  if (needle === "lc") return /(^|[^a-z0-9])(?:lc|hplc)(?!\s*-?\s*ms)(?=$|[^a-z0-9])/.test(haystack);
-  if (needle === "uhplc") return /uhplc|uplc|nexera|infinity|module|detector/.test(haystack);
-  if (needle === "lc-ms/ms") return /lc-ms\/ms|lc-ms ms|quantitation|quantitative|triple quadrupole|pfas/.test(haystack);
-  if (needle === "lc-ms") return /lc-ms|mass spectrom|ms workflow|hrms|tof|zenotof|proteomics|metabolomics|oligo|rna|lnp/.test(haystack);
-  if (needle === "2d lc") return /2d\s*-?\s*lc|two-dimensional liquid chromatography/.test(haystack);
-  if (needle === "software") return /software|informatics|ai|openlab|os|workflow|automation|data/.test(haystack);
-  if (needle === "portfolio") return /portfolio|corporate|filing|segment/.test(haystack);
+  if (needle === "hplc") return /\bhplc\b|(^|[^a-z0-9])lc(?!\s*-?\s*ms)(?=$|[^a-z0-9])/.test(haystack);
+  if (needle === "uhplc\/uplc") return /\buhplc\b|\buplc\b|nexera|acquity/.test(haystack);
+  if (needle === "lc-ms") return /lc\s*[-/]?\s*ms|\blcms\b|liquid chromatograph[^.]{0,80}mass spectrom|chromatograph[^.]{0,80}mass spectrom/.test(haystack);
+  if (needle === "ms") return /lc\s*[-/]?\s*ms|\bms\/ms\b|mass spectrom|qtof|\btof\b|hrms|triple quadrupole|triple quad|orbitrap|zenotof|xevo|exploris/.test(haystack);
   if (haystack.includes(needle)) return true;
   return false;
 }
 
+function technologyMatchesFilter(itemTechnology, selectedTechnology, context = "") {
+  if (selectedTechnology === "All") return true;
+  return textMatchesTechnology(`${itemTechnology || ""} ${context || ""}`, selectedTechnology);
+}
+
 function itemMatchesRecommendation(item, rec) {
   const combined = `${item.technology || ""} ${item.marketSegment || ""} ${item.title || ""} ${item.product || ""} ${item.summary || ""} ${item.pmImplication || ""} ${item.intent || ""}`;
-  const technologyMatch = rec.technology === "All" || item.technology === rec.technology || textMatchesTechnology(combined, rec.technology);
+  const technologyMatch = rec.technology === "All" || technologyMatchesFilter(item.technology, rec.technology, combined);
   const segmentMatch = rec.marketSegment === "All" || item.marketSegment === rec.marketSegment || String(combined).toLowerCase().includes(String(rec.marketSegment).toLowerCase());
   return technologyMatch && segmentMatch;
 }
 
 function recommendationMatchesFilters(rec) {
   const filterText = `${rec.title} ${rec.why} ${rec.whyNow} ${rec.action} ${rec.nextAction} ${rec.affectedCapability} ${recommendationEvidenceSummary(rec)}`;
-  const technologyMatch = filters.technology.value === "All" || rec.technology === filters.technology.value || textMatchesTechnology(filterText, filters.technology.value);
+  const technologyMatch = technologyMatchesFilter(rec.technology, filters.technology.value, filterText);
   const segmentMatch = filters.segment.value === "All" || rec.marketSegment === filters.segment.value || filterText.toLowerCase().includes(filters.segment.value.toLowerCase());
   return technologyMatch && segmentMatch;
 }
@@ -1383,7 +1593,7 @@ function customerPullEvidenceForRecommendation(rec) {
 
 function confidenceStateForBreakdown(breakdown) {
   const independentSignals = breakdown.evidence.launches.length + breakdown.evidence.strategic.length + breakdown.evidence.filings.length + (breakdown.evidence.trend ? 1 : 0);
-  if (breakdown.total >= 78 && breakdown.competitorPressure >= 15 && breakdown.customerPull >= 12 && breakdown.roadmapRelevance >= 16) {
+  if (breakdown.total >= 78 && breakdown.competitorPressure >= 15 && breakdown.customerPull >= 12 && breakdown.decisionRelevance >= 16) {
     return {
       state: "Strategic threat",
       className: "strategic-threat",
@@ -1437,7 +1647,7 @@ function strategicPriorityBreakdown(rec, signals) {
   const roadmapBase = { High: 15, Medium: 11, Low: 7 }[rec.priority] || 9;
   const technologyRelevanceBonus = filters.technology.value !== "All" && recommendationMatchesFilters(rec) ? 3 : 0;
   const segmentRelevanceBonus = filters.segment.value !== "All" && recommendationMatchesFilters(rec) ? 2 : 0;
-  const roadmapRelevance = Math.min(20, roadmapBase + technologyRelevanceBonus + segmentRelevanceBonus);
+  const decisionRelevance = Math.min(20, roadmapBase + technologyRelevanceBonus + segmentRelevanceBonus);
   const sourceQuality = sourceQualitySummary();
   const verifiedEvidenceLinks = recommendationEvidenceLinks(rec).filter((link) => link.health === "good").length;
   const latestEvidenceDate = [
@@ -1472,13 +1682,13 @@ function strategicPriorityBreakdown(rec, signals) {
   if (!evidence.strategic.length && competitorPressure < 10) evidenceLimitations.push("no strategic-move signal");
   if (customerPull < 8) evidenceLimitations.push("weak public customer voice");
   if (sourceQuality.issues > 0) evidenceLimitations.push("one or more sources need review");
-  const rawScore = trendAcceleration + competitorPressure + customerPull + roadmapRelevance + evidenceQualityFreshness + strategicUrgency;
+  const rawScore = trendAcceleration + competitorPressure + customerPull + decisionRelevance + evidenceQualityFreshness + strategicUrgency;
   const total = Math.max(0, Math.min(100, rawScore));
   const breakdown = {
     trendAcceleration,
     competitorPressure,
     customerPull,
-    roadmapRelevance,
+    decisionRelevance,
     evidenceQualityFreshness,
     strategicUrgency,
     sourceConfidence: evidenceQualityFreshness,
@@ -1510,22 +1720,6 @@ function strategicPriorityBreakdown(rec, signals) {
           `Selected-competitor bonus = ${competitorFilterBonus}.`,
         ],
       },
-      customerPull: {
-        equation: `min(20, ${customerMentionContribution} + ${customerSourceContribution} + ${customerConfidenceContribution}) = ${customerPull}`,
-        inputs: [
-          `${customerPullEvidence.estimatedMentions} estimated mentions ÷ 18, rounded = ${customerMentionContribution}.`,
-          `${customerPullEvidence.sourceFamilies} customer source families contribute ${customerSourceContribution} points (maximum 8).`,
-          `Average confidence ${Math.round(customerPullEvidence.avgConfidence || 0)}/100 ÷ 30, rounded = ${customerConfidenceContribution}.`,
-        ],
-      },
-      roadmapRelevance: {
-        equation: `min(20, ${roadmapBase} + ${technologyRelevanceBonus} + ${segmentRelevanceBonus}) = ${roadmapRelevance}`,
-        inputs: [
-          `${rec.priority || "Unrated"} recommendation priority contributes ${roadmapBase} base points.`,
-          `Matching a selected technology contributes ${technologyRelevanceBonus} points.`,
-          `Matching a selected market contributes ${segmentRelevanceBonus} points.`,
-        ],
-      },
       evidenceQualityFreshness: {
         equation: `min(10, 3 + ${verifiedEvidenceLinks} + ${catalogQualityContribution} + ${freshness}) = ${evidenceQualityFreshness}`,
         inputs: [
@@ -1533,14 +1727,6 @@ function strategicPriorityBreakdown(rec, signals) {
           `${verifiedEvidenceLinks} verified recommendation links contribute ${verifiedEvidenceLinks} points.`,
           `${sourceQuality.verified} verified catalog sources contribute ${catalogQualityContribution} points (maximum 3).`,
           `Newest evidence inside the selected horizon contributes ${freshness} points.`,
-        ],
-      },
-      strategicUrgency: {
-        equation: `min(10, ${urgencyPriorityBase} + ${urgencyPressureContribution} + ${urgencyMomentumContribution}) = ${strategicUrgency}`,
-        inputs: [
-          `${rec.priority || "Unrated"} priority contributes ${urgencyPriorityBase} points.`,
-          `Competitor activity ${competitorPressure}/20 ÷ 5, rounded = ${urgencyPressureContribution}.`,
-          `${momentum?.label || "No trend"} momentum contributes ${urgencyMomentumContribution} points.`,
         ],
       },
     },
@@ -1746,12 +1932,9 @@ function validationNeedsForRecommendation(rec) {
 
 function scoreDriverMarkup(breakdown, linkAudit = false) {
   const drivers = [
-    { key: "trendAcceleration", label: "Market trend", value: `${breakdown.trendAcceleration}/20` },
+    { key: "trendAcceleration", label: "Application trend", value: `${breakdown.trendAcceleration}/20` },
     { key: "competitorPressure", label: "Competitor activity", value: `${breakdown.competitorPressure}/20` },
-    { key: "customerPull", label: "Public customer feedback", value: `${breakdown.customerPull}/20` },
-    { key: "roadmapRelevance", label: "Roadmap relevance", value: `${breakdown.roadmapRelevance}/20` },
     { key: "evidenceQualityFreshness", label: "Source quality", value: `${breakdown.evidenceQualityFreshness}/10` },
-    { key: "strategicUrgency", label: "Time sensitivity", value: `${breakdown.strategicUrgency}/10` },
   ];
   const recency = breakdown.recencyDays === null ? "No dated evidence" : `${breakdown.recencyDays} days`;
   const sourceFamilies = breakdown.sourceFamilies || [];
@@ -1761,6 +1944,23 @@ function scoreDriverMarkup(breakdown, linkAudit = false) {
     seenProofUrls.add(item.url);
     return true;
   });
+  const evidenceAuditLinks = [
+    proofLinks.length > 0
+      ? `<button type="button" data-decision-evidence="all" aria-label="View ${proofLinks.length} linked sources">
+          <b>${proofLinks.length}</b> linked sources
+        </button>`
+      : "",
+    sourceFamilies.length > 0
+      ? `<button type="button" data-decision-evidence="types" aria-label="View ${sourceFamilies.length} evidence types">
+          <b>${sourceFamilies.length}</b> evidence types
+        </button>`
+      : "",
+    proofLinks.length > 0 && breakdown.latestEvidenceDate
+      ? `<button type="button" data-decision-evidence="latest" aria-label="View latest evidence, aged ${escapeHtml(recency)}">
+          Latest evidence age <b>${escapeHtml(recency)}</b>
+        </button>`
+      : "",
+  ].filter(Boolean).join("");
   return `
     <div class="score-driver-grid">
       ${drivers
@@ -1772,30 +1972,14 @@ function scoreDriverMarkup(breakdown, linkAudit = false) {
         `)
         .join("")}
     </div>
-    <div class="score-evidence-strip">
-      <div class="score-evidence-meta" title="Evidence types: ${escapeHtml(sourceFamilies.join(", ") || "none available")}">
-        <strong>Evidence behind score</strong>
-        <span><b>${proofLinks.length}</b> linked sources</span>
-        <span><b>${sourceFamilies.length}</b> evidence types</span>
-        <span>Newest <b>${escapeHtml(recency)}</b></span>
-      </div>
-      <div class="score-evidence-links" aria-label="Open public evidence behind this score">
-        ${proofLinks.length
-          ? proofLinks.map((item) => `
-              <a href="${escapeHtml(item.url)}" target="_blank" rel="noreferrer" title="${escapeHtml(item.title)}" aria-label="Open ${escapeHtml(item.evidenceType || "public evidence")}: ${escapeHtml(item.title)}">
-                <small>${escapeHtml(item.evidenceType || "Public source")}</small>
-                <span>${escapeHtml(compactText(item.title, 64))}</span>
-                <b aria-hidden="true">↗</b>
-              </a>
-            `).join("")
-          : `<span class="score-evidence-empty">No linked public sources match the active filters.</span>`}
-      </div>
-    </div>
+    ${evidenceAuditLinks
+      ? `<div class="score-evidence-stats" aria-label="Open evidence behind this score" title="Evidence types: ${escapeHtml(sourceFamilies.join(", "))}">${evidenceAuditLinks}</div>`
+      : ""}
   `;
 }
 
 function priorityBreakdownText(breakdown) {
-  return `Priority ${breakdown.total}/100: market trend ${breakdown.trendAcceleration}/20, competitor activity ${breakdown.competitorPressure}/20, public customer feedback ${breakdown.customerPull}/20, roadmap relevance ${breakdown.roadmapRelevance}/20, source quality and recency ${breakdown.evidenceQualityFreshness}/10, time sensitivity ${breakdown.strategicUrgency}/10. Linked public sources: ${breakdown.publicSourceCount}; different evidence types: ${breakdown.sourceFamilies?.length || 0}; newest evidence: ${breakdown.latestEvidenceDate || "not dated"}.`;
+  return `Priority ${breakdown.total}/100. Visible public-signal drivers: application trend ${breakdown.trendAcceleration}/20, competitor activity ${breakdown.competitorPressure}/20, and source quality and recency ${breakdown.evidenceQualityFreshness}/10. Linked public sources: ${breakdown.publicSourceCount}; different evidence types: ${breakdown.sourceFamilies?.length || 0}; newest evidence: ${breakdown.latestEvidenceDate || "not dated"}.`;
 }
 
 function competitorIntentForRecommendation(rec, signals) {
@@ -1825,6 +2009,51 @@ function competitorIntentForRecommendation(rec, signals) {
     return `${actor}'s public activity suggests a possible focus on high-resolution MS applications, but more workflow evidence is needed before Waters responds.`;
   }
   return `Public evidence suggests this may be ${actor}'s direction, but more launch, conference, and customer evidence is needed to confirm it.`;
+}
+
+function competitorStrategyRead(recommendation, signals, competitorRead) {
+  if (state.view !== "Leadership") {
+    return {
+      label: "What competitors appear to be doing",
+      headline: competitorRead.headline,
+      detail: competitorIntentForRecommendation(recommendation, signals),
+    };
+  }
+
+  const themeKey = recommendationThemeKey(recommendation);
+  if (themeKey === "software") {
+    return {
+      label: "Competitive shift and leadership implication",
+      headline: "Competitors are trying to reset LC buying criteria around workflow productivity—not instrument specifications alone",
+      detail: "Software, automation, serviceability, and application workflows are being packaged as part of the product. If that buying frame wins, Waters could retain core LC performance but lose on perceived operator burden and time-to-value. Leadership choice: sponsor one cross-platform workflow response for Next Gen LC and Alliance iS, or explicitly accept that risk to protect hardware capacity.",
+    };
+  }
+  if (themeKey === "regulated") {
+    return {
+      label: "Competitive shift and leadership implication",
+      headline: "Competitors are moving the regulated-method sale from sensitivity claims to complete, defensible workflows",
+      detail: "Method readiness, traceable data, compliance proof, and repeatable execution are becoming part of the platform decision. If buyers adopt that standard, Waters risks losing before instrument performance is compared. Leadership choice: fund a reusable regulated-method package or keep responding application by application.",
+    };
+  }
+  if (themeKey === "advanced-therapeutics") {
+    return {
+      label: "Competitive shift and leadership implication",
+      headline: "Competitors are moving from broad biopharma positioning to oligonucleotide-specific workflow ownership",
+      detail: "Packaged methods, software templates, and LC-to-MS handoffs could define the preferred operating model for emerging therapeutics. Waiting preserves near-term capacity but increases the cost of entering after customer workflows standardize. Leadership choice: fund a method-readiness package now, partner for it, or deliberately monitor.",
+    };
+  }
+  if (themeKey === "omics") {
+    return {
+      label: "Competitive shift and leadership implication",
+      headline: "Competitors are competing to own the omics workflow—not only the mass-spectrometer specification",
+      detail: "Application methods, informatics, automation, and ecosystem access are becoming the value proposition. If buyers prioritize end-to-end productivity, isolated performance advantages will be less defensible. Leadership choice: sponsor an integrated omics workflow response or narrow investment to the applications Waters can credibly lead.",
+    };
+  }
+  return {
+    label: "Competitive shift and leadership implication",
+    headline: "Competitor activity is changing the buying frame, but the strategic direction is not yet specific enough for an investment decision",
+    detail: `${competitorIntentForRecommendation(recommendation, signals)} Leadership choice: fund targeted validation now or preserve capacity until the customer problem and competitive claim converge in the same evidence set.`,
+  };
 }
 
 function sourceQualitySummary() {
@@ -1870,20 +2099,29 @@ function topEvidenceCompetitor(signals) {
   return [...counts.entries()].sort((a, b) => b[1] - a[1])[0]?.[0] || null;
 }
 
-function evidenceCountSummary(breakdown) {
-  const evidence = breakdown.evidence;
-  return `${evidence.launches.length} launch${evidence.launches.length === 1 ? "" : "es"}, ${evidence.strategic.length} strategic move${evidence.strategic.length === 1 ? "" : "s"}, ${evidence.filings.length} filing insight${evidence.filings.length === 1 ? "" : "s"}, ${breakdown.customerPullEvidence.estimatedMentions} customer/public mention${breakdown.customerPullEvidence.estimatedMentions === 1 ? "" : "s"}`;
+function positiveCountSummary(entries) {
+  return entries
+    .filter(([, count]) => Number(count) > 0)
+    .map(([, count, label]) => `${count} ${label}`)
+    .join(", ");
 }
 
-function evidenceCountLinkMarkup(breakdown) {
+function evidenceCountEntries(breakdown) {
   const evidence = breakdown.evidence;
-  const counts = [
+  return [
     ["launches", evidence.launches.length, `launch${evidence.launches.length === 1 ? "" : "es"}`],
     ["strategic", evidence.strategic.length, `strategic move${evidence.strategic.length === 1 ? "" : "s"}`],
     ["filings", evidence.filings.length, `filing insight${evidence.filings.length === 1 ? "" : "s"}`],
     ["customer", breakdown.customerPullEvidence.estimatedMentions, `customer/public mention${breakdown.customerPullEvidence.estimatedMentions === 1 ? "" : "s"}`],
-  ];
-  return counts.map(([kind, count, label]) => `
+  ].filter(([, count]) => Number(count) > 0);
+}
+
+function evidenceCountSummary(breakdown) {
+  return positiveCountSummary(evidenceCountEntries(breakdown));
+}
+
+function evidenceCountLinkMarkup(breakdown) {
+  return evidenceCountEntries(breakdown).map(([kind, count, label]) => `
     <button type="button" class="evidence-count-link" data-decision-evidence="${kind}" aria-label="View source links for ${count} ${label}">
       <strong>${count}</strong> ${label}
     </button>
@@ -1896,9 +2134,14 @@ function decisionEvidenceItems(kind, breakdown) {
       ...breakdown.evidence.launches.map((item) => ({
         title: `${item.competitor}: ${item.product}`,
         detail: `Launches · ${item.signalType} · ${formatDate(item.date)} · ${item.sourceName}`,
-        url: timelineUrlForLaunch(item),
+        url: launchPressReleaseEvidenceUrl(item),
         date: item.date,
         evidenceType: "Launches",
+        sourceEvidence: item.sourceEvidence,
+        evidenceConnection: item.evidenceConnection || item.pmImplication,
+        evidenceLimitation: item.evidenceLimitation,
+        exactPassage: launchPressReleaseEvidenceUrl(item).includes("#:~:text="),
+        sourceLinkLabel: "Open press release ↗",
       })),
       ...breakdown.evidence.strategic.map((item) => ({
         title: `${item.competitor}: ${item.title}`,
@@ -1941,7 +2184,12 @@ function decisionEvidenceItems(kind, breakdown) {
     return breakdown.evidence.launches.map((item) => ({
       title: `${item.competitor}: ${item.product}`,
       detail: `${item.signalType} · ${formatDate(item.date)} · ${item.sourceName}`,
-      url: timelineUrlForLaunch(item),
+      url: launchPressReleaseEvidenceUrl(item),
+      sourceEvidence: item.sourceEvidence,
+      evidenceConnection: item.evidenceConnection || item.pmImplication,
+      evidenceLimitation: item.evidenceLimitation,
+      exactPassage: launchPressReleaseEvidenceUrl(item).includes("#:~:text="),
+      sourceLinkLabel: "Open press release ↗",
     }));
   }
   if (kind === "strategic") {
@@ -1968,6 +2216,43 @@ function decisionEvidenceItems(kind, breakdown) {
   });
 }
 
+function decisionEvidenceItemMarkup(item) {
+  const derivation = item.sourceEvidence || item.evidenceConnection || item.evidenceLimitation
+    ? `
+        <div class="evidence-derivation">
+          ${item.sourceEvidence ? `
+            <p>
+              <b>What the source says</b>
+              <span>${escapeHtml(item.sourceEvidence)}</span>
+            </p>
+          ` : ""}
+          ${item.evidenceConnection ? `
+            <p>
+              <b>How this supports the recommendation</b>
+              <span>${escapeHtml(item.evidenceConnection)}</span>
+            </p>
+          ` : ""}
+          ${item.evidenceLimitation ? `
+            <p class="evidence-limitation">
+              <b>What it does not prove</b>
+              <span>${escapeHtml(item.evidenceLimitation)}</span>
+            </p>
+          ` : ""}
+        </div>
+      `
+    : "";
+  return `
+    <article class="decision-evidence-card">
+      <strong>${escapeHtml(item.title)}</strong>
+      <span>${escapeHtml(item.detail)}</span>
+      ${derivation}
+      <a class="decision-evidence-source-link" href="${escapeHtml(item.url)}" target="_blank" rel="noreferrer">
+        ${item.sourceLinkLabel || (item.exactPassage ? "Open highlighted source passage ↗" : "Open exact record ↗")}
+      </a>
+    </article>
+  `;
+}
+
 function openDecisionEvidenceModal(kind) {
   const breakdown = state.activeDecisionBreakdown;
   if (!breakdown) return;
@@ -1988,16 +2273,30 @@ function openDecisionEvidenceModal(kind) {
       ? `${items.length} linked records across: ${(breakdown.sourceFamilies || []).join(", ")}.`
       : kind === "latest"
         ? `${items.length} linked record${items.length === 1 ? " is" : "s are"} dated ${formatDate(breakdown.latestEvidenceDate)}.`
-    : `${items.length} linked public records match the active filters and lead decision.`;
+        : kind === "launches"
+          ? `${items.length} launch record${items.length === 1 ? "" : "s"} match the active filters. Each card separates the source claim from the product inference and its limitation.`
+          : `${items.length} linked public records match the active filters and lead decision.`;
   byId("decisionEvidenceList").innerHTML = items.length
-    ? items.map((item) => `
-        <a href="${escapeHtml(item.url)}" target="_blank" rel="noreferrer">
-          <strong>${escapeHtml(item.title)}</strong>
-          <span>${escapeHtml(item.detail)}</span>
-          <small>Open exact record ↗</small>
-        </a>
-      `).join("")
+    ? items.map(decisionEvidenceItemMarkup).join("")
     : `<div class="empty">No linked public records match this evidence category.</div>`;
+  byId("decisionEvidenceModal").hidden = false;
+  document.body.classList.add("modal-open");
+  byId("hideDecisionEvidence").focus();
+}
+
+function openDecisionUrgencySources(decisionIndex) {
+  const recommendation = recommendationsByConfidence(currentSignals())[decisionIndex];
+  const actions = recommendation?.urgency?.competitorActions || [];
+  if (!recommendation || !actions.length) return;
+  byId("decisionEvidenceTitle").textContent = `How this decision insight was derived`;
+  byId("decisionEvidenceSummary").textContent = `${actions.length} linked official source${actions.length === 1 ? "" : "s"} underpin the concise decision rationale. Open any record to review the underlying action and its connection to the decision.`;
+  byId("decisionEvidenceList").innerHTML = actions.map((item) => decisionEvidenceItemMarkup({
+    title: item.competitor,
+    detail: `${item.date ? `${item.date} · ` : ""}${item.action}`,
+    evidenceConnection: item.decisionLink,
+    url: item.sourceUrl,
+    sourceLinkLabel: "Open official source ↗",
+  })).join("");
   byId("decisionEvidenceModal").hidden = false;
   document.body.classList.add("modal-open");
   byId("hideDecisionEvidence").focus();
@@ -2008,23 +2307,74 @@ function hideDecisionEvidenceModal() {
   document.body.classList.remove("modal-open");
 }
 
+function launchMetricEvidenceItems(kind) {
+  const allLaunches = currentLaunches();
+  const launches = kind === "new"
+    ? allLaunches.filter((launch) => /new product|workflow launch|product launch/i.test(launch.signalType))
+    : kind === "lcms"
+      ? allLaunches.filter((launch) => launch.technology.includes("LC-MS"))
+      : [...allLaunches];
+  const sortedLaunches = kind === "competitors"
+    ? launches.sort((a, b) => a.competitor.localeCompare(b.competitor) || new Date(b.date) - new Date(a.date))
+    : launches;
+  return sortedLaunches.map((launch) => ({
+    title: `${launch.competitor}: ${launch.product}`,
+    detail: `${formatDate(launch.date)} · ${launch.signalType} · ${launch.technology} · ${launch.sourceName}`,
+    url: launchPressReleaseEvidenceUrl(launch) || timelineUrlForLaunch(launch),
+    sourceLinkLabel: "Open official launch source ↗",
+  }));
+}
+
+function openLaunchMetricEvidenceModal(kind) {
+  const items = launchMetricEvidenceItems(kind);
+  const competitorCount = new Set(currentLaunches().map((launch) => launch.competitor)).size;
+  const titles = {
+    all: `${items.length} product-change sources`,
+    new: `${items.length} launch sources`,
+    lcms: `${items.length} LC-MS product-change sources`,
+    competitors: `Activity sources for ${competitorCount} competitors`,
+  };
+  const summaries = {
+    all: "Official launch evidence for every product change matching the active filters.",
+    new: "Official launch evidence for new product and workflow launches matching the active filters.",
+    lcms: "Official launch evidence for LC-MS and LC-MS/MS product changes matching the active filters.",
+    competitors: "Official launch evidence grouped by competitor. Opening this view does not reorder or filter the Competitive Timeline.",
+  };
+  byId("decisionEvidenceTitle").textContent = titles[kind] || titles.all;
+  byId("decisionEvidenceSummary").textContent = summaries[kind] || summaries.all;
+  byId("decisionEvidenceList").innerHTML = items.length
+    ? items.map(decisionEvidenceItemMarkup).join("")
+    : `<div class="empty">No official launch sources match this activity category.</div>`;
+  byId("decisionEvidenceModal").hidden = false;
+  document.body.classList.add("modal-open");
+  byId("hideDecisionEvidence").focus();
+}
+
 function leadCompetitorRead(signals, recommendation) {
+  const context = horizonContext();
   const competitor = filters.competitor.value !== "All" ? filters.competitor.value : topEvidenceCompetitor(signals);
   if (!competitor) {
     return {
       competitor: "No clear competitor",
-      headline: "No competitor has enough matching public evidence to identify a clear lead threat",
-      detail: "Use launch monitoring, conference capture, and customer-source review before changing roadmap priority.",
+      headline: `No competitor has enough ${horizonLabel().toLowerCase()} evidence to identify a clear lead threat`,
+      detail: `${context.interpretation} Use launch monitoring, conference capture, and customer-source review before changing roadmap priority.`,
       counts: { launches: 0, strategic: 0, filings: 0, total: 0 },
     };
   }
   const counts = competitorEvidenceCounts(competitor, signals);
   const technology = recommendation?.technology || filters.technology.value;
   const segment = recommendation?.marketSegment || filters.segment.value;
+  const headlines = {
+    "30d": `${competitor} generated the most new competitor evidence in the last 30 days`,
+    "60d": `${competitor} leads the emerging 60-day activity pattern`,
+    "90d": `${competitor} leads this quarter's competitor activity`,
+    "1y": `${competitor} has the strongest repeated one-year activity`,
+    "3y": `${competitor} shows the most sustained activity across three years`,
+  };
   return {
     competitor,
-    headline: `${competitor} has the most matching public evidence in this view`,
-    detail: `${counts.launches} launch${counts.launches === 1 ? "" : "es"}, ${counts.strategic} strategic move${counts.strategic === 1 ? "" : "s"}, and ${counts.filings} filing insight${counts.filings === 1 ? "" : "s"} overlap with ${technology} / ${segment}.`,
+    headline: headlines[filters.horizon.value] || `${competitor} has the most matching public evidence in this view`,
+    detail: `${counts.launches} launch${counts.launches === 1 ? "" : "es"}, ${counts.strategic} strategic move${counts.strategic === 1 ? "" : "s"}, and ${counts.filings} filing insight${counts.filings === 1 ? "" : "s"} overlap with ${technology} / ${segment}. ${context.interpretation}`,
     counts,
   };
 }
@@ -2080,9 +2430,11 @@ function strategicThemeForRecommendation(recommendation) {
   const themeKey = recommendationThemeKey(recommendation);
   const capability = compactCapabilityLabel(recommendation);
   if (recommendation.regionalEvidenceMissing) return `Global evidence supports a ${capability} watch, but ${filters.geo.value}-specific relevance is not yet confirmed.`;
-  if (filters.horizon.value === "90d") return `Recent evidence makes ${capability} an immediate PM review priority.`;
+  if (filters.horizon.value === "30d") return `The last 30 days surface ${capability} as a new alert, not yet a sustained trend.`;
+  if (filters.horizon.value === "60d") return `Sixty-day evidence shows ${capability} repeating enough to validate, but not yet to fund.`;
+  if (filters.horizon.value === "90d") return `This quarter makes ${capability} a focused validation priority.`;
   if (filters.horizon.value === "1y") return `One-year evidence shows ${capability} becoming a repeated competitive theme.`;
-  if (filters.horizon.value === "3y") return `Three-year evidence suggests ${capability} is sustained rather than a one-off signal.`;
+  if (filters.horizon.value === "3y") return `Three-year evidence suggests ${capability} is a sustained shift rather than a campaign or one-off launch.`;
   if (filters.horizon.value === "5y") return `Five-year evidence shows ${capability} persisting across product cycles.`;
   if (themeKey === "software") {
     return "Software-enabled workflow packaging is becoming a competitive differentiator.";
@@ -2122,11 +2474,11 @@ function directorActionForRecommendation(recommendation) {
     const latestLaunch = [...evidence.launches].sort((a, b) => new Date(b.date) - new Date(a.date))[0];
     if (latestLaunch) {
       const product = latestLaunch.product || latestLaunch.title || "latest product change";
-      return `Action: within 10 business days, compare ${latestLaunch.competitor}'s ${product} with its prior platform and Waters' closest match. Document what changed, where the competitor remains weak, the customer impact, and one defend-or-differentiate response for the next PM review.`;
+      return `Action: compare ${latestLaunch.competitor}'s ${product} with its prior platform and Waters' closest match. Document what changed, where the competitor remains weak, the customer impact, and one defend-or-differentiate response for the next PM review.`;
     }
     const momentum = evidence.trend ? trendMomentum(evidence.trend, filters.horizon.value) : null;
     if (momentum?.label === "Accelerating") {
-      return `Action: review five recent public sources behind the accelerating ${evidence.trend.theme} signal. Compare them with Waters' current application proof and return one of three calls within 10 business days: continue monitoring, update positioning, or define a roadmap requirement.`;
+      return `Action: review five recent public sources behind the accelerating ${evidence.trend.theme} signal. Compare them with Waters' current application proof and return one of three calls: continue monitoring, update positioning, or define a roadmap requirement.`;
     }
   }
   if (role === "Product" && ["90d", "1y", "3y", "5y"].includes(filters.horizon.value)) {
@@ -2137,7 +2489,7 @@ function directorActionForRecommendation(recommendation) {
       return `Action: compare ${launchLabel} with Waters' closest match and the prior competitor generation. Bring changed claims, remaining competitor weaknesses, customer impact, and one immediate response to the next PM review.`;
     }
     if (filters.horizon.value === "1y") {
-      return `Action: review the recurring claims across ${evidence.launches.length} launch${evidence.launches.length === 1 ? "" : "es"} and ${evidence.strategic.length} strategic move${evidence.strategic.length === 1 ? "" : "s"} from the past year. Identify one repeated customer problem and decide whether Waters should update the product, workflow package, or positioning.`;
+      return `Action: ${recommendation.action}`;
     }
     if (filters.horizon.value === "3y") {
       return `Action: map three years of product generations and workflow claims. Separate sustained capability shifts from one-off announcements, then define the single Waters capability or proof gap that deserves deeper validation.`;
@@ -2201,9 +2553,31 @@ function competitorSourceHealth(competitor) {
   return { sources, good, manual, issues, extracted, extractionBlocked, status };
 }
 
+function competitorEvidenceLinks(competitor, signals) {
+  const records = [
+    ...currentLaunches().filter((launch) => launch.competitor === competitor),
+    ...currentStrategicSignals(signals).filter((signal) => signal.competitor === competitor),
+    ...currentFilingInsights().filter((insight) => insight.competitor === competitor),
+    ...signals.filter((signal) => signal.competitor === competitor && signal.signalType === "Official technical insight"),
+  ];
+  const seen = new Set();
+  return records.reduce((links, record) => {
+    const url = record.sourceUrl || record.url;
+    if (!url || seen.has(url)) return links;
+    seen.add(url);
+    links.push({
+      url,
+      label: record.title || record.headline || record.product || record.sourceName || "Public evidence source",
+      sourceName: record.sourceName || "Public source",
+    });
+    return links;
+  }, []);
+}
+
 function renderCompetitorCoverageHealth(signals) {
   const rows = primaryCompetitors.map((competitor) => {
     const evidence = competitorEvidenceCounts(competitor, signals);
+    const evidenceLinks = competitorEvidenceLinks(competitor, signals);
     const sourceHealth = competitorSourceHealth(competitor);
     const healthClass = sourceHealth.status === "Actively extracted" && evidence.total > 0
       ? "covered"
@@ -2217,7 +2591,7 @@ function renderCompetitorCoverageHealth(signals) {
         : sourceHealth.extracted
           ? "Official sources are actively extracted into the feed."
           : "The links work, but no automated extractor is producing competitor signals from them.";
-    return { competitor, evidence, sourceHealth, healthClass, interpretation };
+    return { competitor, evidence, evidenceLinks, sourceHealth, healthClass, interpretation };
   });
   byId("coverageHealthCount").textContent = `${rows.length} competitors`;
   byId("competitorCoverageHealth").innerHTML = rows
@@ -2227,35 +2601,62 @@ function renderCompetitorCoverageHealth(signals) {
           <strong>${escapeHtml(row.competitor)}</strong>
           <span>${escapeHtml(row.sourceHealth.status)}</span>
         </div>
-        <div class="coverage-health-metrics">
-          <span><b>${row.evidence.launches}</b> launches</span>
-          <span><b>${row.evidence.strategic}</b> strategic moves</span>
-          <span><b>${row.evidence.filings}</b> filing insights</span>
-          <span><b>${row.evidence.technical}</b> technical insights</span>
-          <span><b>${row.sourceHealth.extracted}</b> active extractor${row.sourceHealth.extracted === 1 ? "" : "s"}</span>
-          <span><b>${row.sourceHealth.extractionBlocked.length}</b> blocked extractor${row.sourceHealth.extractionBlocked.length === 1 ? "" : "s"}</span>
+        <div class="coverage-health-summary">
+          <strong>${row.evidence.total}</strong>
+          <span>signals</span>
+          <small>${row.evidence.launches} launches · ${row.evidence.strategic} moves · ${row.evidence.filings} filings · ${row.evidence.technical} technical</small>
         </div>
-        <p>${escapeHtml(row.interpretation)}</p>
-        ${row.sourceHealth.extracted ? `
-          <details class="extracted-source-details">
-            <summary>View ${row.sourceHealth.extracted} extracted source${row.sourceHealth.extracted === 1 ? "" : "s"}</summary>
-            <ul class="extraction-status-list">
-              ${row.sourceHealth.sources.filter((source) => source.extractionStatus === "extracted").map((source) => `
-                <li>
-                  <a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.source || "Official source")} ↗</a>
-                  ${source.extractionReason ? `<span>${escapeHtml(source.extractionReason)}</span>` : ""}
-                </li>
-              `).join("")}
-            </ul>
-          </details>
-        ` : ""}
-        ${row.sourceHealth.extractionBlocked.length ? `
-          <ul class="extraction-status-list">
-            ${row.sourceHealth.extractionBlocked.map((source) => `
-              <li><strong><a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.source || "Official source")} ↗</a>:</strong> ${escapeHtml(source.extractionReason || "Extraction is blocked.")}</li>
-            `).join("")}
-          </ul>
-        ` : ""}
+        <div class="coverage-health-extractors">
+          <span><b>${row.sourceHealth.extracted}</b> active</span>
+          <span><b>${row.sourceHealth.extractionBlocked.length}</b> blocked</span>
+        </div>
+        <details class="coverage-health-details">
+          <summary>Source details</summary>
+          <div class="coverage-health-detail-body">
+            <p>${escapeHtml(row.interpretation)}</p>
+            ${row.evidenceLinks.length ? `
+              <strong class="coverage-source-label">Evidence links (${row.evidenceLinks.length})</strong>
+              <ul class="extraction-status-list extracted">
+                ${row.evidenceLinks.map((source) => `
+                  <li>
+                    <a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.label)} ↗</a>
+                    <span>${escapeHtml(source.sourceName)}</span>
+                  </li>
+                `).join("")}
+              </ul>
+            ` : ""}
+            ${row.sourceHealth.extracted ? `
+              <strong class="coverage-source-label">Extracted sources</strong>
+              <ul class="extraction-status-list extracted">
+                ${row.sourceHealth.sources.filter((source) => source.extractionStatus === "extracted").map((source) => `
+                  <li>
+                    <a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.source || "Official source")} ↗</a>
+                    ${source.extractionReason ? `<span>${escapeHtml(source.extractionReason)}</span>` : ""}
+                  </li>
+                `).join("")}
+              </ul>
+            ` : ""}
+            ${row.sourceHealth.sources.some((source) => !["extracted", "blocked"].includes(source.extractionStatus)) ? `
+              <strong class="coverage-source-label">Monitored official sources</strong>
+              <ul class="extraction-status-list">
+                ${row.sourceHealth.sources.filter((source) => !["extracted", "blocked"].includes(source.extractionStatus)).map((source) => `
+                  <li>
+                    <a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.source || "Official source")} ↗</a>
+                    <span>Health checked; not automatically extracted.</span>
+                  </li>
+                `).join("")}
+              </ul>
+            ` : ""}
+            ${row.sourceHealth.extractionBlocked.length ? `
+              <strong class="coverage-source-label">Blocked sources</strong>
+              <ul class="extraction-status-list">
+                ${row.sourceHealth.extractionBlocked.map((source) => `
+                  <li><strong><a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.source || "Official source")} ↗</a>:</strong> ${escapeHtml(source.extractionReason || "Extraction is blocked.")}</li>
+                `).join("")}
+              </ul>
+            ` : ""}
+          </div>
+        </details>
       </article>
     `)
     .join("");
@@ -2269,29 +2670,30 @@ function renderDirectorSummary(signals) {
   if (!topRecommendation) {
     summaryNode.innerHTML = `
       <article class="director-summary-item">
-        <span>No recommendation has enough public support</span>
-        <strong>Current filters do not justify roadmap action.</strong>
-        <p>Action: keep monitoring launches, conference agendas, and customer feedback before assigning roadmap capacity.</p>
+        <span>${escapeHtml(horizonContext().summaryLabel)}</span>
+        <strong>${escapeHtml(horizonContext().interpretation)}</strong>
+        <p>Action: ${escapeHtml(horizonContext().decisionRule)}</p>
       </article>
     `;
     return;
   }
   const breakdown = topRecommendation.priorityBreakdown;
+  const context = horizonContext();
   const competitorRead = leadCompetitorRead(signals, topRecommendation);
   const validation = validationNeedsForRecommendation(topRecommendation);
   const evidenceLinks = recommendationEvidenceLinks(topRecommendation);
   const items = [
     {
-      label: "Highest-priority signal",
+      label: context.summaryLabel,
       headline: `${strategicThemeForRecommendation(topRecommendation)} ${confidenceDisplayLabel(breakdown.confidenceState.state)}: ${breakdown.total}/100.`,
-      detail: `${evidenceCountSummary(breakdown)} in ${horizonLabel()}. Score drivers: competitor pressure ${breakdown.competitorPressure}/20, public customer voice ${breakdown.customerPull}/20, and roadmap fit ${breakdown.roadmapRelevance}/20.`,
-      action: `Decision rule: ${breakdown.confidenceState.guidance}`,
+      detail: `${evidenceCountSummary(breakdown)} in ${horizonLabel()}. Visible score drivers: competitor pressure ${breakdown.competitorPressure}/20 and source quality ${breakdown.evidenceQualityFreshness}/10.`,
+      action: `Time-window decision rule: ${context.decisionRule} ${breakdown.confidenceState.guidance}`,
     },
     {
-      label: "Competitor intent hypothesis",
+      label: `${context.mode} competitor read`,
       headline: competitorRead.headline,
       detail: `${competitorRead.detail} ${competitorIntentForRecommendation(topRecommendation, signals)}`,
-      action: `Action: compare ${competitorRead.competitor === "No clear competitor" ? "competitor" : competitorRead.competitor} claims against Waters proof points before the next roadmap review.`,
+      action: `Action: ${context.decisionRule} Compare ${competitorRead.competitor === "No clear competitor" ? "competitor" : competitorRead.competitor} claims against Waters proof points before the next roadmap review.`,
     },
     {
       label: "Waters decision gate",
@@ -2315,9 +2717,28 @@ function renderDirectorSummary(signals) {
 }
 
 function decisionOptionsForRecommendation(recommendation) {
-  const breakdown = recommendation?.priorityBreakdown;
-  if (!breakdown) return actionDisplayLabel("Monitor");
-  return actionDisplayLabel(breakdown.action);
+  return recommendation?.leadershipDecision || recommendation?.title || actionDisplayLabel("Monitor");
+}
+
+function executiveDecisionMarkup(recommendation, breakdown) {
+  const rationale = recommendation.leadershipRationale || recommendation.whyNow || recommendation.why;
+  const owners = recommendation.decisionOwners || "Product Management owner";
+  const due = recommendation.decisionDue || "Next roadmap review";
+  const deliverable = recommendation.decisionDeliverable || recommendation.nextAction || "A go/no-go recommendation";
+  const gate = recommendation.decisionGate || validationGateForRecommendation(recommendation, breakdown);
+  return `
+    <article class="executive-decision-card">
+      <span>Recommended decision</span>
+      <strong>${escapeHtml(decisionOptionsForRecommendation(recommendation))}</strong>
+      <p class="executive-decision-rationale">${escapeHtml(rationale)}</p>
+      <dl class="executive-decision-facts">
+        <div><dt>Accountable owners</dt><dd>${escapeHtml(owners)}</dd></div>
+        <div><dt>Decision due</dt><dd>${escapeHtml(due)}</dd></div>
+        <div><dt>Next PM Considerations</dt><dd>${escapeHtml(deliverable)}</dd></div>
+      </dl>
+      <p class="executive-decision-gate"><b>Investment gate</b><span>${escapeHtml(gate)}</span></p>
+    </article>
+  `;
 }
 
 function roadmapReviewProofLinks(recommendation, breakdown) {
@@ -2368,93 +2789,360 @@ function validationWorkflowForRecommendation(recommendation, breakdown) {
   };
 }
 
-function decisionPacketText(recommendation, signals) {
-  if (!recommendation) {
-    return `Leadership Decision Packet\nScope: ${filterScopeLabel()}\nDecision: No roadmap action yet.\nReason: evidence is too sparse under the active filters.`;
+function leadershipDecisionFacts(recommendation, breakdown) {
+  const nextAction = recommendation.nextAction || "";
+  const dueMatch = nextAction.match(/\b(?:By\s+)?([A-Z][a-z]+ \d{1,2}, \d{4})\b/);
+  const ownerMatch = nextAction.match(/\b[A-Z][a-z]+ \d{1,2}, \d{4},\s+(.+?)\s+must\b/i);
+  return {
+    owners: recommendation.decisionOwners || ownerMatch?.[1] || "Product Management owner",
+    due: recommendation.decisionDue || dueMatch?.[1] || "Next roadmap review",
+    deliverable: recommendation.decisionDeliverable || recommendation.action || nextAction,
+    gate: recommendation.decisionGate || validationGateForRecommendation(recommendation, breakdown),
+  };
+}
+
+function decisionUrgencyMarkup(recommendation, decisionIndex) {
+  const urgency = recommendation.urgency;
+  if (!urgency?.evidence || !urgency?.decisionWindow || !urgency?.delayRisk) {
+    return `<span>${escapeHtml(recommendation.whyNow || recommendation.why)}</span>`;
   }
+  const competitorActions = Array.isArray(urgency.competitorActions)
+    ? urgency.competitorActions.filter((item) => item?.competitor && item?.pmKeyPoint)
+    : [];
+  const implications = Array.isArray(urgency.decisionImplications) && urgency.decisionImplications.length
+    ? urgency.decisionImplications
+    : competitorActions.map((item) => item.pmKeyPoint);
+  return `
+    <div class="decision-urgency-readout">
+      ${implications.length ? `
+        <ul class="decision-implication-list">
+          ${implications.map((point) => `<li>${escapeHtml(point)}</li>`).join("")}
+        </ul>
+      ` : `<p><b>What changed</b><span>${escapeHtml(urgency.evidence)}</span></p>`}
+      <p class="decision-why-now"><b>Why now</b><span>${escapeHtml(urgency.whyNowInsight || urgency.delayRisk)}</span></p>
+      ${competitorActions.length ? `
+        <button type="button" class="decision-derivation-button" data-decision-urgency-sources="${decisionIndex}">
+          View how this was derived · ${competitorActions.length} linked source${competitorActions.length === 1 ? "" : "s"}
+        </button>
+      ` : ""}
+    </div>
+  `;
+}
+
+function recommendationsByConfidence(signals) {
+  return currentRecommendationSet(signals)
+    .slice()
+    .sort((a, b) =>
+      (b.priorityBreakdown?.total || 0) - (a.priorityBreakdown?.total || 0)
+      || (b.roleFit || 0) - (a.roleFit || 0)
+      || String(a.title || "").localeCompare(String(b.title || ""))
+    );
+}
+
+function leadershipTrendComparison(trend) {
+  const horizon = filters.horizon.value;
+  const count = Number(trend?.counts?.[horizon] || 0);
+  const oneYear = Number(trend?.counts?.["1y"] || 0);
+  const expected = {
+    "30d": oneYear / 12,
+    "60d": oneYear / 6,
+    "90d": oneYear / 4,
+    "1y": Number(trend?.counts?.["3y"] || oneYear * 3) / 3,
+    "3y": (Number(trend?.counts?.["5y"] || count) / 5) * 3,
+  }[horizon] || count;
+  const ratio = expected > 0 ? count / expected : 1;
+  return { count, ratio, delta: Math.round((ratio - 1) * 100) };
+}
+
+function trendTechnicalContext(trend) {
+  const theme = String(trend?.theme || "").toLowerCase();
+  if (theme.includes("lnp") || theme.includes("rna therapeutics")) {
+    return "The source set covers LC-MS characterization of lipid composition, RNA payload and impurities, formulation stability, sample preparation, and release-testing workflows.";
+  }
+  if (theme.includes("oligonucleotide") || theme.includes("nucleic-acid")) {
+    return "The source set covers LC-MS oligonucleotide identity, purity and impurity profiling, adsorption and carryover, ion-pairing and solvent compatibility, and intact-mass characterization.";
+  }
+  if (theme.includes("pfas") || theme.includes("environmental contaminant")) {
+    return "The source set covers LC-MS/MS PFAS detection and quantitation, including sample preparation, matrix effects, isotope dilution, sensitivity and LOQ, and regulated-method validation.";
+  }
+  if (theme.includes("proteomics") || theme.includes("metabolomics")) {
+    return "The source set covers high-resolution LC-MS acquisition, ion mobility, quantitative proteomics and metabolomics, biomarker measurement, and data-processing workflows.";
+  }
+  if (theme.includes("automation") || theme.includes("software")) {
+    return "The source set covers automated sample handling, instrument orchestration, workflow software, AI-assisted review, data integrity, and cross-instrument reporting.";
+  }
+  return `The source set covers ${String(trend?.technology || "analytical").toUpperCase()} methods and workflow evidence associated with this scientific topic.`;
+}
+
+function leadershipLaunchContext(launch) {
+  if (launch?.id === "agilent-6230c-lctof-2026") {
+    return "Agilent has turned the 6230C from a standalone LC/TOF into a named MAM biopharma workflow, combining full-scan accurate-mass acquisition with software-led attribute monitoring and review.";
+  }
+  const signalType = String(launch?.signalType || "product change").toLowerCase();
+  const market = launch?.marketSegment ? ` for ${launch.marketSegment} workflows` : "";
+  const technology = launch?.technology ? ` within its ${launch.technology} portfolio` : "";
+  return `${launch?.competitor || "The competitor"} introduced ${launch?.product || "a new offer"} as a ${signalType}${market}${technology}.`;
+}
+
+function leadershipConferenceUpdate(conference) {
+  if (conference?.eventName === "Bioprocessing Summit US") {
+    return "Thermo Fisher is confirmed as a 2026 premier sponsor, but no Thermo Fisher talk title is public yet. The agenda centers on Analytical Intelligence, AI-enabled bioprocessing, next-generation analytical methods, and CMC for RNA/LNP and other complex modalities.";
+  }
+  const confirmedContent = (conference?.competitorContent || [])
+    .find((item) => item.evidenceStatus === "Confirmed in 2026 program");
+  if (confirmedContent?.content) return confirmedContent.content;
+  const competitorUpdate = conference?.competitorContent?.[0]?.content;
+  if (competitorUpdate) return competitorUpdate;
+  const scientificFocus = (conference?.scientificFocus || []).slice(0, 2).join("; ");
+  return scientificFocus
+    ? `The latest public program emphasizes ${scientificFocus}.`
+    : `${conference?.annualTheme || "The latest public program"}.`;
+}
+
+function leadershipCustomerHighlight() {
+  const items = currentCustomerVoiceItems();
+  if (!items.length) return null;
+  const itemById = new Map(items.map((item) => [item.id, item]));
+  const priorityRank = { High: 3, Medium: 2, Low: 1 };
+  const insight = (state.customerVoice?.insights || [])
+    .map((entry) => ({
+      ...entry,
+      matchingItems: (entry.evidenceIds || []).map((id) => itemById.get(id)).filter(Boolean),
+    }))
+    .filter((entry) => entry.matchingItems.length)
+    .sort((a, b) =>
+      (priorityRank[b.priority] || 0) - (priorityRank[a.priority] || 0)
+      || Number(b.confidence || 0) - Number(a.confidence || 0)
+      || b.matchingItems.length - a.matchingItems.length
+    )[0];
+  if (!insight) return null;
+  const exactSource = insight.matchingItems
+    .flatMap((item) => customerVoiceSourceLinks(item))
+    .find((link) => isHttpUrl(link.url));
+  return {
+    kind: "customer",
+    label: "Customer risk",
+    badge: `Confidence Score ${insight.confidence || 0}/100`,
+    title: insight.title,
+    detail: insight.whatItMeans,
+    sectionId: "customer-voice",
+    sectionLabel: "View customer evidence",
+    sourceUrl: exactSource?.url || "",
+    sourceLabel: exactSource ? "Open exact source" : "",
+  };
+}
+
+function leadershipBriefHighlights(signals) {
+  const highlights = [];
+  const trendCandidates = currentTrends()
+    .map((trend) => ({ trend, comparison: leadershipTrendComparison(trend) }))
+    .sort((a, b) => b.comparison.ratio - a.comparison.ratio || b.comparison.count - a.comparison.count);
+  const leadTrend = trendCandidates[0];
+  if (leadTrend) {
+    highlights.push({
+      kind: "market",
+      label: "Scientific market signal",
+      title: leadTrend.trend.theme,
+      detail: trendTechnicalContext(leadTrend.trend),
+      sectionId: "application-trends",
+      sectionLabel: "View application trends",
+      sourceUrl: pubMedTrendSearchUrl(leadTrend.trend.query, filters.horizon.value),
+      sourceLabel: "Open PubMed evidence",
+    });
+  }
+
+  const launch = currentLaunches()[0];
+  if (launch) {
+    highlights.push({
+      kind: "competitor",
+      label: "Latest competitive change",
+      badge: formatDate(launch.date),
+      title: `${launch.competitor}: ${launch.product}`,
+      detail: leadershipLaunchContext(launch),
+      sectionId: "competitive-timeline-section",
+      sectionLabel: "View competitive timeline",
+      sourceUrl: pressReleaseUrlForLaunch(launch),
+      sourceLabel: "Open launch release",
+    });
+  }
+
+  const customerHighlight = leadershipCustomerHighlight();
+  if (customerHighlight) highlights.push(customerHighlight);
+
+  const filing = currentFilingInsights()[0];
+  if (filing) {
+    highlights.push({
+      kind: "corporate",
+      label: "Corporate signal",
+      title: filing.headline,
+      detail: filing.whyItMatters || filing.pmImplication || filing.evidence,
+      sectionId: "filing-evidence",
+      sectionLabel: "View SEC insights",
+      sourceUrl: filing.sourceUrl,
+      sourceLabel: `Open ${filing.sourceName || "filing"}`,
+    });
+  }
+
+  const conference = currentConferenceSources()
+    .slice()
+    .sort((a, b) => new Date(a.startDate) - new Date(b.startDate))[0];
+  if (conference) {
+    highlights.push({
+      kind: "conference",
+      label: "Coming Next",
+      badge: `Starts ${formatDate(conference.startDate)}`,
+      title: conference.eventName,
+      detail: leadershipConferenceUpdate(conference),
+      pageUrl: "conference.html",
+      sectionLabel: "Open conference page",
+      sourceUrl: conference.website,
+      sourceLabel: "Open event website",
+    });
+  }
+
+  return highlights;
+}
+
+function leadershipBriefText(highlights, recommendations) {
+  const header = [
+    "Leadership Brief",
+    `Scope: ${filterScopeLabel()}`,
+    `Time window: ${horizonLabel()}`,
+    `Data current through: ${state.data?.asOfDate || "not available"}`,
+  ];
+  const highlightText = highlights.map((highlight, index) => [
+    `${index + 1}. ${highlight.label.toUpperCase()}: ${highlight.title}`,
+    highlight.detail,
+    highlight.sourceUrl ? `Source: ${highlight.sourceUrl}` : "",
+  ].filter(Boolean).join("\n"));
+  const decisionText = recommendations.length
+    ? [
+        `DECISION QUEUE: ${recommendations.length} prioritized decision${recommendations.length === 1 ? "" : "s"}.`,
+        `Highest current priority: ${recommendations[0].title} (${recommendations[0].priorityBreakdown.total}/100).`,
+      ].join("\n")
+    : "DECISION QUEUE: No decision is supported under the active filters.";
+  return [...header, ...highlightText, decisionText].join("\n\n");
+}
+
+function leadershipDecisionCardMarkup(recommendation, signals, index) {
   const breakdown = recommendation.priorityBreakdown;
   const validation = validationNeedsForRecommendation(recommendation);
-  const workflow = validationWorkflowForRecommendation(recommendation, breakdown);
-  const evidence = breakdown.evidence;
-  const competitorRead = leadCompetitorRead(signals, recommendation);
-  return [
-    "Leadership Decision Packet",
-    `Role view: ${viewCopy[state.view].title}`,
-    `Scope: ${filterScopeLabel()}`,
-    `Signal: ${strategicThemeForRecommendation(recommendation)} ${evidenceCountSummary(breakdown)}.`,
-    `Interpretation: ${competitorIntentForRecommendation(recommendation, signals)}`,
-    `Waters impact: ${recommendation.affectedCapability || recommendation.technology}. ${recommendation.whyNow || recommendation.why}`,
-    `Evidence status: ${confidenceDisplayLabel(breakdown.confidenceState.state)} (${breakdown.total}/100). ${breakdown.confidenceState.guidance}`,
-    `Score drivers: ${priorityBreakdownText(breakdown)}`,
-    `Recommended decision: ${decisionOptionsForRecommendation(recommendation)}.`,
-    `Competitor intent hypothesis: ${competitorRead.headline}. ${competitorRead.detail}`,
-    `Evidence supporting: ${evidence.launches.length} launches, ${evidence.strategic.length} strategic moves, ${evidence.filings.length} filing insights, ${evidence.trend ? "1 application trend" : "0 application trends"}, ${breakdown.customerPullEvidence.estimatedMentions} estimated customer/public mentions.`,
-    `Evidence limitations to review: ${breakdown.evidenceLimitations.join("; ") || "none"}.`,
-    `Additional public validation: ${validation.customer}; ${validation.competitor}; ${validation.technical}.`,
-    `Validation action: ${validationGateForRecommendation(recommendation, breakdown)}`,
-    `Ready for roadmap review when: ${workflow.readyWhen}`,
-    ...workflow.proofLinks.map((link, index) => `Source ${index + 1} — ${link.type}: ${link.label} (${link.url})`),
-  ].join("\n");
+  const evidenceLinks = recommendationEvidenceLinks(recommendation).filter((link) => isHttpUrl(link.url));
+  return `
+    <article class="leadership-decision-card">
+      <div class="leadership-decision-card-header">
+        <div>
+          <span>Decision ${index + 1}</span>
+          <h4>${escapeHtml(recommendation.title)}</h4>
+        </div>
+        <span class="action-chip ${actionClass(breakdown.action)}">${escapeHtml(actionDisplayLabel(breakdown.action))}</span>
+      </div>
+      <div class="leadership-decision-meta">
+        <span>Status: ${escapeHtml(recommendation.decisionStatus || "Decision review required")}</span>
+        <span>Priority ${breakdown.total}/100</span>
+        <span>${evidenceLinks.length} exact source${evidenceLinks.length === 1 ? "" : "s"}</span>
+      </div>
+      <div class="leadership-decision-why">
+        <span>Why leadership needs to address this now</span>
+        <p>${escapeHtml(recommendation.whyNow || recommendation.why)}</p>
+      </div>
+      <p class="leadership-decision-scope"><b>Waters capability affected</b><span>${escapeHtml(recommendation.affectedCapability || recommendation.technology)}</span></p>
+      <details class="leadership-decision-evidence">
+        <summary><span>Review decision evidence and validation</span><small>${evidenceLinks.length} source${evidenceLinks.length === 1 ? "" : "s"}</small></summary>
+        <div class="leadership-evidence-body">
+          <div class="leadership-evidence-grid">
+            <section>
+              <h5>Evidence Supporting the Decision</h5>
+              <p>${escapeHtml(recommendation.why)}</p>
+              <p><strong>Competitor interpretation:</strong> ${escapeHtml(competitorIntentForRecommendation(recommendation, signals))}</p>
+            </section>
+            <section>
+              <h5>Evidence Still Required</h5>
+              <p><strong>Customer:</strong> ${escapeHtml(validation.customer)}</p>
+              <p><strong>Competitor:</strong> ${escapeHtml(validation.competitor)}</p>
+              <p><strong>Technical:</strong> ${escapeHtml(validation.technical)}</p>
+              <p><strong>Adoption:</strong> ${escapeHtml(validation.adoption)}</p>
+            </section>
+            <section class="leadership-evidence-safeguards">
+              <h5>Decision Safeguards</h5>
+              <p><strong>Action to validate:</strong> ${escapeHtml(recommendation.action)}</p>
+              <p><strong>Tradeoff:</strong> ${escapeHtml(recommendation.tradeoff || "Confirm a repeated customer-visible gap before displacing committed roadmap work.")}</p>
+              <p><strong>Do not proceed if:</strong> ${escapeHtml(recommendation.falsifier || "The evidence does not confirm a repeated customer-visible gap.")}</p>
+            </section>
+          </div>
+          <div class="leadership-source-links">
+            ${evidenceLinks.length
+              ? evidenceLinks.map((link) => `
+                  <a class="evidence-chip ${escapeHtml(link.health)}" href="${escapeHtml(link.url)}" target="_blank" rel="noreferrer">
+                    ${escapeHtml(link.label)}
+                    <span>${escapeHtml(sourceHealthLabel(link.health))} · Open exact source ↗</span>
+                  </a>
+                `).join("")
+              : `<span class="missing-source">No exact public source is available for this decision.</span>`}
+          </div>
+        </div>
+      </details>
+    </article>
+  `;
+}
+
+function leadershipHighlightCardMarkup(highlight) {
+  const sourceLink = isHttpUrl(highlight.sourceUrl)
+    ? `<a href="${escapeHtml(highlight.sourceUrl)}" target="_blank" rel="noreferrer">${escapeHtml(highlight.sourceLabel || "Open source")} ↗</a>`
+    : "";
+  const sectionLink = highlight.pageUrl
+    ? `<a href="${escapeHtml(highlight.pageUrl)}">${escapeHtml(highlight.sectionLabel)} →</a>`
+    : `<a href="#${escapeHtml(highlight.sectionId)}" data-leadership-target="${escapeHtml(highlight.sectionId)}">${escapeHtml(highlight.sectionLabel)} →</a>`;
+  return `
+    <article class="leadership-highlight-card" data-highlight-kind="${escapeHtml(highlight.kind)}">
+      <div class="leadership-highlight-top">
+        <span>${escapeHtml(highlight.label)}</span>
+        ${highlight.badge ? `<small>${escapeHtml(highlight.badge)}</small>` : ""}
+      </div>
+      <h4>${escapeHtml(highlight.title)}</h4>
+      <p>${escapeHtml(highlight.detail)}</p>
+      <footer>
+        ${sectionLink}
+        ${sourceLink}
+      </footer>
+    </article>
+  `;
+}
+
+function leadershipHighlightsMarkup(highlights, recommendations) {
+  return `
+    <article class="leadership-snapshot" aria-label="Executive highlights across the competitive intelligence page">
+      <div class="leadership-highlight-grid">
+        ${highlights.map(leadershipHighlightCardMarkup).join("")}
+      </div>
+      <footer class="leadership-snapshot-footer">
+        <span>${recommendations.length} prioritized decision${recommendations.length === 1 ? "" : "s"} are queued for review.</span>
+        <a href="#decisions-needed" data-leadership-target="decisions-needed">Review Decisions needed →</a>
+      </footer>
+    </article>
+  `;
 }
 
 function renderDecisionPacket(signals) {
-  const recommendation = currentRecommendationSet(signals)[0];
-  if (!recommendation) {
+  const recommendations = recommendationsByConfidence(signals);
+  const highlights = leadershipBriefHighlights(signals);
+  byId("leadershipDecisionCount").textContent = `${highlights.length} executive highlight${highlights.length === 1 ? "" : "s"}`;
+  if (!highlights.length) {
     state.activeDecisionBreakdown = null;
-    lastDecisionPacketText = decisionPacketText(null, signals);
+    lastDecisionPacketText = leadershipBriefText([], recommendations);
     byId("decisionPacket").innerHTML = `
-      <article class="packet-primary">
-        <span>No recommended product action</span>
-        <strong>No recommendation is strong enough under ${escapeHtml(filterScopeLabel())}.</strong>
-        <p>Continue monitoring launches, conferences, customer feedback, and public sources before changing the roadmap.</p>
+      <article class="leadership-brief-empty">
+        <span>${escapeHtml(horizonContext().summaryLabel)}</span>
+        <strong>No cross-page highlight is supported under ${escapeHtml(filterScopeLabel())}.</strong>
+        <p>Broaden the filters or review the underlying evidence sections.</p>
       </article>
     `;
     return;
   }
-  const breakdown = recommendation.priorityBreakdown;
-  const validation = validationNeedsForRecommendation(recommendation);
-  const workflow = validationWorkflowForRecommendation(recommendation, breakdown);
-  const competitorRead = leadCompetitorRead(signals, recommendation);
-  const tone = confidenceTone(breakdown);
-  state.activeDecisionBreakdown = breakdown;
-  lastDecisionPacketText = decisionPacketText(recommendation, signals);
+  state.activeDecisionBreakdown = recommendations[0]?.priorityBreakdown || null;
+  lastDecisionPacketText = leadershipBriefText(highlights, recommendations);
   byId("decisionPacket").innerHTML = `
-    <article class="packet-primary">
-      <div class="decision-card-top">
-        <span class="confidence-pill ${tone.className}">${escapeHtml(tone.label)}</span>
-        <span class="action-chip ${actionClass(breakdown.action)}">${escapeHtml(actionDisplayLabel(breakdown.action))}</span>
-      </div>
-      <span>What changed</span>
-      <strong>${escapeHtml(strategicThemeForRecommendation(recommendation))}</strong>
-      <div class="evidence-count-links" aria-label="Open supporting evidence by category">${evidenceCountLinkMarkup(breakdown)}</div>
-      <p class="packet-decision-question">${escapeHtml(viewCopy[state.view].decisionQuestion)}</p>
-      ${scoreDriverMarkup(breakdown, true)}
-    </article>
-    <article>
-      <span>Recommended decision</span>
-      <strong>${escapeHtml(decisionOptionsForRecommendation(recommendation))}</strong>
-      <p>${escapeHtml(validationGateForRecommendation(recommendation, breakdown))}</p>
-    </article>
-    <article>
-      <span>What competitors appear to be doing</span>
-      <strong>${escapeHtml(competitorRead.headline)}</strong>
-      <p>${escapeHtml(competitorIntentForRecommendation(recommendation, signals))}</p>
-    </article>
-    <article class="roadmap-readiness-card">
-      <span>Roadmap review evidence gate</span>
-      <strong>${escapeHtml(workflow.readyWhen)}</strong>
-      <div class="roadmap-proof-grid">
-        ${workflow.proofLinks.length
-          ? workflow.proofLinks.map((link, index) => `
-              <a href="${escapeHtml(link.url)}" target="_blank" rel="noreferrer">
-                <b>${index + 1}. ${escapeHtml(link.type)}</b>
-                <span>${escapeHtml(link.label)}</span>
-                <small>${escapeHtml(link.detail)} · Open source ↗</small>
-              </a>
-            `).join("")
-          : `<p>No complete three-source proof set is available under the active filters.</p>`}
-      </div>
-    </article>
+    ${leadershipHighlightsMarkup(highlights, recommendations)}
   `;
 }
 
@@ -2468,8 +3156,8 @@ function renderStrategicRead(signals) {
     byId("strategicConfidence").textContent = "Needs validation · Sparse evidence";
     byId("strategicRead").innerHTML = `
       <div class="readout-empty">
-        <h3>No recommendation has enough public support under ${escapeHtml(filterScopeLabel())}</h3>
-        <p>Public records exist, but they do not yet support a confident recommendation. Gather more conference, product-page, and customer evidence before changing the roadmap.</p>
+        <h3>${escapeHtml(horizonContext().summaryLabel)} does not yet support a roadmap action</h3>
+        <p>${escapeHtml(horizonContext().interpretation)} ${escapeHtml(horizonContext().decisionRule)}</p>
       </div>
     `;
     return;
@@ -2480,14 +3168,19 @@ function renderStrategicRead(signals) {
   const scope = filterScopeLabel();
   const validation = validationNeedsForRecommendation(topRecommendation);
   const roadmapPressure = [topRecommendation.technology, topRecommendation.marketSegment].filter(Boolean).join(" · ");
+  const publicEvidenceSummary = positiveCountSummary([
+    ["launches", launches.length, `matching launch${launches.length === 1 ? "" : "es"}`],
+    ["strategic", strategicSignals.length, `strategic move${strategicSignals.length === 1 ? "" : "s"}`],
+    ["customer", breakdown.customerPullEvidence.estimatedMentions, `estimated customer/public mention${breakdown.customerPullEvidence.estimatedMentions === 1 ? "" : "s"}`],
+  ]);
 
   byId("strategicConfidence").textContent = `${confidenceDisplayLabel(breakdown.confidenceState.state)} · ${confidence}/100`;
   byId("strategicRead").innerHTML = `
     <div class="readout-hero">
       <div>
         <h3>${escapeHtml(strategicThemeForRecommendation(topRecommendation))}</h3>
-        <p><strong>Public evidence:</strong> ${escapeHtml(scope)} includes ${launches.length} matching launches, ${strategicSignals.length} strategic moves, and ${breakdown.customerPullEvidence.estimatedMentions} estimated customer/public mentions related to this decision.</p>
-        <p><strong>Interpretation:</strong> ${escapeHtml(competitorIntentForRecommendation(topRecommendation, signals))}</p>
+        <p><strong>Public evidence:</strong> ${escapeHtml(scope)} includes ${escapeHtml(publicEvidenceSummary)} related to this decision.</p>
+        <p><strong>${escapeHtml(horizonContext().mode)} interpretation:</strong> ${escapeHtml(`${horizonContext().interpretation} ${competitorIntentForRecommendation(topRecommendation, signals)}`)}</p>
       </div>
     </div>
     ${scoreDriverMarkup(breakdown)}
@@ -2551,6 +3244,7 @@ function overallTrendEvidence(signals, candidate) {
     title: `${item.competitor}: ${item.product}`,
     detail: `${item.signalType} · ${formatDate(item.date)}`,
     url: timelineUrlForLaunch(item),
+    sourceLinkLabel: "Open press release ↗",
   }));
   const strategicItems = matchedStrategic.map((item) => ({
     family: "Competitor moves",
@@ -2567,7 +3261,7 @@ function overallTrendEvidence(signals, candidate) {
   const conferenceItems = matchedConferences.map((item) => ({
     family: "Conferences",
     title: item.eventName,
-    detail: `${item.dateRange} · ${item.tier}`,
+    detail: item.dateRange,
     url: item.website,
   }));
   const customerItems = matchedCustomers.flatMap((item) => {
@@ -2583,17 +3277,16 @@ function overallTrendEvidence(signals, candidate) {
     .filter((item) => ["Scientific application intelligence", "Market intelligence"].includes(item.category))
     .filter(matches)
     .map((item) => ({
-      family: "Scientific demand",
+      family: "Scientific publications",
       title: item.title,
       detail: `${item.sourceName} · ${formatDate(item.date)}`,
       url: item.sourceUrl,
     }));
   const trendItems = matchedTrends.map((item) => ({
-    family: "Scientific demand",
+    family: "Scientific publications",
     title: item.theme,
     detail: `${Number(item.counts[filters.horizon.value] || 0).toLocaleString()} publication records · ${horizonLabel()}`,
     url: pubMedSearchUrl(item.query),
-    momentum: trendMomentum(item, filters.horizon.value).label,
   }));
 
   const groups = [
@@ -2601,7 +3294,7 @@ function overallTrendEvidence(signals, candidate) {
     { label: "SEC filings", items: filingItems },
     { label: "Conferences", items: conferenceItems },
     { label: "Public customer voice", items: customerItems },
-    { label: "Scientific demand", items: [...trendItems, ...publicationSignals] },
+    { label: "Scientific publications", items: [...trendItems, ...publicationSignals] },
   ].map((group) => {
     const seen = new Set();
     return {
@@ -2615,20 +3308,11 @@ function overallTrendEvidence(signals, candidate) {
     };
   });
   const activeGroups = groups.filter((group) => group.items.length);
-  const linkedItems = activeGroups.flatMap((group) => group.items.slice(0, 3));
-  const accelerating = groups.some((group) => group.items.some((item) => item.momentum === "Accelerating"));
   return {
     groups,
     activeGroups,
-    linkedItems,
     familyCount: activeGroups.length,
     recordCount: groups.reduce((total, group) => total + group.items.length, 0),
-    moveCount: matchedLaunches.length + matchedStrategic.length,
-    filingCount: matchedFilings.length,
-    conferenceCount: matchedConferences.length,
-    customerMentions: matchedCustomers.reduce((total, item) => total + customerVoiceDepth(item), 0),
-    publicationRecords: matchedTrends.reduce((total, item) => total + Number(item.counts[filters.horizon.value] || 0), 0),
-    direction: accelerating ? "Growing faster" : activeGroups.length >= 4 ? "Supported by several evidence types" : "Appearing in limited evidence types",
   };
 }
 
@@ -2640,7 +3324,7 @@ function overallTrendCandidates() {
       pattern: /software|informatics|automation|artificial intelligence|\bai\b|workflow|data integrity|usability|empower|labsolutions|crosslab|operating system/,
       synthesis: "Competitors are connecting instruments to software, automation, services, and application workflows. Public customer feedback also places setup, troubleshooting, training, and data review inside the product experience.",
       implication: "Waters should evaluate next-gen LC as an end-to-end workflow, not as a hardware specification exercise.",
-      action: "Within two weeks, compare method setup, daily operation, troubleshooting, and data review across the latest competitor workflow and the closest Waters configuration. Select one friction point for a defined roadmap requirement.",
+      action: "Compare method setup, daily operation, troubleshooting, and data review across the latest competitor workflow and the closest Waters configuration. Select one friction point for a defined roadmap requirement.",
     },
     {
       id: "platform-modernization",
@@ -2654,7 +3338,7 @@ function overallTrendCandidates() {
       id: "biopharma-applications",
       title: "Biopharma competition is concentrating around complete LC-MS application workflows",
       pattern: /biopharma|bioproduction|oligonucleotide|nucleic acid|\brna\b|\blnp\b|lipid nanoparticle|protein|peptide|mam workflow|multi-attribute|proteomics|metabolomics|bioanalysis|biologics/,
-      synthesis: "Scientific demand, conference agendas, competitor activity, and corporate disclosures are converging on biopharma workflows rather than stand-alone instruments.",
+      synthesis: "Scientific publications, conference agendas, competitor activity, and corporate disclosures are converging on biopharma workflows rather than stand-alone instruments.",
       implication: "Application kits, methods, informatics, and proof of workflow performance may influence buying decisions as much as the LC or MS platform itself.",
       action: "Choose one priority workflow from oligo, LNP, MAM, or protein characterization. Map the Waters workflow against the two strongest competitor claims and identify one missing proof point or capability for the next roadmap review.",
     },
@@ -2677,30 +3361,63 @@ function overallTrendCandidates() {
   ];
 }
 
+function horizonTrendNarrative(candidate, evidence) {
+  const context = horizonContext();
+  const evidenceLine = `${evidence.familyCount} evidence type${evidence.familyCount === 1 ? "" : "s"} and ${evidence.recordCount} linked record${evidence.recordCount === 1 ? "" : "s"}`;
+  const variants = {
+    "30d": {
+      synthesis: `In the last 30 days, ${evidenceLine} point to this theme. ${context.interpretation}`,
+      implication: "Do not treat this as a roadmap conclusion yet. Test whether the newest evidence changes a Waters comparison or exposes a new customer problem.",
+      action: "Review the three newest linked records and classify the signal as monitor, validate, or respond. Record what is genuinely new versus evidence already known before this month.",
+    },
+    "60d": {
+      synthesis: `Across 60 days, ${evidenceLine} form an emerging pattern. ${context.interpretation}`,
+      implication: "Open a targeted validation only if the same capability or customer problem repeats across independent sources.",
+      action: "Compare the first and second 30-day periods. Identify what repeated, what disappeared, and the one claim or customer problem that now warrants validation.",
+    },
+    "90d": {
+      synthesis: `This quarter, ${evidenceLine} show whether the theme is repeating beyond a single announcement. ${candidate.synthesis}`,
+      implication: `Use the quarter's evidence to define one focused Waters validation question. ${candidate.implication}`,
+      action: "Build a quarterly claim-and-problem matrix from the linked sources, then choose one capability to validate with product, field, or customer evidence.",
+    },
+    "1y": {
+      synthesis: candidate.synthesis,
+      implication: candidate.implication,
+      action: candidate.action,
+    },
+    "3y": {
+      synthesis: `${candidate.synthesis} Across three years, the relevant question is whether the pattern persists across product generations and multiple independent sources.`,
+      implication: `Treat this as structural only where the linked evidence persists across the full period. ${candidate.implication}`,
+      action: "Map how the theme changed across the three-year period, identify the capability that persisted, and separate durable roadmap pressure from short-lived campaign activity.",
+    },
+  };
+  return {
+    title: horizonTrendTitle(candidate.title),
+    ...(variants[filters.horizon.value] || {
+      synthesis: candidate.synthesis,
+      implication: candidate.implication,
+      action: candidate.action,
+    }),
+  };
+}
+
 function renderOverallTrendAnalysis(signals) {
   const candidates = overallTrendCandidates()
-    .map((candidate) => ({ ...candidate, evidence: overallTrendEvidence(signals, candidate) }))
+    .map((candidate) => {
+      const evidence = overallTrendEvidence(signals, candidate);
+      return { ...candidate, evidence, narrative: horizonTrendNarrative(candidate, evidence) };
+    })
     .filter((candidate) => candidate.evidence.familyCount >= 2)
     .sort((a, b) => b.evidence.familyCount - a.evidence.familyCount || b.evidence.recordCount - a.evidence.recordCount)
     .slice(0, 3);
-  const countNode = byId("overallTrendCount");
   const container = byId("overallTrendAnalysis");
-  if (!countNode || !container) return;
+  if (!container) return;
   state.overallTrendCandidates = candidates;
-  countNode.textContent = candidates.length ? `${candidates.length} trends supported by multiple evidence types` : "No trend supported by multiple evidence types";
   if (!candidates.length) {
     container.innerHTML = `<div class="empty">No trend appears in at least two different types of public evidence under ${escapeHtml(filterScopeLabel())}. Broaden a filter to inspect the wider market.</div>`;
     return;
   }
-  const top = candidates[0];
   container.innerHTML = `
-    <div class="overall-trend-summary">
-      <div>
-        <span>Conclusion supported by the widest range of evidence</span>
-        <strong>${escapeHtml(top.title)}</strong>
-      </div>
-      <p>${top.evidence.familyCount} of 5 public evidence types support this conclusion under ${escapeHtml(filterScopeLabel())}.</p>
-    </div>
     <div class="overall-trend-list">
       ${candidates.map((candidate, index) => {
         const evidence = candidate.evidence;
@@ -2709,38 +3426,24 @@ function renderOverallTrendAnalysis(signals) {
             <div class="overall-trend-card-top">
               <span class="trend-rank">${index + 1}</span>
               <div>
-                <span>${escapeHtml(evidence.direction)}</span>
-                <h4>${escapeHtml(candidate.title)}</h4>
+                <h4>${escapeHtml(candidate.narrative.title)}</h4>
               </div>
             </div>
-            <p>${escapeHtml(candidate.synthesis)}</p>
-            <p class="trend-window-evidence"><strong>${escapeHtml(horizonLabel())}:</strong> ${evidence.moveCount} competitor move${evidence.moveCount === 1 ? "" : "s"}, ${evidence.filingCount} filing insight${evidence.filingCount === 1 ? "" : "s"}, ${evidence.customerMentions.toLocaleString()} estimated public customer mention${evidence.customerMentions === 1 ? "" : "s"}, and ${evidence.publicationRecords.toLocaleString()} publication records. ${evidence.conferenceCount} upcoming conference${evidence.conferenceCount === 1 ? "" : "s"} provide${evidence.conferenceCount === 1 ? "s" : ""} the next capture opportunity.</p>
-            <div class="trend-source-family" aria-label="Types of public evidence supporting this trend">
-              ${evidence.groups.map((group) => group.items.length ? `
-                <a class="active" href="#decisionEvidenceModal" data-trend-id="${escapeHtml(candidate.id)}" data-trend-evidence-family="${escapeHtml(group.label)}" aria-label="View ${group.items.length} ${escapeHtml(group.label)} proofs">
+            <p>${escapeHtml(candidate.narrative.synthesis)}</p>
+            <div class="trend-source-family" aria-label="Open linked public records by evidence type">
+              ${evidence.activeGroups.map((group) => `
+                <a class="active" href="#decisionEvidenceModal" data-trend-id="${escapeHtml(candidate.id)}" data-trend-evidence-family="${escapeHtml(group.label)}" title="Open ${group.items.length} linked public records" aria-label="View ${group.items.length} ${escapeHtml(group.label)} proofs">
                   ${escapeHtml(group.label)} <b>${group.items.length}</b>
                 </a>
-              ` : `<span>${escapeHtml(group.label)} <b>0</b></span>`).join("")}
+              `).join("")}
             </div>
-            <details class="trend-evidence-detail" open>
-              <summary>Evidence links (${evidence.linkedItems.length})</summary>
-              <div class="trend-evidence-links">
-                ${evidence.linkedItems.map((item) => `
-                  <a href="${escapeHtml(item.url)}" target="_blank" rel="noreferrer">
-                    <span>${escapeHtml(item.family)}</span>
-                    <strong>${escapeHtml(item.title)}</strong>
-                    <small>${escapeHtml(item.detail)}</small>
-                  </a>
-                `).join("")}
-              </div>
-            </details>
             <div class="trend-decision">
               <span>What it means for Waters</span>
-              <strong>${escapeHtml(candidate.implication)}</strong>
+              <strong>${escapeHtml(candidate.narrative.implication)}</strong>
             </div>
             <div class="trend-action">
-              <span>Next PM action</span>
-              <p>${escapeHtml(candidate.action)}</p>
+              <span>Next PM consideration</span>
+              <p>${escapeHtml(candidate.narrative.action)}</p>
             </div>
           </article>
         `;
@@ -2750,50 +3453,92 @@ function renderOverallTrendAnalysis(signals) {
 }
 
 function renderDecisionQueue(signals) {
-  const allDecisions = currentRecommendationSet(signals);
-  const decisions = allDecisions.slice(1, 5);
-  byId("decisionQueueCount").textContent = decisions.length ? `${decisions.length} follow-up decisions` : "Lead decision shown above";
+  const allDecisions = recommendationsByConfidence(signals);
+  const decisions = allDecisions.slice(0, 3);
+  byId("decisionQueueCount").textContent = `${decisions.length} decision${decisions.length === 1 ? "" : "s"}`;
   byId("decisionQueue").innerHTML = decisions.length
     ? decisions
-        .map((rec) => {
+        .map((rec, index) => {
           const breakdown = rec.priorityBreakdown;
           const tone = confidenceTone(breakdown);
-          const evidenceLinks = recommendationEvidenceLinks(rec).slice(0, 3);
-          const validation = validationNeedsForRecommendation(rec);
-          const workflow = validationWorkflowForRecommendation(rec, breakdown);
+          const facts = leadershipDecisionFacts(rec, breakdown);
           return `
             <article class="decision-card">
               <div class="decision-card-top">
-                <span class="action-chip ${actionClass(breakdown.action)}">${escapeHtml(actionDisplayLabel(breakdown.action))}</span>
-                <span class="confidence-pill ${tone.className}">${tone.label} · ${breakdown.total}/100</span>
+                <div class="decision-queue-title">
+                  <span class="decision-queue-rank">Decision ${index + 1}</span>
+                </div>
+                <span class="confidence-pill ${tone.className}">Priority score · ${breakdown.total}/100</span>
               </div>
               <h4>${escapeHtml(rec.title)}</h4>
-              <p class="decision-why">${escapeHtml(rec.whyNow || rec.why)}</p>
+              <div class="decision-why">
+                <strong>Details</strong>
+                ${decisionUrgencyMarkup(rec, index)}
+              </div>
+              <dl class="decision-queue-facts">
+                <div><dt>Next PM Considerations</dt><dd>${escapeHtml(facts.deliverable)}</dd></div>
+              </dl>
               ${scoreDriverMarkup(breakdown)}
-              <p class="decision-next"><strong>Concrete next step:</strong> ${escapeHtml(directorActionForRecommendation(rec).replace(/^Action:\s*/i, ""))}</p>
-              <details class="decision-detail">
-                <summary>Evidence and validation</summary>
-                <dl>
-                  <div><dt>Competitor intent</dt><dd>${escapeHtml(competitorIntentForRecommendation(rec, signals))}</dd></div>
-                  <div><dt>Waters implication</dt><dd>${escapeHtml(rec.affectedCapability || rec.technology)}</dd></div>
-                  <div><dt>Additional public checks</dt><dd>Customer: ${escapeHtml(validation.customer)}. Competitor: ${escapeHtml(validation.competitor)}. Technical: ${escapeHtml(validation.technical)}. Adoption: ${escapeHtml(validation.adoption)}.</dd></div>
-                  <div><dt>Ready for roadmap review when</dt><dd>${escapeHtml(workflow.readyWhen)}</dd></div>
-                </dl>
-                <div class="mini-evidence">
-                  ${
-                    evidenceLinks.length
-                      ? evidenceLinks.map((link) => `<a href="${escapeHtml(link.url)}" target="_blank" rel="noreferrer">${escapeHtml(link.label)}</a>`).join("")
-                      : `<span>Evidence link needed</span>`
-                  }
-                </div>
-              </details>
             </article>
           `;
         })
         .join("")
-    : allDecisions.length
-      ? `<div class="empty">No additional recommendations have enough public support under ${escapeHtml(filterScopeLabel())}. Use the leadership brief above as the current priority.</div>`
-      : `<div class="empty">No recommendation has enough public support under ${escapeHtml(filterScopeLabel())}. Gather more conference, product-page, and customer evidence before changing the roadmap.</div>`;
+    : `<div class="empty">No recommendation has enough public support under ${escapeHtml(filterScopeLabel())}. Gather more conference, product-page, and customer evidence before changing the roadmap.</div>`;
+}
+
+function horizonCompetitorProfile(baseProfile, competitor, evidenceItems) {
+  const evidenceCount = evidenceItems.length;
+  const latest = evidenceItems[0];
+  const context = horizonContext();
+  const noEvidence = {
+    focus: `No dated launch, strategic move, or filing signal appears in ${horizonLabel().toLowerCase()}`,
+    intent: `No ${horizonLabel().toLowerCase()} evidence supports a new direction for ${competitor}`,
+    shortTermImpact: `Do not carry older evidence into this view. ${context.decisionRule}`,
+    midLongTermImpact: "Keep the established competitor hypothesis as background only until new dated evidence appears.",
+    response: {
+      ...baseProfile.response,
+      accelerate: "Do not accelerate a roadmap response without new evidence in the selected window.",
+    },
+  };
+  if (!evidenceCount) return noEvidence;
+
+  const latestLabel = latest ? `${latest.title} (${latest.type.toLowerCase()}, ${formatDate(latest.date)})` : "the newest linked record";
+  const variants = {
+    "30d": {
+      focus: `Newest evidence: ${latestLabel}`,
+      intent: `New 30-day alert: ${baseProfile.intent}`,
+      shortTermImpact: `Triage whether ${latestLabel} changes an active Waters comparison. Do not infer a sustained direction from one month.`,
+      midLongTermImpact: "One month cannot support a 12–36 month conclusion. Reassess only if the same direction persists through the next quarter.",
+      response: { ...baseProfile.response, accelerate: "Do not accelerate yet; require a repeat signal or direct customer evidence." },
+    },
+    "60d": {
+      focus: `${evidenceCount} recent item${evidenceCount === 1 ? "" : "s"}; newest is ${latestLabel}`,
+      intent: `Emerging 60-day pattern: ${baseProfile.intent}`,
+      shortTermImpact: `Validate whether the recent evidence repeats the same capability or buying criterion before changing positioning.`,
+      midLongTermImpact: "Treat this as directional. Promote it to a longer-term threat only if it persists through the quarter.",
+      response: { ...baseProfile.response, accelerate: "Accelerate only if a second independent source confirms customer or competitive impact." },
+    },
+    "90d": {
+      focus: `${evidenceCount} item${evidenceCount === 1 ? "" : "s"} this quarter; newest is ${latestLabel}`,
+      intent: `Quarterly direction: ${baseProfile.intent}`,
+      shortTermImpact: `Use this quarter's repeated evidence to define one competitor claim or product gap for validation.`,
+      midLongTermImpact: `If the quarterly pattern continues, ${baseProfile.midLongTermImpact}`,
+    },
+    "1y": {
+      focus: `${evidenceCount} item${evidenceCount === 1 ? "" : "s"} across the year. ${baseProfile.focus}`,
+      intent: `Repeated one-year direction: ${baseProfile.intent}`,
+      shortTermImpact: baseProfile.shortTermImpact,
+      midLongTermImpact: baseProfile.midLongTermImpact,
+    },
+    "3y": {
+      focus: `${evidenceCount} item${evidenceCount === 1 ? "" : "s"} across three years. ${baseProfile.focus}`,
+      intent: `Sustained three-year direction: ${baseProfile.intent}`,
+      shortTermImpact: `Separate the newest move from the longer pattern, then test whether the same capability pressure persisted across product generations.`,
+      midLongTermImpact: baseProfile.midLongTermImpact,
+      response: { ...baseProfile.response, accelerate: `${baseProfile.response.accelerate} Require evidence that the theme persisted across the multi-year period.` },
+    },
+  };
+  return { ...baseProfile, ...(variants[filters.horizon.value] || {}) };
 }
 
 function competitorIntentProfile(competitor, signals) {
@@ -2815,6 +3560,29 @@ function competitorIntentProfile(competitor, signals) {
     Agilent: {
       focus: "AI-enabled lab workflows, LC/MS software packaging, APAC biopharma access, and service lifecycle value",
       intent: "Own workflow execution and customer productivity through instruments, informatics, partnerships, and regional hubs",
+      activityThemes: [
+        {
+          title: "Productized End-to-End LC/LC-MS Workflows",
+          insight: "Bundled LC/LC-MS instruments with MAM, DMPK, OpenLab Sync, and fluorescence-detector workflows.",
+          matches: ["6230C", "Fluorescence Detector", "Sound Analytics", "OpenLab Sync"],
+        },
+        {
+          title: "Expanded Advanced-Biopharma and Regional Access",
+          insight: "Expanded APAC access through oligonucleotide and proteomics partnerships plus new South Korea and Mumbai hubs.",
+          matches: ["NATi", "ORCA", "OmixAI", "Mumbai"],
+        },
+        {
+          title: "Made AI a Lab and Operating Capability",
+          insight: "Partnered with OpenAI and BCG to apply AI across product development, operations, and scientific workflows.",
+          matches: ["OpenAI"],
+        },
+        {
+          title: "Confirmed LC/LC-MS and Lifecycle Services as Growth Engines",
+          insight: "Reported LC/LC-MS growth in pharma, APAC, and advanced materials while expanding CrossLab services.",
+          matches: ["LC and LC-MS are helping drive", "CrossLab and services growth"],
+        },
+      ],
+      likelyNext: "Agilent is likely to package more regulated, application-specific LC/LC-MS workflows that combine OpenLab or partner software, AI-assisted execution, regional co-development hubs, and CrossLab lifecycle services—especially in pharma, advanced therapeutics, APAC, and advanced materials.",
       shortTermImpact: "Waters PMs may need stronger counter-positioning for software usability, method setup, service lifecycle, and packaged LC/MS workflows in active pharma deals.",
       midLongTermImpact: "Agilent could reset buying criteria toward lab productivity, AI-assisted workflows, and regional application access, forcing Waters to compete on workflow outcomes rather than LC specifications alone.",
       response: {
@@ -2870,6 +3638,8 @@ function competitorIntentProfile(competitor, signals) {
       date: launch.date,
       sourceName: launch.sourceName,
       url: timelineUrlForLaunch(launch),
+      sourceLinkLabel: "Open press release ↗",
+      detail: launch.pmImplication || launch.roadmapQuestion || launch.signalType,
     })),
     ...strategic.map((signal) => ({
       type: "Strategic move",
@@ -2877,6 +3647,7 @@ function competitorIntentProfile(competitor, signals) {
       date: signal.date,
       sourceName: signal.sourceName,
       url: signal.sourceUrl,
+      detail: signal.summary || signal.pmImplication || signal.signalType,
     })),
     ...filings.map((insight) => ({
       type: "Filing insight",
@@ -2884,6 +3655,7 @@ function competitorIntentProfile(competitor, signals) {
       date: insight.date,
       sourceName: insight.sourceName,
       url: insight.sourceUrl,
+      detail: insight.evidence || insight.whyItMatters || insight.pmImplication,
     })),
   ].sort((a, b) => new Date(b.date) - new Date(a.date));
   const evidenceGroups = [
@@ -2913,10 +3685,10 @@ function competitorIntentProfile(competitor, signals) {
   ));
   const confidence = confidenceScore >= 75 ? "Strong public evidence" : confidenceScore >= 50 ? "Moderate public evidence" : confidenceScore >= 30 ? "Limited public evidence" : "Very little matching evidence";
   const risk = evidenceCount >= 4 ? "High" : evidenceCount >= 1 ? "Medium" : "Watch";
-  const intentLabel = evidenceCount ? "Competitor activity requires review" : "No recent matching activity";
+  const horizonProfile = horizonCompetitorProfile(profileCopy, competitor, evidenceItems);
   return {
     competitor,
-    ...profileCopy,
+    ...horizonProfile,
     evidence: evidenceBits.length ? evidenceBits.join(" · ") : "No matching public evidence in the selected filters; continue checking the linked sources",
     confidence,
     confidenceScore,
@@ -2926,9 +3698,134 @@ function competitorIntentProfile(competitor, signals) {
     evidenceItems,
     evidenceGroups,
     evidenceTypeCount: evidenceBits.length,
-    intentLabel,
     className: confidenceScore >= 75 ? "strong" : confidenceScore >= 40 ? "directional" : "needs-validation",
   };
+}
+
+function competitorDirectionStatement(profile) {
+  const direction = String(profile.intent || "")
+    .replace(/^(?:New 30-day alert|Emerging 60-day pattern|Quarterly direction|Repeated one-year direction|Sustained three-year direction):\s*/i, "")
+    .trim();
+  if (!direction || /^No\b/i.test(direction)) return direction;
+  const statement = `${profile.competitor}'s likely strategy is to ${direction.charAt(0).toLowerCase()}${direction.slice(1)}`;
+  return /[.!?]$/.test(statement) ? statement : `${statement}.`;
+}
+
+function intentPeriodTitle() {
+  return ({
+    "30d": "the Last 30 Days",
+    "60d": "the Last 60 Days",
+    "90d": "the Last 90 Days",
+    "1y": "the Last Year",
+    "3y": "the Last Three Years",
+  })[filters.horizon.value] || `the Selected ${horizonLabel()}`;
+}
+
+function competitorActivityThemes(profile) {
+  const configuredThemes = Array.isArray(profile.activityThemes) ? profile.activityThemes : [];
+  const themes = configuredThemes.map((theme) => ({
+    ...theme,
+    items: profile.evidenceItems.filter((item) => (theme.matches || []).some((match) => item.title.toLowerCase().includes(String(match).toLowerCase()))),
+  })).filter((theme) => theme.items.length);
+  if (themes.length) return themes;
+
+  return profile.evidenceItems.slice(0, 4).map((item) => ({
+    title: item.title,
+    insight: item.detail || `${item.type} published ${formatDate(item.date)}.`,
+    items: [item],
+  }));
+}
+
+function competitorActivityMarkup(profile) {
+  const themes = competitorActivityThemes(profile);
+  return `
+    <section class="intent-activity-summary" aria-label="What ${escapeHtml(profile.competitor)} did in ${escapeHtml(intentPeriodTitle())}">
+      <div class="intent-activity-heading">
+        <h5>What ${escapeHtml(profile.competitor)} Did in ${escapeHtml(intentPeriodTitle())}</h5>
+      </div>
+      <div class="intent-activity-theme-grid">
+        ${themes.map((theme, themeIndex) => `
+          <article class="intent-activity-theme">
+            <div class="intent-activity-theme-top">
+              <h6>${escapeHtml(theme.title)}</h6>
+              <button type="button" class="intent-theme-source-button" data-competitor="${escapeHtml(profile.competitor)}" data-intent-theme-sources="${themeIndex}" aria-label="View ${theme.items.length} source${theme.items.length === 1 ? "" : "s"} for ${escapeHtml(theme.title)}">
+                <span>Sources</span><b>${theme.items.length}</b><span aria-hidden="true">→</span>
+              </button>
+            </div>
+            <ul class="intent-activity-bullets"><li>${escapeHtml(theme.insight)}</li></ul>
+          </article>
+        `).join("")}
+      </div>
+    </section>
+  `;
+}
+
+function competitorIntentOptionMarkup(profile, index, selected) {
+  const activityLabel = profile.evidenceCount ? "Active" : "Monitor";
+  return `
+    <button type="button" class="intent-competitor-option${selected ? " is-selected" : ""}" data-intent-select="${escapeHtml(profile.competitor)}" role="tab" aria-selected="${selected}" aria-controls="intent-selected-detail">
+      <span class="intent-option-rank" aria-label="Rank ${index + 1}">${index + 1}</span>
+      <span class="intent-option-copy">
+        <strong>${escapeHtml(profile.competitor)}</strong>
+        <small class="intent-option-status ${profile.evidenceCount ? "active" : "monitor"}">${activityLabel}</small>
+        <span>${profile.evidenceCount} public move${profile.evidenceCount === 1 ? "" : "s"}</span>
+      </span>
+      <span class="intent-option-arrow" aria-hidden="true">›</span>
+    </button>
+  `;
+}
+
+function competitorIntentDetailMarkup(profile) {
+  const competitorAccent = competitorColors[profile.competitor] || "#789199";
+  return `
+    <article id="intent-selected-detail" class="intent-detail-panel risk-${profile.risk.toLowerCase()}" style="--intent-competitor-accent: ${escapeHtml(competitorAccent)}" role="tabpanel" aria-label="${escapeHtml(profile.competitor)} competitor intent">
+      <div class="intent-detail-header">
+        <div class="intent-detail-title">
+          <span>Selected competitor</span>
+          <h4>${escapeHtml(profile.competitor)}</h4>
+        </div>
+        <div class="intent-header-meta">
+          <div class="intent-badges">
+            <span class="confidence-pill ${profile.className}" title="This score reflects the number of matching public records, the variety of evidence types, and whether source links are working.">Confidence score · ${profile.confidenceScore}/100</span>
+            <span class="tag ${profile.risk === "High" ? "high" : profile.risk === "Medium" ? "medium" : "low"}">${profile.risk === "Watch" ? "No immediate response" : `${escapeHtml(profile.risk)} potential impact`}</span>
+          </div>
+          ${profile.evidenceGroups.length ? `
+            <span class="intent-evidence-count-links intent-header-evidence">
+              ${profile.evidenceGroups.map((group) => `
+                <a href="#decisionEvidenceModal" data-competitor="${escapeHtml(profile.competitor)}" data-intent-evidence-type="${escapeHtml(group.key)}" aria-label="View ${group.items.length} ${escapeHtml(group.label)} for ${escapeHtml(profile.competitor)}">
+                  ${group.items.length} ${escapeHtml(group.label)}
+                </a>
+              `).join("")}
+            </span>
+          ` : ""}
+        </div>
+      </div>
+      ${competitorActivityMarkup(profile)}
+      <div class="intent-strategy-layout">
+        <section class="intent-now intent-likely-direction">
+          <span>${escapeHtml(profile.competitor)}'s Likely Direction</span>
+          <strong>${escapeHtml(profile.likelyNext || competitorDirectionStatement(profile))}</strong>
+        </section>
+      </div>
+      <details class="intent-decision-detail">
+        <summary>
+          <span>Waters PM Considerations</span>
+          <small>Defend · differentiate · accelerate</small>
+        </summary>
+        <div class="intent-decision-detail-body">
+          <div class="intent-impact-grid">
+            <p><span>0–11 month impact</span>${escapeHtml(profile.shortTermImpact)}</p>
+            <p><span>12–36 month impact</span>${escapeHtml(profile.midLongTermImpact)}</p>
+          </div>
+          <div class="intent-response-grid">
+            <p><span>Defend</span>${escapeHtml(profile.response.defend)}</p>
+            <p><span>Differentiate</span>${escapeHtml(profile.response.differentiate)}</p>
+            <p><span>Accelerate</span>${escapeHtml(profile.response.accelerate)}</p>
+          </div>
+        </div>
+      </details>
+    </article>
+  `;
 }
 
 function renderCompetitorIntentCards(signals) {
@@ -2939,116 +3836,204 @@ function renderCompetitorIntentCards(signals) {
     .map((competitor) => competitorIntentProfile(competitor, signals))
     .sort((a, b) => (threatRank[b.risk] || 0) - (threatRank[a.risk] || 0) || b.confidenceScore - a.confidenceScore || competitorOrder.indexOf(a.competitor) - competitorOrder.indexOf(b.competitor));
   state.competitorIntentProfiles = profiles;
-  byId("intentCount").textContent = profiles.length === 1 ? "1 competitor" : `${profiles.length} competitors · highest potential impact first`;
-  byId("competitorIntent").innerHTML = profiles
-    .map(
-      (profile) => `
-        <article class="intent-card">
-          <div class="intent-top">
-            <div>
-              <strong>${escapeHtml(profile.competitor)}</strong>
-              <span>${escapeHtml(profile.intentLabel)}</span>
-            </div>
-            <div class="intent-badges">
-              <span class="confidence-pill ${profile.className}" title="This score reflects the number of matching public records, the variety of evidence types, and whether source links are working.">${profile.confidenceScore}/100 · ${escapeHtml(profile.confidence)}</span>
-              <span class="tag ${profile.risk === "High" ? "high" : profile.risk === "Medium" ? "medium" : "low"}">${profile.risk === "Watch" ? "No immediate response" : `${escapeHtml(profile.risk)} potential impact`}</span>
-            </div>
-          </div>
-          <div class="intent-body">
-            <p><span>Focus</span>${escapeHtml(profile.focus)}</p>
-            <p>
-              <span>Public evidence used</span>
-              ${profile.evidenceGroups.length ? `
-                <span class="intent-evidence-count-links">
-                  ${profile.evidenceGroups.map((group) => `
-                    <a href="#decisionEvidenceModal" data-competitor="${escapeHtml(profile.competitor)}" data-intent-evidence-type="${escapeHtml(group.key)}" aria-label="View ${group.items.length} ${escapeHtml(group.label)} for ${escapeHtml(profile.competitor)}">
-                      ${group.items.length} ${escapeHtml(group.label)}
-                    </a>
-                  `).join('<i aria-hidden="true">·</i>')}
-                </span>
-              ` : escapeHtml(profile.evidence)}
-            </p>
-            <p><span>Why this confidence score</span>${profile.evidenceCount} matching public records · ${profile.evidenceTypeCount} different evidence types · ${profile.sourceHealth.good} working source links · ${profile.sourceHealth.issues} links needing review</p>
-            <p><span>What the competitor appears to be doing</span>${escapeHtml(profile.intent)}</p>
-          </div>
-          <div class="intent-impact-grid">
-            <p><span>0-6 month impact to Waters</span>${escapeHtml(profile.shortTermImpact)}</p>
-            <p><span>12-36 month impact to Waters</span>${escapeHtml(profile.midLongTermImpact)}</p>
-          </div>
-          <div class="intent-response-grid">
-            <p><span>Defend</span>${escapeHtml(profile.response.defend)}</p>
-            <p><span>Differentiate</span>${escapeHtml(profile.response.differentiate)}</p>
-            <p><span>Accelerate</span>${escapeHtml(profile.response.accelerate)}</p>
-          </div>
-          <details class="intent-evidence">
-            <summary>View all supporting evidence (${profile.evidenceItems.length})</summary>
-            <div class="intent-evidence-list">
-              ${profile.evidenceItems.length
-                ? profile.evidenceItems.map((item) => {
-                    const content = `
-                      <strong>${escapeHtml(item.type)}: ${escapeHtml(item.title)}</strong>
-                      <span>${escapeHtml(formatDate(item.date))} · ${escapeHtml(item.sourceName || "Public source")}</span>
-                    `;
-                    return isHttpUrl(item.url)
-                      ? `<a href="${escapeHtml(item.url)}" target="_blank" rel="noreferrer">${content}</a>`
-                      : `<span class="intent-evidence-missing">${content}<small>Source link unavailable</small></span>`;
-                  }).join("")
-                : `<p>No supporting evidence matches the active filters.</p>`}
-            </div>
-          </details>
-        </article>
-      `,
-    )
-    .join("");
+  const selectedProfile = profiles.find((profile) => profile.competitor === state.activeIntentCompetitor) || profiles[0];
+  state.activeIntentCompetitor = selectedProfile?.competitor || "";
+  byId("intentCount").textContent = profiles.length === 1 ? "1 competitor" : `${profiles.length} competitors`;
+  byId("competitorIntent").innerHTML = selectedProfile
+    ? `
+        <div class="intent-master-detail">
+          <nav class="intent-competitor-rail" role="tablist" aria-label="Competitors">
+            <div class="intent-rail-heading">Competitors</div>
+            ${profiles.map((profile, index) => competitorIntentOptionMarkup(profile, index, profile.competitor === selectedProfile.competitor)).join("")}
+          </nav>
+          ${competitorIntentDetailMarkup(selectedProfile)}
+        </div>
+      `
+    : `<div class="empty">No competitor intent profile matches the active filters.</div>`;
 }
 
-function renderRoadmapImpactMap(signals) {
+function roadmapImpactEvidenceRecords(capability, signals) {
+  const termsByCapability = {
+    "LC platform": ["lc platform", "hplc", "liquid chromatography", "lc system", "routine lc"],
+    "UHPLC modules": ["uhplc", "uplc", "module", "detector", "pump"],
+    "LC-MS sensitivity": ["lc-ms", "sensitivity", "mass spectrometer", "qtof", "tof"],
+    "LC-MS/MS quantitation": ["lc-ms/ms", "quantitation", "quantitative", "triple quadrupole", "triple quad"],
+    "2D LC": ["2d lc", "2d-lc", "two-dimensional liquid chromatography"],
+    "Software usability": ["software", "usability", "data review", "empower", "chromeleon", "labsolutions", "sciex os"],
+    Informatics: ["informatics", "software", "data workflow", "data review", "digital lab"],
+    Automation: ["automation", "automated", "autosampler", "plate loader", "workflow execution"],
+    "Application kits": ["application kit", "application workflow", "method package", "method readiness", "application note"],
+    "Sample prep": ["sample prep", "sample preparation", "extraction", "cleanup"],
+    "Regulated methods": ["pfas", "regulated", "compliance", "validated method", "environmental contaminant"],
+  };
+  const terms = termsByCapability[capability] || [capability.toLowerCase()];
+  const records = [];
+  const addRecord = (record) => {
+    if (!isHttpUrl(record.url) || sourceHealthForUrl(record.url) === "bad") return;
+    const searchText = String(record.searchText || `${record.title} ${record.type}`).toLowerCase();
+    if (!terms.some((term) => searchText.includes(term))) return;
+    records.push(record);
+  };
+
+  currentLaunches().forEach((item) => addRecord({
+    title: `${item.competitor}: ${item.product || item.title}`,
+    type: `Official product launch · ${item.sourceName || "Public source"}`,
+    date: item.date,
+    url: timelineUrlForLaunch(item),
+    sourceLinkLabel: "Open press release ↗",
+    searchText: `${item.product} ${item.title} ${item.summary} ${item.technology} ${item.signalType}`,
+  }));
+  currentStrategicSignals(signals).forEach((item) => addRecord({
+    title: `${item.competitor}: ${item.title}`,
+    type: `Strategic move · ${item.sourceName || "Public source"}`,
+    date: item.date,
+    url: item.sourceUrl,
+    searchText: `${item.title} ${item.summary} ${item.technology} ${item.signalType}`,
+  }));
+  currentFilingInsights().forEach((item) => addRecord({
+    title: `${item.competitor}: ${item.headline}`,
+    type: `Filing insight · ${item.sourceName || "SEC filing"}`,
+    date: item.date,
+    url: item.sourceUrl,
+    searchText: `${item.headline} ${item.summary} ${item.technology} ${item.marketSegment}`,
+  }));
+  currentCustomerVoiceItems().forEach((item) => {
+    customerVoiceSourceLinks(item).forEach((link) => addRecord({
+      title: `${item.company}: ${item.product}`,
+      type: `Public customer evidence · ${link.label}`,
+      date: link.sourceDate,
+      url: link.url,
+      searchText: `${item.product} ${item.theme} ${item.category} ${item.customerLanguageSignal} ${item.buyingPriority}`,
+    }));
+  });
+  currentTrends().forEach((trend) => addRecord({
+    title: trend.theme,
+    type: `Scientific publication trend · ${Number(trend.counts?.[filters.horizon.value] || 0).toLocaleString()} PubMed records`,
+    date: state.data?.asOfDate,
+    url: pubMedTrendSearchUrl(trend.query, filters.horizon.value),
+    searchText: `${trend.theme} ${trend.technology} ${trend.marketSegment} ${trend.query}`,
+  }));
+
+  const seen = new Set();
+  return records
+    .filter((record) => {
+      if (seen.has(record.url)) return false;
+      seen.add(record.url);
+      return true;
+    })
+    .sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
+}
+
+function roadmapImpactRows(signals) {
   const horizon = filters.horizon.value;
-  const trendByName = new Map(state.data.trends.themes.map((trend) => [trend.theme, trend]));
-  const launchCount = currentLaunches().length;
-  const strategicCount = currentStrategicSignals(signals).length;
-  const rows = [
-    ["LC platform", "Medium", launchCount >= 3 ? "High" : "Medium", "More public customer evidence needed", "Limited public support", "Validate"],
-    ["UHPLC modules", "Medium", currentLaunches().some((launch) => launch.technology === "UHPLC") ? "High" : "Medium", "Direct customer comparison needed", "Limited public support", "Validate"],
-    ["LC-MS sensitivity", "High", "High", "Repeated in public customer sources", "Strong public support", "Prepare roadmap decision"],
-    ["LC-MS/MS quantitation", "Medium", "High", "Regulated-lab evidence needed", "Limited public support", "Validate"],
-    ["2D LC", "Early", "Medium", "No matching public customer evidence", "More evidence needed", "Monitor"],
-    ["Software usability", "High", strategicCount >= 3 ? "High" : "Medium", "Limited public customer evidence", "Limited public support", "Validate"],
-    ["Informatics", "High", strategicCount >= 3 ? "High" : "Medium", "Public workflow evidence needed", "Limited public support", "Prepare roadmap decision"],
-    ["Automation", "Medium", "Medium", "Public workflow evidence needed", "Limited public support", "Validate"],
-    ["Application kits", "High", "Medium", "Public adoption examples needed", "Limited public support", "Prepare roadmap decision"],
-    ["Sample prep", "Medium", "Medium", "Needs public support and customer evidence", "Needs validation", "Validate"],
-    ["Regulated methods", trendByName.get("PFAS and environmental contaminant testing")?.counts[horizon] >= 40 ? "High" : "Medium", "Medium", "Public compliance evidence needed", "Limited public support", "Validate"],
+  const capabilities = [
+    "LC platform",
+    "UHPLC modules",
+    "LC-MS sensitivity",
+    "LC-MS/MS quantitation",
+    "2D LC",
+    "Software usability",
+    "Informatics",
+    "Automation",
+    "Application kits",
+    "Sample prep",
+    "Regulated methods",
   ];
-  const visibleRows = filters.technology.value === "All"
+  const publicationThresholds = {
+    "30d": { high: 500, medium: 75 },
+    "60d": { high: 900, medium: 150 },
+    "90d": { high: 1300, medium: 225 },
+    "1y": { high: 4000, medium: 800 },
+    "3y": { high: 10000, medium: 2000 },
+  }[horizon] || { high: 4000, medium: 800 };
+  const rows = capabilities.map((capability) => {
+    const records = roadmapImpactEvidenceRecords(capability, signals);
+    const publicationVolume = records.reduce((total, record) => {
+      const match = record.type.match(/([\d,]+) PubMed records/);
+      return total + Number((match?.[1] || "0").replaceAll(",", ""));
+    }, 0);
+    const competitorRecords = records.filter((record) => /Official product launch|Strategic move|Filing insight/.test(record.type)).length;
+    const evidenceFamilies = new Set(records.map((record) => record.type.split(" · ")[0])).size;
+    const trend = publicationVolume >= publicationThresholds.high ? "High" : publicationVolume >= publicationThresholds.medium ? "Medium" : publicationVolume > 0 ? "Early" : "Early";
+    const pressure = competitorRecords >= 3 ? "High" : competitorRecords >= 1 ? "Medium" : "Early";
+    const evidence = evidenceFamilies >= 3 && records.length >= 5 ? "" : records.length ? "Limited cross-source support" : "More evidence needed";
+    return { row: [capability, trend, pressure, evidence], records };
+  });
+  const visibleRows = (filters.technology.value === "All"
     ? rows
-    : rows.filter(([capability]) => capability.toLowerCase().includes(filters.technology.value.toLowerCase().replace("/ms", "")) || /Software|Informatics|Automation|Application kits|Regulated methods/.test(capability));
-  byId("roadmapImpactCount").textContent = `${visibleRows.length} capability areas`;
-  byId("roadmapImpactMap").innerHTML = `
-    <div class="impact-grid" role="table" aria-label="Roadmap impact map">
-      <div class="impact-header" role="row">
-        <strong>Waters capability</strong>
-        <strong>Public trend strength</strong>
-        <strong>Competitor pressure</strong>
-        <strong>Customer evidence</strong>
-        <strong>Confidence</strong>
-        <strong>Recommended decision</strong>
+    : rows.filter(({ row: [capability] }) => textMatchesTechnology(capability, filters.technology.value)));
+  const strengthRank = { Early: 1, Medium: 2, High: 3 };
+  const { column: sortColumn, direction: sortDirection } = state.roadmapImpactSort;
+  const sortValue = ({ row, records }, column) => {
+    if (column === 1 || column === 2) return strengthRank[row[column]] || 0;
+    if (column === 3) return records.length;
+    return row[column] || "";
+  };
+  visibleRows.sort((a, b) => {
+    const aValue = sortValue(a, sortColumn);
+    const bValue = sortValue(b, sortColumn);
+    const comparison = typeof aValue === "number"
+      ? aValue - bValue
+      : String(aValue).localeCompare(String(bValue));
+    const directed = sortDirection === "asc" ? comparison : -comparison;
+    return directed || a.row[0].localeCompare(b.row[0]);
+  });
+  state.roadmapImpactEvidence = visibleRows.map(({ row, records }) => ({ capability: row[0], records }));
+  return visibleRows;
+}
+
+function roadmapImpactHeatmapMarkup(signals) {
+  const visibleRows = roadmapImpactRows(signals);
+  const { column: sortColumn, direction: sortDirection } = state.roadmapImpactSort;
+  const columns = ["Waters capability", "Public trend strength", "Competitor pressure", "Linked evidence"];
+  const sortHeaders = columns.map((label, index) => {
+    const active = sortColumn === index;
+    const ariaSort = active ? (sortDirection === "asc" ? "ascending" : "descending") : "none";
+    const indicator = active ? (sortDirection === "asc" ? "↑" : "↓") : "↕";
+    return `
+      <strong role="columnheader" aria-sort="${ariaSort}">
+        <button type="button" class="impact-sort-button${active ? " is-active" : ""}" data-impact-sort="${index}" aria-label="Sort by ${escapeHtml(label)}${active ? `, currently ${ariaSort}` : ""}">
+          <span>${escapeHtml(label)}</span>
+          <span class="impact-sort-indicator" aria-hidden="true">${indicator}</span>
+        </button>
+      </strong>
+    `;
+  }).join("");
+  return `
+    <section class="capability-heatmap" aria-labelledby="capabilityHeatmapTitle">
+      <div class="capability-heatmap-heading">
+        <div>
+          <h4 id="capabilityHeatmapTitle">Waters Capability Priorities</h4>
+          <p>Public trend strength, competitor pressure, and exact supporting evidence.</p>
+        </div>
+        <span>${visibleRows.length} capability areas</span>
       </div>
-      ${visibleRows
-        .map(
-          ([capability, trend, pressure, pull, evidence, action]) => `
-            <div class="impact-row" role="row">
-              <span class="impact-capability" data-label="Waters capability">${escapeHtml(capability)}</span>
-              <span data-label="Public trend strength">${escapeHtml(trend)}</span>
-              <span data-label="Competitor pressure">${escapeHtml(pressure)}</span>
-              <span data-label="Customer evidence">${escapeHtml(pull)}</span>
-              <span data-label="Confidence">${escapeHtml(evidence)}</span>
-              <span data-label="Recommended decision"><b class="action-chip ${actionClass(action)}">${escapeHtml(actionDisplayLabel(action))}</b></span>
-            </div>
-          `,
-        )
-        .join("")}
-    </div>
+      <div class="capability-heatmap-grid" role="table" aria-label="Waters capability priority heatmap">
+        <div class="capability-heatmap-header" role="row">
+        ${sortHeaders}
+        </div>
+        ${visibleRows
+          .map(
+            ({ row: [capability, trend, pressure, evidence], records }) => `
+              <div class="capability-heatmap-row" role="row">
+                <strong class="capability-heatmap-name" data-label="Waters capability">${escapeHtml(capability)}</strong>
+                <span class="capability-heat-cell capability-trend-${trend.toLowerCase()}" data-label="Public trend strength">${escapeHtml(trend)}</span>
+                <span class="capability-heat-cell capability-pressure-${pressure.toLowerCase()}" data-label="Competitor pressure">${escapeHtml(pressure)}</span>
+                <span class="capability-heatmap-evidence" data-label="Linked evidence">
+                ${records.length ? `
+                  <button type="button" data-roadmap-evidence="${escapeHtml(capability)}" aria-label="View ${records.length} linked evidence records for ${escapeHtml(capability)}">
+                    <b>${records.length} linked record${records.length === 1 ? "" : "s"}</b>
+                    <small>View evidence →</small>
+                  </button>
+                ` : `<b>No linked records</b>`}
+                ${evidence ? `<small>${escapeHtml(evidence)}</small>` : ""}
+                </span>
+              </div>
+            `,
+          )
+          .join("")}
+      </div>
+    </section>
   `;
 }
 
@@ -3056,12 +4041,35 @@ function customerVoiceSourceMap() {
   return new Map((state.customerVoice?.sources || []).map((source) => [source.id, source]));
 }
 
+const customerVoiceCommunityHosts = new Set([
+  "chromforum.org",
+  "labwrench.com",
+  "reddit.com",
+  "selectscience.net",
+]);
+
+function isCustomerAuthoredVoiceSource(source) {
+  if (!isHttpUrl(source?.url)) return false;
+  let hostname = "";
+  try {
+    hostname = new URL(source.url).hostname.toLowerCase().replace(/^www\./, "");
+  } catch {
+    return false;
+  }
+  const isIndependentCommunity = [...customerVoiceCommunityHosts]
+    .some((host) => hostname === host || hostname.endsWith(`.${host}`));
+  if (!isIndependentCommunity) return false;
+  const sourceDescription = `${source.recordType || ""} ${source.sourceType || ""} ${source.label || ""}`;
+  return !/(official|employee|vendor-authored|press release|product page|support knowledge base)/i.test(sourceDescription);
+}
+
 function customerVoiceSourceLinks(item, horizonValue = filters.horizon.value) {
   const availableExactRecords = (item.evidenceRecords || [])
-    .filter((record) => isHttpUrl(record.url))
+    .filter(isCustomerAuthoredVoiceSource)
     .map((record) => ({
       label: record.label || "Exact public record",
       url: record.url,
+      sourceKeywords: Array.isArray(record.sourceKeywords) ? record.sourceKeywords : [],
       status: "exact_record",
       recordType: record.recordType || "Public evidence record",
       sourceDate: record.sourceDate,
@@ -3077,26 +4085,93 @@ function customerVoiceSourceLinks(item, horizonValue = filters.horizon.value) {
   const links = (item.sourceIds || [])
     .map((id) => sourceMap.get(id))
     .filter(Boolean)
-    .filter((source) => isHttpUrl(source.url))
+    .filter(isCustomerAuthoredVoiceSource)
     .map((source) => ({
       label: source.sourceName,
       url: source.url,
       status: source.status,
       recordType: "Source-discovery page",
     }));
-  if (!links.length && isHttpUrl(item.sourceUrl)) {
-    links.push({ label: item.sourceName || "Source", url: item.sourceUrl, status: "source_mapped", recordType: "Source-discovery page" });
+  const fallbackSource = { label: item.sourceName || "Source", url: item.sourceUrl, status: "source_mapped", recordType: "Source-discovery page" };
+  if (!links.length && isCustomerAuthoredVoiceSource(fallbackSource)) {
+    links.push(fallbackSource);
   }
   const seen = new Set();
   return links.filter((link) => {
-    if (seen.has(link.url)) return false;
-    seen.add(link.url);
+    const key = canonicalEvidenceUrl(link.url);
+    if (seen.has(key)) return false;
+    seen.add(key);
     return true;
   });
 }
 
 function customerVoiceEvidenceDate(item, horizonValue = filters.horizon.value) {
   return customerVoiceSourceLinks(item, horizonValue)[0]?.sourceDate || null;
+}
+
+function sourceKeywordsText(link) {
+  return (link?.sourceKeywords || []).join(" · ") || "No keywords validated";
+}
+
+function canonicalEvidenceUrl(value) {
+  try {
+    const url = new URL(value);
+    url.hash = "";
+    url.hostname = url.hostname.toLowerCase();
+    if (url.pathname.length > 1) url.pathname = url.pathname.replace(/\/+$/, "");
+    [...url.searchParams.keys()].forEach((key) => {
+      if (/^(utm_|fbclid$|gclid$)/i.test(key)) url.searchParams.delete(key);
+    });
+    url.searchParams.sort();
+    return url.toString();
+  } catch {
+    return String(value || "").replace(/[#?].*$/, "").replace(/\/+$/, "");
+  }
+}
+
+function groupCustomerVoiceEvidenceMappings(evidenceItems) {
+  const grouped = new Map();
+  evidenceItems.forEach(({ item, link }) => {
+    const key = canonicalEvidenceUrl(link.url);
+    if (!key) return;
+    if (!grouped.has(key)) {
+      grouped.set(key, {
+        link: { ...link },
+        mappings: [],
+        keywords: new Set(),
+        mappingKeys: new Set(),
+      });
+    }
+    const group = grouped.get(key);
+    const mappingKey = item.id || `${item.company}|${item.product}|${item.sentiment}`;
+    if (!group.mappingKeys.has(mappingKey)) {
+      group.mappingKeys.add(mappingKey);
+      group.mappings.push(item);
+    }
+    (link.sourceKeywords || []).forEach((keyword) => group.keywords.add(keyword));
+  });
+  return [...grouped.values()].map((group) => ({
+    link: { ...group.link, sourceKeywords: [...group.keywords] },
+    mappings: group.mappings,
+  }));
+}
+
+function customerVoiceEvidenceCardMarkup({ link, mappings }, includeConfidence = false) {
+  const themes = [...new Set(mappings.map((item) => item.category).filter(Boolean))];
+  const confidence = Math.max(...mappings.map((item) => Number(item.confidence || 0)));
+  return `
+    <a class="customer-source-card" href="${escapeHtml(link.url)}" target="_blank" rel="noreferrer">
+      <span class="customer-source-card-topline">
+        <strong>${escapeHtml(link.label || "Exact public source")}</strong>
+        <small>${escapeHtml(formatDate(link.sourceDate))}</small>
+      </span>
+      <span class="customer-source-signal">${escapeHtml(sourceKeywordsText(link))}</span>
+      <span class="customer-source-card-footer">
+        <span>${escapeHtml(themes.join(" · ") || link.recordType || "Public evidence")}${includeConfidence && confidence ? ` · confidence ${confidence}` : ""}</span>
+        <b>View source →</b>
+      </span>
+    </a>
+  `;
 }
 
 function customerVoiceItemsForHorizon(horizonValue) {
@@ -3111,9 +4186,9 @@ function customerVoiceItemsForHorizon(horizonValue) {
       return false;
     })
     .filter((item) => {
-      if (filters.technology.value === "All" || filters.technology.value === "Portfolio") return true;
+      if (filters.technology.value === "All") return true;
       const text = `${item.platform} ${item.product} ${item.category} ${item.theme}`;
-      return textMatchesTechnology(text, filters.technology.value);
+      return technologyMatchesFilter("", filters.technology.value, text);
     })
     .filter((item) => filters.competitor.value === "All" || item.company === filters.competitor.value)
     .filter((item) => {
@@ -3196,8 +4271,9 @@ function customerVoiceInsightLinks(insight, items) {
   const links = matched.flatMap(customerVoiceSourceLinks);
   const seen = new Set();
   return links.filter((link) => {
-    if (seen.has(link.url)) return false;
-    seen.add(link.url);
+    const key = canonicalEvidenceUrl(link.url);
+    if (seen.has(key)) return false;
+    seen.add(key);
     return true;
   }).slice(0, 3);
 }
@@ -3207,8 +4283,9 @@ function uniqueCustomerVoiceLinks(items, limit = 4) {
   return items
     .flatMap(customerVoiceSourceLinks)
     .filter((link) => {
-      if (seen.has(link.url)) return false;
-      seen.add(link.url);
+      const key = canonicalEvidenceUrl(link.url);
+      if (seen.has(key)) return false;
+      seen.add(key);
       return true;
     })
     .slice(0, limit);
@@ -3229,12 +4306,6 @@ function voiceLinksMarkup(items, summary = "View evidence links") {
   `;
 }
 
-function sentimentDepth(items, sentiment) {
-  return items
-    .filter((item) => item.sentiment === sentiment)
-    .reduce((total, item) => total + customerVoiceDepth(item), 0);
-}
-
 function sentimentClass(sentiment) {
   return {
     Positive: "positive",
@@ -3245,24 +4316,24 @@ function sentimentClass(sentiment) {
 
 function renderSentimentTrendChart(items) {
   const sentiments = ["Positive", "Mixed", "Negative"];
-  const totals = sentiments.map((sentiment) => [sentiment, sentimentDepth(items, sentiment)]);
-  const totalMentions = totals.reduce((sum, [, total]) => sum + total, 0);
+  const totals = sentiments.map((sentiment) => {
+    const sentimentItems = items.filter((item) => item.sentiment === sentiment);
+    const sourceCount = new Set(sentimentItems.flatMap(customerVoiceSourceLinks).map((link) => canonicalEvidenceUrl(link.url))).size;
+    return [sentiment, sentimentItems.length, sourceCount];
+  });
   const sentimentContext = {
     Positive: { symbol: "+", label: "Strengths to protect" },
     Mixed: { symbol: "±", label: "Signals to validate" },
     Negative: { symbol: "!", label: "Pain points to address" },
   };
-  const topPain = countBy(items.filter((item) => item.sentiment !== "Positive"), "category")[0]?.[0];
-  const topPositive = items.find((item) => item.sentiment === "Positive")?.theme;
   byId("sentimentTrendChart").innerHTML = items.length
     ? `
       <div class="sentiment-card-grid">
         ${totals
-          .map(([sentiment, total]) => {
-            const share = totalMentions ? Math.round((total / totalMentions) * 100) : 0;
+          .map(([sentiment, total, sourceCount]) => {
             const context = sentimentContext[sentiment];
             return `
-            <button type="button" class="sentiment-card sentiment-drilldown ${sentimentClass(sentiment)}" data-sentiment-view="${escapeHtml(sentiment)}" aria-label="View public evidence supporting ${total} estimated ${sentiment.toLowerCase()} mentions">
+            <button type="button" class="sentiment-card sentiment-drilldown ${sentimentClass(sentiment)}" data-sentiment-view="${escapeHtml(sentiment)}" aria-label="View ${total} ${sentiment.toLowerCase()} theme summaries and their exact sources">
               <div class="sentiment-card-heading">
                 <span class="sentiment-symbol" aria-hidden="true">${escapeHtml(context.symbol)}</span>
                 <span>
@@ -3272,21 +4343,16 @@ function renderSentimentTrendChart(items) {
               </div>
               <div class="sentiment-card-value">
                 <strong>${total}</strong>
-                <span>estimated mentions</span>
+                <span>theme summar${total === 1 ? "y" : "ies"}</span>
               </div>
               <div class="sentiment-card-footer">
-                <span>${share}% of ${totalMentions}</span>
-                <b>View evidence →</b>
+                <span>${sourceCount} exact source page${sourceCount === 1 ? "" : "s"}</span>
+                <b>Review wording →</b>
               </div>
             </button>
           `;
           })
           .join("")}
-      </div>
-      <div class="trend-readout">
-        <strong>What this means for Waters</strong>
-        <p>${escapeHtml(topPain ? `${topPain} is the main pain/mixed theme to validate.` : "No clear pain theme in this filter.")}</p>
-        <p>${escapeHtml(topPositive ? `Customer-visible strength to protect: ${topPositive}` : "No positive feedback is visible in this filter.")}</p>
       </div>
     `
     : `<div class="empty">No public customer feedback matches the selected filters.</div>`;
@@ -3294,24 +4360,17 @@ function renderSentimentTrendChart(items) {
 
 function openSentimentMentionEvidence(sentiment) {
   const matchedRows = currentCustomerVoiceItems().filter((item) => item.sentiment === sentiment);
-  const estimatedMentions = matchedRows.reduce((total, item) => total + customerVoiceDepth(item), 0);
-  const evidenceItems = matchedRows.flatMap((item) => {
+  const evidenceMappings = matchedRows.flatMap((item) => {
     const links = customerVoiceSourceLinks(item);
     if (!links.length) return [];
     return links.map((link) => ({ item, link }));
   });
+  const evidenceItems = groupCustomerVoiceEvidenceMappings(evidenceMappings);
 
-  byId("decisionEvidenceTitle").textContent = `${estimatedMentions} estimated ${sentiment.toLowerCase()} mentions`;
-  byId("decisionEvidenceSummary").textContent = `${matchedRows.length} synthesized themes link to ${evidenceItems.length} exact discussion threads or support articles. The estimated volume represents recurring themes in the selected horizon; it is not a list of ${estimatedMentions} individually captured comments.`;
+  byId("decisionEvidenceTitle").textContent = `${sentiment} theme summaries`;
+  byId("decisionEvidenceSummary").textContent = `${evidenceItems.length} unique exact public source${evidenceItems.length === 1 ? "" : "s"}.`;
   byId("decisionEvidenceList").innerHTML = evidenceItems.length
-    ? evidenceItems.map(({ item, link }) => `
-        <a href="${escapeHtml(link.url)}" target="_blank" rel="noreferrer">
-          <strong>${escapeHtml(item.company)}: ${escapeHtml(item.product)}</strong>
-          <span>“${escapeHtml(item.customerLanguageSignal)}”</span>
-          <span>${escapeHtml(link.dateType || "Published")} ${escapeHtml(formatDate(link.sourceDate))} · ${escapeHtml(item.category)} · confidence ${escapeHtml(item.confidence)} · ${escapeHtml(link.recordType || "Public evidence record")}</span>
-          <small>${escapeHtml(link.label)} ↗</small>
-        </a>
-      `).join("")
+    ? evidenceItems.map((group) => customerVoiceEvidenceCardMarkup(group, true)).join("")
     : `<div class="empty">No linked public records support this sentiment under the active filters.</div>`;
   byId("decisionEvidenceModal").hidden = false;
   document.body.classList.add("modal-open");
@@ -3326,80 +4385,129 @@ function openCustomerVoiceSummaryEvidence(kind, buyingPriority = "") {
     if (kind === "buying") return item.buyingPriority === buyingPriority;
     return true;
   });
-  const evidenceItems = matchedRows.flatMap((item) =>
+  const evidenceMappings = matchedRows.flatMap((item) =>
     customerVoiceSourceLinks(item).map((link) => ({ item, link })),
   );
+  const evidenceItems = groupCustomerVoiceEvidenceMappings(evidenceMappings);
   const titles = {
-    all: "All traceable customer-voice records",
-    positive: "Positive-feedback records",
-    concerns: "Concern records",
-    buying: `${buyingPriority} buying-consideration records`,
+    all: "All customer-voice theme summaries",
+    positive: "Positive-feedback theme summaries",
+    concerns: "All concern-theme summaries",
+    buying: `${buyingPriority} buying-consideration summaries`,
   };
 
-  byId("decisionEvidenceTitle").textContent = titles[kind] || "Customer-voice records";
-  byId("decisionEvidenceSummary").textContent = `${matchedRows.length} traceable record${matchedRows.length === 1 ? "" : "s"} link to ${evidenceItems.length} exact public source${evidenceItems.length === 1 ? "" : "s"} in the selected time window.`;
+  byId("decisionEvidenceTitle").textContent = titles[kind] || "Customer-voice theme summaries";
+  const distinctThemeCount = new Set(matchedRows.map((item) => item.category).filter(Boolean)).size;
+  byId("decisionEvidenceSummary").textContent = kind === "concerns"
+    ? `${matchedRows.length} concern summaries span ${distinctThemeCount} distinct evidence theme${distinctThemeCount === 1 ? "" : "s"} and link to ${evidenceItems.length} unique exact public source${evidenceItems.length === 1 ? "" : "s"}. This is the complete concern set, not evidence for one leading theme. Each source card states its mapped theme.`
+    : `${evidenceItems.length} unique exact public source${evidenceItems.length === 1 ? "" : "s"}.`;
   byId("decisionEvidenceList").innerHTML = evidenceItems.length
-    ? evidenceItems.map(({ item, link }) => `
-        <a href="${escapeHtml(link.url)}" target="_blank" rel="noreferrer">
-          <strong>${escapeHtml(item.company)}: ${escapeHtml(item.product)}</strong>
-          <span>${escapeHtml(item.buyingPriority)} · ${escapeHtml(item.sentiment)} · ${escapeHtml(item.category)}</span>
-          <span>${escapeHtml(link.dateType || "Published")} ${escapeHtml(formatDate(link.sourceDate))}</span>
-          <small>${escapeHtml(link.label)} ↗</small>
-        </a>
-      `).join("")
+    ? evidenceItems.map((group) => customerVoiceEvidenceCardMarkup(group)).join("")
     : `<div class="empty">No exact public records match this summary under the active filters.</div>`;
   byId("decisionEvidenceModal").hidden = false;
   document.body.classList.add("modal-open");
   byId("hideDecisionEvidence").focus();
 }
 
+const customerVoiceIdentityTerms = {
+  Waters: ["waters", "acquity", "empower", "breeze", "alliance", "arc", "masslynx", "unifi"],
+  Agilent: ["agilent", "infinitylab", "openlab", "1260", "1290", "6550"],
+  "Thermo Fisher": ["thermo", "vanquish", "ultimate", "chromeleon"],
+  Shimadzu: ["shimadzu", "nexera", "prominence", "lab solutions", "labsolutions", "i-series"],
+  SCIEX: ["sciex", "exionlc", "6500"],
+};
+
+function companyVoiceEvidenceGroups(company, companyItems) {
+  const identityTerms = customerVoiceIdentityTerms[company] || [company.toLowerCase()];
+  const evidenceMappings = companyItems
+    .flatMap((item) => customerVoiceSourceLinks(item).map((link) => ({ item, link })))
+    .filter(({ link }) => {
+      const verifiedWording = (link.sourceKeywords || []).join(" ").toLowerCase();
+      return identityTerms.some((term) => verifiedWording.includes(term));
+    });
+  return groupCustomerVoiceEvidenceMappings(evidenceMappings);
+}
+
+function companyVoiceStatements(items, field, fallback, limit = 2) {
+  const statements = [...new Set(items
+    .map((item) => compactText(item[field], 132))
+    .filter(Boolean))]
+    .slice(0, limit);
+  if (!statements.length) return `<p class="company-voice-empty">${escapeHtml(fallback)}</p>`;
+  return `<ul>${statements.map((statement) => `<li>${escapeHtml(statement)}</li>`).join("")}</ul>`;
+}
+
+function openCompanyVoiceEvidence(company) {
+  const companyItems = currentCustomerVoiceItems().filter((item) => item.company === company);
+  const evidenceGroups = companyVoiceEvidenceGroups(company, companyItems);
+  byId("decisionEvidenceTitle").textContent = `${company} customer voice sources`;
+  byId("decisionEvidenceSummary").textContent = `${evidenceGroups.length} unique exact source${evidenceGroups.length === 1 ? "" : "s"} behind the customer themes and PM implications shown for ${company}.`;
+  byId("decisionEvidenceList").innerHTML = evidenceGroups.length
+    ? evidenceGroups.map((group) => customerVoiceEvidenceCardMarkup(group)).join("")
+    : `<div class="empty">No vendor-specific exact sources match the active filters.</div>`;
+  byId("decisionEvidenceModal").hidden = false;
+  document.body.classList.add("modal-open");
+  byId("hideDecisionEvidence").focus();
+}
+
 function renderCustomerCompetitorChart(items) {
-  const companies = ["Waters", "Agilent", "Thermo Fisher", "Shimadzu", "SCIEX", "Market-wide"];
-  const rows = companies
+  const vendorRows = Object.keys(customerVoiceIdentityTerms)
     .map((company) => {
       const companyItems = items.filter((item) => item.company === company);
       if (!companyItems.length) return null;
-      const positive = sentimentDepth(companyItems, "Positive");
-      const mixed = sentimentDepth(companyItems, "Mixed");
-      const negative = sentimentDepth(companyItems, "Negative");
-      const total = Math.max(1, positive + mixed + negative);
-      const topCategory = countBy(companyItems, "category")[0]?.[0] || "No category";
-      const topPriority = countBy(companyItems, "buyingPriority")[0]?.[0] || "No priority";
-      return { company, companyItems, positive, mixed, negative, total, topCategory, topPriority };
+      const positiveItems = companyItems.filter((item) => item.sentiment === "Positive");
+      const concernItems = companyItems
+        .filter((item) => item.sentiment !== "Positive")
+        .sort((a, b) => Number(b.sentiment === "Negative") - Number(a.sentiment === "Negative") || b.confidence - a.confidence);
+      return {
+        company,
+        companyItems,
+        positiveItems,
+        concernItems,
+        evidenceGroups: companyVoiceEvidenceGroups(company, companyItems),
+      };
     })
     .filter(Boolean)
-    .sort((a, b) => b.total - a.total || a.company.localeCompare(b.company));
+    .sort((a, b) => Number(b.company === "Waters") - Number(a.company === "Waters") || b.evidenceGroups.length - a.evidenceGroups.length || a.company.localeCompare(b.company));
 
-  byId("customerCompetitorChart").innerHTML = rows.length
+  byId("customerCompetitorChart").innerHTML = vendorRows.length
     ? `
-      <div class="sentiment-legend" aria-label="Sentiment color legend">
-        <span><i class="positive"></i><b>Positive</b> customer-visible strength</span>
-        <span><i class="mixed"></i><b>Mixed</b> qualified or inconsistent feedback</span>
-        <span><i class="negative"></i><b>Negative</b> pain point or complaint</span>
-      </div>
-      <p class="sentiment-legend-note">Each bar shows the share of that company’s estimated mentions by sentiment.</p>
-      ${rows
+      <div class="company-voice-list">
+      ${vendorRows
         .map((row) => `
-          <article class="competitor-sentiment-row">
-            <div class="competitor-sentiment-top">
-              <strong>${escapeHtml(row.company)}</strong>
-              <span>${row.total} estimated mentions</span>
+          <article class="company-voice-card ${row.company === "Waters" ? "is-waters" : ""}">
+            <header class="company-voice-header">
+              <div>
+                <strong>${escapeHtml(row.company)}</strong>
+              </div>
+              <div class="company-voice-meta">
+                <span class="company-voice-count strength">${row.positiveItems.length} strength${row.positiveItems.length === 1 ? "" : "s"}</span>
+                <span class="company-voice-count concern">${row.concernItems.length} concern${row.concernItems.length === 1 ? "" : "s"}</span>
+                ${row.evidenceGroups.length ? `
+                  <button type="button" data-company-voice-sources="${escapeHtml(row.company)}" aria-label="View ${row.evidenceGroups.length} exact customer voice sources for ${escapeHtml(row.company)}">
+                    Sources <b>${row.evidenceGroups.length}</b> →
+                  </button>
+                ` : ""}
+              </div>
+            </header>
+            <div class="company-voice-insight-grid">
+              <section class="company-voice-insight strength">
+                <span>What Customers Value</span>
+                ${companyVoiceStatements(row.positiveItems, "theme", "No validated positive theme in the current sources.")}
+              </section>
+              <section class="company-voice-insight concern">
+                <span>Pain Points and Unmet Needs</span>
+                ${companyVoiceStatements(row.concernItems, "customerLanguageSignal", "No validated concern theme in the current sources.")}
+              </section>
+              <section class="company-voice-insight opportunity">
+                <span>${row.company === "Waters" ? "Waters PM Opportunity" : "Whitespace for Waters"}</span>
+                ${companyVoiceStatements(row.concernItems.length ? row.concernItems : row.companyItems, "pmInterpretation", "More customer evidence is needed before identifying an opportunity.")}
+              </section>
             </div>
-            <div class="stacked-bar" aria-label="${escapeHtml(row.company)} sentiment mix">
-              <span class="positive" style="width:${Math.round((row.positive / row.total) * 100)}%"></span>
-              <span class="mixed" style="width:${Math.round((row.mixed / row.total) * 100)}%"></span>
-              <span class="negative" style="width:${Math.round((row.negative / row.total) * 100)}%"></span>
-            </div>
-            <div class="sentiment-breakdown" aria-label="${escapeHtml(row.company)} sentiment percentages">
-              <span>Positive ${Math.round((row.positive / row.total) * 100)}%</span>
-              <span>Mixed ${Math.round((row.mixed / row.total) * 100)}%</span>
-              <span>Negative ${Math.round((row.negative / row.total) * 100)}%</span>
-            </div>
-            <p><b>Top theme:</b> ${escapeHtml(row.topCategory)} · <b>Buying priority:</b> ${escapeHtml(row.topPriority)}</p>
-            ${voiceLinksMarkup(row.companyItems, "View source links")}
           </article>
         `)
         .join("")}
+      </div>
       `
     : `<div class="empty">No competitor comparison signals match the current filters.</div>`;
 }
@@ -3408,31 +4516,43 @@ function renderCustomerVoiceSummary(items) {
   const positives = items.filter((item) => item.sentiment === "Positive");
   const negatives = items.filter((item) => item.sentiment === "Negative");
   const mixed = items.filter((item) => item.sentiment === "Mixed");
-  const topPain = countBy(items.filter((item) => item.sentiment !== "Positive"), "category")[0];
+  const concernItems = items.filter((item) => item.sentiment !== "Positive");
+  const concernCounts = countBy(concernItems, "category").filter(([category]) => category);
+  const topConcernCount = concernCounts[0]?.[1] || 0;
+  const leadingConcerns = concernCounts.filter(([, count]) => count === topConcernCount);
+  const hasRepeatedConcern = topConcernCount > 1;
+  const concernHeadline = !concernItems.length
+    ? "No repeated concern is supported in this view"
+    : hasRepeatedConcern && leadingConcerns.length === 1
+      ? `${leadingConcerns[0][0]} is the most repeated concern`
+      : hasRepeatedConcern
+        ? `${leadingConcerns.length} concern themes tie for the highest count`
+        : `${concernCounts.length} distinct concern themes; no concern repeats`;
+  const concernDetail = !concernItems.length
+    ? "No mixed or negative records match the active filters."
+    : hasRepeatedConcern
+      ? `The leading theme count is ${topConcernCount}; review its exact mapped sources before prioritizing.`
+      : "Each concern appears once, so the current public evidence does not identify a leading issue.";
   const buyingCounts = countBy(items, "buyingPriority").filter(([priority]) => priority);
   const thirdPlaceCount = buyingCounts[Math.min(2, buyingCounts.length - 1)]?.[1] || 0;
   const leadingBuying = buyingCounts.filter(([, count]) => count >= thirdPlaceCount);
-  const sourceCount = new Set(items.flatMap((item) => item.sourceIds || [])).size;
-  const estimatedMentions = items.reduce((total, item) => total + customerVoiceDepth(item), 0);
   const positiveStrengths = [...new Set(positives.map((item) => item.category).filter(Boolean))].slice(0, 3);
   const cards = [
     {
-      label: "Public evidence coverage",
-      value: `${items.length} traceable records`,
-      detail: `${sourceCount} mapped public sources support an estimated ${estimatedMentions} recurring mentions. This is a weighted trend estimate, not ${estimatedMentions} separate comments.`,
-      link: `<button type="button" class="customer-voice-evidence-link" data-customer-voice-records="all">View all ${items.length} records <span aria-hidden="true">→</span></button>`,
+      label: "Strength signal",
+      headline: positiveStrengths.length ? `${positiveStrengths.join(" and ")} are the observed strengths` : "No positive strength is supported in this view",
+      metric: `${positives.length}/${items.length} summaries positive`,
+      detail: positiveStrengths.length ? "Protect these strengths only after checking the linked sources." : "No positive theme summaries match the active filters.",
+      tone: "positive",
+      link: positives.length ? `<button type="button" class="customer-voice-evidence-link" data-customer-voice-records="positive">Review ${positives.length} summaries and sources <span aria-hidden="true">→</span></button>` : "",
     },
     {
-      label: "Positive feedback",
-      value: `${positives.length} supporting records`,
-      detail: positiveStrengths.length ? `Strengths represented: ${positiveStrengths.join("; ")}.` : "No positive feedback matches the active filters.",
-      link: positives.length ? `<button type="button" class="customer-voice-evidence-link" data-customer-voice-records="positive">View ${positives.length} records <span aria-hidden="true">→</span></button>` : "",
-    },
-    {
-      label: "Concerns to review",
-      value: `${negatives.length + mixed.length} supporting records`,
-      detail: topPain ? `${topPain[0]} appears most often among mixed and negative records.` : "No mixed or negative feedback matches the active filters.",
-      link: negatives.length + mixed.length ? `<button type="button" class="customer-voice-evidence-link" data-customer-voice-records="concerns">View ${negatives.length + mixed.length} records <span aria-hidden="true">→</span></button>` : "",
+      label: "Risk signal",
+      headline: concernHeadline,
+      metric: `${negatives.length + mixed.length}/${items.length} concern summaries`,
+      detail: concernDetail,
+      tone: "concern",
+      link: negatives.length + mixed.length ? `<button type="button" class="customer-voice-evidence-link" data-customer-voice-records="concerns">Review all ${negatives.length + mixed.length} concern themes and sources <span aria-hidden="true">→</span></button>` : "",
     },
   ];
   const topCount = buyingCounts[0]?.[1] || 0;
@@ -3440,9 +4560,9 @@ function renderCustomerVoiceSummary(items) {
   const buyingCard = buyingCounts.length
     ? `
       <article class="customer-voice-card buying-considerations-card">
-        <span>Leading buying considerations</span>
-        <strong>${hasMajority ? escapeHtml(buyingCounts[0][0]) : "No majority"}</strong>
-        <p>${escapeHtml(`${buyingCounts[0][0]} appears most often, but only in ${topCount} of ${items.length} records.`)}</p>
+        <div class="summary-insight-head"><span>Buying signal</span><b>${topCount}/${items.length} leading</b></div>
+        <strong class="summary-insight-title">${hasMajority ? `${escapeHtml(buyingCounts[0][0])} is the dominant buying consideration` : "No buying consideration dominates"}</strong>
+        <p>${escapeHtml(`${buyingCounts[0][0]} leads, but appears in only ${topCount} of ${items.length} theme summaries.`)}</p>
         <div class="buying-consideration-list" aria-label="Leading buying considerations">
           ${leadingBuying.map(([priority, count]) => `
             <button type="button" data-customer-voice-records="buying" data-buying-priority="${escapeHtml(priority)}">
@@ -3456,55 +4576,23 @@ function renderCustomerVoiceSummary(items) {
     `
     : `
       <article class="customer-voice-card buying-considerations-card">
-        <span>Leading buying considerations</span>
-        <strong>No clear priority</strong>
+        <div class="summary-insight-head"><span>Buying signal</span><b>No records</b></div>
+        <strong class="summary-insight-title">No buying consideration is supported</strong>
         <p>Broaden the filters to identify repeated buying considerations.</p>
       </article>
     `;
   byId("customerVoiceSummary").innerHTML = cards
     .map(
-      ({ label, value, detail, link }) => `
-        <article class="customer-voice-card">
-          <span>${escapeHtml(label)}</span>
-          <strong>${escapeHtml(value)}</strong>
+      ({ label, headline, metric, detail, tone, link }) => `
+        <article class="customer-voice-card summary-insight-card summary-insight-${escapeHtml(tone)}">
+          <div class="summary-insight-head"><span>${escapeHtml(label)}</span><b>${escapeHtml(metric)}</b></div>
+          <strong class="summary-insight-title">${escapeHtml(headline)}</strong>
           <p>${escapeHtml(detail)}</p>
           ${link}
         </article>
       `,
     )
     .join("") + buyingCard;
-}
-
-function renderCustomerVoiceSourceLinks(items) {
-  const recordsByUrl = new Map();
-  for (const item of items) {
-    for (const link of customerVoiceSourceLinks(item).filter((candidate) => candidate.status === "exact_record")) {
-      const existing = recordsByUrl.get(link.url) || { link, items: [] };
-      existing.items.push(item);
-      recordsByUrl.set(link.url, existing);
-    }
-  }
-  const records = [...recordsByUrl.values()].sort((a, b) =>
-    new Date(b.link.sourceDate || 0) - new Date(a.link.sourceDate || 0)
-      || a.link.label.localeCompare(b.link.label),
-  );
-  byId("customerVoiceSourceLinks").innerHTML = records.length
-    ? records
-        .map(({ link, items: supportingItems }) => {
-          const products = [...new Set(supportingItems.map((item) => `${item.company}: ${item.product}`))];
-          return `
-            <a class="voice-source-card evidence-record-card" href="${escapeHtml(link.url)}" target="_blank" rel="noreferrer">
-              <div>
-                <strong>${escapeHtml(link.label)}</strong>
-                <p>${escapeHtml(products.join(" · "))}</p>
-                <small>${escapeHtml(link.recordType)} · ${escapeHtml(link.dateType || "Published")} ${escapeHtml(formatDate(link.sourceDate))}</small>
-              </div>
-              <span>Open exact record ↗</span>
-            </a>
-          `;
-        })
-        .join("")
-    : `<div class="empty">No dated, record-level links match the current customer voice filters.</div>`;
 }
 
 function renderPainPointTracker(items) {
@@ -3550,7 +4638,6 @@ function renderPainPointTracker(items) {
                 </div>
               </div>
               <p><b>Product implication:</b> ${escapeHtml(row.categoryItems[0]?.pmInterpretation || "Review source evidence before changing roadmap priority.")}</p>
-              <p class="muted"><b>${escapeHtml(row.watch)}.</b> ${escapeHtml(evidenceDepthLabel(row.depth))}; verify the linked records before changing roadmap priority.</p>
               ${voiceLinksMarkup(row.categoryItems)}
             </article>
           `)
@@ -3567,17 +4654,27 @@ function renderUnmetNeeds(items) {
     ["Better method transfer", "Protect legacy methods while reducing migration and validation risk", ["Method transfer"]],
     ["Lower operating cost", "Quantify cost-per-sample, maintenance intervals, and consumables burden", ["Cost"]],
   ];
-  byId("unmetNeedsList").innerHTML = needs
-    .map(([need, action, triggers]) => {
-      const evidence = items.filter((item) => triggers.some((trigger) => `${item.category} ${item.buyingPriority} ${item.theme}`.toLowerCase().includes(trigger.toLowerCase())));
+  const rankedNeeds = needs
+    .map(([need, action, triggers], originalIndex) => ({
+      need,
+      action,
+      originalIndex,
+      evidence: items.filter((item) => triggers.some((trigger) => `${item.category} ${item.buyingPriority} ${item.theme}`.toLowerCase().includes(trigger.toLowerCase()))),
+    }))
+    .sort((a, b) => b.evidence.length - a.evidence.length || a.originalIndex - b.originalIndex);
+  byId("unmetNeedsList").innerHTML = rankedNeeds
+    .map(({ need, action, evidence }) => {
       return `
         <article class="need-row">
           <div>
             <strong>${escapeHtml(need)}</strong>
             <p>${escapeHtml(action)}</p>
-            ${voiceLinksMarkup(evidence)}
           </div>
-          <span>${evidence.length} supporting records</span>
+          <div class="need-evidence-control">
+            ${evidence.length
+              ? voiceLinksMarkup(evidence, `${evidence.length} supporting record${evidence.length === 1 ? "" : "s"}`)
+              : `<span>0 supporting records</span>`}
+          </div>
         </article>
       `;
     })
@@ -3659,7 +4756,7 @@ function segmentActionCopy(labType, role, priority, maturity, pain) {
   if (/food|environmental|cost|throughput/.test(text)) {
     return "Role inference: quantify throughput, cost-per-sample, and routine maintenance burden against value-positioned competitors.";
   }
-  return "PM use: treat this segment as a public customer-evidence research target before committing roadmap capacity.";
+  return "Recommended product action: treat this segment as a public customer-evidence research target before committing roadmap capacity.";
 }
 
 function renderCompetitiveCustomerSignals(items) {
@@ -3730,7 +4827,7 @@ function renderCustomerEvidenceTable(items) {
               <td>${escapeHtml(item.labType)}</td>
               <td>${escapeHtml(item.userRole)}</td>
               <td><span class="score">${item.confidence}</span></td>
-              <td>${escapeHtml(item.customerLanguageSignal)}</td>
+              <td>${primary ? escapeHtml(sourceKeywordsText(primary)) : "No keyword-validated source"}</td>
               <td>${primary ? `<a href="${escapeHtml(primary.url)}" target="_blank" rel="noreferrer">View source</a><span class="source-name">${escapeHtml(primary.label)}</span>` : escapeHtml(item.sourceName)}</td>
             </tr>
           `;
@@ -3741,11 +4838,13 @@ function renderCustomerEvidenceTable(items) {
 
 function renderCustomerVoiceSignals() {
   const items = currentCustomerVoiceItems();
-  byId("customerVoiceCount").textContent = `${items.length} public evidence records`;
+  const uniqueSources = groupCustomerVoiceEvidenceMappings(
+    items.flatMap((item) => customerVoiceSourceLinks(item).map((link) => ({ item, link }))),
+  );
+  byId("customerVoiceCount").textContent = `${uniqueSources.length} exact public sources`;
   renderCustomerVoiceSummary(items);
   renderSentimentTrendChart(items);
   renderCustomerCompetitorChart(items);
-  renderCustomerVoiceSourceLinks(items);
   renderPainPointTracker(items);
   renderUnmetNeeds(items);
   renderMarketPositioning(items);
@@ -3805,8 +4904,8 @@ function renderMetrics(signals) {
       <strong>${launches.length} total product changes</strong>
       <p><b>${newLaunches}</b> new product or workflow launches <span aria-hidden="true">+</span> <b>${updates}</b> product updates, modules, or automation releases.</p>
       <div class="metric-links">
-        <a href="#launch-evidence" data-launch-view="all">View all ${launches.length}</a>
-        <a href="#launch-evidence" data-launch-view="new">View ${newLaunches} launches only</a>
+        <a href="#decisionEvidenceModal" data-launch-evidence="all">View all ${launches.length} sources</a>
+        <a href="#decisionEvidenceModal" data-launch-evidence="new">View ${newLaunches} launch sources</a>
       </div>
     </article>
     <article class="metric metric-explained">
@@ -3814,7 +4913,7 @@ function renderMetrics(signals) {
       <strong>${lcMsLaunches} of ${launches.length} affect LC-MS</strong>
       <p><b>${lcMsShare}%</b> of tracked product changes relate to LC-MS or LC-MS/MS. This overlaps with the launch and update counts in the first card.</p>
       <div class="metric-links">
-        <a href="#launch-evidence" data-launch-view="lcms">View ${lcMsLaunches} LC-MS records</a>
+        <a href="#decisionEvidenceModal" data-launch-evidence="lcms">View ${lcMsLaunches} LC-MS sources</a>
       </div>
     </article>
     <article class="metric metric-explained">
@@ -3822,7 +4921,7 @@ function renderMetrics(signals) {
       <strong>${competitorNames.length} competitors</strong>
       <p>${competitorNames.length ? `${escapeHtml(competitorNames.join(", "))} have at least one matching product change.` : "No competitor product changes match the active filters."}</p>
       <div class="metric-links">
-        <a href="#launch-evidence" data-launch-view="competitors">View activity by competitor</a>
+        <a href="#decisionEvidenceModal" data-launch-evidence="competitors">View sources by competitor</a>
       </div>
     </article>
   `;
@@ -3841,15 +4940,10 @@ function timelinePosition(dateValue) {
 function renderCompetitiveTimeline() {
   const launches = currentLaunches();
   byId("timelineHorizonLabel").textContent = horizonLabel();
+  byId("timelineLaunchCount").textContent = `${launches.length} ${launches.length === 1 ? "launch" : "launches"}`;
   const competitorOrder = ["Thermo Fisher", "Agilent", "Shimadzu", "SCIEX", "PerkinElmer"];
   const competitors = competitorOrder.filter((competitor) => launches.some((launch) => launch.competitor === competitor));
-  const latestLaunch = launches[0];
   byId("competitiveTimeline").innerHTML = `
-    <div class="launch-board-summary">
-      <strong>${launches.length} matching launches</strong>
-      <span>Open a launch for the official product page, or compare it with Waters.</span>
-      ${latestLaunch ? `<button type="button" data-compare-launch="${escapeHtml(latestLaunch.id)}">Compare latest</button>` : ""}
-    </div>
     ${
       competitors.length
         ? competitors
@@ -3867,16 +4961,28 @@ function renderCompetitiveTimeline() {
                         const color = competitorColors[competitor] || "#176b87";
                         const label = escapeHtml(launch.product);
                         const dateLabel = escapeHtml(formatDate(launch.date));
-                        const productUrl = escapeHtml(timelineUrlForLaunch(launch));
+                        const pressReleaseUrl = pressReleaseUrlForLaunch(launch);
+                        const discoveryUrl = discoveryUrlForLaunch(launch);
+                        const sameEvidenceAndDiscovery = sameSourceUrl(pressReleaseUrl, discoveryUrl);
+                        const primaryUrl = escapeHtml(pressReleaseUrl || discoveryUrl || timelineUrlForLaunch(launch));
+                        const primaryAriaLabel = pressReleaseUrl
+                          ? sameEvidenceAndDiscovery
+                            ? `Open the official launch release and discovery source for ${label} in a new tab`
+                            : `Open the official launch release for ${label} in a new tab`
+                          : `Open the discovery source for ${label} in a new tab`;
                         return `
                           <article class="launch-board-card" style="--accent:${color}">
-                            <a class="launch-board-card-link" href="${productUrl}" target="_blank" rel="noreferrer" aria-label="Open ${label} product source in a new tab">
-                              <span>${dateLabel}</span>
-                              <strong>${label}</strong>
-                              <em>${escapeHtml(launch.signalType)} · ${escapeHtml(launch.technology)}</em>
-                              <span class="launch-board-card-link-cue">View product ↗</span>
-                            </a>
-                            <button class="launch-board-compare" type="button" data-compare-launch="${escapeHtml(launch.id)}" aria-label="Compare ${label} with Waters">Compare with Waters</button>
+                            <div class="launch-board-card-main">
+                              <a class="launch-board-card-link" href="${primaryUrl}" target="_blank" rel="noreferrer" aria-label="${primaryAriaLabel}">
+                                <span>${dateLabel}</span>
+                                <strong>${label}</strong>
+                                <em>${escapeHtml(launch.signalType)} · ${escapeHtml(launch.technology)}</em>
+                              </a>
+                              ${discoveryUrl && !sameEvidenceAndDiscovery ? `<a class="launch-board-discovery" href="${escapeHtml(discoveryUrl)}" target="_blank" rel="noreferrer" aria-label="Open the official page used to discover ${label} in a new tab">Discovery source ↗</a>` : ""}
+                            </div>
+                            <div class="launch-board-card-actions">
+                              <button class="launch-board-compare" type="button" data-compare-launch="${escapeHtml(launch.id)}" aria-label="Compare ${label} with Waters">Compare with Waters</button>
+                            </div>
                           </article>
                         `;
                       })
@@ -3888,20 +4994,12 @@ function renderCompetitiveTimeline() {
             .join("")
         : `<div class="empty">No competitor launches match the current filters.</div>`
     }
-    <div class="timeline-callout">
-      <strong>High priority:</strong> open the latest launch comparison and decide if Waters should respond with product features, workflow packaging, or positioning.
-    </div>
   `;
 }
 
-function renderFeatureGapMatrix() {
+function renderFeatureGapMatrix(signals) {
   byId("featureGapMatrix").innerHTML = `
     <div class="gap-takeaway">
-      <div class="gap-takeaway-main">
-        <span>What this means for Waters</span>
-        <strong>Waters appears defensible on LC performance; software usability is the capability to validate.</strong>
-        <p>Use this as a triage view: defend sensitivity and analysis time, then test whether the software gap is a product UX issue, workflow-packaging gap, or messaging gap.</p>
-      </div>
       <div class="gap-takeaway-actions">
         <article>
           <span>Defend</span>
@@ -3960,57 +5058,8 @@ function renderFeatureGapMatrix() {
       <span><i class="legend-box parity"></i>Yellow: no clear public difference</span>
       <span><i class="legend-box lag"></i>Red: a potential Waters gap needs verification</span>
     </div>
-    <p class="muted">This is a working comparison based on public information. Open the evidence links and verify exact product specifications before using it for a roadmap decision.</p>
+    ${roadmapImpactHeatmapMarkup(signals)}
   `;
-}
-
-function renderSignalBubbles() {
-  const horizon = filters.horizon.value;
-  const trends = [...state.data.trends.themes]
-    .filter((trend) => filters.segment.value === "All" || trend.marketSegment === filters.segment.value)
-    .filter((trend) => filters.technology.value === "All" || trend.technology === filters.technology.value)
-    .sort((a, b) => (b.counts[horizon] || 0) - (a.counts[horizon] || 0))
-    .slice(0, 4);
-  const max = Math.max(...trends.map((trend) => trend.counts[horizon] || 0), 1);
-  byId("signalBubbles").innerHTML = trends.length
-    ? `
-      <div class="pull-summary">
-        <strong>${trends.length} application areas ranked</strong>
-        <span>${horizonLabel()} evidence. Bar = relative publication volume; Momentum = pace vs baseline.</span>
-      </div>
-      ${trends
-        .map((trend, index) => {
-      const count = trend.counts[horizon] || 0;
-      const width = Math.max(6, Math.round((count / max) * 100));
-      const momentum = trendMomentum(trend, horizon);
-      const strengthLabel = pullStrengthLabel(trend.strengthScore);
-      return `
-        <article class="pull-card">
-          <div class="pull-rank">${index + 1}</div>
-          <div class="pull-body">
-            <div class="pull-top">
-              <strong>${escapeHtml(trend.theme)}</strong>
-              <span class="tag ${momentum.tone}" title="${escapeHtml(momentum.note)}">${momentum.label}</span>
-            </div>
-            <div class="pull-meta">
-              <span>${escapeHtml(trend.technology)}</span>
-              <span>${escapeHtml(trend.marketSegment)}</span>
-              <span>Evidence volume: ${count.toLocaleString()} PubMed records</span>
-              <span>${strengthLabel}: ${trend.strengthScore}/100</span>
-            </div>
-            <div class="pull-bar" aria-label="${escapeHtml(trend.theme)} relative evidence volume ${width}%">
-              <div style="width:${width}%"></div>
-            </div>
-            <p class="pull-explain">This bar compares the topic's publication volume with the largest topic in the current filter. ${escapeHtml(momentum.label)} means it is ${escapeHtml(momentum.note)}.</p>
-            <p>${trendPmQuestion(trend)}</p>
-            <a href="${pubMedSearchUrl(trend.query)}" target="_blank" rel="noreferrer">Open evidence search</a>
-          </div>
-        </article>
-      `;
-    })
-    .join("")}
-    `
-    : `<div class="empty">No application pull signals match these filters.</div>`;
 }
 
 function renderDecisionMetrics() {
@@ -4058,54 +5107,6 @@ function renderDecisionMetrics() {
   `;
 }
 
-function renderLaunchTimeline() {
-  const allLaunches = currentLaunches();
-  const view = state.launchDrilldown || "all";
-  const viewLabels = {
-    all: "All product intelligence events",
-    new: "New products and launches",
-    lcms: "LC-MS and LC-MS/MS events",
-    competitors: "Events across active competitors",
-  };
-  let launches = view === "new"
-    ? allLaunches.filter((launch) => /new product|workflow launch|product launch/i.test(launch.signalType))
-    : view === "lcms"
-      ? allLaunches.filter((launch) => launch.technology.includes("LC-MS"))
-      : [...allLaunches];
-  if (view === "competitors") {
-    launches = launches.sort((a, b) => a.competitor.localeCompare(b.competitor) || new Date(b.date) - new Date(a.date));
-  }
-  byId("launchHorizonLabel").textContent = `${horizonLabel()} · ${viewLabels[view]}`;
-  byId("launchCount").textContent = `${launches.length} linked ${launches.length === 1 ? "record" : "records"}`;
-  byId("launchTimeline").innerHTML = launches.length
-    ? `${view !== "all" ? `<div class="launch-filter-banner"><strong>${escapeHtml(viewLabels[view])}</strong><button type="button" data-clear-launch-view>Show all product events</button></div>` : ""}${launches
-        .map(
-          (launch) => `
-            <article class="launch-row">
-              <div class="launch-date">
-                <strong>${formatDate(launch.date)}</strong>
-                <span>${launch.signalType}</span>
-              </div>
-              <div class="launch-body">
-                <div class="recommendation-top">
-                  <strong>${launch.competitor}: ${launch.product}</strong>
-                  <span class="tag">${launch.technology}</span>
-                </div>
-                <p class="muted">${launch.marketSegment} · Confidence ${launch.confidence}</p>
-                <p>${launch.pmImplication}</p>
-                <p class="question">${launch.roadmapQuestion}</p>
-                <div class="launch-actions">
-                  <button type="button" data-compare-launch="${escapeHtml(launch.id)}">Compare vs Waters</button>
-                  <a href="${launch.sourceUrl}" target="_blank" rel="noreferrer">${launch.sourceName}</a>
-                </div>
-              </div>
-            </article>
-          `,
-        )
-        .join("")}`
-    : `<div class="empty">No product launches match the current filters and horizon.</div>`;
-}
-
 function compactText(value, maxLength = 150) {
   const text = String(value || "").replace(/\s+/g, " ").trim();
   if (text.length <= maxLength) return text;
@@ -4116,60 +5117,158 @@ function compactText(value, maxLength = 150) {
 
 function renderConferenceSources() {
   const events = currentConferenceSources();
-  const tierOneCount = events.filter((event) => event.tier === "Tier 1").length;
-  byId("conferenceCount").textContent = `${events.length} upcoming`;
-  byId("conferenceSources").innerHTML = events.length
+  const count = byId("conferenceCount");
+  if (count) count.textContent = `${events.length} upcoming`;
+  const conferenceContainer = byId("conferenceSources");
+  if (!conferenceContainer) return;
+  const pageSize = state.conferencePageSize;
+  const pageCount = Math.max(1, Math.ceil(events.length / pageSize));
+  state.conferencePage = Math.min(Math.max(1, state.conferencePage), pageCount);
+  const pageStart = (state.conferencePage - 1) * pageSize;
+  const visibleEvents = events.slice(pageStart, pageStart + pageSize);
+  const rangeStart = events.length ? pageStart + 1 : 0;
+  const rangeEnd = pageStart + visibleEvents.length;
+  count.textContent = events.length > pageSize
+    ? `Showing ${rangeStart}–${rangeEnd} of ${events.length}`
+    : `${events.length} upcoming`;
+  conferenceContainer.innerHTML = events.length
     ? `
       <div class="conference-summary">
-        <strong>${tierOneCount} Tier 1 upcoming events</strong>
-        <span>Scan view: why it matters, competitor watch, one Waters move.</span>
+        <strong>${events.length} evidence-backed preparation briefs</strong>
+        <span>Confirmed competitor sessions are separated from portfolio-based expectations.</span>
       </div>
-      ${events
-        .slice(0, 8)
-        .map((event) => {
+      ${visibleEvents
+        .map((event, eventIndex) => {
           const monitoringLinks = event.monitoringLinks
-            .map((link) => `<a href="${escapeHtml(link.url)}" target="_blank" rel="noreferrer">${escapeHtml(link.label)}</a>`)
+            .map((link) => `<a href="${escapeHtml(link.url)}" target="_blank" rel="noreferrer">${escapeHtml(link.label)} ↗</a>`)
             .join("");
-          const topCompetitors = event.competitorWatch.slice(0, 4);
-          const captureCue = event.watersPrep[1] || event.industryTrendsToWatch[1] || event.watersPrep[0];
+          const focusItems = (event.scientificFocus || [])
+            .map((focus) => `<li>${escapeHtml(focus)}</li>`)
+            .join("");
+          const competitorItems = (event.competitorContent || [])
+            .map((item) => {
+              const isConfirmed = item.evidenceStatus === "Confirmed in 2026 program";
+              return `
+                <article class="conference-competitor-item">
+                  <div class="conference-evidence-head">
+                    <strong>${escapeHtml(item.competitor)}</strong>
+                    <span class="conference-evidence-status ${isConfirmed ? "confirmed" : "expected"}">${isConfirmed ? "Confirmed" : "Expected · not confirmed"}</span>
+                  </div>
+                  <p>${escapeHtml(item.content)}</p>
+                  <p class="conference-evidence-basis"><strong>How this was derived:</strong> ${escapeHtml(item.evidenceBasis)}</p>
+                  <a href="${escapeHtml(item.sourceUrl)}" target="_blank" rel="noreferrer">${escapeHtml(item.sourceLabel)} ↗</a>
+                </article>
+              `;
+            })
+            .join("");
+          const scientificItems = (event.watersScientificContent || [])
+            .map((item) => `
+              <article class="conference-recommendation-item">
+                <strong>${escapeHtml(item.title)}</strong>
+                <p>${escapeHtml(item.deliverable)}</p>
+                <small><strong>Bring proof:</strong> ${escapeHtml(item.proofNeeded)}</small>
+              </article>
+            `)
+            .join("");
+          const boothItems = (event.boothRecommendations || [])
+            .map((item) => `
+              <article class="conference-booth-item">
+                <a href="${escapeHtml(item.productUrl)}" target="_blank" rel="noreferrer">${escapeHtml(item.product)} ↗</a>
+                <p><strong>Booth role:</strong> ${escapeHtml(item.role)}</p>
+                <p><strong>Lead message:</strong> ${escapeHtml(item.message)}</p>
+              </article>
+            `)
+            .join("");
+          const firstMove = event.watersPrep?.[0] || event.watersScientificContent?.[0]?.deliverable || "Open the brief for preparation recommendations.";
           return `
-            <article class="conference-card compact">
-              <div class="conference-top">
-                <strong>${escapeHtml(event.eventName)}</strong>
-                <span class="tag ${event.tier === "Tier 1" ? "high" : "medium"}">${event.tier}</span>
-              </div>
-              <p class="muted">${escapeHtml(event.dateRange)} · ${event.marketSegments.map(escapeHtml).join(", ")}</p>
-              <p class="conference-why"><strong>Why it matters:</strong> ${escapeHtml(compactText(event.industryTrendsToWatch[0], 145))}</p>
-              <div class="conference-action">
-                <span>Waters move</span>
-                <strong>${escapeHtml(compactText(event.watersPrep[0], 150))}</strong>
-              </div>
-              <div class="conference-brief-row">
-                <div>
-                  <span>Watch</span>
-                  <div class="competitor-watch">
-                    ${topCompetitors.map((competitor) => `<span title="${escapeHtml(competitor.status)}">${escapeHtml(competitor.name)}</span>`).join("")}
+            <details class="conference-card preparation" ${eventIndex === 0 ? "open" : ""}>
+              <summary class="conference-prep-summary">
+                <div class="conference-summary-main">
+                  <div class="conference-top">
+                    <strong>${escapeHtml(event.eventName)}</strong>
+                  </div>
+                  <p class="muted">${escapeHtml(event.dateRange)} · ${event.marketSegments.map(escapeHtml).join(", ")}</p>
+                  <p class="conference-theme"><span>2026 theme</span><strong>${escapeHtml(event.annualTheme)}</strong></p>
+                  <div class="conference-action">
+                    <span>Recommended Waters move</span>
+                    <strong>${escapeHtml(compactText(firstMove, 190))}</strong>
                   </div>
                 </div>
-                <div>
-                  <span>Capture</span>
-                  <p>${escapeHtml(compactText(captureCue, 130))}</p>
+                <span class="conference-expand-label">
+                  <span class="conference-label-view">View prep brief</span>
+                  <span class="conference-label-hide">Hide prep brief</span>
+                </span>
+              </summary>
+              <div class="conference-prep-body">
+                <section class="conference-prep-section conference-focus-section">
+                  <h4>Theme and Scientific Focus</h4>
+                  <ul>${focusItems}</ul>
+                  <p class="conference-why"><strong>Why it matters:</strong> ${escapeHtml(event.industryTrendsToWatch?.[0] || "")}</p>
+                </section>
+                <section class="conference-prep-section conference-competitor-section">
+                  <div class="conference-section-heading">
+                    <h4>What Competitors May Talk About</h4>
+                    <span>Evidence status shown per item</span>
+                  </div>
+                  <div class="conference-competitor-list">${competitorItems}</div>
+                </section>
+                <section class="conference-prep-section">
+                  <h4>Scientific Content Waters Should Prepare</h4>
+                  <div class="conference-recommendation-list">${scientificItems}</div>
+                </section>
+                <section class="conference-prep-section">
+                  <h4>Products and Solutions to Bring to the Booth</h4>
+                  <div class="conference-booth-list">${boothItems}</div>
+                </section>
+                <div class="conference-source-row">
+                  <span>Official event sources</span>
+                  <div class="conference-links">${monitoringLinks}</div>
                 </div>
               </div>
-              <div class="conference-tags">
-                ${event.technologyFocus.slice(0, 3).map((technology) => `<span>${escapeHtml(technology)}</span>`).join("")}
-              </div>
-              <div class="conference-links">${monitoringLinks}</div>
-            </article>
+            </details>
           `;
         })
         .join("")}
     `
     : `<div class="empty">No upcoming conference prep items match the current filters.</div>`;
+
+  const pagination = byId("conferencePagination");
+  pagination.hidden = events.length <= pageSize;
+  pagination.innerHTML = events.length > pageSize
+    ? `
+        <span class="evidence-pagination-status">Page ${state.conferencePage} of ${pageCount}</span>
+        <div class="evidence-pagination-controls">
+          <button type="button" class="evidence-page-button evidence-page-step" data-conference-page="${state.conferencePage - 1}" ${state.conferencePage === 1 ? "disabled" : ""} aria-label="Previous conference page">Previous</button>
+          ${Array.from({ length: pageCount }, (_, index) => index + 1)
+            .map(
+              (page) => `
+                <button type="button" class="evidence-page-button ${page === state.conferencePage ? "is-current" : ""}" data-conference-page="${page}" ${page === state.conferencePage ? 'aria-current="page"' : ""} aria-label="Conference page ${page}">${page}</button>
+              `,
+            )
+            .join("")}
+          <button type="button" class="evidence-page-button evidence-page-step" data-conference-page="${state.conferencePage + 1}" ${state.conferencePage === pageCount ? "disabled" : ""} aria-label="Next conference page">Next</button>
+        </div>
+      `
+    : "";
+}
+
+function setupConferencePagination() {
+  const pagination = byId("conferencePagination");
+  if (!pagination) return;
+  pagination.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-conference-page]");
+    if (!button || button.disabled) return;
+    state.conferencePage = Number(button.dataset.conferencePage) || 1;
+    renderConferenceSources();
+    byId("conferenceCount").scrollIntoView({ behavior: "smooth", block: "center" });
+  });
 }
 
 function renderJournalForumSources() {
-  const sources = state.journalSources?.sources || [];
+  const allSources = state.journalSources?.sources || [];
+  const sources = filters.segment.value === "All"
+    ? allSources
+    : allSources.filter((source) => !source.marketSegments?.length || source.marketSegments.includes(filters.segment.value));
   byId("journalForumCount").textContent = `${sources.length} sources`;
   byId("journalForumSources").innerHTML = sources.length
     ? `
@@ -4177,13 +5276,16 @@ function renderJournalForumSources() {
         <strong>${sources.length} mapped sources</strong>
         <span>Use these for LC application trends, competitor narratives, customer language, and buying-criteria signals.</span>
       </div>
-      ${sources
+      <div class="journal-source-slider">
+        <div id="journalSourceViewport" class="journal-source-slider-viewport" tabindex="0" aria-label="Journal, forum, and trade publication sources">
+          <div class="journal-source-slider-track">
+            ${sources
         .map((source) => {
-          const primarySignals = source.primarySignals
+          const primarySignals = (source.primarySignals || [])
             .slice(0, 4)
             .map((signal) => `<span>${escapeHtml(signal)}</span>`)
             .join("");
-          const coverage = source.coverage
+          const coverage = (source.coverage || [])
             .slice(0, 4)
             .map((item) => `<span>${escapeHtml(item)}</span>`)
             .join("");
@@ -4194,7 +5296,7 @@ function renderJournalForumSources() {
                   <strong>${escapeHtml(source.name)}</strong>
                   <p>${escapeHtml(source.sourceType)}</p>
                 </div>
-                <span class="tag steady">${escapeHtml(source.ingestionStatus)}</span>
+                <span class="tag steady" title="${escapeHtml(source.ingestionStatus)}">${escapeHtml(source.ingestionStatus === "Source mapped" ? "Mapped" : source.ingestionStatus)}</span>
               </div>
               <p class="journal-source-use">${escapeHtml(source.pmDecisionUse)}</p>
               <div class="journal-source-block">
@@ -4210,14 +5312,80 @@ function renderJournalForumSources() {
             </article>
           `;
         })
-        .join("")}
+              .join("")}
+          </div>
+        </div>
+        <nav class="journal-source-slider-controls" aria-label="Browse source cards">
+          <span id="journalSourceSliderStatus" class="evidence-pagination-status" aria-live="polite"></span>
+          <div class="evidence-pagination-controls">
+            <button type="button" class="evidence-page-button evidence-page-step" data-journal-slide="previous" aria-label="Previous source cards">Previous</button>
+            <button type="button" class="evidence-page-button evidence-page-step" data-journal-slide="next" aria-label="Next source cards">Next</button>
+          </div>
+        </nav>
+      </div>
     `
     : `<div class="empty">No journal or forum source map is loaded.</div>`;
+
+  const viewport = byId("journalSourceViewport");
+  if (viewport) {
+    viewport.addEventListener("scroll", updateJournalSourceSlider, { passive: true });
+    journalSourceResizeObserver?.disconnect();
+    journalSourceResizeObserver = new ResizeObserver(updateJournalSourceSlider);
+    journalSourceResizeObserver.observe(viewport);
+    requestAnimationFrame(updateJournalSourceSlider);
+  }
+}
+
+function journalSourceSliderMetrics() {
+  const viewport = byId("journalSourceViewport");
+  const cards = viewport?.querySelectorAll(".journal-source-card") || [];
+  const firstCard = cards[0];
+  if (!viewport || !firstCard) return null;
+  const trackStyles = getComputedStyle(viewport.querySelector(".journal-source-slider-track"));
+  const gap = Number.parseFloat(trackStyles.columnGap) || 12;
+  const columnWidth = firstCard.getBoundingClientRect().width + gap;
+  const visibleColumns = Math.max(1, Math.round((viewport.clientWidth + gap) / columnWidth));
+  const totalColumns = Math.ceil(cards.length / 2);
+  const currentColumn = Math.min(totalColumns - 1, Math.max(0, Math.round(viewport.scrollLeft / columnWidth)));
+  return { viewport, cards, columnWidth, visibleColumns, totalColumns, currentColumn };
+}
+
+function updateJournalSourceSlider() {
+  const metrics = journalSourceSliderMetrics();
+  if (!metrics) return;
+  const { viewport, cards, visibleColumns, totalColumns, currentColumn } = metrics;
+  const maxStartColumn = Math.max(0, totalColumns - visibleColumns);
+  const startColumn = Math.min(currentColumn, maxStartColumn);
+  const startSource = startColumn * 2 + 1;
+  const endSource = Math.min(cards.length, (startColumn + visibleColumns) * 2);
+  byId("journalSourceSliderStatus").textContent = `Showing ${startSource}–${endSource} of ${cards.length}`;
+  document.querySelector('[data-journal-slide="previous"]').disabled = viewport.scrollLeft <= 2;
+  document.querySelector('[data-journal-slide="next"]').disabled = viewport.scrollLeft >= viewport.scrollWidth - viewport.clientWidth - 2;
+}
+
+function setupJournalSourceSlider() {
+  byId("journalForumSources").addEventListener("click", (event) => {
+    const button = event.target.closest("[data-journal-slide]");
+    if (!button || button.disabled) return;
+    const metrics = journalSourceSliderMetrics();
+    if (!metrics) return;
+    const direction = button.dataset.journalSlide === "next" ? 1 : -1;
+    const maxStartColumn = Math.max(0, metrics.totalColumns - metrics.visibleColumns);
+    const targetColumn = Math.min(
+      maxStartColumn,
+      Math.max(0, metrics.currentColumn + direction * metrics.visibleColumns),
+    );
+    metrics.viewport.scrollTo({ left: targetColumn * metrics.columnWidth, behavior: "smooth" });
+  });
 }
 
 function renderFilingInsights() {
   const insights = currentFilingInsights();
-  byId("filingInsightCount").textContent = `${insights.length} insights`;
+  const visibleCompanies = new Set(insights.map((insight) => insight.competitor));
+  const corporateMoveCount = (state.filingInsights?.companyCorporateMoves || [])
+    .filter((group) => visibleCompanies.has(group.competitor))
+    .reduce((total, group) => total + (group.items || []).length, 0);
+  byId("filingInsightCount").textContent = `${insights.length} insights · ${corporateMoveCount} corporate moves`;
   const competitorOrder = ["Agilent", "Thermo Fisher", "Shimadzu", "SCIEX", "PerkinElmer"];
   const groupedInsights = new Map();
   insights.forEach((insight) => {
@@ -4234,12 +5402,13 @@ function renderFilingInsights() {
   byId("filingInsights").innerHTML = insights.length
     ? sortedGroups
         .map(([competitor, companyInsights]) => {
+          const corporateMoves = (state.filingInsights?.companyCorporateMoves || [])
+            .find((group) => group.competitor === competitor);
+          const corporateMoveItems = corporateMoves?.items || [];
           const latestDate = companyInsights
             .map((insight) => new Date(insight.date))
             .filter((date) => !Number.isNaN(date.getTime()))
             .sort((a, b) => b - a)[0];
-          const topImpact = Math.max(...companyInsights.map((insight) => Number(insight.impactScore || 0)));
-          const topPriority = topImpact >= 85 ? "high" : topImpact >= 75 ? "medium" : "low";
           const insightLabel = companyInsights.length === 1 ? "insight" : "insights";
           return `
             <section class="filing-company-group">
@@ -4248,8 +5417,38 @@ function renderFilingInsights() {
                   <strong>${escapeHtml(competitor)}</strong>
                   <p>${companyInsights.length} filing ${insightLabel} · Avg impact ${average(companyInsights, "impactScore")} · Latest ${latestDate ? formatDate(latestDate) : "No date"}</p>
                 </div>
-                <span class="tag ${topPriority}">Top impact ${topImpact}</span>
               </div>
+              <section class="filing-corporate-moves" aria-label="${escapeHtml(competitor)} partners, mergers, and other corporate transactions">
+                <div class="filing-corporate-moves-header">
+                  <div>
+                    <span>Partners, mergers, and other corporate transactions</span>
+                    <strong>${corporateMoveItems.length} named corporate transaction${corporateMoveItems.length === 1 ? "" : "s"} found in the displayed filing</strong>
+                  </div>
+                </div>
+                ${corporateMoveItems.length
+                  ? `
+                    <div class="filing-corporate-move-grid">
+                      ${corporateMoveItems.map((move) => `
+                        <article class="filing-corporate-move-card">
+                          <div class="filing-corporate-move-top">
+                            <span>${escapeHtml(move.type)}</span>
+                            <small>${escapeHtml(move.dateLabel || formatDate(move.date))}</small>
+                          </div>
+                          <strong>${escapeHtml(move.name)}</strong>
+                          <p class="filing-transaction-meta">${escapeHtml(move.value)} · ${escapeHtml(move.status)}</p>
+                          <p><b>Filing disclosure:</b> ${escapeHtml(move.filingEvidence)}</p>
+                          <p class="filing-transaction-readout"><b>Waters implication:</b> ${escapeHtml(move.strategicReadout)}</p>
+                          <div class="filing-search-tags" aria-label="Terms to find this transaction in the filing">
+                            ${(move.searchTerms || []).map((term) => `<code>${escapeHtml(term)}</code>`).join("")}
+                          </div>
+                          <a href="${escapeHtml(move.sourceUrl)}" target="_blank" rel="noreferrer">Open SEC filing ↗</a>
+                        </article>
+                      `).join("")}
+                    </div>
+                  `
+                  : `<p class="filing-corporate-empty">No named acquisition, divestiture, merger, or operating partnership was captured from this displayed filing.</p>`}
+                ${corporateMoves?.coverageNote ? `<p class="filing-corporate-coverage-note">${escapeHtml(corporateMoves.coverageNote)}</p>` : ""}
+              </section>
               <div class="filing-company-body">
                 ${companyInsights
                   .map((insight) => {
@@ -4282,11 +5481,15 @@ function renderFilingInsights() {
                                     <p>${escapeHtml(navigation.whereToLook)}</p>
                                   </article>
                                   <article>
-                                    <span>Waters readout</span>
+                                    <span>Waters implication</span>
                                     <p>${escapeHtml(navigation.watersReadout)}</p>
                                   </article>
                                 </div>
-                                <p class="muted">${escapeHtml(navigation.whyThisSurfacesTheInsight)}</p>
+                                ${
+                                  navigation.whyThisSurfacesTheInsight
+                                    ? `<p class="muted">${escapeHtml(navigation.whyThisSurfacesTheInsight)}</p>`
+                                    : ""
+                                }
                               </details>
                             `
                             : ""
@@ -4334,10 +5537,16 @@ function signalScoreBreakdownMarkup(signal) {
 
 function renderStrategicSignals(signals) {
   const strategicSignals = currentStrategicSignals(signals);
-  const visibleSignals = strategicSignals.slice(0, 6);
-  byId("strategicSignalCount").textContent = visibleSignals.length === strategicSignals.length
-    ? `${strategicSignals.length} strategic moves`
-    : `Showing ${visibleSignals.length} of ${strategicSignals.length}`;
+  const pageSize = state.strategicEvidencePageSize;
+  const pageCount = Math.max(1, Math.ceil(strategicSignals.length / pageSize));
+  state.strategicEvidencePage = Math.min(Math.max(1, state.strategicEvidencePage), pageCount);
+  const pageStart = (state.strategicEvidencePage - 1) * pageSize;
+  const visibleSignals = strategicSignals.slice(pageStart, pageStart + pageSize);
+  const rangeStart = strategicSignals.length ? pageStart + 1 : 0;
+  const rangeEnd = pageStart + visibleSignals.length;
+  byId("strategicSignalCount").textContent = strategicSignals.length > pageSize
+    ? `Showing ${rangeStart}–${rangeEnd} of ${strategicSignals.length}`
+    : `${strategicSignals.length} strategic move${strategicSignals.length === 1 ? "" : "s"}`;
   byId("strategicSignals").innerHTML = strategicSignals.length
     ? visibleSignals
         .map(
@@ -4345,10 +5554,8 @@ function renderStrategicSignals(signals) {
             <article class="strategic-card">
               <div class="strategic-top">
                 <strong>${escapeHtml(signal.title)}</strong>
-                <span class="signal-tier ${escapeHtml((signal.tier || "Low").toLowerCase())}">${escapeHtml(signal.tier || "Low")}</span>
               </div>
               <p class="muted">${escapeHtml(signal.competitor)} · ${escapeHtml(signal.signalType)} · ${formatDate(signal.date)}</p>
-              ${signalScoreBreakdownMarkup(signal)}
               <p>${escapeHtml(signal.summary)}</p>
               ${signal.recommendation ? `<p class="question">${escapeHtml(signal.recommendation)}</p>` : ""}
               <a href="${escapeHtml(signal.sourceUrl)}" target="_blank" rel="noreferrer">${escapeHtml(signal.sourceName)}</a>
@@ -4357,80 +5564,485 @@ function renderStrategicSignals(signals) {
         )
         .join("")
     : `<div class="empty">No public partnership or corporate-strategy records match the selected filters.</div>`;
+
+  const pagination = byId("strategicPagination");
+  pagination.hidden = strategicSignals.length <= pageSize;
+  pagination.innerHTML = strategicSignals.length > pageSize
+    ? `
+        <span class="evidence-pagination-status">Page ${state.strategicEvidencePage} of ${pageCount}</span>
+        <div class="evidence-pagination-controls">
+          <button type="button" class="evidence-page-button evidence-page-step" data-strategic-page="${state.strategicEvidencePage - 1}" ${state.strategicEvidencePage === 1 ? "disabled" : ""} aria-label="Previous page">Previous</button>
+          ${Array.from({ length: pageCount }, (_, index) => index + 1)
+            .map(
+              (page) => `
+                <button type="button" class="evidence-page-button ${page === state.strategicEvidencePage ? "is-current" : ""}" data-strategic-page="${page}" ${page === state.strategicEvidencePage ? 'aria-current="page"' : ""} aria-label="Page ${page}">${page}</button>
+              `,
+            )
+            .join("")}
+          <button type="button" class="evidence-page-button evidence-page-step" data-strategic-page="${state.strategicEvidencePage + 1}" ${state.strategicEvidencePage === pageCount ? "disabled" : ""} aria-label="Next page">Next</button>
+        </div>
+      `
+    : "";
 }
 
-function renderRecommendations(signals) {
-  const filtered = currentRecommendationSet(signals);
-  byId("recommendations").innerHTML = filtered.length
-    ? filtered
-        .slice(0, 3)
-        .map(
-          (rec) => {
-            const evidenceLinks = recommendationEvidenceLinks(rec);
-            const breakdown = rec.priorityBreakdown;
-            const validation = validationNeedsForRecommendation(rec);
-            const workflow = validationWorkflowForRecommendation(rec, breakdown);
+function setupStrategicPagination() {
+  byId("strategicPagination").addEventListener("click", (event) => {
+    const button = event.target.closest("[data-strategic-page]");
+    if (!button || button.disabled) return;
+    state.strategicEvidencePage = Number(button.dataset.strategicPage) || 1;
+    renderStrategicSignals(currentSignals());
+    byId("strategicSignalCount").scrollIntoView({ behavior: "smooth", block: "center" });
+  });
+}
+
+function applicationTrendSignal(trend, horizon) {
+  const counts = trend.counts || {};
+  let currentRate = counts[horizon] || 0;
+  let comparisonRate = currentRate;
+  let comparisonBasis = "selected-period baseline";
+
+  if (horizon === "30d") {
+    comparisonRate = Math.max(0, (counts["60d"] || 0) - (counts["30d"] || 0));
+    comparisonBasis = "previous 30 days";
+  } else if (horizon === "60d") {
+    comparisonRate = Math.max(0, ((counts["1y"] || 0) - (counts["60d"] || 0)) * (60 / 305));
+    comparisonBasis = "prior 10-month pace";
+  } else if (horizon === "90d") {
+    comparisonRate = Math.max(0, ((counts["1y"] || 0) - (counts["90d"] || 0)) * (90 / 275));
+    comparisonBasis = "prior nine-month pace";
+  } else if (horizon === "1y") {
+    comparisonRate = Math.max(0, ((counts["3y"] || 0) - (counts["1y"] || 0)) / 2);
+    comparisonBasis = "prior two-year average";
+  } else if (horizon === "3y") {
+    currentRate = (counts["3y"] || 0) / 3;
+    comparisonRate = Math.max(0, ((counts["5y"] || 0) - (counts["3y"] || 0)) / 2);
+    comparisonBasis = "prior two-year annual rate";
+  }
+
+  const ratio = comparisonRate > 0 ? currentRate / comparisonRate : 1;
+  const changePercent = Math.round((ratio - 1) * 100);
+  const label = changePercent >= 15 ? "Accelerating" : changePercent <= -10 ? "Cooling" : "Steady";
+  const tone = label.toLowerCase();
+  const comparison = changePercent === 0
+    ? `Flat vs ${comparisonBasis}`
+    : `${changePercent > 0 ? "+" : ""}${changePercent}% vs ${comparisonBasis}`;
+  return { ratio, changePercent, label, tone, comparison, comparisonBasis };
+}
+
+function applicationTrendQuestion(trend, horizon) {
+  const theme = trend.theme.toLowerCase();
+  const stage = horizon === "30d" ? "pulse" : horizon === "60d" ? "repeat" : horizon === "90d" ? "quarter" : horizon === "1y" ? "annual" : "structural";
+  const questions = theme.includes("lnp") || theme.includes("rna therapeutics")
+    ? {
+        pulse: "Which LNP method, compatibility, carryover, or LC-MS handoff issue is driving the current pulse?",
+        repeat: "Do repeated LNP method-transfer and sample-throughput records justify focused customer validation?",
+        quarter: "Should LNP method readiness enter the next quarterly application-roadmap review?",
+        annual: "Should Next Gen LC package LNP column, solvent, carryover, throughput, and LC-MS handoff readiness?",
+        structural: "Should LNP compatibility and method transfer become a sustained platform and application capability?",
+      }
+    : theme.includes("oligonucleotide")
+      ? {
+          pulse: "Which oligonucleotide workflow issue should Waters verify first: carryover, method transfer, or software templates?",
+          repeat: "Is repeated oligonucleotide activity translating into a customer need for method-readiness proof?",
+          quarter: "Should oligonucleotide workflow validation enter the next quarterly roadmap queue?",
+          annual: "Should Next Gen LC offer an oligonucleotide method-readiness package with transfer and software proof?",
+          structural: "Which oligonucleotide capabilities should become durable parts of the LC and LC-MS workflow strategy?",
+        }
+      : theme.includes("pfas")
+        ? {
+            pulse: "Is the PFAS pulse tied to a new regulated method, matrix, or quantitation requirement Waters must capture?",
+            repeat: "Do two months of PFAS activity justify refreshing the competitor claims and method matrix?",
+            quarter: "Which PFAS method or compliance proof should enter the next quarterly application review?",
+            annual: "Should Waters package a clearer regulated PFAS workflow across LC-MS/MS, methods, and compliance proof?",
+            structural: "Which PFAS method kits and compliance capabilities deserve sustained investment rather than campaign support?",
+          }
+        : theme.includes("proteomics") || theme.includes("metabolomics")
+          ? {
+              pulse: "Which emerging high-resolution workflow claim needs an immediate Waters proof-point check?",
+              repeat: "Is repeated omics activity exposing a gap in application notes, software, or LC-MS workflow packaging?",
+              quarter: "Which omics workflow should Waters defend in the next quarterly product and applications review?",
+              annual: "Where should Waters strengthen high-resolution LC-MS workflow proof versus competitor platforms?",
+              structural: "Which omics workflows require durable instrument, informatics, and application investment?",
+            }
+          : {
+              pulse: "Which software or automation workflow claim should Waters verify against current competitor releases?",
+              repeat: "Is repeated workflow activity exposing a product UX gap or only a packaging and messaging gap?",
+              quarter: "Which automation or software handoff should enter the next quarterly validation queue?",
+              annual: "Which software and automation capabilities should become product-level differentiators?",
+              structural: "Which workflow, automation, and informatics capabilities require sustained platform investment?",
+            };
+  return questions[stage];
+}
+
+function currentCompetitorApplicationNotes() {
+  const notes = state.competitorApplicationNotes?.notes || [];
+  return notes
+    .filter((note) => inSelectedHorizon(note.date))
+    .filter((note) => geographyMatches(note.geography || "Global"))
+    .filter((note) => filters.segment.value === "All" || note.marketSegment === filters.segment.value)
+    .filter((note) => technologyMatchesFilter(
+      note.technology,
+      filters.technology.value,
+      `${note.title} ${note.applicationArea} ${note.products} ${note.evidenceStatement}`,
+    ))
+    .filter((note) => filters.competitor.value === "All" || note.competitor === filters.competitor.value)
+    .sort((a, b) => new Date(b.date) - new Date(a.date));
+}
+
+function competitorApplicationTheme(note) {
+  const text = `${note.applicationArea} ${note.title}`.toLowerCase();
+  if (/pfas|tfa|environmental/.test(text)) return "PFAS and environmental testing";
+  if (/oligonucleotide|anti-sense|aso/.test(text)) return "Oligonucleotide workflows";
+  if (/proteomics|peptide|intact protein|biopharmaceutical/.test(text)) return "Biopharma characterization";
+  if (/food|pesticide|milk|seafood/.test(text)) return "Food safety testing";
+  if (/metabol|drug/.test(text)) return "Small-molecule discovery";
+  if (/nitrosamine|impurity/.test(text)) return "Pharma quality control";
+  return note.applicationArea;
+}
+
+function rankedApplicationThemes(notes) {
+  const counts = new Map();
+  notes.forEach((note) => {
+    const theme = competitorApplicationTheme(note);
+    counts.set(theme, (counts.get(theme) || 0) + 1);
+  });
+  return [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+}
+
+function competitorApplicationRead(competitor, notes) {
+  const rankedThemes = rankedApplicationThemes(notes);
+  const repeatedThemes = rankedThemes.filter(([, count]) => count > 1).map(([theme]) => theme.toLowerCase());
+  if (repeatedThemes.length) {
+    return `${competitor} is repeatedly publishing proof around ${repeatedThemes.slice(0, 2).join(" and ")}.`;
+  }
+  const areas = [...new Set(notes.map((note) => note.applicationArea.toLowerCase()))].slice(0, 3);
+  return `${competitor} is publishing across ${areas.join(", ")}.`;
+}
+
+function competitorNoteThemeGroups(notes) {
+  const groups = new Map();
+  notes.forEach((note) => {
+    const theme = competitorApplicationTheme(note);
+    if (!groups.has(theme)) groups.set(theme, []);
+    groups.get(theme).push(note);
+  });
+  return [...groups.entries()]
+    .map(([theme, themeNotes]) => ({
+      theme,
+      notes: themeNotes.sort((a, b) => new Date(b.date) - new Date(a.date)),
+      competitors: [...new Set(themeNotes.map((note) => note.competitor))].sort(),
+      latestDate: themeNotes.map((note) => note.date).sort().at(-1),
+    }))
+    .sort((a, b) => b.notes.length - a.notes.length
+      || new Date(b.latestDate) - new Date(a.latestDate)
+      || a.theme.localeCompare(b.theme));
+}
+
+function competitorNoteThemeStatus(group) {
+  if (group.notes.length >= 3) return "Repeated theme";
+  if (group.notes.length >= 2) return "Repeated cluster";
+  const ageDays = Math.max(0, Math.floor((Date.now() - new Date(`${group.latestDate}T00:00:00`)) / 86400000));
+  return ageDays <= 120 ? "Recent single note" : "Single note";
+}
+
+function competitorNoteThemeRead(group) {
+  const count = group.notes.length;
+  const competitorText = group.competitors.length === 1
+    ? group.competitors[0]
+    : `${group.competitors.length} competitors (${group.competitors.join(", ")})`;
+  if (count >= 2) {
+    return `${count} official notes from ${competitorText} make this a repeated competitor-publishing cluster in the selected evidence.`;
+  }
+  return `One official note from ${competitorText} makes this an early competitor signal, not yet a repeated trend.`;
+}
+
+function currentMarketApplicationSources() {
+  const baseSources = state.marketApplicationSources?.sources || [];
+  const journalSources = (state.journalSources?.sources || [])
+    .filter((source) => source.sourceClass === "Peer-reviewed journal")
+    .map((source) => ({
+      id: `journal-${source.id}`,
+      name: source.name,
+      publisher: source.publisher,
+      sourceType: "Peer-reviewed journal",
+      url: source.homepage,
+      marketSegments: source.marketSegments || [],
+      refreshCadence: source.refreshCadence || "Daily metadata check",
+      accessType: source.accessType || "Publisher abstracts; article access varies",
+      description: source.pmDecisionUse,
+      whatToMeasure: source.monitoringMode,
+      whyItMatters: `${source.confidenceUse}${source.extractedRecords ? ` ${source.extractedRecords} recent DOI records are currently indexed for review.` : ""}`,
+      extractedRecords: source.extractedRecords || 0,
+    }));
+  const conferenceSources = (state.conferenceData?.events || [])
+    .filter((event) => event.sourceClass === "Conference/poster")
+    .map((event) => ({
+      id: `conference-${event.id}`,
+      name: event.eventName,
+      publisher: event.publisher,
+      sourceType: "Conference / poster program",
+      url: event.website,
+      marketSegments: event.marketSegments || [],
+      refreshCadence: event.refreshCadence || "Program-window monitoring",
+      accessType: event.accessType || "Official public event pages",
+      description: event.monitoringUse,
+      whatToMeasure: event.whatToMeasure,
+      whyItMatters: event.whyItMatters,
+    }));
+  const regulatorySources = (state.sourceCatalog?.sources || [])
+    .filter((source) => source.sourceClass === "Regulatory/pharmacopeial")
+    .map((source) => ({
+      id: source.id,
+      name: source.source,
+      publisher: source.publisher,
+      sourceType: "Regulatory / pharmacopeial",
+      url: source.url,
+      marketSegments: source.marketSegments || [],
+      refreshCadence: source.refreshCadence || "Weekly official-page check",
+      accessType: source.accessType || "Official public source",
+      description: source.signalCoverage?.join(" · ") || "Official regulatory or pharmacopeial evidence.",
+      whatToMeasure: source.whatToMeasure,
+      whyItMatters: source.whyItMatters,
+    }));
+  const sourceMap = new Map(
+    [...baseSources, ...journalSources, ...conferenceSources, ...regulatorySources]
+      .map((source) => [source.id, source]),
+  );
+  const sources = [...sourceMap.values()];
+  const market = filters.segment.value;
+  return market === "All"
+    ? sources
+    : sources.filter((source) => (source.marketSegments || []).includes(market));
+}
+
+const nonPubmedThemeDefinitions = [
+  {
+    id: "software-ai-data-analysis",
+    label: "AI, chemometrics, and data interpretation",
+    technology: "Software / LC-MS",
+    marketSegments: ["Pharma", "Biopharma", "Clinical", "Academic", "Government"],
+    pattern: /\b(?:artificial intelligence|machine learning|deep learning|neural|informatics|chemometric|algorithm|AI-assisted)\b/i,
+    rule: "AI, machine learning, informatics, chemometrics, or algorithm",
+  },
+  {
+    id: "environmental-food-contaminants",
+    label: "Environmental and food contaminant testing",
+    technology: "LC-MS / MS",
+    marketSegments: ["Environmental", "Food & Beverage", "Government", "Academic"],
+    pattern: /\b(?:environmental|drinking water|water samples?|pesticid|contaminant|pollut|food safety|food contact|aquaculture|cyanotoxin|mycotoxin|plasticizer|residue analysis|adulterant)\b/i,
+    rule: "environmental, water, pesticide, contaminant, food-safety, or residue terms",
+  },
+  {
+    id: "regulated-quantitation-validation",
+    label: "Quantitative LC-MS methods and validation",
+    technology: "LC / LC-MS",
+    marketSegments: ["Pharma", "Biopharma", "CDMO", "Clinical", "Academic"],
+    pattern: /\b(?:validat|quantif|quantitat|therapeutic drug monitoring|bioanalytical|assay|method development|determination of|clinical application|quality by design)\b/i,
+    rule: "validation, quantitation, assay, method-development, or therapeutic-monitoring terms",
+  },
+  {
+    id: "omics-complex-molecules",
+    label: "Omics and complex-molecule characterization",
+    technology: "LC-MS / MS",
+    marketSegments: ["Biopharma", "Clinical", "Academic", "Pharma"],
+    pattern: /\b(?:proteom|metabolom|lipidom|glycom|multi-omics|spatial omics|peptide|protein complex|antibody drug conjugate|biomarker)\b/i,
+    rule: "proteomics, metabolomics, other omics, peptide, protein-complex, ADC, or biomarker terms",
+  },
+  {
+    id: "separation-column-science",
+    label: "Separation, column, and sample-preparation science",
+    technology: "LC / UHPLC",
+    marketSegments: ["Pharma", "Biopharma", "CDMO", "Academic", "Government", "Environmental", "Food & Beverage"],
+    pattern: /\b(?:liquid chromatograph|ion chromatograph|stationary phase|column coupling|two-dimensional chromatograph|multidimensional chromatograph|retention|selectivity|separation|solid.phase extraction|sample preparation|extraction method)\b/i,
+    rule: "chromatography, stationary-phase, separation, retention, selectivity, extraction, or sample-preparation terms",
+  },
+  {
+    id: "advanced-ms-acquisition",
+    label: "High-resolution, imaging, and advanced MS acquisition",
+    technology: "LC-MS / MS",
+    marketSegments: ["Academic", "Biopharma", "Clinical", "Government", "Environmental"],
+    pattern: /\b(?:mass spectrom|LC.?MS|MS\/MS|HRMS|Q.?TOF|Orbitrap|MALDI|ion mobility|MRM|mass spectrometry imaging|ionization)\b/i,
+    rule: "mass-spectrometry, LC-MS, HRMS, Q-TOF, Orbitrap, MALDI, ion-mobility, MRM, or ionization terms",
+  },
+];
+
+function currentNonPubmedSignalData() {
+  const sourceRecords = [];
+  const seen = new Set();
+  const selectedMarket = filters.segment.value;
+  (state.journalSources?.sources || [])
+    .filter((source) => source.sourceClass === "Peer-reviewed journal")
+    .filter((source) => selectedMarket === "All" || (source.marketSegments || []).includes(selectedMarket))
+    .forEach((source) => {
+      (source.recentRecords || []).forEach((record) => {
+        const key = String(record.doi || record.sourceUrl || "").toLowerCase();
+        if (!key || seen.has(key) || !inSelectedHorizon(record.date)) return;
+        seen.add(key);
+        sourceRecords.push({
+          ...record,
+          journal: source.name,
+          publisher: source.publisher,
+          sourceMarketSegments: source.marketSegments || [],
+        });
+      });
+    });
+
+  const groups = new Map(nonPubmedThemeDefinitions.map((definition) => [definition.id, []]));
+  sourceRecords.forEach((record) => {
+    const definition = nonPubmedThemeDefinitions.find((candidate) => candidate.pattern.test(record.title));
+    if (definition) groups.get(definition.id).push(record);
+  });
+
+  const signals = nonPubmedThemeDefinitions
+    .filter((definition) => selectedMarket === "All" || definition.marketSegments.includes(selectedMarket))
+    .filter((definition) => technologyMatchesFilter(definition.technology, filters.technology.value, definition.label))
+    .map((definition) => {
+      const records = groups.get(definition.id)
+        .filter((record) => selectedMarket === "All" || record.sourceMarketSegments.includes(selectedMarket))
+        .sort((a, b) => new Date(b.date) - new Date(a.date) || a.title.localeCompare(b.title));
+      return {
+        ...definition,
+        records,
+        journalCount: new Set(records.map((record) => record.journal)).size,
+        latestDate: records[0]?.date || "",
+      };
+    })
+    .filter((signal) => signal.records.length)
+    .sort((a, b) => b.records.length - a.records.length || b.journalCount - a.journalCount || a.label.localeCompare(b.label));
+
+  const displayedRecords = signals.flatMap((signal) => signal.records);
+
+  return {
+    signals,
+    totalRecords: sourceRecords.length,
+    journalCount: new Set(displayedRecords.map((record) => record.journal)).size,
+    classifiedRecords: displayedRecords.length,
+  };
+}
+
+function nonPubmedObservedSignalsMarkup(signalData, label) {
+  if (!signalData.signals.length) {
+    return `<div class="empty">No dated non-PubMed journal records match the active market, technology, and ${escapeHtml(label.toLowerCase())} filters. Source mappings below are coverage only and are not counted as trends.</div>`;
+  }
+  return `
+    <section class="non-pubmed-signal-layer" aria-labelledby="nonPubmedSignalTitle">
+      <div class="non-pubmed-signal-header">
+        <div>
+          <span>Observed beyond PubMed</span>
+          <h5 id="nonPubmedSignalTitle">${signalData.classifiedRecords} dated records form recurring topics across ${signalData.journalCount} peer-reviewed journals</h5>
+        </div>
+        <div class="non-pubmed-signal-stat"><strong>${signalData.totalRecords}</strong><span>records reviewed</span></div>
+      </div>
+      <div class="non-pubmed-signal-grid">
+        ${signalData.signals.map((signal, index) => `
+          <article class="non-pubmed-signal-card">
+            <span>#${index + 1} observed topic</span>
+            <h6>${escapeHtml(signal.label)}</h6>
+            <strong>${signal.records.length} exact records · ${signal.journalCount} ${signal.journalCount === 1 ? "journal" : "journals"}</strong>
+            <p><b>Matched on:</b> ${escapeHtml(signal.rule)}.</p>
+            <small>Latest record: ${escapeHtml(formatDate(signal.latestDate))}</small>
+            <a href="#decisionEvidenceModal" data-non-pubmed-theme="${escapeHtml(signal.id)}">View ${signal.records.length} exact records →</a>
+          </article>
+        `).join("")}
+      </div>
+    </section>
+  `;
+}
+
+function marketSourceCoverageMarkup(sources) {
+  const selectedMarket = filters.segment.value;
+  const sourceTypes = [...new Set(sources.map((source) => source.sourceType))];
+  const publishers = [...new Set(sources.map((source) => source.publisher))];
+  const scopeNote = selectedMarket === "All"
+    ? "Select a market to see the exact sources and the signal each source contributes."
+    : `These sources are mapped to ${selectedMarket}; they are not constrained by the dashboard time filter until their records are ingested.`;
+
+  if (selectedMarket === "All") {
+    const markets = state.marketApplicationSources?.marketFilters || [];
+    return `
+      <section class="market-source-layer" aria-labelledby="marketSourceLayerTitle">
+        <div class="market-source-layer-header">
+          <div>
+          <span>Source coverage — not trend data</span>
+            <h5 id="marketSourceLayerTitle">${sources.length} additional sources mapped across every market filter</h5>
+            <p>This inventory shows where the app can monitor next. A mapped source is not counted in the observed signals above until a dated, exact record is collected.</p>
+          </div>
+          <div class="market-source-stats">
+            <strong>${sourceTypes.length}</strong><span>source types</span>
+            <strong>${publishers.length}</strong><span>publishers</span>
+          </div>
+        </div>
+        <div class="market-source-coverage-grid">
+          ${markets.map((market) => {
+            const matching = sources.filter((source) => (source.marketSegments || []).includes(market));
+            const types = [...new Set(matching.map((source) => source.sourceType))];
             return `
-              <article class="recommendation evidence-packet">
-                <div class="recommendation-top">
-                  <strong>${escapeHtml(rec.affectedCapability || rec.technology)}</strong>
-                  <span class="action-chip ${actionClass(breakdown.action)}">${escapeHtml(actionDisplayLabel(breakdown.action))}</span>
-                </div>
-                <div class="recommendation-meta">
-                  <span>Status: ${escapeHtml(rec.decisionStatus || "Needs review")}</span>
-                  <span>Priority ${breakdown.total}/100</span>
-                  <span>${evidenceLinks.length} source link${evidenceLinks.length === 1 ? "" : "s"}</span>
-                </div>
-                <details class="recommendation-detail">
-                  <summary>Evidence packet for linked queue decision</summary>
-                  <p><strong>Queue decision:</strong> ${escapeHtml(rec.title)}</p>
-                  <p><strong>Why:</strong> ${escapeHtml(rec.why)}</p>
-                  <p><strong>Why now:</strong> ${escapeHtml(rec.whyNow)}</p>
-                  <p><strong>Artifact to build:</strong> ${escapeHtml(rec.action)}</p>
-                  <p><strong>Deadline and next action:</strong> ${escapeHtml(rec.nextAction)}</p>
-                  <p><strong>Affected capability:</strong> ${escapeHtml(rec.affectedCapability)}</p>
-                  <p><strong>Competitor intent:</strong> ${escapeHtml(competitorIntentForRecommendation(rec, signals))}</p>
-                  <p><strong>Additional public checks:</strong> Customer: ${escapeHtml(validation.customer)}. Competitor: ${escapeHtml(validation.competitor)}. Technical: ${escapeHtml(validation.technical)}. Adoption: ${escapeHtml(validation.adoption)}.</p>
-                  <p><strong>Ready for roadmap review when:</strong> ${escapeHtml(workflow.readyWhen)}</p>
-                  <p class="muted"><strong>Evidence basis:</strong> ${escapeHtml(recommendationEvidenceSummary(rec))}</p>
-                  <p class="muted"><strong>Tradeoff to test:</strong> ${escapeHtml(rec.tradeoff || "Validate public customer voice before committing roadmap capacity.")}</p>
-                  <p class="muted"><strong>Falsifier:</strong> ${escapeHtml(rec.falsifier || "No falsifier recorded.")}</p>
-                  <div class="recommendation-evidence">
-                    ${
-                      evidenceLinks.length
-                        ? evidenceLinks
-                            .map(
-                              (link) => `
-                                <a class="evidence-chip ${escapeHtml(link.health)}" href="${escapeHtml(link.url)}" target="_blank" rel="noreferrer">
-                                  ${escapeHtml(link.label)}
-                                  <span>${escapeHtml(sourceHealthLabel(link.health))}</span>
-                                </a>
-                              `,
-                            )
-                            .join("")
-                        : `<span class="missing-source">No source link available for this recommendation.</span>`
-                    }
-                  </div>
-                </details>
+              <article>
+                <span>${escapeHtml(market)}</span>
+                <a class="market-source-count-link" href="#decisionEvidenceModal" data-market-source-list="${escapeHtml(market)}" aria-label="View ${matching.length} exact sources for ${escapeHtml(market)}">${matching.length} mapped sources</a>
+                <small>${escapeHtml(types.slice(0, 3).join(" · "))}${types.length > 3 ? ` · +${types.length - 3} more` : ""}</small>
               </article>
             `;
-          },
-        )
-        .join("")
-    : `<div class="empty">No recommendation detail matches ${escapeHtml(filterScopeLabel())}.</div>`;
+          }).join("")}
+        </div>
+        <p class="market-source-scope-note">${escapeHtml(scopeNote)}</p>
+      </section>
+    `;
+  }
+
+  return `
+    <section class="market-source-layer" aria-labelledby="marketSourceLayerTitle">
+      <div class="market-source-layer-header">
+        <div>
+          <span>Source coverage — not trend data · ${escapeHtml(selectedMarket)}</span>
+          <h5 id="marketSourceLayerTitle">${sources.length} additional sources for this market</h5>
+          <p>Each source contributes a different observable signal. No single source is treated as market demand or adoption by itself.</p>
+        </div>
+        <div class="market-source-stats">
+          <strong>${sourceTypes.length}</strong><span>source types</span>
+          <strong>${publishers.length}</strong><span>publishers</span>
+        </div>
+      </div>
+      <div class="market-source-grid">
+        ${sources.map((source) => `
+          <article class="market-source-card">
+            <div class="market-source-card-top">
+              <span>${escapeHtml(source.sourceType)}</span>
+              <small>${escapeHtml(source.refreshCadence)}</small>
+            </div>
+            <h6>${escapeHtml(source.name)}</h6>
+            <p class="market-source-publisher">${escapeHtml(source.publisher)} · ${escapeHtml(source.accessType)}</p>
+            <p>${escapeHtml(source.description)}</p>
+            <p><strong>Track:</strong> ${escapeHtml(source.whatToMeasure)}</p>
+            <p class="market-source-decision-use"><strong>Why it matters:</strong> ${escapeHtml(source.whyItMatters)}</p>
+            <a href="${escapeHtml(source.url)}" target="_blank" rel="noreferrer">Open exact source ↗</a>
+          </article>
+        `).join("")}
+      </div>
+      <p class="market-source-scope-note">${escapeHtml(scopeNote)}</p>
+    </section>
+  `;
 }
 
-function renderTrends() {
-  const horizon = filters.horizon.value;
-  const label = filters.horizon.options[filters.horizon.selectedIndex].text;
-  byId("horizonLabel").textContent = label;
-  const trends = state.data.trends.themes
-    .filter((trend) => filters.segment.value === "All" || trend.marketSegment === filters.segment.value)
-    .filter((trend) => filters.technology.value === "All" || trend.technology === filters.technology.value)
-    .sort((a, b) => (b.counts[horizon] || 0) - (a.counts[horizon] || 0));
-  byId("trendList").innerHTML = trends.length
-    ? trends
-    .map((trend, index) => {
+function marketApplicationTrendMarkup(trends, horizon, label) {
+  if (!trends.length) return `<div class="empty">No market-wide publication trends match the current market and technology filters.</div>`;
+  const fastest = trends[0];
+  const largest = [...trends].sort((a, b) => (b.trend.counts[horizon] || 0) - (a.trend.counts[horizon] || 0))[0];
+  return `
+    <div class="trend-horizon-summary">
+      <div>
+        <span>Fastest change in ${escapeHtml(label.toLowerCase())}</span>
+        <strong>${escapeHtml(fastest.trend.theme)}</strong>
+        <small>${escapeHtml(fastest.signal.comparison)}</small>
+      </div>
+      <div>
+        <span>Largest scientific evidence base</span>
+        <strong>${escapeHtml(largest.trend.theme)}</strong>
+        <small>${(largest.trend.counts[horizon] || 0).toLocaleString()} PubMed records</small>
+      </div>
+      <p>Publication pace indicates where scientific work is growing. It does not measure market share, vendor adoption, or customer demand by itself.</p>
+    </div>
+    ${trends.map(({ trend, signal }, index) => {
       const count = trend.counts[horizon] || 0;
       return `
         <article class="trend-evidence-card">
@@ -4446,71 +6058,115 @@ function renderTrends() {
             <strong>${count.toLocaleString()}</strong>
             <span>PubMed records in ${escapeHtml(label.toLowerCase())}</span>
           </div>
+          <div class="trend-comparison">
+            <strong>${escapeHtml(signal.comparison)}</strong>
+          </div>
+          <p class="trend-pm-question"><strong>PM question:</strong> ${escapeHtml(applicationTrendQuestion(trend, horizon))}</p>
           <div class="trend-card-footer">
-            <span>Search is limited to the selected time window</span>
-            <a class="trend-source-link" href="${escapeHtml(pubMedTrendSearchUrl(trend.query, horizon))}" target="_blank" rel="noreferrer" aria-label="View PubMed sources for ${escapeHtml(trend.theme)} in ${escapeHtml(label.toLowerCase())}">View sources ↗</a>
+            <a class="trend-source-link" href="${escapeHtml(pubMedTrendSearchUrl(trend.query, horizon))}" target="_blank" rel="noreferrer" aria-label="View PubMed sources for ${escapeHtml(trend.theme)} in ${escapeHtml(label.toLowerCase())}">View PubMed sources ↗</a>
           </div>
         </article>
       `;
-    })
-    .join("")
-    : `<div class="empty">No trends match the current filters.</div>`;
+    }).join("")}
+  `;
 }
 
-function renderRoadmapSignals(signals) {
-  const launches = currentLaunches();
-  if (launches.length) {
-    byId("roadmapSignals").innerHTML = launches
-      .slice(0, 5)
-      .map(
-        (launch) => `
-          <article class="connector">
-            <div class="recommendation-top">
-              <strong>${launch.product}</strong>
-              <span class="tag ${launch.confidence >= 85 ? "high" : "medium"}">${launch.competitor}</span>
+function competitorApplicationNoteMarkup(notes, label) {
+  if (!notes.length) return `<div class="empty">No official competitor application notes match the active filters and ${escapeHtml(label.toLowerCase())} horizon. This is a competitor-source coverage gap, not a market-trend conclusion.</div>`;
+  const themes = competitorNoteThemeGroups(notes);
+  const competitorGroups = new Map();
+  notes.forEach((note) => {
+    if (!competitorGroups.has(note.competitor)) competitorGroups.set(note.competitor, []);
+    competitorGroups.get(note.competitor).push(note);
+  });
+  const competitors = [...competitorGroups.entries()].sort((a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0]));
+  const leadingCompetitor = competitors[0];
+  const leadingTheme = themes[0];
+  const latestNote = [...notes].sort((a, b) => new Date(b.date) - new Date(a.date))[0];
+  return `
+    <div class="competitor-application-summary">
+      <div>
+        <span>Most repeated competitor-note theme</span>
+        <strong>${escapeHtml(leadingTheme.theme)} · ${leadingTheme.notes.length} ${leadingTheme.notes.length === 1 ? "note" : "notes"}</strong>
+      </div>
+      <div>
+        <span>${competitors.length === 1 ? "Selected competitor" : "Most active note publisher"}</span>
+        <strong>${escapeHtml(leadingCompetitor[0])} · ${leadingCompetitor[1].length} ${leadingCompetitor[1].length === 1 ? "note" : "notes"}</strong>
+      </div>
+      <div>
+        <span>Latest official note activity</span>
+        <strong>${escapeHtml(formatDate(latestNote.date))} · ${escapeHtml(competitorApplicationTheme(latestNote))}</strong>
+      </div>
+    </div>
+    <div class="competitor-note-theme-grid">
+      ${themes.map((group, index) => `
+          <article class="competitor-note-theme-card">
+            <div class="competitor-note-theme-header">
+              <div>
+                <span>#${index + 1} · ${escapeHtml(competitorNoteThemeStatus(group))}</span>
+                <h5>${escapeHtml(group.theme)}</h5>
+              </div>
+              <strong>${group.notes.length} ${group.notes.length === 1 ? "note" : "notes"}</strong>
             </div>
-            <p class="muted">${launch.technology} · ${launch.marketSegment} · ${formatDate(launch.date)}</p>
-            <p>${launch.roadmapQuestion}</p>
+            <p class="competitor-note-theme-read"><strong>Observed note pattern:</strong> ${escapeHtml(competitorNoteThemeRead(group))}</p>
+            <div class="competitor-note-theme-meta">
+              <span>Competitors: ${escapeHtml(group.competitors.join(", "))}</span>
+              <span>Latest: ${escapeHtml(formatDate(group.latestDate))}</span>
+            </div>
+            <div class="competitor-application-note-list">
+              ${group.notes.map((note) => `
+                <article class="competitor-application-note">
+                  <div>
+                    <span>${escapeHtml(note.dateLabel || formatDate(note.date))} · ${escapeHtml(note.competitor)} · ${escapeHtml(note.applicationArea)}</span>
+                    <strong>${escapeHtml(note.title)}</strong>
+                    <small>${escapeHtml(note.products)}</small>
+                    <p>${escapeHtml(note.evidenceStatement)}</p>
+                  </div>
+                  <a href="${escapeHtml(note.sourceUrl)}" target="_blank" rel="noreferrer">Open exact ${escapeHtml(note.sourceType.toLowerCase())} ↗</a>
+                </article>
+              `).join("")}
+            </div>
           </article>
-        `,
-      )
-      .join("");
-    return;
-  }
+      `).join("")}
+    </div>
+  `;
+}
+
+function renderTrends() {
   const horizon = filters.horizon.value;
+  const label = filters.horizon.options[filters.horizon.selectedIndex].text;
+  byId("horizonLabel").textContent = label;
   const trends = state.data.trends.themes
     .filter((trend) => filters.segment.value === "All" || trend.marketSegment === filters.segment.value)
-    .filter((trend) => filters.technology.value === "All" || trend.technology === filters.technology.value)
-    .sort((a, b) => (b.counts[horizon] || 0) - (a.counts[horizon] || 0))
-    .slice(0, 4);
-  const competitorCount = new Set(signals.map((signal) => signal.competitor).filter((name) => name !== "Market-wide")).size;
-  byId("roadmapSignals").innerHTML = trends.length
-    ? trends
-        .map((trend) => {
-          const count = trend.counts[horizon] || 0;
-          const priority = count >= 1000 || trend.strengthScore >= 75 ? "High" : "Medium";
-          return `
-            <article class="connector">
-              <div class="recommendation-top">
-                <strong>${trend.theme}</strong>
-                <span class="tag ${priority.toLowerCase()}">${priority}</span>
-              </div>
-              <p class="muted">${count.toLocaleString()} PubMed records in the selected horizon.</p>
-              <p>Role question: does Waters need stronger workflow coverage, proof points, or capability prioritization here?</p>
-            </article>
-          `;
-        })
-        .join("") +
-      `
-        <article class="connector">
-          <div class="recommendation-top">
-            <strong>Competitor comparison review</strong>
-            <span class="tag medium">${competitorCount} competitors</span>
-          </div>
-          <p>Compare evidence density by competitor before changing roadmap priority.</p>
-        </article>
-      `
-    : `<div class="empty">No roadmap questions match the current filters.</div>`;
+    .filter((trend) => technologyMatchesFilter(trend.technology, filters.technology.value, `${trend.theme} ${trend.query || ""}`))
+    .map((trend) => ({ trend, signal: applicationTrendSignal(trend, horizon) }))
+    .sort((a, b) => b.signal.ratio - a.signal.ratio || (b.trend.counts[horizon] || 0) - (a.trend.counts[horizon] || 0));
+  const competitorNotes = currentCompetitorApplicationNotes();
+  const marketSources = currentMarketApplicationSources();
+  const nonPubmedSignals = currentNonPubmedSignalData();
+  byId("trendList").innerHTML = `
+    <section class="application-trend-section" aria-labelledby="marketApplicationTrendTitle">
+      <div class="application-trend-section-header">
+        <span>1</span>
+        <div>
+          <h4 id="marketApplicationTrendTitle">What the Market Is Doing</h4>
+        </div>
+      </div>
+      ${nonPubmedObservedSignalsMarkup(nonPubmedSignals, label)}
+      <div class="application-trend-grid">${marketApplicationTrendMarkup(trends, horizon, label)}</div>
+    </section>
+    <section class="application-trend-section competitor-view" aria-labelledby="competitorApplicationTrendTitle">
+      <div class="application-trend-section-header">
+        <span>2</span>
+        <div>
+          <h4 id="competitorApplicationTrendTitle">Competitor Application-Note Trends</h4>
+          <p>Official application and technical notes are analyzed independently to show the themes competitors choose to prove and promote.</p>
+        </div>
+      </div>
+      ${competitorApplicationNoteMarkup(competitorNotes, label)}
+    </section>
+  `;
+  byId("marketSourceCoverage").innerHTML = marketSourceCoverageMarkup(marketSources);
 }
 
 function displaySignals(signals) {
@@ -4522,11 +6178,14 @@ function displaySignals(signals) {
 
 function renderSignals(signals) {
   const visibleSignals = displaySignals(signals);
-  const rowLimit = filters.horizon.value === "3y" ? 120 : 60;
+  const pageSize = state.signalPageSize;
+  const pageCount = Math.max(1, Math.ceil(visibleSignals.length / pageSize));
+  state.signalPage = Math.min(Math.max(1, state.signalPage), pageCount);
+  const pageStart = (state.signalPage - 1) * pageSize;
+  const pageSignals = visibleSignals.slice(pageStart, pageStart + pageSize);
   byId("signalCount").textContent = `${visibleSignals.length} public records`;
   byId("signalTable").innerHTML = visibleSignals.length
-    ? visibleSignals
-        .slice(0, rowLimit)
+    ? pageSignals
         .map(
           (signal) => `
             <tr>
@@ -4546,13 +6205,35 @@ function renderSignals(signals) {
         )
         .join("")
     : `<tr><td colspan="6"><div class="empty">No signals match the current filters.</div></td></tr>`;
+
+  const pagination = byId("signalPagination");
+  pagination.hidden = visibleSignals.length <= pageSize;
+  pagination.innerHTML = visibleSignals.length > pageSize
+    ? `
+        <span class="evidence-pagination-status">Showing ${pageStart + 1}–${Math.min(pageStart + pageSize, visibleSignals.length)} of ${visibleSignals.length} · Page ${state.signalPage} of ${pageCount}</span>
+        <div class="evidence-pagination-controls">
+          <button type="button" class="evidence-page-button evidence-page-step" data-signal-page="${state.signalPage - 1}" ${state.signalPage === 1 ? "disabled" : ""} aria-label="Previous public evidence page">Previous</button>
+          <button type="button" class="evidence-page-button evidence-page-step" data-signal-page="${state.signalPage + 1}" ${state.signalPage === pageCount ? "disabled" : ""} aria-label="Next public evidence page">Next</button>
+        </div>
+      `
+    : "";
+}
+
+function setupSignalPagination() {
+  byId("signalPagination").addEventListener("click", (event) => {
+    const button = event.target.closest("[data-signal-page]");
+    if (!button || button.disabled) return;
+    state.signalPage = Number(button.dataset.signalPage) || 1;
+    renderSignals(filteredSignalsForHorizon(filters.horizon.value));
+    byId("signalCount").scrollIntoView({ behavior: "smooth", block: "center" });
+  });
 }
 
 function trendRecordTotalForHorizon(horizonValue) {
   if (!state.data) return 0;
   return state.data.trends.themes
     .filter((trend) => filters.segment.value === "All" || trend.marketSegment === filters.segment.value)
-    .filter((trend) => filters.technology.value === "All" || trend.technology === filters.technology.value)
+    .filter((trend) => technologyMatchesFilter(trend.technology, filters.technology.value, `${trend.theme} ${trend.query || ""}`))
     .reduce((total, trend) => total + Number(trend.counts[horizonValue] || 0), 0);
 }
 
@@ -4594,15 +6275,12 @@ function horizonDeltaSummary() {
 }
 
 function renderSourceCounts(signals) {
-  const sources = state.sourceCatalog?.sources || [];
   const launches = currentLaunches();
   const customerVoiceSignals = currentCustomerVoiceItems();
-  const customerMentions = customerVoiceSignals.reduce((total, item) => total + customerVoiceDepth(item), 0);
   const filingInsights = currentFilingInsights();
   const publicationRecords = trendRecordTotalForHorizon(filters.horizon.value);
   const upcomingConferenceSources = currentConferenceSources();
   const activeCompetitors = new Set(launches.map((launch) => launch.competitor)).size;
-  const issues = sources.filter((source) => ["bad", "blocked"].includes(source.health)).length;
   const horizonDelta = horizonDeltaSummary();
   byId("sourceCounts").innerHTML = `
     <div class="source-pill"><span>Role view</span><strong>${escapeHtml(state.view)}</strong></div>
@@ -4611,14 +6289,13 @@ function renderSourceCounts(signals) {
       <span>${escapeHtml(horizonDelta.label)}</span>
       <strong><small>${escapeHtml(horizonDelta.launches)}</small><small>${escapeHtml(horizonDelta.signals)}</small></strong>
     </div>
-    <a class="source-pill source-pill-link" href="#launch-evidence" data-evidence-target="launch-evidence" aria-label="View ${launches.length} matching launches"><span>Matching launches</span><strong>${launches.length}<small>View →</small></strong></a>
+    <a class="source-pill source-pill-link" href="#competitive-timeline-section" data-evidence-target="competitive-timeline-section" aria-label="View ${launches.length} matching launches"><span>Matching launches</span><strong>${launches.length}<small>View →</small></strong></a>
     <a class="source-pill source-pill-link" href="#evidence-signal-feed" data-evidence-target="evidence-signal-feed" aria-label="View ${displaySignals(signals).length} public evidence records"><span>Public evidence records</span><strong>${displaySignals(signals).length}<small>View →</small></strong></a>
     <a class="source-pill source-pill-link" href="#filing-evidence" data-evidence-target="filing-evidence" aria-label="View ${filingInsights.length} filing insights"><span>Filing insights</span><strong>${filingInsights.length}<small>View →</small></strong></a>
     <div class="source-pill"><span>Publication records</span><strong>${publicationRecords.toLocaleString()}</strong></div>
-    <a class="source-pill source-pill-link" href="#customer-voice" data-evidence-target="customer-voice" aria-label="View ${customerVoiceSignals.length} public customer voice records and ${customerMentions} estimated mentions"><span>Public customer voice</span><strong>${customerVoiceSignals.length} records / ${customerMentions} estimated mentions<small>View →</small></strong></a>
+    <a class="source-pill source-pill-link" href="#customer-voice" data-evidence-target="customer-voice" aria-label="View ${customerVoiceSignals.length} customer-voice theme summaries and their public sources"><span>Public customer voice</span><strong>${customerVoiceSignals.length} theme summaries<small>View →</small></strong></a>
     <a class="source-pill source-pill-link" href="#competitor-intent-section" data-evidence-target="competitor-intent-section" aria-label="View ${activeCompetitors} competitors with matching launches"><span>Competitors with launches</span><strong>${activeCompetitors}<small>View →</small></strong></a>
-    <a class="source-pill source-pill-link" href="#conference-intelligence" data-evidence-target="conference-intelligence" aria-label="View ${upcomingConferenceSources.length} upcoming conferences"><span>Upcoming conferences</span><strong>${upcomingConferenceSources.length}<small>View →</small></strong></a>
-    <a class="source-pill source-pill-link subtle" href="#source-health" data-evidence-target="source-health" aria-label="Review ${issues} source link issues"><span>Links needing review</span><strong>${issues}<small>Review →</small></strong></a>
+    <a class="source-pill source-pill-link" href="conference.html" aria-label="Open ${upcomingConferenceSources.length} upcoming conferences on the conference page"><span>Upcoming conferences</span><strong>${upcomingConferenceSources.length}<small>View →</small></strong></a>
   `;
 }
 
@@ -4633,12 +6310,11 @@ function populateCompetitors() {
 
 function render() {
   state.view = filters.role.value;
+  setCustomerVoiceTab(state.activeCustomerVoiceTab);
   const signals = currentSignals();
-  byId("viewTitle").textContent = "Competitive Intelligence Engine";
+  byId("viewTitle").textContent = "Next Gen Competitive Intelligence Engine";
   byId("currentViewBadge").textContent = viewCopy[state.view].viewLabel;
   byId("viewSubtitle").textContent = viewCopy[state.view].subtitle;
-  byId("focusTitle").textContent = viewCopy[state.view].title.replace(/:.*/, "");
-  byId("focusSubtitle").textContent = viewCopy[state.view].decisionQuestion;
   renderSourceCounts(signals);
   renderDirectorSummary(signals);
   renderDecisionPacket(signals);
@@ -4646,24 +6322,19 @@ function render() {
   renderOverallTrendAnalysis(signals);
   renderCompetitorIntentCards(signals);
   renderCompetitorCoverageHealth(signals);
-  renderRoadmapImpactMap(signals);
   renderCustomerVoiceSignals();
   renderMetrics(signals);
-  renderCoverageGaps();
   renderProductComparator();
   renderCompetitiveTimeline();
-  renderFeatureGapMatrix();
-  renderSignalBubbles();
+  renderFeatureGapMatrix(signals);
   renderFilingInsights();
   renderStrategicSignals(signals);
   renderConferenceSources();
   renderJournalForumSources();
   renderShortHorizonDefense();
-  renderLaunchTimeline();
-  renderRecommendations(signals);
   renderTrends();
-  renderRoadmapSignals(signals);
   renderSignals(signals);
+  scheduleSectionNavRefresh();
 }
 
 async function loadData() {
@@ -4674,7 +6345,11 @@ async function loadData() {
     conferenceResponse,
     conferencePrepResponse,
     journalSourceResponse,
+    competitorApplicationNoteResponse,
+    marketApplicationSourceResponse,
     productComparisonResponse,
+    historicalProductCatalogResponse,
+    historicalWatersCatalogResponse,
     technicalComparisonResponse,
     filingInsightResponse,
     customerVoiceResponse,
@@ -4686,7 +6361,11 @@ async function loadData() {
     fetch("data/conference_sources.json", { cache: "no-store" }),
     fetch("data/conference_preparation.json", { cache: "no-store" }),
     fetch("data/journal_sources.json", { cache: "no-store" }),
+    fetch("data/competitor_application_notes.json", { cache: "no-store" }),
+    fetch("data/market_application_sources.json", { cache: "no-store" }),
     fetch("data/product_comparisons.json", { cache: "no-store" }),
+    fetch("data/historical_product_catalog.json", { cache: "no-store" }),
+    fetch("data/historical_waters_catalog.json", { cache: "no-store" }),
     fetch("data/technical_comparisons.json", { cache: "no-store" }),
     fetch("data/filing_insights.json", { cache: "no-store" }),
     fetch("data/customer_voice.json", { cache: "no-store" }),
@@ -4698,7 +6377,11 @@ async function loadData() {
   if (!conferenceResponse.ok) throw new Error(`Conference source data load failed: ${conferenceResponse.status}`);
   if (!conferencePrepResponse.ok) throw new Error(`Conference prep data load failed: ${conferencePrepResponse.status}`);
   if (!journalSourceResponse.ok) throw new Error(`Journal and forum source data load failed: ${journalSourceResponse.status}`);
+  if (!competitorApplicationNoteResponse.ok) throw new Error(`Competitor application-note data load failed: ${competitorApplicationNoteResponse.status}`);
+  if (!marketApplicationSourceResponse.ok) throw new Error(`Market application source data load failed: ${marketApplicationSourceResponse.status}`);
   if (!productComparisonResponse.ok) throw new Error(`Product comparison data load failed: ${productComparisonResponse.status}`);
+  if (!historicalProductCatalogResponse.ok) throw new Error(`Historical product catalog load failed: ${historicalProductCatalogResponse.status}`);
+  if (!historicalWatersCatalogResponse.ok) throw new Error(`Historical Waters catalog load failed: ${historicalWatersCatalogResponse.status}`);
   if (!technicalComparisonResponse.ok) throw new Error(`Technical comparison data load failed: ${technicalComparisonResponse.status}`);
   if (!filingInsightResponse.ok) throw new Error(`Filing insight data load failed: ${filingInsightResponse.status}`);
   if (!customerVoiceResponse.ok) throw new Error(`Customer voice data load failed: ${customerVoiceResponse.status}`);
@@ -4709,7 +6392,11 @@ async function loadData() {
   state.conferenceData = await conferenceResponse.json();
   state.conferencePrep = await conferencePrepResponse.json();
   state.journalSources = await journalSourceResponse.json();
+  state.competitorApplicationNotes = await competitorApplicationNoteResponse.json();
+  state.marketApplicationSources = await marketApplicationSourceResponse.json();
   state.productComparisons = await productComparisonResponse.json();
+  state.historicalProductCatalog = await historicalProductCatalogResponse.json();
+  state.historicalWatersCatalog = await historicalWatersCatalogResponse.json();
   state.technicalComparisons = await technicalComparisonResponse.json();
   state.filingInsights = await filingInsightResponse.json();
   state.customerVoice = await customerVoiceResponse.json();
@@ -4717,22 +6404,36 @@ async function loadData() {
   byId("asOf").textContent = `Real public data as of ${state.data.asOfDate}`;
   renderRefreshStatus();
   populateCompetitors();
-  setupCollapsiblePanels();
-  setupSectionNavigator();
   setupSourceCountLinks();
   setupMetricDrilldowns();
   setupDecisionEvidenceDrilldowns();
   setupOverallTrendEvidenceLinks();
   setupCompetitorIntentEvidenceLinks();
+  setupRoadmapImpactEvidenceLinks();
+  setupMarketSourceLinks();
   setupSentimentMentionDrilldowns();
   setupCustomerVoiceSummaryDrilldowns();
+  setupCompanyVoiceDrilldowns();
   setupCustomerVoiceTabs();
   setupComparisonPanel();
+  setupConferencePagination();
+  setupJournalSourceSlider();
+  setupStrategicPagination();
+  setupSignalPagination();
   render();
+  const initialSectionId = window.location.hash.slice(1);
+  if (sectionNavigatorTargets.some((target) => target.id === initialSectionId)) {
+    navigateToDashboardSection(initialSectionId, { behavior: "auto", updateHistory: false });
+  }
   schedulePublishedDataCheck();
 }
 
-Object.values(filters).forEach((filter) => filter.addEventListener("change", render));
+Object.values(filters).forEach((filter) => filter.addEventListener("change", () => {
+  state.conferencePage = 1;
+  state.strategicEvidencePage = 1;
+  state.signalPage = 1;
+  render();
+}));
 
 byId("customerVoiceSearch").addEventListener("input", (event) => {
   customerVoiceSearchTerm = event.target.value;
@@ -4740,19 +6441,6 @@ byId("customerVoiceSearch").addEventListener("input", (event) => {
 });
 
 byId("exportCustomerVoice").addEventListener("click", exportCustomerVoiceSummary);
-
-byId("resetFilters").addEventListener("click", () => {
-  filters.role.value = "Product";
-  filters.geo.value = "All";
-  filters.segment.value = "All";
-  filters.technology.value = "All";
-  filters.competitor.value = "All";
-  filters.horizon.value = "1y";
-  customerVoiceSearchTerm = "";
-  state.launchDrilldown = "all";
-  byId("customerVoiceSearch").value = "";
-  render();
-});
 
 byId("copyDecisionPacket").addEventListener("click", async () => {
   const button = byId("copyDecisionPacket");
@@ -4770,11 +6458,15 @@ byId("copyDecisionPacket").addEventListener("click", async () => {
   }
 });
 
+setupCollapsiblePanels();
+setupSidebarNavigation();
+setupSectionNavigator();
+
 loadData().catch((error) => {
   document.body.innerHTML = `
     <main class="app-shell" style="margin-left:0">
       <section class="panel">
-        <h2>Data file not loaded</h2>
+        <h2>Data File Not Loaded</h2>
         <p class="muted">Run the real-data collector, then open this dashboard through a local web server.</p>
         <p class="muted">${error.message}</p>
       </section>

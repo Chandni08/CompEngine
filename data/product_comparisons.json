@@ -1,94 +1,141 @@
 {
-  "generatedAt": "2026-06-30T23:05:00-04:00",
+  "generatedAt": "2026-07-17T11:15:00-04:00",
   "scope": "Directional product comparison catalog for Waters Next Gen LC PM roadmap discussions. Exact specifications should be validated from official product pages before external use.",
   "watersSystems": [
     {
       "id": "acquity-premier-system",
       "company": "Waters",
       "product": "ACQUITY Premier System",
+      "introducedYear": 2021,
+      "dateBasis": "Introduction",
       "technology": "UHPLC",
       "decisionRole": "Premium UHPLC / LC-MS front end for demanding analytes and biopharma methods",
       "bestFor": ["Biopharma", "Pharma", "LC-MS workflows", "Low-adsorption methods"],
       "strengths": ["Premium UPLC separation story", "Strong fit for LC-MS workflows", "Useful positioning where analyte loss, method robustness, and biopharma workflows matter"],
       "watchouts": ["Needs clear proof for setup simplicity, serviceability, and customer-visible workflow speed"],
-      "sourceUrl": "https://www.waters.com/"
+      "sourceName": "Waters chromatography history",
+      "sourceUrl": "https://www.waters.com/nextgen/us/en/products/chromatography.html",
+      "confidence": 99
     },
     {
       "id": "acquity-uplc-i-class-plus",
       "company": "Waters",
       "product": "ACQUITY UPLC I-Class PLUS System",
+      "introducedYear": 2018,
+      "dateBasis": "Introduction",
       "technology": "UHPLC",
       "decisionRole": "High-performance UHPLC benchmark for speed, resolution, and LC-MS readiness",
       "bestFor": ["Pharma", "High-throughput LC", "Method development", "LC-MS front end"],
       "strengths": ["Strong premium UHPLC performance positioning", "Good fit against new UHPLC platform refreshes", "Defensible where resolution, sensitivity, and LC-MS compatibility are key buying criteria"],
       "watchouts": ["PM should make upgrade path, ease of method transfer, and operational simplicity more concrete"],
-      "sourceUrl": "https://www.waters.com/"
+      "sourceName": "Waters 2023 annual report",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1000697/000119312524094009/d691142dars.pdf",
+      "confidence": 98
     },
     {
       "id": "alliance-is-hplc",
       "company": "Waters",
       "product": "Alliance iS HPLC System",
+      "introducedYear": 2023,
+      "dateBasis": "Introduction",
       "technology": "LC",
       "decisionRole": "Routine QC modernization path for legacy HPLC users",
       "bestFor": ["Routine QC", "Pharma", "Method modernization", "Legacy replacement"],
       "strengths": ["Strong fit for labs modernizing legacy HPLC methods", "Can position around reducing routine errors and protecting method continuity", "Relevant when buyer value is reliability and less rework, not maximum UHPLC performance"],
       "watchouts": ["Needs competitive proof against low-cost/value HPLC and regional service claims"],
-      "sourceUrl": "https://www.waters.com/"
+      "sourceName": "Waters Alliance iS launch release",
+      "sourceUrl": "https://ir.waters.com/News--Events/newsroom/news-details/2023/Waters-Introduces-Next-Generation-Alliance-iS-HPLC-System-Aimed-at-Reducing-Up-to-40-of-Common-Lab-Errors/default.aspx",
+      "confidence": 100
     },
     {
       "id": "arc-hplc-system",
       "company": "Waters",
       "product": "Arc HPLC System",
+      "introducedYear": 2020,
+      "dateBasis": "Introduction",
       "technology": "LC",
       "decisionRole": "Bridge system for HPLC method transfer and modernization",
       "bestFor": ["Method transfer", "Routine LC", "Legacy modernization", "Regulated labs"],
       "strengths": ["Good story for protecting validated methods while modernizing hardware", "Useful where method transfer risk is the purchase blocker", "Can support a pragmatic upgrade narrative"],
       "watchouts": ["Less compelling if the competitor is selling a major UHPLC performance leap"],
-      "sourceUrl": "https://www.waters.com/"
+      "sourceName": "Waters Arc HPLC launch release",
+      "sourceUrl": "https://ir.waters.com/News--Events/newsroom/news-details/2020/Waters-Introduces-the-New-Arc-High-Performance-Liquid-Chromatograph-to-Help-Laboratories-Meet-Quality-and-Production-Targets/default.aspx",
+      "confidence": 100
     },
     {
       "id": "bioaccord-lcms-system",
       "company": "Waters",
       "product": "BioAccord LC-MS System with ACQUITY Premier",
+      "introducedYear": 2021,
+      "dateBasis": "Introduction",
       "technology": "LC-MS",
       "decisionRole": "Biopharma LC-MS workflow package for routine characterization and MAM-style work",
       "bestFor": ["Biopharma", "MAM workflows", "Routine LC-MS", "Application packaging"],
       "strengths": ["Stronger as a workflow offer than a standalone instrument response", "Useful against competitor MAM packaging when Waters combines LC, MS, informatics, and methods", "Good fit for PMM-ready biopharma proof"],
       "watchouts": ["Needs article-level/customer proof around adoption, method setup, and data-review burden"],
-      "sourceUrl": "https://www.waters.com/"
+      "sourceName": "Waters BioAccord with ACQUITY Premier launch release",
+      "sourceUrl": "https://ir.waters.com/News--Events/newsroom/news-details/2021/Waters-BioAccord-System-with-ACQUITY-Premier-Brings-Greater-Simplicity-Accuracy-and-Reproducibility-to-Multi-Attribute-Monitoring-of-Biopharmaceuticals/default.aspx",
+      "confidence": 100
     },
     {
       "id": "xevo-tq-absolute",
       "company": "Waters",
       "product": "Xevo TQ Absolute",
+      "introducedYear": 2022,
+      "dateBasis": "Introduction",
       "technology": "LC-MS/MS",
       "decisionRole": "Sensitive triple quadrupole LC-MS/MS platform for regulated quantitation",
       "bestFor": ["Bioanalysis", "Clinical research", "Pharma quantitation", "LC-MS/MS"],
       "strengths": ["Relevant where sensitivity, robustness, footprint, and quantitation confidence drive the decision", "Can pair with Waters LC and informatics positioning", "Useful counterweight to triple-quad sensitivity refreshes"],
       "watchouts": ["Need direct benchmark proof before making performance superiority claims"],
-      "sourceUrl": "https://www.waters.com/"
+      "sourceName": "Waters Xevo TQ Absolute launch release",
+      "sourceUrl": "https://ir.waters.com/News--Events/newsroom/news-details/2022/Waters-Introduces-Xevo-TQ-Absolute--The-Most-Sensitive-and-Compact-Benchtop-Tandem-Quadrupole-Mass-Spectrometer/default.aspx",
+      "confidence": 100
     },
     {
       "id": "select-series-mrt",
       "company": "Waters",
       "product": "SELECT SERIES MRT",
+      "introducedYear": 2021,
+      "dateBasis": "Introduction",
       "technology": "LC-MS",
       "decisionRole": "High-resolution MS platform for advanced characterization and discovery workflows",
       "bestFor": ["HRMS", "Omics", "Biopharma characterization", "Research workflows"],
       "strengths": ["Relevant for high-resolution depth, mass accuracy, and advanced characterization narratives", "Can support a premium LC-MS workflow story when paired with ACQUITY and informatics", "Useful in research-led competitive comparisons"],
       "watchouts": ["Needs workflow-level positioning so customers see the full LC plus MS plus data story"],
-      "sourceUrl": "https://www.waters.com/"
+      "sourceName": "Waters 2023 annual report",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1000697/000119312524094009/d691142dars.pdf",
+      "confidence": 98
     },
     {
       "id": "empower-lc-workflow",
       "company": "Waters",
       "product": "Empower-connected LC workflow",
+      "introducedYear": 2002,
+      "dateBasis": "Introduction",
       "technology": "Software",
       "decisionRole": "Chromatography data and compliance workflow layer for LC system value",
       "bestFor": ["Software", "Compliance", "Routine QC", "Data integrity"],
       "strengths": ["Useful where competitor launches emphasize software versioning, operating workflows, and data review", "Can reframe LC value around methods, data integrity, training, and fewer manual steps", "Relevant for service and validation discussions"],
       "watchouts": ["Customer voice should validate whether usability, setup, and data-review workflows feel differentiated"],
-      "sourceUrl": "https://www.waters.com/"
+      "sourceName": "Waters company history",
+      "sourceUrl": "https://www.waters.com/nextgen/is/en/about-waters.html",
+      "confidence": 100
+    },
+    {
+      "id": "alliance-2695-legacy",
+      "company": "Waters",
+      "product": "Alliance 2695 Separations Module",
+      "introducedYear": 2004,
+      "dateBasis": "Earliest official record",
+      "technology": "LC",
+      "decisionRole": "Legacy HPLC installed-base reference for method continuity and modernization comparisons",
+      "bestFor": ["Legacy HPLC", "Routine QC", "Validated methods", "Installed-base modernization"],
+      "strengths": ["Relevant baseline for long-running regulated methods", "Useful for comparing modernization benefits against familiar legacy workflows", "Strong installed-base context for migration discussions"],
+      "watchouts": ["Treat age, condition, configuration, and software environment as system-specific", "Do not infer current performance from a generic legacy-system label"],
+      "sourceName": "Waters Alliance 2695 operator guide",
+      "sourceUrl": "https://help.waters.com/content/dam/waters/it/support/usermanuals/2004/71500269502/71500269502rb.pdf",
+      "confidence": 85
     }
   ],
   "thirdComparators": [
@@ -143,7 +190,54 @@
       "watchouts": ["Current data has lower launch signal density than Agilent, Shimadzu, or SCIEX"]
     }
   ],
+  "historicalProducts": [],
   "launchComparisons": [
+    {
+      "launchId": "agilent-1290-infinity-iii-2024",
+      "closestWatersId": "acquity-premier-system",
+      "defaultThirdComparatorId": "shimadzu-nexera-x4",
+      "threatLevel": "Medium",
+      "impactRationale": "This is a direct premium-UHPLC workflow and user-experience challenge. The official launch confirms stronger built-in assistance, automation, sample tracking, predictive feedback, and method compatibility, but it does not demonstrate that ACQUITY Premier is technically inferior.",
+      "pmRead": "Agilent is competing on the daily LC experience—not only chromatographic specifications. InfinityLab Assist automates instrument routines, supports sample preparation, provides maintenance and troubleshooting guidance, and adds barcode/camera sample tracking. This raises the proof standard for ACQUITY Premier's operational simplicity, but the public evidence does not establish an Agilent performance lead.",
+      "watersPositioning": "Position ACQUITY Premier where MaxPeak HPS creates measurable recovery, peak-shape, reproducibility, and passivation-time benefits for metal-sensitive analytes. Pair that scientific advantage with quantified proof for setup time, operator steps, system readiness, method transfer, and troubleshooting so Agilent does not own the ease-of-use narrative.",
+      "evidenceBasis": "Agilent's official October 2024 release supports the automation, assistance, sample-tracking, compatibility, and sustainability claims. Waters' official ACQUITY Premier page supports MaxPeak HPS, metal-sensitive-analyte recovery, reduced passivation, repeatability, and LC-MS workflow claims. No common-condition head-to-head test is loaded.",
+      "dimensions": [
+        {
+          "dimension": "Buyer decision",
+          "competitor": "Premium UHPLC refresh emphasizing built-in assistance, automation, connectivity, error reduction, and investment protection.",
+          "waters": "Premium UPLC platform emphasizing MaxPeak HPS, analyte recovery, repeatability, reduced passivation, and LC-MS readiness.",
+          "pmRead": "This is a workflow-experience contest as much as a separation-performance contest."
+        },
+        {
+          "dimension": "Confirmed Agilent change",
+          "competitor": "InfinityLab Assist, barcode/camera sample tracking, automated routines, sample-preparation support, maintenance guidance, predictive feedback, and earlier-system method compatibility.",
+          "waters": "ACQUITY Premier's sourced differentiation is scientific: inert MaxPeak HPS flow path, reduced adsorption, faster readiness, and improved results for metal-sensitive analytes.",
+          "pmRead": "Waters needs operational proof alongside the existing scientific differentiation."
+        },
+        {
+          "dimension": "Waters exposure",
+          "competitor": "Agilent can make analyst training, routine operation, troubleshooting, and sustainability part of the premium-UHPLC purchase decision.",
+          "waters": "ACQUITY Premier can be undervalued if MaxPeak HPS benefits are described technically without translating them into time, risk, and repeatability outcomes.",
+          "pmRead": "The near-term gap is evidence and positioning, not a demonstrated hardware shortfall."
+        },
+        {
+          "dimension": "Decision required",
+          "competitor": "Validate whether InfinityLab Assist changes preference in pharma, biopharma, and LC-MS front-end evaluations.",
+          "waters": "Run a common-workflow comparison covering setup, system readiness, passivation, recovery, operator interventions, troubleshooting, and method transfer.",
+          "pmRead": "Do not create a roadmap requirement until the workflow test or customer evidence identifies a repeated Waters gap."
+        }
+      ],
+      "positioningMoves": [
+        "Create an Agilent 1290 Infinity III versus ACQUITY Premier workflow battlecard using only official claims and common-condition test results.",
+        "Quantify the customer outcome of MaxPeak HPS: recovery, reproducibility, injections to readiness, time saved, and avoided passivation.",
+        "Test whether guided setup, maintenance, sample tracking, or method-transfer assistance is a repeated Waters customer requirement before changing the roadmap."
+      ],
+      "validationQuestions": [
+        "Does InfinityLab Assist materially reduce training, startup, troubleshooting, or sample-mix-up risk in target accounts?",
+        "Can Waters demonstrate equal or better setup and method-transfer outcomes while retaining the MaxPeak HPS scientific advantage?",
+        "Which applications value metal-sensitive-analyte recovery enough to outweigh a competitor's broader ease-of-use narrative?"
+      ]
+    },
     {
       "launchId": "shimadzu-nexera-x4-2026",
       "closestWatersId": "acquity-uplc-i-class-plus",

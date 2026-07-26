@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-13T18:28:46+00:00",
+  "generatedAt": "2026-07-26T11:55:09+00:00",
   "baselineCreated": {
     "productInventory": false,
     "pressIndex": false
@@ -20,7 +20,7 @@
       "status": "available",
       "sourceQuality": "reliable",
       "reliabilityNote": "Authoritative sitemap index.",
-      "checkedAt": "2026-07-13T18:28:35+00:00"
+      "checkedAt": "2026-07-26T11:54:32+00:00"
     },
     {
       "url": "https://www.agilent.com/pim_commerce01.xml",
@@ -29,7 +29,7 @@
       "status": "available",
       "sourceQuality": "reliable",
       "reliabilityNote": "Authoritative product inventory.",
-      "checkedAt": "2026-07-13T18:28:37+00:00"
+      "checkedAt": "2026-07-26T11:54:36+00:00"
     },
     {
       "url": "https://www.agilent.com/pim_commerce1.xml",
@@ -38,7 +38,7 @@
       "status": "available",
       "sourceQuality": "reliable",
       "reliabilityNote": "Authoritative product inventory.",
-      "checkedAt": "2026-07-13T18:28:38+00:00"
+      "checkedAt": "2026-07-26T11:54:40+00:00"
     },
     {
       "url": "https://www.agilent.com/products0.xml",
@@ -47,7 +47,7 @@
       "status": "available",
       "sourceQuality": "reliable",
       "reliabilityNote": "Authoritative product inventory.",
-      "checkedAt": "2026-07-13T18:28:43+00:00"
+      "checkedAt": "2026-07-26T11:54:42+00:00"
     },
     {
       "url": "https://www.agilent.com/about/newsroom/presrel.html",
@@ -56,16 +56,16 @@
       "status": "collection_review_needed",
       "sourceQuality": "reliable",
       "reliabilityNote": "A 403 from a plain HTTP client is an Agilent WAF artifact and does not reduce source quality.",
-      "checkedAt": "2026-07-13T18:28:45+00:00"
+      "checkedAt": "2026-07-26T11:54:55+00:00"
     },
     {
       "url": "https://www.investor.agilent.com/overview/default.aspx",
-      "fetchMethod": "headless_browser_required",
-      "httpStatus": 403,
-      "status": "collection_review_needed",
+      "fetchMethod": "real_browser",
+      "httpStatus": 200,
+      "status": "available",
       "sourceQuality": "reliable",
-      "reliabilityNote": "A 403 from a plain HTTP client is an Agilent WAF artifact and does not reduce source quality.",
-      "checkedAt": "2026-07-13T18:28:46+00:00"
+      "reliabilityNote": "Investor relations source; 10-second crawl delay applied.",
+      "checkedAt": "2026-07-26T11:55:09+00:00"
     }
   ],
   "monitoringNote": "Agilent WAF responses do not affect source quality. Authoritative sitemap and press indexes are monitored with an honest crawler identity."

@@ -5,11 +5,16 @@ The website includes a fail-safe daily refresh pipeline.
 ## What Refreshes Automatically
 
 - PubMed publication counts and competitor-linked publications
+- Recent DOI metadata from Analytical Chemistry, Journal of Chromatography A and B, JASMS, Analytical and Bioanalytical Chemistry, Journal of Pharmaceutical and Biomedical Analysis, and Talanta
+- Official ASMS, HPLC Symposium, IMSC, MSACL, and European Bioanalysis Forum program and poster endpoints
+- Official USP <621>, <1058>, and <232>/<233>; ICH Q2(R2) and Q14; and FDA Warning Letter and Form 483 sources
 - SEC filing discovery
 - Availability checks for registered competitor sources
 - Agilent LC/MS product additions, removals, and page updates from authoritative sitemaps
 - Agilent product and corporate announcements from its dated press-release index
 - Thermo Fisher LC/LC-MS product pages from its official US sitemap
+- Thermo Dionex Integrion and ICS-series ion chromatography pages, tagged to Environmental and Food & Beverage
+- Thermo Vanquish Neo nano-LC pages, tagged to Biopharma and Academic
 - Shimadzu LC/LC-MS product pages and dated releases from its official analytical sitemap and news index
 - SCIEX LC/MS/software product pages and dated releases from its official sitemap and press index
 
@@ -36,10 +41,11 @@ The workflow:
 2. Collects the automated public-source data.
 3. Validates signal volume, recommendations, publication themes, dates, and cumulative horizon counts.
 4. Checks every public URL in `data/`, follows redirects, and writes `data/link_health.json`.
-5. Fails the refresh when any URL returns 404/410 or has a DNS failure or timeout; access controls and bot-protection responses remain blocked rather than dead.
-6. Restores the last good dataset if collection or validation fails.
-7. Synchronizes `data/` with `deploy-site/data/`.
-8. Commits the validated data so a Git-connected Vercel project redeploys.
+5. Validates every customer-voice source keyword against the exact linked page; Reddit records use Reddit's canonical oEmbed title so bot challenges cannot create a false pass.
+6. Fails the refresh and deployment when a displayed customer-voice keyword is absent, a source cannot be read, or any URL returns 404/410 or has a DNS failure or timeout.
+7. Restores the last good dataset if collection or validation fails.
+8. Synchronizes `data/` with `deploy-site/data/`.
+9. Commits the validated data so a Git-connected Vercel project redeploys.
 
 For a Vercel project that is not connected to Git, add a repository secret named `VERCEL_DEPLOY_HOOK` containing a Vercel Deploy Hook URL.
 
@@ -53,6 +59,14 @@ To run only the URL check:
 
 ```bash
 python3 scripts/check_links.py
+```
+
+To run the customer-voice source-keyword deployment gate:
+
+```bash
+node scripts/validate_customer_voice_sources.mjs
+node scripts/validate_product_launch_press_releases.mjs
+node scripts/validate_thermo_monitoring.mjs
 ```
 
 ## Signal Priority Scoring

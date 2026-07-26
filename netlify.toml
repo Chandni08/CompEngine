@@ -1,8 +1,8 @@
 [build]
+  command = "node scripts/validate_heading_consistency.mjs && node scripts/validate_customer_voice_sources.mjs && node scripts/validate_product_launch_press_releases.mjs && node scripts/validate_historical_product_catalog.mjs"
   publish = "."
 
 [[headers]]
   for = "/*"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
-

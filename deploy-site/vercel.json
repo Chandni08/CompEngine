@@ -1,4 +1,6 @@
 {
+  "buildCommand": "node scripts/validate_deploy.mjs",
+  "outputDirectory": ".",
   "cleanUrls": true,
   "headers": [
     {

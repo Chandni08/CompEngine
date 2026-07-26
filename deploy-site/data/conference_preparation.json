@@ -1,234 +1,637 @@
 {
-  "generatedAt": "2026-06-26T15:15:00",
-  "asOfDate": "2026-06-26",
-  "purpose": "Upcoming conference intelligence for Waters Next Gen LC product, marketing, and engineering preparation.",
+  "generatedAt": "2026-07-17T15:00:00-04:00",
+  "asOfDate": "2026-07-17",
+  "purpose": "Evidence-backed 2026 conference preparation for Waters scientific, product, and booth planning.",
+  "evidencePolicy": "Competitor content is labelled confirmed only when a 2026 event program names the company or session. Portfolio-based expectations are explicitly labelled not confirmed and link to the official evidence used.",
   "events": [
-    {
-      "id": "issx-europe-2026-prep",
-      "eventName": "ISSX EU",
-      "dateRange": "Jun 29-Jul 2, 2026",
-      "startDate": "2026-06-29",
-      "tier": "Tier 2",
-      "website": "https://issxmeetings.org/2026-euro/home",
-      "marketSegments": ["Pharma", "Academic"],
-      "technologyFocus": ["LC-MS", "DMPK", "Bioanalysis"],
-      "industryTrendsToWatch": [
-        "DMPK and xenobiotics workflows shifting toward higher-throughput LC-MS bioanalysis",
-        "Regulatory and method-transfer expectations for pharma discovery-to-development",
-        "Data analysis and confidence requirements for metabolite identification"
-      ],
-      "competitorWatch": [
-        { "name": "Thermo Fisher", "status": "Watch for LC-MS bioanalysis positioning" },
-        { "name": "Agilent", "status": "Watch for LC/MS pharma workflow messaging" },
-        { "name": "SCIEX", "status": "Watch for triple-quad and quantitative bioanalysis proof points" },
-        { "name": "Shimadzu", "status": "Watch for Nexera/LCMS routine pharma workflow claims" }
-      ],
-      "watersPrep": [
-        "Prepare a bioanalysis method-transfer story tied to robustness, uptime, and data confidence.",
-        "Bring proof points for regulated LC-MS quantitation and metabolite ID workflows.",
-        "Capture customer pain points around sample throughput, compliance, and data review burden."
-      ],
-      "monitoringLinks": [
-        { "label": "Event site", "url": "https://issxmeetings.org/2026-euro/home" }
-      ]
-    },
     {
       "id": "bioprocessing-summit-us-2026-prep",
       "eventName": "Bioprocessing Summit US",
       "dateRange": "Aug 10-13, 2026",
+      "location": "Boston, MA",
       "startDate": "2026-08-10",
+      "endDate": "2026-08-13",
       "tier": "Tier 2",
       "website": "https://www.bioprocessingsummit.com/",
       "marketSegments": ["Biopharma", "CDMO"],
       "technologyFocus": ["LC", "LC-MS", "Bioprocess analytics", "QC"],
+      "annualTheme": "Transforming Bioprocessing for the Digital Age",
+      "scientificFocus": [
+        "Modernizing analytics through Analytical Intelligence and Next-Generation Analytical Methods",
+        "Digital transformation and AI across process development, scale-up, quality, and manufacturing",
+        "CMC and analytics for RNA, LNP, cell and gene therapy, ADCs, oligonucleotides, and peptides"
+      ],
       "industryTrendsToWatch": [
-        "Bioprocess analytics moving closer to scale-up, QC, and process monitoring decisions",
-        "Demand for faster release testing and more connected CMC analytics",
-        "Increasing attention to biologics, cell-culture, and process impurity characterization"
+        "Bioprocess analytics is moving from specialist characterization toward faster process and quality decisions.",
+        "The program connects analytical methods with digitalization, AI, CMC, and complex-modality manufacturing."
       ],
       "competitorWatch": [
-        { "name": "Thermo Fisher", "status": "Watch for bioproduction plus chromatography/MS workflow story" },
-        { "name": "Agilent", "status": "Watch for CrossLab/service and biopharma LC-MS messaging" },
-        { "name": "SCIEX", "status": "Watch for high-sensitivity biopharma MS positioning" }
+        { "name": "Thermo Fisher", "status": "Premier sponsor; public agenda does not yet identify a Thermo Fisher talk title" }
+      ],
+      "competitorContent": [
+        {
+          "competitor": "Thermo Fisher",
+          "evidenceStatus": "Expected — not confirmed",
+          "content": "Thermo Fisher is a 2026 premier sponsor. No competitor talk title is public on the event page, so expect a connected bioprocess, analytical, and digital-lab narrative rather than treating a specific session as confirmed.",
+          "evidenceBasis": "The official sponsor page confirms participation; the event program emphasizes digital and AI-enabled bioprocessing, Analytical Intelligence, and next-generation analytical methods.",
+          "sourceLabel": "2026 sponsor and program evidence",
+          "sourceUrl": "https://www.bioprocessingsummit.com/sponsors"
+        }
+      ],
+      "watersScientificContent": [
+        {
+          "title": "Routine MAM from development to QC",
+          "deliverable": "A data-led talk or poster showing peptide mapping, attribute monitoring, method transfer, and review-ready reporting across development and QC.",
+          "proofNeeded": "Precision across analysts, transfer success, analysis time, and reduced manual review."
+        },
+        {
+          "title": "Complex-modality analytical readiness",
+          "deliverable": "A workflow presentation covering oligonucleotide, mRNA/LNP, ADC, and cell-culture media analysis on one accessible LC-MS platform.",
+          "proofNeeded": "Recovery, sequence or intact-mass confidence, impurity visibility, and time to first result."
+        },
+        {
+          "title": "Digital CMC without workflow handoffs",
+          "deliverable": "A live story that follows a sample from acquisition through automated processing, exception review, audit trail, and report.",
+          "proofNeeded": "Fewer manual steps, traceability, role-based review, and system-health visibility."
+        }
+      ],
+      "boothRecommendations": [
+        {
+          "product": "BioAccord LC-MS System with ACQUITY Premier",
+          "role": "Anchor the booth around routine biotherapeutic characterization that can be run by non-MS experts.",
+          "message": "One compact workflow for intact mass, peptide mapping/MAM, glycans, oligonucleotides, and process monitoring.",
+          "productUrl": "https://www.waters.com/nextgen/us/en/products/mass-spectrometry/mass-spectrometry-systems/bioaccord-lc-ms-system.html"
+        },
+        {
+          "product": "Alliance iS Bio HPLC System with Empower CDS",
+          "role": "Demonstrate QC method transfer, guided operation, data integrity, and error prevention.",
+          "message": "Move robust biopharma methods into routine QC with fewer operator-driven investigations.",
+          "productUrl": "https://www.waters.com/nextgen/en/products/chromatography/chromatography-systems/alliance-is-hplc-system.html"
+        }
       ],
       "watersPrep": [
-        "Position Waters around end-to-end bioprocess analytics, not isolated instruments.",
-        "Prepare a CMC-ready narrative for LC/LC-MS data integrity, method robustness, and scalability.",
-        "Identify CDMO workflow gaps where Waters can offer faster method deployment."
+        "Lead with routine MAM and complex-modality analytics, supported by transfer and review-time proof.",
+        "Demonstrate BioAccord plus Alliance iS Bio as a connected development-to-QC story."
       ],
       "monitoringLinks": [
-        { "label": "Event site", "url": "https://www.bioprocessingsummit.com/" }
+        { "label": "2026 program", "url": "https://www.bioprocessingsummit.com/" },
+        { "label": "2026 sponsors", "url": "https://www.bioprocessingsummit.com/sponsors" }
       ]
     },
     {
       "id": "imsc-2026-prep",
       "eventName": "IMSC 2026",
       "dateRange": "Aug 22-28, 2026",
+      "location": "Lyon, France",
       "startDate": "2026-08-22",
+      "endDate": "2026-08-28",
       "tier": "Tier 1",
       "website": "https://imsc26.com/",
       "marketSegments": ["Academic", "Pharma", "Biopharma", "Environmental"],
       "technologyFocus": ["LC-MS", "Mass spectrometry", "Instrumentation", "Data"],
+      "annualTheme": "The present and future of mass spectrometry across five scientific themes",
+      "scientificFocus": [
+        "Fundamentals, instrumentation, and data",
+        "Life sciences, health, food, and pharmaceuticals",
+        "Chemistry and materials; environment, resources, and energy; grand challenges and opportunities"
+      ],
       "industryTrendsToWatch": [
-        "Scientific program themes include instrumentation and data, life sciences/health/pharmaceuticals, chemistry/materials, environment/resources/energy, and grand challenges.",
-        "Vendor sessions, innovation talks, exhibitions, posters, and workshops create a high-value signal source for competitor technology narratives.",
-        "Expect strong visibility for HRMS, omics, environmental MS, imaging, and AI/data-analysis workflows."
+        "High-resolution MS performance is being packaged with multiomics, data quality, and faster interpretation rather than instrument specifications alone.",
+        "Vendor seminars, innovation talks, and exhibitions make IMSC the highest-value 2026 event for new MS platform narratives."
       ],
       "competitorWatch": [
-        { "name": "Thermo Fisher", "status": "Watch for Orbitrap, chromatography/MS platform, and data-analysis workflow narratives" },
-        { "name": "Agilent", "status": "Watch for LC/MS, TOF, AI/data, and workflow packaging messages" },
-        { "name": "Shimadzu", "status": "Watch for LCMS and Nexera-connected workflow positioning" },
-        { "name": "SCIEX", "status": "Watch for ZenoTOF, Echo MS, and quantitative sensitivity claims" }
+        { "name": "Bruker", "status": "Confirmed lunch seminar on 4D multiomics and functional proteomics" },
+        { "name": "Agilent", "status": "Silver sponsor; public competitor seminar title not found" },
+        { "name": "Thermo Fisher", "status": "Silver sponsor; public competitor seminar title not found" },
+        { "name": "SCIEX", "status": "Bronze sponsor; public competitor seminar title not found" },
+        { "name": "Shimadzu", "status": "Bronze sponsor; public competitor seminar title not found" }
+      ],
+      "competitorContent": [
+        {
+          "competitor": "Bruker",
+          "evidenceStatus": "Confirmed in 2026 program",
+          "content": "Bruker will present “Pioneering 4D Multiomics and Functional Proteomics 2.0” in a lunch seminar and will also run an Innovation Lab Talk.",
+          "evidenceBasis": "The official IMSC lunch-seminar page publishes the title and dates.",
+          "sourceLabel": "IMSC competitor seminar",
+          "sourceUrl": "https://imsc26.com/sponsoring-exhibition/lunch-seminar"
+        },
+        {
+          "competitor": "Agilent, Thermo Fisher, SCIEX, and Shimadzu",
+          "evidenceStatus": "Expected — not confirmed",
+          "content": "All four are confirmed 2026 sponsors, but no individual talk titles were found on the public sponsor page. Monitor for late-posted seminars on high-resolution MS, omics, environmental workflows, and data analysis.",
+          "evidenceBasis": "The official sponsor page confirms their participation at silver or bronze level; the scientific program defines the relevant themes.",
+          "sourceLabel": "IMSC 2026 sponsor roster",
+          "sourceUrl": "https://imsc26.com/sponsoring-exhibition/they-joined-us"
+        }
+      ],
+      "watersScientificContent": [
+        {
+          "title": "High-resolution confidence at real acquisition speed",
+          "deliverable": "A head-to-head scientific poster showing mass accuracy, resolving power, isotope structure, and identification confidence on complex samples without slowing acquisition.",
+          "proofNeeded": "Resolution at scan speed, identification false positives, repeatability, and processing time."
+        },
+        {
+          "title": "From spectra to decisions in multiomics",
+          "deliverable": "An end-to-end metabolomics or proteomics workflow demonstration, including data quality checks and interpretable results.",
+          "proofNeeded": "Coverage, quantitative precision, missing values, and analyst time."
+        },
+        {
+          "title": "One platform, multiple ionization and imaging workflows",
+          "deliverable": "A scientific session connecting LC-MS, DESI/MALDI imaging, and open data exchange to real research questions.",
+          "proofNeeded": "Cross-workflow consistency, spatial resolution, and data portability."
+        }
+      ],
+      "boothRecommendations": [
+        {
+          "product": "Xevo MRT Mass Spectrometer",
+          "role": "Primary live demonstration for benchtop high-resolution MS at speed.",
+          "message": "High-resolution, high-speed identification and quantitation without a specialist-only workflow.",
+          "productUrl": "https://www.waters.com/nextgen/us/en/products/mass-spectrometry/mass-spectrometry-systems/xevo-mrt.html"
+        },
+        {
+          "product": "SELECT SERIES MRT",
+          "role": "Scientific halo system for ultra-high-resolution compound identification and imaging.",
+          "message": "Use fine isotope structure and ppb mass accuracy to make ambiguous identifications defensible.",
+          "productUrl": "https://www.waters.com/nextgen/us/en/products/mass-spectrometry/mass-spectrometry-systems/select-series-mrt.html"
+        },
+        {
+          "product": "BioAccord LC-MS System",
+          "role": "Show that Waters also brings routine, accessible MS into biopharma development and QC.",
+          "message": "Translate advanced MS capability into repeatable workflows for non-MS experts.",
+          "productUrl": "https://www.waters.com/nextgen/us/en/products/mass-spectrometry/mass-spectrometry-systems/bioaccord-lc-ms-system.html"
+        }
       ],
       "watersPrep": [
-        "Prepare comparative talking points for LC-MS sensitivity, robustness, ease of use, and informatics.",
-        "Build a poster/session capture plan around omics, biopharma, environmental, and data/AI themes.",
-        "Pre-brief field teams on likely competitor claims and Waters counter-positioning."
+        "Make Xevo MRT the performance proof point and connect it to an end-to-end decision workflow.",
+        "Prepare direct response cards for Bruker 4D multiomics and for late-posted Agilent, Thermo Fisher, SCIEX, and Shimadzu seminars."
       ],
       "monitoringLinks": [
-        { "label": "Event site", "url": "https://imsc26.com/" },
-        { "label": "Sponsoring and exhibition", "url": "https://imsc26.com/" }
+        { "label": "Scientific themes", "url": "https://imsc26.com/" },
+        { "label": "Sponsors", "url": "https://imsc26.com/sponsoring-exhibition/they-joined-us" },
+        { "label": "Competitor seminars", "url": "https://imsc26.com/sponsoring-exhibition/lunch-seminar" }
       ]
     },
     {
       "id": "acs-fall-2026-prep",
       "eventName": "ACS Fall 2026",
       "dateRange": "Aug 23-27, 2026",
+      "location": "Chicago, IL",
       "startDate": "2026-08-23",
+      "endDate": "2026-08-27",
       "tier": "Tier 2",
       "website": "https://www.acs.org/events/all-events/acs-fall-2026.html",
       "marketSegments": ["Academic", "Pharma", "Environmental"],
       "technologyFocus": ["LC", "LC-MS", "Chemistry applications"],
+      "annualTheme": "Multitopic chemistry meeting",
+      "scientificFocus": [
+        "Emerging technologies, materials science, sustainability, and health",
+        "Technical symposia, posters, and late-breaking research across analytical chemistry",
+        "New tools and technologies presented through the ACS Expo"
+      ],
       "industryTrendsToWatch": [
-        "Broad chemistry methods that can become future LC/LC-MS application demand",
-        "Academic-to-industrial translation in analytical chemistry, materials, pharma, and environmental testing",
-        "Exhibitor narratives around sustainability, speed, sensitivity, and automation"
+        "ACS is a broad scouting event where new chemistry and sample types can signal future LC and LC-MS application demand.",
+        "Competitor differentiation is likely to appear through application proof, workflow simplicity, and sustainability rather than one event-wide instrument theme."
       ],
       "competitorWatch": [
-        { "name": "Thermo Fisher", "status": "Watch for broad analytical chemistry portfolio messaging" },
-        { "name": "Agilent", "status": "Watch for LC/GC/MS and CrossLab lifecycle value proposition" },
-        { "name": "Shimadzu", "status": "Watch for LC/LCMS and spectroscopy portfolio comparisons" }
+        { "name": "Agilent", "status": "Expected application-led expo content; exact 2026 session not confirmed" },
+        { "name": "Thermo Fisher", "status": "Expected application-led expo content; exact 2026 session not confirmed" },
+        { "name": "SCIEX", "status": "Expected application-led expo content; exact 2026 session not confirmed" }
+      ],
+      "competitorContent": [
+        {
+          "competitor": "Agilent",
+          "evidenceStatus": "Expected — not confirmed",
+          "content": "Expect application-led LC/Q-TOF positioning around pesticide screening and confident unknown identification; no ACS-specific Agilent talk title was found in the public page reviewed.",
+          "evidenceBasis": "The expectation comes from Agilent’s current official Revident pesticide-screening application evidence, not an ACS agenda listing.",
+          "sourceLabel": "Official Agilent application evidence",
+          "sourceUrl": "https://www.agilent.com/cs/library/applications/an-pesticide-screening-revident-lc-qtof-5994-8751en-agilent.pdf"
+        },
+        {
+          "competitor": "Thermo Fisher",
+          "evidenceStatus": "Expected — not confirmed",
+          "content": "Expect PFAS and emerging-contaminant content, including ultrashort-chain PFAS; no ACS-specific Thermo Fisher talk title was found in the public page reviewed.",
+          "evidenceBasis": "The expectation is based on Thermo Fisher’s current official application note, while ACS only confirms a broad multitopic program and expo.",
+          "sourceLabel": "Official Thermo Fisher application note",
+          "sourceUrl": "https://documents.thermofisher.com/TFS-Assets/CMD/Application-Notes/an-004442-en-pfas-tsq-altis-plus-efox-editon-an004442-em-en.pdf"
+        }
+      ],
+      "watersScientificContent": [
+        {
+          "title": "Application proof for emerging contaminants",
+          "deliverable": "A poster and booth talk comparing sensitivity, matrix robustness, and long-run uptime for PFAS and other emerging contaminants.",
+          "proofNeeded": "Method detection limits, recovery, carryover, calibration stability, and injections between maintenance."
+        },
+        {
+          "title": "Unknown identification without sacrificing throughput",
+          "deliverable": "A small-molecule HRMS workflow showing how accurate mass, isotope structure, and data processing reduce ambiguous identifications.",
+          "proofNeeded": "Identification confidence, false positives, scan speed, and analyst review time."
+        },
+        {
+          "title": "Translating academic methods into routine laboratories",
+          "deliverable": "A practical session on moving a published LC method into a robust, repeatable routine workflow.",
+          "proofNeeded": "Method-transfer success, operator steps, and cross-system reproducibility."
+        }
+      ],
+      "boothRecommendations": [
+        {
+          "product": "Xevo TQ Absolute XR",
+          "role": "Lead environmental and trace-quantitation conversations with long-run PFAS evidence.",
+          "message": "Sustain sensitivity and calibration confidence across difficult matrices and long sample queues.",
+          "productUrl": "https://www.waters.com/nextgen/ee/en/library/application-notes/2025/enhanced-reliability-for-long-term-pfas-analysis-with-the-xevo-tq-absolute-xr-mass-spectrometer.html"
+        },
+        {
+          "product": "Xevo MRT with ACQUITY Premier",
+          "role": "Demonstrate high-confidence screening and unknown identification for broad chemistry audiences.",
+          "message": "Combine robust separations with high-resolution identification at practical acquisition speed.",
+          "productUrl": "https://www.waters.com/nextgen/us/en/products/mass-spectrometry/mass-spectrometry-systems/xevo-mrt.html"
+        },
+        {
+          "product": "Alliance iS HPLC System",
+          "role": "Show the pathway from research method to routine, guided HPLC operation.",
+          "message": "Reduce setup errors and make transferred methods easier to run consistently.",
+          "productUrl": "https://www.waters.com/nextgen/en/products/chromatography/chromatography-systems/alliance-is-hplc-system.html"
+        }
       ],
       "watersPrep": [
-        "Prepare application-specific proof points for pharma, environmental, and academic workflows.",
-        "Collect early-stage method trends that may indicate future product requirements.",
-        "Use ACS as a scouting event for new analytical chemistry narratives."
+        "Use ACS to prove application breadth: emerging contaminants, confident unknowns, and method transfer.",
+        "Bring one high-impact live demonstration and support it with short application proof cards by audience."
       ],
       "monitoringLinks": [
-        { "label": "Event site", "url": "https://www.acs.org/events/all-events/acs-fall-2026.html" }
+        { "label": "2026 meeting", "url": "https://www.acs.org/events/all-events/acs-fall-2026.html" },
+        { "label": "Expo and exhibitors", "url": "https://www.acs.org/events/fall/exhibit.html" }
       ]
     },
     {
       "id": "casss-ms-2026-prep",
-      "eventName": "CASSS MS",
-      "dateRange": "Sep 15-17, 2026",
+      "eventName": "CASSS Mass Spec 2026",
+      "dateRange": "Sep 15-18, 2026",
+      "location": "Rockville, MD",
       "startDate": "2026-09-15",
+      "endDate": "2026-09-18",
       "tier": "Tier 2",
-      "website": "https://www.casss.org/meetings-and-events/multi-day-symposia/mass-spectrometry",
+      "website": "https://www.casss.org/mass-spectrometry/attend",
       "marketSegments": ["Biopharma", "CDMO"],
       "technologyFocus": ["LC-MS", "Biopharma characterization", "QC"],
+      "annualTheme": "Practical application of mass spectrometry in the biotechnology industry",
+      "scientificFocus": [
+        "ADC characterization and multispecifics",
+        "DNA and RNA analysis; mass spectrometry in cell and gene therapy",
+        "MAM for product and process characterization and quality control",
+        "Research, early-stage development, regulatory research, and new MS technologies"
+      ],
       "industryTrendsToWatch": [
-        "Applied mass spectrometry for biopharma characterization, process monitoring, and release testing",
-        "Regulatory-grade confidence in LC-MS methods for biologics and advanced therapeutics",
-        "Practical pain points around method robustness, comparability, and QC readiness"
+        "The program is explicitly moving MS toward practical biopharma development, process characterization, and QC decisions.",
+        "MAM, advanced modalities, and regulatory acceptance make transferability and data integrity as important as sensitivity."
       ],
       "competitorWatch": [
-        { "name": "Thermo Fisher", "status": "Watch for high-resolution MS and biopharma characterization" },
-        { "name": "Agilent", "status": "Watch for MAM, LC/TOF, and CrossLab workflow packaging" },
-        { "name": "SCIEX", "status": "Watch for ZenoTOF and high-sensitivity biopharma claims" }
+        { "name": "Agilent", "status": "Expected MAM and QTOF workflow content; 2026 technical seminar title not yet public" },
+        { "name": "Thermo Fisher", "status": "Expected HRMS and peptide workflow content; 2026 technical seminar title not yet public" },
+        { "name": "SCIEX", "status": "Expected proteomics and biotherapeutic workflow content; 2026 technical seminar title not yet public" }
+      ],
+      "competitorContent": [
+        {
+          "competitor": "Agilent",
+          "evidenceStatus": "Expected — not confirmed",
+          "content": "Expect Agilent to connect LC/TOF hardware with a guided MAM workflow. The public CASSS page lists MAM as a 2026 topic, but a competitor seminar title was not yet published.",
+          "evidenceBasis": "The event confirms MAM for product/process characterization and QC; Agilent’s official May 2026 launch evidence positions its 6230C LC/TOF in a MAM workflow.",
+          "sourceLabel": "Official Agilent MAM launch evidence",
+          "sourceUrl": "https://www.agilent.com/about/newsroom/presrel/2026/29may-ca26021.html"
+        },
+        {
+          "competitor": "Thermo Fisher",
+          "evidenceStatus": "Expected — not confirmed",
+          "content": "Expect robust, high-throughput peptide quantitation and HRMS characterization messaging; no 2026 CASSS technical seminar title was public at review time.",
+          "evidenceBasis": "The expectation comes from Thermo Fisher’s official peptide-quantitation technical note and the event’s confirmed biopharma MS topics.",
+          "sourceLabel": "Official Thermo Fisher technical note",
+          "sourceUrl": "https://www.thermofisher.com/blog/analyteguru/new-technical-note-robust-high-throughput-peptide-quantitation-on-the-tsq-certis-triple-quadrupole-ms-with-optispray-technology/"
+        }
+      ],
+      "watersScientificContent": [
+        {
+          "title": "MAM that survives transfer into QC",
+          "deliverable": "A regulator-ready case study from peptide mapping and attribute monitoring through exception review and controlled reporting.",
+          "proofNeeded": "Attribute reproducibility, method-transfer success, review time, and audit traceability."
+        },
+        {
+          "title": "Practical MS for oligonucleotides and advanced modalities",
+          "deliverable": "A scientific presentation on intact mass, sequence confirmation, impurity recovery, and metal-sensitive analytes.",
+          "proofNeeded": "Recovery without passivation, mass accuracy, impurity coverage, and operator variability."
+        },
+        {
+          "title": "Development-to-QC operating model",
+          "deliverable": "A workflow map showing which analyses remain on advanced HRMS and which can move to routine SmartMS or HPLC platforms.",
+          "proofNeeded": "Decision criteria, training burden, time to result, and total workflow cost."
+        }
+      ],
+      "boothRecommendations": [
+        {
+          "product": "BioAccord LC-MS System",
+          "role": "Primary demonstration for routine MAM, intact mass, glycan, and oligonucleotide workflows.",
+          "message": "Bring biotherapeutic MS into development and QC without requiring every operator to be an MS expert.",
+          "productUrl": "https://www.waters.com/nextgen/us/en/products/mass-spectrometry/mass-spectrometry-systems/bioaccord-lc-ms-system.html"
+        },
+        {
+          "product": "ACQUITY Premier System and MaxPeak Premier chemistries",
+          "role": "Show the separation and recovery advantage for metal-sensitive peptides, glycans, and oligonucleotides.",
+          "message": "Reduce non-specific adsorption and passivation burden before the sample reaches the mass spectrometer.",
+          "productUrl": "https://www.waters.com/nextgen/us/en/products/chromatography/chromatography-systems/acquity-premier-system-with-multi-dimensional-technology.html"
+        },
+        {
+          "product": "Alliance iS Bio HPLC with Empower CDS",
+          "role": "Make the QC transfer and compliant-operation story tangible.",
+          "message": "Standardize routine biopharma methods with guided operation, traceability, and fewer setup errors.",
+          "productUrl": "https://www.waters.com/nextgen/en/products/chromatography/chromatography-systems/alliance-is-hplc-system.html"
+        }
       ],
       "watersPrep": [
-        "Prepare a biologics/MAM workflow story that connects LC-MS, informatics, and method robustness.",
-        "Map CASSS talks to roadmap themes: release testing, process monitoring, and comparability.",
-        "Capture vocabulary customers use for QC readiness and translate it into PM requirements."
+        "Own the development-to-QC transition with measurable MAM transfer and review-time evidence.",
+        "Use BioAccord plus ACQUITY Premier to answer both accessibility and analyte-recovery objections."
       ],
       "monitoringLinks": [
-        { "label": "Event site", "url": "https://www.casss.org/meetings-and-events/multi-day-symposia/mass-spectrometry" }
+        { "label": "2026 topics", "url": "https://www.casss.org/mass-spectrometry/attend" },
+        { "label": "Scientific program", "url": "https://virtual.oxfordabstracts.com/event/76939/program" }
       ]
     },
     {
       "id": "lab-of-the-future-eu-2026-prep",
-      "eventName": "Lab of the Future EU",
+      "eventName": "Lab of the Future Europe",
       "dateRange": "Sep 22-23, 2026",
+      "location": "Amsterdam, Netherlands",
       "startDate": "2026-09-22",
+      "endDate": "2026-09-23",
       "tier": "Tier 2",
       "website": "https://www.lab-of-the-future.com/europe/",
       "marketSegments": ["Pharma", "Biopharma"],
       "technologyFocus": ["Software", "Automation", "AI", "Informatics"],
+      "annualTheme": "The meeting of innovation, collaboration, and technology",
+      "scientificFocus": [
+        "AI to Innovate and AI-enabled drug discovery",
+        "Digital First R&D and decision-ready data",
+        "The Orchestrated Lab: connected instruments, systems, data, people, and robotics",
+        "Digital CMC and collaborative science ecosystems"
+      ],
       "industryTrendsToWatch": [
-        "AI, automation, and informatics narratives shaping how customers expect instruments to fit lab operations",
-        "Digital lab transformation and connected data workflows",
-        "Customer demand for lower manual effort, easier compliance, and cross-system interoperability"
+        "The 2026 program is shifting the conversation from isolated lab automation to orchestration and decision-ready data.",
+        "Instrument vendors will be evaluated on how well hardware, software, data, and people operate as one workflow."
       ],
       "competitorWatch": [
-        { "name": "Agilent", "status": "Watch for CrossLab, informatics, and AI partnership messaging" },
-        { "name": "Thermo Fisher", "status": "Watch for enterprise lab software and automation ecosystem messaging" },
-        { "name": "PerkinElmer", "status": "Watch for software and AI workflow positioning" }
+        { "name": "Thermo Fisher", "status": "Confirmed keynote content on a lab-in-the-loop future" },
+        { "name": "Agilent", "status": "Expected guided digital execution narrative; no event-specific session found" }
+      ],
+      "competitorContent": [
+        {
+          "competitor": "Thermo Fisher",
+          "evidenceStatus": "Confirmed in 2026 program",
+          "content": "Mark Fish, VP & GM of Digital Lab Solutions at Thermo Fisher Scientific, is scheduled to present “From Vision to Velocity: Enabling the Lab-in-the-Loop Future of Science.”",
+          "evidenceBasis": "The official 2026 agenda names the speaker, company, and session title.",
+          "sourceLabel": "Lab of the Future 2026 agenda",
+          "sourceUrl": "https://www.lab-of-the-future.com/europe/agenda/"
+        },
+        {
+          "competitor": "Agilent",
+          "evidenceStatus": "Expected — not confirmed",
+          "content": "Expect a guided digital-lab execution and compliance narrative around OpenLab Sync and USP MethodConnect; an Agilent event session was not found on the public agenda reviewed.",
+          "evidenceBasis": "Agilent’s official 2026 announcement expands from data management into guided bench execution and standardized methods.",
+          "sourceLabel": "Official Agilent OpenLab announcement",
+          "sourceUrl": "https://www.agilent.com/about/newsroom/presrel/2026/28may-ca26020.html"
+        }
+      ],
+      "watersScientificContent": [
+        {
+          "title": "Decision-ready chromatography data",
+          "deliverable": "A live workflow that starts with a business or QC decision and traces the data, metadata, exceptions, and approvals required to make it.",
+          "proofNeeded": "Time from run completion to approved decision, manual handoffs, and traceability."
+        },
+        {
+          "title": "The connected LC lab in practice",
+          "deliverable": "A demonstration of guided instrument operation, cross-site method control, system monitoring, and remote review.",
+          "proofNeeded": "Prevented setup errors, fleet visibility, training time, and downtime avoided."
+        },
+        {
+          "title": "Responsible AI for regulated analytical workflows",
+          "deliverable": "A scientific panel or talk defining where AI can recommend, where a human must decide, and how evidence and audit trails remain visible.",
+          "proofNeeded": "Human review points, explainability, permissions, and validation boundaries."
+        }
+      ],
+      "boothRecommendations": [
+        {
+          "product": "Empower Chromatography Data System",
+          "role": "Make data governance, cross-vendor control, review, and enterprise scale the center of the booth story.",
+          "message": "Turn chromatography records into secure, traceable, decision-ready information across sites.",
+          "productUrl": "https://www.waters.com/nextgen/us/en/products/informatics-and-software/chromatography-software/empower-software-solutions/empower-cds.html"
+        },
+        {
+          "product": "Alliance iS HPLC System",
+          "role": "Use a live instrument to prove that the connected-lab story changes daily analyst work.",
+          "message": "Prevent errors at the instrument, guide the operator, and connect health and run context to the data record.",
+          "productUrl": "https://www.waters.com/nextgen/en/products/chromatography/chromatography-systems/alliance-is-hplc-system.html"
+        },
+        {
+          "product": "BioAccord LC-MS System with waters_connect",
+          "role": "Show automated setup, processing, and reporting for a complex scientific workflow.",
+          "message": "Make advanced biopharma LC-MS usable, monitorable, and repeatable beyond the specialist lab.",
+          "productUrl": "https://www.waters.com/nextgen/us/en/products/mass-spectrometry/mass-spectrometry-systems/bioaccord-lc-ms-system.html"
+        }
       ],
       "watersPrep": [
-        "Prepare a software and informatics story that connects LC systems to lab productivity and decision support.",
-        "Identify gaps where Waters needs stronger AI-assisted workflow positioning.",
-        "Collect language from pharma digital lab leaders for roadmap prioritization."
+        "Lead with a measurable decision-ready data workflow, not a generic digital transformation claim.",
+        "Prepare a direct response to Thermo Fisher’s lab-in-the-loop narrative using guided operation, system monitoring, and governed data."
       ],
       "monitoringLinks": [
-        { "label": "Event site", "url": "https://www.lab-of-the-future.com/europe/" }
+        { "label": "2026 themes", "url": "https://www.lab-of-the-future.com/europe/congress-themes/" },
+        { "label": "2026 agenda", "url": "https://www.lab-of-the-future.com/europe/agenda/" },
+        { "label": "2026 speakers", "url": "https://www.lab-of-the-future.com/europe/speakers/" }
       ]
     },
     {
       "id": "tides-eu-2026-prep",
-      "eventName": "TIDES EU",
+      "eventName": "TIDES Europe",
       "dateRange": "Nov 3-5, 2026",
+      "location": "Amsterdam, Netherlands",
       "startDate": "2026-11-03",
+      "endDate": "2026-11-05",
       "tier": "Tier 2",
       "website": "https://informaconnect.com/tides-europe/",
       "marketSegments": ["Biopharma", "CDMO"],
       "technologyFocus": ["LC-MS", "Oligonucleotides", "Peptides", "mRNA", "LNP"],
+      "annualTheme": "Accelerate therapeutics to market, expedite R&D, and improve CMC efficiency",
+      "scientificFocus": [
+        "Oligonucleotide CMC across the product lifecycle and regulatory readiness",
+        "Analytical characterization of oligonucleotide impurities and degradation products",
+        "Peptide manufacturing and purification; mRNA, genome editing, and delivery",
+        "Manufacturability, cost of goods, and scale-up for advanced therapeutics"
+      ],
       "industryTrendsToWatch": [
-        "Oligonucleotide, peptide, mRNA, and LNP therapeutic workflows from discovery to manufacturing",
-        "Analytical development and QC pain points for complex modalities",
-        "CDMO demand for robust, transferable, and high-throughput LC/LC-MS methods"
+        "Oligonucleotide analytics is moving toward lifecycle CMC control, impurity characterization, and scale-ready methods.",
+        "Method selection, qualification time, purification, and product-quality evidence are central buying criteria."
       ],
       "competitorWatch": [
-        { "name": "Agilent", "status": "Watch for MAM, LC/MS, and advanced therapeutics packaging" },
-        { "name": "Thermo Fisher", "status": "Watch for RNA/LNP and bioproduction-adjacent workflow messaging" },
-        { "name": "SCIEX", "status": "Watch for sensitivity and quantitation claims in oligo/peptide workflows" }
+        { "name": "Agilent", "status": "Confirmed sponsor/exhibitor; individual 2026 talk title not found" },
+        { "name": "Thermo Fisher", "status": "Confirmed sponsor/exhibitor; individual 2026 talk title not found" },
+        { "name": "SCIEX", "status": "Confirmed participant; individual 2026 talk title not found" }
+      ],
+      "competitorContent": [
+        {
+          "competitor": "Agilent",
+          "evidenceStatus": "Expected — not confirmed",
+          "content": "Agilent is listed as a 2026 participant. Expect automated oligonucleotide LC/MS QC and OpenLab workflow positioning, but no Agilent session title was found in the public agenda reviewed.",
+          "evidenceBasis": "Participation is confirmed by the event partner list; the expected topic comes from Agilent’s official Oligo Analysis Accelerator product evidence.",
+          "sourceLabel": "Official Agilent oligo workflow",
+          "sourceUrl": "https://www.agilent.com/en/product/software-informatics/chromatography-software/chromatography-add-on/oligo-analysis-accelerator-for-openlab-cds"
+        },
+        {
+          "competitor": "Thermo Fisher",
+          "evidenceStatus": "Expected — not confirmed",
+          "content": "Thermo Fisher is listed as a 2026 participant. Expect integrated LC-MS system-suitability and Chromeleon eWorkflow content for oligonucleotides; no Thermo Fisher session title was found in the public agenda reviewed.",
+          "evidenceBasis": "Participation is confirmed by the event partner list; the expected topic comes from Thermo Fisher’s official oligonucleotide system-evaluation application note.",
+          "sourceLabel": "Official Thermo Fisher oligo note",
+          "sourceUrl": "https://documents.thermofisher.com/TFS-Assets/CMD/Application-Notes/an-001954-bt-integrated-lc-ms-oligonucleotide-analysis-an001954-na-en.pdf"
+        }
+      ],
+      "watersScientificContent": [
+        {
+          "title": "Oligonucleotide impurity analysis for CMC decisions",
+          "deliverable": "A scientific talk and application workflow for intact mass, sequence confirmation, short/longmer and degradation-product analysis.",
+          "proofNeeded": "Impurity coverage, mass accuracy, recovery, repeatability, and review time."
+        },
+        {
+          "title": "Reduce adsorption and passivation in oligo LC-MS",
+          "deliverable": "A controlled comparison of conventional metal flow paths versus MaxPeak HPS for recovery, peak shape, and time to system readiness.",
+          "proofNeeded": "Recovery, RSD, injections to stable performance, and solvent/time saved."
+        },
+        {
+          "title": "A transferable analytical control strategy",
+          "deliverable": "A lifecycle workflow from development through qualification and QC transfer, with predefined system-suitability and exception rules.",
+          "proofNeeded": "Transfer success, qualification duration, analyst variability, and audit-ready reporting."
+        }
+      ],
+      "boothRecommendations": [
+        {
+          "product": "BioAccord LC-MS System",
+          "role": "Run an accessible oligonucleotide intact-mass and sequence-confirmation demonstration.",
+          "message": "Move oligo characterization into a repeatable workflow that does not depend on a small group of MS experts.",
+          "productUrl": "https://www.waters.com/nextgen/us/en/products/mass-spectrometry/mass-spectrometry-systems/bioaccord-lc-ms-system.html"
+        },
+        {
+          "product": "ACQUITY Premier System and MaxPeak Premier Columns",
+          "role": "Make analyte recovery and reduced passivation the physical proof at the booth.",
+          "message": "Improve recovery and consistency for metal-sensitive oligonucleotides before adding software complexity.",
+          "productUrl": "https://www.waters.com/nextgen/us/en/products/chromatography/chromatography-systems/acquity-premier-system-with-multi-dimensional-technology.html"
+        },
+        {
+          "product": "Empower CDS",
+          "role": "Complete the development-to-QC story with controlled methods, calculations, review, and reporting.",
+          "message": "Standardize the analytical control strategy and make every change traceable.",
+          "productUrl": "https://www.waters.com/nextgen/us/en/products/informatics-and-software/chromatography-software/empower-software-solutions/empower-cds.html"
+        }
       ],
       "watersPrep": [
-        "Prepare LNP, oligo, peptide, and mRNA workflow positioning that is specific enough for analytical development leaders.",
-        "Build a question list for customers around bottlenecks in sample prep, data analysis, and QC transfer.",
-        "Compare Waters roadmap against competitor workflows in advanced therapeutics."
+        "Own the measurable oligo CMC workflow: recovery, impurity coverage, transfer, and review time.",
+        "Use a live MaxPeak HPS comparison to create a clear reason to stop at the Waters booth."
       ],
       "monitoringLinks": [
-        { "label": "Event site", "url": "https://informaconnect.com/tides-europe/" }
+        { "label": "2026 agenda", "url": "https://informaconnect.com/tides-europe/agenda/" },
+        { "label": "2026 participants", "url": "https://informaconnect.com/tides-europe/third-party-partners/" },
+        { "label": "Event focus", "url": "https://informaconnect.com/tides-europe/" }
       ]
     },
     {
       "id": "setac-na-2026-prep",
-      "eventName": "SETAC US",
-      "dateRange": "Nov 16-20, 2026",
-      "startDate": "2026-11-16",
+      "eventName": "SETAC North America 2026",
+      "dateRange": "Nov 2-5, 2026",
+      "location": "Montreal, Quebec",
+      "startDate": "2026-11-02",
+      "endDate": "2026-11-05",
       "tier": "Tier 2",
-      "website": "https://www.setac.org/discover-events/global-meetings/setac-north-america-47th-annual-meeting/program/daily-schedule.html",
+      "website": "https://www.setac.org/discover-events/global-meetings/setac-north-america-47th-annual-meeting.html",
       "marketSegments": ["Environmental", "Government", "Academic"],
       "technologyFocus": ["LC-MS/MS", "PFAS", "Environmental testing"],
+      "annualTheme": "One Planet, Shared Future",
+      "scientificFocus": [
+        "Environmental science and science-informed decision-making",
+        "Scientific sessions, plenaries, and parallel events spanning ecosystem stressors, methods, and policy",
+        "Late-breaking science relevant to emerging contaminants and environmental risk"
+      ],
       "industryTrendsToWatch": [
-        "PFAS and emerging-contaminant testing methods, especially regulatory and government-lab needs",
-        "Environmental toxicology workflows requiring lower detection limits and higher throughput",
-        "Application notes and proof requirements for public-sector and contract labs"
+        "PFAS and emerging-contaminant methods must demonstrate regulatory relevance and long-run robustness, not only low detection limits.",
+        "Environmental laboratories need defensible results across water, soil, biosolids, tissue, and food matrices."
       ],
       "competitorWatch": [
-        { "name": "SCIEX", "status": "Watch for LC-MS/MS sensitivity and PFAS methods" },
-        { "name": "Thermo Fisher", "status": "Watch for end-to-end environmental testing portfolio" },
-        { "name": "Agilent", "status": "Watch for environmental LC/MS and sample-prep positioning" },
-        { "name": "Shimadzu", "status": "Watch for routine LCMS environmental workflows" }
+        { "name": "SCIEX", "status": "Expected EPA 1633A and TFA application content; event-specific talk not confirmed" },
+        { "name": "Thermo Fisher", "status": "Expected ultrashort-chain PFAS content; event-specific talk not confirmed" },
+        { "name": "Shimadzu", "status": "Expected food and environmental PFAS content; event-specific talk not confirmed" }
+      ],
+      "competitorContent": [
+        {
+          "competitor": "SCIEX",
+          "evidenceStatus": "Expected — not confirmed",
+          "content": "Expect EPA Method 1633A routine-sample positioning on the novus V55 and a sensitivity story for TFA. No SCIEX-specific SETAC session was confirmed in the public event pages reviewed.",
+          "evidenceBasis": "The expectation is derived from current official SCIEX technical notes for EPA 1633A and TFA, not from the SETAC agenda.",
+          "sourceLabel": "Official SCIEX EPA 1633A note",
+          "sourceUrl": "https://sciex.com/tech-notes/environmental-industrial/water-and-soil/routine-application-of-epa-method-environmental-samples-using-the-novusv55"
+        },
+        {
+          "competitor": "Thermo Fisher",
+          "evidenceStatus": "Expected — not confirmed",
+          "content": "Expect direct-injection quantitation of C1-C4 ultrashort-chain PFAS in drinking water. No Thermo Fisher-specific SETAC session was confirmed in the public event pages reviewed.",
+          "evidenceBasis": "The expectation comes from Thermo Fisher’s official 2026 application note, not an event-session listing.",
+          "sourceLabel": "Official Thermo Fisher PFAS note",
+          "sourceUrl": "https://documents.thermofisher.com/TFS-Assets/CMD/Application-Notes/an-004442-en-pfas-tsq-altis-plus-efox-editon-an004442-em-en.pdf"
+        },
+        {
+          "competitor": "Shimadzu",
+          "evidenceStatus": "Expected — not confirmed",
+          "content": "Expect PFAS analysis in food or complex environmental matrices, including seafood. No Shimadzu-specific SETAC session was confirmed in the public event pages reviewed.",
+          "evidenceBasis": "The expectation comes from Shimadzu’s official PFAS-in-seafood application note, not an event-session listing.",
+          "sourceLabel": "Official Shimadzu PFAS note",
+          "sourceUrl": "https://www.shimadzu.com/an/sites/shimadzu.com.an/files/pim/pim_document_file/applications/application_note/26436/an_02-ssi-lcms-157-en.pdf"
+        }
+      ],
+      "watersScientificContent": [
+        {
+          "title": "EPA 1633A robustness over a real laboratory workload",
+          "deliverable": "A scientific poster and booth proof story using long-run PFAS data across water, biosolids, and leachate extracts.",
+          "proofNeeded": "Unscheduled downtime, calibration stability, %RSD, maintenance frequency, and batch-review time."
+        },
+        {
+          "title": "One environmental workflow beyond the standard PFAS list",
+          "deliverable": "A methods roadmap covering regulated PFAS, ultrashort-chain PFAS, TFA, and difficult matrices with clear validation boundaries.",
+          "proofNeeded": "Coverage, matrix effects, recovery, detection limits, and confirmation criteria."
+        },
+        {
+          "title": "Faster defensible review for high-volume environmental labs",
+          "deliverable": "A live batch-review workflow showing automated flags, calibration management, exception review, and traceable reporting.",
+          "proofNeeded": "Minutes per batch, manual interventions, false flags, and audit traceability."
+        }
+      ],
+      "boothRecommendations": [
+        {
+          "product": "Xevo TQ Absolute XR",
+          "role": "Anchor the booth with EPA 1633A long-run reliability and sensitivity evidence.",
+          "message": "Maintain defensible PFAS results across difficult matrices and long campaigns with less unplanned intervention.",
+          "productUrl": "https://www.waters.com/nextgen/ee/en/library/application-notes/2025/enhanced-reliability-for-long-term-pfas-analysis-with-the-xevo-tq-absolute-xr-mass-spectrometer.html"
+        },
+        {
+          "product": "ACQUITY Premier LC and environmental sample-preparation workflow",
+          "role": "Show the complete path from sample cleanup and separation to quantitation.",
+          "message": "Control matrix effects and carryover before they become review or uptime problems.",
+          "productUrl": "https://www.waters.com/nextgen/us/en/products/chromatography/chromatography-systems/acquity-premier-system-with-multi-dimensional-technology.html"
+        },
+        {
+          "product": "waters_connect for Quantitation",
+          "role": "Demonstrate accelerated batch validation and long-term calibration management.",
+          "message": "Turn large environmental batches into faster, traceable decisions with visible exceptions.",
+          "productUrl": "https://www.waters.com/nextgen/ee/en/library/application-notes/2025/enhanced-reliability-for-long-term-pfas-analysis-with-the-xevo-tq-absolute-xr-mass-spectrometer.html"
+        }
       ],
       "watersPrep": [
-        "Prepare PFAS and contaminants proof points for sensitivity, throughput, robustness, and compliance.",
-        "Collect government and environmental-lab language around method adoption barriers.",
-        "Identify whitespace for application kits, methods, or regulatory-ready workflow bundles."
+        "Lead with 24-week, 17,500-injection PFAS reliability evidence and make the source visible.",
+        "Prepare a competitive response for ultrashort PFAS, TFA, and complex matrices without implying validated coverage where it is not yet proven."
       ],
       "monitoringLinks": [
-        { "label": "Program", "url": "https://www.setac.org/discover-events/global-meetings/setac-north-america-47th-annual-meeting/program/daily-schedule.html" }
+        { "label": "2026 meeting and theme", "url": "https://www.setac.org/discover-events/global-meetings/setac-north-america-47th-annual-meeting.html" },
+        { "label": "2026 program", "url": "https://www.setac.org/discover-events/global-meetings/setac-north-america-47th-annual-meeting/program/daily-schedule.html" },
+        { "label": "Exhibitor listing", "url": "https://www.setac.org/discover-events/global-meetings/setac-north-america-47th-annual-meeting/exhibits-supporters/exhibitor-listing-and-floor-plan.html" }
       ]
     }
   ]

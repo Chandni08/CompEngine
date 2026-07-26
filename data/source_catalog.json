@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-13T18:28:49+00:00",
+  "generatedAt": "2026-07-26T11:55:20+00:00",
   "step": "Step 0",
   "title": "Data Source Inventory",
   "sources": [
@@ -22,7 +22,7 @@
       "extractionReason": "No usable press-release feed or extractable index: HTTP 200 (https://newsroom.thermofisher.com/newsroom/press-releases/default.aspx).",
       "extractedRecords": 0,
       "fetchMethod": "press_release_index",
-      "lastExtractionCheck": "2026-07-13T18:28:47+00:00"
+      "lastExtractionCheck": "2026-07-26T11:55:15+00:00"
     },
     {
       "id": "thermo-ms-products",
@@ -40,10 +40,67 @@
       "issue": "",
       "nextAction": "Use as portfolio-level product source; add product-detail URLs only after verification.",
       "extractionStatus": "extracted",
-      "extractionReason": "Official US sitemap parsed; 41 LC/LC-MS product pages tracked.",
-      "extractedRecords": 41,
+      "extractionReason": "Official US sitemap parsed; 43 LC/LC-MS product pages tracked.",
+      "extractedRecords": 43,
       "fetchMethod": "product_sitemap_xml",
-      "lastExtractionCheck": "2026-07-13T18:28:47+00:00"
+      "lastExtractionCheck": "2026-07-26T11:55:15+00:00"
+    },
+    {
+      "id": "thermo-dionex-ion-chromatography-products",
+      "group": "Product detail",
+      "source": "Thermo Dionex ion chromatography product monitoring",
+      "competitor": "Thermo Fisher",
+      "signalCoverage": [
+        "Dionex Integrion HPIC",
+        "Dionex ICS-series product pages",
+        "Environmental and food ion chromatography positioning"
+      ],
+      "url": "https://www.thermofisher.com/sitemap-us-en.xml",
+      "productUrls": [
+        "https://www.thermofisher.com/us/en/home/industrial/chromatography/ion-chromatography-ic/ion-chromatography-systems/instrument-selection/integrion.html",
+        "https://www.thermofisher.com/us/en/home/industrial/chromatography/ion-chromatography-ic/ion-chromatography-systems/instrument-selection/ics-6000.html"
+      ],
+      "marketSegments": [
+        "Environmental",
+        "Food & Beverage"
+      ],
+      "health": "good",
+      "status": "monitored",
+      "issue": "",
+      "nextAction": "Diff the registered Integrion and ICS-series product URLs and last-modified dates in Thermo's official US sitemap.",
+      "extractionStatus": "extracted",
+      "extractionReason": "Official Thermo sitemap parsed; 2 registered Thermo Scientific Dionex ion chromatography product pages tracked.",
+      "extractedRecords": 2,
+      "fetchMethod": "registered_product_sitemap",
+      "lastExtractionCheck": "2026-07-26T11:55:15+00:00"
+    },
+    {
+      "id": "thermo-vanquish-neo-nano-lc-products",
+      "group": "Product detail",
+      "source": "Thermo Vanquish Neo nano-LC product monitoring",
+      "competitor": "Thermo Fisher",
+      "signalCoverage": [
+        "Vanquish Neo product-page changes",
+        "Nano-, capillary-, and micro-flow LC positioning",
+        "Biopharma and academic LC-MS workflows"
+      ],
+      "url": "https://www.thermofisher.com/sitemap-us-en.xml",
+      "productUrls": [
+        "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-neo-uhplc-system.html"
+      ],
+      "marketSegments": [
+        "Biopharma",
+        "Academic"
+      ],
+      "health": "good",
+      "status": "monitored",
+      "issue": "",
+      "nextAction": "Diff the registered Vanquish Neo product URL and last-modified date in Thermo's official US sitemap.",
+      "extractionStatus": "extracted",
+      "extractionReason": "Official Thermo sitemap parsed; 1 registered Thermo Scientific Vanquish Neo nano-LC product pages tracked.",
+      "extractedRecords": 1,
+      "fetchMethod": "registered_product_sitemap",
+      "lastExtractionCheck": "2026-07-26T11:55:15+00:00"
     },
     {
       "id": "thermo-lc-insights",
@@ -64,7 +121,7 @@
       "extractionReason": "Official dated RSS feed parsed; 7 relevant LC/MS records extracted.",
       "extractedRecords": 7,
       "fetchMethod": "rss_feed",
-      "lastExtractionCheck": "2026-07-13T18:28:48+00:00"
+      "lastExtractionCheck": "2026-07-26T11:55:16+00:00"
     },
     {
       "id": "thermo-ms-insights",
@@ -85,7 +142,7 @@
       "extractionReason": "Official dated RSS feed parsed; 5 relevant LC/MS records extracted.",
       "extractedRecords": 5,
       "fetchMethod": "rss_feed",
-      "lastExtractionCheck": "2026-07-13T18:28:48+00:00"
+      "lastExtractionCheck": "2026-07-26T11:55:18+00:00"
     },
     {
       "id": "thermo-proteomics-insights",
@@ -106,7 +163,7 @@
       "extractionReason": "Official dated RSS feed parsed; 7 relevant LC/MS records extracted.",
       "extractedRecords": 7,
       "fetchMethod": "rss_feed",
-      "lastExtractionCheck": "2026-07-13T18:28:48+00:00"
+      "lastExtractionCheck": "2026-07-26T11:55:18+00:00"
     },
     {
       "id": "agilent-newsroom",
@@ -128,7 +185,7 @@
       "extractionStatus": "extracted",
       "extractionReason": "Official dated press-release index parsed; 10 releases tracked.",
       "extractedRecords": 10,
-      "lastExtractionCheck": "2026-07-13T18:28:46+00:00"
+      "lastExtractionCheck": "2026-07-26T11:55:09+00:00"
     },
     {
       "id": "agilent-lcms",
@@ -150,7 +207,7 @@
       "extractionStatus": "extracted",
       "extractionReason": "Official product sitemaps parsed; 49 LC/MS product pages tracked.",
       "extractedRecords": 49,
-      "lastExtractionCheck": "2026-07-13T18:28:46+00:00"
+      "lastExtractionCheck": "2026-07-26T11:55:09+00:00"
     },
     {
       "id": "shimadzu-news",
@@ -168,10 +225,10 @@
       "issue": "",
       "nextAction": "Use as primary Shimadzu launch source.",
       "extractionStatus": "extracted",
-      "extractionReason": "Official dated news index parsed; 4 relevant releases extracted.",
-      "extractedRecords": 4,
+      "extractionReason": "Official dated news index parsed; 5 relevant releases extracted.",
+      "extractedRecords": 5,
       "fetchMethod": "dated_press_index",
-      "lastExtractionCheck": "2026-07-13T18:28:49+00:00"
+      "lastExtractionCheck": "2026-07-26T11:55:19+00:00"
     },
     {
       "id": "shimadzu-lcms",
@@ -191,7 +248,7 @@
       "extractionReason": "Official analytical sitemap parsed; 78 LC/LC-MS/software product pages tracked.",
       "extractedRecords": 78,
       "fetchMethod": "product_sitemap_xml",
-      "lastExtractionCheck": "2026-07-13T18:28:49+00:00"
+      "lastExtractionCheck": "2026-07-26T11:55:19+00:00"
     },
     {
       "id": "sciex-news",
@@ -212,7 +269,7 @@
       "extractionReason": "Official dated press index parsed; 3 relevant releases extracted.",
       "extractedRecords": 3,
       "fetchMethod": "dated_press_index",
-      "lastExtractionCheck": "2026-07-13T18:28:49+00:00"
+      "lastExtractionCheck": "2026-07-26T11:55:20+00:00"
     },
     {
       "id": "sciex-products",
@@ -232,7 +289,7 @@
       "extractionReason": "Official sitemap parsed; 66 MS/LC/software product pages tracked.",
       "extractedRecords": 66,
       "fetchMethod": "product_sitemap_xml",
-      "lastExtractionCheck": "2026-07-13T18:28:49+00:00"
+      "lastExtractionCheck": "2026-07-26T11:55:20+00:00"
     },
     {
       "id": "perkinelmer-news",
@@ -351,6 +408,783 @@
       "status": "source_map_created",
       "issue": "Public source map and directional signal starter are available. Forum, Reddit, ResearchGate, and LinkedIn ingestion still require approved access, terms review, and careful handling of user-generated content.",
       "nextAction": "Extract article/thread-level URLs, de-duplicate customer-language evidence, and keep community sources policy-gated until collection is approved."
+    },
+    {
+      "id": "journal-analytical-chemistry-acs",
+      "group": "Peer-reviewed journal",
+      "sourceClass": "Peer-reviewed journal",
+      "source": "Analytical Chemistry",
+      "publisher": "American Chemical Society",
+      "competitor": "Market-wide",
+      "url": "https://pubs.acs.org/journal/ancham",
+      "marketSegments": [
+        "Pharma",
+        "Biopharma",
+        "Clinical",
+        "Academic",
+        "Government",
+        "Environmental",
+        "Food & Beverage"
+      ],
+      "health": "good",
+      "status": "monitored",
+      "issue": "",
+      "signalCoverage": [
+        "LC-MS methods",
+        "Measurement performance",
+        "Method validation",
+        "Emerging applications"
+      ],
+      "refreshCadence": "Daily metadata check",
+      "accessType": "Publisher abstracts; article access varies",
+      "whatToMeasure": "Collect recent DOI metadata and monitor LC, LC-MS, separation, validation, omics, environmental, food, and bioanalytical articles.",
+      "whyItMatters": "Detect broadly influential analytical methods and measurement advances before they become routine application requirements.",
+      "nextAction": "Review newly collected DOI records for LC, LC-MS, method-performance, transferability, and application signals.",
+      "extractionStatus": "extracted",
+      "extractionReason": "Collected 40 recent DOI records from Crossref journal metadata.",
+      "extractedRecords": 40,
+      "fetchMethod": "crossref_journal_metadata",
+      "lastExtractionCheck": "2026-07-26T10:17:40+00:00",
+      "metadataEndpoint": "https://api.crossref.org/journals/0003-2700/works",
+      "surfaces": [
+        "Market intelligence",
+        "Application trends"
+      ]
+    },
+    {
+      "id": "journal-journal-of-chromatography-a",
+      "group": "Peer-reviewed journal",
+      "sourceClass": "Peer-reviewed journal",
+      "source": "Journal of Chromatography A",
+      "publisher": "Elsevier",
+      "competitor": "Market-wide",
+      "url": "https://www.sciencedirect.com/journal/journal-of-chromatography-a",
+      "marketSegments": [
+        "Pharma",
+        "Biopharma",
+        "CDMO",
+        "Academic",
+        "Government",
+        "Environmental",
+        "Food & Beverage"
+      ],
+      "health": "good",
+      "status": "monitored",
+      "issue": "",
+      "signalCoverage": [
+        "Separation performance",
+        "Column technology",
+        "2D-LC",
+        "LC-MS interfaces"
+      ],
+      "refreshCadence": "Daily metadata check",
+      "accessType": "Publisher abstracts; article access varies",
+      "whatToMeasure": "Collect recent DOI metadata for chromatography fundamentals, columns, separations, sample preparation, detectors, and hyphenated methods.",
+      "whyItMatters": "Track separation-performance requirements and method innovations relevant to LC hardware, columns, chemistries, and transferability.",
+      "nextAction": "Review newly collected DOI records for LC, LC-MS, method-performance, transferability, and application signals.",
+      "extractionStatus": "extracted",
+      "extractionReason": "Collected 40 recent DOI records from Crossref journal metadata.",
+      "extractedRecords": 40,
+      "fetchMethod": "crossref_journal_metadata",
+      "lastExtractionCheck": "2026-07-26T10:17:40+00:00",
+      "metadataEndpoint": "https://api.crossref.org/journals/0021-9673/works",
+      "surfaces": [
+        "Market intelligence",
+        "Application trends"
+      ]
+    },
+    {
+      "id": "journal-journal-of-chromatography-b",
+      "group": "Peer-reviewed journal",
+      "sourceClass": "Peer-reviewed journal",
+      "source": "Journal of Chromatography B",
+      "publisher": "Elsevier",
+      "competitor": "Market-wide",
+      "url": "https://www.sciencedirect.com/journal/journal-of-chromatography-b",
+      "marketSegments": [
+        "Pharma",
+        "Biopharma",
+        "CDMO",
+        "Clinical",
+        "Academic"
+      ],
+      "health": "good",
+      "status": "monitored",
+      "issue": "",
+      "signalCoverage": [
+        "Bioanalysis",
+        "Clinical methods",
+        "Biological matrices",
+        "Sample preparation"
+      ],
+      "refreshCadence": "Daily metadata check",
+      "accessType": "Publisher abstracts; article access varies",
+      "whatToMeasure": "Collect recent DOI metadata for biomedical, pharmaceutical, clinical, omics, and bioanalytical separations.",
+      "whyItMatters": "Identify sample-preparation, matrix, quantitation, and method-robustness needs in biological applications.",
+      "nextAction": "Review newly collected DOI records for LC, LC-MS, method-performance, transferability, and application signals.",
+      "extractionStatus": "extracted",
+      "extractionReason": "Collected 40 recent DOI records from Crossref journal metadata.",
+      "extractedRecords": 40,
+      "fetchMethod": "crossref_journal_metadata",
+      "lastExtractionCheck": "2026-07-26T10:17:40+00:00",
+      "metadataEndpoint": "https://api.crossref.org/journals/1570-0232/works",
+      "surfaces": [
+        "Market intelligence",
+        "Application trends"
+      ]
+    },
+    {
+      "id": "journal-jasms",
+      "group": "Peer-reviewed journal",
+      "sourceClass": "Peer-reviewed journal",
+      "source": "Journal of the American Society for Mass Spectrometry (JASMS)",
+      "publisher": "American Society for Mass Spectrometry / ACS Publications",
+      "competitor": "Market-wide",
+      "url": "https://pubs.acs.org/journal/jamsef",
+      "marketSegments": [
+        "Pharma",
+        "Biopharma",
+        "Clinical",
+        "Academic",
+        "Government",
+        "Environmental"
+      ],
+      "health": "good",
+      "status": "monitored",
+      "issue": "",
+      "signalCoverage": [
+        "MS instrumentation",
+        "Ionization",
+        "Quantitation",
+        "MS informatics"
+      ],
+      "refreshCadence": "Daily metadata check",
+      "accessType": "Publisher abstracts; article access varies",
+      "whatToMeasure": "Collect recent DOI metadata for MS instrumentation, ionization, fragmentation, quantitation, informatics, and applications.",
+      "whyItMatters": "Track mass-spectrometry performance and workflow advances that may change LC-MS system or software requirements.",
+      "nextAction": "Review newly collected DOI records for LC, LC-MS, method-performance, transferability, and application signals.",
+      "extractionStatus": "extracted",
+      "extractionReason": "Collected 40 recent DOI records from Crossref journal metadata.",
+      "extractedRecords": 40,
+      "fetchMethod": "crossref_journal_metadata",
+      "lastExtractionCheck": "2026-07-26T10:17:40+00:00",
+      "metadataEndpoint": "https://api.crossref.org/journals/1044-0305/works",
+      "surfaces": [
+        "Market intelligence",
+        "Application trends"
+      ]
+    },
+    {
+      "id": "journal-analytical-bioanalytical-chemistry",
+      "group": "Peer-reviewed journal",
+      "sourceClass": "Peer-reviewed journal",
+      "source": "Analytical and Bioanalytical Chemistry",
+      "publisher": "Springer Nature",
+      "competitor": "Market-wide",
+      "url": "https://link.springer.com/journal/216",
+      "marketSegments": [
+        "Pharma",
+        "Biopharma",
+        "Clinical",
+        "Academic",
+        "Government",
+        "Environmental",
+        "Food & Beverage"
+      ],
+      "health": "good",
+      "status": "monitored",
+      "issue": "",
+      "signalCoverage": [
+        "Bioanalytical methods",
+        "Environmental analysis",
+        "Food analysis",
+        "Omics"
+      ],
+      "refreshCadence": "Daily metadata check",
+      "accessType": "Publisher abstracts; article access varies",
+      "whatToMeasure": "Collect recent DOI metadata across analytical methods, bioanalysis, sensors, separations, omics, food, and environmental measurement.",
+      "whyItMatters": "Provide cross-segment evidence of methods and analytical problems that PubMed alone may underrepresent.",
+      "nextAction": "Review newly collected DOI records for LC, LC-MS, method-performance, transferability, and application signals.",
+      "extractionStatus": "extracted",
+      "extractionReason": "Collected 40 recent DOI records from Crossref journal metadata.",
+      "extractedRecords": 40,
+      "fetchMethod": "crossref_journal_metadata",
+      "lastExtractionCheck": "2026-07-26T10:17:40+00:00",
+      "metadataEndpoint": "https://api.crossref.org/journals/1618-2642/works",
+      "surfaces": [
+        "Market intelligence",
+        "Application trends"
+      ]
+    },
+    {
+      "id": "journal-journal-pharmaceutical-biomedical-analysis",
+      "group": "Peer-reviewed journal",
+      "sourceClass": "Peer-reviewed journal",
+      "source": "Journal of Pharmaceutical and Biomedical Analysis",
+      "publisher": "Elsevier",
+      "competitor": "Market-wide",
+      "url": "https://www.sciencedirect.com/journal/journal-of-pharmaceutical-and-biomedical-analysis",
+      "marketSegments": [
+        "Pharma",
+        "Biopharma",
+        "CDMO",
+        "Clinical",
+        "Academic"
+      ],
+      "health": "good",
+      "status": "monitored",
+      "issue": "",
+      "signalCoverage": [
+        "Impurity methods",
+        "Stability",
+        "Validation",
+        "Pharmaceutical QC"
+      ],
+      "refreshCadence": "Daily metadata check",
+      "accessType": "Publisher abstracts; article access varies",
+      "whatToMeasure": "Collect recent DOI metadata for pharmaceutical quality, impurities, stability, bioanalysis, validation, and regulated methods.",
+      "whyItMatters": "Track regulated-method requirements and recurring pharmaceutical workflow problems that can drive LC and LC-MS product needs.",
+      "nextAction": "Review newly collected DOI records for LC, LC-MS, method-performance, transferability, and application signals.",
+      "extractionStatus": "extracted",
+      "extractionReason": "Collected 40 recent DOI records from Crossref journal metadata.",
+      "extractedRecords": 40,
+      "fetchMethod": "crossref_journal_metadata",
+      "lastExtractionCheck": "2026-07-26T10:17:40+00:00",
+      "metadataEndpoint": "https://api.crossref.org/journals/0731-7085/works",
+      "surfaces": [
+        "Market intelligence",
+        "Application trends"
+      ]
+    },
+    {
+      "id": "journal-talanta",
+      "group": "Peer-reviewed journal",
+      "sourceClass": "Peer-reviewed journal",
+      "source": "Talanta",
+      "publisher": "Elsevier",
+      "competitor": "Market-wide",
+      "url": "https://www.sciencedirect.com/journal/talanta",
+      "marketSegments": [
+        "Pharma",
+        "Clinical",
+        "Academic",
+        "Government",
+        "Environmental",
+        "Food & Beverage"
+      ],
+      "health": "good",
+      "status": "monitored",
+      "issue": "",
+      "signalCoverage": [
+        "Contaminant methods",
+        "Sample preparation",
+        "Food analysis",
+        "Environmental analysis"
+      ],
+      "refreshCadence": "Daily metadata check",
+      "accessType": "Publisher abstracts; article access varies",
+      "whatToMeasure": "Collect recent DOI metadata for analytical methods, sensors, sample preparation, contaminants, food, environmental, and clinical analysis.",
+      "whyItMatters": "Surface broad analytical-method trends and emerging contaminant workflows outside the biomedical emphasis of PubMed.",
+      "nextAction": "Review newly collected DOI records for LC, LC-MS, method-performance, transferability, and application signals.",
+      "extractionStatus": "extracted",
+      "extractionReason": "Collected 40 recent DOI records from Crossref journal metadata.",
+      "extractedRecords": 40,
+      "fetchMethod": "crossref_journal_metadata",
+      "lastExtractionCheck": "2026-07-26T10:17:40+00:00",
+      "metadataEndpoint": "https://api.crossref.org/journals/0039-9140/works",
+      "surfaces": [
+        "Market intelligence",
+        "Application trends"
+      ]
+    },
+    {
+      "id": "conference-asms-2026",
+      "group": "Conference/poster",
+      "sourceClass": "Conference/poster",
+      "source": "ASMS 2026 (American Society for Mass Spectrometry Annual Conference)",
+      "publisher": "American Society for Mass Spectrometry",
+      "competitor": "Market-wide",
+      "url": "https://www.asms.org/conferences/annual-conference",
+      "marketSegments": [
+        "Pharma",
+        "Biopharma",
+        "Clinical",
+        "Academic",
+        "Government",
+        "Environmental",
+        "Food & Beverage"
+      ],
+      "health": "good",
+      "status": "monitored",
+      "issue": "",
+      "signalCoverage": [
+        "Product launches",
+        "Competitor posters",
+        "Application trends",
+        "Sponsor activity"
+      ],
+      "refreshCadence": "Daily during program and proceedings publication windows",
+      "accessType": "Public conference and program pages; some planner content requires registration",
+      "whatToMeasure": "Poster and oral titles by vendor and instrument, corporate breakfast seminars, repeated methods, new performance claims, and direct competitor comparisons.",
+      "whyItMatters": "ASMS provides the densest annual view of vendor LC-MS proof, including head-to-head posters that may reveal competitive performance claims before formal product literature.",
+      "nextAction": "Diff public program, abstract, poster, sponsor, and vendor-session pages; preserve exact record URLs when content is published.",
+      "extractionStatus": "extracted",
+      "extractionReason": "1 of 2 official conference/program endpoints reachable; this is endpoint coverage, not a poster count.",
+      "extractedRecords": 1,
+      "fetchMethod": "official_conference_endpoint_monitor",
+      "lastExtractionCheck": "2026-07-26T10:17:42+00:00",
+      "monitoringUrls": [
+        "https://www.asms.org/conferences/annual-conference",
+        "https://www.asms.org/conferences/annual-conference/conference-program"
+      ],
+      "surfaces": [
+        "Market intelligence",
+        "Application trends"
+      ]
+    },
+    {
+      "id": "conference-hplc-2026",
+      "group": "Conference/poster",
+      "sourceClass": "Conference/poster",
+      "source": "HPLC 2026 (International Symposium on High Performance Liquid Phase Separations and Related Techniques)",
+      "publisher": "HPLC Symposium series",
+      "competitor": "Market-wide",
+      "url": "https://hplc2026-symposium.org/",
+      "marketSegments": [
+        "Pharma",
+        "Biopharma",
+        "CDMO",
+        "Academic",
+        "Government",
+        "Environmental",
+        "Food & Beverage"
+      ],
+      "health": "good",
+      "status": "monitored",
+      "issue": "",
+      "signalCoverage": [
+        "LC innovation",
+        "Column and separation trends",
+        "Vendor seminars",
+        "Application methods"
+      ],
+      "refreshCadence": "Weekly; daily around abstract and program releases",
+      "accessType": "Public symposium and program pages",
+      "whatToMeasure": "Abstract and poster themes in dwell volume, dispersion, columns, multidimensional LC, hyphenated detection, method transfer, and vendor seminars.",
+      "whyItMatters": "The HPLC series is the most direct scientific source for separation-performance and column-technology changes that can become LC product requirements.",
+      "nextAction": "Diff public program, abstract, poster, sponsor, and vendor-session pages; preserve exact record URLs when content is published.",
+      "extractionStatus": "extracted",
+      "extractionReason": "2 of 2 official conference/program endpoints reachable; this is endpoint coverage, not a poster count.",
+      "extractedRecords": 2,
+      "fetchMethod": "official_conference_endpoint_monitor",
+      "lastExtractionCheck": "2026-07-26T10:17:42+00:00",
+      "monitoringUrls": [
+        "https://hplc2026-symposium.org/",
+        "https://hplc-symposium.org/2028"
+      ],
+      "surfaces": [
+        "Market intelligence",
+        "Application trends"
+      ]
+    },
+    {
+      "id": "conference-imsc-2026",
+      "group": "Conference/poster",
+      "sourceClass": "Conference/poster",
+      "source": "IMSC 2026 (International Mass Spectrometry Conference)",
+      "publisher": "International Mass Spectrometry Foundation",
+      "competitor": "Market-wide",
+      "url": "https://imsc26.com/",
+      "marketSegments": [
+        "Academic",
+        "Pharma",
+        "Biopharma",
+        "Clinical",
+        "Government",
+        "Environmental",
+        "Food & Beverage"
+      ],
+      "health": "review",
+      "status": "monitored",
+      "issue": "0 of 1 official conference/program endpoints reachable; this is endpoint coverage, not a poster count.",
+      "signalCoverage": [
+        "MS technology trends",
+        "Instrumentation advances",
+        "Application methods",
+        "Competitor research footprint"
+      ],
+      "refreshCadence": "Weekly; daily during program and abstract publication windows",
+      "accessType": "Public conference and scientific-program pages",
+      "whatToMeasure": "Instrument and acquisition advances, application-session concentration, vendor-authored posters, and repeated global MS workflow themes.",
+      "whyItMatters": "IMSC adds a global, research-led view of MS direction that complements the vendor-heavy ASMS signal.",
+      "nextAction": "Diff public program, abstract, poster, sponsor, and vendor-session pages; preserve exact record URLs when content is published.",
+      "extractionStatus": "blocked",
+      "extractionReason": "0 of 1 official conference/program endpoints reachable; this is endpoint coverage, not a poster count.",
+      "extractedRecords": 0,
+      "fetchMethod": "official_conference_endpoint_monitor",
+      "lastExtractionCheck": "2026-07-26T10:17:42+00:00",
+      "monitoringUrls": [
+        "https://imsc26.com/"
+      ],
+      "surfaces": [
+        "Market intelligence",
+        "Application trends"
+      ]
+    },
+    {
+      "id": "conference-msacl-2026",
+      "group": "Conference/poster",
+      "sourceClass": "Conference/poster",
+      "source": "MSACL 2026 (Mass Spectrometry & Advances in the Clinical Lab)",
+      "publisher": "MSACL",
+      "competitor": "Market-wide",
+      "url": "https://www.msacl.org/",
+      "marketSegments": [
+        "Clinical",
+        "Biopharma",
+        "Pharma",
+        "Academic"
+      ],
+      "health": "good",
+      "status": "monitored",
+      "issue": "",
+      "signalCoverage": [
+        "Clinical assays",
+        "Posters",
+        "Vendor activity",
+        "Translation-to-routine-lab evidence"
+      ],
+      "refreshCadence": "Weekly; daily during program and poster publication windows",
+      "accessType": "Public conference, program, and poster pages",
+      "whatToMeasure": "Poster counts by assay area and vendor, clinical-use status, validation claims, automation, turnaround time, and laboratory implementation barriers.",
+      "whyItMatters": "MSACL separates early research from clinically available assays, providing direct evidence of what LC-MS workflows are approaching routine clinical use.",
+      "nextAction": "Diff public program, abstract, poster, sponsor, and vendor-session pages; preserve exact record URLs when content is published.",
+      "extractionStatus": "extracted",
+      "extractionReason": "1 of 2 official conference/program endpoints reachable; this is endpoint coverage, not a poster count.",
+      "extractedRecords": 1,
+      "fetchMethod": "official_conference_endpoint_monitor",
+      "lastExtractionCheck": "2026-07-26T10:17:42+00:00",
+      "monitoringUrls": [
+        "https://www.msacl.org/",
+        "https://www.msacl.org/program/"
+      ],
+      "surfaces": [
+        "Market intelligence",
+        "Application trends"
+      ]
+    },
+    {
+      "id": "conference-ebf-open-symposium-2026",
+      "group": "Conference/poster",
+      "sourceClass": "Conference/poster",
+      "source": "19th European Bioanalysis Forum Open Symposium",
+      "publisher": "European Bioanalysis Forum",
+      "competitor": "Market-wide",
+      "url": "https://meetings.e-b-f.eu/open/",
+      "marketSegments": [
+        "Pharma",
+        "Biopharma",
+        "CDMO",
+        "Clinical"
+      ],
+      "health": "good",
+      "status": "monitored",
+      "issue": "",
+      "signalCoverage": [
+        "Bioanalytical practice",
+        "Posters",
+        "Regulatory alignment",
+        "Vendor sponsorship",
+        "Method validation"
+      ],
+      "refreshCadence": "Weekly; daily during agenda, abstract, and poster publication windows",
+      "accessType": "Public meeting, agenda, and abstract-call pages; some materials are delegate-only",
+      "whatToMeasure": "Repeated bioanalytical problems, modality-specific methods, validation and data-integrity discussions, sponsor presence, and LC-MS case-study themes.",
+      "whyItMatters": "EBF provides industry-led evidence of regulated bioanalysis practice across pharma and CRO laboratories, including issues not visible in publication-volume data.",
+      "nextAction": "Diff public program, abstract, poster, sponsor, and vendor-session pages; preserve exact record URLs when content is published.",
+      "extractionStatus": "extracted",
+      "extractionReason": "1 of 2 official conference/program endpoints reachable; this is endpoint coverage, not a poster count.",
+      "extractedRecords": 1,
+      "fetchMethod": "official_conference_endpoint_monitor",
+      "lastExtractionCheck": "2026-07-26T10:17:42+00:00",
+      "monitoringUrls": [
+        "https://e-b-f.eu/meetings/",
+        "https://meetings.e-b-f.eu/open/"
+      ],
+      "surfaces": [
+        "Market intelligence",
+        "Application trends"
+      ]
+    },
+    {
+      "id": "usp-621-chromatography",
+      "group": "Regulatory/pharmacopeial",
+      "sourceClass": "Regulatory/pharmacopeial",
+      "source": "USP <621> Chromatography",
+      "publisher": "United States Pharmacopeia",
+      "competitor": "Market-wide",
+      "url": "https://doi.usp.org/USPNF/USPNF_M99380_06_01.html",
+      "marketSegments": [
+        "Pharma",
+        "Biopharma",
+        "CDMO",
+        "Clinical"
+      ],
+      "health": "good",
+      "status": "200",
+      "issue": "",
+      "signalCoverage": [
+        "Chromatographic system suitability",
+        "Permitted method adjustments",
+        "Dwell volume",
+        "Compendial methods"
+      ],
+      "refreshCadence": "Weekly official-page check",
+      "accessType": "Official public page or document; compendial access may vary",
+      "whatToMeasure": "Official and proposed changes to system suitability, chromatographic adjustments, dwell volume, injection volume, and compendial method execution.",
+      "whyItMatters": "Changes can directly alter LC method-transfer requirements, instrument suitability, and the evidence needed for regulated workflows.",
+      "nextAction": "Track official revisions, effective dates, notices, and records; extract only claims present in the linked primary source.",
+      "extractionStatus": "extracted",
+      "extractionReason": "Official source reachable at https://doi.usp.org/USPNF/USPNF_M99380_06_01.html.",
+      "extractedRecords": 1,
+      "fetchMethod": "official_regulatory_page_check",
+      "lastExtractionCheck": "2026-07-26T11:10:18+00:00",
+      "surfaces": [
+        "Market intelligence",
+        "Application trends"
+      ]
+    },
+    {
+      "id": "usp-1058-instrument-qualification",
+      "group": "Regulatory/pharmacopeial",
+      "sourceClass": "Regulatory/pharmacopeial",
+      "source": "USP <1058> Analytical Instrument Qualification",
+      "publisher": "United States Pharmacopeia",
+      "competitor": "Market-wide",
+      "url": "https://doi.usp.org/USPNF/USPNF_M1124_01_01.html",
+      "marketSegments": [
+        "Pharma",
+        "Biopharma",
+        "CDMO",
+        "Clinical"
+      ],
+      "health": "good",
+      "status": "200",
+      "issue": "",
+      "signalCoverage": [
+        "Instrument qualification",
+        "Fitness for intended use",
+        "Calibration",
+        "Lifecycle control"
+      ],
+      "refreshCadence": "Weekly official-page check",
+      "accessType": "Official public page or document; compendial access may vary",
+      "whatToMeasure": "Qualification lifecycle, risk assessment, software-controlled instrumentation, calibration, maintenance, and fitness-for-purpose expectations.",
+      "whyItMatters": "These expectations shape qualification packages, service evidence, software controls, and regulated instrument lifecycle requirements.",
+      "nextAction": "Track official revisions, effective dates, notices, and records; extract only claims present in the linked primary source.",
+      "extractionStatus": "extracted",
+      "extractionReason": "Official source reachable at https://doi.usp.org/USPNF/USPNF_M1124_01_01.html.",
+      "extractedRecords": 1,
+      "fetchMethod": "official_regulatory_page_check",
+      "lastExtractionCheck": "2026-07-26T11:10:18+00:00",
+      "surfaces": [
+        "Market intelligence",
+        "Application trends"
+      ]
+    },
+    {
+      "id": "usp-232-233-elemental-impurities",
+      "group": "Regulatory/pharmacopeial",
+      "sourceClass": "Regulatory/pharmacopeial",
+      "source": "USP <232>/<233> Elemental Impurities",
+      "publisher": "United States Pharmacopeia",
+      "competitor": "Market-wide",
+      "url": "https://www.usp.org/impurities/elemental-impurities-updates",
+      "marketSegments": [
+        "Pharma",
+        "Biopharma",
+        "CDMO",
+        "Clinical",
+        "Food & Beverage"
+      ],
+      "health": "review",
+      "status": "403",
+      "issue": "Official source returned HTTP 403; retain for manual review.",
+      "signalCoverage": [
+        "Elemental impurity limits",
+        "ICP-MS procedures",
+        "Procedure validation",
+        "Compendial updates"
+      ],
+      "refreshCadence": "Weekly official-page check",
+      "accessType": "Official public page or document; compendial access may vary",
+      "whatToMeasure": "Permitted exposure changes, procedure revisions, validation requirements, and effective dates for elemental impurity testing.",
+      "whyItMatters": "The chapters create regulated ICP-MS and sample-preparation requirements adjacent to LC-MS laboratory workflows and informatics.",
+      "nextAction": "Track official revisions, effective dates, notices, and records; extract only claims present in the linked primary source.",
+      "extractionStatus": "blocked",
+      "extractionReason": "Official source unavailable during check: HTTP 403.",
+      "extractedRecords": 0,
+      "fetchMethod": "official_regulatory_page_check",
+      "lastExtractionCheck": "2026-07-26T11:10:18+00:00",
+      "surfaces": [
+        "Market intelligence",
+        "Application trends"
+      ]
+    },
+    {
+      "id": "ich-q2-r2",
+      "group": "Regulatory/pharmacopeial",
+      "sourceClass": "Regulatory/pharmacopeial",
+      "source": "ICH Q2(R2) Validation of Analytical Procedures",
+      "publisher": "International Council for Harmonisation",
+      "competitor": "Market-wide",
+      "url": "https://database.ich.org/sites/default/files/ICH_Q2%28R2%29_Guideline_2023_1130.pdf",
+      "marketSegments": [
+        "Pharma",
+        "Biopharma",
+        "CDMO",
+        "Clinical"
+      ],
+      "health": "good",
+      "status": "200",
+      "issue": "",
+      "signalCoverage": [
+        "Analytical procedure validation",
+        "Accuracy",
+        "Precision",
+        "Range",
+        "Robustness"
+      ],
+      "refreshCadence": "Weekly official-page check",
+      "accessType": "Official public page or document; compendial access may vary",
+      "whatToMeasure": "Validation characteristics, performance criteria, multivariate methods, lifecycle links, and implementation expectations.",
+      "whyItMatters": "Q2(R2) defines the evidence customers need to validate LC and LC-MS procedures for their intended use.",
+      "nextAction": "Track official revisions, effective dates, notices, and records; extract only claims present in the linked primary source.",
+      "extractionStatus": "extracted",
+      "extractionReason": "Official source reachable at https://database.ich.org/sites/default/files/ICH_Q2%28R2%29_Guideline_2023_1130.pdf.",
+      "extractedRecords": 1,
+      "fetchMethod": "official_regulatory_page_check",
+      "lastExtractionCheck": "2026-07-26T11:10:18+00:00",
+      "surfaces": [
+        "Market intelligence",
+        "Application trends"
+      ]
+    },
+    {
+      "id": "ich-q14",
+      "group": "Regulatory/pharmacopeial",
+      "sourceClass": "Regulatory/pharmacopeial",
+      "source": "ICH Q14 Analytical Procedure Development",
+      "publisher": "International Council for Harmonisation",
+      "competitor": "Market-wide",
+      "url": "https://database.ich.org/sites/default/files/ICH_Q14_Guideline_2023_1116.pdf",
+      "marketSegments": [
+        "Pharma",
+        "Biopharma",
+        "CDMO",
+        "Clinical"
+      ],
+      "health": "review",
+      "status": "request_error",
+      "issue": "Official source returned HTTP request error; retain for manual review.",
+      "signalCoverage": [
+        "Analytical target profile",
+        "Procedure development",
+        "Risk management",
+        "Lifecycle management"
+      ],
+      "refreshCadence": "Weekly official-page check",
+      "accessType": "Official public page or document; compendial access may vary",
+      "whatToMeasure": "Analytical target profiles, parameter-risk assessments, robustness studies, control strategies, and lifecycle changes.",
+      "whyItMatters": "Q14 shifts customer expectations toward scientifically justified method development and lifecycle-ready transfer packages.",
+      "nextAction": "Track official revisions, effective dates, notices, and records; extract only claims present in the linked primary source.",
+      "extractionStatus": "blocked",
+      "extractionReason": "Official source unavailable during check: HTTP request error.",
+      "extractedRecords": 0,
+      "fetchMethod": "official_regulatory_page_check",
+      "lastExtractionCheck": "2026-07-26T11:10:18+00:00",
+      "surfaces": [
+        "Market intelligence",
+        "Application trends"
+      ]
+    },
+    {
+      "id": "fda-warning-letters-analytical-findings",
+      "group": "Regulatory/pharmacopeial",
+      "sourceClass": "Regulatory/pharmacopeial",
+      "source": "FDA Warning Letters",
+      "publisher": "U.S. Food and Drug Administration",
+      "competitor": "Market-wide",
+      "url": "https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/compliance-actions-and-activities/warning-letters",
+      "marketSegments": [
+        "Pharma",
+        "Biopharma",
+        "CDMO",
+        "Clinical",
+        "Food & Beverage"
+      ],
+      "health": "good",
+      "status": "200",
+      "issue": "",
+      "signalCoverage": [
+        "Data integrity",
+        "Method validation",
+        "Laboratory controls",
+        "Investigation failures"
+      ],
+      "refreshCadence": "Weekly official-page check",
+      "accessType": "Official public page or document; compendial access may vary",
+      "whatToMeasure": "Warning letters citing chromatography, mass spectrometry, data integrity, method validation, audit trails, out-of-specification investigations, or laboratory controls.",
+      "whyItMatters": "Recurring findings expose regulated-laboratory workflow and software-control gaps that should influence product requirements and evidence packages.",
+      "nextAction": "Track official revisions, effective dates, notices, and records; extract only claims present in the linked primary source.",
+      "extractionStatus": "extracted",
+      "extractionReason": "Official source reachable at https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/compliance-actions-and-activities/warning-letters.",
+      "extractedRecords": 1,
+      "fetchMethod": "official_regulatory_page_check",
+      "lastExtractionCheck": "2026-07-26T11:10:18+00:00",
+      "surfaces": [
+        "Market intelligence",
+        "Application trends"
+      ]
+    },
+    {
+      "id": "fda-form-483-observations",
+      "group": "Regulatory/pharmacopeial",
+      "sourceClass": "Regulatory/pharmacopeial",
+      "source": "FDA Form 483 Inspection Observations",
+      "publisher": "U.S. Food and Drug Administration",
+      "competitor": "Market-wide",
+      "url": "https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/inspection-references/inspection-observations",
+      "marketSegments": [
+        "Pharma",
+        "Biopharma",
+        "CDMO",
+        "Clinical",
+        "Food & Beverage"
+      ],
+      "health": "good",
+      "status": "200",
+      "issue": "",
+      "signalCoverage": [
+        "Inspection observations",
+        "Laboratory controls",
+        "Data integrity",
+        "Method and equipment findings"
+      ],
+      "refreshCadence": "Weekly official-page check",
+      "accessType": "Official public page or document; compendial access may vary",
+      "whatToMeasure": "Observation categories and available records involving laboratory controls, analytical methods, equipment qualification, electronic records, and data review.",
+      "whyItMatters": "Form 483 patterns are an early regulatory signal of operational and data-integrity failures before they become generalized market requirements.",
+      "nextAction": "Track official revisions, effective dates, notices, and records; extract only claims present in the linked primary source.",
+      "extractionStatus": "extracted",
+      "extractionReason": "Official source reachable at https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/inspection-references/inspection-observations.",
+      "extractedRecords": 1,
+      "fetchMethod": "official_regulatory_page_check",
+      "lastExtractionCheck": "2026-07-26T11:10:18+00:00",
+      "surfaces": [
+        "Market intelligence",
+        "Application trends"
+      ]
     }
   ]
 }

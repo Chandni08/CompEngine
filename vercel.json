@@ -1,4 +1,6 @@
 {
+  "buildCommand": "node scripts/validate_heading_consistency.mjs && node scripts/validate_customer_voice_sources.mjs && node scripts/validate_product_launch_press_releases.mjs && node scripts/validate_historical_product_catalog.mjs && node scripts/validate_historical_waters_catalog.mjs",
+  "outputDirectory": ".",
   "cleanUrls": true,
   "headers": [
     {

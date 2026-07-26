@@ -1,6 +1,87 @@
 {
   "generatedAt": "2026-06-26T14:55:00",
   "source": "SEC filings reviewed for roadmap, product, market, and competitor strategy implications",
+  "companyCorporateMoves": [
+    {
+      "competitor": "Agilent",
+      "items": [
+        {
+          "type": "Pending acquisition",
+          "name": "Biocare (BC Midco I, Inc.)",
+          "counterparty": "Agilent",
+          "date": "2026-03-06",
+          "value": "Approximately $950 million cash",
+          "status": "Definitive agreement; subject to regulatory approval and closing conditions",
+          "filingEvidence": "Agilent agreed to acquire Biocare, a provider of clinical and research solutions, and plans to place it in Life Sciences and Diagnostics Markets.",
+          "strategicReadout": "This broadens Agilent beyond analytical instruments toward clinical and research workflow ownership; monitor integration with instruments, software, services, and consumables.",
+          "searchTerms": ["Pending Acquisition", "Biocare", "BC Midco I, Inc.", "$950 million"],
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1090872/000109087226000055/a-20260430.htm"
+        }
+      ]
+    },
+    {
+      "competitor": "Thermo Fisher",
+      "coverageNote": "The displayed 10-Q names acquisitions and a divestiture agreement; it does not identify a separate merger or operating partnership.",
+      "items": [
+        {
+          "type": "Acquisition",
+          "name": "Clario Holdings, Inc.",
+          "counterparty": "Thermo Fisher",
+          "date": "2026-03-24",
+          "value": "Preliminary purchase price of approximately $9.1 billion",
+          "status": "Completed",
+          "filingEvidence": "Thermo acquired Clario to add clinical-trial endpoint data solutions and expand patient-data decision support within Laboratory Products and Biopharma Services.",
+          "strategicReadout": "This extends Thermo's workflow position from laboratory products into clinical-trial data and decision support, increasing end-to-end biopharma account leverage.",
+          "searchTerms": ["Clario Holdings, Inc.", "endpoint data solutions", "$9,099"],
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/97745/000009774526000092/tmo-20260328.htm"
+        },
+        {
+          "type": "Acquisition",
+          "name": "Solventum Purification and Filtration business",
+          "counterparty": "Solventum Corporation",
+          "date": "2025-09-01",
+          "value": "Net purchase price of approximately $3.865 billion",
+          "status": "Completed",
+          "filingEvidence": "Thermo acquired Solventum's purification and filtration business to strengthen upstream and downstream bioproduction workflows.",
+          "strategicReadout": "This is the clearest transaction link to Waters: Thermo is adding bioproduction workflow breadth around its chromatography and mass-spectrometry portfolio.",
+          "searchTerms": ["Solventum Corporation", "filtration and separation", "$3,865"],
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/97745/000009774526000092/tmo-20260328.htm"
+        },
+        {
+          "type": "Divestiture agreement",
+          "name": "Microbiology business sale to Astorg",
+          "counterparty": "Astorg",
+          "date": "2026-04-27",
+          "value": "Approximately $1.075 billion",
+          "status": "Agreement signed; expected to close in the second half of 2026",
+          "filingEvidence": "Thermo agreed to sell its Specialty Diagnostics microbiology business to Astorg, subject to approvals and closing conditions.",
+          "strategicReadout": "This signals portfolio concentration: Thermo is funding growth platforms while pruning a diagnostics asset outside its highest-priority workflow bets.",
+          "searchTerms": ["Astorg", "microbiology business", "$1.075 billion"],
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/97745/000009774526000092/tmo-20260328.htm"
+        }
+      ]
+    },
+    {
+      "competitor": "PerkinElmer",
+      "displayCompany": "Revvity / PerkinElmer-related",
+      "coverageNote": "The displayed 10-Q names one completed acquisition; it does not identify a separate merger or operating partnership.",
+      "items": [
+        {
+          "type": "Acquisition",
+          "name": "Advanced Chemistry Development Inc. (ACD/Labs)",
+          "counterparty": "Revvity",
+          "date": "2026-01-01",
+          "dateLabel": "First quarter 2026",
+          "value": "$72 million cash plus up to $8 million contingent consideration",
+          "status": "Completed",
+          "filingEvidence": "Revvity acquired ACD/Labs, a scientific-software provider for analytical characterization and molecular design in pharmaceutical and materials markets.",
+          "strategicReadout": "This makes the software signal concrete: the company is buying analytical-characterization and molecular-design capabilities rather than relying only on internal platform development.",
+          "searchTerms": ["Advanced Chemistry Development Inc.", "ACD/Labs", "$72.0 million"],
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/31791/000003179126000019/revv-20260405.htm"
+        }
+      ]
+    }
+  ],
   "insights": [
     {
       "id": "agilent-lc-lcms-pharma-apac-growth-2026-q2",
@@ -14,7 +95,6 @@
       "filingNavigation": {
         "searchTerms": ["liquid chromatography", "LC-MS", "Advanced Therapeutics", "Asia Pacific", "pharmaceutical"],
         "whereToLook": "Management's discussion of Life Sciences and Applied Markets Group revenue by product line, end market, and geography.",
-        "whyThisSurfacesTheInsight": "Those phrases locate the passages where Agilent connects LC/LC-MS directly to pharma, APAC, and advanced-therapeutics growth instead of treating LC as a mature background portfolio.",
         "watersReadout": "Use the passage to compare Waters roadmap proof against Agilent's stated LC/LC-MS growth engines in pharma, APAC, and advanced materials."
       },
       "whyItMatters": "This is direct evidence that Agilent sees LC and LC-MS as growth engines, not just mature portfolio lines.",

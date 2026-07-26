@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Next Gen LC Competitive Intelligence Engine</title>
-    <link rel="stylesheet" href="styles.css?v=20260713-remove-generic-next-step-2" />
-    <link rel="stylesheet" href="product-ui.css?v=20260712-auditable-scores-1" />
+    <title>Next Gen Competitive Intelligence Engine</title>
+    <link rel="stylesheet" href="styles.css?v=20260726-strategic-cleanup-160" />
+    <link rel="stylesheet" href="product-ui.css?v=20260726-strategic-cleanup-160" />
   </head>
   <body>
     <aside class="sidebar">
@@ -16,34 +16,33 @@
           <h1>Competitive Intelligence Engine</h1>
         </div>
       </div>
-      <section class="focus-card">
-        <p class="section-label">Strategic Product</p>
-        <strong id="focusTitle">Next Gen LC PM View</strong>
-        <span id="focusSubtitle">Decisions, competitor intent, roadmap implications, and traceable evidence.</span>
-      </section>
+      <button id="sidebarNavigationToggle" class="sidebar-navigation-toggle" type="button" aria-expanded="false" aria-controls="sidebarNavigationPanel">
+        <span>Dashboard sections</span>
+        <span aria-hidden="true">⌄</span>
+      </button>
+      <div id="sidebarNavigationPanel" class="sidebar-navigation-panel">
       <nav class="section-navigator" aria-label="Navigate to dashboard section">
-        <p class="section-label">Roadmap intelligence</p>
+        <p class="section-label">Roadmap Intelligence</p>
         <div class="section-nav-groups">
           <div class="section-nav-group">
-            <span>Priority</span>
-            <a href="#leadership-brief" data-section-nav="leadership-brief">Leadership brief</a>
-            <a href="#decisions-needed" data-section-nav="decisions-needed">Decisions needed</a>
-            <a href="#overall-trend-analysis" data-section-nav="overall-trend-analysis">Overall trends</a>
-            <a href="#competitor-intent-section" data-section-nav="competitor-intent-section">Competitor intent</a>
+            <span>Overview</span>
+            <a href="#leadership-brief" data-section-nav="leadership-brief">Leadership Brief</a>
+            <a href="#overall-trend-analysis" data-section-nav="overall-trend-analysis">Overall Trends</a>
+            <a href="#competitor-intent-section" data-section-nav="competitor-intent-section">Competitor Intent</a>
+            <a href="#decisions-needed" data-section-nav="decisions-needed">Decisions Needed</a>
           </div>
           <div class="section-nav-group">
             <span>Analysis</span>
-            <a href="#customer-voice" data-section-nav="customer-voice">Customer voice</a>
-            <a href="#product-comparator" data-section-nav="product-comparator">Product comparator</a>
-            <a href="#competitive-timeline-section" data-section-nav="competitive-timeline-section">Competitive timeline</a>
-            <a href="#application-trends" data-section-nav="application-trends">Application trends</a>
+            <a href="#customer-voice" data-section-nav="customer-voice">Customer Voice</a>
+            <a href="#competitive-timeline-section" data-section-nav="competitive-timeline-section">Competitive Timeline</a>
+            <a href="#application-trends" data-section-nav="application-trends">Application Trends</a>
+            <a href="#product-comparator" data-section-nav="product-comparator">Product Comparator</a>
           </div>
           <div class="section-nav-group">
             <span>Evidence</span>
-            <a href="#filing-evidence" data-section-nav="filing-evidence">SEC filing insights</a>
-            <a href="#conference-intelligence" data-section-nav="conference-intelligence">Conference intelligence</a>
-            <a href="#launch-evidence" data-section-nav="launch-evidence">Product launches</a>
-            <a href="#evidence-signal-feed" data-section-nav="evidence-signal-feed">All public evidence</a>
+            <a href="#filing-evidence" data-section-nav="filing-evidence">SEC Filing Insights</a>
+            <a href="conference.html">Conference Intelligence ↗</a>
+            <a href="#evidence-signal-feed" data-section-nav="evidence-signal-feed">All Public Evidence</a>
           </div>
         </div>
       </nav>
@@ -51,6 +50,7 @@
         <p class="section-label">Current View</p>
         <div id="sourceCounts"></div>
       </section>
+      </div>
     </aside>
 
     <main class="app-shell">
@@ -58,30 +58,19 @@
         <div class="topbar-identity">
           <p class="eyebrow" id="asOf">Loading real data</p>
           <div class="topbar-title-row">
-            <h2 id="viewTitle">Competitive Intelligence Engine</h2>
+            <h2 id="viewTitle">Next Gen Competitive Intelligence Engine</h2>
             <span id="currentViewBadge" class="active-view-badge">Product Management view</span>
           </div>
-          <p id="viewSubtitle" class="topbar-subtitle">Roadmap priorities, competitor product moves, and whitespace opportunities for Waters Next Gen LC.</p>
+          <p id="viewSubtitle" class="topbar-subtitle">Informing Roadmap priorities, competitor moves, and whitespace for Next Gen LC.</p>
         </div>
         <div class="refresh-block">
           <span id="generatedAt">Refresh pending</span>
-          <div class="view-depth-control" aria-label="Display depth">
-            <div class="view-depth-copy">
-              <span>Display</span>
-              <strong id="viewDepthDescription" aria-live="polite">Decisions only</strong>
-            </div>
-            <div id="viewDepthControls" class="view-depth-toggle" role="group" aria-label="View depth">
-              <button type="button" data-view-depth="quick" class="active" aria-pressed="true">Quick glance</button>
-              <button type="button" data-view-depth="deep" aria-pressed="false">In-depth</button>
-            </div>
-          </div>
-          <button id="resetFilters" type="button">Reset</button>
         </div>
       </header>
 
       <section class="filters" aria-label="Filters">
         <label>
-          Role View
+          Role
           <select id="roleFilter">
             <option value="Leadership">Leadership</option>
             <option value="Product" selected>Product Management</option>
@@ -112,23 +101,21 @@
             <option>Academic</option>
             <option>Government</option>
             <option>Environmental</option>
+            <option>Food &amp; Beverage</option>
           </select>
         </label>
         <label>
           Technology
           <select id="technologyFilter">
             <option>All</option>
-            <option>LC</option>
-            <option>UHPLC</option>
+            <option>HPLC</option>
+            <option>UHPLC/UPLC</option>
             <option>LC-MS</option>
-            <option>LC-MS/MS</option>
-            <option>2D LC</option>
-            <option>Software</option>
-            <option>Portfolio</option>
+            <option>MS</option>
           </select>
         </label>
         <label>
-          Competitor Comparison
+          Competitor
           <select id="competitorFilter">
             <option>All</option>
           </select>
@@ -145,37 +132,30 @@
         </label>
       </section>
 
-      <section id="leadership-brief" class="decision-packet panel" aria-label="Leadership decision packet" data-collapsible="true" data-quick-open="true">
+      <section id="leadership-brief" class="decision-packet panel" aria-label="Leadership highlights" data-collapsible="true" data-quick-open="true">
         <div class="panel-header">
           <div>
-            <h3>Leadership brief</h3>
-            <p class="panel-helper">Recommended decision, evidence strength, competitor impact, and validation required for the active filters.</p>
+            <h3>Leadership Brief</h3>
           </div>
-          <button id="copyDecisionPacket" type="button">Copy brief</button>
+          <div class="panel-header-actions">
+            <span id="leadershipDecisionCount">Priority signal</span>
+            <button id="copyDecisionPacket" type="button">Copy brief</button>
+            <a
+              id="exportLeadershipPptx"
+              href="exports/waters-nextgen-leadership-brief.pptx"
+              download="Waters-Next-Gen-LC-Leadership-Brief-2026-07-23.pptx"
+              aria-label="Export the Leadership brief to PowerPoint"
+            >Export PowerPoint</a>
+          </div>
         </div>
-        <div id="decisionPacket" class="decision-packet-grid"></div>
-      </section>
-
-      <section class="strategy-command" aria-label="Strategic signal command center">
-        <section id="decisions-needed" class="panel decisions-panel" data-collapsible="true" data-quick-open="true">
-          <div class="panel-header">
-            <div>
-              <h3>Decisions needed</h3>
-              <p class="panel-helper">Additional product decisions requiring review.</p>
-            </div>
-            <span id="decisionQueueCount">0 decisions</span>
-          </div>
-          <div id="decisionQueue" class="decision-queue"></div>
-        </section>
+        <div id="decisionPacket" class="leadership-brief-content"></div>
       </section>
 
       <section id="overall-trend-analysis" class="panel overall-trend-panel" data-collapsible="true" data-quick-open="false" data-toggle-label="trend analysis">
         <div class="panel-header">
           <div>
-            <h3>Overall trend analysis</h3>
-            <p class="panel-helper">What launches, competitor moves, filings, conferences, publications, and public customer feedback collectively mean for Waters.</p>
+            <h3>Overall Trend Analysis</h3>
           </div>
-          <span id="overallTrendCount">0 cross-source trends</span>
         </div>
         <div id="overallTrendAnalysis" class="overall-trend-analysis"></div>
       </section>
@@ -183,41 +163,31 @@
       <section id="competitor-intent-section" class="panel evidence-anchor" data-collapsible="true" data-quick-open="false">
         <div class="panel-header">
           <div>
-            <h3>Competitor intent</h3>
-            <p class="panel-helper">What public evidence suggests each competitor is pursuing.</p>
+            <h3>Competitor Intent</h3>
           </div>
           <span id="intentCount">5 competitors</span>
         </div>
         <div id="competitorIntent" class="intent-grid"></div>
       </section>
 
-      <section class="panel competitor-coverage-panel" data-collapsible="true" data-quick-open="false">
-        <div class="panel-header">
-          <div>
-            <h3>Competitor coverage health</h3>
-            <p class="panel-helper">Which competitor conclusions have enough working public sources.</p>
+      <section class="strategy-command" aria-label="Strategic signal command center">
+        <section id="decisions-needed" class="panel decisions-panel" data-collapsible="true" data-quick-open="true">
+          <div class="panel-header">
+            <div>
+              <h3>Decisions Needed</h3>
+              <p class="panel-helper">Prioritized decisions with validation needs and exact evidence.</p>
+            </div>
+            <span id="decisionQueueCount">0 decisions</span>
           </div>
-          <span id="coverageHealthCount">5 competitors</span>
-        </div>
-        <div id="competitorCoverageHealth" class="competitor-coverage-grid"></div>
-      </section>
-
-      <section class="panel roadmap-impact-panel" data-collapsible="true" data-quick-open="false">
-        <div class="panel-header">
-          <div>
-            <h3>Roadmap impact map</h3>
-            <p class="panel-helper">How market signals map to Waters capability decisions.</p>
-          </div>
-          <span id="roadmapImpactCount">0 capability areas</span>
-        </div>
-        <div id="roadmapImpactMap" class="roadmap-impact-map"></div>
+          <div id="decisionQueue" class="decision-queue"></div>
+        </section>
       </section>
 
       <section id="customer-voice" class="panel customer-voice-panel" data-collapsible="true" data-quick-open="false">
         <div class="panel-header">
           <div>
-            <h3>Customer voice and market signals</h3>
-            <p class="panel-helper">Public customer feedback themes relevant to LC product decisions.</p>
+            <h3>Customer Voice and Market Signals</h3>
+            <p class="panel-helper">Traceable public feedback.</p>
           </div>
           <span id="customerVoiceCount">0 signals</span>
         </div>
@@ -239,40 +209,31 @@
           <div class="customer-voice-grid signal-analytics-grid">
           <section>
             <div class="mini-header">
-              <h4>Sentiment trends</h4>
-              <p class="panel-helper">Positive feedback, mixed feedback, and pain points in the selected time window.</p>
+              <h4>Overall Evidence by Sentiment</h4>
             </div>
             <div id="sentimentTrendChart" class="sentiment-trend-chart"></div>
           </section>
           <section>
             <div class="mini-header">
-              <h4>Competitor comparison</h4>
-              <p class="panel-helper">Where customer-visible strengths and pain points cluster.</p>
+              <h4>Customer Voice by Company</h4>
             </div>
             <div id="customerCompetitorChart" class="customer-competitor-chart"></div>
           </section>
-          </div>
-          <div class="source-drilldown">
-          <div class="mini-header">
-            <h4>Exact evidence records</h4>
-            <p class="panel-helper">Dated links used by the current filters. Shared discussions appear once.</p>
-          </div>
-          <div id="customerVoiceSourceLinks" class="voice-source-links"></div>
           </div>
         </div>
         <div class="customer-voice-tab-panel" data-customer-voice-panel="needs" role="tabpanel" hidden>
           <div class="customer-voice-grid">
           <section>
             <div class="mini-header">
-              <h4>Pain point tracker</h4>
-              <p class="panel-helper">Ranked by estimated mentions, with the exact linked-record count shown separately.</p>
+              <h4>Pain Point Tracker</h4>
+              <p class="panel-helper">Ranked by mentions and linked records.</p>
             </div>
             <div id="painPointTracker" class="pain-point-tracker"></div>
           </section>
           <section>
             <div class="mini-header">
-              <h4>Customer needs</h4>
-              <p class="panel-helper">Unmet needs for next-gen LC.</p>
+              <h4>Customer Needs</h4>
+              <p class="panel-helper">Unmet Next Gen LC needs.</p>
             </div>
             <div id="unmetNeedsList" class="unmet-needs-list"></div>
           </section>
@@ -282,15 +243,15 @@
           <div class="customer-voice-grid">
           <section>
             <div class="mini-header">
-              <h4>Waters market positioning</h4>
-              <p class="panel-helper">How public customer feedback describes each vendor.</p>
+              <h4>Waters Market Positioning</h4>
+              <p class="panel-helper">Public perception by vendor.</p>
             </div>
             <div id="marketPositioning" class="market-positioning"></div>
           </section>
           <section>
             <div class="mini-header">
               <h4>Segmentation</h4>
-              <p class="panel-helper">Which customer group should product management act on?</p>
+              <p class="panel-helper">Priority customer groups.</p>
             </div>
             <div id="customerSegments" class="customer-segments"></div>
           </section>
@@ -298,15 +259,15 @@
           <div class="customer-voice-grid">
           <section>
             <div class="mini-header">
-              <h4>Competitive signals</h4>
-              <p class="panel-helper">Competitor strengths customers may notice.</p>
+              <h4>Competitive Signals</h4>
+              <p class="panel-helper">Customer-visible competitor strengths.</p>
             </div>
             <div id="competitiveCustomerSignals" class="competitive-customer-signals"></div>
           </section>
           <section>
             <div class="mini-header">
-              <h4>Role actions</h4>
-              <p class="panel-helper">Product, engineering, messaging, service, and training moves.</p>
+              <h4>Role Actions</h4>
+              <p class="panel-helper">Actions by team.</p>
             </div>
             <div id="customerPmInsights" class="customer-pm-insights"></div>
           </section>
@@ -315,8 +276,8 @@
         <div class="customer-voice-tab-panel" data-customer-voice-panel="evidence" role="tabpanel" hidden>
           <div class="customer-evidence-table-wrap">
           <div class="mini-header">
-            <h4>Evidence and source links</h4>
-            <p class="panel-helper">Searchable source table for roadmap and public customer-evidence reviews.</p>
+            <h4>Evidence and Source Links</h4>
+            <p class="panel-helper">Searchable, linked public records.</p>
           </div>
           <div class="table-wrap">
             <table>
@@ -329,7 +290,7 @@
                   <th>Segment</th>
                   <th>Role</th>
                   <th>Confidence</th>
-                  <th>Customer language captured</th>
+                  <th>Keywords verified on primary source</th>
                   <th>Source</th>
                 </tr>
               </thead>
@@ -340,34 +301,23 @@
         </div>
       </section>
 
-      <section class="section-divider">
-        <div>
-          <h3>Evidence workbench</h3>
-          <p class="panel-helper">Open the launches, publications, filings, conferences, and source links behind each conclusion.</p>
-        </div>
-      </section>
-
       <section class="visual-dashboard">
         <section id="product-comparator" class="panel visual-panel comparator-panel" data-collapsible="true" data-quick-open="false" data-toggle-label="product comparator">
           <div class="panel-header">
             <div>
-              <h3 id="comparisonTitle">Product comparator</h3>
-              <p id="comparisonSubtitle" class="panel-helper">Select a competitor launch, a Waters system, and an optional third comparator.</p>
+              <h3 id="comparisonTitle">Product Comparator</h3>
+              <p id="comparisonCatalogNote" class="panel-helper"><strong>30-year catalog:</strong> loading catalog</p>
             </div>
           </div>
           <div id="comparisonSnapshots" class="comparison-snapshots comparison-snapshots-compact"></div>
           <div class="comparison-controls">
             <label>
-              Competitor launch
+              Competitor product
               <select id="comparisonLaunchSelect"></select>
             </label>
             <label>
               Waters system
               <select id="comparisonWatersSelect"></select>
-            </label>
-            <label>
-              Optional third comparator
-              <select id="comparisonThirdSelect"></select>
             </label>
           </div>
           <div id="comparisonBody" class="comparison-body"></div>
@@ -376,32 +326,22 @@
         <section id="competitive-timeline-section" class="panel visual-panel timeline-panel" data-collapsible="true" data-quick-open="false" data-toggle-label="timeline">
           <div class="panel-header">
           <div>
-            <h3>Competitive timeline</h3>
-            <p class="panel-helper">Dated product launches that can be opened or compared with Waters.</p>
+            <h3>Competitive Timeline</h3>
           </div>
           <span id="timelineHorizonLabel">Selected horizon</span>
+          <span id="timelineLaunchCount">0 launches</span>
         </div>
           <div id="competitiveTimeline" class="competitive-timeline"></div>
         </section>
 
-        <section class="panel visual-panel" data-collapsible="true" data-quick-open="false" data-toggle-label="capability comparison">
+        <section id="competitive-capability-evidence" class="panel visual-panel" data-collapsible="true" data-quick-open="false" data-toggle-label="capability comparison">
           <div class="panel-header">
             <div>
-            <h3>Competitive capability evidence</h3>
-            <p class="panel-helper">Where competitors appear strong, comparable, or require verification.</p>
+            <h3>Competitive Capability Evidence</h3>
+            <p class="panel-helper">Strengths, parity, and evidence gaps.</p>
             </div>
           </div>
           <div id="featureGapMatrix" class="feature-gap-matrix"></div>
-        </section>
-
-        <section class="panel visual-panel" data-collapsible="true" data-quick-open="false" data-toggle-label="demand trends">
-          <div class="panel-header">
-            <div>
-              <h3>Application pull signals</h3>
-              <p class="panel-helper">Where public scientific demand appears to be building.</p>
-            </div>
-          </div>
-          <div id="signalBubbles" class="application-pull"></div>
         </section>
 
       </section>
@@ -411,8 +351,8 @@
       <section id="filing-evidence" class="panel evidence-anchor" data-collapsible="true" data-quick-open="false">
         <div class="panel-header">
           <div>
-            <h3>SEC filing insights</h3>
-            <p class="panel-helper">What investor filings imply for product decisions.</p>
+            <h3>SEC Filing Insights</h3>
+            <p class="panel-helper">Product implications plus named partners, acquisitions, mergers, and divestitures disclosed in the filings.</p>
           </div>
           <span id="filingInsightCount">0 insights</span>
         </div>
@@ -422,30 +362,37 @@
       <section class="panel" data-collapsible="true" data-quick-open="false">
         <div class="panel-header">
           <div>
-            <h3>Strategic partnerships and corporate moves</h3>
-            <p class="panel-helper">Corporate activity that may change roadmap priorities.</p>
+            <h3>Strategic Partnerships and Corporate Moves</h3>
+            <p class="panel-helper">Moves that may shift roadmap priorities.</p>
           </div>
           <span id="strategicSignalCount">0 strategic moves</span>
         </div>
         <div id="strategicSignals" class="strategic-grid"></div>
+        <nav id="strategicPagination" class="evidence-pagination" aria-label="Strategic evidence pages" hidden></nav>
       </section>
 
-      <section id="conference-intelligence" class="panel" data-collapsible="true" data-quick-open="false">
+      <section id="conference-intelligence" class="panel conference-page-portal">
         <div class="panel-header">
           <div>
-            <h3>Upcoming conferences</h3>
-            <p class="panel-helper">How Waters should prepare and which competitor signals to capture at each event.</p>
+            <h3>Conference Intelligence</h3>
+            <p class="panel-helper">Conference preparation now has a dedicated timeline and event workspace.</p>
           </div>
           <span id="conferenceCount">0 sources</span>
         </div>
-        <div id="conferenceSources" class="conference-grid"></div>
+        <div id="conferencePageEntry" class="conference-page-entry">
+          <div>
+            <span>Dedicated conference workspace</span>
+            <strong>Review the event timeline, competitor content, Waters scientific preparation, booth recommendations, and official evidence.</strong>
+          </div>
+          <a href="conference.html">Open conference intelligence →</a>
+        </div>
       </section>
 
-      <section class="panel" data-collapsible="true" data-quick-open="false">
+      <section id="journal-forum-sources" class="panel" data-collapsible="true" data-quick-open="false">
         <div class="panel-header">
           <div>
-            <h3>Journals, forums, and trade publications</h3>
-            <p class="panel-helper">External sources to monitor for application trends and customer language.</p>
+            <h3>Journals, Forums, and Trade Publications</h3>
+            <p class="panel-helper">External sources worth monitoring.</p>
           </div>
           <span id="journalForumCount">0 sources</span>
         </div>
@@ -455,63 +402,32 @@
       <section id="shortHorizonDefensePanel" class="panel short-horizon-defense-panel" data-collapsible="true" data-quick-open="true" hidden>
         <div class="panel-header">
           <div>
-            <h3>30/60-day launch defense</h3>
-            <p class="panel-helper">What changed, why it matters, and what Waters should do now.</p>
+            <h3>30/60-Day Launch Defense</h3>
+            <p class="panel-helper">Immediate response to recent launches.</p>
           </div>
           <span id="shortHorizonDefenseCount">0 briefs</span>
         </div>
         <div id="shortHorizonDefense" class="defense-brief-list"></div>
       </section>
 
-      <section id="launch-evidence" class="panel evidence-anchor" data-collapsible="true" data-quick-open="false">
-        <div class="panel-header">
-          <div>
-            <h3>Competitor product launches</h3>
-            <p class="panel-helper" id="launchHorizonLabel">Launches that affect roadmap decisions.</p>
-          </div>
-          <span id="launchCount">0 launches</span>
-        </div>
-        <div id="launchTimeline" class="launch-timeline"></div>
-      </section>
-
-      <section class="workbench">
-        <section class="panel priority-panel" data-collapsible="true" data-quick-open="false">
-          <div class="panel-header">
-            <div>
-              <h3>Evidence packets</h3>
-              <p class="panel-helper">Source links and scoring notes for queue items.</p>
-            </div>
-          </div>
-          <div id="recommendations"></div>
-        </section>
-
+      <section class="workbench full-width-analysis-stack">
         <section id="application-trends" class="panel application-trends-panel" data-collapsible="true" data-quick-open="false">
           <div class="panel-header">
             <div>
-              <h3>Application trends</h3>
-              <p class="panel-helper panel-subtitle">Where public evidence suggests customer demand is growing</p>
+              <h3>Application Trends</h3>
             </div>
             <span id="horizonLabel">1 year</span>
           </div>
           <div id="trendList"></div>
         </section>
-      </section>
 
-      <section class="panel" data-collapsible="true" data-quick-open="false">
-        <div class="panel-header">
-          <div>
-            <h3>Roadmap questions to inspect</h3>
-            <p class="panel-helper">Unresolved capability questions raised by the selected evidence.</p>
-          </div>
-        </div>
-        <div id="roadmapSignals"></div>
       </section>
 
       <section id="evidence-signal-feed" class="panel evidence-anchor" data-collapsible="true" data-quick-open="false">
         <div class="panel-header">
           <div>
-            <h3>Public evidence library</h3>
-            <p class="panel-helper">Public records matching the active filters, with direct source links.</p>
+            <h3>Public Evidence Library</h3>
+            <p class="panel-helper">Filtered records with direct links.</p>
           </div>
           <span id="signalCount">0 public records</span>
         </div>
@@ -530,16 +446,19 @@
             <tbody id="signalTable"></tbody>
           </table>
         </div>
+        <nav id="signalPagination" class="evidence-pagination" aria-label="Public evidence pages" hidden></nav>
       </section>
 
-      <section id="source-health" class="panel work-in-progress-panel" data-collapsible="true" data-quick-open="false">
+      <section class="panel competitor-coverage-panel" data-collapsible="true" data-quick-open="false" data-toggle-label="coverage audit">
         <div class="panel-header">
           <div>
-            <h3>Work in progress</h3>
-            <p class="panel-helper">Data coverage items to complete before final production use.</p>
+            <h3>Competitor Coverage Health</h3>
+            <p class="panel-helper">Source coverage audit.</p>
           </div>
+          <span id="coverageHealthCount">5 competitors</span>
         </div>
-        <div id="coverageGaps" class="coverage-gaps"></div>
+        <div id="competitorCoverageHealth" class="competitor-coverage-grid"></div>
+        <div id="marketSourceCoverage" class="competitor-market-source-coverage"></div>
       </section>
     </main>
 
@@ -547,8 +466,7 @@
       <section class="decision-evidence-sheet">
         <div class="decision-evidence-header">
           <div>
-            <h3 id="decisionEvidenceTitle">Evidence links</h3>
-            <p class="panel-helper">Supporting public evidence.</p>
+            <h3 id="decisionEvidenceTitle">Evidence Links</h3>
             <p id="decisionEvidenceSummary" class="panel-helper"></p>
           </div>
           <button id="hideDecisionEvidence" type="button" aria-label="Hide evidence details">Hide</button>
@@ -557,6 +475,7 @@
       </section>
     </div>
 
-    <script src="app.js?v=20260713-remove-generic-next-step-2"></script>
+    <script src="comparison-logic.js?v=20260723-all-pairs-1"></script>
+    <script src="app.js?v=20260723-remove-old-new-row-178"></script>
   </body>
 </html>

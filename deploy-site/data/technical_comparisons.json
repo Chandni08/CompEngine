@@ -1,236 +1,295 @@
 {
-  "generatedAt": "2026-07-12T12:00:00-04:00",
-  "scope": "Public technical specifications and vendor claims for internal product-management due diligence. Values are not treated as directly comparable when test methods differ.",
+  "generatedAt": "2026-07-17T16:30:00-04:00",
+  "scope": "Method-performance and transferability comparison using public primary sources. A missing directly comparable value is never inferred: it is marked as requiring controlled testing.",
   "profiles": [
     {
-      "launchId": "shimadzu-nexera-x4-2026",
-      "watersId": "acquity-uplc-i-class-plus",
-      "comparisonBasis": "Direct UHPLC platform comparison: Nexera X4 Series versus ACQUITY UPLC I-Class PLUS.",
-      "watersProduct": "ACQUITY UPLC I-Class PLUS System",
-      "asOfDate": "2026-07-12",
+      "launchId": "agilent-1290-infinity-iii-2024",
+      "watersId": "acquity-premier-system",
+      "comparisonBasis": "Method-transfer comparison: Agilent 1290 Infinity III LC versus Waters ACQUITY Premier System using a shared method, matched configuration, and named reference columns.",
+      "watersProduct": "ACQUITY Premier System",
+      "asOfDate": "2026-07-17",
       "rows": [
         {
-          "dimension": "Maximum operating pressure",
-          "competitorValue": "130 MPa (about 18,855 psi)",
-          "watersValue": "18,000 psi (about 124 MPa)",
-          "interpretation": "Published pressure ceilings are close. Pressure alone is unlikely to decide the purchase; Waters should shift the discussion to separation performance, method transfer, and workflow execution.",
-          "evidenceType": "verified",
-          "competitorSourceUrl": "https://www.ssi.shimadzu.com/products/liquid-chromatography/hplcuhplc/nexera-x4/spec.html",
-          "watersSourceUrl": "https://www.waters.com/nextgen/us/en/products/chromatography/chromatography-systems/acquity-uplc-i-class-plus-system.html"
+          "dimension": "System / gradient dwell (delay) volume",
+          "competitorValue": "Agilent publishes a pump delay volume as low as 10 µL, but total configured system dwell volume is not stated on the reviewed product page.",
+          "watersValue": "Waters describes ACQUITY Premier as low-dispersion, but a directly comparable total configured dwell-volume value is not stated on the reviewed public page.",
+          "interpretation": "Requires controlled testing. Measure time-to-gradient and calculated dwell volume on both complete configurations at the same flow before judging retention-time transferability.",
+          "evidenceType": "requires-controlled-testing",
+          "competitorSourceUrl": "https://www.agilent.com/en/product/liquid-chromatography/hplc-components-accessories/hplc-pumps/1290-high-speed-pump",
+          "watersSourceUrl": "https://www.waters.com/nextgen/en/products/chromatography/chromatography-systems/acquity-premier-system.html"
         },
         {
-          "dimension": "Flow range",
-          "competitorValue": "0.0001-2.0000 mL/min",
-          "watersValue": "Up to 2.0 mL/min",
-          "interpretation": "Both cover mainstream UHPLC flow requirements. Ask engineering to compare low-flow stability and gradient performance under the same method, not just the published range.",
-          "evidenceType": "verified",
-          "competitorSourceUrl": "https://www.ssi.shimadzu.com/products/liquid-chromatography/hplcuhplc/nexera-x4/spec.html",
-          "watersSourceUrl": "https://www.waters.com/nextgen/us/en/products/chromatography/chromatography-systems/acquity-uplc-i-class-plus-system.html"
+          "dimension": "Extra-column dispersion / band broadening",
+          "competitorValue": "Agilent claims low dispersion for the 1290 Infinity III, but the reviewed primary source does not publish a common-condition variance or peak-width result for the complete configuration.",
+          "watersValue": "Waters claims low dispersion for ACQUITY Premier, but the reviewed primary source does not publish a result under the same tubing, detector cell, column, and method conditions.",
+          "interpretation": "Requires controlled testing. Run the same low-volume tracer and narrow-peak method, then compare system variance, observed peak width, resolution loss, and sensitivity loss.",
+          "evidenceType": "requires-controlled-testing",
+          "competitorSourceUrl": "https://www.agilent.com/en/product/liquid-chromatography/hplc-systems/analytical-hplc-systems/1290-lc-system",
+          "watersSourceUrl": "https://www.waters.com/nextgen/en/products/chromatography/chromatography-systems/acquity-premier-system.html"
         },
         {
-          "dimension": "Mobile-phase pH range",
-          "competitorValue": "pH 1-14",
-          "watersValue": "pH 1-12.5",
-          "interpretation": "Shimadzu publishes a wider upper pH limit. Determine whether target pharma QC methods actually require pH above 12.5 before treating this as a roadmap gap.",
-          "evidenceType": "verified",
-          "competitorSourceUrl": "https://www.ssi.shimadzu.com/products/liquid-chromatography/hplcuhplc/nexera-x4/spec.html",
-          "watersSourceUrl": "https://www.waters.com/nextgen/us/en/products/chromatography/chromatography-systems/acquity-uplc-i-class-plus-system.html"
+          "dimension": "Injection precision (%RSD)",
+          "competitorValue": "The 1290 Infinity III Hybrid Multisampler manual specifies less than 0.15% RSD, or SD below 20 nL, whichever is greater, using caffeine and the stated solvent conditions.",
+          "watersValue": "A directly comparable ACQUITY Premier injection-precision value under the same injection volume, analyte, and detector conditions was not found in the reviewed public primary source.",
+          "interpretation": "Requires controlled testing. Compare area and retention-time %RSD at low, mid, and high injection volumes using the same vial, sample, needle-wash, and detection method.",
+          "evidenceType": "requires-controlled-testing",
+          "competitorSourceUrl": "https://www.agilent.com/cs/library/usermanuals/public/InfinityLab-Hybrid-Multisamplers-UseMa-en-D0029905.pdf",
+          "watersSourceUrl": "https://www.waters.com/nextgen/en/products/chromatography/chromatography-systems/acquity-premier-system.html"
         },
         {
-          "dimension": "Autosampler injection and cycle",
-          "competitorValue": "0.01-50 uL; published cycle time at or below 6.7 seconds",
-          "watersValue": "Flow-through-needle or fixed-loop configurations; equivalent cycle-time specification not established on the public product page",
-          "interpretation": "Shimadzu has a concrete speed claim. Waters should run a controlled injection-cycle benchmark with representative plates and wash settings before making a throughput claim.",
-          "evidenceType": "mixed",
-          "competitorSourceUrl": "https://www.ssi.shimadzu.com/products/liquid-chromatography/hplcuhplc/nexera-x4/spec.html",
-          "watersSourceUrl": "https://www.waters.com/nextgen/us/en/products/chromatography/chromatography-systems/acquity-uplc-i-class-plus-system.html"
-        },
-        {
-          "dimension": "Published carryover",
-          "competitorValue": "At or below 0.0010% without rinse; typically at or below 0.0003% with rinse",
-          "watersValue": "Below 0.001% caffeine under UV",
-          "interpretation": "Both publish low carryover, but the analytes and procedures differ. Do not declare a winner; compare using the same sticky-analyte panel, wash protocol, injection volume, and detection method.",
+          "dimension": "Carryover on a shared sticky-analyte method",
+          "competitorValue": "Agilent publishes less than 9 ppm for a challenging compound with the 1290 Infinity III Multisampler multiwash configuration.",
+          "watersValue": "Waters publishes sample carryover at or below 0.002% using caffeine under UV conditions for ACQUITY Premier.",
+          "interpretation": "The analytes, units, configurations, and protocols differ. Run the same sticky-analyte panel, concentration ratio, wash solvents, injection volume, blank sequence, and detector method.",
           "evidenceType": "conditions-differ",
-          "competitorSourceUrl": "https://www.ssi.shimadzu.com/products/liquid-chromatography/hplcuhplc/nexera-x4/spec.html",
-          "watersSourceUrl": "https://www.waters.com/nextgen/us/en/products/chromatography/chromatography-systems/acquity-uplc-i-class-plus-system.html"
+          "competitorSourceUrl": "https://www.agilent.com/en/products/liquid-chromatography/infinitylab-lc-series-modules/lc-injection-systems/1290-infinity-ii-multisampler",
+          "watersSourceUrl": "https://www.waters.com/nextgen/en/products/chromatography/chromatography-systems/acquity-premier-system.html"
         },
         {
-          "dimension": "Sample capacity",
-          "competitorValue": "Up to 1,152 samples using three 384-well plates",
-          "watersValue": "Up to 20 plates with the Sample Organizer",
-          "interpretation": "Waters publishes a larger expansion architecture; Shimadzu publishes a clear base high-throughput configuration. Compare footprint, unattended run time, recovery after interruption, and plate-change workflow.",
+          "dimension": "Column plate efficiency (plates/m)",
+          "competitorValue": "No shared-method plates-per-meter result is published for a named Agilent reference column on the selected 1290 configuration.",
+          "watersValue": "No shared-method plates-per-meter result is published for a matched Waters reference column on the selected ACQUITY Premier configuration.",
+          "interpretation": "Requires controlled testing. Select columns with the same dimensions and USP class, then report plates/m, asymmetry, resolution, and pressure under the transferred method.",
+          "evidenceType": "requires-controlled-testing",
+          "competitorSourceUrl": "https://www.agilent.com/store/en_US/Prod-959758-902/959758-902",
+          "watersSourceUrl": "https://www.waters.com/nextgen/us/en/shop/columns/176000864-acquity-uplc-beh-c18-column-130a-17--m-21-mm-x-100-mm-3-pk.html"
+        },
+        {
+          "dimension": "Particle and bonding technology",
+          "competitorValue": "A reference ZORBAX RRHD Eclipse Plus C18 column is 1.8 µm fully porous silica with double endcapping, 95 Å pores, and C18 bonding.",
+          "watersValue": "A reference ACQUITY UPLC BEH C18 column is 1.7 µm fully porous hybrid BEH material with trifunctional C18 bonding, endcapping, and 130 Å pores.",
+          "interpretation": "These are not chemically identical columns even though both are C18. Transfer risk should be judged through selectivity, retention, peak shape, and recovery on the target analytes, not particle size alone.",
           "evidenceType": "verified",
-          "competitorSourceUrl": "https://www.ssi.shimadzu.com/products/liquid-chromatography/hplcuhplc/nexera-x4/spec.html",
-          "watersSourceUrl": "https://www.waters.com/nextgen/us/en/products/chromatography/chromatography-systems/acquity-uplc-i-class-plus-system.html"
+          "competitorSourceUrl": "https://www.agilent.com/store/en_US/Prod-959758-902/959758-902",
+          "watersSourceUrl": "https://www.waters.com/nextgen/us/en/shop/columns/176000864-acquity-uplc-beh-c18-column-130a-17--m-21-mm-x-100-mm-3-pk.html"
         },
         {
-          "dimension": "Control and detector ecosystem",
-          "competitorValue": "LabSolutions-centered Nexera platform; detector and module choices depend on configuration",
-          "watersValue": "Empower, MassLynx, waters_connect, or UNIFI; PDA, TUV, FLR, CAD, RI, ELS, and MS options",
-          "interpretation": "Waters can defend on installed informatics, regulated workflows, and detector breadth. The PM proof point should be fewer manual steps and simpler method migration, not a list of integrations.",
-          "evidenceType": "vendor-claim",
-          "competitorSourceUrl": "https://www.ssi.shimadzu.com/products/liquid-chromatography/hplcuhplc/nexera-x4/spec.html",
-          "watersSourceUrl": "https://www.waters.com/nextgen/us/en/products/chromatography/chromatography-systems/acquity-uplc-i-class-plus-system.html"
+          "dimension": "Column batch-to-batch reproducibility",
+          "competitorValue": "Agilent publishes lot-to-lot reproducibility claims for its column portfolio, but no common multi-lot dataset is loaded for the selected paired chemistry and target method.",
+          "watersValue": "Waters publishes batch-to-batch reproducibility claims for ACQUITY UPLC columns, but no common multi-lot dataset is loaded for the selected paired chemistry and target method.",
+          "interpretation": "Requires controlled testing. Test at least three independently manufactured lots per column and compare retention, selectivity, plates/m, tailing, and recovery against method-system-suitability limits.",
+          "evidenceType": "requires-controlled-testing",
+          "competitorSourceUrl": "https://www.agilent.com/en/product/small-molecule-columns/reversed-phase-hplc-columns/infinitylab-poroshell-120",
+          "watersSourceUrl": "https://www.waters.com/nextgen/us/en/products/columns/acquity-uplc-columns.html"
+        },
+        {
+          "dimension": "USP L-column class",
+          "competitorValue": "The selected ZORBAX RRHD Eclipse Plus C18 reference column is listed as USP L1.",
+          "watersValue": "The selected ACQUITY UPLC BEH C18 reference column is listed as USP L1.",
+          "interpretation": "Both reference columns are L1, but USP class does not establish equivalent selectivity. Confirm allowable method adjustments and system suitability with the actual compendial method.",
+          "evidenceType": "verified",
+          "competitorSourceUrl": "https://www.agilent.com/store/en_US/Prod-959758-902/959758-902",
+          "watersSourceUrl": "https://www.waters.com/nextgen/us/en/shop/columns/176000864-acquity-uplc-beh-c18-column-130a-17--m-21-mm-x-100-mm-3-pk.html"
         }
       ],
       "limitations": [
-        "Carryover values use different vendor test conditions and cannot support a winner without a common protocol.",
-        "Published maximum specifications do not establish real-method robustness, serviceability, or uptime.",
-        "A defensible battlecard still needs side-by-side gradient, injection-cycle, and method-transfer testing."
+        "Dwell volume and dispersion depend on the complete configured flow path, not the pump or system family name alone.",
+        "Published injection-precision and carryover claims use vendor-specific analytes and procedures and do not constitute a head-to-head result.",
+        "USP L classification is a chemistry grouping, not proof of equivalent selectivity or successful method transfer."
+      ]
+    },
+    {
+      "launchId": "shimadzu-nexera-x4-2026",
+      "watersId": "acquity-uplc-i-class-plus",
+      "comparisonBasis": "Method-transfer comparison: Shimadzu Nexera X4 Series versus Waters ACQUITY UPLC I-Class PLUS using a shared method, matched configuration, and named reference columns.",
+      "watersProduct": "ACQUITY UPLC I-Class PLUS System",
+      "asOfDate": "2026-07-17",
+      "rows": [
+        {
+          "dimension": "System / gradient dwell (delay) volume",
+          "competitorValue": "The reviewed Nexera X4 primary source describes high-speed, high-precision gradients but does not publish a total configured dwell-volume value.",
+          "watersValue": "Waters describes I-Class PLUS as having ultra-low delay volume, but the reviewed public product page does not state a directly comparable total configured value.",
+          "interpretation": "Requires controlled testing. Measure the delivered gradient delay on both full configurations at the same flow and model the retention-time shift before transferring a gradient method.",
+          "evidenceType": "requires-controlled-testing",
+          "competitorSourceUrl": "https://www.ssi.shimadzu.com/products/liquid-chromatography/hplcuhplc/nexera-x4/spec.html",
+          "watersSourceUrl": "https://www.waters.com/nextgen/us/en/products/chromatography/chromatography-systems/acquity-uplc-i-class-plus-system.html"
+        },
+        {
+          "dimension": "Extra-column dispersion / band broadening",
+          "competitorValue": "Shimadzu states that Nexflow minimizes extra-column band broadening, but no common-condition system-variance result is published in the reviewed source.",
+          "watersValue": "Waters claims industry-leading ultra-low dispersion, but no result under the same tubing, detector cell, column, and method conditions is published in the reviewed source.",
+          "interpretation": "Requires controlled testing. Compare system variance and peak-width inflation with the same low-volume tracer, detector settings, connections, and narrow-peak method.",
+          "evidenceType": "requires-controlled-testing",
+          "competitorSourceUrl": "https://www.ssi.shimadzu.com/products/liquid-chromatography/hplcuhplc/nexera-x4/spec.html",
+          "watersSourceUrl": "https://www.waters.com/nextgen/us/en/products/chromatography/chromatography-systems/acquity-uplc-i-class-plus-system.html"
+        },
+        {
+          "dimension": "Injection precision (%RSD)",
+          "competitorValue": "Shimadzu publishes injection-volume reproducibility from at or below 1.0% RSD at 0.5-0.9 µL to at or below 0.15% RSD above 5.0 µL, under specified conditions.",
+          "watersValue": "Waters publishes I-Class PLUS injection accuracy at or below 0.25% RSD, but the public support article does not establish the same injection-volume bands and test conditions as Shimadzu.",
+          "interpretation": "Published values use different protocols. Run the same sample and injection-volume series, reporting area and retention-time %RSD at volumes that matter to the transferred method.",
+          "evidenceType": "conditions-differ",
+          "competitorSourceUrl": "https://www.ssi.shimadzu.com/products/liquid-chromatography/hplcuhplc/nexera-x4/spec.html",
+          "watersSourceUrl": "https://support.waters.com/KB_Inst/Chromatography/WKB97891_Are_there_any_differences_in_the_specifications_of_ACQUITY_UPLC_I-Class_and_I-Class_PLUS"
+        },
+        {
+          "dimension": "Carryover on a shared sticky-analyte method",
+          "competitorValue": "Shimadzu publishes at or below 0.0010% without rinse and typically at or below 0.0003% with rinse, under specified conditions.",
+          "watersValue": "Waters publishes carryover below 0.001% for I-Class PLUS, using its own test conditions.",
+          "interpretation": "The headline values are close but not directly comparable. Run the same sticky-analyte panel, concentration ratio, rinse sequence, injection volume, blanks, and detector method.",
+          "evidenceType": "conditions-differ",
+          "competitorSourceUrl": "https://www.ssi.shimadzu.com/products/liquid-chromatography/hplcuhplc/nexera-x4/spec.html",
+          "watersSourceUrl": "https://support.waters.com/KB_Inst/Chromatography/WKB97891_Are_there_any_differences_in_the_specifications_of_ACQUITY_UPLC_I-Class_and_I-Class_PLUS"
+        },
+        {
+          "dimension": "Column plate efficiency (plates/m)",
+          "competitorValue": "Shimadzu publishes application-specific plate counts for Velox C18, but no shared plates-per-meter result is loaded for a matched Nexera X4 method and column geometry.",
+          "watersValue": "No shared plates-per-meter result is loaded for the matched ACQUITY UPLC BEH C18 geometry and method.",
+          "interpretation": "Requires controlled testing. Use columns with the same dimensions and USP class, then compare plates/m, asymmetry, resolution, pressure, and sensitivity on both systems.",
+          "evidenceType": "requires-controlled-testing",
+          "competitorSourceUrl": "https://www.shimadzu.com/an/products/liquid-chromatography/hplc-consumables/velox/shim-pack-velox-c18/index.html",
+          "watersSourceUrl": "https://www.waters.com/nextgen/us/en/shop/columns/176000864-acquity-uplc-beh-c18-column-130a-17--m-21-mm-x-100-mm-3-pk.html"
+        },
+        {
+          "dimension": "Particle and bonding technology",
+          "competitorValue": "A reference Shim-pack Velox C18 uses superficially porous particles, C18 bonding, endcapping, 90 Å pores, and is available in 1.8, 2.7, and 5 µm sizes.",
+          "watersValue": "A reference ACQUITY UPLC BEH C18 uses 1.7 µm fully porous hybrid BEH particles, trifunctional C18 bonding, endcapping, and 130 Å pores.",
+          "interpretation": "Core-shell silica and fully porous hybrid particles can differ in efficiency, selectivity, loading, and pH behavior. Transfer success must be demonstrated with the target analytes.",
+          "evidenceType": "verified",
+          "competitorSourceUrl": "https://www.shimadzu.com/an/products/liquid-chromatography/hplc-consumables/velox/shim-pack-velox-lc-columns/features.html",
+          "watersSourceUrl": "https://www.waters.com/nextgen/us/en/shop/columns/176000864-acquity-uplc-beh-c18-column-130a-17--m-21-mm-x-100-mm-3-pk.html"
+        },
+        {
+          "dimension": "Column batch-to-batch reproducibility",
+          "competitorValue": "Shimadzu publishes a five-lot reproducibility example for a Velox Biphenyl method, not the selected C18 transfer method.",
+          "watersValue": "Waters publishes batch-to-batch reproducibility claims for ACQUITY UPLC columns, but no common multi-lot dataset is loaded for the selected paired C18 method.",
+          "interpretation": "Requires controlled testing. Test at least three independent lots per selected C18 column and compare selectivity, retention, plates/m, tailing, and recovery against method limits.",
+          "evidenceType": "requires-controlled-testing",
+          "competitorSourceUrl": "https://www.shimadzu.com/an/sites/shimadzu.com.an/files/pim/pim_document_file/brochures/10609/c190-e219.pdf",
+          "watersSourceUrl": "https://www.waters.com/nextgen/us/en/products/columns/acquity-uplc-columns.html"
+        },
+        {
+          "dimension": "USP L-column class",
+          "competitorValue": "The selected Shim-pack Velox C18 reference chemistry is listed as USP L1.",
+          "watersValue": "The selected ACQUITY UPLC BEH C18 reference chemistry is listed as USP L1.",
+          "interpretation": "Both are L1, but USP class does not guarantee equivalent selectivity. Verify permitted adjustments and system suitability with the exact compendial method.",
+          "evidenceType": "verified",
+          "competitorSourceUrl": "https://www.shimadzu.com/an/products/liquid-chromatography/hplc-consumables/velox/shim-pack-velox-lc-columns/features.html",
+          "watersSourceUrl": "https://www.waters.com/nextgen/us/en/shop/columns/176000864-acquity-uplc-beh-c18-column-130a-17--m-21-mm-x-100-mm-3-pk.html"
+        }
+      ],
+      "limitations": [
+        "Neither vendor's qualitative low-dispersion claim substitutes for a complete configured system-variance measurement.",
+        "Injection precision and carryover are published under different vendor conditions and cannot support a winner without a shared method.",
+        "The reference columns provide a transfer test starting point; they are not asserted to be chemically equivalent because both carry an L1 classification."
       ]
     },
     {
       "launchId": "agilent-6230c-lctof-2026",
       "watersId": "bioaccord-lcms-system",
-      "comparisonBasis": "Workflow comparison rather than analyzer parity: Agilent 6230C plus OpenLab MAM versus Waters BioAccord LC-MS.",
+      "comparisonBasis": "Shared-method performance comparison: Agilent 6230C plus OpenLab MAM versus Waters BioAccord LC-MS using the same sample, chromatography, processing rules, and acceptance criteria.",
       "watersProduct": "BioAccord LC-MS System with ACQUITY Premier",
-      "asOfDate": "2026-07-12",
+      "asOfDate": "2026-07-17",
       "rows": [
         {
-          "dimension": "Analyzer and intended use",
-          "competitorValue": "Standalone TOF LC-MS positioned for accurate-mass work and OpenLab MAM workflows",
-          "watersValue": "Compact routine biopharma LC-MS workflow for intact mass, peptide mapping/MAM, released glycans, oligos, and impurity analysis",
-          "interpretation": "This is not a like-for-like analyzer comparison. The buying decision is likely expert flexibility versus a standardized routine workflow that can move beyond the core MS team.",
-          "evidenceType": "verified",
+          "dimension": "Sensitivity / LOQ on a shared method",
+          "competitorValue": "Agilent publishes low-picogram on-column sensitivity and installation specifications for reserpine, not an LOQ from a shared BioAccord MAM method.",
+          "watersValue": "Waters publishes application-specific BioAccord sensitivity and MAM performance, but not an LOQ from the same sample preparation, LC method, acquisition, and processing rules as Agilent.",
+          "interpretation": "Requires controlled testing. Establish peptide-level LOQ, precision, recovery, false-positive rate, and sequence coverage from one dilution series and one predefined MAM processing method.",
+          "evidenceType": "requires-controlled-testing",
+          "competitorSourceUrl": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/time-of-flight-lc-ms/6230-time-of-flight-tof-lc-ms",
+          "watersSourceUrl": "https://www.waters.com/nextgen/tw/zh/library/application-notes/2021/the-bioaccord-system-with-acquity-premier-for-improved-peptide-cqa-monitoring.html"
+        },
+        {
+          "dimension": "Polarity-switching speed",
+          "competitorValue": "Agilent publishes a 2 Hz polarity-switching duty cycle for the 6230C.",
+          "watersValue": "A directly comparable BioAccord polarity-switching speed was not found in the reviewed public primary source.",
+          "interpretation": "Requires controlled testing if the target workflow uses both polarities. Measure settling time, cycle time, mass accuracy, sensitivity, and data density after each switch.",
+          "evidenceType": "requires-controlled-testing",
           "competitorSourceUrl": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/time-of-flight-lc-ms/6230-time-of-flight-tof-lc-ms",
           "watersSourceUrl": "https://www.waters.com/nextgen/us/en/products/mass-spectrometry/mass-spectrometry-systems/bioaccord-lc-ms-system.html"
         },
         {
-          "dimension": "Mass range",
-          "competitorValue": "m/z 25-20,000",
-          "watersValue": "Equivalent public range not established on the current BioAccord product page",
-          "interpretation": "Agilent publishes a broad mass range. Waters should not answer with an unsupported number; show whether BioAccord covers the molecular classes and charge envelopes required by target QC workflows.",
-          "evidenceType": "mixed",
+          "dimension": "Dwell allocation / points across peak at large MRM panels",
+          "competitorValue": "The 6230C is a full-scan TOF, so transition dwell allocation is not a directly applicable MRM metric; it publishes acquisition up to 30 spectra/second.",
+          "watersValue": "BioAccord is also a full-scan accurate-mass workflow rather than a triple-quadrupole MRM platform; a directly comparable large-panel MRM value is not applicable.",
+          "interpretation": "For this TOF workflow, replace MRM dwell with controlled testing of scans across the narrowest chromatographic peak, feature detection completeness, and quantitative precision at peak concurrency.",
+          "evidenceType": "requires-controlled-testing",
           "competitorSourceUrl": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/time-of-flight-lc-ms/6230-time-of-flight-tof-lc-ms",
           "watersSourceUrl": "https://www.waters.com/nextgen/us/en/products/mass-spectrometry/mass-spectrometry-systems/bioaccord-lc-ms-system.html"
         },
         {
-          "dimension": "Resolving power and acquisition rate",
-          "competitorValue": "Above 22,000 FWHM at m/z 1522; up to 30 spectra/second",
-          "watersValue": "Equivalent public numerical specifications not established on the current BioAccord product page",
-          "interpretation": "Agilent has explicit analyzer specifications. Waters should frame BioAccord around fit-for-purpose workflow performance unless controlled testing supports a direct analyzer claim.",
-          "evidenceType": "mixed",
+          "dimension": "Cross-talk / interference rejection",
+          "competitorValue": "A directly comparable cross-talk or interference-rejection value for the shared MAM method was not found in the reviewed Agilent primary source.",
+          "watersValue": "A directly comparable cross-talk or interference-rejection value for the same method was not found in the reviewed Waters primary source.",
+          "interpretation": "Requires controlled testing. Challenge both workflows with co-eluting high-abundance species and isotopic interferences, then compare false annotations, mass error, recovery, and review burden.",
+          "evidenceType": "requires-controlled-testing",
           "competitorSourceUrl": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/time-of-flight-lc-ms/6230-time-of-flight-tof-lc-ms",
           "watersSourceUrl": "https://www.waters.com/nextgen/us/en/products/mass-spectrometry/mass-spectrometry-systems/bioaccord-lc-ms-system.html"
         },
         {
-          "dimension": "Published mass accuracy",
-          "competitorValue": "Below 1 ppm RMS vendor specification",
-          "watersValue": "Peptide precursor mass accuracy below 10 ppm and intact-glycoform mass accuracy within 20 ppm in published BioAccord workflow examples",
-          "interpretation": "The figures describe different tests and should not be ranked directly. Compare identification confidence, sequence coverage, false positives, and review burden on the same MAM sample set.",
+          "dimension": "Linear dynamic range",
+          "competitorValue": "Agilent publishes up to five orders of in-spectrum dynamic range for the 6230C.",
+          "watersValue": "Waters reports three orders of linear range for a BioAccord amino-acid application, while MAM performance is application dependent; this is not the same analyte set or protocol.",
+          "interpretation": "Published figures describe different tests. Run the same MAM dilution series and report per-analyte linear range, residuals, precision, carryover, and saturation behavior.",
           "evidenceType": "conditions-differ",
           "competitorSourceUrl": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/time-of-flight-lc-ms/6230-time-of-flight-tof-lc-ms",
-          "watersSourceUrl": "https://www.waters.com/nextgen/us/en/products/mass-spectrometry/mass-spectrometry-systems/bioaccord-lc-ms-system.html"
-        },
-        {
-          "dimension": "MAM software architecture",
-          "competitorValue": "OpenLab CDS MAM add-on; client/server and virtualization support; guided steps and system-performance checks",
-          "watersValue": "waters_connect workflow with audit trails, role-based access, network deployment, and SmartMS automated setup and monitoring",
-          "interpretation": "The contest is operational: setup time, review-by-exception, auditability, method deployment, and number of expert interventions. Build the comparison around a complete analyst task rather than feature counts.",
-          "evidenceType": "verified",
-          "competitorSourceUrl": "https://www.agilent.com/en/product/software-informatics/mass-spectrometry-software/data-analysis/multi-attribute-method-for-openlab-cds",
-          "watersSourceUrl": "https://www.waters.com/nextgen/us/en/products/mass-spectrometry/mass-spectrometry-systems/bioaccord-lc-ms-system.html"
-        },
-        {
-          "dimension": "Routine-QC readiness",
-          "competitorValue": "Agilent positions MAM for movement from R&D into QC and references USP <1060>",
-          "watersValue": "Waters positions BioAccord for routine biopharma use with automated system setup, calibration, and health monitoring",
-          "interpretation": "Both are selling reduced dependence on specialist MS users. Waters needs customer proof for training time, failed-run recovery, review time, and method transfer between sites.",
-          "evidenceType": "vendor-claim",
-          "competitorSourceUrl": "https://www.agilent.com/en/product/software-informatics/mass-spectrometry-software/data-analysis/multi-attribute-method-for-openlab-cds",
-          "watersSourceUrl": "https://www.waters.com/nextgen/us/en/products/mass-spectrometry/mass-spectrometry-systems/bioaccord-lc-ms-system.html"
-        },
-        {
-          "dimension": "Service intervention",
-          "competitorValue": "VacShield is claimed to reduce maintenance time for ventless capillary service by 90-97%",
-          "watersValue": "SmartMS automates setup, calibration, monitoring, and system-health checks; equivalent maintenance-time reduction not established",
-          "interpretation": "Agilent is making serviceability visible. Waters should quantify mean time to recovery, planned maintenance duration, and remote-resolution rate for the complete BioAccord workflow.",
-          "evidenceType": "vendor-claim",
-          "competitorSourceUrl": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/time-of-flight-lc-ms/6230-time-of-flight-tof-lc-ms",
-          "watersSourceUrl": "https://www.waters.com/nextgen/us/en/products/mass-spectrometry/mass-spectrometry-systems/bioaccord-lc-ms-system.html"
+          "watersSourceUrl": "https://www.waters.com/content/dam/waters/en/app-notes/2022/720007766/720007766-en.pdf"
         }
       ],
       "limitations": [
-        "6230C and BioAccord are not analyzer-equivalent systems; the valid comparison is the MAM workflow and operating model.",
-        "Mass-accuracy claims use different samples, calculations, and acceptance conditions.",
-        "A roadmap decision needs a common end-to-end MAM study measuring setup, acquisition, review, audit trail, and exception handling."
+        "6230C and BioAccord are full-scan accurate-mass workflows; triple-quadrupole MRM dwell and cross-talk specifications are not directly applicable without translating them into full-scan data-density and interference tests.",
+        "Published sensitivity and dynamic-range claims use different analytes, matrices, chromatographic methods, and calculations.",
+        "A defensible comparison requires one end-to-end MAM protocol with predefined LOQ, precision, feature-detection, linearity, and review-effort acceptance criteria."
       ]
     },
     {
       "launchId": "sciex-novus-v55-2026",
       "watersId": "xevo-tq-absolute",
-      "comparisonBasis": "Triple-quadrupole workflow comparison: SCIEX novus V55 plus SCIEX OS 5.0 versus Waters Xevo TQ Absolute.",
+      "comparisonBasis": "Shared-method triple-quadrupole comparison: SCIEX novus V55 plus SCIEX OS 5.0 versus Waters Xevo TQ Absolute using the same sample, LC method, transition panel, and quantitation rules.",
       "watersProduct": "Xevo TQ Absolute",
-      "asOfDate": "2026-07-12",
+      "asOfDate": "2026-07-17",
       "rows": [
         {
-          "dimension": "Analyzer and mass range",
-          "competitorValue": "Triple quadrupole; mass range up to m/z 2,000",
-          "watersValue": "Triple quadrupole; mass range m/z 2-2,048",
-          "interpretation": "The published mass ranges are essentially aligned for routine small-molecule and peptide quantitation. This is not a meaningful differentiator by itself.",
-          "evidenceType": "verified",
+          "dimension": "Sensitivity / LOQ on a shared method",
+          "competitorValue": "SCIEX claims exceptional sensitivity and publishes application-specific LOQs, but no LOQ from a controlled head-to-head method against Xevo TQ Absolute is provided.",
+          "watersValue": "Waters publishes application-specific sensitivity for Xevo TQ Absolute, but no LOQ from the same sample preparation, chromatography, transitions, calibration, and processing rules as SCIEX.",
+          "interpretation": "Requires controlled testing. Compare matrix-matched LOQ, accuracy, precision, recovery, ion suppression, and carryover across a shared dilution series rather than vendor-specific sensitivity claims.",
+          "evidenceType": "requires-controlled-testing",
           "competitorSourceUrl": "https://sciex.com/products/mass-spectrometers/triple-quad-systems/novus-v55-system",
-          "watersSourceUrl": "https://www.waters.com/nextgen/dk/en/products/mass-spectrometry/mass-spectrometry-systems/xevo-tq-absolute.html"
+          "watersSourceUrl": "https://www.waters.com/nextgen/en/products/mass-spectrometry-systems/xevo-tq-absolute.html"
         },
         {
-          "dimension": "MRM throughput",
-          "competitorValue": "Up to 1,000 MRMs/second using accelerated MRM",
-          "watersValue": "Auto-Dwell scheduling is published; an equivalent maximum MRM/second figure was not established in the current public source",
-          "interpretation": "SCIEX has a specific high-density method claim. Waters should benchmark scheduled-MRM capacity, dwell allocation, points across peak, and quantitative precision on a shared large-panel method.",
-          "evidenceType": "mixed",
-          "competitorSourceUrl": "https://sciex.com/products/mass-spectrometers/triple-quad-systems/novus-v55-system",
-          "watersSourceUrl": "https://www.waters.com/nextgen/dk/en/products/mass-spectrometry/mass-spectrometry-systems/xevo-tq-absolute.html"
-        },
-        {
-          "dimension": "Footprint",
-          "competitorValue": "35% smaller than SCIEX 5500+; absolute dimensions not established on the public product page",
-          "watersValue": "43 x 79 x 96 cm; Waters positions it as a compact high-performance tandem quadrupole",
-          "interpretation": "Both vendors emphasize space efficiency but use different baselines. Compare actual bench width, service clearances, pump placement, heat load, and total LC-MS installation footprint.",
+          "dimension": "Polarity-switching speed",
+          "competitorValue": "A SCIEX technical note reports 5 ms settling time in a novus V55 pesticide method containing 1,411 positive and negative transitions.",
+          "watersValue": "Waters operating guidance specifies a 15 ms minimum for positive/negative ESI switching and recommends at least 125 ms overall cycle time for reliable long-term use.",
+          "interpretation": "SCIEX publishes the faster method-specific switching value, but switching speed alone is not the outcome. Test signal settling, LOQ, precision, and points across peak on the same mixed-polarity panel.",
           "evidenceType": "conditions-differ",
-          "competitorSourceUrl": "https://sciex.com/products/mass-spectrometers/triple-quad-systems/novus-v55-system",
-          "watersSourceUrl": "https://help.waters.com/content/dam/waters/en/support/sitepreparationguides/2024/715007152/715007152v12.pdf"
+          "competitorSourceUrl": "https://sciex.com/tech-notes/food-beverage/food-and-beverage/maximizing-throughput-with-accelerated-mrm-aemrm-novus-v55",
+          "watersSourceUrl": "https://help.waters.com/content/dam/waters/en/support/usermanuals/2022/715008065/715008065.pdf"
         },
         {
-          "dimension": "Energy and cooling",
-          "competitorValue": "Up to 40% lower energy and cooling requirements than SCIEX 5500+ with dry-pump configuration",
-          "watersValue": "About 1,460 W, 4,980 BTU/h, and 23 L/min gas in Waters-published material; approximately 50% lower electricity and gas than the comparison instrument used by Waters",
-          "interpretation": "Both are vendor-relative claims with different baselines. Procurement needs absolute annual energy, gas, heat, and maintenance cost under the intended configuration.",
-          "evidenceType": "vendor-claim",
-          "competitorSourceUrl": "https://sciex.com/products/mass-spectrometers/triple-quad-systems/novus-v55-system",
-          "watersSourceUrl": "https://www.waters.com/content/dam/waters/en/library/infographics/2022/waters-infographic-SensitivityandSustainabilityAPerfectCombinationInfographic-720007684.pdf"
+          "dimension": "Dwell allocation / points across peak at large MRM panels",
+          "competitorValue": "SCIEX publishes up to 1,000 MRMs/second; in a pesticide method, 1 ms minimum dwell and at least 10 points across peak were maintained at 369 concurrent transitions.",
+          "watersValue": "Waters publishes 1 ms minimum dwell and Auto-Dwell assignment of dwell, inter-channel, and inter-scan delays to target an optimal number of points across each peak; no matched maximum-panel result is published in the reviewed source.",
+          "interpretation": "SCIEX has stronger public large-panel proof, but the methods are not matched. Run identical scheduled panels at peak concurrency and compare data points, peak integration, accuracy, precision, and missed transitions.",
+          "evidenceType": "conditions-differ",
+          "competitorSourceUrl": "https://sciex.com/tech-notes/food-beverage/food-and-beverage/maximizing-throughput-with-accelerated-mrm-aemrm-novus-v55",
+          "watersSourceUrl": "https://help.waters.com/content/dam/waters/en/support/usermanuals/2022/715008065/715008065.pdf"
         },
         {
-          "dimension": "Ion-source usability and robustness",
-          "competitorValue": "OptiFlow source with optimization-free positioning; curtain-gas robustness claim",
-          "watersValue": "Multiple source choices including UniSpray, APGC, and DESI XS; photomultiplier detector designed to avoid routine gain adjustment",
-          "interpretation": "SCIEX emphasizes simpler source optimization; Waters can differentiate on source breadth and detector lifecycle. Validate novice setup success, cleaning interval, recovery time, and cross-application flexibility.",
-          "evidenceType": "vendor-claim",
+          "dimension": "Cross-talk",
+          "competitorValue": "A directly comparable cross-talk value under the shared high-concurrency panel was not found in the reviewed SCIEX primary source.",
+          "watersValue": "A directly comparable cross-talk value under the same transitions, abundance ratios, collision conditions, and timing was not found in the reviewed Waters primary source.",
+          "interpretation": "Requires controlled testing. Use adjacent high/low abundance transitions and shared product ions, then quantify false signal, ion-ratio bias, recovery, and the effect of dwell and pause settings.",
+          "evidenceType": "requires-controlled-testing",
           "competitorSourceUrl": "https://sciex.com/products/mass-spectrometers/triple-quad-systems/novus-v55-system",
-          "watersSourceUrl": "https://www.waters.com/blog/can-ever-increasing-analytical-sensitivity-and-sustainability-go-hand-in-hand/"
+          "watersSourceUrl": "https://www.waters.com/nextgen/en/products/mass-spectrometry-systems/xevo-tq-absolute.html"
         },
         {
-          "dimension": "Software and regulated operation",
-          "competitorValue": "SCIEX OS 5.0, LIMS support, CFR Part 11, central monitoring, performance tracking, custom roles, and AI-assisted help/calculated columns",
-          "watersValue": "MassLynx/TargetLynx workflow with Auto-Dwell and IntelliStart; exact enterprise-monitoring parity not established in the selected public source",
-          "interpretation": "SCIEX is packaging operations software as part of the launch. Waters should map instrument health, multi-system monitoring, report creation, audit review, and method deployment task by task.",
-          "evidenceType": "mixed",
-          "competitorSourceUrl": "https://sciex.com/about-us/press-releases/2026/sciex-launches-its-5th-generation-of-nominal-mass-novus-v55-system-with-sciexos-5-0-software",
-          "watersSourceUrl": "https://www.waters.com/nextgen/dk/en/products/mass-spectrometry/mass-spectrometry-systems/xevo-tq-absolute.html"
-        },
-        {
-          "dimension": "Application proof",
-          "competitorValue": "PFAS, food and pesticides, pharmaceutical impurities, bioanalysis, nitrosamines, and peptide quantitation",
-          "watersValue": "Strong published positioning for PFAS and low-level regulated quantitation; broader shared-method benchmark still needed",
-          "interpretation": "Waters should defend with matched application data, not generic sensitivity language. Select two high-value workflows and compare LOQ, recovery, matrix effects, uptime, and review effort.",
-          "evidenceType": "vendor-claim",
+          "dimension": "Linear dynamic range",
+          "competitorValue": "A directly comparable linear dynamic range for the shared analyte panel and calibration model was not found in the reviewed SCIEX primary source.",
+          "watersValue": "Waters publishes six orders of linear dynamic range for a specific MassTrak IVD configuration, not for the same analyte panel and method as SCIEX.",
+          "interpretation": "Requires controlled testing. Use the same matrix-matched calibration series and report per-analyte range, residuals, weighting, precision, saturation, and carryover before claiming an advantage.",
+          "evidenceType": "requires-controlled-testing",
           "competitorSourceUrl": "https://sciex.com/products/mass-spectrometers/triple-quad-systems/novus-v55-system",
-          "watersSourceUrl": "https://ir.waters.com/News--Events/newsroom/news-details/2023/Waters-Earns-Sustainability-Designation-from-My-Green-Lab-for-Xevo-TQ-Absolute-System/default.aspx"
+          "watersSourceUrl": "https://www.waters.com/nextgen/us/en/products/in-vitro-diagnostics-solutions/lc-ms-ms-ivd-systems-portfolio/masstrak-acquity-uplc-i-class-plus-xevo-tq-absolute-ivd-system.html"
         }
       ],
       "limitations": [
-        "Energy and footprint percentages use different predecessor or competitor baselines.",
-        "SCIEX's 1,000 MRM/second claim requires a common method to assess points across peak and quantitative precision.",
-        "Software comparison should be completed as task-based workflow testing, not a checklist of named features."
+        "SCIEX's large-panel technical note and Waters' operating specifications are not a head-to-head test and use different methods and reporting contexts.",
+        "Vendor sensitivity and dynamic-range claims cannot be ranked without the same analytes, matrix, LC method, calibration model, and acceptance criteria.",
+        "The controlled comparison must preserve peak width and MRM concurrency so polarity switching and dwell allocation are assessed under the actual transfer challenge."
       ]
     }
   ]

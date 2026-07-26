@@ -20,7 +20,12 @@ STATUS_FILE = DATA_DIR / "refresh_status.json"
 COLLECTOR = ROOT / "scripts" / "collect_real_data.py"
 AGILENT_COLLECTOR = ROOT / "scripts" / "collect_agilent.py"
 COMPETITOR_COLLECTOR = ROOT / "scripts" / "collect_competitors.py"
+SCIENTIFIC_SOURCE_COLLECTOR = ROOT / "scripts" / "collect_scientific_sources.py"
 LINK_CHECKER = ROOT / "scripts" / "check_links.py"
+CUSTOMER_VOICE_VALIDATOR = ROOT / "scripts" / "validate_customer_voice_sources.mjs"
+PRODUCT_LAUNCH_VALIDATOR = ROOT / "scripts" / "validate_product_launch_press_releases.mjs"
+THERMO_MONITOR_VALIDATOR = ROOT / "scripts" / "validate_thermo_monitoring.mjs"
+SCIENTIFIC_SOURCE_VALIDATOR = ROOT / "scripts" / "validate_scientific_source_classes.mjs"
 SCORER = ROOT / "scripts" / "score.py"
 RECOMMENDATION_CURATOR = ROOT / "scripts" / "curate_recommendations.py"
 AGILENT_MONITOR_FILE = DATA_DIR / "agilent_monitor.json"
@@ -33,6 +38,7 @@ AUTOMATED_DOMAINS = [
     "Agilent LC/MS product sitemap and press-release change detection",
     "Thermo Fisher, Shimadzu, and SCIEX product sitemap and press-release extraction",
     "Thermo Fisher LC/MS technical insight RSS extraction",
+    "Peer-reviewed journal metadata plus conference and regulatory source monitoring",
 ]
 
 CURATED_DOMAINS = [
@@ -132,6 +138,10 @@ def competitor_signal_id(competitor: str, kind: str, key: str) -> str:
 
 def technology_for_url(url: str) -> str:
     text = url.lower()
+    if any(term in text for term in ("ion-chromatography", "integrion", "ics-")):
+        return "Ion chromatography"
+    if "vanquish-neo" in text:
+        return "Nano-LC"
     if any(term in text for term in ("software", "labsolutions", "sciex-os")):
         return "Software"
     if any(term in text for term in ("hplc", "uhplc", "liquid-chromatography", "nexera")) and "mass-spect" not in text and "lc-ms" not in text:
@@ -154,7 +164,12 @@ def merge_competitor_changes(intelligence: dict, monitor_data: dict) -> None:
                 url = item.get("url", "")
                 modified = item.get("lastmod") or today
                 name = product_name(url)
-                if action == "removed":
+                item_signal_type = signal_type
+                if item.get("monitoringRegistration"):
+                    item_signal_type = "Monitoring coverage registered"
+                    summary = "This existing official product page was newly added to the monitored family baseline. It is a coverage expansion, not evidence of a new commercial launch."
+                    recommendation = "Use future sitemap additions or last-modified changes as monitoring signals; require a dated release before classifying a launch."
+                elif action == "removed":
                     summary = "The URL disappeared from the official sitemap. This can mean retirement, consolidation, or URL restructuring; manual confirmation is required."
                     recommendation = "Confirm lifecycle status in an official announcement before treating the page removal as a discontinuation."
                 elif action == "added":
@@ -165,19 +180,20 @@ def merge_competitor_changes(intelligence: dict, monitor_data: dict) -> None:
                     summary = f"The official sitemap last-modified value changed from {previous} to {modified}. Review the linked page for positioning, specification, software, or lifecycle changes."
                     recommendation = "Compare the current page with the prior snapshot before changing roadmap priorities."
                 additions.append({
-                    "id": competitor_signal_id(competitor, signal_type.lower().replace(" ", "-"), f"{url}|{modified}"),
+                    "id": competitor_signal_id(competitor, item_signal_type.lower().replace(" ", "-"), f"{url}|{modified}"),
                     "date": modified,
                     "competitor": competitor,
                     "category": "Product intelligence",
-                    "signalType": signal_type,
+                    "signalType": item_signal_type,
                     "title": f"{competitor} {action} {name}",
                     "summary": summary,
                     "sourceName": f"{competitor} official product sitemap",
                     "sourceUrl": url,
                     "geography": "Global",
-                    "marketSegment": "Pharma",
-                    "technology": technology_for_url(url),
-                    "theme": "LC/MS portfolio change",
+                    "marketSegment": (item.get("marketSegments") or ["Pharma"])[0],
+                    "marketSegments": item.get("marketSegments") or ["Pharma"],
+                    "technology": item.get("technology") or technology_for_url(url),
+                    "theme": f"{item.get('monitoringFamilyName') or 'LC/MS portfolio'} change",
                     "evidenceCount": 1,
                     "intent": "Official product-page inventory change",
                     "recommendation": recommendation,
@@ -390,6 +406,7 @@ def main() -> int:
     backup = INTELLIGENCE_FILE.read_bytes() if INTELLIGENCE_FILE.exists() else None
 
     try:
+        subprocess.run([sys.executable, str(SCIENTIFIC_SOURCE_COLLECTOR)], cwd=ROOT, check=True)
         subprocess.run([sys.executable, str(COLLECTOR)], cwd=ROOT, check=True)
         subprocess.run([sys.executable, str(AGILENT_COLLECTOR)], cwd=ROOT, check=False)
         subprocess.run([sys.executable, str(COMPETITOR_COLLECTOR)], cwd=ROOT, check=True)
@@ -398,6 +415,8 @@ def main() -> int:
         competitor_monitor = read_json(COMPETITOR_MONITOR_FILE)
         validate_agilent_monitor(agilent_monitor)
         validate_competitor_monitor(competitor_monitor)
+        subprocess.run(["node", str(THERMO_MONITOR_VALIDATOR)], cwd=ROOT, check=True)
+        subprocess.run(["node", str(SCIENTIFIC_SOURCE_VALIDATOR)], cwd=ROOT, check=True)
         merge_agilent_changes(refreshed, agilent_monitor)
         merge_competitor_changes(refreshed, competitor_monitor)
         write_json(INTELLIGENCE_FILE, refreshed)
@@ -406,6 +425,8 @@ def main() -> int:
         refreshed = read_json(INTELLIGENCE_FILE)
         validate_intelligence(refreshed)
         subprocess.run([sys.executable, str(LINK_CHECKER)], cwd=ROOT, check=True)
+        subprocess.run(["node", str(CUSTOMER_VOICE_VALIDATOR)], cwd=ROOT, check=True)
+        subprocess.run(["node", str(PRODUCT_LAUNCH_VALIDATOR)], cwd=ROOT, check=True)
         refresh_state = refreshed.get("refresh", {})
         domain_result = ", ".join(
             f"{label}: {refresh_state.get(key, 'unknown')}"

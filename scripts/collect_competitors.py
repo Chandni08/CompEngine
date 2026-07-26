@@ -29,6 +29,7 @@ DATA_DIR = ROOT / "data"
 SNAPSHOT_DIR = DATA_DIR / "source_snapshots"
 OUTPUT_FILE = DATA_DIR / "competitor_monitors.json"
 SOURCE_CATALOG_FILE = DATA_DIR / "source_catalog.json"
+THERMO_FAMILY_FILE = DATA_DIR / "thermo_monitoring_families.json"
 CURRENT_YEAR = date.today().year
 USER_AGENT = (
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
@@ -44,7 +45,8 @@ TECHNICAL_FEED_VERSION = 3
 RELEVANCE_PATTERN = re.compile(
     r"\b(?:lc[/-]?ms(?:/ms)?|hplc|uhplc|uplc|liquid chromatograph(?:y|er)?|"
     r"mass spectrom(?:etry|eter)|nexera|labsolutions|zenotof|novus|sciex os|"
-    r"orbitrap|vanquish|triple quadrupole|qtof|chromatography software)\b",
+    r"orbitrap|vanquish|dionex|integrion|ics-\d+|ion chromatograph(?:y|er)?|"
+    r"triple quadrupole|qtof|chromatography software)\b",
     re.I,
 )
 
@@ -280,6 +282,8 @@ def parse_thermo_technical_feed(
 
 def thermo_product_page(url: str) -> bool:
     path = urlparse(url).path.lower()
+    if thermo_registered_product_metadata(url):
+        return True
     if "gas-chromatography-mass-spectrometry" in path:
         return False
     if "/liquid-chromatography-lc/hplc-uhplc-systems/" in path:
@@ -292,6 +296,25 @@ def thermo_product_page(url: str) -> bool:
             re.search(r"(?:system|spectrometer|spectrometers|ms)$", stem)
         )
     return False
+
+
+def thermo_family_registry() -> dict[str, Any]:
+    return read_json(THERMO_FAMILY_FILE)
+
+
+def thermo_registered_product_metadata(url: str) -> dict[str, object]:
+    path = urlparse(url).path.lower()
+    for family in thermo_family_registry().get("families", []):
+        fragments = [str(fragment).lower() for fragment in family.get("matchFragments", [])]
+        if any(fragment in path for fragment in fragments):
+            return {
+                "monitoringFamily": family.get("id"),
+                "monitoringFamilyName": family.get("name"),
+                "technology": family.get("technology"),
+                "category": family.get("technology"),
+                "marketSegments": family.get("marketSegments", []),
+            }
+    return {}
 
 
 def shimadzu_product_page(url: str) -> bool:
@@ -326,6 +349,8 @@ def monitor_delta(
     statuses: list[dict[str, object]],
     seed_dated_products: bool = False,
     technical_insights: dict[str, dict[str, str]] | None = None,
+    product_metadata: dict[str, dict[str, object]] | None = None,
+    monitored_families: list[dict[str, object]] | None = None,
 ) -> dict[str, object]:
     snapshot_file = SNAPSHOT_DIR / f"{competitor_id}.json"
     previous = read_json(snapshot_file)
@@ -336,7 +361,13 @@ def monitor_delta(
         if previous.get("technicalFeedVersion") == TECHNICAL_FEED_VERSION
         else {}
     )
+    previous_product_metadata = previous.get("productMetadata", {})
+    previous_family_ids = {
+        str(family.get("id")) for family in previous.get("monitoredFamilies", [])
+    }
     technical_insights = technical_insights or {}
+    product_metadata = product_metadata or {}
+    monitored_families = monitored_families or []
     initialized = bool(previous.get("initialized"))
 
     new_products: list[dict[str, object]] = []
@@ -346,16 +377,37 @@ def monitor_delta(
     new_technical_insights: list[dict[str, str]] = []
 
     if initialized:
-        new_products = [
-            {"url": url, "lastmod": lastmod, "category": "LC/MS"}
-            for url, lastmod in products.items() if url not in previous_products
-        ]
+        new_products = []
+        for url, lastmod in products.items():
+            if url in previous_products:
+                continue
+            metadata = product_metadata.get(url, {})
+            family_id = str(metadata.get("monitoringFamily") or "")
+            new_products.append({
+                "url": url,
+                "lastmod": lastmod,
+                "category": metadata.get("category", "LC/MS"),
+                **metadata,
+                **({"baselineDiscovery": True, "monitoringRegistration": True} if family_id and family_id not in previous_family_ids else {}),
+            })
         discontinued_products = [
-            {"url": url, "lastmod": previous_products[url], "category": "LC/MS", "verification": "manual confirmation required"}
+            {
+                "url": url,
+                "lastmod": previous_products[url],
+                "category": previous_product_metadata.get(url, {}).get("category", "LC/MS"),
+                **previous_product_metadata.get(url, {}),
+                "verification": "manual confirmation required",
+            }
             for url in previous_products if url not in products
         ]
         updated_products = [
-            {"url": url, "lastmod": lastmod, "previousLastmod": previous_products[url], "category": "LC/MS"}
+            {
+                "url": url,
+                "lastmod": lastmod,
+                "previousLastmod": previous_products[url],
+                "category": product_metadata.get(url, {}).get("category", "LC/MS"),
+                **product_metadata.get(url, {}),
+            }
             for url, lastmod in products.items()
             if url in previous_products and lastmod and lastmod != previous_products[url]
         ]
@@ -386,6 +438,8 @@ def monitor_delta(
         "capturedAt": utc_now(),
         "initialized": True,
         "products": products,
+        "productMetadata": product_metadata,
+        "monitoredFamilies": monitored_families,
         "pressReleases": releases,
         # RSS feeds expose only a rolling window. Retain previously seen URLs so
         # an older post cannot be emitted again after it leaves and re-enters a feed.
@@ -399,7 +453,15 @@ def monitor_delta(
             "lcmsProductPages": len(products),
             "pressReleases": len(releases),
             "technicalInsights": len(technical_insights),
+            **{
+                f"{family.get('id')}Pages": sum(
+                    1 for metadata in product_metadata.values()
+                    if metadata.get("monitoringFamily") == family.get("id")
+                )
+                for family in monitored_families
+            },
         },
+        "monitoredFamilies": monitored_families,
         "new_products": new_products,
         "discontinued_products": discontinued_products,
         "updated_products": updated_products,
@@ -435,8 +497,71 @@ def collect_thermo() -> dict[str, object]:
             }
         except ET.ParseError:
             products = {}
+    product_inventory_extracted = bool(products)
+    previous_snapshot = read_json(SNAPSHOT_DIR / "thermo.json")
+    retained_last_known_inventory = False
+    if not products:
+        products = dict(previous_snapshot.get("products", {}))
+        if not products:
+            previous_monitor = read_json(OUTPUT_FILE).get("competitors", {}).get("Thermo Fisher", {})
+            products = {
+                item["url"]: str(item.get("lastmod", ""))
+                for item in previous_monitor.get("discontinued_products", [])
+                if item.get("url")
+            }
+        retained_last_known_inventory = bool(products)
     product_extraction = "extracted" if products else "blocked"
-    statuses.append(source_status("thermo-ms-products", product_url, "product_sitemap_xml", product_status, product_extraction, f"Official US sitemap parsed; {len(products)} LC/LC-MS product pages tracked." if products else f"Product sitemap unavailable or contained no usable LC/LC-MS records: {product_detail or product_status}", len(products)))
+    if retained_last_known_inventory and not product_inventory_extracted:
+        product_extraction = "blocked"
+        product_reason = f"Product sitemap unavailable: {product_detail or product_status}. Retained {len(products)} last-known official product pages; no discontinuation inferred."
+    else:
+        product_reason = f"Official US sitemap parsed; {len(products)} LC/LC-MS product pages tracked." if products else f"Product sitemap unavailable or contained no usable LC/LC-MS records: {product_detail or product_status}"
+    statuses.append(source_status("thermo-ms-products", product_url, "product_sitemap_xml", product_status, product_extraction, product_reason, len(products) if product_inventory_extracted else 0))
+
+    family_registry = thermo_family_registry()
+    monitored_families: list[dict[str, object]] = []
+    product_metadata = {
+        url: metadata
+        for url in products
+        if (metadata := thermo_registered_product_metadata(url))
+    }
+    for family in family_registry.get("families", []):
+        family_id = family.get("id")
+        tracked_urls = sorted(
+            url for url, metadata in product_metadata.items()
+            if metadata.get("monitoringFamily") == family_id
+        )
+        registration = {
+            **family,
+            "sitemapUrl": family_registry.get("sitemapUrl", product_url),
+            "trackedProductUrls": tracked_urls,
+        }
+        monitored_families.append(registration)
+        statuses.append(source_status(
+            f"{family_id}-products",
+            family_registry.get("sitemapUrl", product_url),
+            "registered_product_sitemap",
+            product_status,
+            "extracted" if tracked_urls and product_inventory_extracted else "blocked",
+            (
+                f"Official Thermo sitemap parsed; {len(tracked_urls)} registered {family.get('name')} product pages tracked."
+                if tracked_urls and product_inventory_extracted
+                else f"Sitemap collection was blocked; retained {len(tracked_urls)} last-known registered {family.get('name')} product pages and made no discontinuation inference."
+                if tracked_urls
+                else f"Official Thermo sitemap did not contain a registered {family.get('name')} product page."
+            ),
+            len(tracked_urls) if product_inventory_extracted else 0,
+        ))
+
+    if retained_last_known_inventory and not previous_snapshot.get("products"):
+        write_json(SNAPSHOT_DIR / "thermo.json", {
+            **previous_snapshot,
+            "capturedAt": utc_now(),
+            "initialized": True,
+            "products": products,
+            "productMetadata": product_metadata,
+            "monitoredFamilies": monitored_families,
+        })
 
     press_status, press_body, press_detail = fetch(press_url)
     bot_interstitial = bool(re.search(r"(?:just a moment|cf-chl|cloudflare|enable javascript and cookies)", press_body, re.I))
@@ -484,6 +609,8 @@ def collect_thermo() -> dict[str, object]:
         statuses,
         seed_dated_products=True,
         technical_insights=technical_insights,
+        product_metadata=product_metadata,
+        monitored_families=monitored_families,
     )
 
 

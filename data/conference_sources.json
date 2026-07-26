@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-26T14:20:00",
+  "generatedAt": "2026-07-26T10:17:42+00:00",
   "source": "User-provided Waters Next Gen LC conference screenshots",
   "scope": "Conference and event websites to monitor for competitor launches, application themes, sponsor activity, posters, talks, abstracts, and workflow messaging.",
   "events": [
@@ -13,9 +13,21 @@
       "quarter": "Q1 2026",
       "startDate": "2026-01-27",
       "endDate": "2026-01-29",
-      "marketSegments": ["Biopharma", "Pharma"],
-      "technologyFocus": ["LC", "LC-MS", "Biologics characterization"],
-      "signalCoverage": ["CMC trends", "Regulatory expectations", "Biologics analytical methods", "Comparator activity"],
+      "marketSegments": [
+        "Biopharma",
+        "Pharma"
+      ],
+      "technologyFocus": [
+        "LC",
+        "LC-MS",
+        "Biologics characterization"
+      ],
+      "signalCoverage": [
+        "CMC trends",
+        "Regulatory expectations",
+        "Biologics analytical methods",
+        "Comparator activity"
+      ],
       "monitoringUse": "Track biologics characterization requirements and regulatory language that may change LC and LC-MS roadmap priorities.",
       "health": "good"
     },
@@ -29,9 +41,22 @@
       "quarter": "Q1 2026",
       "startDate": "2026-02-07",
       "endDate": "2026-02-12",
-      "marketSegments": ["Biopharma", "Pharma"],
-      "technologyFocus": ["Automation", "Software", "Informatics", "Sample prep"],
-      "signalCoverage": ["Automation trends", "Vendor launches", "Informatics positioning", "High-throughput workflows"],
+      "marketSegments": [
+        "Biopharma",
+        "Pharma"
+      ],
+      "technologyFocus": [
+        "Automation",
+        "Software",
+        "Informatics",
+        "Sample prep"
+      ],
+      "signalCoverage": [
+        "Automation trends",
+        "Vendor launches",
+        "Informatics positioning",
+        "High-throughput workflows"
+      ],
       "monitoringUse": "Monitor automation and informatics claims that influence LC workflow differentiation.",
       "health": "good"
     },
@@ -45,9 +70,22 @@
       "quarter": "Q1 2026",
       "startDate": "2026-02-24",
       "endDate": "2026-02-26",
-      "marketSegments": ["Biopharma", "CDMO"],
-      "technologyFocus": ["LC-MS", "LNP", "RNA therapeutics", "QC"],
-      "signalCoverage": ["RNA analytical methods", "LNP workflow needs", "QC pain points", "Emerging application pull"],
+      "marketSegments": [
+        "Biopharma",
+        "CDMO"
+      ],
+      "technologyFocus": [
+        "LC-MS",
+        "LNP",
+        "RNA therapeutics",
+        "QC"
+      ],
+      "signalCoverage": [
+        "RNA analytical methods",
+        "LNP workflow needs",
+        "QC pain points",
+        "Emerging application pull"
+      ],
       "monitoringUse": "Track LNP and RNA analytics requirements for LC-MS workflow prioritization.",
       "health": "good"
     },
@@ -61,9 +99,22 @@
       "quarter": "Q1 2026",
       "startDate": "2026-03-10",
       "endDate": "2026-03-12",
-      "marketSegments": ["Biopharma", "CDMO"],
-      "technologyFocus": ["Bioprocess analytics", "LC", "LC-MS", "QC"],
-      "signalCoverage": ["Bioprocess analytics", "Scale-up needs", "QC workflows", "Vendor positioning"],
+      "marketSegments": [
+        "Biopharma",
+        "CDMO"
+      ],
+      "technologyFocus": [
+        "Bioprocess analytics",
+        "LC",
+        "LC-MS",
+        "QC"
+      ],
+      "signalCoverage": [
+        "Bioprocess analytics",
+        "Scale-up needs",
+        "QC workflows",
+        "Vendor positioning"
+      ],
       "monitoringUse": "Monitor bioprocess analytics demand and competitor workflow messaging.",
       "health": "good"
     },
@@ -77,9 +128,22 @@
       "quarter": "Q1 2026",
       "startDate": "2026-03-22",
       "endDate": "2026-03-26",
-      "marketSegments": ["Academic", "Pharma", "Environmental"],
-      "technologyFocus": ["LC", "LC-MS", "Chemistry applications"],
-      "signalCoverage": ["Application trends", "Academic methods", "Exhibitor activity", "Chemistry market themes"],
+      "marketSegments": [
+        "Academic",
+        "Pharma",
+        "Environmental"
+      ],
+      "technologyFocus": [
+        "LC",
+        "LC-MS",
+        "Chemistry applications"
+      ],
+      "signalCoverage": [
+        "Application trends",
+        "Academic methods",
+        "Exhibitor activity",
+        "Chemistry market themes"
+      ],
       "monitoringUse": "Track broad chemistry application themes and early methods that may become product requirements.",
       "health": "good"
     },
@@ -93,9 +157,24 @@
       "quarter": "Q1 2026",
       "startDate": "2026-03-24",
       "endDate": "2026-03-27",
-      "marketSegments": ["Pharma", "Biopharma", "Environmental", "Academic"],
-      "technologyFocus": ["LC", "UHPLC", "LC-MS", "Lab equipment"],
-      "signalCoverage": ["Product launches", "Instrument positioning", "Exhibitor strategy", "Market messaging"],
+      "marketSegments": [
+        "Pharma",
+        "Biopharma",
+        "Environmental",
+        "Academic"
+      ],
+      "technologyFocus": [
+        "LC",
+        "UHPLC",
+        "LC-MS",
+        "Lab equipment"
+      ],
+      "signalCoverage": [
+        "Product launches",
+        "Instrument positioning",
+        "Exhibitor strategy",
+        "Market messaging"
+      ],
       "monitoringUse": "Monitor global instrument launches and competitor positioning in lab technology.",
       "health": "good"
     },
@@ -109,9 +188,20 @@
       "quarter": "Q2 2026",
       "startDate": "2026-04-28",
       "endDate": "2026-04-30",
-      "marketSegments": ["Biopharma", "CDMO"],
-      "technologyFocus": ["LC-MS", "ADC characterization", "QC"],
-      "signalCoverage": ["ADC analytics", "Characterization pain points", "Regulatory-ready methods"],
+      "marketSegments": [
+        "Biopharma",
+        "CDMO"
+      ],
+      "technologyFocus": [
+        "LC-MS",
+        "ADC characterization",
+        "QC"
+      ],
+      "signalCoverage": [
+        "ADC analytics",
+        "Characterization pain points",
+        "Regulatory-ready methods"
+      ],
       "monitoringUse": "Track ADC workflow requirements for biopharma LC-MS capability planning.",
       "health": "good"
     },
@@ -125,9 +215,19 @@
       "quarter": "Q2 2026",
       "startDate": "2026-05-11",
       "endDate": "2026-05-15",
-      "marketSegments": ["Biopharma"],
-      "technologyFocus": ["Biologics", "LC-MS", "Protein characterization"],
-      "signalCoverage": ["Biologics applications", "Antibody engineering trends", "Analytical characterization"],
+      "marketSegments": [
+        "Biopharma"
+      ],
+      "technologyFocus": [
+        "Biologics",
+        "LC-MS",
+        "Protein characterization"
+      ],
+      "signalCoverage": [
+        "Biologics applications",
+        "Antibody engineering trends",
+        "Analytical characterization"
+      ],
       "monitoringUse": "Track biologics workflow themes and partnership/customer language.",
       "health": "good"
     },
@@ -141,9 +241,23 @@
       "quarter": "Q2 2026",
       "startDate": "2026-05-11",
       "endDate": "2026-05-14",
-      "marketSegments": ["Biopharma", "CDMO"],
-      "technologyFocus": ["LC-MS", "Oligonucleotides", "Peptides", "mRNA", "LNP"],
-      "signalCoverage": ["Oligo analytics", "mRNA workflows", "CMC/manufacturing needs", "Competitor sponsor activity"],
+      "marketSegments": [
+        "Biopharma",
+        "CDMO"
+      ],
+      "technologyFocus": [
+        "LC-MS",
+        "Oligonucleotides",
+        "Peptides",
+        "mRNA",
+        "LNP"
+      ],
+      "signalCoverage": [
+        "Oligo analytics",
+        "mRNA workflows",
+        "CMC/manufacturing needs",
+        "Competitor sponsor activity"
+      ],
       "monitoringUse": "Monitor oligo, peptide, mRNA, and LNP analytical workflow signals.",
       "health": "good"
     },
@@ -157,9 +271,20 @@
       "quarter": "Q2 2026",
       "startDate": "2026-05-11",
       "endDate": "2026-05-15",
-      "marketSegments": ["Biopharma", "Clinical"],
-      "technologyFocus": ["Cell and gene therapy", "LC-MS", "RNA therapeutics"],
-      "signalCoverage": ["Cell/gene therapy applications", "RNA delivery themes", "Clinical translation signals"],
+      "marketSegments": [
+        "Biopharma",
+        "Clinical"
+      ],
+      "technologyFocus": [
+        "Cell and gene therapy",
+        "LC-MS",
+        "RNA therapeutics"
+      ],
+      "signalCoverage": [
+        "Cell/gene therapy applications",
+        "RNA delivery themes",
+        "Clinical translation signals"
+      ],
       "monitoringUse": "Track emerging therapy areas that create analytical workflow pull.",
       "health": "good"
     },
@@ -173,9 +298,21 @@
       "quarter": "Q2 2026",
       "startDate": "2026-05-19",
       "endDate": "2026-05-21",
-      "marketSegments": ["Pharma", "Biopharma"],
-      "technologyFocus": ["Automation", "Software", "Informatics", "Sample prep"],
-      "signalCoverage": ["Automation trends", "European vendor activity", "Workflow integration"],
+      "marketSegments": [
+        "Pharma",
+        "Biopharma"
+      ],
+      "technologyFocus": [
+        "Automation",
+        "Software",
+        "Informatics",
+        "Sample prep"
+      ],
+      "signalCoverage": [
+        "Automation trends",
+        "European vendor activity",
+        "Workflow integration"
+      ],
       "monitoringUse": "Track European automation and informatics needs relevant to LC workflows.",
       "health": "good"
     },
@@ -189,15 +326,30 @@
       "quarter": "Q2 2026",
       "startDate": "2026-05-30",
       "endDate": "2026-05-30",
-      "marketSegments": ["Pharma", "Biopharma", "Academic"],
-      "technologyFocus": ["LC-MS", "Waters workflows", "Customer feedback"],
-      "signalCoverage": ["Customer voice", "Adoption patterns", "Application needs", "Competitive objections"],
+      "marketSegments": [
+        "Pharma",
+        "Biopharma",
+        "Academic"
+      ],
+      "technologyFocus": [
+        "LC-MS",
+        "Waters workflows",
+        "Customer feedback"
+      ],
+      "signalCoverage": [
+        "Customer voice",
+        "Adoption patterns",
+        "Application needs",
+        "Competitive objections"
+      ],
       "monitoringUse": "Use as a Waters-owned customer signal source for LC-MS roadmap questions.",
       "health": "manual"
     },
     {
       "id": "asms-2026",
       "eventName": "ASMS 2026 (American Society for Mass Spectrometry Annual Conference)",
+      "sourceClass": "Conference/poster",
+      "publisher": "American Society for Mass Spectrometry",
       "audienceSize": 7000,
       "audienceDescription": "Mass spectrometry scientists from academia, industry, and government; thousands of posters and hundreds of talks.",
       "website": "https://www.asms.org/conferences/annual-conference",
@@ -205,15 +357,63 @@
       "quarter": "Q2 2026",
       "startDate": "2026-06-01",
       "endDate": "2026-06-05",
-      "marketSegments": ["Pharma", "Biopharma", "Academic", "Environmental"],
-      "technologyFocus": ["LC-MS", "LC-MS/MS", "Mass spectrometry"],
-      "signalCoverage": ["Product launches", "Competitor posters", "Application trends", "Sponsor activity"],
+      "marketSegments": [
+        "Pharma",
+        "Biopharma",
+        "Clinical",
+        "Academic",
+        "Government",
+        "Environmental",
+        "Food & Beverage"
+      ],
+      "technologyFocus": [
+        "LC-MS",
+        "LC-MS/MS",
+        "Mass spectrometry"
+      ],
+      "signalCoverage": [
+        "Product launches",
+        "Competitor posters",
+        "Application trends",
+        "Sponsor activity"
+      ],
       "monitoringUse": "Primary LC-MS competitor and application intelligence source.",
-      "health": "good"
+      "refreshCadence": "Daily during program and proceedings publication windows",
+      "accessType": "Public conference and program pages; some planner content requires registration",
+      "monitoringUrls": [
+        "https://www.asms.org/conferences/annual-conference",
+        "https://www.asms.org/conferences/annual-conference/conference-program"
+      ],
+      "whatToMeasure": "Poster and oral titles by vendor and instrument, corporate breakfast seminars, repeated methods, new performance claims, and direct competitor comparisons.",
+      "whyItMatters": "ASMS provides the densest annual view of vendor LC-MS proof, including head-to-head posters that may reveal competitive performance claims before formal product literature.",
+      "health": "good",
+      "lastChecked": "2026-07-26T10:17:42+00:00",
+      "collectionStatus": "extracted",
+      "collectionDetail": "1 of 2 official conference/program endpoints reachable; this is endpoint coverage, not a poster count.",
+      "monitoredEndpoints": [
+        {
+          "url": "https://www.asms.org/conferences/annual-conference",
+          "finalUrl": "https://www.asms.org/conferences/annual-conference",
+          "status": 200,
+          "pageFingerprint": "5c2899fc56ca2687"
+        },
+        {
+          "url": "https://www.asms.org/conferences/annual-conference/conference-program",
+          "finalUrl": "https://www.asms.org/conferences/annual-conference/conference-program",
+          "status": 0,
+          "pageFingerprint": ""
+        }
+      ],
+      "surfaces": [
+        "Market intelligence",
+        "Application trends"
+      ]
     },
     {
       "id": "hplc-2026",
       "eventName": "HPLC 2026 (International Symposium on High Performance Liquid Phase Separations and Related Techniques)",
+      "sourceClass": "Conference/poster",
+      "publisher": "HPLC Symposium series",
       "audienceSize": 3500,
       "audienceDescription": "Separation sciences researchers, vendors, and method developers across LC/HPLC/SFC/LC-MS.",
       "website": "https://hplc2026-symposium.org/",
@@ -221,11 +421,58 @@
       "quarter": "Q2 2026",
       "startDate": "2026-06-06",
       "endDate": "2026-06-11",
-      "marketSegments": ["Pharma", "Biopharma", "Academic", "Environmental"],
-      "technologyFocus": ["LC", "UHPLC", "2D LC", "LC-MS"],
-      "signalCoverage": ["LC innovation", "Column and separation trends", "Vendor seminars", "Application methods"],
+      "marketSegments": [
+        "Pharma",
+        "Biopharma",
+        "CDMO",
+        "Academic",
+        "Government",
+        "Environmental",
+        "Food & Beverage"
+      ],
+      "technologyFocus": [
+        "LC",
+        "UHPLC",
+        "2D LC",
+        "LC-MS"
+      ],
+      "signalCoverage": [
+        "LC innovation",
+        "Column and separation trends",
+        "Vendor seminars",
+        "Application methods"
+      ],
       "monitoringUse": "Primary LC and UHPLC technology trend source for Next Gen LC.",
-      "health": "good"
+      "refreshCadence": "Weekly; daily around abstract and program releases",
+      "accessType": "Public symposium and program pages",
+      "monitoringUrls": [
+        "https://hplc2026-symposium.org/",
+        "https://hplc-symposium.org/2028"
+      ],
+      "whatToMeasure": "Abstract and poster themes in dwell volume, dispersion, columns, multidimensional LC, hyphenated detection, method transfer, and vendor seminars.",
+      "whyItMatters": "The HPLC series is the most direct scientific source for separation-performance and column-technology changes that can become LC product requirements.",
+      "health": "good",
+      "lastChecked": "2026-07-26T10:17:42+00:00",
+      "collectionStatus": "extracted",
+      "collectionDetail": "2 of 2 official conference/program endpoints reachable; this is endpoint coverage, not a poster count.",
+      "monitoredEndpoints": [
+        {
+          "url": "https://hplc2026-symposium.org/",
+          "finalUrl": "https://hplc2026-symposium.org/",
+          "status": 200,
+          "pageFingerprint": "aaa5a393b176154d"
+        },
+        {
+          "url": "https://hplc-symposium.org/2028",
+          "finalUrl": "https://hplc-symposium.org/2028",
+          "status": 200,
+          "pageFingerprint": "e6602f6901c31e5e"
+        }
+      ],
+      "surfaces": [
+        "Market intelligence",
+        "Application trends"
+      ]
     },
     {
       "id": "metabolomics-society-2026",
@@ -237,9 +484,21 @@
       "quarter": "Q2 2026",
       "startDate": "2026-06-21",
       "endDate": "2026-06-24",
-      "marketSegments": ["Academic", "Clinical", "Environmental"],
-      "technologyFocus": ["LC-MS", "Metabolomics", "Bioinformatics"],
-      "signalCoverage": ["Metabolomics applications", "Software/informatics needs", "Clinical and environmental adoption"],
+      "marketSegments": [
+        "Academic",
+        "Clinical",
+        "Environmental"
+      ],
+      "technologyFocus": [
+        "LC-MS",
+        "Metabolomics",
+        "Bioinformatics"
+      ],
+      "signalCoverage": [
+        "Metabolomics applications",
+        "Software/informatics needs",
+        "Clinical and environmental adoption"
+      ],
       "monitoringUse": "Track omics application pull and informatics expectations.",
       "health": "good"
     },
@@ -253,9 +512,20 @@
       "quarter": "Q3 2026",
       "startDate": "2026-06-29",
       "endDate": "2026-07-02",
-      "marketSegments": ["Pharma", "Academic"],
-      "technologyFocus": ["LC-MS", "DMPK", "Xenobiotics"],
-      "signalCoverage": ["DMPK workflows", "Bioanalysis methods", "Regulatory science"],
+      "marketSegments": [
+        "Pharma",
+        "Academic"
+      ],
+      "technologyFocus": [
+        "LC-MS",
+        "DMPK",
+        "Xenobiotics"
+      ],
+      "signalCoverage": [
+        "DMPK workflows",
+        "Bioanalysis methods",
+        "Regulatory science"
+      ],
       "monitoringUse": "Track DMPK/bioanalysis requirements that influence LC-MS product expectations.",
       "health": "good"
     },
@@ -269,15 +539,29 @@
       "quarter": "Q3 2026",
       "startDate": "2026-08-10",
       "endDate": "2026-08-13",
-      "marketSegments": ["Biopharma", "CDMO"],
-      "technologyFocus": ["Bioprocess analytics", "LC", "LC-MS", "QC"],
-      "signalCoverage": ["Bioprocess trends", "Quality analytics", "Scale-up workflows"],
+      "marketSegments": [
+        "Biopharma",
+        "CDMO"
+      ],
+      "technologyFocus": [
+        "Bioprocess analytics",
+        "LC",
+        "LC-MS",
+        "QC"
+      ],
+      "signalCoverage": [
+        "Bioprocess trends",
+        "Quality analytics",
+        "Scale-up workflows"
+      ],
       "monitoringUse": "Monitor analytics needs in bioprocessing and CMC workflows.",
       "health": "good"
     },
     {
       "id": "imsc-2026",
       "eventName": "IMSC 2026 (International Mass Spectrometry Conference)",
+      "sourceClass": "Conference/poster",
+      "publisher": "International Mass Spectrometry Foundation",
       "audienceSize": 3500,
       "audienceDescription": "Global MS community across fundamentals, instrumentation, life sciences, materials, environment, and energy.",
       "website": "https://imsc26.com/",
@@ -285,11 +569,50 @@
       "quarter": "Q3 2026",
       "startDate": "2026-08-22",
       "endDate": "2026-08-28",
-      "marketSegments": ["Academic", "Pharma", "Biopharma", "Environmental"],
-      "technologyFocus": ["LC-MS", "Mass spectrometry", "Instrumentation"],
-      "signalCoverage": ["MS technology trends", "Instrumentation advances", "Application methods", "Competitor research footprint"],
+      "marketSegments": [
+        "Academic",
+        "Pharma",
+        "Biopharma",
+        "Clinical",
+        "Government",
+        "Environmental",
+        "Food & Beverage"
+      ],
+      "technologyFocus": [
+        "LC-MS",
+        "Mass spectrometry",
+        "Instrumentation"
+      ],
+      "signalCoverage": [
+        "MS technology trends",
+        "Instrumentation advances",
+        "Application methods",
+        "Competitor research footprint"
+      ],
       "monitoringUse": "Track global mass spectrometry direction and competitor technology narratives.",
-      "health": "good"
+      "refreshCadence": "Weekly; daily during program and abstract publication windows",
+      "accessType": "Public conference and scientific-program pages",
+      "monitoringUrls": [
+        "https://imsc26.com/"
+      ],
+      "whatToMeasure": "Instrument and acquisition advances, application-session concentration, vendor-authored posters, and repeated global MS workflow themes.",
+      "whyItMatters": "IMSC adds a global, research-led view of MS direction that complements the vendor-heavy ASMS signal.",
+      "health": "good",
+      "lastChecked": "2026-07-26T10:17:42+00:00",
+      "collectionStatus": "blocked",
+      "collectionDetail": "0 of 1 official conference/program endpoints reachable; this is endpoint coverage, not a poster count.",
+      "monitoredEndpoints": [
+        {
+          "url": "https://imsc26.com/",
+          "finalUrl": "https://imsc26.com/",
+          "status": 522,
+          "pageFingerprint": ""
+        }
+      ],
+      "surfaces": [
+        "Market intelligence",
+        "Application trends"
+      ]
     },
     {
       "id": "acs-fall-2026",
@@ -301,9 +624,21 @@
       "quarter": "Q3 2026",
       "startDate": "2026-08-23",
       "endDate": "2026-08-27",
-      "marketSegments": ["Academic", "Pharma", "Environmental"],
-      "technologyFocus": ["LC", "LC-MS", "Chemistry applications"],
-      "signalCoverage": ["Application trends", "Academic methods", "Exhibitor activity"],
+      "marketSegments": [
+        "Academic",
+        "Pharma",
+        "Environmental"
+      ],
+      "technologyFocus": [
+        "LC",
+        "LC-MS",
+        "Chemistry applications"
+      ],
+      "signalCoverage": [
+        "Application trends",
+        "Academic methods",
+        "Exhibitor activity"
+      ],
       "monitoringUse": "Track chemistry and analytical methods that could create future workflow demand.",
       "health": "manual"
     },
@@ -317,9 +652,20 @@
       "quarter": "Q3 2026",
       "startDate": "2026-09-15",
       "endDate": "2026-09-17",
-      "marketSegments": ["Biopharma", "CDMO"],
-      "technologyFocus": ["LC-MS", "Biopharma characterization", "QC"],
-      "signalCoverage": ["Biopharma MS applications", "Process monitoring", "Release testing"],
+      "marketSegments": [
+        "Biopharma",
+        "CDMO"
+      ],
+      "technologyFocus": [
+        "LC-MS",
+        "Biopharma characterization",
+        "QC"
+      ],
+      "signalCoverage": [
+        "Biopharma MS applications",
+        "Process monitoring",
+        "Release testing"
+      ],
       "monitoringUse": "Track high-specificity biopharma LC-MS use cases and QC expectations.",
       "health": "good"
     },
@@ -333,11 +679,85 @@
       "quarter": "Q3 2026",
       "startDate": "2026-09-22",
       "endDate": "2026-09-23",
-      "marketSegments": ["Pharma", "Biopharma"],
-      "technologyFocus": ["Software", "Automation", "AI", "Informatics"],
-      "signalCoverage": ["Digital lab strategy", "Automation adoption", "AI/informatics expectations"],
+      "marketSegments": [
+        "Pharma",
+        "Biopharma"
+      ],
+      "technologyFocus": [
+        "Software",
+        "Automation",
+        "AI",
+        "Informatics"
+      ],
+      "signalCoverage": [
+        "Digital lab strategy",
+        "Automation adoption",
+        "AI/informatics expectations"
+      ],
       "monitoringUse": "Track software and automation themes that shape LC ecosystem expectations.",
       "health": "blocked"
+    },
+    {
+      "id": "msacl-2026",
+      "eventName": "MSACL 2026 (Mass Spectrometry & Advances in the Clinical Lab)",
+      "sourceClass": "Conference/poster",
+      "publisher": "MSACL",
+      "audienceSize": null,
+      "audienceDescription": "Clinical laboratory scientists, translational researchers, assay developers, vendors, and laboratory directors applying mass spectrometry to patient care.",
+      "website": "https://www.msacl.org/",
+      "tier": "Tier 1",
+      "quarter": "Q4 2026",
+      "startDate": "2026-10-04",
+      "endDate": "2026-10-09",
+      "marketSegments": [
+        "Clinical",
+        "Biopharma",
+        "Pharma",
+        "Academic"
+      ],
+      "technologyFocus": [
+        "Clinical LC-MS/MS",
+        "Assay validation",
+        "Automation",
+        "Clinical informatics"
+      ],
+      "signalCoverage": [
+        "Clinical assays",
+        "Posters",
+        "Vendor activity",
+        "Translation-to-routine-lab evidence"
+      ],
+      "monitoringUse": "Track LC-MS methods moving from discovery through translation into clinical availability.",
+      "refreshCadence": "Weekly; daily during program and poster publication windows",
+      "accessType": "Public conference, program, and poster pages",
+      "monitoringUrls": [
+        "https://www.msacl.org/",
+        "https://www.msacl.org/program/"
+      ],
+      "whatToMeasure": "Poster counts by assay area and vendor, clinical-use status, validation claims, automation, turnaround time, and laboratory implementation barriers.",
+      "whyItMatters": "MSACL separates early research from clinically available assays, providing direct evidence of what LC-MS workflows are approaching routine clinical use.",
+      "health": "good",
+      "lastChecked": "2026-07-26T10:17:42+00:00",
+      "collectionStatus": "extracted",
+      "collectionDetail": "1 of 2 official conference/program endpoints reachable; this is endpoint coverage, not a poster count.",
+      "monitoredEndpoints": [
+        {
+          "url": "https://www.msacl.org/",
+          "finalUrl": "https://www.msacl.org/",
+          "status": 0,
+          "pageFingerprint": ""
+        },
+        {
+          "url": "https://www.msacl.org/program/",
+          "finalUrl": "https://www.msacl.org/program/",
+          "status": 200,
+          "pageFingerprint": "d219ad7610f815fe"
+        }
+      ],
+      "surfaces": [
+        "Market intelligence",
+        "Application trends"
+      ]
     },
     {
       "id": "issx-na-2026",
@@ -349,9 +769,20 @@
       "quarter": "Q4 2026",
       "startDate": "2026-10-11",
       "endDate": "2026-10-14",
-      "marketSegments": ["Pharma", "Academic"],
-      "technologyFocus": ["LC-MS", "DMPK", "Xenobiotics"],
-      "signalCoverage": ["DMPK workflows", "Bioanalysis methods", "Regulatory science"],
+      "marketSegments": [
+        "Pharma",
+        "Academic"
+      ],
+      "technologyFocus": [
+        "LC-MS",
+        "DMPK",
+        "Xenobiotics"
+      ],
+      "signalCoverage": [
+        "DMPK workflows",
+        "Bioanalysis methods",
+        "Regulatory science"
+      ],
       "monitoringUse": "Track DMPK and bioanalysis workflow needs for LC-MS roadmap implications.",
       "health": "good"
     },
@@ -365,9 +796,23 @@
       "quarter": "Q4 2026",
       "startDate": "2026-10-25",
       "endDate": "2026-10-28",
-      "marketSegments": ["Pharma", "Biopharma", "CDMO"],
-      "technologyFocus": ["LC", "LC-MS", "CMC", "Bioanalysis"],
-      "signalCoverage": ["Pharma application trends", "CMC needs", "Exhibitor activity", "Bioanalysis workflows"],
+      "marketSegments": [
+        "Pharma",
+        "Biopharma",
+        "CDMO"
+      ],
+      "technologyFocus": [
+        "LC",
+        "LC-MS",
+        "CMC",
+        "Bioanalysis"
+      ],
+      "signalCoverage": [
+        "Pharma application trends",
+        "CMC needs",
+        "Exhibitor activity",
+        "Bioanalysis workflows"
+      ],
       "monitoringUse": "Track pharma CMC and bioanalysis trends that influence roadmap needs.",
       "health": "manual"
     },
@@ -381,9 +826,23 @@
       "quarter": "Q4 2026",
       "startDate": "2026-11-03",
       "endDate": "2026-11-05",
-      "marketSegments": ["Biopharma", "CDMO"],
-      "technologyFocus": ["LC-MS", "Oligonucleotides", "Peptides", "mRNA", "LNP"],
-      "signalCoverage": ["Oligo analytics", "mRNA workflows", "European CMC needs", "Competitor sponsor activity"],
+      "marketSegments": [
+        "Biopharma",
+        "CDMO"
+      ],
+      "technologyFocus": [
+        "LC-MS",
+        "Oligonucleotides",
+        "Peptides",
+        "mRNA",
+        "LNP"
+      ],
+      "signalCoverage": [
+        "Oligo analytics",
+        "mRNA workflows",
+        "European CMC needs",
+        "Competitor sponsor activity"
+      ],
       "monitoringUse": "Monitor European oligo, peptide, mRNA, and LNP analytical workflow signals.",
       "health": "good"
     },
@@ -397,9 +856,22 @@
       "quarter": "Q4 2026",
       "startDate": "2026-11-03",
       "endDate": "2026-11-06",
-      "marketSegments": ["Environmental", "Government", "Academic"],
-      "technologyFocus": ["LC-MS/MS", "Food analysis", "PFAS", "Contaminants"],
-      "signalCoverage": ["Food safety methods", "PFAS/contaminant testing", "Regulatory trends"],
+      "marketSegments": [
+        "Environmental",
+        "Government",
+        "Academic"
+      ],
+      "technologyFocus": [
+        "LC-MS/MS",
+        "Food analysis",
+        "PFAS",
+        "Contaminants"
+      ],
+      "signalCoverage": [
+        "Food safety methods",
+        "PFAS/contaminant testing",
+        "Regulatory trends"
+      ],
       "monitoringUse": "Track contaminant and food safety methods relevant to LC-MS/MS demand.",
       "health": "good"
     },
@@ -413,11 +885,84 @@
       "quarter": "Q4 2026",
       "startDate": "2026-11-11",
       "endDate": "2026-11-13",
-      "marketSegments": ["Biopharma"],
-      "technologyFocus": ["Biologics", "LC-MS", "Protein characterization"],
-      "signalCoverage": ["Biologics applications", "Protein engineering trends", "Analytical characterization"],
+      "marketSegments": [
+        "Biopharma"
+      ],
+      "technologyFocus": [
+        "Biologics",
+        "LC-MS",
+        "Protein characterization"
+      ],
+      "signalCoverage": [
+        "Biologics applications",
+        "Protein engineering trends",
+        "Analytical characterization"
+      ],
       "monitoringUse": "Track European biologics characterization and analytical workflow needs.",
       "health": "good"
+    },
+    {
+      "id": "ebf-open-symposium-2026",
+      "eventName": "19th European Bioanalysis Forum Open Symposium",
+      "sourceClass": "Conference/poster",
+      "publisher": "European Bioanalysis Forum",
+      "audienceSize": 600,
+      "audienceDescription": "Pharmaceutical, CRO, academic, technology, and regulatory scientists working in regulated bioanalysis.",
+      "website": "https://meetings.e-b-f.eu/open/",
+      "tier": "Tier 1",
+      "quarter": "Q4 2026",
+      "startDate": "2026-11-17",
+      "endDate": "2026-11-19",
+      "marketSegments": [
+        "Pharma",
+        "Biopharma",
+        "CDMO",
+        "Clinical"
+      ],
+      "technologyFocus": [
+        "Regulated bioanalysis",
+        "LC-MS/MS",
+        "New modalities",
+        "Data integrity"
+      ],
+      "signalCoverage": [
+        "Bioanalytical practice",
+        "Posters",
+        "Regulatory alignment",
+        "Vendor sponsorship",
+        "Method validation"
+      ],
+      "monitoringUse": "Track pre-competitive bioanalytical practice, regulatory interpretation, method validation, and emerging technology needs.",
+      "refreshCadence": "Weekly; daily during agenda, abstract, and poster publication windows",
+      "accessType": "Public meeting, agenda, and abstract-call pages; some materials are delegate-only",
+      "monitoringUrls": [
+        "https://e-b-f.eu/meetings/",
+        "https://meetings.e-b-f.eu/open/"
+      ],
+      "whatToMeasure": "Repeated bioanalytical problems, modality-specific methods, validation and data-integrity discussions, sponsor presence, and LC-MS case-study themes.",
+      "whyItMatters": "EBF provides industry-led evidence of regulated bioanalysis practice across pharma and CRO laboratories, including issues not visible in publication-volume data.",
+      "health": "good",
+      "lastChecked": "2026-07-26T10:17:42+00:00",
+      "collectionStatus": "extracted",
+      "collectionDetail": "1 of 2 official conference/program endpoints reachable; this is endpoint coverage, not a poster count.",
+      "monitoredEndpoints": [
+        {
+          "url": "https://e-b-f.eu/meetings/",
+          "finalUrl": "https://e-b-f.eu/meetings/",
+          "status": 200,
+          "pageFingerprint": "cb7dc2881c9bb604"
+        },
+        {
+          "url": "https://meetings.e-b-f.eu/open/",
+          "finalUrl": "https://meetings.e-b-f.eu/open/",
+          "status": 0,
+          "pageFingerprint": ""
+        }
+      ],
+      "surfaces": [
+        "Market intelligence",
+        "Application trends"
+      ]
     },
     {
       "id": "setac-na-2026",
@@ -429,9 +974,22 @@
       "quarter": "Q4 2026",
       "startDate": "2026-11-16",
       "endDate": "2026-11-20",
-      "marketSegments": ["Environmental", "Government", "Academic"],
-      "technologyFocus": ["LC-MS/MS", "PFAS", "Environmental testing"],
-      "signalCoverage": ["Environmental regulation", "PFAS testing", "Application methods", "Government priorities"],
+      "marketSegments": [
+        "Environmental",
+        "Government",
+        "Academic"
+      ],
+      "technologyFocus": [
+        "LC-MS/MS",
+        "PFAS",
+        "Environmental testing"
+      ],
+      "signalCoverage": [
+        "Environmental regulation",
+        "PFAS testing",
+        "Application methods",
+        "Government priorities"
+      ],
       "monitoringUse": "Track environmental testing demand and regulatory method shifts.",
       "health": "good"
     },
@@ -445,9 +1003,20 @@
       "quarter": "Q4 2026",
       "startDate": "2026-11-18",
       "endDate": "2026-11-21",
-      "marketSegments": ["Academic", "Clinical"],
-      "technologyFocus": ["Mass spectrometry imaging", "LC-MS", "Informatics"],
-      "signalCoverage": ["MS imaging applications", "Translational research", "Informatics needs"],
+      "marketSegments": [
+        "Academic",
+        "Clinical"
+      ],
+      "technologyFocus": [
+        "Mass spectrometry imaging",
+        "LC-MS",
+        "Informatics"
+      ],
+      "signalCoverage": [
+        "MS imaging applications",
+        "Translational research",
+        "Informatics needs"
+      ],
       "monitoringUse": "Track adjacent MS imaging trends that may influence informatics and application positioning.",
       "health": "good"
     }

@@ -1,11 +1,11 @@
 {
-  "capturedAt": "2026-07-13T18:28:48+00:00",
+  "capturedAt": "2026-07-26T11:55:18+00:00",
   "initialized": true,
   "products": {
-    "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-horizon-uhplc-system.html": "2026-03-23",
-    "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-flex-uhplc-system.html": "2026-03-24",
-    "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-core-hplc-system.html": "2026-04-21",
-    "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-duo-uhplc-dual-lc-system.html": "2025-09-23",
+    "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-horizon-uhplc-system.html": "2026-07-15",
+    "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-flex-uhplc-system.html": "2026-07-15",
+    "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-core-hplc-system.html": "2026-07-15",
+    "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-duo-uhplc-dual-lc-system.html": "2026-07-16",
     "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-online-spe-hplcuhplc.html": "2026-03-18",
     "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-loop-heart-cut-2d-lc.html": "2026-03-18",
     "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-trap-heart-cut-2d-lc.html": "2026-03-23",
@@ -14,11 +14,13 @@
     "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/transcend-turboflow-tlx-systems.html": "2025-02-28",
     "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/ultimate-3000-hplc-uhplc-systems.html": "2024-10-30",
     "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-method-development-hplc-and-uhplc-systems.html": "2026-03-18",
-    "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-neo-uhplc-system.html": "2026-03-24",
+    "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-neo-uhplc-system.html": "2026-07-15",
     "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-analytical-purification-lc-system-fraction-collector.html": "2026-03-18",
     "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-tandem-lc-system-lc-lc-ms.html": "2026-03-18",
     "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-inverse-gradient-lc-system-charged-aerosol-detection.html": "2026-04-02",
     "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-amplify-uhplc-system.html": "2026-06-29",
+    "https://www.thermofisher.com/us/en/home/industrial/chromatography/ion-chromatography-ic/ion-chromatography-systems/instrument-selection/ics-6000.html": "2026-03-23",
+    "https://www.thermofisher.com/us/en/home/industrial/chromatography/ion-chromatography-ic/ion-chromatography-systems/instrument-selection/integrion.html": "2026-03-23",
     "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms.html": "2026-07-10",
     "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/orbitrap-exploris-mass-spectrometers.html": "2026-06-30",
     "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/orbitrap-exploris-mass-spectrometers/orbitrap-exploris-480-mass-spectrometers.html": "2026-06-30",
@@ -44,6 +46,81 @@
     "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/triple-quadrupole-lc-ms/tsq-altis-triple-quadrupole-ms.html": "2026-04-09",
     "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/triple-quadrupole-lc-ms/tsq-certis-triple-quadripole-ms.html": "2026-07-10"
   },
+  "productMetadata": {
+    "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-neo-uhplc-system.html": {
+      "monitoringFamily": "thermo-vanquish-neo-nano-lc",
+      "monitoringFamilyName": "Thermo Scientific Vanquish Neo nano-LC",
+      "technology": "Nano-LC",
+      "category": "Nano-LC",
+      "marketSegments": [
+        "Biopharma",
+        "Academic"
+      ]
+    },
+    "https://www.thermofisher.com/us/en/home/industrial/chromatography/ion-chromatography-ic/ion-chromatography-systems/instrument-selection/ics-6000.html": {
+      "monitoringFamily": "thermo-dionex-ion-chromatography",
+      "monitoringFamilyName": "Thermo Scientific Dionex ion chromatography",
+      "technology": "Ion chromatography",
+      "category": "Ion chromatography",
+      "marketSegments": [
+        "Environmental",
+        "Food & Beverage"
+      ]
+    },
+    "https://www.thermofisher.com/us/en/home/industrial/chromatography/ion-chromatography-ic/ion-chromatography-systems/instrument-selection/integrion.html": {
+      "monitoringFamily": "thermo-dionex-ion-chromatography",
+      "monitoringFamilyName": "Thermo Scientific Dionex ion chromatography",
+      "technology": "Ion chromatography",
+      "category": "Ion chromatography",
+      "marketSegments": [
+        "Environmental",
+        "Food & Beverage"
+      ]
+    }
+  },
+  "monitoredFamilies": [
+    {
+      "id": "thermo-dionex-ion-chromatography",
+      "name": "Thermo Scientific Dionex ion chromatography",
+      "technology": "Ion chromatography",
+      "marketSegments": [
+        "Environmental",
+        "Food & Beverage"
+      ],
+      "matchFragments": [
+        "/ion-chromatography-ic/ion-chromatography-systems/instrument-selection/integrion",
+        "/ion-chromatography-ic/ion-chromatography-systems/instrument-selection/ics-"
+      ],
+      "productPageUrls": [
+        "https://www.thermofisher.com/us/en/home/industrial/chromatography/ion-chromatography-ic/ion-chromatography-systems/instrument-selection/integrion.html",
+        "https://www.thermofisher.com/us/en/home/industrial/chromatography/ion-chromatography-ic/ion-chromatography-systems/instrument-selection/ics-6000.html"
+      ],
+      "sitemapUrl": "https://www.thermofisher.com/sitemap-us-en.xml",
+      "trackedProductUrls": [
+        "https://www.thermofisher.com/us/en/home/industrial/chromatography/ion-chromatography-ic/ion-chromatography-systems/instrument-selection/ics-6000.html",
+        "https://www.thermofisher.com/us/en/home/industrial/chromatography/ion-chromatography-ic/ion-chromatography-systems/instrument-selection/integrion.html"
+      ]
+    },
+    {
+      "id": "thermo-vanquish-neo-nano-lc",
+      "name": "Thermo Scientific Vanquish Neo nano-LC",
+      "technology": "Nano-LC",
+      "marketSegments": [
+        "Biopharma",
+        "Academic"
+      ],
+      "matchFragments": [
+        "/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-neo-"
+      ],
+      "productPageUrls": [
+        "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-neo-uhplc-system.html"
+      ],
+      "sitemapUrl": "https://www.thermofisher.com/sitemap-us-en.xml",
+      "trackedProductUrls": [
+        "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-neo-uhplc-system.html"
+      ]
+    }
+  ],
   "pressReleases": {},
   "technicalInsights": {
     "https://www.thermofisher.com/blog/analyteguru/moving-to-mainstream-is-the-world-finally-ready-for-low-flow-lc/": {

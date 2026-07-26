@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-07-13T18:28:46+00:00",
+  "capturedAt": "2026-07-26T11:55:09+00:00",
   "productInventoryInitialized": true,
   "pressIndexInitialized": true,
   "products": {
@@ -54,6 +54,18 @@
     "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-solvents/infinitylab-acetonitrile-for-lc-ms": "2026-07-05"
   },
   "pressReleases": {
+    "https://www.agilent.com/about/newsroom/presrel/2026/23jul-ca26027.html": {
+      "date": "2026-07-23",
+      "title": "Agilent Receives EU Approval for PD-L1 IHC 22C3 pharmDx in Epithelial Ovarian, Fallopian Tube, or Primary Peritoneal Carcinoma",
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/23jul-ca26027.html",
+      "classification": "corporate"
+    },
+    "https://www.agilent.com/about/newsroom/presrel/2026/14jul-ca26026.html": {
+      "date": "2026-07-14",
+      "title": "Agilent Receives FDA Approval for PD-L1 IHC 28-8 pharmDx in Esophageal Squamous Cell Carcinoma (ESCC), Gastric, Gastroesophageal Junction (GEJ), and Esophageal Adenocarcinoma",
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/14jul-ca26026.html",
+      "classification": "corporate"
+    },
     "https://www.agilent.com/about/newsroom/presrel/2026/08jul-ca26025.html": {
       "date": "2026-07-08",
       "title": "Agilent Expands Altura Portfolio with Inert Size Exclusion and PLRP-S Columns for Biotherapeutic Analysis",
@@ -100,18 +112,6 @@
       "date": "2026-05-28",
       "title": "Agilent Introduces OpenLab Sync to Support Guided, Digital Execution in the Laboratory",
       "url": "https://www.agilent.com/about/newsroom/presrel/2026/28may-ca26020.html",
-      "classification": "product"
-    },
-    "https://www.agilent.com/about/newsroom/presrel/2026/27may-gp26012.html": {
-      "date": "2026-05-27",
-      "title": "Agilent Reports Second-Quarter Fiscal Year 2026 Financial Results",
-      "url": "https://www.agilent.com/about/newsroom/presrel/2026/27may-gp26012.html",
-      "classification": "corporate"
-    },
-    "https://www.agilent.com/about/newsroom/presrel/2026/26may-ca26019.html": {
-      "date": "2026-05-26",
-      "title": "Agilent Launches New GC Systems with GC Assist to Improve Laboratory Efficiency and Data Quality",
-      "url": "https://www.agilent.com/about/newsroom/presrel/2026/26may-ca26019.html",
       "classification": "product"
     }
   }

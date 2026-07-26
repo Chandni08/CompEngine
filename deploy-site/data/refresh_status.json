@@ -1,16 +1,17 @@
 {
   "cadence": "daily",
-  "status": "success",
-  "lastAttemptAt": "2026-07-13T18:29:05+00:00",
-  "lastSuccessfulRefreshAt": "2026-07-13T18:29:05+00:00",
-  "startedAt": "2026-07-13T18:27:08+00:00",
+  "status": "failed",
+  "lastAttemptAt": "2026-07-26T11:55:22+00:00",
+  "lastSuccessfulRefreshAt": "2026-07-25T14:28:52+00:00",
+  "startedAt": "2026-07-26T10:17:39+00:00",
   "automatedDomains": [
     "PubMed publication trends and competitor-linked publications",
     "SEC filing discovery",
     "Registered competitor source availability checks",
     "Agilent LC/MS product sitemap and press-release change detection",
     "Thermo Fisher, Shimadzu, and SCIEX product sitemap and press-release extraction",
-    "Thermo Fisher LC/MS technical insight RSS extraction"
+    "Thermo Fisher LC/MS technical insight RSS extraction",
+    "Peer-reviewed journal metadata plus conference and regulatory source monitoring"
   ],
   "curatedDomains": [
     "Product-launch interpretation and machine comparisons",
@@ -19,5 +20,5 @@
     "Customer voice",
     "PM recommendations"
   ],
-  "message": "Automated refresh completed (PubMed: success, SEC: success, source checks: success, Agilent: partial_refresh); curated PM intelligence was preserved."
+  "message": "Refresh failed validation; the last good dataset was retained. Command '['/Library/Frameworks/Python.framework/Versions/3.14/bin/python3', '/Users/chandni/Documents/CompetitionEngine/scripts/score.py']' returned non-zero exit status 1."
 }
