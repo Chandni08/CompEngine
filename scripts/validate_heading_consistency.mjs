@@ -94,7 +94,7 @@ export function headingConsistencyErrors(files) {
 
 async function validateCurrentSite() {
   const siteRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-  const names = ["index.html", "app.js", "conference.html", "conference-page.js"];
+  const names = ["index.html", "app.js", "conference.html", "conference-page.js", "publications.html", "publication-page.js"];
   const files = Object.fromEntries(
     await Promise.all(names.map(async (name) => [name, await readFile(resolve(siteRoot, name), "utf8")])),
   );

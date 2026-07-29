@@ -18,7 +18,7 @@ from datetime import date, datetime, timedelta, timezone
 from email.utils import parsedate_to_datetime
 from pathlib import Path
 from typing import Any
-from urllib.parse import urljoin, urlparse
+from urllib.parse import urlencode, urljoin, urlparse
 
 import certifi
 import requests
@@ -42,6 +42,7 @@ REQUEST_HEADERS = {
     "Accept-Language": "en-US,en;q=0.9",
 }
 TECHNICAL_FEED_VERSION = 3
+RECENT_RELEASE_REPLAY_DAYS = 45
 RELEVANCE_PATTERN = re.compile(
     r"\b(?:lc[/-]?ms(?:/ms)?|hplc|uhplc|uplc|liquid chromatograph(?:y|er)?|"
     r"mass spectrom(?:etry|eter)|nexera|labsolutions|zenotof|novus|sciex os|"
@@ -67,6 +68,9 @@ THERMO_TECHNICAL_FEEDS = (
         "url": "https://www.thermofisher.com/blog/analyteguru/proteomics/feed/",
     },
 )
+
+THERMO_IR_NEWS_PAGE = "https://ir.thermofisher.com/investors/news-events/news/default.aspx"
+THERMO_IR_FEED = "https://ir.thermofisher.com/feed/PressRelease.svc/GetPressReleaseList"
 
 
 def utc_now() -> str:
@@ -112,7 +116,7 @@ def clean_text(value: str) -> str:
 
 def parse_date(value: str) -> str:
     text = clean_text(value)
-    for fmt in ("%B %d, %Y", "%b %d, %Y", "%Y-%m-%d", "%Y-%m-%dT%H:%M:%S%z"):
+    for fmt in ("%B %d, %Y", "%b %d, %Y", "%m/%d/%Y %H:%M:%S", "%m/%d/%Y", "%Y-%m-%d", "%Y-%m-%dT%H:%M:%S%z"):
         try:
             return datetime.strptime(text, fmt).date().isoformat()
         except ValueError:
@@ -171,6 +175,91 @@ def normalize_release(url: str, title: str, published: str) -> dict[str, str]:
         "url": url.replace("sciex.com//", "sciex.com/"),
         "classification": classify_release(title),
     }
+
+
+def concise_thermo_ir_summary(title: str, short_body: str) -> str:
+    """Turn the official IR description into a compact, decision-useful fact line."""
+    body = clean_text(short_body)
+    lower_title = title.lower()
+    if "reports second quarter" in lower_title:
+        revenue = re.search(r"revenue grew\s+(\d+%)\s+to\s+(\$[\d.]+\s+billion)", body, re.I)
+        organic = re.search(r"(\d+%)\s+organic revenue growth", body, re.I)
+        adjusted_eps = re.search(r"adjusted EPS grew\s+(\d+%)\s+to\s+(\$[\d.]+)", body, re.I)
+        facts = []
+        if revenue:
+            facts.append(f"revenue grew {revenue.group(1)} to {revenue.group(2)}")
+        if organic:
+            facts.append(f"organic revenue growth was {organic.group(1)}")
+        if adjusted_eps:
+            facts.append(f"adjusted EPS grew {adjusted_eps.group(1)} to {adjusted_eps.group(2)}")
+        if facts:
+            return "Thermo Fisher reported Q2 2026 results: " + "; ".join(facts) + "."
+    if "earnings conference call" in lower_title:
+        timing = re.search(r"(?:Thursday,\s+)?July\s+23,\s+2026.*?(?:8:30\s*a\.m\.\s*(?:Eastern|ET)?)", body, re.I)
+        return (
+            "Thermo Fisher scheduled its Q2 2026 earnings call for "
+            + (clean_text(timing.group(0)) if timing else "July 23, 2026")
+            + "."
+        )
+    sentences = re.split(r"(?<=[.!?])\s+", body)
+    summary = " ".join(sentence for sentence in sentences[:2] if sentence).strip()
+    return (summary[:317].rstrip() + "...") if len(summary) > 320 else summary
+
+
+def thermo_ir_metadata(title: str) -> dict[str, str]:
+    lower = title.lower()
+    if "earnings conference call" in lower:
+        return {
+            "theme": "Upcoming earnings call",
+            "intent": "Quarterly performance disclosure",
+            "technology": "Portfolio",
+            "marketSegment": "Corporate",
+        }
+    if re.search(r"reports (?:first|second|third|fourth) quarter|full year.*results", lower):
+        return {
+            "theme": "Quarterly earnings and end-market demand",
+            "intent": "Corporate performance and investment capacity",
+            "technology": "Portfolio",
+            "marketSegment": "Corporate",
+        }
+    if "investor day" in lower:
+        return {
+            "theme": "Investor strategy and growth outlook",
+            "intent": "Long-term growth strategy",
+            "technology": "Portfolio",
+            "marketSegment": "Corporate",
+        }
+    return {
+        "theme": "Corporate strategy",
+        "intent": "Corporate strategic activity",
+        "technology": technical_technology(title),
+        "marketSegment": technical_segment(title),
+    }
+
+
+def parse_thermo_ir_releases(body: str) -> dict[str, dict[str, str]]:
+    """Parse Thermo Fisher's official Q4 investor-relations news API response."""
+    try:
+        payload = json.loads(body)
+    except json.JSONDecodeError:
+        return {}
+    releases: dict[str, dict[str, str]] = {}
+    for item in payload.get("GetPressReleaseListResult", []):
+        title = clean_text(str(item.get("Headline") or ""))
+        path = str(item.get("LinkToDetailPage") or "")
+        published = parse_date(str(item.get("PressReleaseDate") or ""))
+        if not (title and path and published):
+            continue
+        url = urljoin("https://ir.thermofisher.com", path)
+        metadata = thermo_ir_metadata(title)
+        releases[url] = {
+            **normalize_release(url, title, published),
+            **metadata,
+            "summary": concise_thermo_ir_summary(title, str(item.get("ShortBody") or "")),
+            "sourceId": "thermo-news",
+            "sourceName": "Thermo Fisher investor relations news",
+        }
+    return releases
 
 
 def parse_shimadzu_releases(body: str) -> dict[str, dict[str, str]]:
@@ -411,7 +500,18 @@ def monitor_delta(
             for url, lastmod in products.items()
             if url in previous_products and lastmod and lastmod != previous_products[url]
         ]
-        new_releases = [release for url, release in releases.items() if url not in previous_releases]
+        recent_release_cutoff = date.today() - timedelta(days=RECENT_RELEASE_REPLAY_DAYS)
+        new_releases = []
+        for url, release in releases.items():
+            try:
+                published = date.fromisoformat(str(release.get("date", ""))[:10])
+            except ValueError:
+                published = date.min
+            # Re-emit the current corporate window on every refresh. The merge
+            # is URL-deduplicated, so this closes the gap where a collector run
+            # advances a snapshot before the validated dataset is published.
+            if url not in previous_releases or published >= recent_release_cutoff:
+                new_releases.append(release)
         new_technical_insights = [
             insight for url, insight in technical_insights.items()
             if url not in previous_technical_insights
@@ -475,7 +575,19 @@ def collect_thermo() -> dict[str, object]:
     statuses: list[dict[str, object]] = []
     index_url = "https://www.thermofisher.com/sitemap-index.xml"
     product_url = "https://www.thermofisher.com/sitemap-us-en.xml"
-    press_url = "https://newsroom.thermofisher.com/newsroom/press-releases/default.aspx"
+    press_query = urlencode({
+        "LanguageId": 1,
+        "bodyType": 3,
+        "pressReleaseDateFilter": 3,
+        "categoryId": "",
+        "pageSize": -1,
+        "pageNumber": 0,
+        "tagList": "",
+        "includeTags": "true",
+        "year": CURRENT_YEAR,
+        "excludeSelection": 1,
+    })
+    press_url = f"{THERMO_IR_FEED}?{press_query}"
 
     index_status, index_body, index_detail = fetch(index_url, timeout=120)
     us_declared = False
@@ -564,14 +676,14 @@ def collect_thermo() -> dict[str, object]:
         })
 
     press_status, press_body, press_detail = fetch(press_url)
-    bot_interstitial = bool(re.search(r"(?:just a moment|cf-chl|cloudflare|enable javascript and cookies)", press_body, re.I))
-    press_extraction = "blocked"
+    releases = parse_thermo_ir_releases(press_body) if press_status == 200 else {}
+    press_extraction = "extracted" if releases else "blocked"
     press_reason = (
-        f"Bot-protection interstitial returned HTTP {press_status}; no usable sitemap or RSS feed was substituted."
-        if press_status == 403 or bot_interstitial
-        else f"No usable press-release feed or extractable index: HTTP {press_status or 'unavailable'} ({press_detail})."
+        f"Official Thermo Fisher investor-relations feed parsed; {len(releases)} dated {CURRENT_YEAR} corporate releases extracted."
+        if releases
+        else f"Investor-relations feed unavailable or contained no dated records: {press_detail or press_status}."
     )
-    statuses.append(source_status("thermo-news", press_url, "press_release_index", press_status, press_extraction, press_reason))
+    statuses.append(source_status("thermo-news", THERMO_IR_NEWS_PAGE, "official_ir_news_api", press_status, press_extraction, press_reason, len(releases)))
 
     technical_insights: dict[str, dict[str, str]] = {}
     for feed in THERMO_TECHNICAL_FEEDS:
@@ -605,7 +717,7 @@ def collect_thermo() -> dict[str, object]:
     return monitor_delta(
         "thermo",
         products,
-        {},
+        releases,
         statuses,
         seed_dated_products=True,
         technical_insights=technical_insights,

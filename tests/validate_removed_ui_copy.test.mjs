@@ -22,17 +22,21 @@ const removedLaunchSubtitle = "Open or compare dated launches.";
 const removedDefenseSubtitle = "Old versus new, the immediate Waters action, and where the competitor is still weak.";
 const removedTechnicalDecisionSubtitle = "How the technical evidence changes the product decision.";
 const removedAgilentAcquisitionCoverageNote = "The displayed 10-Q names a pending acquisition; it does not identify a separate merger or operating partnership.";
+const removedCompetitorNoteDescription = "Official application and technical notes are analyzed independently to show the themes competitors choose to prove and promote.";
+const removedPublicationPaceDisclaimer = "Publication pace indicates where scientific work is growing. It does not measure market share, vendor adoption, or customer demand by itself.";
 
 test("removed Roadmap Impact Map subtitle stays removed", () => {
   assert.doesNotMatch(source, new RegExp(removedRoadmapSubtitle.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
   assert.doesNotMatch(deployment, new RegExp(removedRoadmapSubtitle.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
 });
 
-test("leadership confidence badge uses the requested label", () => {
+test("leadership customer badge reports corroborating sources instead of analyst confidence", () => {
   assert.doesNotMatch(app, /badge: `Evidence confidence /);
   assert.doesNotMatch(deploymentApp, /badge: `Evidence confidence /);
-  assert.match(app, /badge: `Confidence Score \$\{insight\.confidence \|\| 0\}\/100`/);
-  assert.match(deploymentApp, /badge: `Confidence Score \$\{insight\.confidence \|\| 0\}\/100`/);
+  assert.doesNotMatch(app, /badge: `Confidence Score \$\{insight\.confidence \|\| 0\}\/100`/);
+  assert.doesNotMatch(deploymentApp, /badge: `Confidence Score \$\{insight\.confidence \|\| 0\}\/100`/);
+  assert.match(app, /badge: `\$\{insight\.independentSourceCount\} independent sources`/);
+  assert.match(deploymentApp, /badge: `\$\{insight\.independentSourceCount\} independent sources`/);
 });
 
 test("removed one-year pattern explanation stays removed", () => {
@@ -53,6 +57,12 @@ test("removed Application Trends subtitle stays removed", () => {
 test("removed source-separation explanation stays removed", () => {
   assert.doesNotMatch(app, new RegExp(removedSourceSeparationExplanation.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
   assert.doesNotMatch(deploymentApp, new RegExp(removedSourceSeparationExplanation.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+});
+
+test("removed publication-pace disclaimer stays removed", () => {
+  const expression = new RegExp(removedPublicationPaceDisclaimer.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+  assert.doesNotMatch(app, expression);
+  assert.doesNotMatch(deploymentApp, expression);
 });
 
 test("removed launch-section subtitle stays removed", () => {
@@ -118,6 +128,12 @@ test("competitor application-note analysis omits the independence callout", () =
   assert.doesNotMatch(deploymentApp, /Independent competitor-note analysis/);
 });
 
+test("competitor application-note analysis omits the requested description", () => {
+  const expression = new RegExp(removedCompetitorNoteDescription.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+  assert.doesNotMatch(app, expression);
+  assert.doesNotMatch(deploymentApp, expression);
+});
+
 test("competitor application-note summary omits the cluster disclaimer", () => {
   assert.doesNotMatch(app, /notes form \$\{themes\.length\} independent competitor-theme clusters/);
   assert.doesNotMatch(deploymentApp, /notes form \$\{themes\.length\} independent competitor-theme clusters/);
@@ -151,4 +167,9 @@ test("strategic partnerships omit scoring and score breakdowns", () => {
   assert.ok(deploymentStrategicRenderer);
   assert.doesNotMatch(strategicRenderer, /signalScoreBreakdownMarkup|signal-score-detail|signal-priority|signal-tier|Score breakdown/);
   assert.doesNotMatch(deploymentStrategicRenderer, /signalScoreBreakdownMarkup|signal-score-detail|signal-priority|signal-tier|Score breakdown/);
+});
+
+test("product comparison omits launch-evidence confidence panel", () => {
+  assert.doesNotMatch(app, /Launch-evidence confidence/);
+  assert.doesNotMatch(app, /This score confirms that the source supports the product introduction record/);
 });

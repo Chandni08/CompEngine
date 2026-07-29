@@ -60,7 +60,8 @@ test("competitor actions explicitly connect official evidence to each Waters dec
       assert.match(action.sourceUrl, /^https:\/\//);
     });
   });
-  assert.match(app, /View how this was derived/);
+  assert.match(app, /\$\{competitorActions\.length\} linked source/);
+  assert.doesNotMatch(app, /View how this was derived/);
   assert.match(app, /Open official source/);
   assert.doesNotMatch(app, /Key Points for Waters PM/);
   assert.doesNotMatch(app, /How competitor actions create this decision/);

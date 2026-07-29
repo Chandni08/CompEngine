@@ -36,7 +36,18 @@ jobs:
       - name: Refresh and validate public intelligence
         env:
           AGILENT_HEADED: "1"
+          REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
+          REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
         run: xvfb-run --auto-servernum python scripts/refresh_daily.py
+
+      - name: Validate the production package
+        working-directory: deploy-site
+        run: node scripts/validate_deploy.mjs
+
+      - name: Run regression checks
+        run: |
+          python -m unittest tests/test_customer_voice_ingestion.py
+          node --test tests/*.test.mjs
 
       - name: Save the validated daily data
         run: |

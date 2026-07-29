@@ -110,9 +110,9 @@ SOURCE_REGISTRY = [
     {
         "id": "thermo-news",
         "competitor": "Thermo Fisher",
-        "type": "Press releases",
-        "url": "https://newsroom.thermofisher.com/newsroom/press-releases/default.aspx",
-        "coverage": "Corporate, product, partnership, investment announcements",
+        "type": "Investor relations news",
+        "url": "https://ir.thermofisher.com/investors/news-events/news/default.aspx",
+        "coverage": "Earnings, investor events, corporate strategy, product, partnership, and investment announcements",
     },
     {
         "id": "thermo-ms-products",

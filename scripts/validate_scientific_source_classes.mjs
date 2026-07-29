@@ -19,7 +19,7 @@ const REQUIRED_JOURNALS = new Map([
 const REQUIRED_CONFERENCES = new Map([
   ["asms-2026", "www.asms.org"],
   ["hplc-2026", "hplc2026-symposium.org"],
-  ["imsc-2026", "imsc26.com"],
+  ["imsc-2026", "www.imss.nl"],
   ["msacl-2026", "www.msacl.org"],
   ["ebf-open-symposium-2026", "meetings.e-b-f.eu"],
 ]);

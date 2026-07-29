@@ -155,25 +155,14 @@
   }
 
   function buildGeneratedTechnicalProfile(launch, waters) {
-    const competitorSourceUrl = launch.pressReleaseUrl || launch.sourceUrl;
-    const watersSourceUrl = waters.sourceUrl;
     return {
       generatedForPair: true,
       watersProduct: waters.product,
       asOfDate: new Date().toISOString().slice(0, 10),
-      comparisonBasis: `Pair-specific evidence plan for ${launch.product} versus ${waters.product}.`,
-      rows: technicalDimensionsFor(launch, waters).map((dimension) => ({
-        dimension,
-        competitorValue: `A directly comparable ${launch.product} value under a shared method and configuration is not established by the reviewed public primary source.`,
-        watersValue: `A directly comparable ${waters.product} value under the same method and configuration is not established by the reviewed public primary source.`,
-        interpretation: `Requires controlled testing. Measure ${dimension.toLowerCase()} for both selected products under the same application, configuration, sequence, and acceptance criteria.`,
-        evidenceType: "requires-controlled-testing",
-        competitorSourceUrl,
-        watersSourceUrl,
-      })),
+      comparisonBasis: `Published technical comparison for ${launch.product} versus ${waters.product}.`,
+      rows: [],
       limitations: [
-        "Official product records establish that both selected products exist; they do not provide a common-condition head-to-head result.",
-        "No unsupported specification or superiority value is imputed. Missing comparable values remain controlled-test requirements.",
+        "The technical table is shown only when published specifications are loaded for the selected pair.",
       ],
     };
   }

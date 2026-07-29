@@ -17,6 +17,7 @@ const state = {
   view: "Product",
   activeComparisonLaunchId: null,
   activeWatersComparatorId: null,
+  activeBattlecardCompetitor: "",
   activeDecisionBreakdown: null,
   overallTrendCandidates: [],
   competitorIntentProfiles: [],
@@ -24,6 +25,7 @@ const state = {
   roadmapImpactEvidence: [],
   roadmapImpactSort: { column: 2, direction: "desc" },
   activeCustomerVoiceTab: "summary",
+  marketingClaimsFilters: { readiness: "All", audience: "All", classification: "All" },
   conferencePage: 1,
   conferencePageSize: 4,
   strategicEvidencePage: 1,
@@ -33,6 +35,7 @@ const state = {
 };
 
 let customerVoiceSearchTerm = "";
+let publicEvidenceSearchTerm = "";
 let lastDecisionPacketText = "";
 let publishedDataCheckTimer = null;
 let journalSourceResizeObserver = null;
@@ -44,6 +47,12 @@ const filters = {
   technology: document.querySelector("#technologyFilter"),
   competitor: document.querySelector("#competitorFilter"),
   horizon: document.querySelector("#horizonFilter"),
+};
+
+const publicEvidenceFilters = {
+  company: document.querySelector("#signalCompanyFilter"),
+  technology: document.querySelector("#signalTechnologyFilter"),
+  source: document.querySelector("#signalSourceFilter"),
 };
 
 const viewCopy = {
@@ -69,9 +78,9 @@ const viewCopy = {
     categories: ["Scientific application intelligence", "Market intelligence", "Corporate intelligence", "Product intelligence"],
   },
   Marketing: {
-    title: "Marketing: Positioning and readiness",
+    title: "Product Marketing Decision & Activation Workspace",
     viewLabel: "Product Marketing view",
-    subtitle: "Competitor claims, customer language, and response priorities.",
+    subtitle: "A decision-and-activation workspace for positioning, proof, and enablement.",
     decisionQuestion: "Which claim or buying criterion needs a response?",
     categories: ["Scientific application intelligence", "Market intelligence", "Corporate intelligence", "Product intelligence"],
   },
@@ -229,6 +238,7 @@ function setupCollapsiblePanels() {
     actions.appendChild(toggle);
     panel.classList.add("collapsible-panel");
     panel.dataset.collapseReady = "true";
+    if (panel.dataset.defaultCollapsed === "true") setPanelCollapsed(panel, true);
   });
 
 }
@@ -657,9 +667,13 @@ function setupCustomerVoiceSummaryDrilldowns() {
 
 function setupCompanyVoiceDrilldowns() {
   byId("customerCompetitorChart").addEventListener("click", (event) => {
-    const trigger = event.target.closest("[data-company-voice-sources]");
+    const trigger = event.target.closest("[data-customer-theme-sources]");
     if (!trigger) return;
-    openCompanyVoiceEvidence(trigger.dataset.companyVoiceSources);
+    event.preventDefault();
+    openCustomerThemeEvidence(
+      trigger.dataset.customerThemeSources,
+      trigger.dataset.customerThemeCompany,
+    );
   });
 }
 
@@ -691,6 +705,11 @@ function setupCustomerVoiceTabs() {
     const button = event.target.closest("[data-customer-voice-tab]");
     if (!button) return;
     setCustomerVoiceTab(button.dataset.customerVoiceTab);
+  });
+  byId("customerVoiceSourceMix").addEventListener("click", (event) => {
+    const button = event.target.closest("[data-customer-source-type]");
+    if (!button) return;
+    openCustomerVoiceSourceTypeEvidence(button.dataset.customerSourceType);
   });
   setCustomerVoiceTab(state.activeCustomerVoiceTab);
 }
@@ -755,6 +774,7 @@ function defaultWatersComparatorForLaunch(launch) {
   if (launch?.technology === "Software") return "empower-lc-workflow";
   if (launch?.technology === "LC-MS/MS") return "xevo-tq-absolute";
   if (launch?.technology === "LC-MS") return "bioaccord-lcms-system";
+  if (launch?.technology === "MS") return "select-series-mrt";
   if (launch?.technology === "UHPLC") return "acquity-uplc-i-class-plus";
   return watersSystems[0]?.id || "";
 }
@@ -897,49 +917,72 @@ function renderShortHorizonDefense() {
   `;
 }
 
-function technicalComparisonMarkup(profile, launch, waters) {
-  const resolvedProfile = profile || ComparisonLogic.buildGeneratedTechnicalProfile(launch, waters);
+function competitorFeatureTitle(text) {
+  const value = String(text || "").toLowerCase();
+  if (/software|data|informatics|report|ai\b/.test(value)) return "Software and Data Workflow";
+  if (/automat|throughput|plate|walkaway|sample handling/.test(value)) return "Automation and Throughput";
+  if (/sensitiv|signal|acquisition|detection|wavelength/.test(value)) return "Detection Performance";
+  if (/carryover|dispersion|precision|flow cell|pressure|particle|column|ph\b/.test(value)) return "LC Method Performance";
+  if (/maintenance|diagnostic|reliab|sustainab|uptime|operating/.test(value)) return "Operational Efficiency";
+  return "Product and Workflow Positioning";
+}
 
+function competitorHighlightedFeatures(profile, launch, comparison) {
+  const officialSourceUrl = launch.pressReleaseUrl || launch.sourceUrl || "";
+  const publishedFeatures = (profile?.rows || [])
+    .filter((row) => row.evidenceType !== "requires-controlled-testing" && row.competitorValue)
+    .map((row) => ({
+      title: row.dimension,
+      detail: row.competitorValue,
+      sourceUrl: row.competitorSourceUrl || officialSourceUrl,
+    }));
+
+  if (publishedFeatures.length) return publishedFeatures.slice(0, 4);
+
+  const workflowFeatures = (comparison?.shortHorizonDefense?.whatChanged || [])
+    .filter(Boolean)
+    .map((detail) => ({
+      title: competitorFeatureTitle(detail),
+      detail,
+      sourceUrl: officialSourceUrl,
+    }));
+  if (workflowFeatures.length) return workflowFeatures.slice(0, 4);
+
+  const positioningText = [comparison?.pmRead, launch.pmImplication]
+    .filter(Boolean)
+    .flatMap((text) => String(text).split(/(?<=[.!?])\s+/))
+    .find((sentence) => sentence && !/\bWaters\b|\bPM should\b|\bPM team\b/i.test(sentence));
+  if (positioningText) {
+    return [{
+      title: competitorFeatureTitle(positioningText),
+      detail: positioningText,
+      sourceUrl: officialSourceUrl,
+    }];
+  }
+
+  return [{
+    title: "Official Product Record",
+    detail: `${launch.competitor} identifies ${launch.product} as a ${launch.technology || "laboratory"} product${launch.introducedYear ? ` introduced in ${launch.introducedYear}` : ""}. Detailed feature claims are not retained in the historical catalog.`,
+    sourceUrl: officialSourceUrl,
+  }];
+}
+
+function competitorFeatureHighlightsMarkup(profile, launch, comparison) {
+  const features = competitorHighlightedFeatures(profile, launch, comparison);
   return `
-    <section class="technical-comparison">
-      <div class="technical-comparison-heading">
-        <div>
-          <h4>Technical Comparison</h4>
-          <p class="panel-helper">Published specifications, test limits, and product implications.</p>
-        </div>
+    <section class="competitor-feature-panel">
+      <div class="mini-header">
+        <h4>Key Features Highlighted by ${escapeHtml(launch.competitor)}</h4>
       </div>
-      <div class="comparison-table-wrap technical-table-wrap">
-        <table class="comparison-table technical-table">
-          <thead>
-            <tr>
-              <th>Technical dimension</th>
-              <th>${escapeHtml(launch.competitor)}: ${escapeHtml(launch.product)}</th>
-              <th>Waters: ${escapeHtml(resolvedProfile.watersProduct || waters?.product || "selected system")}</th>
-              <th>What the PM should conclude</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${(resolvedProfile.rows || []).map((row) => `
-              <tr>
-                <td><strong>${escapeHtml(row.dimension)}</strong></td>
-                <td>
-                  <p>${escapeHtml(row.competitorValue)}</p>
-                  <a href="${escapeHtml(row.competitorSourceUrl)}" target="_blank" rel="noreferrer">Competitor source</a>
-                </td>
-                <td>
-                  <p>${escapeHtml(row.watersValue)}</p>
-                  <a href="${escapeHtml(row.watersSourceUrl)}" target="_blank" rel="noreferrer">Waters source</a>
-                </td>
-                <td>${escapeHtml(row.interpretation)}</td>
-              </tr>
-            `).join("")}
-          </tbody>
-        </table>
+      <div class="competitor-feature-grid">
+        ${features.map((feature) => `
+          <article class="competitor-feature-card">
+            <strong>${escapeHtml(feature.title)}</strong>
+            <p>${escapeHtml(feature.detail)}</p>
+            ${isHttpUrl(feature.sourceUrl) ? `<a href="${escapeHtml(feature.sourceUrl)}" target="_blank" rel="noreferrer">Official source ↗</a>` : ""}
+          </article>
+        `).join("")}
       </div>
-      <details class="comparison-limits">
-        <summary>Comparison limits</summary>
-        <ul>${(resolvedProfile.limitations || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
-      </details>
     </section>
   `;
 }
@@ -960,9 +1003,9 @@ function renderComparisonBody() {
   const impactNote = comparison.impactRationale;
   const watersMeaning = comparison.pmRead;
   const watersPositioning = comparison.watersPositioning;
-  const technicalProfile = (state.technicalComparisons?.profiles || []).find(
-    (item) => item.launchId === launch.id && (!item.watersId || item.watersId === waters?.id),
-  ) || ComparisonLogic.buildGeneratedTechnicalProfile(launch, waters);
+  const featureProfile = (state.technicalComparisons?.profiles || []).find(
+    (item) => item.launchId === launch.id,
+  );
 
   byId("comparisonSnapshots").innerHTML = `
     ${comparatorSnapshotCard("Competitor product", {
@@ -976,7 +1019,6 @@ function renderComparisonBody() {
   byId("comparisonBody").innerHTML = `
     <div class="comparison-readout">
       ${comparisonMetricCard("Potential impact on Waters", impactValue, impactNote)}
-      ${comparisonMetricCard("Launch-evidence confidence", launch.confidence ? `${launch.confidence}/100` : "Not scored", "This score confirms that the source supports the product introduction record. It does not score product superiority or competitive impact on Waters.")}
     </div>
     <section class="comparison-positioning">
       <div>
@@ -999,7 +1041,7 @@ function renderComparisonBody() {
           </section>`
         : ""
     }
-    ${technicalComparisonMarkup(technicalProfile, launch, waters)}
+    ${competitorFeatureHighlightsMarkup(featureProfile, launch, comparison)}
     <section>
       <div class="mini-header">
         <h4>Commercial and Workflow Interpretation</h4>
@@ -1047,7 +1089,1586 @@ function renderComparisonBody() {
   `;
 }
 
+const marketingBattlecardCompetitors = ["Agilent", "Thermo Fisher", "Shimadzu", "SCIEX"];
+
+function battlecardLaunchesForCompetitor(competitor) {
+  const currentProducts = state.productData?.launches || [];
+  const historicalProducts = (state.historicalProductCatalog?.products || []).map((product) => ({
+    geography: "Global",
+    marketSegment: "All",
+    signalType: "Historical product introduction",
+    date: `${product.introducedYear}-01-01`,
+    ...product,
+  }));
+  return [...currentProducts, ...historicalProducts]
+    .filter((product) => product.competitor === competitor)
+    .filter((product) => inSelectedHorizon(product.date))
+    .filter((product) => geographyMatches(product.geography))
+    .filter((product) => filters.segment.value === "All" || itemMarketSegments(product).includes(filters.segment.value))
+    .filter((product) => technologyMatchesFilter(
+      product.technology,
+      filters.technology.value,
+      `${product.product} ${product.signalType || ""} ${itemMarketSegments(product).join(" ")} ${product.subtechnology || ""}`,
+    ))
+    .sort((a, b) => new Date(b.date) - new Date(a.date));
+}
+
+function battlecardComparisonForCompetitor(competitor) {
+  const launches = battlecardLaunchesForCompetitor(competitor);
+  const selectedLaunch = launches.find((launch) => comparisonByLaunchId(launch.id)) || launches[0];
+  const comparison = selectedLaunch ? comparisonByLaunchId(selectedLaunch.id) : null;
+  const waters = selectedLaunch
+    ? watersComparatorById(comparison?.closestWatersId || defaultWatersComparatorForLaunch(selectedLaunch))
+    : null;
+  const technicalProfile = selectedLaunch
+    ? (state.technicalComparisons?.profiles || []).find((profile) => profile.launchId === selectedLaunch.id)
+    : null;
+  return { launches, selectedLaunch, comparison, waters, technicalProfile };
+}
+
+function battlecardEvidenceLinks(competitor) {
+  const records = [
+    ...currentLaunches()
+      .filter((item) => item.competitor === competitor)
+      .map((item) => ({
+        url: timelineUrlForLaunch(item),
+        label: item.product,
+        sourceName: item.sourceName || "Official product source",
+        date: item.date,
+        confidence: item.confidence,
+        evidenceType: "Official launch",
+      })),
+    ...currentSignals()
+      .filter((item) => item.competitor === competitor)
+      .map((item) => ({
+        url: item.sourceUrl || item.url,
+        label: item.title || item.headline,
+        sourceName: item.sourceName || "Public evidence source",
+        date: item.date,
+        confidence: item.confidence,
+        evidenceType: item.category || "Public evidence",
+      })),
+    ...currentFilingInsights()
+      .filter((item) => item.competitor === competitor)
+      .map((item) => ({
+        url: item.sourceUrl || item.url,
+        label: item.headline || item.title,
+        sourceName: item.sourceName || "Company filing",
+        date: item.date,
+        confidence: item.confidence,
+        evidenceType: "Company filing",
+      })),
+  ];
+  const customerLinks = customerVoiceItemsForHorizon(filters.horizon.value, { ignoreCompetitor: true })
+    .filter((item) => item.company === competitor)
+    .flatMap((item) => customerVoiceSourceLinks(item).map((link) => ({
+      url: link.url,
+      label: link.label,
+      sourceName: "Public customer voice",
+      date: link.sourceDate,
+      confidence: item.confidence,
+      evidenceType: "Exact public customer record",
+    })));
+  const seen = new Set();
+  return [...records, ...customerLinks]
+    .filter((item) => {
+      const key = canonicalEvidenceUrl(item.url);
+      return isHttpUrl(item.url) && !seen.has(key) && seen.add(key);
+    })
+    .sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
+}
+
+function battlecardProofPoints({ waters, technicalProfile }) {
+  const sourcedTechnicalProof = (technicalProfile?.rows || [])
+    .filter((row) => row.evidenceType !== "requires-controlled-testing" && row.watersValue && isHttpUrl(row.watersSourceUrl))
+    .slice(0, 3)
+    .map((row) => ({
+      label: row.dimension,
+      detail: row.watersValue,
+      url: row.watersSourceUrl,
+    }));
+  const productProof = (waters?.strengths || []).map((strength, index) => ({
+    label: index === 0 ? waters.product : `Waters proof point ${index + 1}`,
+    detail: strength,
+    url: waters.sourceUrl,
+  }));
+  const seen = new Set();
+  return [...sourcedTechnicalProof, ...productProof]
+    .filter((proof) => proof.detail && !seen.has(proof.detail) && seen.add(proof.detail))
+    .slice(0, 3);
+}
+
+function battlecardClaims(profile, selectedLaunch) {
+  const activityClaims = (profile?.activityThemes || []).map((theme) => theme.insight).filter(Boolean);
+  const launchClaim = selectedLaunch?.pmImplication || selectedLaunch?.summary || "";
+  const fallbackClaims = [profile?.focus, profile?.intent].filter(Boolean);
+  return [...new Set([...activityClaims, launchClaim, ...fallbackClaims])].filter(Boolean).slice(0, 3);
+}
+
+function battlecardObjections(competitor, profile, selectedLaunch) {
+  const customerThemes = customerVoiceItemsForHorizon(filters.horizon.value, { ignoreCompetitor: true })
+    .filter((item) => item.company === competitor && item.sentiment === "Positive")
+    .map((item) => item.theme)
+    .filter(Boolean);
+  return [...new Set([
+    ...customerThemes,
+    selectedLaunch?.product ? `${selectedLaunch.product} gives ${competitor} a fresh-platform or workflow story.` : "",
+    profile?.shortTermImpact,
+  ])].filter(Boolean).slice(0, 3);
+}
+
+function battlecardTraps(competitor, comparison, technicalProfile) {
+  const weakness = comparison?.shortHorizonDefense?.stillWeak?.[0];
+  const evidenceLimit = comparison?.evidenceBasis || technicalProfile?.limitations?.[0];
+  return [
+    weakness || `Ask ${competitor} to show common-condition customer proof that its headline claim improves time-to-value, uptime, or method outcomes.`,
+    evidenceLimit || "Ask which published claims survive a like-for-like workflow comparison, including software, service, training, and method transfer.",
+    "Ask the customer which buying criterion actually decides the evaluation; do not let the competitor choose the scorecard by default.",
+  ].filter(Boolean).slice(0, 3);
+}
+
+function battlecardLandmines(waters, comparison, technicalProfile) {
+  return [...new Set([
+    ...(waters?.watchouts || []),
+    comparison?.evidenceBasis,
+    ...(technicalProfile?.limitations || []).slice(0, 1),
+    "Do not claim a performance lead when the public evidence uses different test conditions or only establishes vendor positioning.",
+  ])].filter(Boolean).slice(0, 3);
+}
+
+function battlecardListMarkup(items) {
+  return items.length
+    ? `<ul>${items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`
+    : `<p class="muted">No supported item matches the active filters.</p>`;
+}
+
+function marketingActiveCompetitors() {
+  const selected = filters.competitor.value;
+  if (selected === "All") return marketingBattlecardCompetitors;
+  return marketingBattlecardCompetitors.includes(selected) ? [selected] : [];
+}
+
+function pmmUsableText(value, fallback = "") {
+  const text = String(value || "").trim();
+  return text && !/\broadmap\b|product requirements?/i.test(text) ? text : fallback;
+}
+
+function pmmListItems(items, fallback = []) {
+  const safe = (items || []).map((item) => pmmUsableText(item)).filter(Boolean);
+  return safe.length ? safe : fallback;
+}
+
+function pmmStatusMarkup(kind, label, detail) {
+  return `<div class="pmm-status pmm-status-${escapeHtml(kind)}"><span>${escapeHtml(label)}</span><strong>${escapeHtml(detail)}</strong></div>`;
+}
+
+function pmmEvidenceLinkMarkup(source, label = "Open source ↗") {
+  if (!source || !isHttpUrl(source.url)) return "";
+  return `<a class="pmm-source-link" href="${escapeHtml(source.url)}" target="_blank" rel="noreferrer">${escapeHtml(label)}</a>`;
+}
+
+function pmmEvidenceConfidence(evidenceLinks) {
+  const scored = evidenceLinks.filter((item) => Number.isFinite(Number(item.confidence)));
+  return averageConfidence(scored);
+}
+
+function marketingCompetitorContext(competitor, signals = currentSignals()) {
+  const profile = competitorIntentProfile(competitor, signals);
+  const comparisonContext = battlecardComparisonForCompetitor(competitor);
+  const evidenceLinks = battlecardEvidenceLinks(competitor);
+  const counterMessage = pmmUsableText(
+    comparisonContext.comparison?.watersPositioning || profile?.response?.differentiate,
+    "A counter-message is unresolved because the filtered evidence does not support one.",
+  );
+  const positioning = pmmUsableText(
+    profile?.likelyNext || profile?.intent || profile?.focus,
+    "A positioning inference is unresolved for the active filters.",
+  );
+  return {
+    competitor,
+    profile,
+    ...comparisonContext,
+    evidenceLinks,
+    counterMessage,
+    positioning,
+    proofPoints: battlecardProofPoints(comparisonContext),
+  };
+}
+
+function pmmEmptyState(message) {
+  return `<div class="empty pmm-empty"><strong>Unresolved</strong><span>${escapeHtml(message)}</span></div>`;
+}
+
+function pmmEvidenceTypeMarkup(kind, label) {
+  return `<span class="pmm-evidence-type pmm-evidence-type-${escapeHtml(kind)}">${escapeHtml(label)}</span>`;
+}
+
+function marketingAudienceOptionsForCompetitor(competitor) {
+  const groups = new Map();
+  currentCustomerVoiceItems()
+    .filter((item) => item.company === competitor)
+    .forEach((item) => {
+      const audience = item.labType || "Audience unresolved";
+      const buyerRole = item.userRole || "Buyer role unresolved";
+      const criterion = item.buyingPriority || "Buying criterion unresolved";
+      const key = `${audience}::${buyerRole}::${criterion}`;
+      if (!groups.has(key)) groups.set(key, { audience, buyerRole, criterion, items: [] });
+      groups.get(key).items.push(item);
+    });
+  return [...groups.values()]
+    .map((group) => ({
+      ...group,
+      links: uniqueCustomerVoiceLinks(group.items, 4),
+      confidence: averageConfidence(group.items),
+      trigger: pmmUsableText(group.items[0]?.theme, "Buying trigger unresolved"),
+    }))
+    .sort((a, b) => b.links.length - a.links.length || b.confidence - a.confidence);
+}
+
+function pmmSourceHostname(source) {
+  try {
+    return new URL(source.url).hostname.toLowerCase().replace(/^www\./, "");
+  } catch {
+    return source.sourceName || "unresolved-source";
+  }
+}
+
+function pmmDeduplicateSources(sources) {
+  const seen = new Set();
+  return sources.filter((source) => {
+    if (!source || !isHttpUrl(source.url)) return false;
+    const key = canonicalEvidenceUrl(source.url);
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
+function marketingDecisionThemes(context) {
+  const themes = competitorActivityThemes(context.profile)
+    .map((theme) => ({
+      claim: pmmUsableText(theme.insight || theme.title),
+      label: pmmUsableText(theme.title, "Competitor narrative"),
+      items: (theme.items || []).filter((item) => isHttpUrl(item.url)),
+    }))
+    .filter((theme) => theme.claim);
+  if (themes.length) return themes;
+  return context.evidenceLinks.slice(0, 4).map((source) => ({
+    claim: pmmUsableText(context.positioning, "Competitor narrative unresolved for the active filters."),
+    label: source.label || "Competitor narrative",
+    items: [source],
+  }));
+}
+
+function pmmMissingProof(context) {
+  const evidenceSentences = String(context.comparison?.evidenceBasis || "")
+    .split(/(?<=[.!?])\s+/)
+    .filter((sentence) => /\bno\b|not loaded|not demonstrated|different test conditions|without/i.test(sentence));
+  const limitation = (context.technicalProfile?.limitations || []).map((item) => pmmUsableText(item)).find(Boolean);
+  return pmmUsableText(
+    evidenceSentences[0] || limitation,
+    "Proof gap unresolved — no controlled comparison or approval record is identified in the current data.",
+  );
+}
+
+function pmmRecommendedActivation(context, index, hasEvidence) {
+  if (!hasEvidence) return "Activation unresolved — exact supporting evidence is required before an action is proposed.";
+  const configured = pmmListItems(context.comparison?.positioningMoves || [])
+    .filter((item) => /battlecard|position|message|claim|proof|application note|enablement|quantif|package|test/i.test(item));
+  return configured[index % Math.max(1, configured.length)]
+    || "Create an internal sales-enablement brief that packages the proposed position, proof, proof gaps, and message-testing questions.";
+}
+
+function pmmIntendedChannel(activation, hasEvidence) {
+  if (!hasEvidence) return "Channel unresolved";
+  if (/application note|technical content/i.test(activation)) return "Technical content / application proof";
+  if (/test|message|position/i.test(activation)) return "Internal message testing and sales enablement";
+  return "Sales enablement";
+}
+
+function pmmMeaningfulWords(value) {
+  const ignored = new Set(["about", "across", "against", "around", "from", "into", "only", "that", "their", "these", "this", "through", "under", "where", "which", "with", "workflow", "workflows", "waters"]);
+  return new Set(String(value || "").toLowerCase().match(/[a-z0-9-]{4,}/g)?.filter((word) => !ignored.has(word)) || []);
+}
+
+function pmmWordOverlap(left, right) {
+  const leftWords = pmmMeaningfulWords(left);
+  const rightWords = pmmMeaningfulWords(right);
+  return [...leftWords].filter((word) => rightWords.has(word)).length;
+}
+
+function pmmSuggestedCounterPosition(context, audience) {
+  const criterion = String(audience?.criterion || "").toLowerCase();
+  const response = /cost|method transfer/.test(criterion)
+    ? context.profile?.response?.differentiate
+    : context.profile?.response?.defend;
+  return pmmUsableText(response, context.counterMessage);
+}
+
+function pmmRelevantProofPoints(context, audience, theme, counterPosition) {
+  const relevanceText = `${audience?.criterion || ""} ${audience?.trigger || ""} ${theme?.claim || ""} ${counterPosition}`;
+  return context.proofPoints.filter((proof) => pmmWordOverlap(`${proof.label} ${proof.detail}`, relevanceText) > 0);
+}
+
+function pmmDecisionRecency(sources) {
+  const dated = sources
+    .map((source) => source.date || source.sourceDate)
+    .filter((date) => /^\d{4}-\d{2}-\d{2}$/.test(date || ""))
+    .sort((a, b) => new Date(b) - new Date(a));
+  if (!dated.length) return { date: "", days: null, points: 0, label: "Recency unresolved" };
+  const asOf = new Date(`${state.data?.asOfDate || dated[0]}T00:00:00`);
+  const latest = new Date(`${dated[0]}T00:00:00`);
+  const days = Math.max(0, Math.round((asOf - latest) / (1000 * 60 * 60 * 24)));
+  const points = days <= 30 ? 20 : days <= 90 ? 15 : days <= 365 ? 10 : 4;
+  return { date: dated[0], days, points, label: `${formatDate(dated[0])} · ${days} day${days === 1 ? "" : "s"} before data as-of` };
+}
+
+function pmmDecisionCandidate(context, audience, theme, index) {
+  if (!audience && !theme) {
+    return {
+      competitor: context.competitor,
+      audience: "Audience unresolved",
+      buyerRole: "Buyer role unresolved",
+      buyingCriterion: "Buying criterion unresolved",
+      buyingTrigger: "Buying situation unresolved — no matching customer record",
+      competitorClaim: "Competitor narrative unresolved for the active filters.",
+      counterPosition: "Counter-position unresolved — matched audience and narrative evidence are required.",
+      availableProof: [],
+      missingProof: "Proof unresolved — no matched positioning decision is available.",
+      activation: "Activation unresolved — exact supporting evidence is required before an action is proposed.",
+      intendedChannel: "Channel unresolved",
+      exactSources: [],
+      confidence: 0,
+      recency: { label: "Recency unresolved" },
+      claimRepetition: 0,
+      sourceDiversity: 0,
+      customerCriteriaSources: 0,
+      scoreFactors: { recency: 0, sourceDiversity: 0, repetition: 0, customerCriterion: 0, confidence: 0, proofGap: 0 },
+      priorityScore: 0,
+    };
+  }
+  const themeSources = (theme?.items || []).map((item) => ({
+    url: item.url,
+    label: item.title || theme.label,
+    sourceName: item.sourceName || "Competitor public source",
+    date: item.date || item.sourceDate,
+    confidence: item.confidence,
+    evidenceRole: "Competitor evidence",
+  }));
+  const customerSources = (audience?.links || []).map((link) => ({
+    ...link,
+    label: link.label || `${audience.audience} public customer record`,
+    sourceName: "Exact public customer record",
+    date: link.sourceDate,
+    confidence: audience.confidence,
+    evidenceRole: "Customer evidence",
+  }));
+  const counterPosition = pmmSuggestedCounterPosition(context, audience);
+  const availableProof = pmmRelevantProofPoints(context, audience, theme, counterPosition);
+  const proofSources = availableProof.map((proof) => ({
+    url: proof.url,
+    label: proof.label,
+    sourceName: "Waters public source",
+    detail: proof.detail,
+    evidenceRole: "Waters proof",
+  }));
+  const fallbackCompetitorSources = themeSources.length || customerSources.length ? [] : context.evidenceLinks.slice(0, 3);
+  const exactSources = pmmDeduplicateSources([
+    ...themeSources,
+    ...customerSources,
+    ...fallbackCompetitorSources,
+    ...proofSources,
+  ]);
+  const relevantConfidenceInputs = [
+    ...(theme?.items || []),
+    ...(audience?.items || []),
+  ];
+  const confidenceInputs = (relevantConfidenceInputs.length ? relevantConfidenceInputs : context.evidenceLinks)
+    .filter((item) => Number.isFinite(Number(item.confidence)));
+  const confidence = averageConfidence(confidenceInputs);
+  const sourceDiversity = new Set(exactSources.map(pmmSourceHostname)).size;
+  const claimRepetition = Math.max(0, theme?.items?.length || 0);
+  const customerCriteriaSources = audience?.links?.length || 0;
+  const recency = pmmDecisionRecency(exactSources);
+  const missingProof = availableProof.length
+    ? pmmMissingProof(context)
+    : `No sourced Waters proof directly matches ${String(audience?.criterion || "the active buying criterion").toLowerCase()} in this filtered buying situation.`;
+  const scoreFactors = {
+    recency: recency.points,
+    sourceDiversity: Math.min(3, sourceDiversity) * 6,
+    repetition: Math.min(3, claimRepetition) * 5,
+    customerCriterion: Math.min(3, customerCriteriaSources) * 5,
+    confidence: Math.min(20, Math.round(confidence / 5)),
+    proofGap: missingProof ? 8 : 0,
+  };
+  const priorityScore = Object.values(scoreFactors).reduce((total, value) => total + value, 0);
+  const activation = pmmRecommendedActivation(context, index, exactSources.length > 0);
+  return {
+    competitor: context.competitor,
+    audience: audience?.audience || "Audience unresolved",
+    buyerRole: audience?.buyerRole || "Buyer role unresolved",
+    buyingCriterion: audience?.criterion || "Buying criterion unresolved",
+    buyingTrigger: audience?.trigger || "Buying situation unresolved — no matching customer record",
+    competitorClaim: theme?.claim || "Competitor narrative unresolved for the active filters.",
+    counterPosition,
+    availableProof,
+    missingProof,
+    activation,
+    intendedChannel: pmmIntendedChannel(activation, exactSources.length > 0),
+    exactSources,
+    confidence,
+    recency,
+    claimRepetition,
+    sourceDiversity,
+    customerCriteriaSources,
+    scoreFactors,
+    priorityScore,
+  };
+}
+
+function marketingPositioningDecisionCandidates(contexts) {
+  if (!contexts.length) {
+    return Array.from({ length: 3 }, () => ({
+      competitor: "Competitor unresolved",
+      audience: "Audience unresolved",
+      buyerRole: "Buyer role unresolved",
+      buyingCriterion: "Buying criterion unresolved",
+      buyingTrigger: "Buying situation unresolved — no matching evidence",
+      competitorClaim: "Competitor narrative unresolved for the active filters.",
+      counterPosition: "Counter-position unresolved — evidence and approval are required.",
+      availableProof: [],
+      missingProof: "Proof unresolved — no matching competitor comparison is available.",
+      activation: "Activation unresolved — exact supporting evidence is required before an action is proposed.",
+      intendedChannel: "Channel unresolved",
+      exactSources: [],
+      confidence: 0,
+      recency: { label: "Recency unresolved" },
+      claimRepetition: 0,
+      sourceDiversity: 0,
+      customerCriteriaSources: 0,
+      scoreFactors: { recency: 0, sourceDiversity: 0, repetition: 0, customerCriterion: 0, confidence: 0, proofGap: 0 },
+      priorityScore: 0,
+    }));
+  }
+  const candidates = contexts.flatMap((context) => {
+    const audiences = marketingAudienceOptionsForCompetitor(context.competitor);
+    const themes = marketingDecisionThemes(context);
+    const audienceCandidates = audiences.map((audience, index) => pmmDecisionCandidate(context, audience, {
+      claim: audience.trigger,
+      label: `${audience.criterion} customer narrative`,
+      items: audience.links.map((link) => ({
+        ...link,
+        title: link.label,
+        sourceName: "Exact public customer record",
+      })),
+    }, index));
+    const narrativeCandidates = themes.map((theme, index) => pmmDecisionCandidate(context, null, theme, index + audienceCandidates.length));
+    const combined = [...audienceCandidates, ...narrativeCandidates];
+    while (combined.length < 3) combined.push(pmmDecisionCandidate(context, null, null, combined.length));
+    return combined;
+  });
+  const pool = contexts.length > 1
+    ? contexts.map((context) => candidates.filter((candidate) => candidate.competitor === context.competitor).sort((a, b) => b.priorityScore - a.priorityScore)[0])
+    : candidates;
+  return pool
+    .filter(Boolean)
+    .sort((a, b) => b.priorityScore - a.priorityScore || b.confidence - a.confidence || a.competitor.localeCompare(b.competitor))
+    .slice(0, 3);
+}
+
+function pmmDecisionSourceMarkup(source) {
+  return `<a href="${escapeHtml(source.url)}" target="_blank" rel="noreferrer"><span>${escapeHtml(source.evidenceRole || source.evidenceType || "Observed evidence")}</span><strong>${escapeHtml(source.label || source.sourceName)}</strong><small>${escapeHtml(source.sourceName || "Public source")}${source.date ? ` · ${escapeHtml(formatDate(source.date))}` : " · Date unresolved"}</small></a>`;
+}
+
+function pmmChangeSummaryMarkup() {
+  return `<aside class="pmm-change-summary" aria-label="What changed since the last refresh"><div><span>What Changed Since the Last Refresh</span><strong>Change detection unavailable</strong></div><p>The current refresh records completion time, but no comparable prior PMM positioning-decision snapshot is loaded. No delta is inferred.</p></aside>`;
+}
+
+function renderMarketingPositioningDecisions(decisions) {
+  const target = byId("pmmPositioningDecisions");
+  if (!decisions.length) {
+    target.innerHTML = `${pmmChangeSummaryMarkup()}${pmmEmptyState("No positioning decision can be supported by the active filters.")}`;
+    return;
+  }
+  target.innerHTML = `
+    ${pmmChangeSummaryMarkup()}
+    <div class="pmm-decision-legend" aria-label="Evidence labels">${pmmEvidenceTypeMarkup("observed", "Observed evidence")}${pmmEvidenceTypeMarkup("inference", "Analyst/rule-based inference")}${pmmEvidenceTypeMarkup("approval", "Approved Waters claim — unresolved")}</div>
+    <p class="pmm-priority-method" role="note">Priority combines recency, source diversity, repeated narrative evidence, customer buying-criterion evidence, confidence, and proof gaps. Raw record volume is not used as a standalone measure of commercial importance.</p>
+    <div class="pmm-decision-grid">${decisions.map((decision, index) => `<article class="pmm-decision-card pmm-positioning-decision" data-positioning-rank="${index + 1}">
+      <header class="pmm-decision-header">
+        <div class="pmm-decision-rank" aria-label="Priority ${index + 1}">${index + 1}</div>
+        <div><span>Positioning Decision · ${escapeHtml(decision.competitor)}</span><h4>${escapeHtml(decision.buyingCriterion)} for ${escapeHtml(decision.audience)}</h4></div>
+        <div class="pmm-decision-score"><strong>${decision.priorityScore}</strong><span>priority score</span></div>
+      </header>
+      <div class="pmm-decision-question-grid">
+        <section>
+          <div class="pmm-question-heading"><b>1</b><span>Audience and Buying Situation</span>${pmmEvidenceTypeMarkup(decision.customerCriteriaSources ? "observed" : "unresolved", decision.customerCriteriaSources ? "Observed evidence" : "Unresolved")}</div>
+          <dl><div><dt>Audience</dt><dd>${escapeHtml(decision.audience)}</dd></div><div><dt>Buyer role</dt><dd>${escapeHtml(decision.buyerRole)}</dd></div><div><dt>Situation / trigger</dt><dd>${escapeHtml(decision.buyingTrigger)}</dd></div></dl>
+        </section>
+        <section>
+          <div class="pmm-question-heading"><b>2</b><span>Competitor Claim or Narrative</span>${pmmEvidenceTypeMarkup("inference", "Analyst/rule-based inference")}</div>
+          <p>${escapeHtml(decision.competitorClaim)}</p>
+          <small>${decision.claimRepetition ? `${decision.claimRepetition} matching public record${decision.claimRepetition === 1 ? "" : "s"} support this narrative grouping.` : "Claim repetition unresolved for the active filters."}</small>
+        </section>
+        <section>
+          <div class="pmm-question-heading"><b>3</b><span>Suggested Waters Counter-position</span>${pmmEvidenceTypeMarkup("inference", "Proposed — not approved")}</div>
+          <p>${escapeHtml(decision.counterPosition)}</p>
+          ${pmmStatusMarkup("unresolved", "Approved Waters claim", "Unresolved — no approval record")}
+        </section>
+        <section>
+          <div class="pmm-question-heading"><b>4</b><span>Proof and Substantiation</span>${pmmEvidenceTypeMarkup("observed", "Observed Waters sources")}</div>
+          <div class="pmm-decision-proof"><div><strong>Available proof</strong>${decision.availableProof.length ? `<ul>${decision.availableProof.map((proof) => `<li><span>${escapeHtml(proof.detail)}</span>${isHttpUrl(proof.url) ? `<a href="${escapeHtml(proof.url)}" target="_blank" rel="noreferrer">${escapeHtml(proof.label)} ↗</a>` : ""}</li>`).join("")}</ul>` : `<p>Proof unresolved — no sourced Waters proof matches this decision.</p>`}</div><div class="pmm-missing-proof"><strong>Missing proof</strong><p>${escapeHtml(decision.missingProof)}</p></div></div>
+        </section>
+        <section>
+          <div class="pmm-question-heading"><b>5</b><span>Activation Required</span>${pmmEvidenceTypeMarkup("inference", "Analyst recommendation")}</div>
+          <p><strong>${escapeHtml(decision.activation)}</strong></p>
+          <div class="pmm-activation-fields">
+            ${pmmStatusMarkup("unresolved", "Owner", "Owner needed")}
+            ${pmmStatusMarkup("unresolved", "Due date", "Deadline needed")}
+            ${pmmStatusMarkup(decision.intendedChannel === "Channel unresolved" ? "unresolved" : "inference", "Intended channel", decision.intendedChannel)}
+            ${pmmStatusMarkup("unresolved", "Success measure", "Measure needed")}
+          </div>
+        </section>
+      </div>
+      <div class="pmm-decision-evidence-footer">
+        <div><span>Confidence and Recency</span><strong>${decision.confidence ? `${escapeHtml(confidenceLabel(decision.confidence))} · ${decision.confidence}/100` : "Confidence unresolved"}</strong><small>${escapeHtml(decision.recency.label)}</small></div>
+        <div><span>Why This Ranked Here</span><p>Recency ${decision.scoreFactors.recency} · source diversity ${decision.scoreFactors.sourceDiversity} · repetition ${decision.scoreFactors.repetition} · customer criterion ${decision.scoreFactors.customerCriterion} · confidence ${decision.scoreFactors.confidence} · proof gap ${decision.scoreFactors.proofGap}</p><small>${decision.sourceDiversity} source famil${decision.sourceDiversity === 1 ? "y" : "ies"}; ${decision.customerCriteriaSources} exact customer source${decision.customerCriteriaSources === 1 ? "" : "s"}.</small></div>
+        <div class="pmm-decision-sources"><span>Exact Evidence Links</span>${decision.exactSources.length ? decision.exactSources.slice(0, 6).map(pmmDecisionSourceMarkup).join("") : `<p>Exact evidence links unavailable. Activation remains unresolved.</p>`}</div>
+      </div>
+    </article>`).join("")}</div>`;
+}
+
+const pmmClaimEvidenceClassifications = {
+  observed: "Observed customer or competitor language",
+  inference: "Analyst/rule-based inference",
+  approved: "Approved Waters claim",
+};
+
+const pmmClaimReadinessValues = ["Ready", "Weak", "Missing", "Legally unapproved"];
+
+function pmmObservedCustomerLanguage(item) {
+  const language = String(item?.customerLanguageSignal || "").trim();
+  const exactEvidence = /^Exact\b/i.test(item?.evidenceStatus || "");
+  const usableLanguage = language && language.length <= 320 && !/^\ufeff|advertisement register log in/i.test(language);
+  return exactEvidence && usableLanguage ? language : "";
+}
+
+function pmmClaimReadiness({ approvalEstablished, availableProof, claimSources, confidence, recency, sourceDiversity }) {
+  if (!availableProof.length || !claimSources.length) {
+    return { value: "Missing", reason: "No relevant substantiating proof was located for this claim and buying context." };
+  }
+  if (!approvalEstablished) {
+    return { value: "Legally unapproved", reason: "Relevant technical evidence exists, but legal or claims approval is not established." };
+  }
+  const weak = confidence < 70 || sourceDiversity < 2 || recency.days === null || recency.days > 365;
+  if (weak) return { value: "Weak", reason: "Evidence exists but lacks sufficient confidence, diversity, specificity, or recency." };
+  return { value: "Ready", reason: "Relevant proof is traceable and approval is established." };
+}
+
+function pmmClaimRow(context, audience, theme, item = null, index = 0) {
+  const observedLanguage = pmmObservedCustomerLanguage(item);
+  const evidenceClassification = observedLanguage ? "observed" : "inference";
+  const claim = observedLanguage || pmmUsableText(
+    item?.theme || theme?.claim,
+    "Claim unresolved — no supported language matches the active filters.",
+  );
+  const claimItems = audience?.links?.length
+    ? audience.links.map((link) => ({ ...link, title: link.label, sourceName: "Exact public customer record" }))
+    : (theme?.items || []);
+  const candidate = pmmDecisionCandidate(context, audience, { claim, label: theme?.label || `${audience?.criterion || "Claim"} evidence`, items: claimItems }, index);
+  const claimSources = pmmDeduplicateSources(claimItems.map((source) => ({
+    url: source.url,
+    label: source.title || source.label || "Claim source",
+    sourceName: source.sourceName || "Public source",
+    date: source.date || source.sourceDate,
+    confidence: source.confidence || audience?.confidence,
+    evidenceRole: evidenceClassification === "observed" ? "Observed language" : "Inference basis",
+  })));
+  const approvalEstablished = false;
+  const readiness = pmmClaimReadiness({
+    approvalEstablished,
+    availableProof: candidate.availableProof,
+    claimSources,
+    confidence: candidate.confidence,
+    recency: candidate.recency,
+    sourceDiversity: candidate.sourceDiversity,
+  });
+  const sentiment = item?.sentiment || "Not classified";
+  const concernRecord = /negative|neutral|mixed/i.test(sentiment);
+  const caveat = concernRecord
+    ? `${sentiment} customer record — treat as a customer concern or comparison criterion, never as a competitor strength.`
+    : evidenceClassification === "observed"
+      ? "Exact public customer language; one record does not establish market prevalence or comparative performance."
+      : "Narrative synthesized from public records; not a verbatim customer statement or approved Waters claim.";
+  return {
+    competitor: context.competitor,
+    claim,
+    evidenceClassification,
+    audience: audience?.audience || "Audience unresolved",
+    buyerRole: audience?.buyerRole || "Buyer role unresolved",
+    buyingCriterion: audience?.criterion || "Buying criterion unresolved",
+    counterPosition: candidate.counterPosition,
+    availableProof: candidate.availableProof,
+    missingProof: candidate.missingProof,
+    approvalState: "Approval not established.",
+    approvalEstablished,
+    readiness,
+    confidence: candidate.confidence,
+    recency: candidate.recency,
+    sourceDiversity: candidate.sourceDiversity,
+    claimSources,
+    sources: pmmDeduplicateSources([...claimSources, ...candidate.exactSources]),
+    caveat,
+    sentiment,
+    concernRecord,
+  };
+}
+
+function marketingClaimsProofRows(contexts) {
+  return contexts.flatMap((context) => {
+    const audiences = marketingAudienceOptionsForCompetitor(context.competitor);
+    const themes = marketingDecisionThemes(context);
+    const customerRows = audiences.map((audience, index) => {
+      const item = audience.items.find((entry) => pmmObservedCustomerLanguage(entry)) || audience.items[0];
+      return pmmClaimRow(context, audience, {
+        claim: audience.trigger,
+        label: `${audience.criterion} customer evidence`,
+        items: audience.links,
+      }, item, index);
+    });
+    const inferenceRows = themes.slice(0, 2).map((theme, index) => pmmClaimRow(context, null, theme, null, customerRows.length + index));
+    return [...customerRows, ...inferenceRows];
+  });
+}
+
+function pmmClaimsFilterOptions(rows, key) {
+  return [...new Set(rows.map((row) => row[key]).filter(Boolean))].sort((a, b) => a.localeCompare(b));
+}
+
+function pmmClaimsFilterMarkup(label, key, values, allLabel) {
+  const selected = state.marketingClaimsFilters[key];
+  return `<label>${escapeHtml(label)}<select data-pmm-claims-filter="${escapeHtml(key)}"><option value="All">${escapeHtml(allLabel)}</option>${values.map((value) => `<option value="${escapeHtml(value)}" ${selected === value ? "selected" : ""}>${escapeHtml(value)}</option>`).join("")}</select></label>`;
+}
+
+function pmmClaimSourceLinksMarkup(sources, limit = 4) {
+  if (!sources.length) return `<p class="pmm-matrix-empty-value">Sources unavailable.</p>`;
+  return `<div class="pmm-claim-source-links">${sources.slice(0, limit).map((source) => `<a href="${escapeHtml(source.url)}" target="_blank" rel="noreferrer"><strong>${escapeHtml(source.label || source.sourceName)}</strong><small>${escapeHtml(source.sourceName || "Public source")} · ${source.date ? escapeHtml(formatDate(source.date)) : "Date unavailable"}</small></a>`).join("")}</div>`;
+}
+
+function pmmClaimProofMarkup(proof) {
+  return `<li><span>${escapeHtml(proof.detail)}</span>${isHttpUrl(proof.url) ? `<a href="${escapeHtml(proof.url)}" target="_blank" rel="noreferrer">${escapeHtml(proof.label)} ↗</a>` : `<small>Source unavailable</small>`}</li>`;
+}
+
+function pmmClaimReadinessMarkup(readiness) {
+  const className = readiness.value.toLowerCase().replace(/\s+/g, "-");
+  return `<div class="pmm-readiness pmm-readiness-${escapeHtml(className)}"><strong>${escapeHtml(readiness.value)}</strong><span>${escapeHtml(readiness.reason)}</span></div>`;
+}
+
+function renderMarketingClaimsProof(contexts) {
+  const target = byId("pmmClaimsProof");
+  const rows = marketingClaimsProofRows(contexts);
+  const audiences = pmmClaimsFilterOptions(rows.map((row) => ({ ...row, audienceCriterion: `${row.audience} · ${row.buyingCriterion}` })), "audienceCriterion");
+  const classifications = Object.values(pmmClaimEvidenceClassifications);
+  if (state.marketingClaimsFilters.audience !== "All" && !audiences.includes(state.marketingClaimsFilters.audience)) {
+    state.marketingClaimsFilters.audience = "All";
+  }
+  if (state.marketingClaimsFilters.classification !== "All" && !classifications.includes(state.marketingClaimsFilters.classification)) {
+    state.marketingClaimsFilters.classification = "All";
+  }
+  if (state.marketingClaimsFilters.readiness !== "All" && !pmmClaimReadinessValues.includes(state.marketingClaimsFilters.readiness)) {
+    state.marketingClaimsFilters.readiness = "All";
+  }
+  const activeFilters = state.marketingClaimsFilters;
+  const visibleRows = rows.filter((row) => {
+    const audienceCriterion = `${row.audience} · ${row.buyingCriterion}`;
+    return (activeFilters.readiness === "All" || row.readiness.value === activeFilters.readiness)
+      && (activeFilters.audience === "All" || audienceCriterion === activeFilters.audience)
+      && (activeFilters.classification === "All" || pmmClaimEvidenceClassifications[row.evidenceClassification] === activeFilters.classification);
+  });
+  target.innerHTML = `
+    <div class="pmm-claims-matrix-intro">
+      <div><strong>Claims readiness is proof plus approval.</strong><p>Technical evidence never establishes legal approval. No approval records are loaded, so no row can be marked Ready.</p></div>
+      <div class="pmm-decision-legend" aria-label="Claims evidence classifications">${pmmEvidenceTypeMarkup("observed", pmmClaimEvidenceClassifications.observed)}${pmmEvidenceTypeMarkup("inference", pmmClaimEvidenceClassifications.inference)}${pmmEvidenceTypeMarkup("approval", pmmClaimEvidenceClassifications.approved)}</div>
+    </div>
+    <form class="pmm-claims-filters" aria-label="Filter claims and proof readiness matrix">
+      ${pmmClaimsFilterMarkup("Readiness", "readiness", pmmClaimReadinessValues, "All readiness states")}
+      ${pmmClaimsFilterMarkup("Audience / buying criterion", "audience", audiences, "All audiences and criteria")}
+      ${pmmClaimsFilterMarkup("Evidence classification", "classification", classifications, "All evidence classifications")}
+      <button type="button" data-pmm-claims-clear>Clear matrix filters</button>
+      <p>Competitor filtering uses the global Competitor filter above.</p>
+    </form>
+    <div class="pmm-claims-result-count" aria-live="polite">${visibleRows.length} of ${rows.length} claim${rows.length === 1 ? "" : "s"}</div>
+    ${visibleRows.length ? `<div class="pmm-claims-table-wrap"><table class="pmm-claims-matrix"><caption class="sr-only">Product Marketing claims and proof readiness</caption><thead><tr><th>Competitor</th><th>Competitor claim</th><th>Evidence classification</th><th>Audience / buying criterion</th><th>Waters counter-position</th><th>Available proof</th><th>Missing substantiation</th><th>Approval state</th><th>Readiness</th><th>Confidence / recency</th><th>Sources</th></tr></thead><tbody>${visibleRows.map((row) => `<tr data-claim-readiness="${escapeHtml(row.readiness.value)}" data-claim-classification="${escapeHtml(pmmClaimEvidenceClassifications[row.evidenceClassification])}">
+      <td><strong>${escapeHtml(row.competitor)}</strong></td>
+      <td><p>${escapeHtml(row.claim)}</p>${pmmClaimSourceLinksMarkup(row.claimSources, 2)}<small class="pmm-source-caveat ${row.concernRecord ? "is-concern" : ""}">${escapeHtml(row.caveat)}</small></td>
+      <td>${pmmEvidenceTypeMarkup(row.evidenceClassification, pmmClaimEvidenceClassifications[row.evidenceClassification])}</td>
+      <td><strong>${escapeHtml(row.audience)}</strong><span>${escapeHtml(row.buyerRole)} · ${escapeHtml(row.buyingCriterion)}</span></td>
+      <td><p>${escapeHtml(row.counterPosition)}</p>${pmmEvidenceTypeMarkup("inference", "Proposed inference — not approved")}</td>
+      <td>${row.availableProof.length ? `<ul class="pmm-claim-proof-items">${row.availableProof.map(pmmClaimProofMarkup).join("")}</ul><small class="pmm-source-caveat">Technical evidence does not establish legal approval.</small>` : `<div class="pmm-missing-indicator"><strong>Proof missing</strong><span>No relevant Waters proof located.</span></div>`}</td>
+      <td><div class="pmm-missing-indicator"><strong>Substantiation gap</strong><span>${escapeHtml(row.missingProof)}</span></div></td>
+      <td>${pmmStatusMarkup("unresolved", "Approval", row.approvalState)}</td>
+      <td>${pmmClaimReadinessMarkup(row.readiness)}</td>
+      <td><strong>${row.confidence ? `${escapeHtml(confidenceLabel(row.confidence))} · ${row.confidence}/100` : "Confidence unavailable"}</strong><span>${escapeHtml(row.recency.label)}</span><small>${row.sourceDiversity} source famil${row.sourceDiversity === 1 ? "y" : "ies"}</small></td>
+      <td>${pmmClaimSourceLinksMarkup(row.sources)}</td>
+    </tr>`).join("")}</tbody></table></div>` : pmmEmptyState(rows.length ? "No claims match the matrix filters. Clear a matrix filter or adjust the global filters." : "No supported claims match the active global filters. Unrelated evidence was not substituted.")}`;
+}
+
+function pmmAudienceTrigger(productMaturity = "") {
+  const maturity = String(productMaturity).trim().toLowerCase();
+  if (maturity.includes("upgrade candidate")) return "Platform upgrade or replacement evaluation";
+  if (maturity.includes("legacy competitor") || maturity.includes("legacy system")) return "Legacy lifecycle, serviceability, or method-continuity review";
+  if (maturity.includes("competitor user")) return "Competitive replacement or vendor-comparison evaluation";
+  if (maturity.includes("multi-vendor")) return "Vendor consolidation, integration, or service review";
+  if (maturity.includes("current waters")) return "Operational issue, renewal, expansion, or workflow-improvement review";
+  if (maturity.includes("new buyer")) return "Initial platform evaluation";
+  if (maturity.includes("public evidence")) return "Trigger unresolved — public evidence does not establish an active purchase event";
+  return "Trigger unresolved";
+}
+
+function pmmAudienceBuyingSituations() {
+  const groups = new Map();
+  currentCustomerVoiceItems().forEach((item) => {
+    const dimensions = [
+      item.userRole || "Buyer role unresolved",
+      item.labType || "Lab / account context unresolved",
+      item.productMaturity || "Account status unresolved",
+      item.platform || "Current platform unresolved",
+      item.buyingPriority || "Purchase-driving criterion unresolved",
+    ];
+    const key = dimensions.join("::");
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(item);
+  });
+
+  return [...groups.values()]
+    .map((items) => {
+      const sortedItems = items.slice().sort((a, b) =>
+        Number(b.confidence || 0) - Number(a.confidence || 0)
+        || String(customerVoiceEvidenceDate(b) || "").localeCompare(String(customerVoiceEvidenceDate(a) || ""))
+      );
+      const representative = sortedItems[0] || {};
+      const links = uniqueCustomerVoiceLinks(sortedItems, 20);
+      const languageItem = sortedItems.find((item) => pmmObservedCustomerLanguage(item));
+      const objectionItem = sortedItems.find((item) => item.sentiment === "Negative")
+        || sortedItems.find((item) => item.sentiment === "Mixed");
+      const hasForumEvidence = links.some((link) => {
+        const type = normalizedCustomerVoiceSourceType(link.sourceType);
+        return type === "reddit" || type === "community_forum";
+      });
+      const latestDate = links.map((link) => link.sourceDate || "").filter(Boolean).sort().at(-1) || "";
+      return {
+        items: sortedItems,
+        links,
+        sourceCount: links.length,
+        buyerRole: representative.userRole || "Buyer role unresolved",
+        labContext: [representative.labType, representative.productMaturity].filter(Boolean).join(" · ") || "Lab / account context unresolved",
+        currentPlatform: [representative.platform, representative.product].filter(Boolean).join(" · ") || "Current platform unresolved",
+        trigger: pmmAudienceTrigger(representative.productMaturity),
+        objection: objectionItem?.theme || objectionItem?.category || "No supported objection found in matching evidence",
+        criterion: representative.buyingPriority || "Purchase-driving criterion unresolved",
+        observedLanguage: languageItem ? pmmObservedCustomerLanguage(languageItem) : "",
+        directionalLanguage: languageItem ? "" : representative.customerLanguageSignal || representative.theme || "Directional language unavailable",
+        confidence: averageConfidence(sortedItems),
+        latestDate,
+        recency: pmmDecisionRecency(links.map((link) => ({ sourceDate: link.sourceDate }))).label,
+        hasForumEvidence,
+      };
+    })
+    .sort((a, b) => b.sourceCount - a.sourceCount
+      || String(b.latestDate).localeCompare(String(a.latestDate))
+      || b.confidence - a.confidence)
+    .slice(0, 8);
+}
+
+function renderMarketingAudienceCriteria() {
+  const target = byId("pmmAudienceCriteria");
+  const situations = pmmAudienceBuyingSituations();
+  if (!situations.length) {
+    target.innerHTML = pmmEmptyState("No audience or buying-situation evidence matches the active filters. Broaden the filters or add traceable customer evidence; no audience conclusion is inferred.");
+    return;
+  }
+  target.innerHTML = `
+    <div class="pmm-audience-intro">
+      <div><div class="pmm-eyebrow">Most represented audiences in the current evidence — not strategic priority</div><h3>Audience and Buying-Situation Evidence</h3><p>Ordered by independent exact-source representation for review. Frequency in this dataset is not a measure of commercial attractiveness, market size, or strategic priority.</p></div>
+      <p class="pmm-forum-caveat">Forum evidence can surface objections and customer language, but it is complaint-biased and is not representative market research.</p>
+    </div>
+    <div class="pmm-audience-grid">${situations.map((situation) => {
+      const confidence = averageConfidence(situation.items);
+      const lowSample = situation.sourceCount < 3;
+      const sourceLinks = situation.links.length
+        ? situation.links.map((link) => `<a href="${escapeHtml(link.url)}" target="_blank" rel="noreferrer">${escapeHtml(link.label)}${link.sourceDate ? ` · ${escapeHtml(link.sourceDate)}` : ""} ↗</a>`).join("")
+        : `<span class="pmm-unresolved">Exact evidence links unavailable</span>`;
+      return `<article class="pmm-audience-card pmm-audience-buying-card">
+        <header class="pmm-audience-header"><div><div class="pmm-eyebrow">Buying-situation evidence</div><h4>${escapeHtml(situation.buyerRole)}</h4></div><span class="pmm-source-count">${situation.sourceCount} independent source${situation.sourceCount === 1 ? "" : "s"}</span></header>
+        <dl class="pmm-audience-facts">
+          <div><dt>Buyer role ${pmmEvidenceTypeMarkup("inference", "Coded analyst/rule-based inference")}</dt><dd>${escapeHtml(situation.buyerRole)}</dd></div>
+          <div><dt>Lab / account context ${pmmEvidenceTypeMarkup("inference", "Coded analyst/rule-based inference")}</dt><dd>${escapeHtml(situation.labContext)}</dd></div>
+          <div><dt>Current platform ${pmmEvidenceTypeMarkup("inference", "Coded analyst/rule-based inference")}</dt><dd>${escapeHtml(situation.currentPlatform)}</dd></div>
+          <div><dt>Trigger event ${pmmEvidenceTypeMarkup("inference", "Analyst/rule-based inference")}</dt><dd>${escapeHtml(situation.trigger)}</dd></div>
+          <div><dt>Objection ${pmmEvidenceTypeMarkup("inference", "Analyst/rule-based inference")}</dt><dd>${escapeHtml(situation.objection)}</dd></div>
+          <div><dt>Purchase-driving criterion ${pmmEvidenceTypeMarkup("inference", "Coded analyst/rule-based inference")}</dt><dd>${escapeHtml(situation.criterion)}</dd></div>
+        </dl>
+        <div class="pmm-audience-language"><div class="pmm-audience-label">Observed customer language ${pmmEvidenceTypeMarkup("observed", "Observed customer or competitor language")}</div>${situation.observedLanguage
+          ? `<blockquote>“${escapeHtml(situation.observedLanguage)}”</blockquote>`
+          : `<p class="pmm-unresolved">Observed customer language unavailable.</p><p class="pmm-directional-language">${pmmEvidenceTypeMarkup("inference", "Analyst/rule-based inference")} Directional synthesis: ${escapeHtml(situation.directionalLanguage)}</p>`}</div>
+        <div class="pmm-audience-sources"><div class="pmm-audience-label">Exact evidence links · ${situation.sourceCount} source${situation.sourceCount === 1 ? "" : "s"}</div><div class="pmm-inline-links">${sourceLinks}</div></div>
+        <div class="pmm-card-footer"><span class="confidence confidence-${confidenceLabel(confidence).toLowerCase()}">${escapeHtml(confidenceLabel(confidence))} confidence</span><span>${escapeHtml(situation.recency)}</span></div>
+        <div class="pmm-audience-caveats"><strong>Caveats</strong>${lowSample ? `<p class="pmm-low-sample">Low sample — fewer than 3 independent sources; do not treat this as a reliable audience-perception conclusion.</p>` : ""}${situation.hasForumEvidence ? `<p>Includes forum evidence: useful for surfacing objections and language, but complaint-biased and not representative market research.</p>` : ""}${!lowSample && !situation.hasForumEvidence ? `<p>No additional source caveat identified beyond the limits of the filtered evidence set.</p>` : ""}</div>
+      </article>`;
+    }).join("")}</div>`;
+}
+
+function pmmNarrativeApplicationNotes(context) {
+  const notes = currentCompetitorApplicationNotes().filter((note) => note.competitor === context.competitor);
+  const relevanceText = [
+    context.positioning,
+    context.counterMessage,
+    context.selectedLaunch?.product,
+    context.selectedLaunch?.pmImplication,
+    context.profile?.focus,
+    context.profile?.intent,
+    ...(context.comparison?.positioningMoves || []),
+  ].filter(Boolean).join(" ");
+  const scored = notes.map((note) => ({
+    note,
+    relevance: pmmWordOverlap(
+      `${note.title} ${note.applicationArea} ${note.marketSegment} ${note.technology} ${note.products} ${note.evidenceStatement}`,
+      relevanceText,
+    ),
+  }));
+  const matching = scored.filter((item) => item.relevance > 0);
+  return (matching.length ? matching : scored)
+    .sort((a, b) => b.relevance - a.relevance || new Date(b.note.date) - new Date(a.note.date))
+    .map((item) => item.note);
+}
+
+function pmmNarrativeConferenceEvidence(competitor) {
+  return currentConferenceSources().flatMap((event) => {
+    const content = (event.competitorContent || []).find((item) => String(item.competitor || "").includes(competitor));
+    const watch = (event.competitorWatch || []).find((item) => item.name === competitor);
+    if (!content && !watch) return [];
+    const sourceUrl = content?.sourceUrl
+      || (event.monitoringLinks || []).find((link) => isHttpUrl(link.url))?.url
+      || event.website;
+    return [{
+      event,
+      content,
+      watch,
+      url: sourceUrl,
+      label: `${event.eventName} competitor evidence`,
+      sourceName: event.eventName,
+      date: "",
+      eventDate: event.startDate,
+      confidence: undefined,
+      evidenceType: content?.evidenceStatus || "Conference participation evidence",
+    }];
+  });
+}
+
+function pmmNarrativeApplicationRead(competitor, notes) {
+  const primaryTheme = notes[0] ? competitorApplicationTheme(notes[0]) : "";
+  const primaryNotes = notes.filter((note) => competitorApplicationTheme(note) === primaryTheme);
+  if (!primaryTheme) return {
+    text: "Workflow ownership signal unresolved — no official competitor application note matches the active filters.",
+    theme: "Workflow unresolved",
+    repeated: false,
+  };
+  if (primaryNotes.length > 1) return {
+    text: `${primaryNotes.length} official notes repeatedly emphasize ${primaryTheme.toLowerCase()}. This pattern suggests ${competitor} is trying to own that applied workflow through deployable proof, not only instrument specifications.`,
+    theme: primaryTheme,
+    repeated: true,
+  };
+  return {
+    text: `One official note emphasizes ${primaryTheme.toLowerCase()}. Treat this as an early workflow-ownership signal, not a sustained competitor narrative.`,
+    theme: primaryTheme,
+    repeated: false,
+  };
+}
+
+function pmmNarrativeSources(context, notes, conferences, audience) {
+  const applicationSources = notes.map((note) => ({
+    url: note.sourceUrl,
+    label: note.title,
+    sourceName: note.sourceType || "Official application note",
+    date: note.date,
+    confidence: undefined,
+    evidenceType: "Observed official workflow emphasis",
+  }));
+  const launchSources = context.launches.slice(0, 2).map((launch) => ({
+    url: timelineUrlForLaunch(launch),
+    label: launch.product,
+    sourceName: launch.sourceName || "Official launch source",
+    date: launch.date,
+    confidence: launch.confidence,
+    evidenceType: "Observed launch evidence",
+  }));
+  const technicalSources = (context.technicalProfile?.rows || [])
+    .filter((row) => row.evidenceType !== "requires-controlled-testing" && row.competitorValue && isHttpUrl(row.competitorSourceUrl))
+    .slice(0, 2)
+    .map((row) => ({
+      url: row.competitorSourceUrl,
+      label: row.dimension,
+      sourceName: "Official competitor technical source",
+      date: context.selectedLaunch?.date,
+      confidence: context.selectedLaunch?.confidence,
+      evidenceType: "Observed published claim",
+    }));
+  const audienceSources = (audience?.links || []).slice(0, 2).map((link) => ({
+    url: link.url,
+    label: link.label,
+    sourceName: "Exact public customer record",
+    date: link.sourceDate,
+    confidence: audience.confidence,
+    evidenceType: "Observed audience evidence",
+  }));
+  return pmmDeduplicateSources([
+    ...applicationSources,
+    ...launchSources,
+    ...technicalSources,
+    ...conferences,
+    ...audienceSources,
+    ...context.evidenceLinks.slice(0, 3),
+  ]);
+}
+
+function pmmNarrativeObservedClaim(context, notes) {
+  const technicalClaim = (context.technicalProfile?.rows || []).find((row) =>
+    row.evidenceType !== "requires-controlled-testing" && row.competitorValue && isHttpUrl(row.competitorSourceUrl)
+  );
+  if (technicalClaim) return {
+    text: technicalClaim.competitorValue,
+    caveat: `Published ${technicalClaim.dimension.toLowerCase()} claim; test conditions and comparability limits must be preserved.`,
+  };
+  const note = notes[0];
+  if (note?.evidenceStatement) return {
+    text: note.evidenceStatement,
+    caveat: "Structured summary of an official competitor application note; not a verbatim quotation.",
+  };
+  const launchText = context.selectedLaunch?.summary || context.selectedLaunch?.signalType;
+  if (launchText) return {
+    text: launchText,
+    caveat: "Structured summary of an official launch record; not proof of customer adoption or comparative superiority.",
+  };
+  return {
+    text: "Observed competitor claim or workflow emphasis unresolved for the active filters.",
+    caveat: "No official claim-bearing application note or launch record matches the active filters.",
+  };
+}
+
+function pmmNarrativeChange(context, notes, workflowRead) {
+  const configuredChange = context.comparison?.shortHorizonDefense?.whatChanged?.[0];
+  if (configuredChange && ["30d", "60d"].includes(filters.horizon.value)) return configuredChange;
+  const latestSource = [
+    ...notes.slice(0, 1).map((note) => ({ date: note.date, label: note.title, kind: "application note", theme: competitorApplicationTheme(note) })),
+    ...(context.selectedLaunch ? [{ date: context.selectedLaunch.date, label: context.selectedLaunch.product, kind: "launch", technology: context.selectedLaunch.technology }] : []),
+  ].sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0))[0];
+  if (!latestSource) return "Change unresolved — no comparable launch or application-note evidence matches the active filters.";
+  const narrativeContext = latestSource.kind === "application note"
+    ? `${String(latestSource.theme || workflowRead.theme).toLowerCase()} workflow story`
+    : `${String(latestSource.technology || "product").toLowerCase()} launch story`;
+  return `The newest matched ${latestSource.kind} evidence adds ${latestSource.label} to ${context.competitor}'s visible ${narrativeContext}. A comparable prior PMM narrative snapshot is not loaded, so no broader message delta is asserted.`;
+}
+
+function pmmNarrativeAudience(context, notes) {
+  const audience = marketingAudienceOptionsForCompetitor(context.competitor)[0];
+  if (audience) return {
+    audience,
+    text: `${audience.audience} · ${audience.buyerRole}; buying criterion: ${audience.criterion}; situation: ${audience.trigger}`,
+    caveat: "This is the most represented matching audience in the current exact-source evidence, not a measure of commercial attractiveness.",
+  };
+  const note = notes[0];
+  if (note) return {
+    audience: null,
+    text: `${note.marketSegment || "Audience unresolved"}; buyer role unresolved; evaluation context: ${note.applicationArea || "workflow unresolved"}`,
+    caveat: "Audience is inferred from official application-note context; no matching customer record establishes buyer role or priority.",
+  };
+  return { audience: null, text: "Audience and buying situation unresolved.", caveat: "No matching customer or application-note context is available." };
+}
+
+function pmmNarrativeActivation(context, conferences, workflowRead) {
+  const positioningMove = pmmListItems(context.comparison?.positioningMoves || []).find((item) =>
+    /position|message|battlecard|proof|claim|application note|enablement|package|quantif/i.test(item)
+  );
+  const defenseAction = pmmListItems(context.comparison?.shortHorizonDefense?.immediateDefenseActions || []).find((item) =>
+    /battlecard|sales|message|proof|claim|position/i.test(item)
+  );
+  const conference = conferences[0]?.event;
+  const conferenceAction = pmmUsableText(conference?.watersPrep?.[0]);
+  const action = positioningMove || defenseAction || conferenceAction
+    || `Create a ${context.competitor} narrative brief for ${workflowRead.theme.toLowerCase()} with the proposed counter-position, substantiation gaps, and message-testing questions.`;
+  const asset = conference
+    ? `Conference campaign and battlecard update for ${conference.eventName}`
+    : context.selectedLaunch
+      ? `Launch-response battlecard for ${context.selectedLaunch.product}`
+      : `Workflow campaign brief for ${workflowRead.theme}`;
+  const translation = conference && context.selectedLaunch
+    ? `Use ${conference.eventName} as the activation moment and ${context.selectedLaunch.product} as supporting launch context; do not present sponsorship or launch activity as proof that the market accepts the claim.`
+    : conference
+      ? `Translate the conference signal into message testing and campaign preparation; do not treat unconfirmed session content as an observed competitor claim.`
+      : context.selectedLaunch
+        ? `Translate the launch into a claim-response brief; do not reproduce the raw launch feed in primary PMM content.`
+        : "Use the application-note pattern as the campaign input; raw source records remain in the evidence layer.";
+  return { asset, action, translation };
+}
+
+function pmmCompetitiveNarrative(context) {
+  const notes = pmmNarrativeApplicationNotes(context);
+  const conferences = pmmNarrativeConferenceEvidence(context.competitor);
+  const workflowRead = pmmNarrativeApplicationRead(context.competitor, notes);
+  const audienceRead = pmmNarrativeAudience(context, notes);
+  const sources = pmmNarrativeSources(context, notes, conferences, audienceRead.audience);
+  const observedClaim = pmmNarrativeObservedClaim(context, notes);
+  const recency = pmmDecisionRecency(sources);
+  const sourceDiversity = new Set(sources.map(pmmSourceHostname)).size;
+  const confidence = pmmEvidenceConfidence(sources);
+  const activation = pmmNarrativeActivation(context, conferences, workflowRead);
+  const expectedConference = conferences.find((item) => /expected|not confirmed/i.test(item.content?.evidenceStatus || item.watch?.status || ""));
+  const hasForumEvidence = sources.some((source) => ["reddit.com", "chromforum.org", "labwrench.com"].some((host) => pmmSourceHostname(source).includes(host)));
+  const limitations = pmmListItems([
+    expectedConference ? `${expectedConference.event.eventName}: participation may be confirmed, but the specific competitor message or session is expected — not confirmed.` : "",
+    !workflowRead.repeated && notes.length ? "Application-note interpretation rests on one official note and is an early signal." : "",
+    sourceDiversity < 3 ? "Low source diversity — fewer than 3 distinct source domains support this synthesis." : "",
+    hasForumEvidence ? "Forum evidence can surface objections and language, but is complaint-biased and not representative market research." : "",
+    context.comparison?.shortHorizonDefense?.stillWeak?.[0] ? `Analyst weakness to validate: ${context.comparison.shortHorizonDefense.stillWeak[0]}` : "",
+    context.comparison?.evidenceBasis || context.technicalProfile?.limitations?.[0],
+    "Proposed Waters counter-position is not an approved Waters claim; approval is not established.",
+  ]).slice(0, 6);
+  const score = recency.points
+    + Math.min(3, sourceDiversity) * 7
+    + (workflowRead.repeated ? 10 : notes.length ? 4 : 0)
+    + (context.selectedLaunch ? 6 : 0)
+    + (conferences.length ? 4 : 0)
+    + (audienceRead.audience?.links?.length ? 6 : 0)
+    + Math.min(20, Math.round(confidence / 5));
+  return {
+    context,
+    competitor: context.competitor,
+    notes,
+    conferences,
+    workflowRead,
+    audienceRead,
+    sources,
+    observedClaim,
+    whatChanged: pmmNarrativeChange(context, notes, workflowRead),
+    likelyPositioning: context.positioning,
+    counterPosition: context.counterMessage,
+    activation,
+    recency,
+    sourceDiversity,
+    confidence,
+    limitations,
+    score,
+  };
+}
+
+function pmmNarrativeSourceMarkup(source) {
+  const dateLabel = source.date
+    ? formatDate(source.date)
+    : source.eventDate
+      ? `Event starts ${formatDate(source.eventDate)}`
+      : "Date unresolved";
+  return `<a href="${escapeHtml(source.url)}" target="_blank" rel="noreferrer"><span>${escapeHtml(source.evidenceType || "Observed public evidence")}</span><strong>${escapeHtml(source.label || source.sourceName)}</strong><small>${escapeHtml(source.sourceName || "Public source")} · ${escapeHtml(dateLabel)}</small></a>`;
+}
+
+function renderMarketingCompetitiveNarrative(signals = currentSignals()) {
+  const target = byId("pmmCompetitiveNarrative");
+  const competitors = marketingActiveCompetitors();
+  if (!competitors.length) {
+    target.innerHTML = pmmEmptyState("Competitive narratives are available for Agilent, Thermo, Shimadzu, and SCIEX; none matches the active competitor filter.");
+    return;
+  }
+  const narratives = competitors
+    .map((competitor) => pmmCompetitiveNarrative(marketingCompetitorContext(competitor, signals)))
+    .sort((a, b) => b.score - a.score || b.confidence - a.confidence || a.competitor.localeCompare(b.competitor));
+  if (!narratives.some((item) => item.competitor === state.activeBattlecardCompetitor)) {
+    state.activeBattlecardCompetitor = narratives[0].competitor;
+  }
+  const narrative = narratives.find((item) => item.competitor === state.activeBattlecardCompetitor) || narratives[0];
+  target.innerHTML = `
+    <div class="pmm-narrative-intro"><div><strong>One canonical narrative per competitor.</strong><p>Claims, intent, application-note patterns, comparator guidance, launches, conferences, and short-horizon defense are synthesized here. Raw feeds remain supporting evidence.</p></div><div class="pmm-decision-legend">${pmmEvidenceTypeMarkup("observed", "Observed competitor evidence")}${pmmEvidenceTypeMarkup("inference", "Analyst/rule-based inference")}${pmmEvidenceTypeMarkup("approval", "Proposed Waters position — not approved")}</div></div>
+    <div class="battlecard-tabs pmm-narrative-tabs" role="tablist" aria-label="Prioritized competitor narratives">
+      ${narratives.map((item, index) => `<button type="button" role="tab" data-battlecard-competitor="${escapeHtml(item.competitor)}" aria-selected="${item.competitor === narrative.competitor}" class="${item.competitor === narrative.competitor ? "active" : ""}"><strong>${escapeHtml(item.competitor === "Thermo Fisher" ? "Thermo" : item.competitor)}</strong><span>Priority ${index + 1} · ${item.sourceDiversity} source domain${item.sourceDiversity === 1 ? "" : "s"}</span></button>`).join("")}
+    </div>
+    <article class="competitive-battlecard competitive-narrative-card" role="tabpanel" aria-label="${escapeHtml(narrative.competitor)} canonical competitive narrative">
+      <header class="battlecard-header pmm-narrative-header">
+        <div><span>Prioritized Competitive Narrative · ${escapeHtml(horizonLabel())}</span><h4>${escapeHtml(narrative.competitor)}</h4><p>Canonical PMM synthesis; each intelligence input appears once and links to its underlying evidence.</p></div>
+        <div class="battlecard-evidence-status"><strong>${narrative.sourceDiversity}</strong><span>source domain${narrative.sourceDiversity === 1 ? "" : "s"}</span><small>${narrative.confidence ? `${escapeHtml(confidenceLabel(narrative.confidence))} · ${narrative.confidence}/100` : "Confidence unresolved"}</small></div>
+      </header>
+      <div class="pmm-narrative-core-grid">
+        <section><div class="pmm-narrative-label"><span>What Changed</span>${pmmEvidenceTypeMarkup("inference", "Analyst synthesis")}</div><p>${escapeHtml(narrative.whatChanged)}</p></section>
+        <section class="pmm-narrative-observed"><div class="pmm-narrative-label"><span>Observed Competitor Claim or Workflow Emphasis</span>${pmmEvidenceTypeMarkup("observed", "Observed competitor evidence")}</div><p>${escapeHtml(narrative.observedClaim.text)}</p><small>${escapeHtml(narrative.observedClaim.caveat)}</small></section>
+        <section><div class="pmm-narrative-label"><span>Likely Positioning</span>${pmmEvidenceTypeMarkup("inference", "Analyst/rule-based inference")}</div><p>${escapeHtml(narrative.likelyPositioning)}</p></section>
+        <section><div class="pmm-narrative-label"><span>Workflow Ownership Signal</span>${pmmEvidenceTypeMarkup("inference", "Application-note pattern inference")}</div><p>${escapeHtml(narrative.workflowRead.text)}</p><small>Application-note counts are shown only to distinguish a repeated cluster from an early single-note signal. Publication volume is not used.</small></section>
+        <section><div class="pmm-narrative-label"><span>Target Audience or Buying Situation</span>${pmmEvidenceTypeMarkup("inference", "Evidence-based audience inference")}</div><p>${escapeHtml(narrative.audienceRead.text)}</p><small>${escapeHtml(narrative.audienceRead.caveat)}</small></section>
+        <section class="pmm-narrative-counter"><div class="pmm-narrative-label"><span>Waters Counter-Position</span>${pmmEvidenceTypeMarkup("approval", "Proposed — not approved")}</div><p>${escapeHtml(narrative.counterPosition)}</p><small>Approval not established.</small></section>
+      </div>
+      <section class="pmm-narrative-decision">
+        <div><span>PMM Decision</span><h5>${escapeHtml(narrative.activation.asset)}</h5></div>
+        <p><strong>${escapeHtml(narrative.activation.action)}</strong></p>
+        <p>${escapeHtml(narrative.activation.translation)}</p>
+      </section>
+      <div class="pmm-narrative-status-grid" aria-label="Narrative evidence status">
+        ${pmmStatusMarkup(narrative.confidence ? "observed" : "unresolved", "Confidence", narrative.confidence ? `${confidenceLabel(narrative.confidence)} · ${narrative.confidence}/100` : "Unresolved")}
+        ${pmmStatusMarkup(narrative.recency.date ? "observed" : "unresolved", "Recency", narrative.recency.label)}
+        ${pmmStatusMarkup(narrative.sourceDiversity >= 3 ? "observed" : "unresolved", "Source diversity", `${narrative.sourceDiversity} distinct domain${narrative.sourceDiversity === 1 ? "" : "s"}`)}
+      </div>
+      <section class="pmm-narrative-caveats"><div class="pmm-narrative-label"><span>Evidence Caveats</span></div><ul>${narrative.limitations.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></section>
+      <section class="battlecard-sources pmm-narrative-sources"><div><span class="battlecard-kicker">Underlying Evidence Links</span><small>Sources are linked for verification; this is not a raw event or launch feed.</small></div><div class="battlecard-source-links">${narrative.sources.slice(0, 8).map(pmmNarrativeSourceMarkup).join("") || `<p class="pmm-unresolved">Exact evidence links unavailable.</p>`}</div></section>
+    </article>`;
+}
+
+const pmmActivationAssetTypes = [
+  "Battlecard",
+  "Webpage",
+  "Campaign",
+  "Launch kit",
+  "Sales deck",
+  "Application note",
+  "Customer proof",
+  "Message test",
+];
+
+const pmmActivationActionTypes = [
+  "Positioning",
+  "Proof/substantiation",
+  "Message testing",
+  "Packaging",
+  "Campaign activation",
+  "Launch content",
+  "Sales enablement",
+  "Customer proof",
+];
+
+function pmmActivationAssetType(decision) {
+  const recommendation = String(decision.activation || "").toLowerCase();
+  if (/application note|technical content/.test(recommendation)) return "Application note";
+  if (/launch/.test(recommendation)) return "Launch kit";
+  if (/campaign/.test(recommendation)) return "Campaign";
+  if (/webpage|web page|website/.test(recommendation)) return "Webpage";
+  if (/sales deck|presentation|deck/.test(recommendation)) return "Sales deck";
+  if (/customer proof|customer stor|case stud/.test(recommendation)) return "Customer proof";
+  if (/message test|test the message|testing question/.test(recommendation)) return "Message test";
+  return "Battlecard";
+}
+
+function pmmActivationActionType(assetType) {
+  return ({
+    Battlecard: "Sales enablement",
+    Webpage: "Packaging",
+    Campaign: "Campaign activation",
+    "Launch kit": "Launch content",
+    "Sales deck": "Sales enablement",
+    "Application note": "Proof/substantiation",
+    "Customer proof": "Customer proof",
+    "Message test": "Message testing",
+  })[assetType] || "Positioning";
+}
+
+function pmmActivationDeliverable(decision, rank) {
+  const proofCount = decision.availableProof.length;
+  const evidenceAvailable = decision.exactSources.length > 0;
+  const assetType = evidenceAvailable ? pmmActivationAssetType(decision) : "Asset unresolved";
+  const actionType = evidenceAvailable ? pmmActivationActionType(assetType) : "Action type unresolved";
+  const relatedDecision = `Priority ${rank} · ${decision.competitor} · ${decision.buyingCriterion}`;
+  const reason = decision.missingProof
+    ? `Close the substantiation gap before activating the proposed counter-position: ${decision.missingProof}`
+    : `Package the proposed counter-position for ${decision.buyerRole} in the identified buying situation.`;
+  const requiredProof = proofCount
+    ? `${proofCount} sourced Waters proof item${proofCount === 1 ? " is" : "s are"} available for review. ${decision.missingProof || "Any remaining substantiation gap is unresolved."}`
+    : decision.missingProof || "Required proof is unresolved.";
+  const configuredAction = /defin(?:e|ing) product requirements?|roadmap prioritization|engineering validation|product kpis?/i.test(decision.activation || "")
+    ? ""
+    : pmmUsableText(decision.activation);
+  const action = evidenceAvailable
+    ? configuredAction || `Create a ${assetType.toLowerCase()} that packages the proposed position, evidence, caveats, and open proof questions.`
+    : "Action unresolved — exact supporting evidence is required before a deliverable is commissioned.";
+  return {
+    rank,
+    relatedDecision,
+    assetType,
+    actionType,
+    action,
+    reason,
+    audience: `${decision.buyerRole} · ${decision.audience}`,
+    channel: decision.intendedChannel || "Channel unresolved",
+    owner: "Owner needed — no workflow assignment is available",
+    deadline: "Deadline needed — no workflow date is available",
+    status: evidenceAvailable ? "Proposed — workflow not established" : "Unresolved — supporting evidence unavailable",
+    requiredProof: `${requiredProof} Approval not established.`,
+    successMeasure: "Measure needed — no success measure is assigned",
+    sources: decision.exactSources,
+  };
+}
+
+function renderMarketingActivationBacklog(decisions) {
+  const target = byId("pmmActivationBacklog");
+  if (!decisions.length) {
+    target.innerHTML = pmmEmptyState("No PMM action can be linked to a positioning decision under the active filters.");
+    return;
+  }
+  const deliverables = decisions.map((decision, index) => pmmActivationDeliverable(decision, index + 1));
+  target.innerHTML = `
+    <div class="pmm-backlog-intro">
+      <div><div class="pmm-eyebrow">Recommended PMM Actions</div><h3>Positioning Decisions Converted into Deliverables</h3><p>Each item traces to one prioritized positioning decision. Recommendations are analyst/rule-based inference; workflow ownership, timing, approval, and measurement remain unresolved unless explicitly evidenced.</p></div>
+      <div class="pmm-asset-taxonomy" aria-label="Supported PMM asset types"><span>Supported asset types</span><div>${pmmActivationAssetTypes.map((type) => `<span>${escapeHtml(type)}</span>`).join("")}</div></div>
+    </div>
+    <p class="pmm-action-scope" role="note"><strong>Action scope:</strong> ${pmmActivationActionTypes.map(escapeHtml).join(" · ")}</p>
+    <div class="pmm-backlog" role="list">${deliverables.map((item) => `<article class="pmm-backlog-item" role="listitem" data-positioning-rank="${item.rank}" data-activation-asset="${escapeHtml(item.assetType)}">
+      <header class="pmm-backlog-header">
+        <div><span>Related Positioning Decision</span><strong>${escapeHtml(item.relatedDecision)}</strong></div>
+        ${pmmEvidenceTypeMarkup(item.sources.length ? "inference" : "unresolved", item.sources.length ? "Analyst/rule-based recommendation" : "Unresolved — no recommendation")}
+      </header>
+      <div class="pmm-backlog-body">
+        <section class="pmm-backlog-deliverable"><div><span>Asset / Action</span><strong class="pmm-asset-type">${escapeHtml(item.assetType)}</strong><small>${escapeHtml(item.actionType)}</small></div><p>${escapeHtml(item.action)}</p></section>
+        <dl class="pmm-backlog-details">
+          <div><dt>Reason It Is Needed</dt><dd>${escapeHtml(item.reason)}</dd></div>
+          <div><dt>Intended Audience</dt><dd>${escapeHtml(item.audience)}</dd></div>
+          <div><dt>Intended Channel</dt><dd>${escapeHtml(item.channel)}</dd></div>
+        </dl>
+        <div class="pmm-backlog-gates">
+          ${pmmStatusMarkup("unresolved", "Owner", item.owner)}
+          ${pmmStatusMarkup("unresolved", "Deadline", item.deadline)}
+          ${pmmStatusMarkup(item.sources.length ? "inference" : "unresolved", "Status", item.status)}
+          ${pmmStatusMarkup("unresolved", "Success measure", item.successMeasure)}
+        </div>
+        <section class="pmm-backlog-proof"><span>Required Proof or Approval</span><p>${escapeHtml(item.requiredProof)}</p></section>
+        <section class="pmm-backlog-sources"><span>Evidence Links</span>${item.sources.length ? `<div>${item.sources.slice(0, 6).map(pmmDecisionSourceMarkup).join("")}</div>` : `<p class="pmm-unresolved">Exact evidence links unavailable. The action remains unresolved.</p>`}</section>
+      </div>
+    </article>`).join("")}</div>`;
+}
+
+function pmmAppendixRecord({ title, type, sourceName, date, confidence, description, url, caveat = "", linkAvailable = true }) {
+  return {
+    title: pmmUsableText(title, "Evidence title unresolved"),
+    type: pmmUsableText(type, "Observed public evidence"),
+    sourceName: pmmUsableText(sourceName, "Source name unresolved"),
+    date: date || "",
+    confidence: Number.isFinite(Number(confidence)) ? Number(confidence) : null,
+    description: pmmUsableText(description),
+    url: isHttpUrl(url) ? url : "",
+    caveat: pmmUsableText(caveat),
+    linkAvailable,
+  };
+}
+
+function pmmAppendixLaunchConferenceRecords() {
+  const launches = currentLaunches().map((launch) => pmmAppendixRecord({
+    title: `${launch.competitor}: ${launch.product || launch.title}`,
+    type: "Observed official launch",
+    sourceName: launch.sourceName || "Official product source",
+    date: launch.date,
+    confidence: launch.confidence,
+    description: launch.summary || launch.signalType,
+    url: timelineUrlForLaunch(launch),
+  }));
+  const conferences = currentConferenceSources().map((event) => {
+    const competitorStatus = (event.competitorWatch || [])
+      .map((item) => `${item.name}: ${item.status}`)
+      .join(" · ");
+    return pmmAppendixRecord({
+      title: event.eventName,
+      type: "Observed official conference record",
+      sourceName: "Official event page",
+      date: event.startDate,
+      description: competitorStatus || event.annualTheme,
+      url: event.website || event.monitoringLinks?.[0]?.url,
+      caveat: (event.competitorContent || []).some((item) => /expected|not confirmed/i.test(item.evidenceStatus || ""))
+        ? "Some competitor participation detail is expected—not confirmed; open the event source before use."
+        : "Event presence does not establish claim adoption or performance.",
+    });
+  });
+  return [...launches, ...conferences].sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
+}
+
+function pmmAppendixApplicationPublicationRecords(signals) {
+  const notes = currentCompetitorApplicationNotes().map((note) => pmmAppendixRecord({
+    title: `${note.competitor}: ${note.title}`,
+    type: note.sourceType || "Observed official application note",
+    sourceName: `${note.competitor} official source`,
+    date: note.date,
+    description: note.evidenceStatement,
+    url: note.sourceUrl,
+    caveat: "An application note demonstrates a published workflow; it does not establish comparative superiority or market adoption.",
+  }));
+  const publications = signals
+    .filter((signal) => signal.category === "Scientific application intelligence" || /publication|journal|pubmed/i.test(`${signal.signalType} ${signal.sourceName}`))
+    .map((signal) => pmmAppendixRecord({
+      title: `${signal.competitor}: ${signal.title}`,
+      type: signal.signalType || "Observed publication record",
+      sourceName: signal.sourceName || "Publication source",
+      date: signal.date,
+      description: signal.summary,
+      url: signal.sourceUrl,
+      caveat: "Publication activity is scientific evidence, not proof of commercial importance, adoption, or competitive ownership.",
+    }));
+  return pmmDeduplicateSources([...notes, ...publications]);
+}
+
+function pmmAppendixFilingPartnershipRecords(signals) {
+  const filings = currentFilingInsights().map((item) => pmmAppendixRecord({
+    title: `${item.competitor}: ${item.headline}`,
+    type: `Observed ${item.filingType || "company filing"}`,
+    sourceName: item.sourceName || "Company filing",
+    date: item.date,
+    description: item.evidence || item.whyItMatters,
+    url: item.sourceUrl,
+    caveat: "A company filing supports the reported corporate statement; it does not by itself validate a product claim.",
+  }));
+  const partnerships = currentStrategicSignals(signals).map((signal) => pmmAppendixRecord({
+    title: `${signal.competitor}: ${signal.title}`,
+    type: "Observed partnership or strategic move",
+    sourceName: signal.sourceName || "Public company source",
+    date: signal.date,
+    description: signal.summary,
+    url: signal.sourceUrl,
+    caveat: "A partnership announcement establishes the relationship or activity—not customer adoption or delivered performance.",
+  }));
+  return pmmDeduplicateSources([...filings, ...partnerships]);
+}
+
+function pmmAppendixOtherPublicEvidenceRecords(signals, groupedRecords) {
+  const groupedUrls = new Set(groupedRecords.map((record) => canonicalEvidenceUrl(record.url)).filter(Boolean));
+  return pmmDeduplicateSources(signals
+    .filter((signal) => isHttpUrl(signal.sourceUrl) && !groupedUrls.has(canonicalEvidenceUrl(signal.sourceUrl)))
+    .map((signal) => pmmAppendixRecord({
+      title: `${signal.competitor}: ${signal.title}`,
+      type: `Observed public evidence · ${signal.category || signal.signalType || "classification unresolved"}`,
+      sourceName: signal.sourceName || "Public evidence source",
+      date: signal.date,
+      description: signal.summary,
+      url: signal.sourceUrl,
+      caveat: "This record is retained for traceability and does not create a PMM recommendation by itself.",
+    })));
+}
+
+function pmmAppendixCustomerLanguageRecords() {
+  const records = currentCustomerVoiceItems().flatMap((item) => customerVoiceSourceLinks(item).map((link) => pmmAppendixRecord({
+    title: link.label || `${item.company}: ${item.product}`,
+    type: "Observed public customer-language record",
+    sourceName: item.sourceName || "Public customer source",
+    date: link.sourceDate,
+    confidence: item.confidence,
+    description: pmmObservedCustomerLanguage(item) || item.customerLanguageSignal,
+    url: link.url,
+    caveat: ["reddit", "community_forum"].includes(normalizedCustomerVoiceSourceType(link.sourceType))
+      ? "Forum evidence can surface objections and language, but is complaint-biased and not representative market research."
+      : "A public customer record is directional evidence and is not representative market research.",
+  })));
+  return pmmDeduplicateSources(records);
+}
+
+function pmmAppendixSourceCoverageRecords() {
+  const selectedCompetitor = filters.competitor.value;
+  return (state.sourceCatalog?.sources || [])
+    .filter((source) => selectedCompetitor === "All"
+      ? !source.competitor || marketingBattlecardCompetitors.includes(source.competitor)
+      : source.competitor === selectedCompetitor)
+    .filter((source) => filters.technology.value === "All" || technologyMatchesFilter(
+      (source.signalCoverage || []).join(" "),
+      filters.technology.value,
+      `${source.source} ${(source.signalCoverage || []).join(" ")}`,
+    ))
+    .map((source) => pmmAppendixRecord({
+      title: source.source,
+      type: `Source coverage · ${source.group || "Unclassified"}`,
+      sourceName: source.competitor || "Market-wide source",
+      date: String(source.lastExtractionCheck || "").slice(0, 10),
+      description: `${source.extractionStatus || "Extraction status unresolved"} · ${source.extractionReason || "Coverage detail unresolved"}`,
+      url: source.url,
+      caveat: source.health === "good"
+        ? "A working source improves traceability; it does not establish that coverage is complete."
+        : `Link health is ${source.health || "unresolved"}${source.issue ? `: ${source.issue}` : "."}`,
+      linkAvailable: source.health !== "bad",
+    }));
+}
+
+function pmmAppendixHistoricalCapabilityRecords() {
+  const selectedCompetitor = filters.competitor.value;
+  const competitorProducts = (state.historicalProductCatalog?.products || [])
+    .filter((product) => selectedCompetitor === "All"
+      ? marketingBattlecardCompetitors.includes(product.competitor)
+      : product.competitor === selectedCompetitor)
+    .filter((product) => technologyMatchesFilter(
+      product.technology,
+      filters.technology.value,
+      `${product.product} ${product.productFamily || ""} ${product.subtechnology || ""}`,
+    ));
+  const watersProducts = selectedCompetitor === "All"
+    ? (state.historicalWatersCatalog?.products || []).filter((product) => technologyMatchesFilter(
+      product.technology,
+      filters.technology.value,
+      product.product,
+    ))
+    : [];
+  const historical = [...competitorProducts, ...watersProducts].map((product) => pmmAppendixRecord({
+    title: `${product.competitor || product.company}: ${product.product}`,
+    type: "Observed historical product record",
+    sourceName: product.sourceName || "Official historical source",
+    date: product.introducedYear ? String(product.introducedYear) : "",
+    confidence: product.confidence,
+    description: product.dateBasis ? `${product.dateBasis} year` : "Manufacturer introduction year or earliest dated official record.",
+    url: product.sourceUrl,
+    caveat: "Historical manufacturer archives are incomplete; this is not an exhaustive SKU catalog.",
+  }));
+  const launchCompetitors = new Map([
+    ...(state.productData?.launches || []).map((launch) => [launch.id, launch.competitor]),
+    ...(state.historicalProductCatalog?.products || []).map((product) => [product.id, product.competitor]),
+  ]);
+  const technical = (state.technicalComparisons?.profiles || []).flatMap((profile) => {
+    const competitor = launchCompetitors.get(profile.launchId) || "Competitor unresolved";
+    if (selectedCompetitor !== "All" && competitor !== selectedCompetitor) return [];
+    return (profile.rows || []).flatMap((row) => [
+      pmmAppendixRecord({
+        title: `${competitor} versus Waters: ${row.dimension}`,
+        type: `Observed technical source · ${row.evidenceType || "classification unresolved"}`,
+        sourceName: `${competitor} source`,
+        date: profile.asOfDate,
+        description: row.interpretation,
+        url: row.competitorSourceUrl,
+        caveat: "Published specifications may use different conditions; review the comparison limitation before reuse.",
+      }),
+      pmmAppendixRecord({
+        title: `Waters comparison source: ${row.dimension}`,
+        type: `Observed technical source · ${row.evidenceType || "classification unresolved"}`,
+        sourceName: "Waters public source",
+        date: profile.asOfDate,
+        description: row.watersValue,
+        url: row.watersSourceUrl,
+        caveat: "Technical evidence does not establish legal approval for a marketing claim.",
+      }),
+    ]);
+  });
+  return [...historical, ...technical]
+    .filter((record) => record.url)
+    .sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
+}
+
+function pmmAppendixRecordMarkup(record) {
+  const confidence = record.confidence == null
+    ? "Confidence unresolved"
+    : `${confidenceLabel(record.confidence)} confidence · ${record.confidence}/100`;
+  const date = record.date
+    ? /^\d{4}$/.test(record.date) ? record.date : formatDate(record.date)
+    : "Date unresolved";
+  const sourceLink = record.url && record.linkAvailable
+    ? `<a href="${escapeHtml(record.url)}" target="_blank" rel="noreferrer">Open exact source ↗</a>`
+    : `<span class="pmm-unresolved">Source link unavailable</span>`;
+  return `<article class="pmm-appendix-record">
+    <div><span>${escapeHtml(record.type)}</span><strong>${escapeHtml(record.title)}</strong>${record.description ? `<p>${escapeHtml(record.description)}</p>` : ""}<small>${escapeHtml(record.sourceName)} · ${escapeHtml(date)} · ${escapeHtml(confidence)}</small>${record.caveat ? `<small class="pmm-appendix-record-caveat">${escapeHtml(record.caveat)}</small>` : ""}</div>
+    ${sourceLink}
+  </article>`;
+}
+
+function pmmAppendixGroupMarkup(group) {
+  return `<details class="pmm-appendix-group">
+    <summary><span><strong>${escapeHtml(group.title)}</strong><small>${escapeHtml(group.description)}</small></span><b>${group.records.length} record${group.records.length === 1 ? "" : "s"}</b></summary>
+    <div class="pmm-appendix-group-body">${group.caveat ? `<p class="pmm-appendix-group-caveat">${escapeHtml(group.caveat)}</p>` : ""}${group.records.length
+      ? `<div class="pmm-appendix-records" tabindex="0" aria-label="${escapeHtml(group.title)} evidence records">${group.records.map(pmmAppendixRecordMarkup).join("")}</div>`
+      : pmmEmptyState(group.emptyState)}</div>
+  </details>`;
+}
+
+function renderMarketingEvidenceAppendix(contexts, signals) {
+  const target = byId("pmmEvidenceAppendix");
+  const launchConferenceRecords = pmmAppendixLaunchConferenceRecords();
+  const applicationPublicationRecords = pmmAppendixApplicationPublicationRecords(signals);
+  const filingPartnershipRecords = pmmAppendixFilingPartnershipRecords(signals);
+  const customerLanguageRecords = pmmAppendixCustomerLanguageRecords();
+  const otherPublicEvidenceRecords = pmmAppendixOtherPublicEvidenceRecords(signals, [
+    ...launchConferenceRecords,
+    ...applicationPublicationRecords,
+    ...filingPartnershipRecords,
+    ...customerLanguageRecords,
+  ]);
+  const groups = [
+    {
+      title: "Launches and Conferences",
+      description: "Official launches, event programs, sponsorship records, and confirmation caveats.",
+      caveat: "Raw launch and event records are reference material; presence and publication do not prove adoption or performance.",
+      records: launchConferenceRecords,
+      emptyState: "No launch or conference evidence matches the active filters.",
+    },
+    {
+      title: "Application Notes and Publications",
+      description: "Exact application-note and article records, without publication-volume interpretation.",
+      caveat: "Detailed publication counts and trend tables remain secondary; individual records are provided for verification.",
+      records: applicationPublicationRecords,
+      emptyState: "No application-note or publication record matches the active filters.",
+    },
+    {
+      title: "Filings and Partnerships",
+      description: "SEC filing excerpts and official partnership or strategic-move records.",
+      caveat: "Corporate evidence establishes reported activity, not product-claim substantiation.",
+      records: filingPartnershipRecords,
+      emptyState: "No filing or partnership evidence matches the active filters.",
+    },
+    {
+      title: "Other Public Evidence Records",
+      description: "Remaining filtered records from the Public Evidence Library that are not already grouped above.",
+      caveat: "These records remain available for source review but do not create recommendations or headline PMM metrics.",
+      records: otherPublicEvidenceRecords,
+      emptyState: "No additional public evidence record matches the active filters.",
+    },
+    {
+      title: "Customer-Language Records",
+      description: "Exact public records used to surface buyer language, objections, and criteria.",
+      caveat: "Generic sentiment summaries are intentionally omitted. Forum evidence is complaint-biased and not representative market research.",
+      records: customerLanguageRecords,
+      emptyState: "No customer-language record matches the active filters.",
+    },
+    {
+      title: "Source Coverage and Confidence",
+      description: "Source health, extraction status, recency, and explicit confidence gaps.",
+      caveat: "A working source is not evidence that monitoring is complete or representative.",
+      records: pmmAppendixSourceCoverageRecords(),
+      emptyState: "No source-coverage record matches the active competitor and technology filters.",
+    },
+    {
+      title: "Historical Product and Capability Records",
+      description: "Historical product introductions and detailed public technical-comparison sources.",
+      caveat: "Historical records apply competitor and technology filters but intentionally ignore the selected horizon. Geography and market fields are unavailable for much of the historical catalog.",
+      records: pmmAppendixHistoricalCapabilityRecords(),
+      emptyState: "No historical product or technical-comparison record matches the active competitor and technology filters.",
+    },
+  ];
+  const totalRecords = groups.reduce((total, group) => total + group.records.length, 0);
+  const directlyLinked = groups.reduce((total, group) => total + group.records.filter((record) => record.url && record.linkAvailable).length, 0);
+  target.innerHTML = `
+    <div class="pmm-appendix-intro">
+      <div><div class="pmm-eyebrow">Secondary Intelligence · Collapsed by Default</div><h3>Evidence Without Decision-Flow Competition</h3><p>Leadership synthesis remains in the Leadership view. Raw feeds, catalogs, coverage diagnostics, and detailed records are consolidated here and do not create PMM recommendations by themselves.</p></div>
+      <div class="pmm-appendix-summary" aria-label="Appendix evidence summary"><strong>${totalRecords}</strong><span>filtered records</span><small>${directlyLinked} exact source link${directlyLinked === 1 ? "" : "s"}</small></div>
+    </div>
+    <div class="pmm-appendix-groups">${groups.map(pmmAppendixGroupMarkup).join("")}</div>`;
+}
+
+function renderMarketingSourceCounts(contexts, positioningDecisionCount) {
+  const customerLinks = uniqueCustomerVoiceLinks(currentCustomerVoiceItems(), 1000);
+  const directEvidenceCount = contexts.reduce((total, context) => total + context.evidenceLinks.length, 0);
+  byId("sourceCounts").innerHTML = `
+    <div class="source-pill"><span>Role view</span><strong>Product Marketing</strong></div>
+    <div class="source-pill"><span>Time window</span><strong>${escapeHtml(horizonLabel())}</strong></div>
+    <a class="source-pill source-pill-link" href="#pmm-positioning-decisions" data-evidence-target="pmm-positioning-decisions"><span>Positioning decisions</span><strong>${positioningDecisionCount}<small>View →</small></strong></a>
+    <a class="source-pill source-pill-link" href="#pmm-claims-proof" data-evidence-target="pmm-claims-proof"><span>Claims awaiting approval</span><strong>${contexts.length}<small>View →</small></strong></a>
+    <a class="source-pill source-pill-link" href="#pmm-audience-criteria" data-evidence-target="pmm-audience-criteria"><span>Exact customer sources</span><strong>${customerLinks.length}<small>View →</small></strong></a>
+    <a class="source-pill source-pill-link" href="#pmm-evidence-appendix" data-evidence-target="pmm-evidence-appendix"><span>Direct evidence sources</span><strong>${directEvidenceCount}<small>View →</small></strong></a>`;
+}
+
+function renderMarketingWorkspace(signals) {
+  const contexts = marketingActiveCompetitors().map((competitor) => marketingCompetitorContext(competitor, signals));
+  const positioningDecisions = marketingPositioningDecisionCandidates(contexts);
+  renderMarketingPositioningDecisions(positioningDecisions);
+  renderMarketingClaimsProof(contexts);
+  renderMarketingAudienceCriteria();
+  renderMarketingCompetitiveNarrative(signals);
+  renderMarketingActivationBacklog(positioningDecisions);
+  renderMarketingEvidenceAppendix(contexts, signals);
+  renderMarketingSourceCounts(contexts, positioningDecisions.length);
+}
+
 function renderProductComparator() {
+  byId("comparisonTitle").textContent = "Product Comparator";
+  byId("comparisonSnapshots").hidden = false;
+  document.querySelector("#product-comparator .comparison-controls").hidden = false;
   const launches = comparisonLaunches();
   if (!launches.length) {
     byId("comparisonLaunchSelect").innerHTML = "";
@@ -1085,6 +2706,13 @@ function openComparisonPanel(launchId) {
 
 function setupComparisonPanel() {
   document.addEventListener("click", (event) => {
+    const battlecardTrigger = event.target.closest("[data-battlecard-competitor]");
+    if (battlecardTrigger && state.view === "Marketing") {
+      event.preventDefault();
+      state.activeBattlecardCompetitor = battlecardTrigger.dataset.battlecardCompetitor;
+      renderMarketingCompetitiveNarrative();
+      return;
+    }
     const trigger = event.target.closest("[data-compare-launch]");
     if (trigger) {
       event.preventDefault();
@@ -1103,6 +2731,24 @@ function setupComparisonPanel() {
   byId("comparisonWatersSelect").addEventListener("change", (event) => {
     state.activeWatersComparatorId = event.target.value;
     renderComparisonBody();
+  });
+}
+
+function setupMarketingWorkspaceControls() {
+  document.addEventListener("change", (event) => {
+    const control = event.target.closest("[data-pmm-claims-filter]");
+    if (!control || state.view !== "Marketing") return;
+    const key = control.dataset.pmmClaimsFilter;
+    if (!(key in state.marketingClaimsFilters)) return;
+    state.marketingClaimsFilters[key] = control.value;
+    render();
+  });
+  document.addEventListener("click", (event) => {
+    const clearButton = event.target.closest("[data-pmm-claims-clear]");
+    if (!clearButton || state.view !== "Marketing") return;
+    event.preventDefault();
+    state.marketingClaimsFilters = { readiness: "All", audience: "All", classification: "All" };
+    render();
   });
 }
 
@@ -1167,13 +2813,8 @@ function pressReleaseUrlForLaunch(launch) {
   return isHttpUrl(launch?.pressReleaseUrl) ? launch.pressReleaseUrl : "";
 }
 
-function discoveryUrlForLaunch(launch) {
+function productPageUrlForLaunch(launch) {
   return isHttpUrl(launch?.sourceUrl) ? launch.sourceUrl : "";
-}
-
-function sameSourceUrl(firstUrl, secondUrl) {
-  const normalize = (url) => String(url || "").replace(/\/$/, "");
-  return Boolean(firstUrl && secondUrl && normalize(firstUrl) === normalize(secondUrl));
 }
 
 function launchPressReleaseEvidenceUrl(launch) {
@@ -1400,6 +3041,13 @@ function currentStrategicSignals(signals) {
     .filter((signal) => signal.category === "Corporate intelligence")
     .filter((signal) => /partnership|partner|collaboration|strategic initiative|strategic market investment|ai ecosystem|ecosystem|integration|research hub|customer experience center/i.test(`${signal.signalType} ${signal.title} ${signal.summary}`))
     .sort((a, b) => (b.priorityScore || 0) - (a.priorityScore || 0));
+}
+
+function currentEarningsSignals(signals) {
+  return signals
+    .filter((signal) => signal.category === "Corporate intelligence")
+    .filter((signal) => /(?:reports?|announces?)\s+(?:first|second|third|fourth|q[1-4])\s+quarter.*results|quarterly earnings|earnings results/i.test(`${signal.title} ${signal.theme || ""}`))
+    .sort((a, b) => new Date(b.date) - new Date(a.date));
 }
 
 const horizonDays = {
@@ -1930,11 +3578,19 @@ function validationNeedsForRecommendation(rec) {
   };
 }
 
+function activityLevelFromTwenty(score) {
+  const value = Number(score || 0);
+  if (value >= 15) return "High";
+  if (value >= 8) return "Medium";
+  return "Low";
+}
+
 function scoreDriverMarkup(breakdown, linkAudit = false) {
+  const sourceQualityScore = Math.max(0, Math.min(10, Number(breakdown.evidenceQualityFreshness || 0)));
   const drivers = [
-    { key: "trendAcceleration", label: "Application trend", value: `${breakdown.trendAcceleration}/20` },
-    { key: "competitorPressure", label: "Competitor activity", value: `${breakdown.competitorPressure}/20` },
-    { key: "evidenceQualityFreshness", label: "Source quality", value: `${breakdown.evidenceQualityFreshness}/10` },
+    { key: "trendAcceleration", label: "Application trend", value: activityLevelFromTwenty(breakdown.trendAcceleration) },
+    { key: "competitorPressure", label: "Competitor activity", value: activityLevelFromTwenty(breakdown.competitorPressure) },
+    { key: "evidenceQualityFreshness", label: "Source quality", value: `${sourceQualityScore}/10` },
   ];
   const recency = breakdown.recencyDays === null ? "No dated evidence" : `${breakdown.recencyDays} days`;
   const sourceFamilies = breakdown.sourceFamilies || [];
@@ -1964,12 +3620,15 @@ function scoreDriverMarkup(breakdown, linkAudit = false) {
   return `
     <div class="score-driver-grid">
       ${drivers
-        .map((driver) => `
-          <div class="score-driver-card">
+        .map((driver) => {
+          return `
+          <div class="score-driver-card score-driver-card--${escapeHtml(driver.key)}">
+            <i class="score-driver-marker" aria-hidden="true"></i>
+            <span class="score-driver-label">${escapeHtml(driver.label)}</span>
             <b>${escapeHtml(driver.value)}</b>
-            <span>${escapeHtml(driver.label)}</span>
           </div>
-        `)
+        `;
+        })
         .join("")}
     </div>
     ${evidenceAuditLinks
@@ -1979,7 +3638,7 @@ function scoreDriverMarkup(breakdown, linkAudit = false) {
 }
 
 function priorityBreakdownText(breakdown) {
-  return `Priority ${breakdown.total}/100. Visible public-signal drivers: application trend ${breakdown.trendAcceleration}/20, competitor activity ${breakdown.competitorPressure}/20, and source quality and recency ${breakdown.evidenceQualityFreshness}/10. Linked public sources: ${breakdown.publicSourceCount}; different evidence types: ${breakdown.sourceFamilies?.length || 0}; newest evidence: ${breakdown.latestEvidenceDate || "not dated"}.`;
+  return `Priority ${breakdown.total}/100. Visible public-signal drivers: application trend activity ${activityLevelFromTwenty(breakdown.trendAcceleration)}, competitor activity ${activityLevelFromTwenty(breakdown.competitorPressure)}, and source quality and recency ${breakdown.evidenceQualityFreshness}/10. Linked public sources: ${breakdown.publicSourceCount}; different evidence types: ${breakdown.sourceFamilies?.length || 0}; newest evidence: ${breakdown.latestEvidenceDate || "not dated"}.`;
 }
 
 function competitorIntentForRecommendation(rec, signals) {
@@ -2686,7 +4345,7 @@ function renderDirectorSummary(signals) {
     {
       label: context.summaryLabel,
       headline: `${strategicThemeForRecommendation(topRecommendation)} ${confidenceDisplayLabel(breakdown.confidenceState.state)}: ${breakdown.total}/100.`,
-      detail: `${evidenceCountSummary(breakdown)} in ${horizonLabel()}. Visible score drivers: competitor pressure ${breakdown.competitorPressure}/20 and source quality ${breakdown.evidenceQualityFreshness}/10.`,
+      detail: `${evidenceCountSummary(breakdown)} in ${horizonLabel()}. Visible score drivers: competitor activity ${activityLevelFromTwenty(breakdown.competitorPressure)} and source quality ${breakdown.evidenceQualityFreshness}/10.`,
       action: `Time-window decision rule: ${context.decisionRule} ${breakdown.confidenceState.guidance}`,
     },
     {
@@ -2822,7 +4481,7 @@ function decisionUrgencyMarkup(recommendation, decisionIndex) {
       <p class="decision-why-now"><b>Why now</b><span>${escapeHtml(urgency.whyNowInsight || urgency.delayRisk)}</span></p>
       ${competitorActions.length ? `
         <button type="button" class="decision-derivation-button" data-decision-urgency-sources="${decisionIndex}">
-          View how this was derived · ${competitorActions.length} linked source${competitorActions.length === 1 ? "" : "s"}
+          ${competitorActions.length} linked source${competitorActions.length === 1 ? "" : "s"}
         </button>
       ` : ""}
     </div>
@@ -2863,7 +4522,7 @@ function trendTechnicalContext(trend) {
     return "The source set covers LC-MS oligonucleotide identity, purity and impurity profiling, adsorption and carryover, ion-pairing and solvent compatibility, and intact-mass characterization.";
   }
   if (theme.includes("pfas") || theme.includes("environmental contaminant")) {
-    return "The source set covers LC-MS/MS PFAS detection and quantitation, including sample preparation, matrix effects, isotope dilution, sensitivity and LOQ, and regulated-method validation.";
+    return "Key applications span drinking-water compliance and occurrence monitoring; wastewater, biosolids, leachate, and other environmental matrices; food and food-contact contamination; and human-exposure testing in serum or plasma. Across these applications, LC-MS/MS workflows must control sample preparation and matrix effects while delivering isotope-dilution quantitation, defensible sensitivity and LOQ, and regulated-method validation.";
   }
   if (theme.includes("proteomics") || theme.includes("metabolomics")) {
     return "The source set covers high-resolution LC-MS acquisition, ion mobility, quantitative proteomics and metabolomics, biomarker measurement, and data-processing workflows.";
@@ -2886,7 +4545,7 @@ function leadershipLaunchContext(launch) {
 
 function leadershipConferenceUpdate(conference) {
   if (conference?.eventName === "Bioprocessing Summit US") {
-    return "Thermo Fisher is confirmed as a 2026 premier sponsor, but no Thermo Fisher talk title is public yet. The agenda centers on Analytical Intelligence, AI-enabled bioprocessing, next-generation analytical methods, and CMC for RNA/LNP and other complex modalities.";
+    return "Thermo Fisher has secured premier-sponsor visibility at a program centered on Analytical Intelligence, AI-enabled bioprocessing, next-generation analytical methods, and RNA/LNP CMC. The near-term competitive narrative is shifting toward digital analytical workflows and complex-modality scale-up—not instrument specifications alone.";
   }
   const confirmedContent = (conference?.competitorContent || [])
     .find((item) => item.evidenceStatus === "Confirmed in 2026 program");
@@ -2899,36 +4558,42 @@ function leadershipConferenceUpdate(conference) {
     : `${conference?.annualTheme || "The latest public program"}.`;
 }
 
+const leadershipCustomerMinimumIndependentSources = 3;
+
 function leadershipCustomerHighlight() {
   const items = currentCustomerVoiceItems();
   if (!items.length) return null;
   const itemById = new Map(items.map((item) => [item.id, item]));
   const priorityRank = { High: 3, Medium: 2, Low: 1 };
   const insight = (state.customerVoice?.insights || [])
-    .map((entry) => ({
-      ...entry,
-      matchingItems: (entry.evidenceIds || []).map((id) => itemById.get(id)).filter(Boolean),
-    }))
-    .filter((entry) => entry.matchingItems.length)
+    .map((entry) => {
+      const matchingItems = (entry.evidenceIds || []).map((id) => itemById.get(id)).filter(Boolean);
+      const independentSources = groupCustomerVoiceEvidenceMappings(
+        matchingItems.flatMap((item) => customerVoiceSourceLinks(item).map((link) => ({ item, link }))),
+      );
+      return {
+        ...entry,
+        matchingItems,
+        independentSourceCount: independentSources.length,
+      };
+    })
+    .filter((entry) => entry.independentSourceCount >= leadershipCustomerMinimumIndependentSources)
     .sort((a, b) =>
       (priorityRank[b.priority] || 0) - (priorityRank[a.priority] || 0)
+      || b.independentSourceCount - a.independentSourceCount
       || Number(b.confidence || 0) - Number(a.confidence || 0)
-      || b.matchingItems.length - a.matchingItems.length
     )[0];
   if (!insight) return null;
-  const exactSource = insight.matchingItems
-    .flatMap((item) => customerVoiceSourceLinks(item))
-    .find((link) => isHttpUrl(link.url));
   return {
     kind: "customer",
     label: "Customer risk",
-    badge: `Confidence Score ${insight.confidence || 0}/100`,
+    badge: `${insight.independentSourceCount} independent sources`,
     title: insight.title,
     detail: insight.whatItMeans,
     sectionId: "customer-voice",
     sectionLabel: "View customer evidence",
-    sourceUrl: exactSource?.url || "",
-    sourceLabel: exactSource ? "Open exact source" : "",
+    sourceUrl: "",
+    sourceLabel: "",
   };
 }
 
@@ -2942,6 +4607,7 @@ function leadershipBriefHighlights(signals) {
     highlights.push({
       kind: "market",
       label: "Scientific market signal",
+      badge: `${leadTrend.comparison.count.toLocaleString()} publication${leadTrend.comparison.count === 1 ? "" : "s"}`,
       title: leadTrend.trend.theme,
       detail: trendTechnicalContext(leadTrend.trend),
       sectionId: "application-trends",
@@ -2974,6 +4640,7 @@ function leadershipBriefHighlights(signals) {
     highlights.push({
       kind: "corporate",
       label: "Corporate signal",
+      badge: formatDate(filing.date),
       title: filing.headline,
       detail: filing.whyItMatters || filing.pmImplication || filing.evidence,
       sectionId: "filing-evidence",
@@ -3126,7 +4793,9 @@ function leadershipHighlightsMarkup(highlights, recommendations) {
 function renderDecisionPacket(signals) {
   const recommendations = recommendationsByConfidence(signals);
   const highlights = leadershipBriefHighlights(signals);
-  byId("leadershipDecisionCount").textContent = `${highlights.length} executive highlight${highlights.length === 1 ? "" : "s"}`;
+  const leadershipDecisionCount = byId("leadershipDecisionCount");
+  leadershipDecisionCount.textContent = `${highlights.length} executive highlight${highlights.length === 1 ? "" : "s"}`;
+  leadershipDecisionCount.dataset.mobileLabel = `${highlights.length} highlight${highlights.length === 1 ? "" : "s"}`;
   if (!highlights.length) {
     state.activeDecisionBreakdown = null;
     lastDecisionPacketText = leadershipBriefText([], recommendations);
@@ -3544,11 +5213,29 @@ function horizonCompetitorProfile(baseProfile, competitor, evidenceItems) {
 function competitorIntentProfile(competitor, signals) {
   const launches = currentLaunches().filter((launch) => launch.competitor === competitor);
   const strategic = currentStrategicSignals(signals).filter((signal) => signal.competitor === competitor);
+  const earnings = currentEarningsSignals(signals).filter((signal) => signal.competitor === competitor);
   const filings = currentFilingInsights().filter((insight) => insight.competitor === competitor);
   const profileCopy = {
     "Thermo Fisher": {
       focus: "Bioproduction adjacency, chromatography/MS resilience, and LC-MS platform visibility",
       intent: "Strengthen end-to-end biopharma workflow position, not only individual instruments",
+      activityThemes: [
+        {
+          title: "Q2 2026 Earnings Showed Double-Digit Revenue and EPS Growth",
+          insight: "Thermo reported revenue up 10% to $11.99 billion, organic growth of 5%, and adjusted EPS up 13% to $6.03.",
+          matches: ["Second Quarter 2026 Results"],
+        },
+        {
+          title: "Bioproduction Investment Is Being Paired with Chromatography and MS Resilience",
+          insight: "Thermo linked its filtration and separation acquisition to bioproduction while chromatography and MS growth offset weakness elsewhere in Analytical Instruments.",
+          matches: ["pairing bioproduction investment"],
+        },
+        {
+          title: "Analytical Instruments Faced Margin Pressure Despite Chromatography/MS Growth",
+          insight: "Thermo reported a flat Analytical Instruments segment and lower margins, even as chromatography and mass spectrometry grew.",
+          matches: ["Analytical Instruments was flat"],
+        },
+      ],
       shortTermImpact: "Waters may face stronger account-level comparison in biopharma and LNP discussions where Thermo can bundle chromatography, MS, sample prep, and bioproduction context.",
       midLongTermImpact: "If Thermo keeps linking bioproduction, chromatography, MS, and informatics, Waters risks being positioned as a narrower instrument vendor in strategic biopharma workflow decisions.",
       response: {
@@ -3628,9 +5315,10 @@ function competitorIntentProfile(competitor, signals) {
   const evidenceBits = [
     launches.length ? `${launches.length} launch signal${launches.length === 1 ? "" : "s"}` : "",
     strategic.length ? `${strategic.length} strategic move${strategic.length === 1 ? "" : "s"}` : "",
+    earnings.length ? `${earnings.length} earnings result${earnings.length === 1 ? "" : "s"}` : "",
     filings.length ? `${filings.length} filing insight${filings.length === 1 ? "" : "s"}` : "",
   ].filter(Boolean);
-  const evidenceCount = launches.length + strategic.length + filings.length;
+  const evidenceCount = launches.length + strategic.length + earnings.length + filings.length;
   const evidenceItems = [
     ...launches.map((launch) => ({
       type: "Launch",
@@ -3643,6 +5331,14 @@ function competitorIntentProfile(competitor, signals) {
     })),
     ...strategic.map((signal) => ({
       type: "Strategic move",
+      title: signal.title,
+      date: signal.date,
+      sourceName: signal.sourceName,
+      url: signal.sourceUrl,
+      detail: signal.summary || signal.pmImplication || signal.signalType,
+    })),
+    ...earnings.map((signal) => ({
+      type: "Earnings result",
       title: signal.title,
       date: signal.date,
       sourceName: signal.sourceName,
@@ -3668,6 +5364,11 @@ function competitorIntentProfile(competitor, signals) {
       key: "strategic",
       label: `strategic move${strategic.length === 1 ? "" : "s"}`,
       items: evidenceItems.filter((item) => item.type === "Strategic move"),
+    },
+    {
+      key: "earnings",
+      label: `earnings result${earnings.length === 1 ? "" : "s"}`,
+      items: evidenceItems.filter((item) => item.type === "Earnings result"),
     },
     {
       key: "filings",
@@ -3764,7 +5465,6 @@ function competitorIntentOptionMarkup(profile, index, selected) {
   const activityLabel = profile.evidenceCount ? "Active" : "Monitor";
   return `
     <button type="button" class="intent-competitor-option${selected ? " is-selected" : ""}" data-intent-select="${escapeHtml(profile.competitor)}" role="tab" aria-selected="${selected}" aria-controls="intent-selected-detail">
-      <span class="intent-option-rank" aria-label="Rank ${index + 1}">${index + 1}</span>
       <span class="intent-option-copy">
         <strong>${escapeHtml(profile.competitor)}</strong>
         <small class="intent-option-status ${profile.evidenceCount ? "active" : "monitor"}">${activityLabel}</small>
@@ -3780,9 +5480,11 @@ function competitorIntentDetailMarkup(profile) {
   return `
     <article id="intent-selected-detail" class="intent-detail-panel risk-${profile.risk.toLowerCase()}" style="--intent-competitor-accent: ${escapeHtml(competitorAccent)}" role="tabpanel" aria-label="${escapeHtml(profile.competitor)} competitor intent">
       <div class="intent-detail-header">
-        <div class="intent-detail-title">
-          <span>Selected competitor</span>
-          <h4>${escapeHtml(profile.competitor)}</h4>
+        <div class="intent-detail-identity">
+          <div class="intent-detail-title">
+            <span>Selected competitor</span>
+            <h4>${escapeHtml(profile.competitor)}</h4>
+          </div>
         </div>
         <div class="intent-header-meta">
           <div class="intent-badges">
@@ -4043,10 +5745,46 @@ function customerVoiceSourceMap() {
 
 const customerVoiceCommunityHosts = new Set([
   "chromforum.org",
+  "fda.gov",
   "labwrench.com",
   "reddit.com",
   "selectscience.net",
 ]);
+
+const customerVoiceEvidenceSourceTypes = new Set([
+  "community_forum",
+  "structured_review",
+  "regulatory",
+  "reddit",
+]);
+
+const customerVoiceSourceTypeDefinitions = {
+  community_forum: { label: "Community forums", shortLabel: "Forum" },
+  structured_review: { label: "Structured reviews", shortLabel: "Review" },
+  regulatory: { label: "Regulatory records", shortLabel: "Regulatory" },
+  reddit: { label: "Reddit", shortLabel: "Reddit" },
+};
+
+function normalizedCustomerVoiceSourceType(sourceType, sourceUrl = "") {
+  if (customerVoiceEvidenceSourceTypes.has(sourceType)) return sourceType;
+  try {
+    const hostname = new URL(sourceUrl).hostname.toLowerCase().replace(/^www\./, "");
+    if (hostname === "reddit.com" || hostname.endsWith(".reddit.com")) return "reddit";
+    if (hostname === "fda.gov" || hostname.endsWith(".fda.gov")) return "regulatory";
+    if (hostname === "selectscience.net" || hostname.endsWith(".selectscience.net")) return "structured_review";
+    if (["chromforum.org", "labwrench.com"].some((host) => hostname === host || hostname.endsWith(`.${host}`))) {
+      return "community_forum";
+    }
+  } catch {
+    return "";
+  }
+  return "";
+}
+
+function customerVoiceSourceTypeLabel(sourceType, short = false) {
+  const definition = customerVoiceSourceTypeDefinitions[sourceType];
+  return definition ? (short ? definition.shortLabel : definition.label) : "Public source";
+}
 
 function isCustomerAuthoredVoiceSource(source) {
   if (!isHttpUrl(source?.url)) return false;
@@ -4059,8 +5797,9 @@ function isCustomerAuthoredVoiceSource(source) {
   const isIndependentCommunity = [...customerVoiceCommunityHosts]
     .some((host) => hostname === host || hostname.endsWith(`.${host}`));
   if (!isIndependentCommunity) return false;
+  if (source.sourceType && !customerVoiceEvidenceSourceTypes.has(source.sourceType)) return false;
   const sourceDescription = `${source.recordType || ""} ${source.sourceType || ""} ${source.label || ""}`;
-  return !/(official|employee|vendor-authored|press release|product page|support knowledge base)/i.test(sourceDescription);
+  return !/(employee|vendor-authored|press release|support knowledge base)/i.test(sourceDescription);
 }
 
 function customerVoiceSourceLinks(item, horizonValue = filters.horizon.value) {
@@ -4072,6 +5811,8 @@ function customerVoiceSourceLinks(item, horizonValue = filters.horizon.value) {
       sourceKeywords: Array.isArray(record.sourceKeywords) ? record.sourceKeywords : [],
       status: "exact_record",
       recordType: record.recordType || "Public evidence record",
+      sourceType: normalizedCustomerVoiceSourceType(record.sourceType, record.url),
+      sourceCredibility: Number(record.sourceCredibility || 0),
       sourceDate: record.sourceDate,
       dateType: record.dateType || "Published",
     }));
@@ -4091,8 +5832,17 @@ function customerVoiceSourceLinks(item, horizonValue = filters.horizon.value) {
       url: source.url,
       status: source.status,
       recordType: "Source-discovery page",
+      sourceType: normalizedCustomerVoiceSourceType(source.sourceType, source.url),
+      sourceCredibility: Number(source.sourceCredibility || 0),
     }));
-  const fallbackSource = { label: item.sourceName || "Source", url: item.sourceUrl, status: "source_mapped", recordType: "Source-discovery page" };
+  const fallbackSource = {
+    label: item.sourceName || "Source",
+    url: item.sourceUrl,
+    status: "source_mapped",
+    recordType: "Source-discovery page",
+    sourceType: normalizedCustomerVoiceSourceType(item.sourceType, item.sourceUrl),
+    sourceCredibility: Number(item.sourceCredibility || 0),
+  };
   if (!links.length && isCustomerAuthoredVoiceSource(fallbackSource)) {
     links.push(fallbackSource);
   }
@@ -4162,7 +5912,10 @@ function customerVoiceEvidenceCardMarkup({ link, mappings }, includeConfidence =
   return `
     <a class="customer-source-card" href="${escapeHtml(link.url)}" target="_blank" rel="noreferrer">
       <span class="customer-source-card-topline">
-        <strong>${escapeHtml(link.label || "Exact public source")}</strong>
+        <span class="customer-source-card-identity">
+          <span class="customer-source-type-badge source-type-${escapeHtml(link.sourceType || "public")}">${escapeHtml(customerVoiceSourceTypeLabel(link.sourceType, true))}</span>
+          <strong>${escapeHtml(link.label || "Exact public source")}</strong>
+        </span>
         <small>${escapeHtml(formatDate(link.sourceDate))}</small>
       </span>
       <span class="customer-source-signal">${escapeHtml(sourceKeywordsText(link))}</span>
@@ -4174,7 +5927,56 @@ function customerVoiceEvidenceCardMarkup({ link, mappings }, includeConfidence =
   `;
 }
 
-function customerVoiceItemsForHorizon(horizonValue) {
+function customerVoiceSourceMixGroups(items) {
+  const evidenceGroups = groupCustomerVoiceEvidenceMappings(
+    items.flatMap((item) => customerVoiceSourceLinks(item).map((link) => ({ item, link }))),
+  );
+  const counts = new Map();
+  evidenceGroups.forEach(({ link }) => {
+    const sourceType = normalizedCustomerVoiceSourceType(link.sourceType, link.url);
+    if (!sourceType) return;
+    counts.set(sourceType, (counts.get(sourceType) || 0) + 1);
+  });
+  return Object.keys(customerVoiceSourceTypeDefinitions)
+    .map((sourceType) => ({ sourceType, count: counts.get(sourceType) || 0 }))
+    .filter(({ count }) => count > 0);
+}
+
+function renderCustomerVoiceSourceMix(items) {
+  const groups = customerVoiceSourceMixGroups(items);
+  byId("customerVoiceSourceMix").innerHTML = groups.length
+    ? `
+      <strong>Public source mix</strong>
+      <span class="customer-source-mix-list">
+        ${groups.map(({ sourceType, count }) => `
+          <button type="button" data-customer-source-type="${escapeHtml(sourceType)}" aria-label="View ${count} ${escapeHtml(customerVoiceSourceTypeLabel(sourceType).toLowerCase())}">
+            ${escapeHtml(customerVoiceSourceTypeLabel(sourceType))} <b>${count}</b>
+          </button>
+        `).join("")}
+      </span>
+    `
+    : "";
+}
+
+function openCustomerVoiceSourceTypeEvidence(sourceType) {
+  if (!customerVoiceEvidenceSourceTypes.has(sourceType)) return;
+  const items = currentCustomerVoiceItems();
+  const evidenceGroups = groupCustomerVoiceEvidenceMappings(
+    items.flatMap((item) => customerVoiceSourceLinks(item)
+      .filter((link) => normalizedCustomerVoiceSourceType(link.sourceType, link.url) === sourceType)
+      .map((link) => ({ item, link }))),
+  );
+  byId("decisionEvidenceTitle").textContent = customerVoiceSourceTypeLabel(sourceType);
+  byId("decisionEvidenceSummary").textContent = `${evidenceGroups.length} unique exact public source${evidenceGroups.length === 1 ? "" : "s"} in the active time window.`;
+  byId("decisionEvidenceList").innerHTML = evidenceGroups.length
+    ? evidenceGroups.map((group) => customerVoiceEvidenceCardMarkup(group)).join("")
+    : `<div class="empty">No ${escapeHtml(customerVoiceSourceTypeLabel(sourceType).toLowerCase())} match the active filters.</div>`;
+  byId("decisionEvidenceModal").hidden = false;
+  document.body.classList.add("modal-open");
+  byId("hideDecisionEvidence").focus();
+}
+
+function customerVoiceItemsForHorizon(horizonValue, { ignoreCompetitor = false } = {}) {
   const term = customerVoiceSearchTerm.trim().toLowerCase();
   return (state.customerVoice?.feedback || [])
     .filter((item) => customerVoiceSourceLinks(item, horizonValue).length > 0)
@@ -4190,7 +5992,7 @@ function customerVoiceItemsForHorizon(horizonValue) {
       const text = `${item.platform} ${item.product} ${item.category} ${item.theme}`;
       return technologyMatchesFilter("", filters.technology.value, text);
     })
-    .filter((item) => filters.competitor.value === "All" || item.company === filters.competitor.value)
+    .filter((item) => ignoreCompetitor || filters.competitor.value === "All" || item.company === filters.competitor.value)
     .filter((item) => {
       if (!term) return true;
       const haystack = [
@@ -4322,9 +6124,9 @@ function renderSentimentTrendChart(items) {
     return [sentiment, sentimentItems.length, sourceCount];
   });
   const sentimentContext = {
-    Positive: { symbol: "+", label: "Strengths to protect" },
-    Mixed: { symbol: "±", label: "Signals to validate" },
-    Negative: { symbol: "!", label: "Pain points to address" },
+    Positive: { symbol: "+", label: "Favorable-coded evidence" },
+    Mixed: { symbol: "±", label: "Mixed-coded evidence" },
+    Negative: { symbol: "!", label: "Concern-coded evidence" },
   };
   byId("sentimentTrendChart").innerHTML = items.length
     ? `
@@ -4333,7 +6135,7 @@ function renderSentimentTrendChart(items) {
           .map(([sentiment, total, sourceCount]) => {
             const context = sentimentContext[sentiment];
             return `
-            <button type="button" class="sentiment-card sentiment-drilldown ${sentimentClass(sentiment)}" data-sentiment-view="${escapeHtml(sentiment)}" aria-label="View ${total} ${sentiment.toLowerCase()} theme summaries and their exact sources">
+            <button type="button" class="sentiment-card sentiment-drilldown ${sentimentClass(sentiment)}" data-sentiment-view="${escapeHtml(sentiment)}" aria-label="View ${sourceCount} independent ${sentiment.toLowerCase()} sources mapped to ${total} theme summaries">
               <div class="sentiment-card-heading">
                 <span class="sentiment-symbol" aria-hidden="true">${escapeHtml(context.symbol)}</span>
                 <span>
@@ -4342,11 +6144,11 @@ function renderSentimentTrendChart(items) {
                 </span>
               </div>
               <div class="sentiment-card-value">
-                <strong>${total}</strong>
-                <span>theme summar${total === 1 ? "y" : "ies"}</span>
+                <strong>${sourceCount}</strong>
+                <span>independent source${sourceCount === 1 ? "" : "s"}</span>
               </div>
               <div class="sentiment-card-footer">
-                <span>${sourceCount} exact source page${sourceCount === 1 ? "" : "s"}</span>
+                <span>${total} mapped theme summar${total === 1 ? "y" : "ies"}</span>
                 <b>Review wording →</b>
               </div>
             </button>
@@ -4428,88 +6230,270 @@ function companyVoiceEvidenceGroups(company, companyItems) {
   return groupCustomerVoiceEvidenceMappings(evidenceMappings);
 }
 
-function companyVoiceStatements(items, field, fallback, limit = 2) {
-  const statements = [...new Set(items
-    .map((item) => compactText(item[field], 132))
-    .filter(Boolean))]
-    .slice(0, limit);
-  if (!statements.length) return `<p class="company-voice-empty">${escapeHtml(fallback)}</p>`;
-  return `<ul>${statements.map((statement) => `<li>${escapeHtml(statement)}</li>`).join("")}</ul>`;
+const customerVoicePurchaseThemes = [
+  {
+    key: "method-transfer",
+    label: "Method Transfer",
+    pmQuestion: "Can validated methods move without rework, retraining, or migration risk?",
+    terms: ["method transfer", "method-transfer", "method continuity", "validated method", "migration", "modernization"],
+    pain: "Validated methods may require avoidable rework, retraining, or revalidation when moved across platforms.",
+    validationStep: "Transfer one legacy LC method and one oligonucleotide method across the selected systems; measure method changes, analyst time, failed acceptance criteria, and retraining effort.",
+    roadmapDecision: {
+      number: 2,
+      title: "Oligonucleotide Method-Readiness Package",
+      due: "August 21, 2026",
+    },
+  },
+  {
+    key: "troubleshooting-recovery",
+    label: "Troubleshooting & Recovery Time",
+    pmQuestion: "How quickly can users isolate the cause, recover, and avoid service escalation?",
+    terms: ["troubleshoot", "diagnostic", "root cause", "recovery", "pressure", "carryover", "autosampler", "serviceability", "maintenance"],
+    pain: "Users may see a downstream error without enough guidance to isolate the true fluidic, carryover, pressure, or autosampler cause.",
+    validationStep: "Run seeded failure scenarios and compare time-to-root-cause, recovery steps, false leads, and service escalation across Waters and competitor workflows.",
+    roadmapDecision: {
+      number: 1,
+      title: "End-to-End Workflow Requirements",
+      due: "August 14, 2026",
+    },
+  },
+  {
+    key: "data-export-portability",
+    label: "Data Export & Portability",
+    pmQuestion: "Can users access, export, convert, and analyze data outside the vendor stack?",
+    terms: ["data portability", "data conversion", "export", "open format", "open-format", "mzml", "lock-in", "data access", "third-party analysis"],
+    pain: "Slow or constrained export can make data review, migration, and third-party analysis feel locked to the vendor stack.",
+    validationStep: "Time representative native and open-format exports, verify metadata fidelity, and complete one third-party analysis and one migration workflow without expert intervention.",
+    roadmapDecision: {
+      number: 1,
+      title: "End-to-End Workflow Requirements",
+      due: "August 14, 2026",
+    },
+  },
+  {
+    key: "workflow-setup",
+    label: "Workflow Setup",
+    pmQuestion: "How much training, configuration, and expert help is needed to start routine work?",
+    terms: ["workflow setup", "setup", "training", "onboarding", "template", "software usability", "ecosystem integration", "instrument control", "cross-vendor integration", "contact closure", "ease of use"],
+    pain: "Routine regulated work may still depend on expert configuration, manual templates, and repeated onboarding.",
+    validationStep: "Have new users configure and execute a PFAS quantitation workflow; measure setup time, interventions, template reuse, errors, and time to an accepted result.",
+    roadmapDecision: {
+      number: 3,
+      title: "PFAS-Ready Regulated Quantitation Workflow",
+      due: "August 7, 2026",
+    },
+  },
+];
+
+const customerVoiceComparisonCompanies = ["Waters", "Agilent", "Thermo Fisher", "SCIEX"];
+
+function customerVoiceThemeDefinition(themeKey) {
+  return customerVoicePurchaseThemes.find((theme) => theme.key === themeKey);
 }
 
-function openCompanyVoiceEvidence(company) {
-  const companyItems = currentCustomerVoiceItems().filter((item) => item.company === company);
-  const evidenceGroups = companyVoiceEvidenceGroups(company, companyItems);
-  byId("decisionEvidenceTitle").textContent = `${company} customer voice sources`;
-  byId("decisionEvidenceSummary").textContent = `${evidenceGroups.length} unique exact source${evidenceGroups.length === 1 ? "" : "s"} behind the customer themes and PM implications shown for ${company}.`;
+function customerVoiceItemMatchesTheme(item, theme) {
+  const wording = [
+    item.category,
+    item.theme,
+    item.customerLanguageSignal,
+    item.pmInterpretation,
+    item.buyingPriority,
+  ].join(" ").toLowerCase();
+  return theme.terms.some((term) => wording.includes(term));
+}
+
+function customerVoiceThemeItems(items, theme, company) {
+  return items
+    .filter((item) => item.company === company && customerVoiceItemMatchesTheme(item, theme))
+    .sort((a, b) => {
+      const sentimentOrder = { Negative: 3, Mixed: 2, Positive: 1 };
+      return (sentimentOrder[b.sentiment] || 0) - (sentimentOrder[a.sentiment] || 0) || b.confidence - a.confidence;
+    });
+}
+
+function customerVoiceThemeStatus(items) {
+  if (items.some((item) => item.sentiment === "Negative")) return { label: "Pain point", className: "pain" };
+  if (items.some((item) => item.sentiment === "Mixed")) return { label: "Friction to validate", className: "mixed" };
+  if (items.some((item) => item.sentiment === "Positive")) return { label: "Strength", className: "strength" };
+  return { label: "No direct signal", className: "missing" };
+}
+
+function customerVoiceRecurrence(sourceCount) {
+  if (sourceCount >= 3) return { label: "Pattern", className: "pattern" };
+  if (sourceCount === 2) return { label: "Emerging signal", className: "emerging" };
+  if (sourceCount === 1) return { label: "Anecdote", className: "anecdote" };
+  return { label: "No evidence", className: "none" };
+}
+
+function customerVoiceEvidenceStrengthBadge(sourceCount) {
+  const count = Math.max(0, Number(sourceCount) || 0);
+  const strength = count >= 3
+    ? { label: "Pattern", className: "pattern" }
+    : count === 2
+      ? { label: "Directional", className: "directional" }
+      : count === 1
+        ? { label: "Anecdotal", className: "anecdotal" }
+        : { label: "No evidence", className: "none" };
+  return `
+    <span class="customer-voice-strength-badge ${strength.className}">
+      <strong>${strength.label}</strong>
+      <small>${count} independent source${count === 1 ? "" : "s"}</small>
+    </span>
+  `;
+}
+
+function customerVoiceCategorySourceCounts(items, key) {
+  const sourceUrlsByCategory = new Map();
+  items.forEach((item) => {
+    const category = item[key];
+    if (!category) return;
+    if (!sourceUrlsByCategory.has(category)) sourceUrlsByCategory.set(category, new Set());
+    customerVoiceSourceLinks(item).forEach((link) => {
+      const sourceUrl = canonicalEvidenceUrl(link.url);
+      if (sourceUrl) sourceUrlsByCategory.get(category).add(sourceUrl);
+    });
+  });
+  return [...sourceUrlsByCategory.entries()]
+    .map(([category, sourceUrls]) => ({ category, sourceCount: sourceUrls.size }))
+    .filter(({ sourceCount }) => sourceCount > 0)
+    .sort((a, b) => b.sourceCount - a.sourceCount || a.category.localeCompare(b.category));
+}
+
+function openCustomerThemeEvidence(themeKey, company) {
+  const theme = customerVoiceThemeDefinition(themeKey);
+  if (!theme) return;
+  const comparisonItems = customerVoiceItemsForHorizon(filters.horizon.value, { ignoreCompetitor: true });
+  const companySelected = customerVoiceComparisonCompanies.includes(company);
+  const matchedItems = companySelected
+    ? customerVoiceThemeItems(comparisonItems, theme, company)
+    : comparisonItems.filter((item) => customerVoiceItemMatchesTheme(item, theme));
+  const evidenceGroups = companySelected
+    ? companyVoiceEvidenceGroups(company, matchedItems)
+    : groupCustomerVoiceEvidenceMappings(
+        matchedItems.flatMap((item) => customerVoiceSourceLinks(item).map((link) => ({ item, link }))),
+      );
+  byId("decisionEvidenceTitle").textContent = companySelected ? `${theme.label}: ${company}` : theme.label;
+  byId("decisionEvidenceSummary").textContent = companySelected
+    ? `${evidenceGroups.length} unique exact customer source${evidenceGroups.length === 1 ? "" : "s"} behind this comparison cell.`
+    : `${evidenceGroups.length} independent exact customer source${evidenceGroups.length === 1 ? "" : "s"} behind this purchase-driving theme.`;
   byId("decisionEvidenceList").innerHTML = evidenceGroups.length
     ? evidenceGroups.map((group) => customerVoiceEvidenceCardMarkup(group)).join("")
-    : `<div class="empty">No vendor-specific exact sources match the active filters.</div>`;
+    : `<div class="empty">No vendor-specific exact sources match this theme under the active filters.</div>`;
   byId("decisionEvidenceModal").hidden = false;
   document.body.classList.add("modal-open");
   byId("hideDecisionEvidence").focus();
 }
 
 function renderCustomerCompetitorChart(items) {
-  const vendorRows = Object.keys(customerVoiceIdentityTerms)
-    .map((company) => {
-      const companyItems = items.filter((item) => item.company === company);
-      if (!companyItems.length) return null;
-      const positiveItems = companyItems.filter((item) => item.sentiment === "Positive");
-      const concernItems = companyItems
-        .filter((item) => item.sentiment !== "Positive")
-        .sort((a, b) => Number(b.sentiment === "Negative") - Number(a.sentiment === "Negative") || b.confidence - a.confidence);
-      return {
-        company,
-        companyItems,
-        positiveItems,
-        concernItems,
-        evidenceGroups: companyVoiceEvidenceGroups(company, companyItems),
-      };
-    })
-    .filter(Boolean)
-    .sort((a, b) => Number(b.company === "Waters") - Number(a.company === "Waters") || b.evidenceGroups.length - a.evidenceGroups.length || a.company.localeCompare(b.company));
+  const rows = customerVoicePurchaseThemes.map((theme) => ({
+    theme,
+    sourceCount: new Set(
+      items
+        .filter((item) => customerVoiceItemMatchesTheme(item, theme))
+        .flatMap((item) => customerVoiceSourceLinks(item))
+        .filter((link) => link.status === "exact_record")
+        .map((link) => canonicalEvidenceUrl(link.url))
+        .filter(Boolean),
+    ).size,
+    companies: customerVoiceComparisonCompanies.map((company) => {
+      const matchedItems = customerVoiceThemeItems(items, theme, company);
+      const evidenceGroups = companyVoiceEvidenceGroups(company, matchedItems);
+      const supportedItems = evidenceGroups.length ? matchedItems : [];
+      const status = customerVoiceThemeStatus(supportedItems);
+      const recurrence = customerVoiceRecurrence(evidenceGroups.length);
+      const leadItem = supportedItems[0];
+      return { company, evidenceGroups, status, recurrence, leadItem };
+    }),
+  }));
 
-  byId("customerCompetitorChart").innerHTML = vendorRows.length
-    ? `
-      <div class="company-voice-list">
-      ${vendorRows
-        .map((row) => `
-          <article class="company-voice-card ${row.company === "Waters" ? "is-waters" : ""}">
-            <header class="company-voice-header">
-              <div>
-                <strong>${escapeHtml(row.company)}</strong>
-              </div>
-              <div class="company-voice-meta">
-                <span class="company-voice-count strength">${row.positiveItems.length} strength${row.positiveItems.length === 1 ? "" : "s"}</span>
-                <span class="company-voice-count concern">${row.concernItems.length} concern${row.concernItems.length === 1 ? "" : "s"}</span>
-                ${row.evidenceGroups.length ? `
-                  <button type="button" data-company-voice-sources="${escapeHtml(row.company)}" aria-label="View ${row.evidenceGroups.length} exact customer voice sources for ${escapeHtml(row.company)}">
-                    Sources <b>${row.evidenceGroups.length}</b> →
-                  </button>
-                ` : ""}
-              </div>
-            </header>
-            <div class="company-voice-insight-grid">
-              <section class="company-voice-insight strength">
-                <span>What Customers Value</span>
-                ${companyVoiceStatements(row.positiveItems, "theme", "No validated positive theme in the current sources.")}
-              </section>
-              <section class="company-voice-insight concern">
-                <span>Pain Points and Unmet Needs</span>
-                ${companyVoiceStatements(row.concernItems, "customerLanguageSignal", "No validated concern theme in the current sources.")}
-              </section>
-              <section class="company-voice-insight opportunity">
-                <span>${row.company === "Waters" ? "Waters PM Opportunity" : "Whitespace for Waters"}</span>
-                ${companyVoiceStatements(row.concernItems.length ? row.concernItems : row.companyItems, "pmInterpretation", "More customer evidence is needed before identifying an opportunity.")}
-              </section>
-            </div>
-          </article>
-        `)
-        .join("")}
+  byId("customerCompetitorChart").innerHTML = `
+    <div class="customer-theme-matrix-wrap" tabindex="0" aria-label="Customer voice comparison by purchase-driving theme">
+      <table class="customer-theme-matrix">
+        <colgroup>
+          <col class="customer-theme-question-column" />
+          ${customerVoiceComparisonCompanies.map(() => "<col />").join("")}
+        </colgroup>
+        <thead>
+          <tr>
+            <th scope="col">Purchase-Driving Theme</th>
+            ${customerVoiceComparisonCompanies.map((company) => `<th scope="col">${escapeHtml(company)}</th>`).join("")}
+          </tr>
+        </thead>
+        <tbody>
+          ${rows.map((row) => `
+            <tr>
+              <th scope="row" class="customer-theme-question">
+                <strong>${escapeHtml(row.theme.label)}</strong>
+                <span>${escapeHtml(row.theme.pmQuestion)}</span>
+              </th>
+              ${row.companies.map((cell) => `
+                <td class="customer-theme-cell ${escapeHtml(cell.status.className)}">
+                  <div class="customer-theme-cell-signals">
+                    <span class="customer-theme-status ${escapeHtml(cell.status.className)}">${escapeHtml(cell.status.label)}</span>
+                    ${cell.evidenceGroups.length ? `
+                      <span class="customer-theme-recurrence ${escapeHtml(cell.recurrence.className)}">
+                        <strong>${cell.evidenceGroups.length} independent source${cell.evidenceGroups.length === 1 ? "" : "s"}</strong>
+                        <small>${escapeHtml(cell.recurrence.label)}</small>
+                      </span>
+                    ` : ""}
+                  </div>
+                  <p>${cell.leadItem
+                    ? escapeHtml(compactText(cell.leadItem.customerLanguageSignal || cell.leadItem.theme, 138))
+                    : "No vendor-specific customer wording is validated in the current sources."}</p>
+                  ${cell.evidenceGroups.length ? `
+                    <button type="button"
+                      data-customer-theme-sources="${escapeHtml(row.theme.key)}"
+                      data-customer-theme-company="${escapeHtml(cell.company)}"
+                      aria-label="View ${cell.evidenceGroups.length} exact ${escapeHtml(cell.company)} sources for ${escapeHtml(row.theme.label)}">
+                      ${cell.evidenceGroups.length} source${cell.evidenceGroups.length === 1 ? "" : "s"} →
+                    </button>
+                  ` : ""}
+                </td>
+              `).join("")}
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    </div>
+    <section class="customer-roadmap-inputs" aria-label="Customer voice inputs to roadmap decisions">
+      <div class="customer-roadmap-inputs-heading">
+        <strong>Roadmap Decision Inputs</strong>
+        <span>Pain → validation step → decision</span>
       </div>
-      `
-    : `<div class="empty">No competitor comparison signals match the current filters.</div>`;
+      <div class="customer-roadmap-input-list">
+        ${rows.map((row) => {
+          const recurrence = customerVoiceRecurrence(row.sourceCount);
+          return `
+            <article class="customer-roadmap-input">
+              <div class="customer-roadmap-input-theme">
+                <strong>${escapeHtml(row.theme.label)}</strong>
+                <a class="customer-theme-recurrence customer-theme-source-link ${escapeHtml(recurrence.className)}"
+                  href="#customer-voice"
+                  data-customer-theme-sources="${escapeHtml(row.theme.key)}"
+                  aria-label="View ${row.sourceCount} independent sources for ${escapeHtml(row.theme.label)}">
+                  <strong>${row.sourceCount} independent source${row.sourceCount === 1 ? "" : "s"}</strong>
+                  <small>${escapeHtml(recurrence.label)}</small>
+                </a>
+              </div>
+              <div class="customer-roadmap-input-copy">
+                <small>Pain</small>
+                <p>${escapeHtml(row.theme.pain)}</p>
+              </div>
+              <div class="customer-roadmap-input-copy">
+                <small>Validation Step</small>
+                <p>${escapeHtml(row.theme.validationStep)}</p>
+              </div>
+              <a class="customer-roadmap-decision-link" href="#decisions-needed">
+                <small>Feeds Decision ${row.theme.roadmapDecision.number}</small>
+                <strong>${escapeHtml(row.theme.roadmapDecision.title)}</strong>
+                <span>Due ${escapeHtml(row.theme.roadmapDecision.due)} →</span>
+              </a>
+            </article>
+          `;
+        }).join("")}
+      </div>
+    </section>
+  `;
 }
 
 function renderCustomerVoiceSummary(items) {
@@ -4517,57 +6501,59 @@ function renderCustomerVoiceSummary(items) {
   const negatives = items.filter((item) => item.sentiment === "Negative");
   const mixed = items.filter((item) => item.sentiment === "Mixed");
   const concernItems = items.filter((item) => item.sentiment !== "Positive");
-  const concernCounts = countBy(concernItems, "category").filter(([category]) => category);
-  const topConcernCount = concernCounts[0]?.[1] || 0;
-  const leadingConcerns = concernCounts.filter(([, count]) => count === topConcernCount);
-  const hasRepeatedConcern = topConcernCount > 1;
-  const concernHeadline = !concernItems.length
-    ? "No repeated concern is supported in this view"
-    : hasRepeatedConcern && leadingConcerns.length === 1
-      ? `${leadingConcerns[0][0]} is the most repeated concern`
-      : hasRepeatedConcern
-        ? `${leadingConcerns.length} concern themes tie for the highest count`
-        : `${concernCounts.length} distinct concern themes; no concern repeats`;
-  const concernDetail = !concernItems.length
-    ? "No mixed or negative records match the active filters."
-    : hasRepeatedConcern
-      ? `The leading theme count is ${topConcernCount}; review its exact mapped sources before prioritizing.`
-      : "Each concern appears once, so the current public evidence does not identify a leading issue.";
-  const buyingCounts = countBy(items, "buyingPriority").filter(([priority]) => priority);
-  const thirdPlaceCount = buyingCounts[Math.min(2, buyingCounts.length - 1)]?.[1] || 0;
-  const leadingBuying = buyingCounts.filter(([, count]) => count >= thirdPlaceCount);
-  const positiveStrengths = [...new Set(positives.map((item) => item.category).filter(Boolean))].slice(0, 3);
+  const positiveCounts = customerVoiceCategorySourceCounts(positives, "category");
+  const concernCounts = customerVoiceCategorySourceCounts(concernItems, "category");
+  const topPositive = positiveCounts[0];
+  const topConcern = concernCounts[0];
+  const leadingConcerns = concernCounts.filter(({ sourceCount }) => sourceCount === topConcern?.sourceCount);
+  const concernHeadline = !topConcern
+    ? "No concern evidence is captured in this view"
+    : leadingConcerns.length > 1
+      ? `${topConcern.category} and ${leadingConcerns.length - 1} other theme${leadingConcerns.length === 2 ? "" : "s"} tie as leading concerns`
+      : `${topConcern.category} is the leading concern in current sources`;
+  const concernDetail = !topConcern
+    ? "No mixed or negative exact sources match the active filters."
+    : topConcern.sourceCount === 1
+      ? `${concernCounts.length} concern theme${concernCounts.length === 1 ? "" : "s"} currently have one independent source each.`
+      : leadingConcerns.length > 1
+        ? `${leadingConcerns.length} concern themes recur equally often in the current exact sources.`
+        : "This concern recurs more often than the other concern themes in the current exact sources.";
+  const buyingCounts = customerVoiceCategorySourceCounts(items, "buyingPriority");
+  const thirdPlaceCount = buyingCounts[Math.min(2, buyingCounts.length - 1)]?.sourceCount || 0;
+  const leadingBuying = buyingCounts.filter(({ sourceCount }) => sourceCount >= thirdPlaceCount);
   const cards = [
     {
-      label: "Strength signal",
-      headline: positiveStrengths.length ? `${positiveStrengths.join(" and ")} are the observed strengths` : "No positive strength is supported in this view",
-      metric: `${positives.length}/${items.length} summaries positive`,
-      detail: positiveStrengths.length ? "Protect these strengths only after checking the linked sources." : "No positive theme summaries match the active filters.",
+      label: "Observed strength",
+      headline: topPositive ? `${topPositive.category} is the leading observed strength` : "No positive finding is established",
+      sourceCount: topPositive?.sourceCount || 0,
+      detail: topPositive ? "This is the most repeated positive theme in the current exact sources." : "No positive forum evidence was captured; this is not evidence of poor product performance.",
       tone: "positive",
-      link: positives.length ? `<button type="button" class="customer-voice-evidence-link" data-customer-voice-records="positive">Review ${positives.length} summaries and sources <span aria-hidden="true">→</span></button>` : "",
+      link: positives.length ? `<button type="button" class="customer-voice-evidence-link" data-customer-voice-records="positive">Review positive evidence <span aria-hidden="true">→</span></button>` : "",
     },
     {
-      label: "Risk signal",
+      label: "Observed concern",
       headline: concernHeadline,
-      metric: `${negatives.length + mixed.length}/${items.length} concern summaries`,
+      sourceCount: topConcern?.sourceCount || 0,
       detail: concernDetail,
       tone: "concern",
-      link: negatives.length + mixed.length ? `<button type="button" class="customer-voice-evidence-link" data-customer-voice-records="concerns">Review all ${negatives.length + mixed.length} concern themes and sources <span aria-hidden="true">→</span></button>` : "",
+      link: negatives.length + mixed.length ? `<button type="button" class="customer-voice-evidence-link" data-customer-voice-records="concerns">Review concern evidence <span aria-hidden="true">→</span></button>` : "",
     },
   ];
-  const topCount = buyingCounts[0]?.[1] || 0;
-  const hasMajority = topCount > items.length / 2;
+  const topBuying = buyingCounts[0];
   const buyingCard = buyingCounts.length
     ? `
       <article class="customer-voice-card buying-considerations-card">
-        <div class="summary-insight-head"><span>Buying signal</span><b>${topCount}/${items.length} leading</b></div>
-        <strong class="summary-insight-title">${hasMajority ? `${escapeHtml(buyingCounts[0][0])} is the dominant buying consideration` : "No buying consideration dominates"}</strong>
-        <p>${escapeHtml(`${buyingCounts[0][0]} leads, but appears in only ${topCount} of ${items.length} theme summaries.`)}</p>
+        <div class="summary-insight-head"><span>Buying consideration</span>${customerVoiceEvidenceStrengthBadge(topBuying.sourceCount)}</div>
+        <strong class="summary-insight-title">${escapeHtml(`${topBuying.category} is the leading buying consideration`)}</strong>
+        <p>${leadingBuying.length > 1
+          ? escapeHtml(`${leadingBuying.length} buying considerations share the highest recurrence in the current exact sources.`)
+          : "This buying consideration appears most often in the current exact sources."}</p>
+        <small class="summary-insight-caveat">Public-source recurrence does not establish prevalence or market-wide sentiment.</small>
         <div class="buying-consideration-list" aria-label="Leading buying considerations">
-          ${leadingBuying.map(([priority, count]) => `
-            <button type="button" data-customer-voice-records="buying" data-buying-priority="${escapeHtml(priority)}">
-              <span>${escapeHtml(priority)}</span>
-              <strong>${count}/${items.length}</strong>
+          ${leadingBuying.map(({ category, sourceCount }) => `
+            <button type="button" data-customer-voice-records="buying" data-buying-priority="${escapeHtml(category)}">
+              <span>${escapeHtml(category)}</span>
+              <strong>${sourceCount} source${sourceCount === 1 ? "" : "s"}</strong>
             </button>
           `).join("")}
         </div>
@@ -4576,18 +6562,20 @@ function renderCustomerVoiceSummary(items) {
     `
     : `
       <article class="customer-voice-card buying-considerations-card">
-        <div class="summary-insight-head"><span>Buying signal</span><b>No records</b></div>
+        <div class="summary-insight-head"><span>Buying consideration</span>${customerVoiceEvidenceStrengthBadge(0)}</div>
         <strong class="summary-insight-title">No buying consideration is supported</strong>
         <p>Broaden the filters to identify repeated buying considerations.</p>
+        <small class="summary-insight-caveat">Public-source recurrence does not establish prevalence or market-wide sentiment.</small>
       </article>
     `;
   byId("customerVoiceSummary").innerHTML = cards
     .map(
-      ({ label, headline, metric, detail, tone, link }) => `
+      ({ label, headline, sourceCount, detail, tone, link }) => `
         <article class="customer-voice-card summary-insight-card summary-insight-${escapeHtml(tone)}">
-          <div class="summary-insight-head"><span>${escapeHtml(label)}</span><b>${escapeHtml(metric)}</b></div>
+          <div class="summary-insight-head"><span>${escapeHtml(label)}</span>${customerVoiceEvidenceStrengthBadge(sourceCount)}</div>
           <strong class="summary-insight-title">${escapeHtml(headline)}</strong>
           <p>${escapeHtml(detail)}</p>
+          <small class="summary-insight-caveat">Public-source recurrence does not establish prevalence or market-wide sentiment.</small>
           ${link}
         </article>
       `,
@@ -4595,53 +6583,126 @@ function renderCustomerVoiceSummary(items) {
     .join("") + buyingCard;
 }
 
+function customerPainText(items) {
+  return items
+    .flatMap((item) => [
+      item.category,
+      item.theme,
+      item.customerLanguageSignal,
+      item.pmInterpretation,
+      item.buyingPriority,
+      item.product,
+      item.platform,
+    ])
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+}
+
+function customerPainSeverity(items) {
+  const text = customerPainText(items);
+  if (/(method transfer|data integrity|data portability|lock-in|reliability|leak|pressure|fluidic|downtime|service continuity|parts availability|serviceability|failure|carryover|autosampler)/i.test(text)) {
+    return { score: 3, label: "High", reason: "Can interrupt method continuity, system availability, or access to data." };
+  }
+  if (/(cost|training|usability|workflow|setup|integration|processing speed|service contract|response time|maintenance|consumable)/i.test(text)) {
+    return { score: 2, label: "Medium", reason: "Adds material time, cost, or operator burden." };
+  }
+  return { score: 1, label: "Low", reason: "Currently reflects a preference or an adjacent workflow concern." };
+}
+
+function customerPainStrategicFit(items) {
+  const text = customerPainText(items);
+  if (/(method transfer|modernization|troubleshoot|fluidic|leak|pressure|carryover|autosampler|workflow setup|software usability|data review|data portability|lock-in|cross-vendor integration|training|ease of use)/i.test(text)) {
+    return { score: 3, label: "High", reason: "Directly shapes the Next Gen LC operator and method lifecycle." };
+  }
+  if (/(cost|consumable|service|support|maintenance|legacy|integration|processing speed|software access|proteomics|lc flow)/i.test(text)) {
+    return { score: 2, label: "Medium", reason: "Relevant to the surrounding platform, service, or ownership experience." };
+  }
+  return { score: 1, label: "Low", reason: "Useful context, but not a direct Next Gen LC requirement signal." };
+}
+
+function customerPainPriority(categoryItems) {
+  const sourceUrls = new Set(
+    categoryItems
+      .flatMap((item) => customerVoiceSourceLinks(item))
+      .filter((link) => link.status === "exact_record")
+      .map((link) => canonicalEvidenceUrl(link.url))
+      .filter(Boolean),
+  );
+  const recurrence = sourceUrls.size;
+  const severity = customerPainSeverity(categoryItems);
+  const strategicFit = customerPainStrategicFit(categoryItems);
+  return {
+    recurrence,
+    recurrenceLabel: customerVoiceRecurrence(recurrence),
+    severity,
+    strategicFit,
+    score: recurrence * severity.score * strategicFit.score,
+  };
+}
+
+function painPriorityRowMarkup(row, index, { top = false } = {}) {
+  const sourceLabel = `${row.priority.recurrence} source${row.priority.recurrence === 1 ? "" : "s"}`;
+  return `
+    <article class="pain-priority-row${top ? " pain-priority-row-top" : ""}">
+      <div class="pain-priority-rank" aria-label="Priority rank ${index + 1}">#${index + 1}</div>
+      <div class="pain-priority-content">
+        <div class="pain-priority-title-line">
+          <strong>${escapeHtml(row.category)}</strong>
+          ${top ? `<span class="pain-quarter-label">Act this quarter</span>` : ""}
+        </div>
+        <p>${escapeHtml(row.categoryItems[0]?.pmInterpretation || "Review the linked evidence before changing product priority.")}</p>
+        <div class="pain-priority-factors" aria-label="Priority score calculation">
+          <span><b>${row.priority.recurrence}</b> recurrence</span>
+          <span><b>${escapeHtml(row.priority.severity.label)}</b> severity (${row.priority.severity.score})</span>
+          <span><b>${escapeHtml(row.priority.strategicFit.label)}</b> Next Gen LC fit (${row.priority.strategicFit.score})</span>
+          <strong class="pain-priority-score">Priority ${row.priority.score}</strong>
+        </div>
+      </div>
+      <div class="pain-priority-evidence">
+        <span class="recurrence-badge recurrence-${escapeHtml(row.priority.recurrenceLabel.className)}">${escapeHtml(row.priority.recurrenceLabel.label)}</span>
+        ${voiceLinksMarkup(row.categoryItems, sourceLabel)}
+      </div>
+    </article>
+  `;
+}
+
 function renderPainPointTracker(items) {
   const categoryMap = new Map();
-  for (const item of items) {
+  for (const item of items.filter((item) => item.sentiment !== "Positive")) {
     const group = categoryMap.get(item.category) || [];
     group.push(item);
     categoryMap.set(item.category, group);
   }
   const rows = [...categoryMap.entries()]
-    .map(([category, categoryItems]) => ({
-      category,
-      categoryItems,
-      depth: categoryItems.reduce((total, item) => total + customerVoiceDepth(item), 0),
-      watch: watchIntensityLabel(categoryItems),
-      linkedRecords: new Set(
-        categoryItems
-          .flatMap((item) => customerVoiceSourceLinks(item))
-          .filter((link) => link.status === "exact_record")
-          .map((link) => link.url),
-      ).size,
-      sentimentStatus: categoryItems.some((item) => item.sentiment === "Negative")
-        ? { label: "Concern", className: "negative" }
-        : categoryItems.some((item) => item.sentiment === "Mixed")
-          ? { label: "Needs validation", className: "mixed" }
-          : { label: "Strength signal", className: "positive" },
-    }))
-    .sort((a, b) => b.depth - a.depth || b.linkedRecords - a.linkedRecords || a.category.localeCompare(b.category))
-    .slice(0, 10);
+    .map(([category, categoryItems]) => ({ category, categoryItems, priority: customerPainPriority(categoryItems) }))
+    .filter((row) => row.priority.recurrence > 0)
+    .sort((a, b) =>
+      b.priority.score - a.priority.score
+      || b.priority.recurrence - a.priority.recurrence
+      || b.priority.severity.score - a.priority.severity.score
+      || a.category.localeCompare(b.category),
+    );
+  const visibleRows = rows.slice(0, 5);
+  const backlogRows = rows.slice(5);
   byId("painPointTracker").innerHTML = rows.length
-    ? rows
-        .map((row, index) => `
-            <article class="pain-row pain-row-${escapeHtml(row.sentimentStatus.className)}">
-              <div class="pain-row-head">
-                <span class="pain-rank" aria-label="Rank ${index + 1}">${index + 1}</span>
-                <div class="pain-row-title">
-                  <strong>${escapeHtml(row.category)}</strong>
-                  <span class="pain-status ${escapeHtml(row.sentimentStatus.className)}">${escapeHtml(row.sentimentStatus.label)}</span>
-                </div>
-                <div class="pain-row-metrics" aria-label="Evidence summary">
-                  <span><b>${row.depth}</b> estimated mentions</span>
-                  <span><b>${row.linkedRecords}</b> linked record${row.linkedRecords === 1 ? "" : "s"}</span>
-                </div>
-              </div>
-              <p><b>Product implication:</b> ${escapeHtml(row.categoryItems[0]?.pmInterpretation || "Review source evidence before changing roadmap priority.")}</p>
-              ${voiceLinksMarkup(row.categoryItems)}
-            </article>
-          `)
-        .join("")
+    ? `
+        <div class="pain-priority-explainer">
+          <strong>Priority = recurrence × severity × Next Gen LC fit</strong>
+          <span>Recurrence counts unique source pages; severity and fit use a 1–3 rubric.</span>
+        </div>
+        <div class="pain-priority-list">
+          ${visibleRows.map((row, index) => painPriorityRowMarkup(row, index, { top: index === 0 })).join("")}
+        </div>
+        ${backlogRows.length ? `
+          <details class="pain-priority-backlog">
+            <summary>View ${backlogRows.length} lower-priority concern${backlogRows.length === 1 ? "" : "s"}</summary>
+            <div class="pain-priority-list pain-priority-list-backlog">
+              ${backlogRows.map((row, index) => painPriorityRowMarkup(row, index + visibleRows.length)).join("")}
+            </div>
+          </details>
+        ` : ""}
+      `
     : `<div class="empty">No pain-point signals match the current filters.</div>`;
 }
 
@@ -4682,25 +6743,42 @@ function renderUnmetNeeds(items) {
 }
 
 function renderMarketPositioning(items) {
-  const companies = ["Waters", "Agilent", "Thermo Fisher", "Shimadzu", "SCIEX", "Market-wide"];
+  const companies = ["Waters", "Agilent", "Thermo Fisher", "Shimadzu", "SCIEX"];
   const rows = companies
     .map((company) => {
       const companyItems = items.filter((item) => item.company === company);
       if (!companyItems.length) return "";
-      const positive = companyItems.find((item) => item.sentiment === "Positive") || companyItems[0];
-      const watch = companyItems.find((item) => item.sentiment !== "Positive") || companyItems[0];
+      const positive = companyItems.find((item) => item.sentiment === "Positive");
+      const watch = companyItems.find((item) => item.sentiment !== "Positive");
+      const sourceCount = uniqueCustomerVoiceLinks(companyItems, 1000).length;
       return `
         <article class="positioning-row">
           <strong>${escapeHtml(company)}</strong>
-          <p><b>Perceived strength:</b> ${escapeHtml(positive.theme)}</p>
-          <p><b>Watch item:</b> ${escapeHtml(watch.category)}</p>
-          <span>${companyItems.length} supporting records · ${confidenceLabel(averageConfidence(companyItems))} source confidence</span>
+          <p><b>Perceived strength:</b> ${positive ? escapeHtml(positive.theme) : `<span class="pmm-unresolved">No supported perceived strength found</span>`}</p>
+          <p><b>Watch item:</b> ${watch ? escapeHtml(watch.category) : `<span class="pmm-unresolved">No supported watch item found</span>`}</p>
+          <span>${sourceCount} independent source${sourceCount === 1 ? "" : "s"} · ${companyItems.length} coded record${companyItems.length === 1 ? "" : "s"} · ${confidenceLabel(averageConfidence(companyItems))} evidence confidence</span>
+          ${sourceCount < 3 ? `<p class="pmm-low-sample">Low sample — fewer than 3 independent sources; perception is provisional.</p>` : ""}
           ${voiceLinksMarkup(companyItems)}
         </article>
       `;
     })
     .filter(Boolean);
-  byId("marketPositioning").innerHTML = rows.length ? rows.join("") : `<div class="empty">No positioning signals match these filters.</div>`;
+  const marketWideItems = items.filter((item) => item.company === "Market-wide");
+  const marketWideSourceCount = uniqueCustomerVoiceLinks(marketWideItems, 1000).length;
+  const marketWide = marketWideItems.length ? `
+    <section class="market-wide-positioning" aria-label="Market-wide themes">
+      <div class="mini-header"><h4>Market-Wide Themes</h4><p class="panel-helper">Separate analytical level; these themes are not vendor perception statements.</p></div>
+      ${marketWideItems.slice(0, 4).map((item) => `<article><strong>${escapeHtml(item.theme || item.category)}</strong><p>${escapeHtml(item.customerLanguageSignal || item.pmInterpretation || "Interpretation unavailable")}</p></article>`).join("")}
+      <span>${marketWideSourceCount} independent source${marketWideSourceCount === 1 ? "" : "s"} · ${marketWideItems.length} coded record${marketWideItems.length === 1 ? "" : "s"}</span>
+      ${marketWideSourceCount < 3 ? `<p class="pmm-low-sample">Low sample — fewer than 3 independent sources; market-wide theme is provisional.</p>` : ""}
+      ${voiceLinksMarkup(marketWideItems, "View market-wide evidence")}
+    </section>` : "";
+  const forumCaveat = items.some((item) => customerVoiceSourceLinks(item).some((link) => ["reddit", "community_forum"].includes(normalizedCustomerVoiceSourceType(link.sourceType))))
+    ? `<p class="customer-voice-normalization-note" role="note">Forum evidence can surface objections and customer language, but it is complaint-biased and is not representative market research.</p>`
+    : "";
+  byId("marketPositioning").innerHTML = rows.length || marketWide
+    ? `${forumCaveat}<div class="vendor-positioning-comparison" aria-label="Vendor perception comparison">${rows.join("")}</div>${marketWide}`
+    : `<div class="empty">No positioning signals match these filters.</div>`;
 }
 
 function renderCustomerSegments(items) {
@@ -4713,15 +6791,15 @@ function renderCustomerSegments(items) {
           const topPriority = countBy(segmentItems, "buyingPriority")[0]?.[0] || "Mixed priorities";
           const maturity = countBy(segmentItems, "productMaturity")[0]?.[0] || "Mixed maturity";
           const topPain = countBy(segmentItems.filter((item) => item.sentiment !== "Positive"), "category")[0]?.[0] || segmentItems[0]?.category || "No clear pain cluster";
-          const depth = segmentItems.reduce((total, item) => total + customerVoiceDepth(item), 0);
+          const sourceCount = uniqueCustomerVoiceLinks(segmentItems, 1000).length;
           const action = segmentActionCopy(labType, topRole, topPriority, maturity, topPain);
           return `
             <article class="segment-decision-card">
-              <div class="segment-rank">${index + 1}</div>
+              <div class="segment-rank" aria-label="Evidence representation order ${index + 1}">${index + 1}</div>
               <div>
                 <div class="segment-card-top">
                   <strong>${escapeHtml(labType)}</strong>
-                  <span>${depth} estimated mentions · ${count} supporting records</span>
+                  <span>${count} coded record${count === 1 ? "" : "s"} across ${sourceCount} traceable source page${sourceCount === 1 ? "" : "s"}</span>
                 </div>
                 <p><b>Primary audience:</b> ${escapeHtml(topRole)} · ${escapeHtml(maturity)}</p>
                 <p><b>Buying criterion:</b> ${escapeHtml(topPriority)}</p>
@@ -4765,17 +6843,19 @@ function renderCompetitiveCustomerSignals(items) {
     .map((company) => {
       const companyItems = competitorItems.filter((item) => item.company === company);
       if (!companyItems.length) return "";
-      const strength = companyItems.find((item) => item.sentiment === "Positive") || companyItems[0];
+      const strength = companyItems.find((item) => item.sentiment === "Positive");
       const concern = companyItems.find((item) => item.sentiment !== "Positive");
+      const sourceCount = uniqueCustomerVoiceLinks(companyItems, 1000).length;
       return `
         <article class="competitive-signal-row">
           <div>
             <strong>${escapeHtml(company)}</strong>
-            <p>${escapeHtml(strength.theme)}</p>
+            <p>${strength ? escapeHtml(strength.theme) : `<span class="pmm-unresolved">No supported perceived strength found</span>`}</p>
             ${concern ? `<p class="muted">Counter-signal: ${escapeHtml(concern.category)}</p>` : ""}
+            ${sourceCount < 3 ? `<p class="pmm-low-sample">Low sample — fewer than 3 independent sources; conclusion is provisional.</p>` : ""}
             ${voiceLinksMarkup(companyItems)}
           </div>
-          <span>${companyItems.length}</span>
+          <span>${sourceCount} source${sourceCount === 1 ? "" : "s"}</span>
         </article>
       `;
     })
@@ -4828,12 +6908,13 @@ function renderCustomerEvidenceTable(items) {
               <td>${escapeHtml(item.userRole)}</td>
               <td><span class="score">${item.confidence}</span></td>
               <td>${primary ? escapeHtml(sourceKeywordsText(primary)) : "No keyword-validated source"}</td>
+              <td>${primary ? `<span class="customer-source-type-badge source-type-${escapeHtml(primary.sourceType || "public")}">${escapeHtml(customerVoiceSourceTypeLabel(primary.sourceType, true))}</span>` : "Public source"}</td>
               <td>${primary ? `<a href="${escapeHtml(primary.url)}" target="_blank" rel="noreferrer">View source</a><span class="source-name">${escapeHtml(primary.label)}</span>` : escapeHtml(item.sourceName)}</td>
             </tr>
           `;
         })
         .join("")
-    : `<tr><td colspan="9"><div class="empty">No customer voice evidence matches the current filters.</div></td></tr>`;
+    : `<tr><td colspan="10"><div class="empty">No customer voice evidence matches the current filters.</div></td></tr>`;
 }
 
 function renderCustomerVoiceSignals() {
@@ -4842,9 +6923,10 @@ function renderCustomerVoiceSignals() {
     items.flatMap((item) => customerVoiceSourceLinks(item).map((link) => ({ item, link }))),
   );
   byId("customerVoiceCount").textContent = `${uniqueSources.length} exact public sources`;
+  renderCustomerVoiceSourceMix(items);
   renderCustomerVoiceSummary(items);
   renderSentimentTrendChart(items);
-  renderCustomerCompetitorChart(items);
+  renderCustomerCompetitorChart(customerVoiceItemsForHorizon(filters.horizon.value, { ignoreCompetitor: true }));
   renderPainPointTracker(items);
   renderUnmetNeeds(items);
   renderMarketPositioning(items);
@@ -4962,23 +7044,19 @@ function renderCompetitiveTimeline() {
                         const label = escapeHtml(launch.product);
                         const dateLabel = escapeHtml(formatDate(launch.date));
                         const pressReleaseUrl = pressReleaseUrlForLaunch(launch);
-                        const discoveryUrl = discoveryUrlForLaunch(launch);
-                        const sameEvidenceAndDiscovery = sameSourceUrl(pressReleaseUrl, discoveryUrl);
-                        const primaryUrl = escapeHtml(pressReleaseUrl || discoveryUrl || timelineUrlForLaunch(launch));
-                        const primaryAriaLabel = pressReleaseUrl
-                          ? sameEvidenceAndDiscovery
-                            ? `Open the official launch release and discovery source for ${label} in a new tab`
-                            : `Open the official launch release for ${label} in a new tab`
-                          : `Open the discovery source for ${label} in a new tab`;
+                        const productPageUrl = productPageUrlForLaunch(launch);
                         return `
                           <article class="launch-board-card" style="--accent:${color}">
                             <div class="launch-board-card-main">
-                              <a class="launch-board-card-link" href="${primaryUrl}" target="_blank" rel="noreferrer" aria-label="${primaryAriaLabel}">
+                              <div class="launch-board-card-content">
                                 <span>${dateLabel}</span>
                                 <strong>${label}</strong>
                                 <em>${escapeHtml(launch.signalType)} · ${escapeHtml(launch.technology)}</em>
-                              </a>
-                              ${discoveryUrl && !sameEvidenceAndDiscovery ? `<a class="launch-board-discovery" href="${escapeHtml(discoveryUrl)}" target="_blank" rel="noreferrer" aria-label="Open the official page used to discover ${label} in a new tab">Discovery source ↗</a>` : ""}
+                              </div>
+                              <div class="launch-board-source-links" aria-label="Official sources for ${label}">
+                                ${productPageUrl ? `<a href="${escapeHtml(productPageUrl)}" target="_blank" rel="noreferrer" aria-label="Open the official product launch page for ${label} in a new tab">Product launch page ↗</a>` : ""}
+                                ${pressReleaseUrl ? `<a href="${escapeHtml(pressReleaseUrl)}" target="_blank" rel="noreferrer" aria-label="Open the official press release for ${label} in a new tab">Press release ↗</a>` : ""}
+                              </div>
                             </div>
                             <div class="launch-board-card-actions">
                               <button class="launch-board-compare" type="button" data-compare-launch="${escapeHtml(launch.id)}" aria-label="Compare ${label} with Waters">Compare with Waters</button>
@@ -5018,6 +7096,7 @@ function renderFeatureGapMatrix(signals) {
         </article>
       </div>
     </div>
+    <div class="gap-grid-scroll" tabindex="0" aria-label="Scrollable competitor capability heatmap">
     <div class="gap-grid">
       <div class="gap-corner"></div>
       ${featureLabels.map((feature) => `<strong>${feature}</strong>`).join("")}
@@ -5052,6 +7131,7 @@ function renderFeatureGapMatrix(signals) {
           `;
         })
         .join("")}
+    </div>
     </div>
     <div class="gap-legend">
       <span><i class="legend-box lead"></i>Green: public evidence suggests a strength</span>
@@ -6040,7 +8120,6 @@ function marketApplicationTrendMarkup(trends, horizon, label) {
         <strong>${escapeHtml(largest.trend.theme)}</strong>
         <small>${(largest.trend.counts[horizon] || 0).toLocaleString()} PubMed records</small>
       </div>
-      <p>Publication pace indicates where scientific work is growing. It does not measure market share, vendor adoption, or customer demand by itself.</p>
     </div>
     ${trends.map(({ trend, signal }, index) => {
       const count = trend.counts[horizon] || 0;
@@ -6129,6 +8208,7 @@ function competitorApplicationNoteMarkup(notes, label) {
           </article>
       `).join("")}
     </div>
+    </div>
   `;
 }
 
@@ -6160,7 +8240,6 @@ function renderTrends() {
         <span>2</span>
         <div>
           <h4 id="competitorApplicationTrendTitle">Competitor Application-Note Trends</h4>
-          <p>Official application and technical notes are analyzed independently to show the themes competitors choose to prove and promote.</p>
         </div>
       </div>
       ${competitorApplicationNoteMarkup(competitorNotes, label)}
@@ -6176,14 +8255,56 @@ function displaySignals(signals) {
   });
 }
 
+function updatePublicEvidenceFilterOptions(signals) {
+  const filterDefinitions = [
+    { control: publicEvidenceFilters.company, values: signals.map((signal) => signal.competitor), allLabel: "All Companies" },
+    { control: publicEvidenceFilters.technology, values: signals.map((signal) => signal.technology), allLabel: "All Technologies" },
+    { control: publicEvidenceFilters.source, values: signals.map((signal) => signal.sourceName), allLabel: "All Sources" },
+  ];
+  filterDefinitions.forEach(({ control, values, allLabel }) => {
+    const selectedValue = control.value || "All";
+    const options = [...new Set(values.filter(Boolean))].sort((a, b) => a.localeCompare(b));
+    control.innerHTML = `<option value="All">${allLabel}</option>${options
+      .map((value) => `<option value="${escapeHtml(value)}">${escapeHtml(value)}</option>`)
+      .join("")}`;
+    control.value = options.includes(selectedValue) ? selectedValue : "All";
+  });
+}
+
+function filterPublicEvidenceLibrary(signals) {
+  const searchTerm = publicEvidenceSearchTerm.trim().toLowerCase();
+  return signals.filter((signal) => {
+    const companyMatch = publicEvidenceFilters.company.value === "All" || signal.competitor === publicEvidenceFilters.company.value;
+    const technologyMatch = publicEvidenceFilters.technology.value === "All" || signal.technology === publicEvidenceFilters.technology.value;
+    const sourceMatch = publicEvidenceFilters.source.value === "All" || signal.sourceName === publicEvidenceFilters.source.value;
+    const searchableText = [
+      signal.title,
+      signal.summary,
+      signal.intent,
+      signal.theme,
+      signal.competitor,
+      signal.technology,
+      signal.signalType,
+      signal.sourceName,
+    ].filter(Boolean).join(" ").toLowerCase();
+    return companyMatch && technologyMatch && sourceMatch && (!searchTerm || searchableText.includes(searchTerm));
+  });
+}
+
 function renderSignals(signals) {
-  const visibleSignals = displaySignals(signals);
+  const availableSignals = displaySignals(signals);
+  updatePublicEvidenceFilterOptions(availableSignals);
+  const visibleSignals = filterPublicEvidenceLibrary(availableSignals);
   const pageSize = state.signalPageSize;
   const pageCount = Math.max(1, Math.ceil(visibleSignals.length / pageSize));
   state.signalPage = Math.min(Math.max(1, state.signalPage), pageCount);
   const pageStart = (state.signalPage - 1) * pageSize;
   const pageSignals = visibleSignals.slice(pageStart, pageStart + pageSize);
-  byId("signalCount").textContent = `${visibleSignals.length} public records`;
+  const locallyFiltered = publicEvidenceSearchTerm.trim()
+    || Object.values(publicEvidenceFilters).some((control) => control.value !== "All");
+  byId("signalCount").textContent = locallyFiltered
+    ? `${visibleSignals.length} of ${availableSignals.length} public records`
+    : `${visibleSignals.length} public records`;
   byId("signalTable").innerHTML = visibleSignals.length
     ? pageSignals
         .map(
@@ -6198,13 +8319,12 @@ function renderSignals(signals) {
                 </div>
               </td>
               <td>${signal.technology}</td>
-              <td>${signalScoreBreakdownMarkup(signal)}</td>
               <td><a href="${signal.sourceUrl}" target="_blank" rel="noreferrer">${signal.sourceName}</a></td>
             </tr>
           `,
         )
         .join("")
-    : `<tr><td colspan="6"><div class="empty">No signals match the current filters.</div></td></tr>`;
+    : `<tr><td colspan="5"><div class="empty">No records match the current search and filters.</div></td></tr>`;
 
   const pagination = byId("signalPagination");
   pagination.hidden = visibleSignals.length <= pageSize;
@@ -6217,6 +8337,29 @@ function renderSignals(signals) {
         </div>
       `
     : "";
+}
+
+function setupPublicEvidenceFilters() {
+  const form = byId("publicEvidenceFilters");
+  form.addEventListener("submit", (event) => event.preventDefault());
+  byId("signalSearch").addEventListener("input", (event) => {
+    publicEvidenceSearchTerm = event.target.value;
+    state.signalPage = 1;
+    renderSignals(filteredSignalsForHorizon(filters.horizon.value));
+  });
+  Object.values(publicEvidenceFilters).forEach((control) => control.addEventListener("change", () => {
+    state.signalPage = 1;
+    renderSignals(filteredSignalsForHorizon(filters.horizon.value));
+  }));
+  byId("clearSignalFilters").addEventListener("click", () => {
+    publicEvidenceSearchTerm = "";
+    byId("signalSearch").value = "";
+    Object.values(publicEvidenceFilters).forEach((control) => {
+      control.value = "All";
+    });
+    state.signalPage = 1;
+    renderSignals(filteredSignalsForHorizon(filters.horizon.value));
+  });
 }
 
 function setupSignalPagination() {
@@ -6308,13 +8451,69 @@ function populateCompetitors() {
   filters.competitor.innerHTML = `<option>All</option>${competitors.map((name) => `<option>${name}</option>`).join("")}`;
 }
 
+function updateRolePanelVisibility() {
+  const competitorCoveragePanel = document.querySelector(".competitor-coverage-panel");
+  const hiddenForProductManagement = state.view === "Product";
+  if (competitorCoveragePanel) {
+    competitorCoveragePanel.hidden = hiddenForProductManagement;
+    competitorCoveragePanel.setAttribute("aria-hidden", String(hiddenForProductManagement));
+  }
+
+  const marketingView = state.view === "Marketing";
+  const appShell = document.querySelector(".app-shell");
+  const visualDashboard = document.querySelector(".visual-dashboard");
+  const comparatorPanel = byId("product-comparator");
+  const leadershipBrief = byId("leadership-brief");
+  const marketingWorkspace = byId("marketingWorkspace");
+  const standardNavigation = byId("standardSectionNavigation");
+  const marketingNavigation = byId("marketingSectionNavigation");
+  const navigationLabel = byId("sectionNavigationLabel");
+
+  appShell?.classList.toggle("marketing-view", marketingView);
+  if (appShell) {
+    [...appShell.children].forEach((child) => {
+      child.classList.toggle("standard-role-section", !child.matches(".topbar, .filters, #marketingWorkspace"));
+    });
+  }
+  if (marketingWorkspace) {
+    marketingWorkspace.hidden = !marketingView;
+    marketingWorkspace.setAttribute("aria-hidden", String(!marketingView));
+  }
+  if (standardNavigation) standardNavigation.hidden = marketingView;
+  if (marketingNavigation) marketingNavigation.hidden = !marketingView;
+  if (navigationLabel) navigationLabel.textContent = marketingView ? "Product Marketing Workspace" : "Roadmap Intelligence";
+  if (leadershipBrief) leadershipBrief.hidden = false;
+  if (visualDashboard && comparatorPanel && comparatorPanel.parentElement !== visualDashboard) {
+    visualDashboard.insertAdjacentElement("afterbegin", comparatorPanel);
+  }
+  if (byId("comparisonSnapshots")) byId("comparisonSnapshots").hidden = false;
+  const comparisonControls = document.querySelector("#product-comparator .comparison-controls");
+  if (comparisonControls) comparisonControls.hidden = false;
+
+  const inactiveNavigation = marketingView ? standardNavigation : marketingNavigation;
+  inactiveNavigation?.querySelectorAll("[data-section-nav]").forEach((link) => {
+    link.classList.remove("active");
+    link.removeAttribute("aria-current");
+  });
+}
+
 function render() {
   state.view = filters.role.value;
-  setCustomerVoiceTab(state.activeCustomerVoiceTab);
+  updateRolePanelVisibility();
   const signals = currentSignals();
-  byId("viewTitle").textContent = "Next Gen Competitive Intelligence Engine";
   byId("currentViewBadge").textContent = viewCopy[state.view].viewLabel;
   byId("viewSubtitle").textContent = viewCopy[state.view].subtitle;
+  if (state.view === "Marketing") {
+    document.title = viewCopy.Marketing.title;
+    byId("viewTitle").textContent = viewCopy.Marketing.title;
+    renderMarketingWorkspace(signals);
+    scheduleSectionNavRefresh();
+    return;
+  }
+
+  document.title = "Next Gen Competitive Intelligence Engine";
+  byId("viewTitle").textContent = "Next Gen Competitive Intelligence Engine";
+  setCustomerVoiceTab(state.activeCustomerVoiceTab);
   renderSourceCounts(signals);
   renderDirectorSummary(signals);
   renderDecisionPacket(signals);
@@ -6416,9 +8615,11 @@ async function loadData() {
   setupCompanyVoiceDrilldowns();
   setupCustomerVoiceTabs();
   setupComparisonPanel();
+  setupMarketingWorkspaceControls();
   setupConferencePagination();
   setupJournalSourceSlider();
   setupStrategicPagination();
+  setupPublicEvidenceFilters();
   setupSignalPagination();
   render();
   const initialSectionId = window.location.hash.slice(1);

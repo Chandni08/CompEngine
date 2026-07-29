@@ -1,12 +1,14 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { Presentation, PresentationFile } from "@oai/artifact-tool";
+import leadershipBriefApi from "../leadership-brief-thesis.js";
 
 const OUT_DIR = process.env.LEADERSHIP_PPTX_OUT_DIR || "output";
 const PPTX_PATH = process.env.LEADERSHIP_PPTX_PATH || path.join(OUT_DIR, "waters-nextgen-leadership-brief.pptx");
 const INTELLIGENCE_PATH = process.env.LEADERSHIP_INTELLIGENCE_PATH
   || new URL("../data/intelligence.json", import.meta.url);
 const intelligence = JSON.parse(await fs.readFile(INTELLIGENCE_PATH, "utf8"));
+const { leadershipBriefThesis } = leadershipBriefApi;
 
 const asOf = new Date(`${intelligence.asOfDate}T12:00:00Z`);
 const asOfDay = String(asOf.getUTCDate()).padStart(2, "0");
@@ -191,7 +193,7 @@ async function main() {
   {
     const s = deck.slides.add();
     s.background.fill = C.pale;
-    addHeader(s, "Workflow execution is becoming part of product competition", "The strongest cross-page pattern is not a single specification—it is proof that the full workflow is easier to execute, transfer, and troubleshoot.", 2);
+    addHeader(s, leadershipBriefThesis(), "The strongest cross-page pattern is not a single specification—it is proof that the full workflow is easier to execute, transfer, and troubleshoot.", 2);
     addBox(s, 54, 214, 1172, 86, C.ink, C.ink);
     addText(s, "LEADERSHIP IMPLICATION", 78, 233, 230, 22, { fontSize: 13, bold: true, color: C.aqua });
     addText(s, "Test new requirements against workflow proof, not feature parity alone.", 326, 227, 850, 42, { fontSize: 25, bold: true, color: C.white });

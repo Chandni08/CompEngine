@@ -3,7 +3,7 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 import { headingConsistencyErrors, titleCaseErrors } from "../scripts/validate_heading_consistency.mjs";
 
-const names = ["index.html", "app.js", "conference.html", "conference-page.js"];
+const names = ["index.html", "app.js", "conference.html", "conference-page.js", "publications.html", "publication-page.js"];
 const files = Object.fromEntries(
   await Promise.all(names.map(async (name) => [name, await readFile(new URL(`../${name}`, import.meta.url), "utf8")])),
 );
@@ -11,7 +11,7 @@ const deployFiles = Object.fromEntries(
   await Promise.all(names.map(async (name) => [name, await readFile(new URL(`../deploy-site/${name}`, import.meta.url), "utf8")])),
 );
 
-test("dashboard and conference structural headings use consistent title case", () => {
+test("dashboard, conference, and publication structural headings use consistent title case", () => {
   assert.deepEqual(headingConsistencyErrors(files), []);
 });
 

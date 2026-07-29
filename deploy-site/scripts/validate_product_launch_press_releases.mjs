@@ -10,29 +10,42 @@ const OFFICIAL_PRESS_RELEASE_PATHS = {
   Shimadzu: { host: "shimadzu.com", path: /^\/news\/\d{4}\/.+\.html$/i },
 };
 
-const OFFICIAL_DISCOVERY_HOSTS = {
-  Agilent: "agilent.com",
-  SCIEX: "sciex.com",
-  Shimadzu: "shimadzu.com",
+const OFFICIAL_PRODUCT_PAGES = {
+  Agilent: [{ host: "agilent.com", path: /^\/en\/product\//i }],
+  SCIEX: [{ host: "sciex.com", path: /^\/products\//i }],
+  Shimadzu: [
+    { host: "shimadzu.com", path: /^\/an\/products\//i },
+    { host: "shimadzu.co.jp", path: /^\/cl\/products\//i },
+  ],
 };
 
 export function launchDiscoverySourceErrors(launch) {
   const context = launch?.id || launch?.product || "unnamed launch";
-  if (!launch?.sourceUrl) return [`${context}: launch discovery source is missing sourceUrl`];
+  if (!launch?.sourceUrl) return [`${context}: product launch page is missing sourceUrl`];
 
   let url;
   try {
     url = new URL(launch.sourceUrl);
   } catch {
-    return [`${context}: discovery sourceUrl is not a valid URL`];
+    return [`${context}: product-page sourceUrl is not a valid URL`];
   }
 
   const errors = [];
-  if (url.protocol !== "https:") errors.push(`${context}: discovery sourceUrl must use HTTPS`);
-  const officialHost = OFFICIAL_DISCOVERY_HOSTS[launch.competitor];
+  if (url.protocol !== "https:") errors.push(`${context}: product-page sourceUrl must use HTTPS`);
+  const rules = OFFICIAL_PRODUCT_PAGES[launch.competitor] || [];
   const hostname = url.hostname.toLowerCase().replace(/^www\./, "");
-  if (!officialHost || (hostname !== officialHost && !hostname.endsWith(`.${officialHost}`))) {
-    errors.push(`${context}: discovery sourceUrl must use the official ${officialHost || launch.competitor || "competitor"} domain`);
+  const matchingRule = rules.find((rule) => hostname === rule.host || hostname.endsWith(`.${rule.host}`));
+  if (!matchingRule) {
+    errors.push(`${context}: product-page sourceUrl must use an official ${launch.competitor || "competitor"} product domain`);
+  } else if (!matchingRule.path.test(url.pathname)) {
+    errors.push(`${context}: sourceUrl must point to an official product page, not a press-release page or index`);
+  }
+
+  if (launch?.launchEvidenceEligible !== false && launch?.pressReleaseUrl) {
+    const normalize = (value) => String(value || "").replace(/\/$/, "");
+    if (normalize(launch.sourceUrl) === normalize(launch.pressReleaseUrl)) {
+      errors.push(`${context}: product-page sourceUrl and pressReleaseUrl must be distinct official pages`);
+    }
   }
   return errors;
 }
@@ -98,7 +111,7 @@ async function main() {
   }
 
   console.log(
-    `Validated ${eligible.length} product-launch evidence records and ${launches.length} official discovery sources.`,
+    `Validated ${eligible.length} launches with separate official product pages and press releases.`,
   );
 }
 

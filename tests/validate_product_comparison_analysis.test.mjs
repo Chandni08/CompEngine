@@ -44,6 +44,22 @@ test("the exact product pair has sourced technical rows and explicit limits", as
   });
 });
 
+test("Agilent fluorescence detector comparison uses published values only", async () => {
+  const comparisons = await readJson("data/technical_comparisons.json");
+  const profile = comparisons.profiles.find(
+    (item) => item.launchId === "agilent-1290-infinity-iii-fld-2026"
+      && item.watersId === "acquity-uplc-i-class-plus",
+  );
+
+  assert.ok(profile, "fluorescence-detector profile must exist");
+  assert.match(profile.watersProduct, /FLR Detector/);
+  assert.ok(profile.rows.length >= 7);
+  assert.ok(profile.rows.every((row) => row.evidenceType !== "requires-controlled-testing"));
+  assert.match(profile.rows.map((row) => row.dimension).join(" | "), /Raman sensitivity/i);
+  assert.match(profile.rows.map((row) => row.dimension).join(" | "), /Maximum acquisition rate/i);
+  assert.match(profile.rows.map((row) => row.dimension).join(" | "), /Flow-cell volume/i);
+});
+
 test("technical profiles prioritize method performance and identify controlled-test gaps", async () => {
   const comparisons = await readJson("data/technical_comparisons.json");
   const lcProfiles = comparisons.profiles.filter((profile) =>
@@ -95,17 +111,31 @@ test("technical profiles prioritize method performance and identify controlled-t
   });
 });
 
-test("technical comparison omits the long comparison-basis sentence", async () => {
+test("competitor feature highlights replace the technical comparison table", async () => {
   const app = await readFile(new URL("app.js", root), "utf8");
   const deployedApp = await readFile(new URL("deploy-site/app.js", root), "utf8");
 
-  assert.doesNotMatch(app, /resolvedProfile\.comparisonBasis/);
+  assert.match(app, /function competitorFeatureHighlightsMarkup/);
+  assert.match(app, /Key Features Highlighted by/);
+  assert.doesNotMatch(app, /function technicalComparisonMarkup/);
+  assert.doesNotMatch(app, /<h4>Technical Comparison<\/h4>/);
   assert.equal(deployedApp, app);
 });
 
-test("technical comparison omits the evidence-quality column", async () => {
+test("competitor feature highlights show published competitor claims and official sources", async () => {
   const app = await readFile(new URL("app.js", root), "utf8");
 
-  assert.doesNotMatch(app, /<th>Evidence quality<\/th>/);
-  assert.doesNotMatch(app, /class="technical-legend"/);
+  assert.match(app, /row\.competitorValue/);
+  assert.match(app, /row\.competitorSourceUrl \|\| officialSourceUrl/);
+  assert.match(app, /Official source ↗/);
+  assert.match(app, /return publishedFeatures\.slice\(0, 4\)/);
+});
+
+test("competitor feature highlights do not change with the selected Waters system", async () => {
+  const app = await readFile(new URL("app.js", root), "utf8");
+
+  assert.match(app, /row\.evidenceType !== "requires-controlled-testing"/);
+  assert.match(app, /\(item\) => item\.launchId === launch\.id/);
+  assert.doesNotMatch(app, /item\.launchId === launch\.id && item\.watersId === waters\?\.id/);
+  assert.doesNotMatch(app, /Published specifications and PM implications/);
 });

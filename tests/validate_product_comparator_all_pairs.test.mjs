@@ -36,8 +36,7 @@ test("every comparator selection returns a pair-specific impact and technical re
       assert.ok(result.impactValue && !/not yet assessed/i.test(result.impactValue), `${launch.id} × ${waters.id} has an impact result`);
       assert.ok(result.pmRead?.includes(launch.product) || curated?.closestWatersId === waters.id, `${launch.id} × ${waters.id} names the selected competitor product`);
       assert.ok(result.watersPositioning?.includes(waters.product) || curated?.closestWatersId === waters.id, `${launch.id} × ${waters.id} names the selected Waters product`);
-      assert.ok(technical.rows.length >= 5, `${launch.id} × ${waters.id} has technical dimensions`);
-      assert.ok(technical.rows.every((row) => row.evidenceType === "requires-controlled-testing"), `${launch.id} × ${waters.id} preserves evidence discipline`);
+      assert.deepEqual(technical.rows, [], `${launch.id} × ${waters.id} does not fabricate missing technical rows`);
       checkedPairs += 1;
     });
   });

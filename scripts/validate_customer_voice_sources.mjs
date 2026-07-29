@@ -7,6 +7,12 @@ import { fileURLToPath } from "node:url";
 const TIMEOUT_MS = 30_000;
 const MAX_WORKERS = 6;
 const USER_AGENT = "CompetitionEngineEvidenceValidator/1.0 (+source-keyword validation)";
+const SOURCE_CREDIBILITY = {
+  community_forum: 0.65,
+  structured_review: 0.8,
+  regulatory: 1,
+  reddit: 0.55,
+};
 const VENDOR_IDENTITY_TERMS = {
   Waters: ["waters", "acquity", "empower", "breeze", "alliance", "arc", "synapt", "masslynx", "targetlynx", "unifi", "waters connect", "xevo"],
   Agilent: ["agilent", "infinitylab", "openlab", "1260", "1290"],
@@ -63,10 +69,37 @@ function isRedditUrl(url) {
 export function redditValidationUrl(value) {
   const url = new URL(value);
   if (isRedditUrl(url.toString())) {
-    url.pathname = `${url.pathname.replace(/\/+$/, "")}/.rss`;
-    url.searchParams.set("limit", "500");
+    const postId = url.pathname.match(/\/comments\/([a-z0-9]+)/i)?.[1];
+    if (!postId) throw new Error("Reddit source URL has no post ID");
+    return `https://oauth.reddit.com/comments/${postId}?raw_json=1&limit=500`;
   }
   return url.toString();
+}
+
+let redditAccessToken;
+
+async function getRedditAccessToken() {
+  if (redditAccessToken) return redditAccessToken;
+  const clientId = String(process.env.REDDIT_CLIENT_ID || "").trim();
+  const clientSecret = String(process.env.REDDIT_CLIENT_SECRET || "").trim();
+  if (!clientId || !clientSecret) throw new Error("Reddit OAuth credentials are not configured");
+  const authorization = Buffer.from(`${clientId}:${clientSecret}`).toString("base64");
+  const response = await fetch("https://www.reddit.com/api/v1/access_token", {
+    method: "POST",
+    headers: {
+      Authorization: `Basic ${authorization}`,
+      "Content-Type": "application/x-www-form-urlencoded",
+      "User-Agent": USER_AGENT,
+      Accept: "application/json",
+    },
+    body: "grant_type=client_credentials",
+    signal: AbortSignal.timeout(TIMEOUT_MS),
+  });
+  if (!response.ok) throw new Error(`Reddit OAuth token request returned HTTP ${response.status}`);
+  const payload = await response.json();
+  redditAccessToken = String(payload.access_token || "").trim();
+  if (!redditAccessToken) throw new Error("Reddit OAuth token response contained no token");
+  return redditAccessToken;
 }
 
 export function vendorEvidenceCoverageErrors(feedback, asOfDate) {
@@ -130,11 +163,18 @@ async function fetchWithTimeout(url) {
 
 async function fetchSourceText(url) {
   if (isRedditUrl(url)) {
-    const response = await fetchWithTimeout(redditValidationUrl(url));
-    const text = await response.text();
-    if (/you've been blocked by network security|whoa there/i.test(text)) {
-      throw new Error("Reddit returned an access challenge instead of discussion text");
-    }
+    const token = await getRedditAccessToken();
+    const response = await fetch(redditValidationUrl(url), {
+      redirect: "follow",
+      headers: {
+        Authorization: `bearer ${token}`,
+        "User-Agent": USER_AGENT,
+        Accept: "application/json",
+      },
+      signal: AbortSignal.timeout(TIMEOUT_MS),
+    });
+    if (!response.ok) throw new Error(`Reddit OAuth API returned HTTP ${response.status}`);
+    const text = JSON.stringify(await response.json());
     if (normalizeText(text).length < 100) throw new Error("Reddit returned insufficient discussion text");
     return text;
   }
@@ -183,14 +223,28 @@ async function main() {
   const records = (data.feedback || []).flatMap((feedback) =>
     (feedback.evidenceRecords || []).map((record) => ({ feedbackId: feedback.id, record })),
   );
-  const urls = [...new Set(records.map(({ record }) => record.url).filter(Boolean))];
+  const urls = [...new Set(records.filter(({ record }) => record.sourceType !== "regulatory").map(({ record }) => record.url).filter(Boolean))];
   const sourceResults = await fetchAllSources(urls);
   const errors = [];
 
   for (const { feedbackId, record } of records) {
     const context = `${feedbackId} -> ${record.label || record.url || "unnamed source"}`;
+    if (!(record.sourceType in SOURCE_CREDIBILITY)) {
+      errors.push(`${context}: sourceType must be one of ${Object.keys(SOURCE_CREDIBILITY).join(", ")}`);
+    } else if (record.sourceCredibility !== SOURCE_CREDIBILITY[record.sourceType]) {
+      errors.push(`${context}: sourceCredibility must be ${SOURCE_CREDIBILITY[record.sourceType]} for ${record.sourceType}`);
+    }
     if (!record.url) {
       errors.push(`${context}: missing source URL`);
+      continue;
+    }
+    if (record.sourceType === "regulatory") {
+      const extractedWorkbookText = JSON.stringify({
+        excerpt: record.excerpt || "",
+        entries: record.regulatoryEntries || [],
+        findings: record.regulatoryFindings || [],
+      });
+      errors.push(...keywordCoverageErrors(record, extractedWorkbookText, context));
       continue;
     }
     const source = sourceResults.get(record.url);

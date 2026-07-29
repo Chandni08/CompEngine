@@ -6,9 +6,11 @@ const customerVoice = JSON.parse(await readFile(new URL("../data/customer_voice.
 const deployCustomerVoice = JSON.parse(await readFile(new URL("../deploy-site/data/customer_voice.json", import.meta.url), "utf8"));
 const app = await readFile(new URL("../app.js", import.meta.url), "utf8");
 const deployApp = await readFile(new URL("../deploy-site/app.js", import.meta.url), "utf8");
+const index = await readFile(new URL("../index.html", import.meta.url), "utf8");
 
-const allowedCustomerHosts = new Set(["chromforum.org", "labwrench.com", "reddit.com", "selectscience.net"]);
-const forbiddenAuthorship = /official|employee|vendor-authored|press release|product page|support knowledge base/i;
+const allowedCustomerHosts = new Set(["chromforum.org", "fda.gov", "labwrench.com", "reddit.com", "selectscience.net"]);
+const forbiddenAuthorship = /employee|vendor-authored|press release|support knowledge base/i;
+const allowedSourceTypes = new Set(["community_forum", "structured_review", "regulatory", "reddit"]);
 
 function normalizedHostname(urlValue) {
   return new URL(urlValue).hostname.toLowerCase().replace(/^www\./, "");
@@ -19,11 +21,13 @@ function isAllowedCustomerHost(urlValue) {
   return [...allowedCustomerHosts].some((host) => hostname === host || hostname.endsWith(`.${host}`));
 }
 
-test("customer voice contains only independent customer-authored source records", () => {
+test("customer voice contains only approved public evidence source classes", () => {
   const records = customerVoice.feedback.flatMap((item) => item.evidenceRecords || []);
   assert.ok(records.length > 0, "expected customer-authored evidence records");
   records.forEach((record) => {
     assert.ok(isAllowedCustomerHost(record.url), `unexpected Customer Voice host: ${record.url}`);
+    assert.ok(allowedSourceTypes.has(record.sourceType), `unexpected sourceType: ${record.sourceType}`);
+    assert.equal(typeof record.sourceCredibility, "number", `missing numeric sourceCredibility for ${record.url}`);
     assert.doesNotMatch(`${record.recordType || ""} ${record.label || ""}`, forbiddenAuthorship);
   });
 });
@@ -35,7 +39,6 @@ test("customer voice source catalog excludes vendor-owned and employee-authored 
   });
   customerVoice.feedback.forEach((item) => {
     assert.ok(isAllowedCustomerHost(item.sourceUrl), `unexpected Customer Voice fallback host: ${item.sourceUrl}`);
-    assert.equal(item.sourceName, "Independent customer-authored discussions");
   });
 });
 
@@ -44,4 +47,13 @@ test("runtime guard and deployment copies preserve the customer-only boundary", 
   assert.match(app, /\.filter\(isCustomerAuthoredVoiceSource\)/);
   assert.equal(deployApp, app);
   assert.deepEqual(deployCustomerVoice, customerVoice);
+});
+
+test("customer voice visibly distinguishes every retained public source class", () => {
+  assert.match(app, /sourceType: normalizedCustomerVoiceSourceType\(record\.sourceType, record\.url\)/);
+  assert.match(app, /function renderCustomerVoiceSourceMix\(items\)/);
+  assert.match(app, /data-customer-source-type/);
+  assert.match(app, /customer-source-type-badge/);
+  assert.match(index, /id="customerVoiceSourceMix"/);
+  assert.match(index, /<th>Source type<\/th>/);
 });

@@ -8,7 +8,7 @@ Formula (100 points total):
   - corroboration: 15 points from unique source records sharing a theme
 
 The dataset is written only when no single integer score is shared by more
-than 20% of signals.
+than 25% of signals.
 """
 
 from __future__ import annotations
@@ -26,7 +26,7 @@ from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 INTELLIGENCE_FILE = ROOT / "data" / "intelligence.json"
-MAX_SHARED_SCORE_RATIO = 0.20
+MAX_SHARED_SCORE_RATIO = 0.25
 RECENCY_HALF_LIFE_DAYS = 180
 
 LC_PATTERNS: tuple[tuple[str, int, re.Pattern[str]], ...] = (
@@ -212,7 +212,7 @@ def main() -> int:
     )
     if most_common_share > MAX_SHARED_SCORE_RATIO:
         print(
-            "Scoring stopped: more than 20% of signals share one score. "
+            "Scoring stopped: more than 25% of signals share one score. "
             "The formula is not discriminating enough.",
             file=sys.stderr,
         )

@@ -35,7 +35,7 @@ test("allows a catalog-only product to opt out of launch evidence", () => {
   assert.deepEqual(errors, []);
 });
 
-test("accepts an official page used to discover a launch", () => {
+test("accepts an official product launch page", () => {
   const errors = launchDiscoverySourceErrors({
     id: "agilent-discovery-example",
     competitor: "Agilent",
@@ -44,11 +44,28 @@ test("accepts an official page used to discover a launch", () => {
   assert.deepEqual(errors, []);
 });
 
-test("blocks missing or non-official launch discovery sources", () => {
+test("blocks missing, non-official, or non-product launch pages", () => {
   assert.ok(launchDiscoverySourceErrors({ id: "missing-source", competitor: "SCIEX" }).some((error) => /missing sourceUrl/.test(error)));
   assert.ok(launchDiscoverySourceErrors({
     id: "unofficial-source",
     competitor: "Shimadzu",
     sourceUrl: "https://example.com/launch",
-  }).some((error) => /official shimadzu.com domain/.test(error)));
+  }).some((error) => /official Shimadzu product domain/.test(error)));
+  assert.ok(launchDiscoverySourceErrors({
+    id: "press-index",
+    competitor: "SCIEX",
+    sourceUrl: "https://sciex.com/about-us/press-releases",
+  }).some((error) => /official product page/.test(error)));
+});
+
+test("requires distinct product and press-release pages for launch evidence", () => {
+  const sharedUrl = "https://www.shimadzu.com/news/2026/example.html";
+  const errors = launchDiscoverySourceErrors({
+    id: "duplicate-launch-links",
+    competitor: "Shimadzu",
+    sourceUrl: sharedUrl,
+    pressReleaseUrl: sharedUrl,
+  });
+  assert.ok(errors.some((error) => /official product page/.test(error)));
+  assert.ok(errors.some((error) => /must be distinct/.test(error)));
 });

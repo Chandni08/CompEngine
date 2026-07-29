@@ -178,6 +178,66 @@ def collect_crossref_records(issn: str) -> tuple[int, list[dict[str, str]], str]
     return status, records, f"Collected {len(records)} recent DOI records from Crossref journal metadata."
 
 
+def collect_crossref_count(issn: str, start: date, end: date) -> tuple[int, int]:
+    endpoint = (
+        f"https://api.crossref.org/journals/{quote(issn)}/works"
+        f"?filter=from-pub-date:{start.isoformat()},until-pub-date:{end.isoformat()}&rows=0"
+    )
+    status, _, body = fetch(endpoint, accept_json=True)
+    if status != 200:
+        return status, 0
+    try:
+        return status, int(json.loads(body).get("message", {}).get("total-results", 0))
+    except (json.JSONDecodeError, TypeError, ValueError):
+        return status, 0
+
+
+def collect_crossref_trend(issn: str) -> tuple[dict[str, Any], str]:
+    today = date.today()
+    last_30_start = today - timedelta(days=29)
+    prior_30_end = last_30_start - timedelta(days=1)
+    prior_30_start = prior_30_end - timedelta(days=29)
+    last_90_start = today - timedelta(days=89)
+    prior_90_end = last_90_start - timedelta(days=1)
+    prior_90_start = prior_90_end - timedelta(days=89)
+    trailing_year_start = today - timedelta(days=364)
+    windows = {
+        "last30Days": (last_30_start, today),
+        "prior30Days": (prior_30_start, prior_30_end),
+        "last90Days": (last_90_start, today),
+        "prior90Days": (prior_90_start, prior_90_end),
+        "trailing12Months": (trailing_year_start, today),
+    }
+    counts: dict[str, int] = {}
+    failed: list[str] = []
+    for key, (start, end) in windows.items():
+        status, count = collect_crossref_count(issn, start, end)
+        counts[key] = count
+        if status != 200:
+            failed.append(key)
+    current = counts["last90Days"]
+    previous = counts["prior90Days"]
+    change = round(((current - previous) / previous) * 100) if previous else None
+    if change is None:
+        direction = "Insufficient prior-period data"
+    elif change >= 10:
+        direction = "Higher publication pace"
+    elif change <= -10:
+        direction = "Lower publication pace"
+    else:
+        direction = "Stable publication pace"
+    trend = {
+        "asOf": today.isoformat(),
+        **counts,
+        "change90Pct": change,
+        "direction": direction,
+        "comparisonBasis": "Crossref publication counts: latest 90 days versus the preceding 90 days.",
+    }
+    if failed:
+        return trend, f"Crossref count queries failed for: {', '.join(failed)}."
+    return trend, "Collected rolling publication counts from Crossref journal metadata."
+
+
 def catalog_base(source_id: str, source_class: str, name: str, publisher: str, url: str, segments: list[str]) -> dict[str, Any]:
     return {
         "id": source_id,
@@ -202,13 +262,17 @@ def collect_journals(journal_data: dict[str, Any]) -> tuple[list[dict[str, Any]]
     for source in journal_data.get("sources", []):
         if source.get("sourceClass") != "Peer-reviewed journal":
             continue
-        status, records, detail = collect_crossref_records(str(source.get("issn") or ""))
+        issn = str(source.get("issn") or "")
+        status, records, detail = collect_crossref_records(issn)
+        publication_trend, trend_detail = collect_crossref_trend(issn)
         source["lastChecked"] = checked_at
         source["surfaces"] = ["Market intelligence", "Application trends"]
         source["collectionStatus"] = "extracted" if records else "blocked"
         source["collectionDetail"] = detail
         source["extractedRecords"] = len(records)
         source["recentRecords"] = records
+        source["publicationTrend"] = publication_trend
+        source["trendCollectionDetail"] = trend_detail
         source["metadataEndpoint"] = f"https://api.crossref.org/journals/{source.get('issn')}/works"
         entry = catalog_base(
             f"journal-{source['id']}",

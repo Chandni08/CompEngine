@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-07-26T11:55:09+00:00",
+  "capturedAt": "2026-07-29T00:26:40+00:00",
   "productInventoryInitialized": true,
   "pressIndexInitialized": true,
   "products": {
@@ -54,6 +54,14 @@
     "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-solvents/infinitylab-acetonitrile-for-lc-ms": "2026-07-05"
   },
   "pressReleases": {
+    "https://www.agilent.com/about/newsroom/presrel/2026/28jul-gp26015.html": {
+      "date": "2026-07-28",
+      "title": "Agilent to Announce Third-Quarter Fiscal Year 2026 Financial Results on Aug. 26",
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/28jul-gp26015.html",
+      "classification": "product",
+      "pageTitle": "Agilent to Announce Third-Quarter Fiscal Year 2026 Financial Results on Aug. 26",
+      "excerpt": "Skip to main content ABOUT AGILENT CONTACT US UNITED STATES ACCOUNT PRODUCTS APPLICATIONS & INDUSTRIES TRAINING & EVENTS SERVICES SUPPORT & RESOURCES ORDER CENTER | 0 Home About Newsroom Press Releases 2026 Agilent to Announce Third-Quarter Fiscal Year 2026 Financial Results on Aug. 26 Newsroom Press Releases Media Coverage Media Rooms Awards PR Contacts Subscribe Investor Relations Share: Press Release Agilent to Announce Third-Quarter Fiscal Year 2026 Financial Results on Aug. 26 SANTA CLARA, Calif., July 28, 2026 Agilent Technologies Inc. (NYSE: A) will release financial results for the third quarter of fiscal year 2026 after the stock market closes on Wednesday, Aug. 26. The company will host a conference call to discuss the results at 1:30 p.m. PDT the same day. To join the listen-only conference call webcast, click the link on the Events section of Agilent\u2019s Investor Relations website. A recording of the call will also be available on the website for 90 days. About Agilent Technologies Agilent Technologies, Inc. (NYSE: A) is a global leader in analytical and clinical laboratory technologies, delivering insights and innovation that help our customers bring great science to life. Agilent\u2019s full range of solutions includes instruments, software, services, and expertise that provide trusted answers to our customers' most challenging questions. The company generated revenue of $6.95 billion in fiscal year 2025 and employs approximately 18,000 people worldwide. Information about Agilent is available at www.agilent.com. To receive the latest Agilent news, subscribe to the Agilent Newsroom. Follow Agilent on LinkedIn and Facebook. Investor Contact Tejas Savant Agilent Technologies Inc. +1 917-574-4018 tejas.savant@agilent.com Media Contact Christian Col\u00f3n Agilent Technologies Inc. +1 302-867-4117 christian.colon@agilent.com Newsroom Highlights Previous From Instruments to Workflows: What Actually Changes When AI Comes to the Lab Article Agilent Ranks Among World's Best Employers Award Bringing Great Science to Life - Sustainably 2024 ESG Report AI is a Transformative Enabler that\u2019s Reshaping How Science is Conducted in Labs Article Agilent Reports Second-Quarter Fiscal Year 2026 Financial Results Press Release Agilent Named to Newsweek's List of America's Greenest Companies 2026 Award From Instruments to Workflows: What Actually Changes When AI Comes to the La"
+    },
     "https://www.agilent.com/about/newsroom/presrel/2026/23jul-ca26027.html": {
       "date": "2026-07-23",
       "title": "Agilent Receives EU Approval for PD-L1 IHC 22C3 pharmDx in Epithelial Ovarian, Fallopian Tube, or Primary Peritoneal Carcinoma",
@@ -106,12 +114,6 @@
       "date": "2026-05-29",
       "title": "Agilent Showcases Integrated Mass Spectrometry and Chromatography Solutions at ASMS 2026",
       "url": "https://www.agilent.com/about/newsroom/presrel/2026/29may-ca26021.html",
-      "classification": "product"
-    },
-    "https://www.agilent.com/about/newsroom/presrel/2026/28may-ca26020.html": {
-      "date": "2026-05-28",
-      "title": "Agilent Introduces OpenLab Sync to Support Guided, Digital Execution in the Laboratory",
-      "url": "https://www.agilent.com/about/newsroom/presrel/2026/28may-ca26020.html",
       "classification": "product"
     }
   }

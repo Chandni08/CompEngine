@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-26T11:55:09+00:00",
+  "generatedAt": "2026-07-29T00:26:40+00:00",
   "baselineCreated": {
     "productInventory": false,
     "pressIndex": false
@@ -11,7 +11,16 @@
   "new_products": [],
   "discontinued_products": [],
   "updated_products": [],
-  "new_press_releases": [],
+  "new_press_releases": [
+    {
+      "date": "2026-07-28",
+      "title": "Agilent to Announce Third-Quarter Fiscal Year 2026 Financial Results on Aug. 26",
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/28jul-gp26015.html",
+      "classification": "product",
+      "pageTitle": "Agilent to Announce Third-Quarter Fiscal Year 2026 Financial Results on Aug. 26",
+      "excerpt": "Skip to main content ABOUT AGILENT CONTACT US UNITED STATES ACCOUNT PRODUCTS APPLICATIONS & INDUSTRIES TRAINING & EVENTS SERVICES SUPPORT & RESOURCES ORDER CENTER | 0 Home About Newsroom Press Releases 2026 Agilent to Announce Third-Quarter Fiscal Year 2026 Financial Results on Aug. 26 Newsroom Press Releases Media Coverage Media Rooms Awards PR Contacts Subscribe Investor Relations Share: Press Release Agilent to Announce Third-Quarter Fiscal Year 2026 Financial Results on Aug. 26 SANTA CLARA, Calif., July 28, 2026 Agilent Technologies Inc. (NYSE: A) will release financial results for the third quarter of fiscal year 2026 after the stock market closes on Wednesday, Aug. 26. The company will host a conference call to discuss the results at 1:30 p.m. PDT the same day. To join the listen-only conference call webcast, click the link on the Events section of Agilent\u2019s Investor Relations website. A recording of the call will also be available on the website for 90 days. About Agilent Technologies Agilent Technologies, Inc. (NYSE: A) is a global leader in analytical and clinical laboratory technologies, delivering insights and innovation that help our customers bring great science to life. Agilent\u2019s full range of solutions includes instruments, software, services, and expertise that provide trusted answers to our customers' most challenging questions. The company generated revenue of $6.95 billion in fiscal year 2025 and employs approximately 18,000 people worldwide. Information about Agilent is available at www.agilent.com. To receive the latest Agilent news, subscribe to the Agilent Newsroom. Follow Agilent on LinkedIn and Facebook. Investor Contact Tejas Savant Agilent Technologies Inc. +1 917-574-4018 tejas.savant@agilent.com Media Contact Christian Col\u00f3n Agilent Technologies Inc. +1 302-867-4117 christian.colon@agilent.com Newsroom Highlights Previous From Instruments to Workflows: What Actually Changes When AI Comes to the Lab Article Agilent Ranks Among World's Best Employers Award Bringing Great Science to Life - Sustainably 2024 ESG Report AI is a Transformative Enabler that\u2019s Reshaping How Science is Conducted in Labs Article Agilent Reports Second-Quarter Fiscal Year 2026 Financial Results Press Release Agilent Named to Newsweek's List of America's Greenest Companies 2026 Award From Instruments to Workflows: What Actually Changes When AI Comes to the La"
+    }
+  ],
   "source_status": [
     {
       "url": "https://www.agilent.com/sitemap.xml",
@@ -20,7 +29,7 @@
       "status": "available",
       "sourceQuality": "reliable",
       "reliabilityNote": "Authoritative sitemap index.",
-      "checkedAt": "2026-07-26T11:54:32+00:00"
+      "checkedAt": "2026-07-29T00:26:11+00:00"
     },
     {
       "url": "https://www.agilent.com/pim_commerce01.xml",
@@ -29,7 +38,7 @@
       "status": "available",
       "sourceQuality": "reliable",
       "reliabilityNote": "Authoritative product inventory.",
-      "checkedAt": "2026-07-26T11:54:36+00:00"
+      "checkedAt": "2026-07-29T00:26:12+00:00"
     },
     {
       "url": "https://www.agilent.com/pim_commerce1.xml",
@@ -38,7 +47,7 @@
       "status": "available",
       "sourceQuality": "reliable",
       "reliabilityNote": "Authoritative product inventory.",
-      "checkedAt": "2026-07-26T11:54:40+00:00"
+      "checkedAt": "2026-07-29T00:26:13+00:00"
     },
     {
       "url": "https://www.agilent.com/products0.xml",
@@ -47,16 +56,16 @@
       "status": "available",
       "sourceQuality": "reliable",
       "reliabilityNote": "Authoritative product inventory.",
-      "checkedAt": "2026-07-26T11:54:42+00:00"
+      "checkedAt": "2026-07-29T00:26:15+00:00"
     },
     {
       "url": "https://www.agilent.com/about/newsroom/presrel.html",
-      "fetchMethod": "headless_browser_required",
-      "httpStatus": 403,
-      "status": "collection_review_needed",
+      "fetchMethod": "real_browser",
+      "httpStatus": 200,
+      "status": "available",
       "sourceQuality": "reliable",
-      "reliabilityNote": "A 403 from a plain HTTP client is an Agilent WAF artifact and does not reduce source quality.",
-      "checkedAt": "2026-07-26T11:54:55+00:00"
+      "reliabilityNote": "Authoritative dated press-release index.",
+      "checkedAt": "2026-07-29T00:26:25+00:00"
     },
     {
       "url": "https://www.investor.agilent.com/overview/default.aspx",
@@ -65,7 +74,16 @@
       "status": "available",
       "sourceQuality": "reliable",
       "reliabilityNote": "Investor relations source; 10-second crawl delay applied.",
-      "checkedAt": "2026-07-26T11:55:09+00:00"
+      "checkedAt": "2026-07-29T00:26:29+00:00"
+    },
+    {
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/28jul-gp26015.html",
+      "fetchMethod": "real_browser",
+      "httpStatus": 200,
+      "status": "available",
+      "sourceQuality": "reliable",
+      "reliabilityNote": "New release fetched for classification and detail.",
+      "checkedAt": "2026-07-29T00:26:40+00:00"
     }
   ],
   "monitoringNote": "Agilent WAF responses do not affect source quality. Authoritative sitemap and press indexes are monitored with an honest crawler identity."

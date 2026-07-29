@@ -1,0 +1,12 @@
+(function registerLeadershipBriefThesis(root) {
+  function leadershipBriefThesis() {
+    return "Workflow execution is becoming part of product competition";
+  }
+
+  const api = { leadershipBriefThesis };
+  root.CompetitionEngineLeadership = api;
+
+  if (typeof module === "object" && module.exports) {
+    module.exports = api;
+  }
+})(typeof globalThis === "object" ? globalThis : this);

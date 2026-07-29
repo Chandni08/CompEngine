@@ -1,27 +1,33 @@
 {
-  "generatedAt": "2026-07-23T14:30:00-04:00",
-  "asOfDate": "2026-07-23",
+  "generatedAt": "2026-07-29T00:23:46+00:00",
+  "asOfDate": "2026-07-28",
   "scope": "Exact public LC and LC-MS user discussions and troubleshooting records for Waters product management. Source URLs are deduplicated in the interface, and displayed wording is validated against each linked page.",
   "sources": [
     {
       "id": "selectscience-lc-reviews",
-      "sourceName": "SelectScience product reviews",
-      "sourceType": "Public product reviews",
-      "url": "https://www.selectscience.net/",
-      "coverage": "Product-review source to monitor for Waters and competitor LC/UHPLC systems.",
-      "status": "source_mapped",
+      "sourceName": "SelectScience product reviews and articles",
+      "sourceType": "structured_review",
+      "url": "https://www.selectscience.net/product/acquity-uplc-r-beh-c18-and-c8-columns",
+      "coverage": "Public product pages with numeric ratings and review text, plus public article pages.",
+      "status": "collected",
       "confidence": "Directional",
-      "nextAction": "Map article/product-review URLs for ACQUITY, Alliance, Agilent InfinityLab, Thermo Vanquish, Shimadzu Nexera, and SCIEX ExionLC."
+      "nextAction": "Map article/product-review URLs for ACQUITY, Alliance, Agilent InfinityLab, Thermo Vanquish, Shimadzu Nexera, and SCIEX ExionLC.",
+      "sourceCredibility": 0.8,
+      "recordsCollected": 1,
+      "lastCheckedAt": "2026-07-29T00:23:46+00:00"
     },
     {
       "id": "chromforum-lc-discussions",
       "sourceName": "Chromatography Forum",
-      "sourceType": "Public technical forum",
-      "url": "https://www.chromforum.org/",
-      "coverage": "Technical troubleshooting discussions around leaks, carryover, pressure stability, detectors, method transfer, and software workflows.",
-      "status": "source_mapped",
+      "sourceType": "community_forum",
+      "url": "https://www.chromforum.org/viewforum.php?f=1",
+      "coverage": "Public viewtopic.php and viewforum.php LC discussions; competitor comparisons are prioritized.",
+      "status": "collected",
       "confidence": "Directional",
-      "nextAction": "Extract topic-level URLs and classify by product, issue category, role, and sentiment."
+      "nextAction": "Extract topic-level URLs and classify by product, issue category, role, and sentiment.",
+      "sourceCredibility": 0.65,
+      "recordsCollected": 4,
+      "lastCheckedAt": "2026-07-29T00:23:46+00:00"
     },
     {
       "id": "labwrench-equipment-qa",
@@ -42,6 +48,39 @@
       "status": "access_policy_needed",
       "confidence": "Low",
       "nextAction": "Confirm compliant collection method before ingesting user-generated content."
+    },
+    {
+      "id": "labwrench-lc-discussions",
+      "sourceName": "LabWrench",
+      "sourceType": "community_forum",
+      "url": "https://www.labwrench.com/forums/",
+      "coverage": "Public LC/HPLC forum, thread, and article pages.",
+      "sourceCredibility": 0.65,
+      "status": "collected",
+      "recordsCollected": 2,
+      "lastCheckedAt": "2026-07-29T00:23:46+00:00"
+    },
+    {
+      "id": "reddit-lc-discussions",
+      "sourceName": "Reddit official OAuth API",
+      "sourceType": "reddit",
+      "url": "https://www.reddit.com/dev/api/",
+      "coverage": "Public posts from r/Chromatography, r/analyticalchemistry, and r/labrats via the official OAuth Data API only.",
+      "sourceCredibility": 0.55,
+      "status": "checked_no_new_records",
+      "recordsCollected": 0,
+      "lastCheckedAt": "2026-07-29T00:23:46+00:00"
+    },
+    {
+      "id": "fda-regulatory-lab-findings",
+      "sourceName": "FDA official bulk regulatory data",
+      "sourceType": "regulatory",
+      "url": "https://www.fda.gov/media/190190/download?attachment",
+      "coverage": "Official FDA Warning Letter index and Form 483 bulk workbooks filtered to regulated laboratory and data-control findings.",
+      "sourceCredibility": 1.0,
+      "status": "collected",
+      "recordsCollected": 2,
+      "lastCheckedAt": "2026-07-29T00:23:46+00:00"
     }
   ],
   "feedback": [
@@ -68,7 +107,9 @@
           ],
           "recordType": "Public user discussion",
           "sourceDate": "2026-06-30",
-          "dateType": "Published"
+          "dateType": "Published",
+          "sourceType": "reddit",
+          "sourceCredibility": 0.55
         }
       ],
       "sentiment": "Negative",
@@ -107,7 +148,9 @@
           ],
           "recordType": "Public user discussion",
           "sourceDate": "2024-11-27",
-          "dateType": "Published"
+          "dateType": "Published",
+          "sourceType": "reddit",
+          "sourceCredibility": 0.55
         }
       ],
       "sentiment": "Negative",
@@ -145,7 +188,9 @@
           ],
           "recordType": "Public user discussion",
           "sourceDate": "2024-07-15",
-          "dateType": "Published"
+          "dateType": "Published",
+          "sourceType": "reddit",
+          "sourceCredibility": 0.55
         },
         {
           "label": "Reddit discussion: Is Waters training worth it?",
@@ -157,7 +202,9 @@
           ],
           "recordType": "Public user discussion",
           "sourceDate": "2025-02-13",
-          "dateType": "Published"
+          "dateType": "Published",
+          "sourceType": "reddit",
+          "sourceCredibility": 0.55
         }
       ],
       "sentiment": "Mixed",
@@ -187,28 +234,44 @@
       "sourceUrl": "https://www.labwrench.com/thread/135698/hplc-pump-and-autosampler-preventative-performance-maintenance",
       "evidenceRecords": [
         {
-          "label": "LabWrench: HPLC pump and autosampler maintenance",
+          "label": "LabWrench: HPLC pump and autosampler preventative/performance maintenance",
           "url": "https://www.labwrench.com/thread/135698/hplc-pump-and-autosampler-preventative-performance-maintenance",
           "sourceKeywords": [
-            "HPLC pump",
+            "Waters",
+            "Alliance",
+            "HPLC",
+            "pump",
             "autosampler",
-            "maintenance"
+            "maintenance",
+            "service"
           ],
-          "recordType": "Public equipment discussion",
+          "recordType": "Public LabWrench discussion",
           "sourceDate": "2016-05-11",
-          "dateType": "Published"
+          "dateType": "Published",
+          "sourceType": "community_forum",
+          "sourceCredibility": 0.65,
+          "sourceName": "LabWrench",
+          "excerpt": "HPLC pump and autosampler preventative/performance maintenance | LabWrench LabWrench is a LabX .com website. Discuss Discuss Sign In | Register My Bench | Log Out Question & Answer Forums Equipment View All Analytical Basic Laboratory Clinical Laboratory GC - Gas Chromatography HPLC - High Performance Liquid Chromatography Life Science Mass Spectrometers Microscopy Pharmaceutical Processing Spectroscopy Supplies and Consumables Service Providers News LabWrench is a LabX .com website. Sign In | Register My Bench | Log Out Start a Discussion Start a Discussion Question & Answer Forums | Equipment | Service Providers | News × One moment please... Username / Email Address Password Sign in to your Bench forgot username or password? My Bench Close Not a Member? Sign up for Free Today OK × name type Receive Summary Emails? none daily weekly Receive Instant Notices Display in Community Feed Subs"
         },
         {
-          "label": "LabWrench: Waters Alliance 2695 seal-wash pump operation",
+          "label": "LabWrench: Waters Alliance 2695 seal wash pump on during operation",
           "url": "https://www.labwrench.com/thread/187926/waters-alliance-2695-seal-wash-pump-on-during-operation",
           "sourceKeywords": [
-            "Waters Alliance 2695",
-            "seal wash pump",
-            "operation"
+            "Waters",
+            "Alliance",
+            "HPLC",
+            "pump",
+            "autosampler",
+            "seal wash",
+            "service"
           ],
-          "recordType": "Public equipment discussion",
+          "recordType": "Public LabWrench discussion",
           "sourceDate": "2018-12-28",
-          "dateType": "Published"
+          "dateType": "Published",
+          "sourceType": "community_forum",
+          "sourceCredibility": 0.65,
+          "sourceName": "LabWrench",
+          "excerpt": "Waters Alliance 2695 seal wash pump on during operation - Waters 2695 | LabWrench LabWrench is a LabX .com website. Discuss Discuss Sign In | Register My Bench | Log Out Question & Answer Forums Equipment View All Analytical Basic Laboratory Clinical Laboratory GC - Gas Chromatography HPLC - High Performance Liquid Chromatography Life Science Mass Spectrometers Microscopy Pharmaceutical Processing Spectroscopy Supplies and Consumables Service Providers News LabWrench is a LabX .com website. Sign In | Register My Bench | Log Out Start a Discussion Start a Discussion Question & Answer Forums | Equipment | Service Providers | News × One moment please... Username / Email Address Password Sign in to your Bench forgot username or password? My Bench Close Not a Member? Sign up for Free Today OK × name type Receive Summary Emails? none daily weekly Receive Instant Notices Display in Community Fe"
         }
       ],
       "sentiment": "Mixed",
@@ -248,7 +311,9 @@
           ],
           "recordType": "Public user discussion",
           "sourceDate": "2026-04-18",
-          "dateType": "Published"
+          "dateType": "Published",
+          "sourceType": "reddit",
+          "sourceCredibility": 0.55
         },
         {
           "label": "Reddit discussion: compatibility between Waters and Agilent testing methods",
@@ -261,7 +326,9 @@
           ],
           "recordType": "Public user discussion",
           "sourceDate": "2026-05-21",
-          "dateType": "Published"
+          "dateType": "Published",
+          "sourceType": "reddit",
+          "sourceCredibility": 0.55
         }
       ],
       "sentiment": "Mixed",
@@ -299,19 +366,30 @@
           ],
           "recordType": "Public multi-vendor discussion",
           "sourceDate": "2022-09-23",
-          "dateType": "Published"
+          "dateType": "Published",
+          "sourceType": "reddit",
+          "sourceCredibility": 0.55
         },
         {
-          "label": "Chromatography Forum: Agilent 1200, Waters UPLC, or Thermo Fisher fast system",
+          "label": "Chromatography Forum: Agilent 1200 (RRS), Waters UPLC, or ThermoFisher Fast System",
           "url": "https://www.chromforum.org/viewtopic.php?t=8508",
           "sourceKeywords": [
-            "Agilent 1200",
-            "Waters UPLC",
-            "ThermoFisher"
+            "Waters",
+            "ACQUITY",
+            "Agilent",
+            "Thermo",
+            "Shimadzu",
+            "HPLC",
+            "UHPLC",
+            "LC-MS"
           ],
-          "recordType": "Public technical discussion",
-          "sourceDate": "2008-05-27",
-          "dateType": "Published"
+          "recordType": "Public chromatography forum discussion",
+          "sourceDate": "2004-10-18",
+          "dateType": "Published",
+          "sourceType": "community_forum",
+          "sourceCredibility": 0.65,
+          "sourceName": "Chromatography Forum",
+          "excerpt": "﻿ Agilent 1200 (RRS), Waters UPLC, or ThermoFisher Fast System - Chromatography Forum Advertisement Register Log in Log in Notifications Notifications Settings You have no notifications See All Quick links Unanswered topics Active topics Search FAQ Get in Touch with Us Chromatography Forum Unanswered topics Active topics Search Log in Register Skip to content Liquid Chromatography Gas Chromatography Hyphenated Techniques Sample Preparation Data Issues Jobs & Announcements FAQs Applications Notes Webinars Learning Hubs Home Chromatography Liquid Chromatography Agilent 1200 (RRS), Waters UPLC, or ThermoFisher Fast System Discussions about HPLC, CE, TLC, SFC, and other \"liquid phase\" separation techniques. 29 posts Page 1 of 2 Post a reply Print view 1 2 Next Search Agilent 1200 (RRS), Waters UPLC, or ThermoFisher Fast System Jasmine Posts: 42 Joined: Mon Oct 18, 2004 7:26 am by Jasmine » T"
         }
       ],
       "sentiment": "Positive",
@@ -352,7 +430,9 @@
           ],
           "recordType": "Public multi-vendor discussion",
           "sourceDate": "2026-01-02",
-          "dateType": "Published"
+          "dateType": "Published",
+          "sourceType": "reddit",
+          "sourceCredibility": 0.55
         },
         {
           "label": "Reddit discussion: Agilent 1260 HPLC versus Thermo Vanquish Flex",
@@ -363,7 +443,9 @@
           ],
           "recordType": "Public multi-vendor discussion",
           "sourceDate": "2024-12-04",
-          "dateType": "Published"
+          "dateType": "Published",
+          "sourceType": "reddit",
+          "sourceCredibility": 0.55
         }
       ],
       "sentiment": "Positive",
@@ -403,7 +485,9 @@
           ],
           "recordType": "Public multi-vendor discussion",
           "sourceDate": "2026-01-02",
-          "dateType": "Published"
+          "dateType": "Published",
+          "sourceType": "reddit",
+          "sourceCredibility": 0.55
         },
         {
           "label": "Reddit discussion: Agilent 1260 repair",
@@ -414,7 +498,9 @@
           ],
           "recordType": "Public user discussion",
           "sourceDate": "2024-04-26",
-          "dateType": "Published"
+          "dateType": "Published",
+          "sourceType": "reddit",
+          "sourceCredibility": 0.55
         }
       ],
       "sentiment": "Mixed",
@@ -452,7 +538,9 @@
           ],
           "recordType": "Public multi-vendor discussion",
           "sourceDate": "2024-12-04",
-          "dateType": "Published"
+          "dateType": "Published",
+          "sourceType": "reddit",
+          "sourceCredibility": 0.55
         },
         {
           "label": "Reddit discussion: Purchase of Waters/Thermo LC-MS system",
@@ -464,7 +552,9 @@
           ],
           "recordType": "Public multi-vendor discussion",
           "sourceDate": "2023-07-23",
-          "dateType": "Published"
+          "dateType": "Published",
+          "sourceType": "reddit",
+          "sourceCredibility": 0.55
         }
       ],
       "sentiment": "Positive",
@@ -504,7 +594,9 @@
           ],
           "recordType": "Public multi-vendor discussion",
           "sourceDate": "2026-01-02",
-          "dateType": "Published"
+          "dateType": "Published",
+          "sourceType": "reddit",
+          "sourceCredibility": 0.55
         },
         {
           "label": "Reddit discussion: Agilent 1260 HPLC versus Thermo Vanquish Flex",
@@ -515,7 +607,9 @@
           ],
           "recordType": "Public multi-vendor discussion",
           "sourceDate": "2024-12-04",
-          "dateType": "Published"
+          "dateType": "Published",
+          "sourceType": "reddit",
+          "sourceCredibility": 0.55
         }
       ],
       "sentiment": "Mixed",
@@ -555,7 +649,9 @@
           ],
           "recordType": "Public multi-vendor discussion",
           "sourceDate": "2026-01-02",
-          "dateType": "Published"
+          "dateType": "Published",
+          "sourceType": "reddit",
+          "sourceCredibility": 0.55
         },
         {
           "label": "Reddit discussion: Shimadzu Nexera XS inert versus Agilent 1290 Bio",
@@ -567,7 +663,9 @@
           ],
           "recordType": "Public multi-vendor discussion",
           "sourceDate": "2023-11-14",
-          "dateType": "Published"
+          "dateType": "Published",
+          "sourceType": "reddit",
+          "sourceCredibility": 0.55
         }
       ],
       "sentiment": "Positive",
@@ -605,7 +703,9 @@
           ],
           "recordType": "Public user discussion",
           "sourceDate": "2025-01-22",
-          "dateType": "Published"
+          "dateType": "Published",
+          "sourceType": "reddit",
+          "sourceCredibility": 0.55
         },
         {
           "label": "Reddit discussion: New HPLC system for routine work",
@@ -618,7 +718,9 @@
           ],
           "recordType": "Public multi-vendor discussion",
           "sourceDate": "2026-01-02",
-          "dateType": "Published"
+          "dateType": "Published",
+          "sourceType": "reddit",
+          "sourceCredibility": 0.55
         }
       ],
       "sentiment": "Mixed",
@@ -656,7 +758,9 @@
           ],
           "recordType": "Public multi-vendor discussion",
           "sourceDate": "2024-08-29",
-          "dateType": "Published"
+          "dateType": "Published",
+          "sourceType": "reddit",
+          "sourceCredibility": 0.55
         },
         {
           "label": "Reddit discussion: LC/MS help for SCIEX 6500",
@@ -667,7 +771,9 @@
           ],
           "recordType": "Public user discussion",
           "sourceDate": "2023-07-10",
-          "dateType": "Published"
+          "dateType": "Published",
+          "sourceType": "reddit",
+          "sourceCredibility": 0.55
         }
       ],
       "sentiment": "Positive",
@@ -707,7 +813,9 @@
           ],
           "recordType": "Public multi-vendor discussion",
           "sourceDate": "2026-01-02",
-          "dateType": "Published"
+          "dateType": "Published",
+          "sourceType": "reddit",
+          "sourceCredibility": 0.55
         },
         {
           "label": "Reddit discussion: Is Waters training worth it?",
@@ -719,7 +827,9 @@
           ],
           "recordType": "Public user discussion",
           "sourceDate": "2025-02-13",
-          "dateType": "Published"
+          "dateType": "Published",
+          "sourceType": "reddit",
+          "sourceCredibility": 0.55
         }
       ],
       "sentiment": "Negative",
@@ -760,7 +870,9 @@
           ],
           "recordType": "Public multi-vendor discussion",
           "sourceDate": "2026-07-12",
-          "dateType": "Published"
+          "dateType": "Published",
+          "sourceType": "reddit",
+          "sourceCredibility": 0.55
         },
         {
           "label": "Reddit discussion: Looking for an HPLC machine",
@@ -771,7 +883,9 @@
           ],
           "recordType": "Public multi-vendor discussion",
           "sourceDate": "2025-11-03",
-          "dateType": "Published"
+          "dateType": "Published",
+          "sourceType": "reddit",
+          "sourceCredibility": 0.55
         }
       ],
       "sentiment": "Negative",
@@ -811,7 +925,9 @@
           ],
           "recordType": "Public user discussion",
           "sourceDate": "2026-07-16",
-          "dateType": "Published"
+          "dateType": "Published",
+          "sourceType": "reddit",
+          "sourceCredibility": 0.55
         }
       ],
       "sentiment": "Mixed",
@@ -851,7 +967,9 @@
           ],
           "recordType": "Public multi-user discussion",
           "sourceDate": "2026-07-15",
-          "dateType": "Published"
+          "dateType": "Published",
+          "sourceType": "reddit",
+          "sourceCredibility": 0.55
         }
       ],
       "sentiment": "Mixed",
@@ -891,7 +1009,9 @@
           ],
           "recordType": "Public troubleshooting discussion",
           "sourceDate": "2026-06-09",
-          "dateType": "Published"
+          "dateType": "Published",
+          "sourceType": "reddit",
+          "sourceCredibility": 0.55
         }
       ],
       "sentiment": "Negative",
@@ -931,7 +1051,9 @@
           ],
           "recordType": "Public integration discussion",
           "sourceDate": "2026-07-06",
-          "dateType": "Published"
+          "dateType": "Published",
+          "sourceType": "reddit",
+          "sourceCredibility": 0.55
         }
       ],
       "sentiment": "Mixed",
@@ -971,7 +1093,9 @@
           ],
           "recordType": "Public multi-vendor discussion",
           "sourceDate": "2026-04-03",
-          "dateType": "Published"
+          "dateType": "Published",
+          "sourceType": "reddit",
+          "sourceCredibility": 0.55
         }
       ],
       "sentiment": "Mixed",
@@ -1011,7 +1135,9 @@
           ],
           "recordType": "Public data-processing discussion",
           "sourceDate": "2026-04-17",
-          "dateType": "Published"
+          "dateType": "Published",
+          "sourceType": "reddit",
+          "sourceCredibility": 0.55
         }
       ],
       "sentiment": "Mixed",
@@ -1051,7 +1177,9 @@
           ],
           "recordType": "Public multi-vendor discussion",
           "sourceDate": "2026-02-25",
-          "dateType": "Published"
+          "dateType": "Published",
+          "sourceType": "reddit",
+          "sourceCredibility": 0.55
         }
       ],
       "sentiment": "Negative",
@@ -1091,7 +1219,9 @@
           ],
           "recordType": "Public multi-user discussion",
           "sourceDate": "2026-05-12",
-          "dateType": "Published"
+          "dateType": "Published",
+          "sourceType": "reddit",
+          "sourceCredibility": 0.55
         }
       ],
       "sentiment": "Mixed",
@@ -1131,7 +1261,9 @@
           ],
           "recordType": "Public multi-vendor discussion",
           "sourceDate": "2025-11-19",
-          "dateType": "Published"
+          "dateType": "Published",
+          "sourceType": "reddit",
+          "sourceCredibility": 0.55
         }
       ],
       "sentiment": "Mixed",
@@ -1171,7 +1303,9 @@
           ],
           "recordType": "Public multi-vendor discussion",
           "sourceDate": "2025-12-26",
-          "dateType": "Published"
+          "dateType": "Published",
+          "sourceType": "reddit",
+          "sourceCredibility": 0.55
         }
       ],
       "sentiment": "Mixed",
@@ -1211,7 +1345,9 @@
           ],
           "recordType": "Public multi-vendor discussion",
           "sourceDate": "2025-09-19",
-          "dateType": "Published"
+          "dateType": "Published",
+          "sourceType": "reddit",
+          "sourceCredibility": 0.55
         }
       ],
       "sentiment": "Mixed",
@@ -1251,7 +1387,9 @@
           ],
           "recordType": "Public troubleshooting record",
           "sourceDate": "2025-08-25",
-          "dateType": "Published"
+          "dateType": "Published",
+          "sourceType": "reddit",
+          "sourceCredibility": 0.55
         }
       ],
       "sentiment": "Mixed",
@@ -1291,7 +1429,9 @@
           ],
           "recordType": "Public service-experience discussion",
           "sourceDate": "2025-12-04",
-          "dateType": "Published"
+          "dateType": "Published",
+          "sourceType": "reddit",
+          "sourceCredibility": 0.55
         }
       ],
       "sentiment": "Mixed",
@@ -1307,6 +1447,532 @@
       "geography": "Global",
       "confidence": 80,
       "evidenceStatus": "Exact public service-experience discussion"
+    },
+    {
+      "id": "cv-public-e5eccb8568bea5",
+      "dateCaptured": "2026-07-28",
+      "company": "Agilent",
+      "product": "Agilent LC/LC-MS portfolio",
+      "platform": "LC-MS",
+      "sourceIds": [
+        "chromforum-lc-discussions"
+      ],
+      "sourceName": "Chromatography Forum",
+      "sourceUrl": "https://www.chromforum.org/viewtopic.php?t=122481",
+      "evidenceRecords": [
+        {
+          "label": "Chromatography Forum: Agilent LCMSMS 6470B vs 6475",
+          "url": "https://www.chromforum.org/viewtopic.php?t=122481",
+          "sourceKeywords": [
+            "Waters",
+            "Agilent",
+            "HPLC",
+            "LC-MS",
+            "chromatography",
+            "software"
+          ],
+          "recordType": "Public chromatography forum discussion",
+          "sourceDate": "2025-08-08",
+          "dateType": "Published",
+          "sourceType": "community_forum",
+          "sourceCredibility": 0.65,
+          "sourceName": "Chromatography Forum",
+          "excerpt": "﻿ Agilent LCMSMS 6470B vs 6475 - Chromatography Forum Advertisement Register Log in Log in Notifications Notifications Settings You have no notifications See All Quick links Unanswered topics Active topics Search FAQ Get in Touch with Us Chromatography Forum Unanswered topics Active topics Search Log in Register Skip to content Liquid Chromatography Gas Chromatography Hyphenated Techniques Sample Preparation Data Issues Jobs & Announcements FAQs Applications Notes Webinars Learning Hubs Home Chromatography Liquid Chromatography Agilent LCMSMS 6470B vs 6475 Discussions about HPLC, CE, TLC, SFC, and other \"liquid phase\" separation techniques. 1 post Page 1 of 1 Post a reply Print view Search Agilent LCMSMS 6470B vs 6475 aroravishal Posts: 1 Joined: Fri Aug 08, 2025 8:33 am by aroravishal » Fri Aug 08, 2025 9:31 am Hi, I am looking to purchase a used/demo system of LCMSMS in addition to my"
+        }
+      ],
+      "sentiment": "Negative",
+      "category": "Workflow performance / user experience",
+      "estimatedMentions5y": 1,
+      "theme": "Workflow performance / user experience",
+      "customerLanguageSignal": "﻿ Agilent LCMSMS 6470B vs 6475 - Chromatography Forum Advertisement Register Log in Log in Notifications Notifications Settings You have no notifications See All Quick links Unanswered topics Active topics Search FAQ Get in Touch with Us Chromatography Forum Unanswered topics Active topics Search Log in Register Skip to content Liquid Chromatography Gas Chromatography Hyphenated Techniques Sample Preparation Data Issues Jobs & Announcements FAQs Applications Notes Webinars Learning Hubs Home Chr",
+      "pmInterpretation": "Validate the observed workflow issue with additional independent sources before prioritizing it.",
+      "labType": "Unspecified public contributor",
+      "userRole": "Public reviewer/contributor",
+      "buyingPriority": "Ease of use",
+      "productMaturity": "Public evidence",
+      "geography": "Global",
+      "confidence": 65,
+      "evidenceStatus": "Exact dated public source"
+    },
+    {
+      "id": "cv-public-60387a73676cf5",
+      "dateCaptured": "2026-07-28",
+      "company": "Waters",
+      "product": "Waters LC/LC-MS portfolio",
+      "platform": "LC-MS",
+      "sourceIds": [
+        "chromforum-lc-discussions"
+      ],
+      "sourceName": "Chromatography Forum",
+      "sourceUrl": "https://www.chromforum.org/viewtopic.php?t=122404",
+      "evidenceRecords": [
+        {
+          "label": "Chromatography Forum: Need help troubleshoot Waters 2410 and 2414",
+          "url": "https://www.chromforum.org/viewtopic.php?t=122404",
+          "sourceKeywords": [
+            "Waters",
+            "HPLC",
+            "LC-MS",
+            "chromatography",
+            "software",
+            "troubleshoot"
+          ],
+          "recordType": "Public chromatography forum discussion",
+          "sourceDate": "2016-07-04",
+          "dateType": "Published",
+          "sourceType": "community_forum",
+          "sourceCredibility": 0.65,
+          "sourceName": "Chromatography Forum",
+          "excerpt": "﻿ Need help troubleshoot Waters 2410 and 2414 - Chromatography Forum Advertisement Register Log in Log in Notifications Notifications Settings You have no notifications See All Quick links Unanswered topics Active topics Search FAQ Get in Touch with Us Chromatography Forum Unanswered topics Active topics Search Log in Register Skip to content Liquid Chromatography Gas Chromatography Hyphenated Techniques Sample Preparation Data Issues Jobs & Announcements FAQs Applications Notes Webinars Learning Hubs Home Chromatography Liquid Chromatography Need help troubleshoot Waters 2410 and 2414 Discussions about HPLC, CE, TLC, SFC, and other \"liquid phase\" separation techniques. 2 posts Page 1 of 1 Post a reply Print view Search Need help troubleshoot Waters 2410 and 2414 cigtoxdoc Posts: 11 Joined: Mon Jul 04, 2016 1:46 am by cigtoxdoc » Mon May 05, 2025 9:58 pm Over the past few years, I have p"
+        }
+      ],
+      "sentiment": "Negative",
+      "category": "Reliability / troubleshooting and recovery",
+      "estimatedMentions5y": 1,
+      "theme": "Reliability / troubleshooting and recovery",
+      "customerLanguageSignal": "﻿ Need help troubleshoot Waters 2410 and 2414 - Chromatography Forum Advertisement Register Log in Log in Notifications Notifications Settings You have no notifications See All Quick links Unanswered topics Active topics Search FAQ Get in Touch with Us Chromatography Forum Unanswered topics Active topics Search Log in Register Skip to content Liquid Chromatography Gas Chromatography Hyphenated Techniques Sample Preparation Data Issues Jobs & Announcements FAQs Applications Notes Webinars Learnin",
+      "pmInterpretation": "Measure time-to-diagnosis, recovery steps, and service escalation across representative failures.",
+      "labType": "Unspecified public contributor",
+      "userRole": "Public reviewer/contributor",
+      "buyingPriority": "Reliability",
+      "productMaturity": "Public evidence",
+      "geography": "Global",
+      "confidence": 65,
+      "evidenceStatus": "Exact dated public source"
+    },
+    {
+      "id": "cv-public-1ade4471eb58d9",
+      "dateCaptured": "2026-07-28",
+      "company": "Agilent",
+      "product": "Agilent LC/LC-MS portfolio",
+      "platform": "LC-MS",
+      "sourceIds": [
+        "chromforum-lc-discussions"
+      ],
+      "sourceName": "Chromatography Forum",
+      "sourceUrl": "https://www.chromforum.org/viewtopic.php?t=122426",
+      "evidenceRecords": [
+        {
+          "label": "Chromatography Forum: Agilent MWD / DAD noise test fail UV and Vis",
+          "url": "https://www.chromforum.org/viewtopic.php?t=122426",
+          "sourceKeywords": [
+            "Agilent",
+            "HPLC",
+            "LC-MS",
+            "chromatography",
+            "software"
+          ],
+          "recordType": "Public chromatography forum discussion",
+          "sourceDate": "2014-06-24",
+          "dateType": "Published",
+          "sourceType": "community_forum",
+          "sourceCredibility": 0.65,
+          "sourceName": "Chromatography Forum",
+          "excerpt": "﻿ Agilent MWD / DAD noise test fail UV and Vis - Chromatography Forum Advertisement Register Log in Log in Notifications Notifications Settings You have no notifications See All Quick links Unanswered topics Active topics Search FAQ Get in Touch with Us Chromatography Forum Unanswered topics Active topics Search Log in Register Skip to content Liquid Chromatography Gas Chromatography Hyphenated Techniques Sample Preparation Data Issues Jobs & Announcements FAQs Applications Notes Webinars Learning Hubs Home Chromatography Liquid Chromatography Agilent MWD / DAD noise test fail UV and Vis Discussions about HPLC, CE, TLC, SFC, and other \"liquid phase\" separation techniques. 3 posts Page 1 of 1 Post a reply Print view Search Agilent MWD / DAD noise test fail UV and Vis Emefede Posts: 9 Joined: Tue Jun 24, 2014 7:38 pm by Emefede » Wed Jun 04, 2025 1:03 am Hello everyone, I have an Agilent M"
+        }
+      ],
+      "sentiment": "Negative",
+      "category": "Workflow performance / user experience",
+      "estimatedMentions5y": 1,
+      "theme": "Workflow performance / user experience",
+      "customerLanguageSignal": "﻿ Agilent MWD / DAD noise test fail UV and Vis - Chromatography Forum Advertisement Register Log in Log in Notifications Notifications Settings You have no notifications See All Quick links Unanswered topics Active topics Search FAQ Get in Touch with Us Chromatography Forum Unanswered topics Active topics Search Log in Register Skip to content Liquid Chromatography Gas Chromatography Hyphenated Techniques Sample Preparation Data Issues Jobs & Announcements FAQs Applications Notes Webinars Learni",
+      "pmInterpretation": "Validate the observed workflow issue with additional independent sources before prioritizing it.",
+      "labType": "Unspecified public contributor",
+      "userRole": "Public reviewer/contributor",
+      "buyingPriority": "Ease of use",
+      "productMaturity": "Public evidence",
+      "geography": "Global",
+      "confidence": 65,
+      "evidenceStatus": "Exact dated public source"
+    },
+    {
+      "id": "cv-public-0fccea23bf6448",
+      "dateCaptured": "2026-07-28",
+      "company": "Waters",
+      "product": "ACQUITY UPLC",
+      "platform": "LC-MS",
+      "sourceIds": [
+        "selectscience-lc-reviews"
+      ],
+      "sourceName": "SelectScience",
+      "sourceUrl": "https://www.selectscience.net/product/acquity-uplc-r-beh-c18-and-c8-columns",
+      "evidenceRecords": [
+        {
+          "label": "SelectScience: Buy ACQUITY UPLC® BEH C18 and C8 Columns Read Reviews",
+          "url": "https://www.selectscience.net/product/acquity-uplc-r-beh-c18-and-c8-columns",
+          "sourceKeywords": [
+            "Waters",
+            "ACQUITY",
+            "Shimadzu",
+            "Nexera",
+            "HPLC",
+            "UHPLC",
+            "LC-MS",
+            "rating"
+          ],
+          "recordType": "Public structured product review",
+          "sourceDate": "2017-03-21",
+          "dateType": "Published",
+          "sourceType": "structured_review",
+          "sourceCredibility": 0.8,
+          "sourceName": "SelectScience",
+          "excerpt": "(Opens in new tab) (Opens in new tab) (Opens in new tab) Login Join Free Fields & Topics Life Sciences All Content Applications & Methods News & Articles Videos Events & Summits Webinars Drug Discovery & Development Biopharmaceuticals Basic Research Target Discovery Lead Discovery Pre-Clinical Development Clinical Development Drug Manufacturing Clinical Diagnostics All Content Clinical CE Webinars CLINICAL24 Applications & Methods News & Articles Videos Events & Summits Webinars Immersive Content Environmental All Content Applications & Methods News & Articles Videos Events & Summits Webinars Materials All Content Applications & Methods News & Articles Videos Events & Summits Webinars Food & Beverage All Content Applications & Methods News & Articles Videos Events & Summits Webinars General Lab All Content Applications & Methods News & Articles Videos Events & Summits Webinars Lab Automa",
+          "rating": 4.83,
+          "reviewText": "Perfect column for metabolomic purpose!",
+          "ratingScale": 5
+        }
+      ],
+      "sentiment": "Positive",
+      "category": "Workflow performance / user experience",
+      "estimatedMentions5y": 1,
+      "theme": "Workflow performance / user experience",
+      "customerLanguageSignal": "Perfect column for metabolomic purpose!",
+      "pmInterpretation": "Validate the observed workflow issue with additional independent sources before prioritizing it.",
+      "labType": "Unspecified public contributor",
+      "userRole": "Public reviewer/contributor",
+      "buyingPriority": "Ease of use",
+      "productMaturity": "Public evidence",
+      "geography": "Global",
+      "confidence": 80,
+      "evidenceStatus": "Exact dated public source"
+    },
+    {
+      "id": "cv-public-13d8655cb1b4c1",
+      "dateCaptured": "2026-07-28",
+      "company": "Market-wide",
+      "product": "Regulated LC/QC laboratories",
+      "platform": "LC/UHPLC",
+      "sourceIds": [
+        "fda-regulatory-lab-findings"
+      ],
+      "sourceName": "U.S. FDA Warning Letters bulk download",
+      "sourceUrl": "https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/compliance-actions-and-activities/warning-letters/datatables-data?_format=xlsx&page=0",
+      "evidenceRecords": [
+        {
+          "label": "FDA Warning Letter index: analytical and laboratory operators",
+          "url": "https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/compliance-actions-and-activities/warning-letters/datatables-data?_format=xlsx&page=0",
+          "sourceKeywords": [
+            "chromatography",
+            "analytical",
+            "laboratory",
+            "Good Laboratory Practice"
+          ],
+          "recordType": "Official FDA Warning Letter bulk index",
+          "sourceDate": "2025-09-17",
+          "dateType": "Published",
+          "sourceType": "regulatory",
+          "sourceCredibility": 1.0,
+          "sourceName": "U.S. FDA Warning Letters bulk download",
+          "excerpt": "BRS Analytical Services, LLC — CGMP/Finished Pharmaceuticals/Adulterated (2025-09-17) | Chromatography Institute of America dba Compounder’s International Analytical Laboratory — CGMP/Finished Pharmaceutical/API/Adulterated (2025-08-20) | Shiva Analyticals Private Limited — CGMP/Finished Pharmaceuticals/Adulterated (2025-07-23) | Jiangsu Kerbio Medical Technology Group Co. — Good Laboratory Practice (GLP) for Nonclinical Laboratory Studies (2025-07-11) | Green Wave Analytical, LLC — CGMP/Finished Pharmaceuticals/Adulterated (2022-08-19) | Clinical Resolution Laboratory Inc. — CGMP/Finished Pharmaceuticals/Adulterated (2022-03-01) | Toxikon Corporation/Labcorp Bedford LLC — Good Laboratory Practice (GLP) (2022-02-10) | Coastal E-Liquid Laboratory/GC Vapors LLC — Family Smoking Prevention and Tobacco Control Act/Adulterated/Misbranded (2021-01-15)",
+          "regulatoryEntries": [
+            {
+              "Posted Date": "10/21/2025",
+              "Letter Issue Date": "09/17/2025",
+              "Company Name": "BRS Analytical Services, LLC",
+              "Issuing Office": "Center for Drug Evaluation and Research (CDER)",
+              "Subject": "CGMP/Finished Pharmaceuticals/Adulterated",
+              "Response Letter": "",
+              "Closeout Letter": "",
+              "date": "2025-09-17"
+            },
+            {
+              "Posted Date": "09/02/2025",
+              "Letter Issue Date": "08/20/2025",
+              "Company Name": "Chromatography Institute of America dba Compounder’s International Analytical Laboratory",
+              "Issuing Office": "Center for Drug Evaluation and Research (CDER)",
+              "Subject": "CGMP/Finished Pharmaceutical/API/Adulterated",
+              "Response Letter": "",
+              "Closeout Letter": "",
+              "date": "2025-08-20"
+            },
+            {
+              "Posted Date": "07/29/2025",
+              "Letter Issue Date": "07/23/2025",
+              "Company Name": "Shiva Analyticals Private Limited",
+              "Issuing Office": "Center for Drug Evaluation and Research (CDER)",
+              "Subject": "CGMP/Finished Pharmaceuticals/Adulterated",
+              "Response Letter": "",
+              "Closeout Letter": "",
+              "date": "2025-07-23"
+            },
+            {
+              "Posted Date": "08/26/2025",
+              "Letter Issue Date": "07/11/2025",
+              "Company Name": "Jiangsu Kerbio Medical Technology Group Co.",
+              "Issuing Office": "Center for Devices and Radiological Health",
+              "Subject": "Good Laboratory Practice (GLP) for Nonclinical Laboratory Studies",
+              "Response Letter": "",
+              "Closeout Letter": "",
+              "date": "2025-07-11"
+            },
+            {
+              "Posted Date": "08/30/2022",
+              "Letter Issue Date": "08/19/2022",
+              "Company Name": "Green Wave Analytical, LLC",
+              "Issuing Office": "Division of Pharmaceutical Quality Operations IV",
+              "Subject": "CGMP/Finished Pharmaceuticals/Adulterated",
+              "Response Letter": "",
+              "Closeout Letter": "",
+              "date": "2022-08-19"
+            },
+            {
+              "Posted Date": "04/26/2022",
+              "Letter Issue Date": "03/01/2022",
+              "Company Name": "Clinical Resolution Laboratory Inc.",
+              "Issuing Office": "Division of Pharmaceutical Quality Operations IV",
+              "Subject": "CGMP/Finished Pharmaceuticals/Adulterated",
+              "Response Letter": "",
+              "Closeout Letter": "",
+              "date": "2022-03-01"
+            },
+            {
+              "Posted Date": "02/22/2022",
+              "Letter Issue Date": "02/10/2022",
+              "Company Name": "Toxikon Corporation/Labcorp Bedford LLC",
+              "Issuing Office": "Center for Biologics Evaluation and Research",
+              "Subject": "Good Laboratory Practice (GLP)",
+              "Response Letter": "",
+              "Closeout Letter": "11/02/2022",
+              "date": "2022-02-10"
+            },
+            {
+              "Posted Date": "01/15/2021",
+              "Letter Issue Date": "01/15/2021",
+              "Company Name": "Coastal E-Liquid Laboratory/GC Vapors LLC",
+              "Issuing Office": "Center for Tobacco Products",
+              "Subject": "Family Smoking Prevention and Tobacco Control Act/Adulterated/Misbranded",
+              "Response Letter": "",
+              "Closeout Letter": "",
+              "date": "2021-01-15"
+            }
+          ],
+          "regulatoryDataset": "warning_letters"
+        }
+      ],
+      "sentiment": "Negative",
+      "category": "Regulated laboratory controls / data integrity",
+      "estimatedMentions5y": 1,
+      "theme": "Regulated laboratory controls / data integrity",
+      "customerLanguageSignal": "BRS Analytical Services, LLC — CGMP/Finished Pharmaceuticals/Adulterated (2025-09-17) | Chromatography Institute of America dba Compounder’s International Analytical Laboratory — CGMP/Finished Pharmaceutical/API/Adulterated (2025-08-20) | Shiva Analyticals Private Limited — CGMP/Finished Pharmaceuticals/Adulterated (2025-07-23) | Jiangsu Kerbio Medical Technology Group Co. — Good Laboratory Practice (GLP) for Nonclinical Laboratory Studies (2025-07-11) | Green Wave Analytical, LLC — CGMP/Finishe",
+      "pmInterpretation": "Map recurring FDA laboratory-control findings to instrument, software, and review controls.",
+      "labType": "Pharma",
+      "userRole": "FDA inspection finding",
+      "buyingPriority": "Compliance",
+      "productMaturity": "Public evidence",
+      "geography": "Global",
+      "confidence": 100,
+      "evidenceStatus": "Exact dated public source"
+    },
+    {
+      "id": "cv-public-d1d7ebe0cd662a",
+      "dateCaptured": "2026-07-28",
+      "company": "Market-wide",
+      "product": "Regulated LC/QC laboratories",
+      "platform": "LC/UHPLC",
+      "sourceIds": [
+        "fda-regulatory-lab-findings"
+      ],
+      "sourceName": "U.S. FDA Inspectional Observations bulk download",
+      "sourceUrl": "https://www.fda.gov/media/190190/download?attachment=",
+      "evidenceRecords": [
+        {
+          "label": "FDA FY2025 Form 483: regulated laboratory and data-control findings",
+          "url": "https://www.fda.gov/media/190190/download?attachment=",
+          "sourceKeywords": [
+            "laboratory controls",
+            "test procedures",
+            "computer",
+            "equipment",
+            "calibration",
+            "investigation",
+            "specifications"
+          ],
+          "recordType": "Official FDA Form 483 bulk observations",
+          "sourceDate": "2025-09-30",
+          "dateType": "Published",
+          "sourceType": "regulatory",
+          "sourceCredibility": 1.0,
+          "sourceName": "U.S. FDA Inspectional Observations bulk download",
+          "excerpt": "Procedures not in writing, fully followed (243 citations) | Investigations of discrepancies, failures (164 citations) | Scientifically sound laboratory controls (121 citations) | Cleaning / Sanitizing / Maintenance (95 citations) | Computer control of master formula records (87 citations) | Equipment Design, Size and Location (81 citations) | Written procedures not established/followed (70 citations) | Testing and release for distribution (44 citations)",
+          "regulatoryFindings": [
+            {
+              "programArea": "Drugs",
+              "citeId": "1105",
+              "reference": "21 CFR 211.22(d)",
+              "finding": "Procedures not in writing, fully followed",
+              "description": "The responsibilities and procedures applicable to the quality control unit are not [in writing] [fully followed]. Specifically, ***",
+              "frequency": 243
+            },
+            {
+              "programArea": "Drugs",
+              "citeId": "2027",
+              "reference": "21 CFR 211.192",
+              "finding": "Investigations of discrepancies, failures",
+              "description": "There is a failure to thoroughly review [any unexplained discrepancy] [the failure of a batch or any of its components to meet any of its specifications] whether or not the batch has been already distributed. Specifically, ***",
+              "frequency": 164
+            },
+            {
+              "programArea": "Drugs",
+              "citeId": "3603",
+              "reference": "21 CFR 211.160(b)",
+              "finding": "Scientifically sound laboratory controls",
+              "description": "Laboratory controls do not include the establishment of scientifically sound and appropriate [specifications] [standards] [sampling plans] [test procedures] designed to assure that [components] [drug product containers] [closures] [in-process materials] [labeling] [drug products] conform to appropriate standards of identity, strength, quality and purity. Specifically, ***",
+              "frequency": 121
+            },
+            {
+              "programArea": "Drugs",
+              "citeId": "1213",
+              "reference": "21 CFR 211.67(a)",
+              "finding": "Cleaning / Sanitizing / Maintenance",
+              "description": "Equipment and utensils are not [cleaned] [maintained] [sanitized] at appropriate intervals to prevent [malfunctions] [contamination] that would alter the safety, identity, strength, quality or purity of the drug product. Specifically, ***",
+              "frequency": 95
+            },
+            {
+              "programArea": "Drugs",
+              "citeId": "1263",
+              "reference": "21 CFR 211.68(b)",
+              "finding": "Computer control of master formula records",
+              "description": "Appropriate controls are not exercised over computers or related systems to assure that changes in master production and control records or other records are instituted only by authorized personnel. Specifically, ***",
+              "frequency": 87
+            },
+            {
+              "programArea": "Drugs",
+              "citeId": "1177",
+              "reference": "21 CFR 211.63",
+              "finding": "Equipment Design, Size and Location",
+              "description": "Equipment used in the manufacture, processing, packing or holding of drug products is not [of appropriate design] [of adequate size] [suitably located] to facilitate operations for its [intended use] [cleaning and maintenance]. Specifically, ***",
+              "frequency": 81
+            },
+            {
+              "programArea": "Drugs",
+              "citeId": "1215",
+              "reference": "21 CFR 211.67(b)",
+              "finding": "Written procedures not established/followed",
+              "description": "Written procedures are not [established] [followed] for the cleaning and maintenance of equipment, including utensils, used in the manufacture, processing, packing or holding of a drug product. Specifically, ***",
+              "frequency": 70
+            },
+            {
+              "programArea": "Drugs",
+              "citeId": "1883",
+              "reference": "21 CFR 211.165(a)",
+              "finding": "Testing and release for distribution",
+              "description": "Testing and release of drug product for distribution do not include appropriate laboratory determination of satisfactory conformance to the [final specifications] [identity and strength of each active ingredient] prior to release. Specifically, ***",
+              "frequency": 44
+            },
+            {
+              "programArea": "Drugs",
+              "citeId": "1274",
+              "reference": "21 CFR 211.68(a)",
+              "finding": "Calibration/Inspection/Checking not done",
+              "description": "Routine [calibration] [inspection] [checking] of [automatic] [mechanical] [electronic] equipment is not performed according to a written program designed to assure proper performance. Specifically, ***",
+              "frequency": 38
+            },
+            {
+              "programArea": "Drugs",
+              "citeId": "1452",
+              "reference": "21 CFR 211.113(b)",
+              "finding": "Validation lacking for sterile drug products",
+              "description": "Procedures designed to prevent microbiological contamination of drug products purporting to be sterile did not include [adequate] validation of the [aseptic] [sterilization] process. Specifically, ***",
+              "frequency": 37
+            },
+            {
+              "programArea": "Drugs",
+              "citeId": "4402",
+              "reference": "21 CFR 211.192",
+              "finding": "Written record of investigation incomplete",
+              "description": "Written records of investigations into [unexplained discrepancies] [the failure of a batch or any of its components to meet specifications] do not [always] include the conclusions and follow-up. Specifically, ***",
+              "frequency": 32
+            },
+            {
+              "programArea": "Drugs",
+              "citeId": "9001",
+              "reference": "21 CFR 211.22(a)",
+              "finding": "Lack of quality control unit",
+              "description": "There is no quality control unit. Specifically, ***",
+              "frequency": 28
+            },
+            {
+              "programArea": "Drugs",
+              "citeId": "4314",
+              "reference": "21 CFR 211.84(d)(2)",
+              "finding": "Reports of Analysis (Components)",
+              "description": "Reports of analysis from component suppliers are accepted in lieu of testing each component for conformity with all appropriate written specifications, without [performing at least one specific identity test on each component] [establishing the reliability of the supplier's analyses through appropriate validation of the supplier's test results at appropriate intervals]. Specifically, ***",
+              "frequency": 26
+            },
+            {
+              "programArea": "Drugs",
+              "citeId": "2009",
+              "reference": "21 CFR 211.188",
+              "finding": "Prepared for each batch, include complete information",
+              "description": "Batch production and control records [are not prepared for each batch of drug product produced] [do not include complete information relating to the production and control of each batch]. Specifically, ***",
+              "frequency": 23
+            },
+            {
+              "programArea": "Drugs",
+              "citeId": "4576",
+              "reference": "21 CFR 211.192",
+              "finding": "No written record of investigation",
+              "description": "Written records are not [always] made of investigations into [unexplained discrepancies] [the failure of a batch or any of its components to meet specifications]. Specifically, ***",
+              "frequency": 22
+            },
+            {
+              "programArea": "Drugs",
+              "citeId": "1435",
+              "reference": "21 CFR 211.42(c)(10)(v)",
+              "finding": "Cleaning System",
+              "description": "Aseptic processing areas are deficient regarding the system for cleaning and disinfecting the [room] [equipment] to produce aseptic conditions. Specifically, ***",
+              "frequency": 19
+            },
+            {
+              "programArea": "Biologics",
+              "citeId": "155",
+              "reference": "21 CFR 606.160(b)",
+              "finding": "Required records",
+              "description": "Failure to maintain [donor] [processing] [storage and distribution] [compatibility testing] [quality control] [general] records. Specifically, ***",
+              "frequency": 19
+            },
+            {
+              "programArea": "Drugs",
+              "citeId": "1220",
+              "reference": "21 CFR 211.67(b)(3)",
+              "finding": "Cleaning SOPs/instructions",
+              "description": "Procedures for the cleaning and maintenance of equipment are deficient regarding sufficient detail of the methods, equipment, and materials used in the cleaning and maintenance operation, and the methods of disassembly and reassembling equipment as necessary to assure proper cleaning and maintenance. Specifically, ***",
+              "frequency": 18
+            },
+            {
+              "programArea": "Drugs",
+              "citeId": "1942",
+              "reference": "21 CFR 211.180(e)",
+              "finding": "Records reviewed annually",
+              "description": "Records are not maintained so that data therein can be reviewed at least annually to evaluate the quality standards of each drug product to determine the need for changes in specifications or manufacturing or control procedures. Specifically, ***",
+              "frequency": 18
+            },
+            {
+              "programArea": "Biologics",
+              "citeId": "98",
+              "reference": "21 CFR 606.100(c)",
+              "finding": "Thorough investigations",
+              "description": "Failure to [perform a thorough investigation] [make a record of the conclusions and follow-up] of [an unexplained discrepancy] [a failure of a lot or unit to meet any of its specifications]. Specifically,***",
+              "frequency": 18
+            }
+          ],
+          "regulatoryDataset": "form_483",
+          "fiscalYear": 2025
+        }
+      ],
+      "sentiment": "Negative",
+      "category": "Regulated laboratory controls / data integrity",
+      "estimatedMentions5y": 1,
+      "theme": "Regulated laboratory controls / data integrity",
+      "customerLanguageSignal": "Procedures not in writing, fully followed (243 citations) | Investigations of discrepancies, failures (164 citations) | Scientifically sound laboratory controls (121 citations) | Cleaning / Sanitizing / Maintenance (95 citations) | Computer control of master formula records (87 citations) | Equipment Design, Size and Location (81 citations) | Written procedures not established/followed (70 citations) | Testing and release for distribution (44 citations)",
+      "pmInterpretation": "Map recurring FDA laboratory-control findings to instrument, software, and review controls.",
+      "labType": "Pharma",
+      "userRole": "FDA inspection finding",
+      "buyingPriority": "Compliance",
+      "productMaturity": "Public evidence",
+      "geography": "Global",
+      "confidence": 100,
+      "evidenceStatus": "Exact dated public source"
     }
   ],
   "insights": [
@@ -1381,5 +2047,33 @@
       ],
       "confidence": 61
     }
-  ]
+  ],
+  "ingestion": {
+    "adapterOrder": [
+      "chromforum",
+      "selectscience",
+      "labwrench",
+      "reddit",
+      "fda"
+    ],
+    "sourceCredibilityWeights": {
+      "community_forum": 0.65,
+      "structured_review": 0.8,
+      "regulatory": 1.0,
+      "reddit": 0.55
+    },
+    "recordsAdded": 0,
+    "recordsEnriched": 1,
+    "schemaFieldsMigrated": 0,
+    "generatedSummariesRefreshed": 6,
+    "adapterRecordCounts": {
+      "chromforum": 4,
+      "selectscience": 1,
+      "labwrench": 2,
+      "reddit": 0,
+      "fda": 2
+    },
+    "skippedAdapterErrors": {},
+    "completedAt": "2026-07-29T00:23:46+00:00"
+  }
 }

@@ -17,7 +17,9 @@ test("technical context covers every configured application-trend family", () =>
   for (const phrase of [
     "lipid composition, RNA payload and impurities",
     "oligonucleotide identity, purity and impurity profiling",
-    "LC-MS\/MS PFAS detection and quantitation",
+    "drinking-water compliance and occurrence monitoring",
+    "food and food-contact contamination",
+    "human-exposure testing in serum or plasma",
     "high-resolution LC-MS acquisition, ion mobility",
     "automated sample handling, instrument orchestration",
   ]) {

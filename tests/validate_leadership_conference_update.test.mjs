@@ -13,10 +13,11 @@ test("leadership conference highlight uses an event update instead of a Waters r
   assert.doesNotMatch(app, /detail: `\$\{conference\.annualTheme\}\. \$\{conference\.watersPrep/);
 });
 
-test("Bioprocessing Summit update calls out competitor presence and scientific agenda", () => {
-  assert.match(app, /Thermo Fisher is confirmed as a 2026 premier sponsor/);
-  assert.match(app, /no Thermo Fisher talk title is public yet/);
+test("Bioprocessing Summit update gives leadership a competitive implication", () => {
+  assert.match(app, /Thermo Fisher has secured premier-sponsor visibility/);
   assert.match(app, /Analytical Intelligence, AI-enabled bioprocessing, next-generation analytical methods/);
+  assert.match(app, /competitive narrative is shifting toward digital analytical workflows and complex-modality scale-up/);
+  assert.doesNotMatch(app, /no Thermo Fisher talk title is public yet/);
 });
 
 test("leadership conference update ships identically", () => {

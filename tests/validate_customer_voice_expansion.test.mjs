@@ -24,9 +24,10 @@ test("customer voice includes at least nineteen independent customer sources in 
 
 test("customer voice evidence cards use the compact signal-first format", () => {
   assert.match(app, /customer-source-card-topline/);
-  assert.match(app, /data-company-voice-sources/);
+  assert.match(app, /data-customer-theme-sources/);
+  assert.match(app, /data-customer-theme-company/);
   assert.match(app, /companyVoiceEvidenceGroups/);
   assert.doesNotMatch(app, /<strong>Mapped summaries:<\/strong>/);
   assert.doesNotMatch(app, /<b>Mapped themes:<\/b>/);
-  assert.match(app, /unique exact source/);
+  assert.match(app, /unique exact customer source/);
 });

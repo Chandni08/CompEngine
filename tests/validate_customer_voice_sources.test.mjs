@@ -28,10 +28,10 @@ test("blocks a keyword that is absent from the exact source", () => {
   assert.match(errors[0], /does not contain required keyword "leak"/);
 });
 
-test("validates Reddit discussion text through the full RSS representation", () => {
+test("validates Reddit discussion text through the official OAuth API endpoint", () => {
   assert.equal(
     redditValidationUrl("https://www.reddit.com/r/CHROMATOGRAPHY/comments/example/thread/"),
-    "https://www.reddit.com/r/CHROMATOGRAPHY/comments/example/thread/.rss?limit=500",
+    "https://oauth.reddit.com/comments/example?raw_json=1&limit=500",
   );
 });
 

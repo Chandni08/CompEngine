@@ -1,28 +1,29 @@
 {
-  "generatedAt": "2026-07-26T11:55:20+00:00",
+  "generatedAt": "2026-07-29T00:26:49+00:00",
   "step": "Step 0",
   "title": "Data Source Inventory",
   "sources": [
     {
       "id": "thermo-news",
       "group": "Competitor official",
-      "source": "Thermo Fisher corporate press releases",
+      "source": "Thermo Fisher investor relations news",
       "competitor": "Thermo Fisher",
       "signalCoverage": [
         "Product launches",
         "Partnerships",
-        "Strategic initiatives"
+        "Strategic initiatives",
+        "Earnings and investor events"
       ],
-      "url": "https://newsroom.thermofisher.com/newsroom/press-releases/default.aspx",
+      "url": "https://ir.thermofisher.com/investors/news-events/news/default.aspx",
       "health": "good",
       "status": "verified",
       "issue": "",
-      "nextAction": "Use as primary Thermo corporate, product, partnership, and capital-allocation announcement source.",
-      "extractionStatus": "blocked",
-      "extractionReason": "No usable press-release feed or extractable index: HTTP 200 (https://newsroom.thermofisher.com/newsroom/press-releases/default.aspx).",
-      "extractedRecords": 0,
-      "fetchMethod": "press_release_index",
-      "lastExtractionCheck": "2026-07-26T11:55:15+00:00"
+      "nextAction": "Use the official IR news API as the primary Thermo earnings, investor-event, corporate, product, partnership, and capital-allocation source.",
+      "extractionStatus": "extracted",
+      "extractionReason": "Official Thermo Fisher investor-relations feed parsed; 18 dated 2026 corporate releases extracted.",
+      "extractedRecords": 18,
+      "fetchMethod": "official_ir_news_api",
+      "lastExtractionCheck": "2026-07-29T00:26:47+00:00"
     },
     {
       "id": "thermo-ms-products",
@@ -43,7 +44,7 @@
       "extractionReason": "Official US sitemap parsed; 43 LC/LC-MS product pages tracked.",
       "extractedRecords": 43,
       "fetchMethod": "product_sitemap_xml",
-      "lastExtractionCheck": "2026-07-26T11:55:15+00:00"
+      "lastExtractionCheck": "2026-07-29T00:26:46+00:00"
     },
     {
       "id": "thermo-dionex-ion-chromatography-products",
@@ -72,7 +73,7 @@
       "extractionReason": "Official Thermo sitemap parsed; 2 registered Thermo Scientific Dionex ion chromatography product pages tracked.",
       "extractedRecords": 2,
       "fetchMethod": "registered_product_sitemap",
-      "lastExtractionCheck": "2026-07-26T11:55:15+00:00"
+      "lastExtractionCheck": "2026-07-29T00:26:46+00:00"
     },
     {
       "id": "thermo-vanquish-neo-nano-lc-products",
@@ -100,7 +101,7 @@
       "extractionReason": "Official Thermo sitemap parsed; 1 registered Thermo Scientific Vanquish Neo nano-LC product pages tracked.",
       "extractedRecords": 1,
       "fetchMethod": "registered_product_sitemap",
-      "lastExtractionCheck": "2026-07-26T11:55:15+00:00"
+      "lastExtractionCheck": "2026-07-29T00:26:46+00:00"
     },
     {
       "id": "thermo-lc-insights",
@@ -121,7 +122,7 @@
       "extractionReason": "Official dated RSS feed parsed; 7 relevant LC/MS records extracted.",
       "extractedRecords": 7,
       "fetchMethod": "rss_feed",
-      "lastExtractionCheck": "2026-07-26T11:55:16+00:00"
+      "lastExtractionCheck": "2026-07-29T00:26:47+00:00"
     },
     {
       "id": "thermo-ms-insights",
@@ -142,7 +143,7 @@
       "extractionReason": "Official dated RSS feed parsed; 5 relevant LC/MS records extracted.",
       "extractedRecords": 5,
       "fetchMethod": "rss_feed",
-      "lastExtractionCheck": "2026-07-26T11:55:18+00:00"
+      "lastExtractionCheck": "2026-07-29T00:26:47+00:00"
     },
     {
       "id": "thermo-proteomics-insights",
@@ -163,7 +164,7 @@
       "extractionReason": "Official dated RSS feed parsed; 7 relevant LC/MS records extracted.",
       "extractedRecords": 7,
       "fetchMethod": "rss_feed",
-      "lastExtractionCheck": "2026-07-26T11:55:18+00:00"
+      "lastExtractionCheck": "2026-07-29T00:26:48+00:00"
     },
     {
       "id": "agilent-newsroom",
@@ -185,7 +186,7 @@
       "extractionStatus": "extracted",
       "extractionReason": "Official dated press-release index parsed; 10 releases tracked.",
       "extractedRecords": 10,
-      "lastExtractionCheck": "2026-07-26T11:55:09+00:00"
+      "lastExtractionCheck": "2026-07-29T00:26:40+00:00"
     },
     {
       "id": "agilent-lcms",
@@ -207,7 +208,7 @@
       "extractionStatus": "extracted",
       "extractionReason": "Official product sitemaps parsed; 49 LC/MS product pages tracked.",
       "extractedRecords": 49,
-      "lastExtractionCheck": "2026-07-26T11:55:09+00:00"
+      "lastExtractionCheck": "2026-07-29T00:26:40+00:00"
     },
     {
       "id": "shimadzu-news",
@@ -228,7 +229,7 @@
       "extractionReason": "Official dated news index parsed; 5 relevant releases extracted.",
       "extractedRecords": 5,
       "fetchMethod": "dated_press_index",
-      "lastExtractionCheck": "2026-07-26T11:55:19+00:00"
+      "lastExtractionCheck": "2026-07-29T00:26:48+00:00"
     },
     {
       "id": "shimadzu-lcms",
@@ -248,7 +249,7 @@
       "extractionReason": "Official analytical sitemap parsed; 78 LC/LC-MS/software product pages tracked.",
       "extractedRecords": 78,
       "fetchMethod": "product_sitemap_xml",
-      "lastExtractionCheck": "2026-07-26T11:55:19+00:00"
+      "lastExtractionCheck": "2026-07-29T00:26:48+00:00"
     },
     {
       "id": "sciex-news",
@@ -269,7 +270,7 @@
       "extractionReason": "Official dated press index parsed; 3 relevant releases extracted.",
       "extractedRecords": 3,
       "fetchMethod": "dated_press_index",
-      "lastExtractionCheck": "2026-07-26T11:55:20+00:00"
+      "lastExtractionCheck": "2026-07-29T00:26:49+00:00"
     },
     {
       "id": "sciex-products",
@@ -289,7 +290,7 @@
       "extractionReason": "Official sitemap parsed; 66 MS/LC/software product pages tracked.",
       "extractedRecords": 66,
       "fetchMethod": "product_sitemap_xml",
-      "lastExtractionCheck": "2026-07-26T11:55:20+00:00"
+      "lastExtractionCheck": "2026-07-29T00:26:48+00:00"
     },
     {
       "id": "perkinelmer-news",
@@ -444,7 +445,7 @@
       "extractionReason": "Collected 40 recent DOI records from Crossref journal metadata.",
       "extractedRecords": 40,
       "fetchMethod": "crossref_journal_metadata",
-      "lastExtractionCheck": "2026-07-26T10:17:40+00:00",
+      "lastExtractionCheck": "2026-07-29T00:20:22+00:00",
       "metadataEndpoint": "https://api.crossref.org/journals/0003-2700/works",
       "surfaces": [
         "Market intelligence",
@@ -486,7 +487,7 @@
       "extractionReason": "Collected 40 recent DOI records from Crossref journal metadata.",
       "extractedRecords": 40,
       "fetchMethod": "crossref_journal_metadata",
-      "lastExtractionCheck": "2026-07-26T10:17:40+00:00",
+      "lastExtractionCheck": "2026-07-29T00:20:22+00:00",
       "metadataEndpoint": "https://api.crossref.org/journals/0021-9673/works",
       "surfaces": [
         "Market intelligence",
@@ -526,7 +527,7 @@
       "extractionReason": "Collected 40 recent DOI records from Crossref journal metadata.",
       "extractedRecords": 40,
       "fetchMethod": "crossref_journal_metadata",
-      "lastExtractionCheck": "2026-07-26T10:17:40+00:00",
+      "lastExtractionCheck": "2026-07-29T00:20:22+00:00",
       "metadataEndpoint": "https://api.crossref.org/journals/1570-0232/works",
       "surfaces": [
         "Market intelligence",
@@ -567,7 +568,7 @@
       "extractionReason": "Collected 40 recent DOI records from Crossref journal metadata.",
       "extractedRecords": 40,
       "fetchMethod": "crossref_journal_metadata",
-      "lastExtractionCheck": "2026-07-26T10:17:40+00:00",
+      "lastExtractionCheck": "2026-07-29T00:20:22+00:00",
       "metadataEndpoint": "https://api.crossref.org/journals/1044-0305/works",
       "surfaces": [
         "Market intelligence",
@@ -609,7 +610,7 @@
       "extractionReason": "Collected 40 recent DOI records from Crossref journal metadata.",
       "extractedRecords": 40,
       "fetchMethod": "crossref_journal_metadata",
-      "lastExtractionCheck": "2026-07-26T10:17:40+00:00",
+      "lastExtractionCheck": "2026-07-29T00:20:22+00:00",
       "metadataEndpoint": "https://api.crossref.org/journals/1618-2642/works",
       "surfaces": [
         "Market intelligence",
@@ -649,7 +650,7 @@
       "extractionReason": "Collected 40 recent DOI records from Crossref journal metadata.",
       "extractedRecords": 40,
       "fetchMethod": "crossref_journal_metadata",
-      "lastExtractionCheck": "2026-07-26T10:17:40+00:00",
+      "lastExtractionCheck": "2026-07-29T00:20:22+00:00",
       "metadataEndpoint": "https://api.crossref.org/journals/0731-7085/works",
       "surfaces": [
         "Market intelligence",
@@ -690,7 +691,7 @@
       "extractionReason": "Collected 40 recent DOI records from Crossref journal metadata.",
       "extractedRecords": 40,
       "fetchMethod": "crossref_journal_metadata",
-      "lastExtractionCheck": "2026-07-26T10:17:40+00:00",
+      "lastExtractionCheck": "2026-07-29T00:20:22+00:00",
       "metadataEndpoint": "https://api.crossref.org/journals/0039-9140/works",
       "surfaces": [
         "Market intelligence",
@@ -729,10 +730,10 @@
       "whyItMatters": "ASMS provides the densest annual view of vendor LC-MS proof, including head-to-head posters that may reveal competitive performance claims before formal product literature.",
       "nextAction": "Diff public program, abstract, poster, sponsor, and vendor-session pages; preserve exact record URLs when content is published.",
       "extractionStatus": "extracted",
-      "extractionReason": "1 of 2 official conference/program endpoints reachable; this is endpoint coverage, not a poster count.",
-      "extractedRecords": 1,
+      "extractionReason": "2 of 2 official conference/program endpoints reachable; this is endpoint coverage, not a poster count.",
+      "extractedRecords": 2,
       "fetchMethod": "official_conference_endpoint_monitor",
-      "lastExtractionCheck": "2026-07-26T10:17:42+00:00",
+      "lastExtractionCheck": "2026-07-29T00:20:46+00:00",
       "monitoringUrls": [
         "https://www.asms.org/conferences/annual-conference",
         "https://www.asms.org/conferences/annual-conference/conference-program"
@@ -777,7 +778,7 @@
       "extractionReason": "2 of 2 official conference/program endpoints reachable; this is endpoint coverage, not a poster count.",
       "extractedRecords": 2,
       "fetchMethod": "official_conference_endpoint_monitor",
-      "lastExtractionCheck": "2026-07-26T10:17:42+00:00",
+      "lastExtractionCheck": "2026-07-29T00:20:46+00:00",
       "monitoringUrls": [
         "https://hplc2026-symposium.org/",
         "https://hplc-symposium.org/2028"
@@ -794,7 +795,7 @@
       "source": "IMSC 2026 (International Mass Spectrometry Conference)",
       "publisher": "International Mass Spectrometry Foundation",
       "competitor": "Market-wide",
-      "url": "https://imsc26.com/",
+      "url": "https://www.imss.nl/",
       "marketSegments": [
         "Academic",
         "Pharma",
@@ -804,9 +805,9 @@
         "Environmental",
         "Food & Beverage"
       ],
-      "health": "review",
+      "health": "good",
       "status": "monitored",
-      "issue": "0 of 1 official conference/program endpoints reachable; this is endpoint coverage, not a poster count.",
+      "issue": "",
       "signalCoverage": [
         "MS technology trends",
         "Instrumentation advances",
@@ -818,13 +819,13 @@
       "whatToMeasure": "Instrument and acquisition advances, application-session concentration, vendor-authored posters, and repeated global MS workflow themes.",
       "whyItMatters": "IMSC adds a global, research-led view of MS direction that complements the vendor-heavy ASMS signal.",
       "nextAction": "Diff public program, abstract, poster, sponsor, and vendor-session pages; preserve exact record URLs when content is published.",
-      "extractionStatus": "blocked",
-      "extractionReason": "0 of 1 official conference/program endpoints reachable; this is endpoint coverage, not a poster count.",
-      "extractedRecords": 0,
+      "extractionStatus": "extracted",
+      "extractionReason": "1 of 1 official conference/program endpoints reachable; this is endpoint coverage, not a poster count.",
+      "extractedRecords": 1,
       "fetchMethod": "official_conference_endpoint_monitor",
-      "lastExtractionCheck": "2026-07-26T10:17:42+00:00",
+      "lastExtractionCheck": "2026-07-29T00:20:46+00:00",
       "monitoringUrls": [
-        "https://imsc26.com/"
+        "https://www.imss.nl/"
       ],
       "surfaces": [
         "Market intelligence",
@@ -860,10 +861,10 @@
       "whyItMatters": "MSACL separates early research from clinically available assays, providing direct evidence of what LC-MS workflows are approaching routine clinical use.",
       "nextAction": "Diff public program, abstract, poster, sponsor, and vendor-session pages; preserve exact record URLs when content is published.",
       "extractionStatus": "extracted",
-      "extractionReason": "1 of 2 official conference/program endpoints reachable; this is endpoint coverage, not a poster count.",
-      "extractedRecords": 1,
+      "extractionReason": "2 of 2 official conference/program endpoints reachable; this is endpoint coverage, not a poster count.",
+      "extractedRecords": 2,
       "fetchMethod": "official_conference_endpoint_monitor",
-      "lastExtractionCheck": "2026-07-26T10:17:42+00:00",
+      "lastExtractionCheck": "2026-07-29T00:20:46+00:00",
       "monitoringUrls": [
         "https://www.msacl.org/",
         "https://www.msacl.org/program/"
@@ -903,10 +904,10 @@
       "whyItMatters": "EBF provides industry-led evidence of regulated bioanalysis practice across pharma and CRO laboratories, including issues not visible in publication-volume data.",
       "nextAction": "Diff public program, abstract, poster, sponsor, and vendor-session pages; preserve exact record URLs when content is published.",
       "extractionStatus": "extracted",
-      "extractionReason": "1 of 2 official conference/program endpoints reachable; this is endpoint coverage, not a poster count.",
-      "extractedRecords": 1,
+      "extractionReason": "2 of 2 official conference/program endpoints reachable; this is endpoint coverage, not a poster count.",
+      "extractedRecords": 2,
       "fetchMethod": "official_conference_endpoint_monitor",
-      "lastExtractionCheck": "2026-07-26T10:17:42+00:00",
+      "lastExtractionCheck": "2026-07-29T00:20:46+00:00",
       "monitoringUrls": [
         "https://e-b-f.eu/meetings/",
         "https://meetings.e-b-f.eu/open/"
@@ -948,7 +949,7 @@
       "extractionReason": "Official source reachable at https://doi.usp.org/USPNF/USPNF_M99380_06_01.html.",
       "extractedRecords": 1,
       "fetchMethod": "official_regulatory_page_check",
-      "lastExtractionCheck": "2026-07-26T11:10:18+00:00",
+      "lastExtractionCheck": "2026-07-29T00:21:01+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -986,7 +987,7 @@
       "extractionReason": "Official source reachable at https://doi.usp.org/USPNF/USPNF_M1124_01_01.html.",
       "extractedRecords": 1,
       "fetchMethod": "official_regulatory_page_check",
-      "lastExtractionCheck": "2026-07-26T11:10:18+00:00",
+      "lastExtractionCheck": "2026-07-29T00:21:01+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -1025,7 +1026,7 @@
       "extractionReason": "Official source unavailable during check: HTTP 403.",
       "extractedRecords": 0,
       "fetchMethod": "official_regulatory_page_check",
-      "lastExtractionCheck": "2026-07-26T11:10:18+00:00",
+      "lastExtractionCheck": "2026-07-29T00:21:01+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -1064,7 +1065,7 @@
       "extractionReason": "Official source reachable at https://database.ich.org/sites/default/files/ICH_Q2%28R2%29_Guideline_2023_1130.pdf.",
       "extractedRecords": 1,
       "fetchMethod": "official_regulatory_page_check",
-      "lastExtractionCheck": "2026-07-26T11:10:18+00:00",
+      "lastExtractionCheck": "2026-07-29T00:21:01+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -1084,9 +1085,9 @@
         "CDMO",
         "Clinical"
       ],
-      "health": "review",
-      "status": "request_error",
-      "issue": "Official source returned HTTP request error; retain for manual review.",
+      "health": "good",
+      "status": "200",
+      "issue": "",
       "signalCoverage": [
         "Analytical target profile",
         "Procedure development",
@@ -1098,11 +1099,11 @@
       "whatToMeasure": "Analytical target profiles, parameter-risk assessments, robustness studies, control strategies, and lifecycle changes.",
       "whyItMatters": "Q14 shifts customer expectations toward scientifically justified method development and lifecycle-ready transfer packages.",
       "nextAction": "Track official revisions, effective dates, notices, and records; extract only claims present in the linked primary source.",
-      "extractionStatus": "blocked",
-      "extractionReason": "Official source unavailable during check: HTTP request error.",
-      "extractedRecords": 0,
+      "extractionStatus": "extracted",
+      "extractionReason": "Official source reachable at https://database.ich.org/sites/default/files/ICH_Q14_Guideline_2023_1116.pdf.",
+      "extractedRecords": 1,
       "fetchMethod": "official_regulatory_page_check",
-      "lastExtractionCheck": "2026-07-26T11:10:18+00:00",
+      "lastExtractionCheck": "2026-07-29T00:21:01+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -1141,7 +1142,7 @@
       "extractionReason": "Official source reachable at https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/compliance-actions-and-activities/warning-letters.",
       "extractedRecords": 1,
       "fetchMethod": "official_regulatory_page_check",
-      "lastExtractionCheck": "2026-07-26T11:10:18+00:00",
+      "lastExtractionCheck": "2026-07-29T00:21:01+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -1180,7 +1181,7 @@
       "extractionReason": "Official source reachable at https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/inspection-references/inspection-observations.",
       "extractedRecords": 1,
       "fetchMethod": "official_regulatory_page_check",
-      "lastExtractionCheck": "2026-07-26T11:10:18+00:00",
+      "lastExtractionCheck": "2026-07-29T00:21:01+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"

@@ -3,6 +3,91 @@
   "scope": "Method-performance and transferability comparison using public primary sources. A missing directly comparable value is never inferred: it is marked as requiring controlled testing.",
   "profiles": [
     {
+      "launchId": "agilent-1290-infinity-iii-fld-2026",
+      "watersId": "acquity-uplc-i-class-plus",
+      "comparisonBasis": "Published fluorescence-detector specifications: Agilent 1290 Infinity III FLD versus the ACQUITY UPLC FLR Detector configured with the Waters ACQUITY UPLC I-Class PLUS System.",
+      "watersProduct": "ACQUITY UPLC I-Class PLUS with ACQUITY UPLC FLR Detector",
+      "asOfDate": "2026-07-26",
+      "rows": [
+        {
+          "dimension": "Comparable detector configuration",
+          "competitorValue": "Agilent positions the 1290 Infinity III FLD as a fluorescence detector for UHPLC workflows and for standalone or in-line use with LC/MS.",
+          "watersValue": "Waters specifies the ACQUITY UPLC FLR Detector for ACQUITY UPLC I-Class PLUS, H-Class PLUS, and Premier systems.",
+          "interpretation": "Compare the Agilent FLD with the Waters FLR detector inside the selected I-Class PLUS configuration—not with the UHPLC system alone.",
+          "evidenceType": "verified",
+          "competitorSourceUrl": "https://www.agilent.com/en/product/liquid-chromatography/hplc-components-accessories/hplc-detectors/1290-fluorescence-detector",
+          "watersSourceUrl": "https://www.waters.com/content/dam/waters/en/library/specifications/2020/waters-specification-ACQUITYUPLCFLRDetectorspecifications-720001985.pdf"
+        },
+        {
+          "dimension": "Raman sensitivity (published S/N)",
+          "competitorValue": "Agilent specifies Raman S/N above 2,500 and Raman S/N versus dark above 30,000 for the 1290 Infinity III FLD.",
+          "watersValue": "Waters specifies Raman S/N above 1,000 for the ACQUITY UPLC FLR Detector.",
+          "interpretation": "Agilent publishes the stronger headline sensitivity specification. Because the vendors state different test settings, treat this as a Waters proof gap to examine—not a demonstrated application-level sensitivity lead.",
+          "evidenceType": "conditions-differ",
+          "competitorSourceUrl": "https://www.agilent.com/cs/library/usermanuals/public/G7123-Fluorescence-Detector-UseMa-en-D0129488.pdf",
+          "watersSourceUrl": "https://www.waters.com/content/dam/waters/en/library/specifications/2020/waters-specification-ACQUITYUPLCFLRDetectorspecifications-720001985.pdf"
+        },
+        {
+          "dimension": "Maximum acquisition rate",
+          "competitorValue": "Agilent specifies a maximum data rate of 160 Hz for the 1290 Infinity III FLD.",
+          "watersValue": "Waters specifies data acquisition up to 80 Hz for the ACQUITY UPLC FLR Detector.",
+          "interpretation": "Agilent publishes twice the maximum acquisition rate. This matters when very narrow UHPLC peaks require more points across peak; otherwise the practical advantage may be limited by filtering, sensitivity, and method settings.",
+          "evidenceType": "verified",
+          "competitorSourceUrl": "https://www.agilent.com/cs/library/usermanuals/public/G7123-Fluorescence-Detector-UseMa-en-D0129488.pdf",
+          "watersSourceUrl": "https://www.waters.com/content/dam/waters/en/library/specifications/2020/waters-specification-ACQUITYUPLCFLRDetectorspecifications-720001985.pdf"
+        },
+        {
+          "dimension": "Flow-cell volume",
+          "competitorValue": "Agilent offers 2 µL and 13 µL flow cells for the 1290 Infinity III FLD.",
+          "watersValue": "Waters specifies a flow-cell volume below 2 µL for the ACQUITY UPLC FLR Detector.",
+          "interpretation": "Both vendors publish UHPLC-scale low-volume cells; Waters lists the smaller nominal standard-cell volume. Peak integrity still depends on the complete post-column flow path, not cell volume alone.",
+          "evidenceType": "verified",
+          "competitorSourceUrl": "https://www.agilent.com/cs/library/usermanuals/public/G7123-Fluorescence-Detector-UseMa-en-D0129488.pdf",
+          "watersSourceUrl": "https://www.waters.com/content/dam/waters/en/library/specifications/2020/waters-specification-ACQUITYUPLCFLRDetectorspecifications-720001985.pdf"
+        },
+        {
+          "dimension": "Wavelength coverage",
+          "competitorValue": "Agilent specifies a settable excitation/emission range of 200–1,200 nm and a spectral scan range of 200–800 nm.",
+          "watersValue": "Waters specifies 200–890 nm excitation and 210–900 nm emission ranges.",
+          "interpretation": "The usable ranges substantially overlap. The difference matters only for methods operating near the wavelength limits; confirm whether target fluorophores require Agilent's wider settable upper range or Waters' published emission coverage to 900 nm.",
+          "evidenceType": "conditions-differ",
+          "competitorSourceUrl": "https://www.agilent.com/cs/library/usermanuals/public/G7123-Fluorescence-Detector-UseMa-en-D0129488.pdf",
+          "watersSourceUrl": "https://www.waters.com/content/dam/waters/en/library/specifications/2020/waters-specification-ACQUITYUPLCFLRDetectorspecifications-720001985.pdf"
+        },
+        {
+          "dimension": "Wavelength accuracy / repeatability",
+          "competitorValue": "Agilent specifies ±3.0 nm wavelength accuracy and ±0.2 nm wavelength precision.",
+          "watersValue": "Waters specifies ±3 nm wavelength accuracy and ±0.25 nm wavelength repeatability.",
+          "interpretation": "Published accuracy is aligned; Agilent's repeatability figure is tighter by 0.05 nm. This is a low-priority difference unless the target method's selectivity is unusually sensitive to small wavelength shifts.",
+          "evidenceType": "verified",
+          "competitorSourceUrl": "https://www.agilent.com/cs/library/usermanuals/public/G7123-Fluorescence-Detector-UseMa-en-D0129488.pdf",
+          "watersSourceUrl": "https://www.waters.com/content/dam/waters/en/library/specifications/2020/waters-specification-ACQUITYUPLCFLRDetectorspecifications-720001985.pdf"
+        },
+        {
+          "dimension": "Flow-cell pressure limit",
+          "competitorValue": "Agilent specifies a 60 bar (6 MPa) maximum pressure for the 1290 Infinity III FLD flow cell.",
+          "watersValue": "Waters specifies a 500 psi (34 bar) pressure limit for the ACQUITY UPLC FLR Detector flow cell.",
+          "interpretation": "Agilent publishes greater flow-cell pressure headroom. This is relevant mainly when restrictive post-column plumbing or serial detectors create backpressure; it is not a general chromatographic-performance advantage.",
+          "evidenceType": "verified",
+          "competitorSourceUrl": "https://www.agilent.com/cs/library/usermanuals/public/G7123-Fluorescence-Detector-UseMa-en-D0129488.pdf",
+          "watersSourceUrl": "https://www.waters.com/content/dam/waters/en/library/specifications/2020/waters-specification-ACQUITYUPLCFLRDetectorspecifications-720001985.pdf"
+        },
+        {
+          "dimension": "Published pH range",
+          "competitorValue": "Agilent specifies a pH range of 1.0–12.5 for the 1290 Infinity III FLD, solvent dependent.",
+          "watersValue": "Waters specifies a pH range of 1–12.5 for the ACQUITY UPLC I-Class PLUS System.",
+          "interpretation": "The published pH ranges are aligned, so this is not a useful differentiation point for the selected pair.",
+          "evidenceType": "verified",
+          "competitorSourceUrl": "https://www.agilent.com/cs/library/usermanuals/public/G7123-Fluorescence-Detector-UseMa-en-D0129488.pdf",
+          "watersSourceUrl": "https://www.waters.com/nextgen/us/en/products/chromatography/chromatography-systems/acquity-uplc-i-class-plus-system.html"
+        }
+      ],
+      "limitations": [
+        "Published maximum specifications do not establish performance on the same fluorescence method, analyte, filtering, flow cell, or integration settings.",
+        "The sensitivity figures use vendor-defined test settings; use them to identify proof priorities rather than to claim application superiority."
+      ]
+    },
+    {
       "launchId": "agilent-1290-infinity-iii-2024",
       "watersId": "acquity-premier-system",
       "comparisonBasis": "Method-transfer comparison: Agilent 1290 Infinity III LC versus Waters ACQUITY Premier System using a shared method, matched configuration, and named reference columns.",

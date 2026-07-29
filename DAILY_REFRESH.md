@@ -82,14 +82,14 @@ Scores of 75-100 are High, 50-74 are Medium, and 0-49 are Low. Each signal store
 
 ## Local Daily Schedule
 
-On this Mac, `com.waters.competition-engine.daily-refresh` runs the refresh at 6:15 AM local time through `launchd`. The installed job runs `scripts/refresh_daily.py` through an inline shell command, keeps the Mac awake while collection is running, and writes logs to:
+On this Mac, `com.waters.competition-engine.daily-refresh` wakes the Codex desktop app at 6:10 AM local time through `launchd` and also opens it after login. This is required because macOS privacy controls do not allow a standalone background shell process to read a project inside `Documents`. At 6:15 AM, the active Codex automation runs `scripts/run_daily_refresh.sh`, which refreshes and validates the data, deploys the successful build to Vercel, aliases the Waters URL, and verifies the live refresh status. The wrapper also has a process lock so a duplicate trigger exits safely. Logs are written to:
 
 - `logs/daily-refresh.log`
 - `logs/daily-refresh-error.log`
 
 `scripts/run_daily_refresh.sh` provides the equivalent wrapper for a manual local run.
 
-The local scheduler updates the local website data. It does not publish those changes to Vercel; publishing still requires a Git-connected deployment or a separate deployment trigger.
+The Codex automation publishes only after the refresh and every deployment gate succeeds. Failed collection or validation leaves the last verified production build unchanged. This local automation requires the Mac to be powered on and logged in; a cloud runner still requires connecting the project to a Git host.
 
 The dashboard reads `data/refresh_status.json` and shows whether the daily refresh is current, overdue, or failed. A page left open checks hourly for a newly published dataset and reloads when one is available.
 

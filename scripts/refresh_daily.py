@@ -21,6 +21,7 @@ COLLECTOR = ROOT / "scripts" / "collect_real_data.py"
 AGILENT_COLLECTOR = ROOT / "scripts" / "collect_agilent.py"
 COMPETITOR_COLLECTOR = ROOT / "scripts" / "collect_competitors.py"
 SCIENTIFIC_SOURCE_COLLECTOR = ROOT / "scripts" / "collect_scientific_sources.py"
+CUSTOMER_VOICE_COLLECTOR = ROOT / "scripts" / "collect_customer_voice.py"
 LINK_CHECKER = ROOT / "scripts" / "check_links.py"
 CUSTOMER_VOICE_VALIDATOR = ROOT / "scripts" / "validate_customer_voice_sources.mjs"
 PRODUCT_LAUNCH_VALIDATOR = ROOT / "scripts" / "validate_product_launch_press_releases.mjs"
@@ -39,13 +40,13 @@ AUTOMATED_DOMAINS = [
     "Thermo Fisher, Shimadzu, and SCIEX product sitemap and press-release extraction",
     "Thermo Fisher LC/MS technical insight RSS extraction",
     "Peer-reviewed journal metadata plus conference and regulatory source monitoring",
+    "Public customer voice from robots-compliant forums, structured reviews, Reddit OAuth, and FDA bulk data",
 ]
 
 CURATED_DOMAINS = [
     "Product-launch interpretation and machine comparisons",
     "Partnership interpretation",
     "Conference preparation",
-    "Customer voice",
     "PM recommendations",
 ]
 
@@ -118,6 +119,24 @@ def validate_competitor_monitor(data: dict) -> None:
         missing_fields = sorted(required_fields.difference(monitor))
         if missing_fields:
             raise ValueError(f"{competitor} monitor is missing: {', '.join(missing_fields)}")
+    critical_sources = {
+        "Thermo Fisher": {"thermo-products", "thermo-ms-products", "thermo-news"},
+        "Shimadzu": {"shimadzu-lcms", "shimadzu-news"},
+        "SCIEX": {"sciex-products", "sciex-news"},
+    }
+    for competitor, required_sources in critical_sources.items():
+        statuses = competitors[competitor].get("source_status", [])
+        extracted = {
+            str(status.get("sourceId"))
+            for status in statuses
+            if status.get("extractionStatus") == "extracted"
+        }
+        missing = sorted(required_sources.difference(extracted))
+        if missing:
+            raise ValueError(
+                f"{competitor} critical source refresh incomplete: {', '.join(missing)}. "
+                "The dataset must not be published as current."
+            )
 
 
 def signal_id(prefix: str, url: str) -> str:
@@ -209,16 +228,16 @@ def merge_competitor_changes(intelligence: dict, monitor_data: dict) -> None:
                 "category": "Product intelligence" if classification == "product" else "Corporate intelligence",
                 "signalType": "Press release",
                 "title": item.get("title") or f"New {competitor} press release",
-                "summary": f"Official dated release extracted from {competitor}'s press or news index.",
-                "sourceName": f"{competitor} official press releases",
+                "summary": item.get("summary") or f"Official dated release extracted from {competitor}'s press or news index.",
+                "sourceName": item.get("sourceName") or f"{competitor} official press releases",
                 "sourceUrl": url,
                 "geography": "Global",
-                "marketSegment": "Pharma",
-                "technology": technology_for_url(f"{url} {item.get('title', '')}"),
-                "theme": "Product release" if classification == "product" else "Corporate strategy",
+                "marketSegment": item.get("marketSegment") or "Pharma",
+                "technology": item.get("technology") or technology_for_url(f"{url} {item.get('title', '')}"),
+                "theme": item.get("theme") or ("Product release" if classification == "product" else "Corporate strategy"),
                 "evidenceCount": 1,
-                "intent": "Product and portfolio expansion" if classification == "product" else "Corporate strategic activity",
-                "recommendation": "Review the release for concrete product, workflow, partnership, and market-positioning implications for Waters.",
+                "intent": item.get("intent") or ("Product and portfolio expansion" if classification == "product" else "Corporate strategic activity"),
+                "recommendation": item.get("recommendation") or "Review the release for concrete product, workflow, partnership, and market-positioning implications for Waters.",
             })
 
         for item in monitor.get("new_technical_insights", []):
@@ -407,6 +426,7 @@ def main() -> int:
 
     try:
         subprocess.run([sys.executable, str(SCIENTIFIC_SOURCE_COLLECTOR)], cwd=ROOT, check=True)
+        subprocess.run([sys.executable, str(CUSTOMER_VOICE_COLLECTOR)], cwd=ROOT, check=True)
         subprocess.run([sys.executable, str(COLLECTOR)], cwd=ROOT, check=True)
         subprocess.run([sys.executable, str(AGILENT_COLLECTOR)], cwd=ROOT, check=False)
         subprocess.run([sys.executable, str(COMPETITOR_COLLECTOR)], cwd=ROOT, check=True)

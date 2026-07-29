@@ -2,23 +2,24 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 
-test("company voice summarizes PM insights before showing source records", async () => {
+test("customer voice compares purchase themes before showing source records", async () => {
   const app = await readFile(new URL("../app.js", import.meta.url), "utf8");
 
-  assert.match(app, />What Customers Value<\/span>/);
-  assert.match(app, />Pain Points and Unmet Needs<\/span>/);
-  assert.match(app, /"Waters PM Opportunity" : "Whitespace for Waters"/);
-  assert.match(app, /data-company-voice-sources/);
+  assert.match(app, />Purchase-Driving Theme<\/th>/);
+  assert.match(app, /customerVoiceComparisonCompanies/);
+  assert.match(app, /customerVoiceThemeStatus/);
+  assert.match(app, /data-customer-theme-sources/);
   assert.doesNotMatch(app, /class="vendor-source-record"/);
 });
 
-test("vendor evidence section uses the customer-facing company title", async () => {
+test("customer voice section uses the theme-centric PM title", async () => {
   const [sourceHtml, deployHtml] = await Promise.all([
     readFile(new URL("../index.html", import.meta.url), "utf8"),
     readFile(new URL("../deploy-site/index.html", import.meta.url), "utf8"),
   ]);
 
-  assert.match(sourceHtml, />Customer Voice by Company<\/h4>/);
+  assert.match(sourceHtml, />Purchase-Driving Themes<\/h4>/);
+  assert.doesNotMatch(sourceHtml, /Customer Voice by Company/);
   assert.doesNotMatch(sourceHtml, /Vendor Evidence by Source/);
   assert.equal(deployHtml, sourceHtml);
 });

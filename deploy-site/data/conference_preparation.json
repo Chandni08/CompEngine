@@ -86,7 +86,7 @@
       "startDate": "2026-08-22",
       "endDate": "2026-08-28",
       "tier": "Tier 1",
-      "website": "https://imsc26.com/",
+      "website": "https://www.imss.nl/",
       "marketSegments": ["Academic", "Pharma", "Biopharma", "Environmental"],
       "technologyFocus": ["LC-MS", "Mass spectrometry", "Instrumentation", "Data"],
       "annualTheme": "The present and future of mass spectrometry across five scientific themes",
@@ -113,7 +113,7 @@
           "content": "Bruker will present “Pioneering 4D Multiomics and Functional Proteomics 2.0” in a lunch seminar and will also run an Innovation Lab Talk.",
           "evidenceBasis": "The official IMSC lunch-seminar page publishes the title and dates.",
           "sourceLabel": "IMSC competitor seminar",
-          "sourceUrl": "https://imsc26.com/sponsoring-exhibition/lunch-seminar"
+          "sourceUrl": "https://www.bruker.com/en/landingpages/bdal/imsc.html"
         },
         {
           "competitor": "Agilent, Thermo Fisher, SCIEX, and Shimadzu",
@@ -121,7 +121,7 @@
           "content": "All four are confirmed 2026 sponsors, but no individual talk titles were found on the public sponsor page. Monitor for late-posted seminars on high-resolution MS, omics, environmental workflows, and data analysis.",
           "evidenceBasis": "The official sponsor page confirms their participation at silver or bronze level; the scientific program defines the relevant themes.",
           "sourceLabel": "IMSC 2026 sponsor roster",
-          "sourceUrl": "https://imsc26.com/sponsoring-exhibition/they-joined-us"
+          "sourceUrl": "https://www.shimadzu.eu/news-events/2026/IMSC.html"
         }
       ],
       "watersScientificContent": [
@@ -166,9 +166,9 @@
         "Prepare direct response cards for Bruker 4D multiomics and for late-posted Agilent, Thermo Fisher, SCIEX, and Shimadzu seminars."
       ],
       "monitoringLinks": [
-        { "label": "Scientific themes", "url": "https://imsc26.com/" },
-        { "label": "Sponsors", "url": "https://imsc26.com/sponsoring-exhibition/they-joined-us" },
-        { "label": "Competitor seminars", "url": "https://imsc26.com/sponsoring-exhibition/lunch-seminar" }
+        { "label": "Conference overview", "url": "https://www.imss.nl/" },
+        { "label": "Shimadzu presence", "url": "https://www.shimadzu.eu/news-events/2026/IMSC.html" },
+        { "label": "Bruker seminar", "url": "https://www.bruker.com/en/landingpages/bdal/imsc.html" }
       ]
     },
     {
