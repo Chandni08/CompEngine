@@ -515,7 +515,7 @@ function setupCompetitorIntentEvidenceLinks() {
     const competitorTrigger = event.target.closest("button[data-intent-select]");
     if (competitorTrigger) {
       state.activeIntentCompetitor = competitorTrigger.dataset.intentSelect;
-      renderCompetitorIntentCards(currentSignals());
+      renderCompetitorIntentCards(competitorIntentSignals(currentSignals()));
       return;
     }
     const themeTrigger = event.target.closest("button[data-intent-theme-sources]");
@@ -3036,6 +3036,21 @@ function filteredSignalsForHorizon(horizonValue) {
   });
 }
 
+function competitorIntentSignals(signals) {
+  const corporateSignals = (state.data?.signals || [])
+    .filter((signal) => signal.category === "Corporate intelligence")
+    .filter((signal) => inSelectedHorizon(signal.date))
+    .filter((signal) => geographyMatches(signal.geography))
+    .filter((signal) => filters.competitor.value === "All" || signal.competitor === filters.competitor.value);
+  const seen = new Set();
+  return [...signals, ...corporateSignals].filter((signal) => {
+    const key = signal.id || canonicalEvidenceUrl(signal.sourceUrl || signal.url) || `${signal.competitor}|${signal.date}|${signal.title}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
 function currentStrategicSignals(signals) {
   return signals
     .filter((signal) => signal.category === "Corporate intelligence")
@@ -4635,18 +4650,20 @@ function leadershipBriefHighlights(signals) {
   const customerHighlight = leadershipCustomerHighlight();
   if (customerHighlight) highlights.push(customerHighlight);
 
+  const earnings = currentEarningsSignals(competitorIntentSignals(signals))[0];
   const filing = currentFilingInsights()[0];
-  if (filing) {
+  const corporateSignal = earnings || filing;
+  if (corporateSignal) {
     highlights.push({
       kind: "corporate",
       label: "Corporate signal",
-      badge: formatDate(filing.date),
-      title: filing.headline,
-      detail: filing.whyItMatters || filing.pmImplication || filing.evidence,
-      sectionId: "filing-evidence",
-      sectionLabel: "View SEC insights",
-      sourceUrl: filing.sourceUrl,
-      sourceLabel: `Open ${filing.sourceName || "filing"}`,
+      badge: formatDate(corporateSignal.date),
+      title: corporateSignal.title || corporateSignal.headline,
+      detail: corporateSignal.summary || corporateSignal.whyItMatters || corporateSignal.pmImplication || corporateSignal.evidence,
+      sectionId: earnings ? "competitor-intent-section" : "filing-evidence",
+      sectionLabel: earnings ? "View competitor intent" : "View SEC insights",
+      sourceUrl: corporateSignal.sourceUrl,
+      sourceLabel: `Open ${corporateSignal.sourceName || (earnings ? "earnings release" : "filing")}`,
     });
   }
 
@@ -8137,9 +8154,6 @@ function marketApplicationTrendMarkup(trends, horizon, label) {
             <strong>${count.toLocaleString()}</strong>
             <span>PubMed records in ${escapeHtml(label.toLowerCase())}</span>
           </div>
-          <div class="trend-comparison">
-            <strong>${escapeHtml(signal.comparison)}</strong>
-          </div>
           <p class="trend-pm-question"><strong>PM question:</strong> ${escapeHtml(applicationTrendQuestion(trend, horizon))}</p>
           <div class="trend-card-footer">
             <a class="trend-source-link" href="${escapeHtml(pubMedTrendSearchUrl(trend.query, horizon))}" target="_blank" rel="noreferrer" aria-label="View PubMed sources for ${escapeHtml(trend.theme)} in ${escapeHtml(label.toLowerCase())}">View PubMed sources ↗</a>
@@ -8519,7 +8533,7 @@ function render() {
   renderDecisionPacket(signals);
   renderDecisionQueue(signals);
   renderOverallTrendAnalysis(signals);
-  renderCompetitorIntentCards(signals);
+  renderCompetitorIntentCards(competitorIntentSignals(signals));
   renderCompetitorCoverageHealth(signals);
   renderCustomerVoiceSignals();
   renderMetrics(signals);

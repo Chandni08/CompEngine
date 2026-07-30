@@ -18,8 +18,23 @@ test("Thermo July earnings are included in the visible competitor-intent profile
   assert.match(earnings.sourceUrl, /^https:\/\/ir\.thermofisher\.com\//);
 
   assert.match(app, /function currentEarningsSignals\(signals\)/);
+  assert.match(app, /function competitorIntentSignals\(signals\)/);
+  assert.match(app, /renderCompetitorIntentCards\(competitorIntentSignals\(signals\)\)/);
+  assert.match(
+    app,
+    /state\.activeIntentCompetitor = competitorTrigger\.dataset\.intentSelect;\s*renderCompetitorIntentCards\(competitorIntentSignals\(currentSignals\(\)\)\)/,
+    "switching competitors must preserve corporate results that product filters exclude",
+  );
   assert.match(app, /const earnings = currentEarningsSignals\(signals\)\.filter\(\(signal\) => signal\.competitor === competitor\)/);
   assert.match(app, /Q2 2026 Earnings Showed Double-Digit Revenue and EPS Growth/);
   assert.match(app, /earnings\.length \? `\$\{earnings\.length\} earnings result/);
   assert.match(app, /type: "Earnings result"/);
+});
+
+test("Leadership Brief prefers the latest official earnings result for its corporate signal", async () => {
+  const app = await read("app.js");
+
+  assert.match(app, /const earnings = currentEarningsSignals\(competitorIntentSignals\(signals\)\)\[0\]/);
+  assert.match(app, /const corporateSignal = earnings \|\| filing/);
+  assert.match(app, /sectionId: earnings \? "competitor-intent-section" : "filing-evidence"/);
 });
