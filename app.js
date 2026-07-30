@@ -7478,16 +7478,23 @@ function setupJournalSourceSlider() {
 
 function renderFilingInsights() {
   const insights = currentFilingInsights();
-  const visibleCompanies = new Set(insights.map((insight) => insight.competitor));
+  const earnings = currentEarningsSignals(competitorIntentSignals([]));
+  const visibleCompanies = new Set([
+    ...insights.map((insight) => insight.competitor),
+    ...earnings.map((signal) => signal.competitor),
+  ]);
   const corporateMoveCount = (state.filingInsights?.companyCorporateMoves || [])
     .filter((group) => visibleCompanies.has(group.competitor))
     .reduce((total, group) => total + (group.items || []).length, 0);
-  byId("filingInsightCount").textContent = `${insights.length} insights · ${corporateMoveCount} corporate moves`;
+  byId("filingInsightCount").textContent = `${earnings.length} earnings result${earnings.length === 1 ? "" : "s"} · ${insights.length} filing insights · ${corporateMoveCount} corporate moves`;
   const competitorOrder = ["Agilent", "Thermo Fisher", "Shimadzu", "SCIEX", "PerkinElmer"];
   const groupedInsights = new Map();
   insights.forEach((insight) => {
     if (!groupedInsights.has(insight.competitor)) groupedInsights.set(insight.competitor, []);
     groupedInsights.get(insight.competitor).push(insight);
+  });
+  earnings.forEach((signal) => {
+    if (!groupedInsights.has(signal.competitor)) groupedInsights.set(signal.competitor, []);
   });
   const sortedGroups = [...groupedInsights.entries()].sort((a, b) => {
     const aIndex = competitorOrder.indexOf(a[0]);
@@ -7499,22 +7506,41 @@ function renderFilingInsights() {
   byId("filingInsights").innerHTML = insights.length
     ? sortedGroups
         .map(([competitor, companyInsights]) => {
+          const companyEarnings = earnings.filter((signal) => signal.competitor === competitor);
           const corporateMoves = (state.filingInsights?.companyCorporateMoves || [])
             .find((group) => group.competitor === competitor);
           const corporateMoveItems = corporateMoves?.items || [];
-          const latestDate = companyInsights
-            .map((insight) => new Date(insight.date))
+          const latestDate = [...companyInsights, ...companyEarnings]
+            .map((item) => new Date(item.date))
             .filter((date) => !Number.isNaN(date.getTime()))
             .sort((a, b) => b - a)[0];
           const insightLabel = companyInsights.length === 1 ? "insight" : "insights";
+          const earningsLabel = companyEarnings.length === 1 ? "earnings result" : "earnings results";
           return `
             <section class="filing-company-group">
               <div class="filing-company-header">
                 <div>
                   <strong>${escapeHtml(competitor)}</strong>
-                  <p>${companyInsights.length} filing ${insightLabel} · Avg impact ${average(companyInsights, "impactScore")} · Latest ${latestDate ? formatDate(latestDate) : "No date"}</p>
+                  <p>${companyEarnings.length} ${earningsLabel} · ${companyInsights.length} filing ${insightLabel} · Latest ${latestDate ? formatDate(latestDate) : "No date"}</p>
                 </div>
               </div>
+              ${companyEarnings.length
+                ? `
+                  <div class="filing-company-body filing-earnings-body">
+                    ${companyEarnings.map((signal) => `
+                      <article class="filing-card filing-earnings-card">
+                        <div class="filing-card-top">
+                          <strong>${escapeHtml(signal.title)}</strong>
+                          <span class="tag medium">Official earnings result</span>
+                        </div>
+                        <p class="muted">${formatDate(signal.date)} · ${escapeHtml(signal.sourceName)}</p>
+                        <p><strong>Reported result:</strong> ${escapeHtml(signal.summary)}</p>
+                        <a href="${escapeHtml(signal.sourceUrl)}" target="_blank" rel="noreferrer">Open official earnings release ↗</a>
+                      </article>
+                    `).join("")}
+                  </div>
+                `
+                : ""}
               <section class="filing-corporate-moves" aria-label="${escapeHtml(competitor)} partners, mergers, and other corporate transactions">
                 <div class="filing-corporate-moves-header">
                   <div>
@@ -7601,7 +7627,7 @@ function renderFilingInsights() {
           `;
         })
         .join("")
-    : `<div class="empty">No investor filing insights match the current filters.</div>`;
+    : `<div class="empty">No earnings results or investor filing insights match the current filters.</div>`;
 }
 
 function signalScoreBreakdownMarkup(signal) {

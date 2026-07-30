@@ -29,6 +29,10 @@ test("Thermo July earnings are included in the visible competitor-intent profile
   assert.match(app, /Q2 2026 Earnings Showed Double-Digit Revenue and EPS Growth/);
   assert.match(app, /earnings\.length \? `\$\{earnings\.length\} earnings result/);
   assert.match(app, /type: "Earnings result"/);
+  assert.match(app, /const earnings = currentEarningsSignals\(competitorIntentSignals\(\[\]\)\)/);
+  assert.match(app, /Official earnings result/);
+  assert.match(app, /Open official earnings release ↗/);
+  assert.match(app, /\[\.\.\.companyInsights, \.\.\.companyEarnings\]/);
 });
 
 test("Leadership Brief prefers the latest official earnings result for its corporate signal", async () => {
