@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Next Gen Competitive Intelligence Engine</title>
-    <link rel="stylesheet" href="styles.css?v=20260729-pmm-hierarchical-targeting-1" />
+    <link rel="stylesheet" href="styles.css?v=20260729-pmm-narrative-spine-1" />
     <link rel="stylesheet" href="product-ui.css?v=20260729-pmm-hierarchical-targeting-1" />
   </head>
   <body>
@@ -49,14 +49,16 @@
         <div id="marketingSectionNavigation" class="section-nav-groups" hidden>
           <div class="section-nav-group">
             <span>Decide</span>
-            <a href="#pmm-positioning-decisions" data-section-nav="pmm-positioning-decisions">Positioning Decisions</a>
-            <a href="#pmm-claims-proof" data-section-nav="pmm-claims-proof">Claims and Proof Readiness</a>
-            <a href="#pmm-audience-criteria" data-section-nav="pmm-audience-criteria">Audience and Buying Criteria</a>
+            <a href="#pmm-governing-position" data-section-nav="pmm-governing-position">Governing Position</a>
+            <a href="#pmm-positioning-decisions" data-section-nav="pmm-positioning-decisions">PMM Decisions</a>
+            <a href="#pmm-claims-risk" data-section-nav="pmm-claims-risk">Claims at Risk</a>
+            <a href="#pmm-segment-cascade" data-section-nav="pmm-segment-cascade">Segment Cascade</a>
           </div>
           <div class="section-nav-group">
             <span>Activate</span>
-            <a href="#pmm-competitive-narrative" data-section-nav="pmm-competitive-narrative">Competitive Narrative</a>
-            <a href="#pmm-activation-backlog" data-section-nav="pmm-activation-backlog">Activation Backlog</a>
+            <a href="#pmm-competitive-narratives" data-section-nav="pmm-competitive-narratives">Competitive Narratives</a>
+            <a href="#pmm-adoption-value" data-section-nav="pmm-adoption-value">Adoption / Value Plan</a>
+            <a href="#pmm-activation-artifacts" data-section-nav="pmm-activation-artifacts">Activation Artifacts</a>
             <a href="#pmm-evidence-appendix" data-section-nav="pmm-evidence-appendix">Evidence Appendix</a>
           </div>
         </div>
@@ -167,50 +169,72 @@
 
       <div id="marketingWorkspace" class="marketing-workspace" hidden>
         <aside id="pmmTargetingContext" class="pmm-targeting-context" aria-label="Hierarchical Product Marketing targeting"><span id="pmmTargetingHelp" class="sr-only">Product Marketing hierarchical targeting controls.</span></aside>
+        <section id="pmmStartHere" class="pmm-start-here" aria-labelledby="pmmStartHereTitle"></section>
+
+        <section id="pmm-governing-position" class="panel pmm-primary-section" aria-labelledby="pmmGoverningSectionTitle">
+          <div class="panel-header">
+            <div>
+              <h3 id="pmmGoverningSectionTitle">Governing Position</h3>
+              <p class="panel-helper">The canonical position inherited by decisions, claims, narratives, and activation artifacts.</p>
+            </div>
+          </div>
+          <div id="pmmGoverningPosition"></div>
+        </section>
+
         <section id="pmm-positioning-decisions" class="panel pmm-primary-section" aria-labelledby="pmmPositioningTitle">
           <div class="panel-header">
             <div>
-              <h3 id="pmmPositioningTitle">Positioning Decisions</h3>
-              <p class="panel-helper">Decisions that need evidence, review, or approval before activation.</p>
+              <h3 id="pmmPositioningTitle">Three Decisions Requiring PMM Action</h3>
+              <p class="panel-helper">The ranked decisions that need substantiation, message choice, or activation governance next.</p>
             </div>
           </div>
           <div id="pmmPositioningDecisions"></div>
         </section>
 
-        <section id="pmm-claims-proof" class="panel pmm-primary-section" aria-labelledby="pmmClaimsTitle">
+        <section id="pmm-claims-risk" class="panel pmm-primary-section" aria-labelledby="pmmClaimsTitle">
           <div class="panel-header">
             <div>
-              <h3 id="pmmClaimsTitle">Claims and Proof Readiness</h3>
-              <p class="panel-helper">Proposed messages, supporting proof, and explicit approval gaps.</p>
+              <h3 id="pmmClaimsTitle">Claims at Risk</h3>
+              <p class="panel-helper">Proposed wording with substantiation, comparability, expiry, ownership, or approval risk.</p>
             </div>
           </div>
           <div id="pmmClaimsProof"></div>
         </section>
 
-        <section id="pmm-audience-criteria" class="panel pmm-primary-section" aria-labelledby="pmmAudienceTitle">
+        <section id="pmm-segment-cascade" class="panel pmm-primary-section" aria-labelledby="pmmAudienceTitle">
           <div class="panel-header">
             <div>
-              <h3 id="pmmAudienceTitle">Audience and Buying Criteria</h3>
-              <p class="panel-helper">Buying committees, decision criteria, ACCORD adoption barriers, and governed value assumptions by priority segment.</p>
+              <h3 id="pmmAudienceTitle">Segment and Buying-Committee Cascade</h3>
+              <p class="panel-helper">How the chosen segment changes buyer roles, decision criteria, proof needs, and message adaptation.</p>
             </div>
           </div>
           <div id="pmmAudienceCriteria"></div>
         </section>
 
-        <section id="pmm-competitive-narrative" class="panel pmm-primary-section" aria-labelledby="pmmNarrativeTitle">
+        <section id="pmm-competitive-narratives" class="panel pmm-primary-section" aria-labelledby="pmmNarrativeTitle">
           <div class="panel-header">
             <div>
-              <h3 id="pmmNarrativeTitle">Competitive Narrative</h3>
+              <h3 id="pmmNarrativeTitle">Competitive Narratives</h3>
               <p class="panel-helper">Canonical competitor narratives that turn claims, workflow emphasis, launches, and events into PMM content decisions.</p>
             </div>
           </div>
           <div id="pmmCompetitiveNarrative"></div>
         </section>
 
-        <section id="pmm-activation-backlog" class="panel pmm-primary-section" aria-labelledby="pmmActivationTitle">
+        <section id="pmm-adoption-value" class="panel pmm-primary-section" aria-labelledby="pmmAdoptionTitle">
           <div class="panel-header">
             <div>
-              <h3 id="pmmActivationTitle">Activation Backlog</h3>
+              <h3 id="pmmAdoptionTitle">Adoption and Value Plan</h3>
+              <p class="panel-helper">ACCORD barriers, prescribed launch tactics, and governed EVC assumptions for the chosen segment.</p>
+            </div>
+          </div>
+          <div id="pmmAdoptionValuePlans"></div>
+        </section>
+
+        <section id="pmm-activation-artifacts" class="panel pmm-primary-section" aria-labelledby="pmmActivationTitle">
+          <div class="panel-header">
+            <div>
+              <h3 id="pmmActivationTitle">Activation Artifacts</h3>
               <p class="panel-helper">Filter-specific artifact production, governance, editable workflow ownership, and governed exports.</p>
             </div>
           </div>
@@ -608,6 +632,6 @@
     <script src="vendor/pptxgen.bundle.js?v=4.0.1"></script>
     <script src="vendor/docx.iife.js?v=9.5.1"></script>
     <script src="artifact-export.js?v=20260729-pmm-artifacts-1"></script>
-    <script src="app.js?v=20260729-pmm-artifacts-1"></script>
+    <script src="app.js?v=20260729-pmm-narrative-spine-1"></script>
   </body>
 </html>
