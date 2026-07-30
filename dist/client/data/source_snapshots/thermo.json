@@ -131,7 +131,31 @@
       "intent": "Corporate performance and investment capacity",
       "technology": "Portfolio",
       "marketSegment": "Corporate",
-      "summary": "Thermo Fisher reported Q2 2026 results: revenue grew 10% to $11.99 billion; organic revenue growth was 5%; adjusted EPS grew 13% to $6.03.",
+      "summary": "Thermo paired higher Analytical Instruments revenue and margin with AI-enabled Orbitrap launches and new bioprocess and proteomics customer infrastructure.",
+      "earningsMetrics": [
+        {
+          "label": "Analytical Instruments revenue",
+          "value": "$1.847B",
+          "change": "+6.9% YoY"
+        },
+        {
+          "label": "Analytical Instruments segment income",
+          "value": "$424M",
+          "change": "+30.5% YoY"
+        },
+        {
+          "label": "Analytical Instruments margin",
+          "value": "23.0%",
+          "change": "+4.2 pts YoY"
+        }
+      ],
+      "pmInsights": [
+        "Portfolio economics: Analytical Instruments revenue increased 6.9% to $1.847 billion; segment income increased 30.5% to $424 million and margin expanded 4.2 points to 23.0%.",
+        "Product direction: Orbitrap Tribrid Apex and Excedion pair AI-driven analytics with multiomics, structural biology, biopharma characterization, small-molecule analysis and hard-to-detect drug-development targets.",
+        "Commercial model: the Plainville Bioprocess Design Center and PRECISE-SG100K collaboration extend Thermo into pharma and biotech co-development and integrated Olink plus Orbitrap Astral proteomics."
+      ],
+      "watersPmImplication": "Assess Thermo at the workflow level—separations and MS, analytics, application proof and customer co-development—not on instrument specifications alone.",
+      "evidenceBoundary": "The release does not separate LC or chromatography revenue, unit growth, pricing or market share; Analytical Instruments performance is not evidence of LC share gain.",
       "sourceId": "thermo-news",
       "sourceName": "Thermo Fisher investor relations news"
     },

@@ -38,6 +38,8 @@ const state = {
   marketingTargeting: { application: "All", buyingSituation: "All", buyerRole: "All" },
   marketingEvcBaselines: {},
   marketingEvcAssumptions: {},
+  marketingArtifactSegmentId: "",
+  marketingArtifactWorkflow: {},
   marketingWorkspaceModel: null,
   conferencePage: 1,
   conferencePageSize: 4,
@@ -3633,46 +3635,213 @@ function pmmActivationDeliverable(decision, rank, governingPosition) {
   };
 }
 
-function renderMarketingActivationBacklog(decisions, governingPosition, breakReport, activationActions = []) {
+const pmmArtifactDefinitions = [
+  { id: "competitive-battlecard", title: "One-Page Competitive Battlecard", artifactType: "Competitive battlecard", exportKind: "pptx-battlecard", extension: "PPTX", purpose: "Equip sales to answer the prioritized competitor narrative without overstating proof." },
+  { id: "positioning-messaging-brief", title: "Positioning and Messaging Brief", artifactType: "Positioning and messaging brief", exportKind: "docx", extension: "DOCX", purpose: "Package the governing position, buying-committee adaptation, proof boundaries, and message hierarchy." },
+  { id: "regulated-claims-sheet", title: "Regulated Claims Sheet", artifactType: "Regulated claims sheet", exportKind: "docx", extension: "DOCX", purpose: "Review proposed wording, substantiation, approval state, comparability, caveats, and next required action." },
+  { id: "campaign-message-plan", title: "Campaign and Message Plan", artifactType: "Campaign and message plan", exportKind: "docx", extension: "DOCX", purpose: "Translate the governed position into role-specific message sequencing and activation guardrails." },
+  { id: "sales-deck-outline", title: "Sales-Deck Outline", artifactType: "Sales-deck outline", exportKind: "pptx-sales-deck", extension: "PPTX", purpose: "Create an editable six-slide enablement structure tied to the selected target and evidence." },
+  { id: "message-test-brief", title: "Message-Test Brief", artifactType: "Message-test brief", exportKind: "docx", extension: "DOCX", purpose: "Test proposed role messages, objections, comprehension, credibility, and proof expectations before activation." },
+  { id: "customer-proof-request", title: "Customer-Proof Request Brief", artifactType: "Customer-proof request brief", exportKind: "docx", extension: "DOCX", purpose: "Specify the exact customer evidence needed without inventing a reference site, outcome, owner, or date." },
+];
+
+const pmmArtifactWorkflowStorageKey = "competition-engine:pmm-artifact-workflow:v1";
+
+function pmmLoadArtifactWorkflow() {
+  try {
+    const parsed = JSON.parse(localStorage.getItem(pmmArtifactWorkflowStorageKey) || "{}");
+    return parsed && typeof parsed === "object" && !Array.isArray(parsed) ? parsed : {};
+  } catch {
+    return {};
+  }
+}
+
+function pmmPersistArtifactWorkflow() {
+  try {
+    localStorage.setItem(pmmArtifactWorkflowStorageKey, JSON.stringify(state.marketingArtifactWorkflow));
+  } catch {
+    // Keep the editable workflow available for this session when browser storage is unavailable.
+  }
+}
+
+function pmmArtifactSegmentId(segment) {
+  return `${segment.segment}::${segment.competitor}`;
+}
+
+function pmmArtifactWorkflowKey(segment, artifactId) {
+  return `${pmmTargetingKey()}::${pmmArtifactSegmentId(segment)}::${artifactId}`;
+}
+
+function pmmArtifactWorkflowState(segment, definition) {
+  const stored = state.marketingArtifactWorkflow[pmmArtifactWorkflowKey(segment, definition.id)] || {};
+  return {
+    owner: String(stored.owner || ""),
+    dueDate: String(stored.dueDate || ""),
+    status: ["Draft", "Blocked", "Ready for review", "Complete"].includes(stored.status) ? stored.status : "Draft",
+    successMeasure: String(stored.successMeasure || ""),
+  };
+}
+
+function pmmArtifactClaims(segment, claimRows) {
+  return claimRows.filter((claim) => claim.competitor === segment.competitor && claim.audience === segment.segment);
+}
+
+function pmmArtifactEvidenceSources(segment, claims, narrative) {
+  const claimSources = claims.flatMap((claim) => [
+    ...(claim.sources || []),
+    ...(claim.evidenceRecords || []).map((record) => ({ ...record, url: record.url, label: record.label })),
+  ]);
+  const roleSources = segment.roles.flatMap((role) => role.sources || []);
+  return pmmDeduplicateSources([
+    ...(segment.decision.exactSources || []),
+    ...(narrative?.sources || []),
+    ...claimSources,
+    ...roleSources,
+  ]).slice(0, 18);
+}
+
+function pmmArtifactWarnings(segment, claims, narrative) {
+  const warnings = [];
+  if (!claims.length) warnings.push("No governed claim registry row matches this segment and competitor. Claim content is unresolved.");
+  if (claims.some((claim) => claim.approvalEstablished !== true)) warnings.push("One or more included claims have no established legal/claims approval. The output must remain DRAFT — NOT APPROVED.");
+  const unsupported = claims.filter((claim) => claim.substantiationStatus === "Unsupported");
+  if (unsupported.length) warnings.push(`${unsupported.length} included claim${unsupported.length === 1 ? " is" : "s are"} Unsupported after compatibility review.`);
+  const inapplicable = claims.flatMap((claim) => claim.evidenceRecords || []).filter((record) => record.compatibility?.status === "Inapplicable");
+  if (inapplicable.length) warnings.push(`${inapplicable.length} evidence record${inapplicable.length === 1 ? " is" : "s are"} Inapplicable and cannot be used as proof.`);
+  if (["contradiction", "unsupported"].includes(segment.decision.governingTrace?.status)) warnings.push(segment.decision.governingTrace.message);
+  if (["contradiction", "unsupported"].includes(narrative?.governingTrace?.status)) warnings.push(narrative.governingTrace.message);
+  return [...new Set(warnings)];
+}
+
+function pmmArtifactModel(definition, segment, governingPosition, claimRows, narratives) {
+  const claims = pmmArtifactClaims(segment, claimRows);
+  const narrative = narratives.find((item) => item.competitor === segment.competitor);
+  const evidenceFootnotes = pmmArtifactEvidenceSources(segment, claims, narrative);
+  const proof = claims.flatMap((claim) => claim.evidenceRecords || [])
+    .filter((record) => record.compatibility?.status === "Applicable")
+    .map((record) => ({ label: record.label, detail: record.detail, url: record.url }));
+  const caveats = [...new Set([
+    ...claims.map((claim) => claim.caveat).filter(Boolean),
+    ...(narrative?.limitations || []),
+    ...(proof.length ? [] : ["No claim-compatible proof is currently available for the included proposed wording."]),
+  ])];
+  return {
+    ...definition,
+    id: `${pmmArtifactSegmentId(segment)}::${definition.id}`,
+    definitionId: definition.id,
+    segmentId: pmmArtifactSegmentId(segment),
+    target: `${segment.segment}${segment.application !== "All" ? ` · ${segment.application}` : ""} · ${segment.competitor}`,
+    buyingSituation: pmmTargetingDisplayValue(segment.buyingSituation, governingPosition.buyingSituation),
+    governingPosition: {
+      id: governingPosition.id,
+      primaryValueProposition: governingPosition.primaryValueProposition,
+      pointOfParity: governingPosition.pointOfParity,
+      pointOfDifference: governingPosition.pointOfDifference,
+      approvalState: governingPosition.approvalState,
+    },
+    roleMessages: segment.roles.map((role) => ({ role: role.label, message: role.message, classification: role.classificationLabel })),
+    competitorResponse: narrative?.counterPosition || segment.decision.counterPosition || "Competitor response unresolved.",
+    claims: claims.map((claim) => ({
+      competitor: claim.competitor,
+      wording: claim.proposedClaimWording,
+      approvalState: claim.approvalState,
+      approvalEstablished: claim.approvalEstablished,
+      approvedWording: claim.approvedWording,
+      substantiationStatus: claim.substantiationStatus,
+      comparabilityStatus: claim.comparabilityStatus,
+      nextRequiredAction: claim.nextRequiredAction,
+    })),
+    proof,
+    caveats,
+    objections: segment.roles.map((role) => ({ role: role.label, objection: role.objection, response: role.message })),
+    warnings: pmmArtifactWarnings(segment, claims, narrative),
+    evidenceFootnotes,
+    workflow: pmmArtifactWorkflowState(segment, definition),
+    workflowKey: pmmArtifactWorkflowKey(segment, definition.id),
+  };
+}
+
+function pmmArtifactProductionModel(buyingCommittee, governingPosition, claimRows, narratives) {
+  const segments = buyingCommittee.segments;
+  if (!segments.length) return { segments: [], selectedSegment: null, artifacts: [], approvedClipboardText: "" };
+  const selectedSegment = segments.find((segment) => pmmArtifactSegmentId(segment) === state.marketingArtifactSegmentId) || segments[0];
+  state.marketingArtifactSegmentId = pmmArtifactSegmentId(selectedSegment);
+  const artifacts = pmmArtifactDefinitions.map((definition) => pmmArtifactModel(definition, selectedSegment, governingPosition, claimRows, narratives));
+  const selectedClaims = pmmArtifactClaims(selectedSegment, claimRows);
+  return {
+    segments,
+    selectedSegment,
+    selectedSegmentId: pmmArtifactSegmentId(selectedSegment),
+    artifacts,
+    selectedClaims,
+    approvedClipboardText: globalThis.PmmArtifactExports?.approvedClipboardText(selectedClaims) || "",
+  };
+}
+
+function pmmArtifactStatusOptions(selected) {
+  return ["Draft", "Blocked", "Ready for review", "Complete"].map((status) => `<option value="${escapeHtml(status)}" ${status === selected ? "selected" : ""}>${escapeHtml(status)}</option>`).join("");
+}
+
+function pmmArtifactWorkflowMarkup(artifact) {
+  const inputId = artifact.id.replace(/[^a-z0-9]/gi, "");
+  return `<form class="pmm-artifact-workflow" data-artifact-workflow-key="${escapeHtml(artifact.workflowKey)}" aria-label="${escapeHtml(`${artifact.title} production workflow`)}">
+    <label for="pmmArtifactOwner${inputId}">Owner<input id="pmmArtifactOwner${inputId}" type="text" value="${escapeHtml(artifact.workflow.owner)}" placeholder="Owner needed" data-pmm-artifact-field="owner" data-workflow-key="${escapeHtml(artifact.workflowKey)}"></label>
+    <label for="pmmArtifactDue${inputId}">Due date<input id="pmmArtifactDue${inputId}" type="date" value="${escapeHtml(artifact.workflow.dueDate)}" data-pmm-artifact-field="dueDate" data-workflow-key="${escapeHtml(artifact.workflowKey)}"><small>${artifact.workflow.dueDate ? "Editable workflow date" : "Deadline needed"}</small></label>
+    <label for="pmmArtifactStatus${inputId}">Production status <small>Not claims approval</small><select id="pmmArtifactStatus${inputId}" data-pmm-artifact-field="status" data-workflow-key="${escapeHtml(artifact.workflowKey)}">${pmmArtifactStatusOptions(artifact.workflow.status)}</select></label>
+    <label for="pmmArtifactMeasure${inputId}">Success measure<textarea id="pmmArtifactMeasure${inputId}" rows="2" placeholder="Measure needed" data-pmm-artifact-field="successMeasure" data-workflow-key="${escapeHtml(artifact.workflowKey)}">${escapeHtml(artifact.workflow.successMeasure)}</textarea></label>
+  </form>`;
+}
+
+function pmmArtifactClaimsMarkup(artifact) {
+  if (!artifact.claims.length) return `<p class="pmm-artifact-unresolved">No governed claim matches the selected segment and competitor.</p>`;
+  return `<ul>${artifact.claims.map((claim) => `<li><strong>${escapeHtml(claim.wording)}</strong><span>${escapeHtml(claim.substantiationStatus)} · ${escapeHtml(claim.approvalState)}</span></li>`).join("")}</ul>`;
+}
+
+function pmmArtifactEvidenceMarkup(artifact) {
+  if (!artifact.evidenceFootnotes.length) return `<p class="pmm-artifact-unresolved">Evidence footnotes unavailable.</p>`;
+  return `<ol>${artifact.evidenceFootnotes.slice(0, 10).map((source) => `<li><a href="${escapeHtml(source.url)}" target="_blank" rel="noreferrer">${escapeHtml(source.label || source.sourceName || "Exact evidence")} ↗</a></li>`).join("")}</ol>`;
+}
+
+function pmmArtifactCardMarkup(artifact, index) {
+  const approvalEstablished = artifact.claims.length > 0 && artifact.claims.every((claim) => claim.approvalEstablished === true && claim.approvedWording);
+  return `<article class="pmm-artifact-card ${approvalEstablished ? "pmm-artifact-approved" : "pmm-artifact-draft"}" data-artifact-id="${escapeHtml(artifact.id)}" data-artifact-approval="${approvalEstablished ? "approved" : "draft"}">
+    <header><div><span>Artifact ${index + 1} · ${escapeHtml(artifact.extension)}</span><h4>${escapeHtml(artifact.title)}</h4><p>${escapeHtml(artifact.purpose)}</p></div><strong>${approvalEstablished ? "APPROVAL ESTABLISHED" : "DRAFT — NOT APPROVED"}</strong></header>
+    <div class="pmm-artifact-target"><span>Target / buying situation</span><strong>${escapeHtml(artifact.target)}</strong><p>${escapeHtml(artifact.buyingSituation)}</p></div>
+    ${pmmArtifactWorkflowMarkup(artifact)}
+    <div class="pmm-artifact-actions"><button type="button" data-pmm-artifact-export="${escapeHtml(artifact.id)}">Export ${escapeHtml(artifact.extension)}</button><span aria-live="polite"></span></div>
+    <details ${index < 4 ? "open" : ""}><summary>Review governed artifact content</summary><div class="pmm-artifact-content">
+      <section><h5>Governing Position</h5><p>${escapeHtml(artifact.governingPosition.primaryValueProposition)}</p><small>Parity: ${escapeHtml(artifact.governingPosition.pointOfParity)} · Difference: ${escapeHtml(artifact.governingPosition.pointOfDifference)} · ${escapeHtml(artifact.governingPosition.approvalState)}</small></section>
+      <section><h5>Role-Specific Messages</h5><ul>${artifact.roleMessages.map((role) => `<li><strong>${escapeHtml(role.role)}</strong><span>${escapeHtml(role.message)}</span><small>${escapeHtml(role.classification)}</small></li>`).join("")}</ul></section>
+      <section><h5>Competitor Response</h5><p>${escapeHtml(artifact.competitorResponse)}</p><small>Proposed — not approved unless the included claim record establishes otherwise.</small></section>
+      <section><h5>Claims and Approval State</h5>${pmmArtifactClaimsMarkup(artifact)}</section>
+      <section><h5>Proof and Caveats</h5>${artifact.proof.length ? `<ul>${artifact.proof.map((proof) => `<li>${escapeHtml(proof.detail || proof.label)}</li>`).join("")}</ul>` : `<p class="pmm-artifact-unresolved">Compatible proof unavailable.</p>`}<ul class="pmm-artifact-caveats">${artifact.caveats.map((caveat) => `<li>${escapeHtml(caveat)}</li>`).join("")}</ul></section>
+      <section><h5>Objection Handling</h5><ul>${artifact.objections.map((item) => `<li><strong>${escapeHtml(item.role)} · ${escapeHtml(item.objection)}</strong><span>${escapeHtml(item.response)}</span></li>`).join("")}</ul></section>
+      <section class="pmm-artifact-warnings"><h5>Unsupported-Content Warnings</h5>${artifact.warnings.length ? `<ul>${artifact.warnings.map((warning) => `<li>${escapeHtml(warning)}</li>`).join("")}</ul>` : `<p>No unsupported-content warning is active.</p>`}</section>
+      <section class="pmm-artifact-footnotes"><h5>Evidence Footnotes</h5>${pmmArtifactEvidenceMarkup(artifact)}</section>
+    </div></details>
+  </article>`;
+}
+
+function renderMarketingActivationBacklog(decisions, governingPosition, breakReport, activationActions = [], artifactProduction = null) {
   const target = byId("pmmActivationBacklog");
   const breakMarkup = pmmBreakReportMarkup(breakReport, governingPosition.targeting);
-  if (!decisions.length) {
-    target.innerHTML = `${breakMarkup}${pmmEmptyState("No PMM action can be linked to a positioning decision under the active hierarchical target. The export retains this unresolved state.")}`;
+  if (!decisions.length || !artifactProduction?.selectedSegment) {
+    target.innerHTML = `${breakMarkup}${pmmEmptyState("No PMM artifact can be produced under the active hierarchical target. The export retains this unresolved state.")}`;
     return;
   }
-  const deliverables = activationActions.length
-    ? activationActions
-    : decisions.map((decision, index) => pmmActivationDeliverable(decision, index + 1, governingPosition));
+  const approvedTextAvailable = Boolean(artifactProduction.approvedClipboardText);
   target.innerHTML = `
     ${breakMarkup}
     <div class="pmm-backlog-intro">
-      <div><div class="pmm-eyebrow">Recommended PMM Actions</div><h3>Positioning Decisions Converted into Deliverables</h3><p>Each item traces to one prioritized positioning decision. Recommendations are analyst/rule-based inference; workflow ownership, timing, approval, and measurement remain unresolved unless explicitly evidenced.</p></div>
-      <div class="pmm-asset-taxonomy" aria-label="Supported PMM asset types"><span>Supported asset types</span><div>${pmmActivationAssetTypes.map((type) => `<span>${escapeHtml(type)}</span>`).join("")}</div></div>
+      <div><div class="pmm-eyebrow">Artifact Production Workflow</div><h3>Governed PMM Artifacts for the Selected Segment</h3><p>Every output inherits the active hierarchy and Governing Position. Editable workflow fields persist in this browser; they are not formal assignments or claims approval records.</p></div>
+      <div class="pmm-artifact-governance"><strong>DRAFT — NOT APPROVED</strong><span>Applied whenever any included claim lacks explicit approval.</span></div>
     </div>
-    <p class="pmm-action-scope" role="note"><strong>Action scope:</strong> ${pmmActivationActionTypes.map(escapeHtml).join(" · ")}</p>
-    <div class="pmm-backlog" role="list">${deliverables.map((item) => `<article class="pmm-backlog-item" role="listitem" data-positioning-rank="${item.rank}" data-activation-asset="${escapeHtml(item.assetType)}">
-      <header class="pmm-backlog-header">
-        <div><span>Related Positioning Decision</span><strong>${escapeHtml(item.relatedDecision)}</strong></div>
-        ${pmmEvidenceTypeMarkup(item.sources.length ? "inference" : "unresolved", item.sources.length ? `${item.approvalState} · analyst/rule-based recommendation` : "Unresolved — no recommendation")}
-      </header>
-      <div class="pmm-backlog-body">
-        <section class="pmm-backlog-deliverable"><div><span>Asset / Action</span><strong class="pmm-asset-type">${escapeHtml(item.assetType)}</strong><small>${escapeHtml(item.actionType)}</small></div><p>${escapeHtml(item.action)}</p></section>
-        <dl class="pmm-backlog-details">
-          <div><dt>Reason It Is Needed</dt><dd>${escapeHtml(item.reason)}</dd></div>
-          <div><dt>Intended Audience</dt><dd>${escapeHtml(item.audience)}</dd></div>
-          <div><dt>Intended Channel</dt><dd>${escapeHtml(item.channel)}</dd></div>
-        </dl>
-        <div class="pmm-backlog-gates">
-          ${pmmStatusMarkup("unresolved", "Owner", item.owner)}
-          ${pmmStatusMarkup("unresolved", "Deadline", item.deadline)}
-          ${pmmStatusMarkup(item.sources.length ? "inference" : "unresolved", "Status", item.status)}
-          ${pmmStatusMarkup("unresolved", "Success measure", item.successMeasure)}
-        </div>
-        <section class="pmm-backlog-proof"><span>Required Proof or Approval</span><p>${escapeHtml(item.requiredProof)}</p></section>
-        <section class="pmm-backlog-governing-trace" data-governing-position-ref="${escapeHtml(item.governingPositionId)}" data-alignment-status="${escapeHtml(item.governingTrace.status)}"><span>Governing Position Trace</span><p>Inherits ${escapeHtml(governingPosition.primaryValueProposition)}</p><p><strong>Local asset adaptation:</strong> ${escapeHtml(item.action)}</p><small>${escapeHtml(item.governingTrace.message)}</small></section>
-        <section class="pmm-backlog-sources"><span>Evidence Links</span>${item.sources.length ? `<div>${item.sources.slice(0, 6).map(pmmDecisionSourceMarkup).join("")}</div>` : `<p class="pmm-unresolved">Exact evidence links unavailable. The action remains unresolved.</p>`}</section>
-      </div>
-    </article>`).join("")}</div>`;
+    <div class="pmm-artifact-toolbar">
+      <label>Artifact target segment<select data-pmm-artifact-segment>${artifactProduction.segments.map((segment) => `<option value="${escapeHtml(pmmArtifactSegmentId(segment))}" ${pmmArtifactSegmentId(segment) === artifactProduction.selectedSegmentId ? "selected" : ""}>${escapeHtml(segment.segment)} · ${escapeHtml(segment.competitor)}</option>`).join("")}</select></label>
+      <div><button type="button" data-pmm-claims-csv>Export claims registry CSV</button><button type="button" data-pmm-copy-approved ${approvedTextAvailable ? "" : "disabled"}>${approvedTextAvailable ? "Copy approved text only" : "No approved text to copy"}</button><span aria-live="polite"></span></div>
+    </div>
+    <p class="pmm-action-scope" role="note"><strong>Export governance:</strong> PPTX for battlecards and sales decks · DOCX for briefs and claims sheets · CSV for the governed claims registry · clipboard output includes approved wording only.</p>
+    <div class="pmm-artifact-grid" role="list">${artifactProduction.artifacts.map((artifact, index) => pmmArtifactCardMarkup(artifact, index)).join("")}</div>`;
 }
 
 function pmmAppendixRecord({ title, type, sourceName, date, confidence, description, url, caveat = "", linkAvailable = true }) {
@@ -4085,6 +4254,7 @@ function exportMarketingTargetingSnapshot() {
     claims: model.claimRows,
     narratives: model.narratives,
     activationActions: model.activationActions,
+    artifactProduction: model.artifactProduction,
     adoptionValuePlans: model.adoptionValuePlans,
     caveat: "Internal proposed PMM work product. Approval is not established unless an explicit approval record says otherwise.",
   };
@@ -4117,6 +4287,7 @@ function buildMarketingWorkspaceModel(signals) {
     .sort((left, right) => right.score - left.score || right.confidence - left.confidence || left.competitor.localeCompare(right.competitor));
   const activationActions = positioningDecisions.map((decision, index) => pmmActivationDeliverable(decision, index + 1, governingPosition));
   const breakReport = pmmTargetingBreakReportModel(claimRows, buyingCommittee, positioningDecisions, narratives, adoptionValuePlans);
+  const artifactProduction = pmmArtifactProductionModel(buyingCommittee, governingPosition, claimRows, narratives);
   normalizeMarketingClaimFilters(claimRows);
   const visibleClaimRows = marketingVisibleClaimRows(claimRows);
   const appendix = marketingEvidenceAppendixModel(signals);
@@ -4126,7 +4297,7 @@ function buildMarketingWorkspaceModel(signals) {
     customerLanguageRecords: appendix.customerLanguageRecords,
     appendix,
   });
-  return { contexts, governingPosition, marketChoice, buyingCommittee, adoptionValuePlans, positioningDecisions, claimRows, visibleClaimRows, narratives, activationActions, breakReport, appendix, kpis };
+  return { contexts, governingPosition, marketChoice, buyingCommittee, adoptionValuePlans, positioningDecisions, claimRows, visibleClaimRows, narratives, activationActions, artifactProduction, breakReport, appendix, kpis };
 }
 
 function renderMarketingWorkspace(signals) {
@@ -4137,7 +4308,7 @@ function renderMarketingWorkspace(signals) {
   renderMarketingClaimsProof(model.claimRows, model.visibleClaimRows, model.governingPosition);
   renderMarketingAudienceCriteria(model.appendix.customerLanguageRecords, model.buyingCommittee, model.adoptionValuePlans);
   renderMarketingCompetitiveNarrative(signals, model.governingPosition, model.marketChoice, model.contexts);
-  renderMarketingActivationBacklog(model.positioningDecisions, model.governingPosition, model.breakReport, model.activationActions);
+  renderMarketingActivationBacklog(model.positioningDecisions, model.governingPosition, model.breakReport, model.activationActions, model.artifactProduction);
   renderMarketingEvidenceAppendix(model.appendix);
   renderMarketingSourceCounts(model);
 }
@@ -4211,8 +4382,36 @@ function setupComparisonPanel() {
   });
 }
 
+function pmmUpdateArtifactWorkflowField(control) {
+  const workflowKey = control.dataset.workflowKey;
+  const field = control.dataset.pmmArtifactField;
+  if (!workflowKey || !["owner", "dueDate", "status", "successMeasure"].includes(field)) return false;
+  state.marketingArtifactWorkflow[workflowKey] ||= {};
+  state.marketingArtifactWorkflow[workflowKey][field] = control.value;
+  pmmPersistArtifactWorkflow();
+  const artifact = state.marketingWorkspaceModel?.artifactProduction?.artifacts.find((item) => item.workflowKey === workflowKey);
+  if (artifact) artifact.workflow[field] = control.value;
+  return true;
+}
+
 function setupMarketingWorkspaceControls() {
+  state.marketingArtifactWorkflow = pmmLoadArtifactWorkflow();
+  document.addEventListener("input", (event) => {
+    const artifactField = event.target.closest("[data-pmm-artifact-field]");
+    if (artifactField && state.view === "Marketing") pmmUpdateArtifactWorkflowField(artifactField);
+  });
   document.addEventListener("change", (event) => {
+    const artifactSegmentControl = event.target.closest("[data-pmm-artifact-segment]");
+    if (artifactSegmentControl && state.view === "Marketing") {
+      state.marketingArtifactSegmentId = artifactSegmentControl.value;
+      render();
+      return;
+    }
+    const artifactField = event.target.closest("[data-pmm-artifact-field]");
+    if (artifactField && state.view === "Marketing") {
+      pmmUpdateArtifactWorkflowField(artifactField);
+      return;
+    }
     const evcBaselineControl = event.target.closest("[data-pmm-evc-baseline]");
     if (evcBaselineControl && state.view === "Marketing") {
       state.marketingEvcBaselines[evcBaselineControl.dataset.planId] = evcBaselineControl.value;
@@ -4250,7 +4449,57 @@ function setupMarketingWorkspaceControls() {
     state.marketingClaimsFilters[key] = control.value;
     render();
   });
-  document.addEventListener("click", (event) => {
+  document.addEventListener("click", async (event) => {
+    const artifactExportButton = event.target.closest("[data-pmm-artifact-export]");
+    if (artifactExportButton && state.view === "Marketing") {
+      event.preventDefault();
+      const artifact = state.marketingWorkspaceModel?.artifactProduction?.artifacts.find((item) => item.id === artifactExportButton.dataset.pmmArtifactExport);
+      const status = artifactExportButton.parentElement?.querySelector("span");
+      if (!artifact || !globalThis.PmmArtifactExports) {
+        if (status) status.textContent = "Export unavailable.";
+        return;
+      }
+      artifactExportButton.disabled = true;
+      if (status) status.textContent = "Preparing governed export…";
+      try {
+        const filename = await globalThis.PmmArtifactExports.exportArtifact(artifact);
+        if (status) status.textContent = `${filename} downloaded.`;
+      } catch (error) {
+        if (status) status.textContent = `Export failed: ${error.message}`;
+      } finally {
+        artifactExportButton.disabled = false;
+      }
+      return;
+    }
+    const claimsCsvButton = event.target.closest("[data-pmm-claims-csv]");
+    if (claimsCsvButton && state.view === "Marketing") {
+      event.preventDefault();
+      const status = claimsCsvButton.parentElement?.querySelector("span");
+      try {
+        const filename = globalThis.PmmArtifactExports.exportClaimsCsv(state.marketingWorkspaceModel.claimRows, state.marketingWorkspaceModel.governingPosition.targeting);
+        if (status) status.textContent = `${filename} downloaded.`;
+      } catch (error) {
+        if (status) status.textContent = `CSV export failed: ${error.message}`;
+      }
+      return;
+    }
+    const copyApprovedButton = event.target.closest("[data-pmm-copy-approved]");
+    if (copyApprovedButton && state.view === "Marketing") {
+      event.preventDefault();
+      const status = copyApprovedButton.parentElement?.querySelector("span");
+      const approvedText = state.marketingWorkspaceModel?.artifactProduction?.approvedClipboardText || "";
+      if (!approvedText) {
+        if (status) status.textContent = "No approved wording is available.";
+        return;
+      }
+      try {
+        await navigator.clipboard.writeText(approvedText);
+        if (status) status.textContent = "Approved wording copied.";
+      } catch {
+        if (status) status.textContent = "Clipboard unavailable.";
+      }
+      return;
+    }
     const exportButton = event.target.closest("[data-pmm-export-targeting]");
     if (exportButton && state.view === "Marketing") {
       event.preventDefault();
@@ -6783,19 +7032,19 @@ function competitorIntentProfile(competitor, signals) {
       intent: "Strengthen end-to-end biopharma workflow position, not only individual instruments",
       activityThemes: [
         {
-          title: "Q2 2026 Earnings Showed Double-Digit Revenue and EPS Growth",
-          insight: "Thermo reported revenue up 10% to $11.99 billion, organic growth of 5%, and adjusted EPS up 13% to $6.03.",
+          title: "Analytical Instruments Expanded Revenue and Margin",
+          insight: "Q2 Analytical Instruments revenue rose 6.9% to $1.847 billion; segment income rose 30.5%, and margin expanded 4.2 points to 23.0%.",
           matches: ["Second Quarter 2026 Results"],
         },
         {
-          title: "Bioproduction Investment Is Being Paired with Chromatography and MS Resilience",
-          insight: "Thermo linked its filtration and separation acquisition to bioproduction while chromatography and MS growth offset weakness elsewhere in Analytical Instruments.",
-          matches: ["pairing bioproduction investment"],
+          title: "AI-Enabled Orbitrap Platforms Target Application Workflows",
+          insight: "Apex and Excedion are positioned around multiomics, biopharma characterization, small molecules and hard-to-detect drug-development targets—not instrument performance alone.",
+          matches: ["AI-enabled Orbitrap"],
         },
         {
-          title: "Analytical Instruments Faced Margin Pressure Despite Chromatography/MS Growth",
-          insight: "Thermo reported a flat Analytical Instruments segment and lower margins, even as chromatography and mass spectrometry grew.",
-          matches: ["Analytical Instruments was flat"],
+          title: "Customer Infrastructure Extends the Platform Story",
+          insight: "The new Bioprocess Design Center and PRECISE-SG100K collaboration connect Thermo technology to customer co-development and integrated population proteomics.",
+          matches: ["bioprocess and proteomics customer infrastructure"],
         },
       ],
       shortTermImpact: "Waters may face stronger account-level comparison in biopharma and LNP discussions where Thermo can bundle chromatography, MS, sample prep, and bioproduction context.",
@@ -9053,6 +9302,41 @@ function setupJournalSourceSlider() {
   });
 }
 
+function earningsPmReadoutMarkup(signal) {
+  const metrics = Array.isArray(signal.earningsMetrics) ? signal.earningsMetrics : [];
+  const insights = Array.isArray(signal.pmInsights) ? signal.pmInsights : [];
+  const hasPmReadout = metrics.length || insights.length || signal.watersPmImplication || signal.evidenceBoundary;
+  if (!hasPmReadout) {
+    return `<p><strong>Reported result:</strong> ${escapeHtml(signal.summary)}</p>`;
+  }
+  return `
+    <p class="filing-earnings-signal"><strong>Product-management signal:</strong> ${escapeHtml(signal.summary)}</p>
+    ${metrics.length
+      ? `<div class="filing-earnings-metrics" aria-label="Thermo Fisher Analytical Instruments performance">
+          ${metrics.map((metric) => `
+            <div>
+              <span>${escapeHtml(metric.label)}</span>
+              <strong>${escapeHtml(metric.value)}</strong>
+              <small>${escapeHtml(metric.change)}</small>
+            </div>
+          `).join("")}
+        </div>`
+      : ""}
+    ${insights.length
+      ? `<div class="filing-earnings-insights">
+          <strong>What Waters PM should know</strong>
+          <ul>${insights.map((insight) => `<li>${escapeHtml(insight)}</li>`).join("")}</ul>
+        </div>`
+      : ""}
+    ${signal.watersPmImplication
+      ? `<p class="filing-earnings-implication"><strong>Waters relevance:</strong> ${escapeHtml(signal.watersPmImplication)}</p>`
+      : ""}
+    ${signal.evidenceBoundary
+      ? `<p class="filing-earnings-boundary"><strong>Evidence boundary:</strong> ${escapeHtml(signal.evidenceBoundary)}</p>`
+      : ""}
+  `;
+}
+
 function renderFilingInsights() {
   const insights = currentFilingInsights();
   const earnings = currentEarningsSignals(competitorIntentSignals([]));
@@ -9111,7 +9395,7 @@ function renderFilingInsights() {
                           <span class="tag medium">Official earnings result</span>
                         </div>
                         <p class="muted">${formatDate(signal.date)} · ${escapeHtml(signal.sourceName)}</p>
-                        <p><strong>Reported result:</strong> ${escapeHtml(signal.summary)}</p>
+                        ${earningsPmReadoutMarkup(signal)}
                         <a href="${escapeHtml(signal.sourceUrl)}" target="_blank" rel="noreferrer">Open official earnings release ↗</a>
                       </article>
                     `).join("")}
