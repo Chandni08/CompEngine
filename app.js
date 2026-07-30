@@ -1,3 +1,11 @@
+const competitiveMethodology = globalThis.CompetitiveMethodology || {
+  assessInference: (records) => ({ label: records?.length ? "Directional" : "Low", limitation: "Directional—insufficient independent corroboration.", rubric: {}, families: [], dedupedRecords: records || [] }),
+  unquantifiedMagnitude: (overrides = {}) => ({ status: "UNQUANTIFIED — validation required", affectedSegment: overrides.affectedSegment || "Not established", geography: overrides.geography || "Not established", cohort: "Installed-base / replacement cohort not linked", exposureBand: "Unquantified", timeHorizon: "0–24 months", basis: "Public evidence establishes relevance, not Waters revenue or share exposure.", confidence: "Unquantified", validationOwner: overrides.validationOwner || "Product Management + Commercial Analytics", nextStep: "Join CRM installed base, opportunity, win/loss, renewal, and segment-revenue data to the public signal." }),
+  evidencePriority: () => "Medium",
+  snapshotMetadata: (data) => ({ asOfTimestamp: data?.generatedAt || data?.asOfDate || "unknown", snapshotId: data?.snapshotId || `waters-ci-${data?.asOfDate || "unknown"}` }),
+};
+const leadershipBriefThesis = globalThis.CompetitionEngineLeadership?.leadershipBriefThesis || (() => "Workflow execution is becoming part of product competition");
+
 const state = {
   data: null,
   productData: null,
@@ -18,6 +26,7 @@ const state = {
   activeComparisonLaunchId: null,
   activeWatersComparatorId: null,
   activeBattlecardCompetitor: "",
+  marketingMarketChoice: null,
   activeDecisionBreakdown: null,
   overallTrendCandidates: [],
   competitorIntentProfiles: [],
@@ -26,6 +35,8 @@ const state = {
   roadmapImpactSort: { column: 2, direction: "desc" },
   activeCustomerVoiceTab: "summary",
   marketingClaimsFilters: { readiness: "All", audience: "All", classification: "All" },
+  marketingTargeting: { application: "All", buyingSituation: "All", buyerRole: "All" },
+  marketingWorkspaceModel: null,
   conferencePage: 1,
   conferencePageSize: 4,
   strategicEvidencePage: 1,
@@ -48,6 +59,40 @@ const filters = {
   competitor: document.querySelector("#competitorFilter"),
   horizon: document.querySelector("#horizonFilter"),
 };
+
+const marketingTargetFilters = {
+  application: document.querySelector("#pmmApplicationFilter"),
+  buyingSituation: document.querySelector("#pmmBuyingSituationFilter"),
+  buyerRole: document.querySelector("#pmmBuyerRoleFilter"),
+};
+
+const pmmApplicationDefinitions = [
+  { value: "MAM", label: "MAM", markets: ["Biopharma"], pattern: /\bmam\b|multi[- ]attribute monitoring/i },
+  { value: "Oligo", label: "Oligo", markets: ["Biopharma"], pattern: /oligo(?:nucleotide)?|anti[- ]sense|\baso\b/i },
+  { value: "LNP/RNA", label: "LNP / RNA", markets: ["Biopharma"], pattern: /\blnp\b|lipid nanoparticle|\brna\b|mrna/i },
+  { value: "Protein characterization", label: "Protein characterization", markets: ["Biopharma", "Academic"], pattern: /protein characterization|intact protein|peptide mapping|proteomics|glycan|biotherapeutic/i },
+  { value: "PFAS", label: "PFAS", markets: ["Environmental", "Food & Beverage"], pattern: /\bpfas\b|per- and polyfluoroalkyl|tfa|ultrashort-chain/i },
+  { value: "Nitrosamines", label: "Nitrosamines", markets: ["Pharma"], pattern: /nitrosamine|ndma|n-nitroso/i },
+  { value: "Routine QC", label: "Routine QC", markets: ["Pharma", "Biopharma", "Environmental", "Food & Beverage", "Clinical", "CDMO"], pattern: /routine qc|quality control|system suitability|batch review|regulated method|routine analysis/i },
+  { value: "Other supported applications", label: "Other supported applications", markets: ["All"], pattern: null },
+];
+
+const pmmBuyingSituationDefinitions = [
+  { value: "Greenfield", label: "Greenfield", pattern: /greenfield|new lab|new laboratory|first system|new capacity|new platform/i },
+  { value: "Competitive replacement", label: "Competitive replacement", pattern: /competitive replacement|replace|replacement|versus|vs\.?\b|switch(?:ing)? vendor/i },
+  { value: "Waters installed-base upgrade", label: "Waters installed-base upgrade", pattern: /waters|acquity|alliance|arc|installed base|upgrade|legacy/i },
+  { value: "Validated-method migration", label: "Validated-method migration", pattern: /validated method|method transfer|migration|equivalency|compatib|revalidation/i },
+];
+
+const pmmBuyerRoleTargetDefinitions = [
+  { value: "Bench user / analyst", label: "Bench user / analyst", pattern: /\banalyst\b|bench user|instrument specialist/i },
+  { value: "Method developer", label: "Method developer", pattern: /method developer|method development/i },
+  { value: "QC/QA or validation veto", label: "QC/QA or validation veto", pattern: /\bqc\b|\bqa\b|quality|validation|compliance/i },
+  { value: "IT / data-integrity veto", label: "IT / data-integrity veto", pattern: /\bit\b|informatics|data integrity|cds administrator|system administrator/i },
+  { value: "Lab-manager decision maker", label: "Lab-manager decision maker", pattern: /lab manager|laboratory manager|manager/i },
+  { value: "Procurement / economic buyer", label: "Procurement / economic buyer", pattern: /procurement|purchasing|economic buyer/i },
+  { value: "Executive sponsor", label: "Executive sponsor", pattern: /executive|director|vice president|\bvp\b|sponsor/i },
+];
 
 const publicEvidenceFilters = {
   company: document.querySelector("#signalCompanyFilter"),
@@ -1110,6 +1155,7 @@ function battlecardLaunchesForCompetitor(competitor) {
       filters.technology.value,
       `${product.product} ${product.signalType || ""} ${itemMarketSegments(product).join(" ")} ${product.subtechnology || ""}`,
     ))
+    .filter((product) => pmmTargetingMatches(product))
     .sort((a, b) => new Date(b.date) - new Date(a.date));
 }
 
@@ -1186,11 +1232,13 @@ function battlecardProofPoints({ waters, technicalProfile }) {
       label: row.dimension,
       detail: row.watersValue,
       url: row.watersSourceUrl,
+      date: technicalProfile?.asOfDate || "",
     }));
   const productProof = (waters?.strengths || []).map((strength, index) => ({
     label: index === 0 ? waters.product : `Waters proof point ${index + 1}`,
     detail: strength,
     url: waters.sourceUrl,
+    date: waters.launchDate || waters.date || "",
   }));
   const seen = new Set();
   return [...sourcedTechnicalProof, ...productProof]
@@ -1248,9 +1296,186 @@ function marketingActiveCompetitors() {
   return marketingBattlecardCompetitors.includes(selected) ? [selected] : [];
 }
 
+function pmmTargetCompetitorEvidenceSources(competitor, signals = currentSignals()) {
+  const applicationNotes = currentCompetitorApplicationNotes()
+    .filter((note) => note.competitor === competitor)
+    .map((note) => ({
+      url: note.sourceUrl,
+      label: note.title,
+      sourceName: note.sourceType || "Official application note",
+      date: note.date,
+      evidenceType: "Observed application evidence",
+      detail: note.evidenceStatement,
+    }));
+  const signalSources = signals
+    .filter((signal) => signal.competitor === competitor)
+    .map((signal) => ({
+      url: signal.sourceUrl,
+      label: signal.title,
+      sourceName: signal.sourceName || "Public evidence source",
+      date: signal.date,
+      confidence: signal.confidence,
+      evidenceType: signal.category || signal.signalType,
+      detail: signal.summary,
+    }));
+  const launchSources = currentLaunches()
+    .filter((launch) => launch.competitor === competitor)
+    .map((launch) => ({
+      url: timelineUrlForLaunch(launch),
+      label: launch.product,
+      sourceName: launch.sourceName || "Official launch source",
+      date: launch.date,
+      confidence: launch.confidence,
+      evidenceType: "Observed launch evidence",
+      detail: launch.summary || launch.pmImplication,
+    }));
+  const conferenceSources = currentConferenceSources().flatMap((event) => {
+    const content = (event.competitorContent || []).find((item) => String(item.competitor || "").includes(competitor));
+    const watch = (event.competitorWatch || []).find((item) => item.name === competitor);
+    if (!content && !watch) return [];
+    return [{
+      url: content?.sourceUrl || event.website || event.monitoringLinks?.[0]?.url,
+      label: `${event.eventName} competitor evidence`,
+      sourceName: event.eventName,
+      date: event.startDate,
+      evidenceType: content?.evidenceStatus || "Conference participation evidence",
+      detail: content?.content || watch?.status,
+    }];
+  });
+  return pmmDeduplicateSources([...applicationNotes, ...signalSources, ...launchSources, ...conferenceSources]);
+}
+
+function pmmCompetitorTargetPriority(sources) {
+  const domains = new Set(sources.map(pmmSourceHostname)).size;
+  const sourceFamilies = new Set(sources.map((source) => source.evidenceType || source.sourceName)).size;
+  const recency = pmmDecisionRecency(sources).points;
+  const confidence = pmmEvidenceConfidence(sources);
+  const score = recency + Math.min(3, domains) * 8 + Math.min(3, sourceFamilies) * 5 + Math.min(15, Math.round(confidence / 7));
+  return {
+    score,
+    domains,
+    sourceFamilies,
+    sourceCount: sources.length,
+    label: sources.length
+      ? `Evidence-fit priority · ${domains} domain${domains === 1 ? "" : "s"} · ${sourceFamilies} source famil${sourceFamilies === 1 ? "y" : "ies"}`
+      : "No target-compatible competitor evidence",
+  };
+}
+
+function pmmTargetWatersProofPoints() {
+  if (state.marketingTargeting.application === "All" && state.marketingTargeting.buyingSituation === "All") return [];
+  return currentConferenceSources().flatMap((event) => (event.boothRecommendations || [])
+    .filter((item) => pmmTargetingMatches({ ...item, event }))
+    .filter((item) => isHttpUrl(item.productUrl))
+    .map((item) => ({
+      label: item.product,
+      detail: item.message || item.role,
+      url: item.productUrl,
+      date: event.startDate,
+      sourceName: "Waters public product source",
+      evidenceType: "Observed Waters application context",
+    })));
+}
+
 function pmmUsableText(value, fallback = "") {
   const text = String(value || "").trim();
   return text && !/\broadmap\b|product requirements?/i.test(text) ? text : fallback;
+}
+
+function pmmTargetingSelection() {
+  return {
+    market: filters.segment.value,
+    application: state.marketingTargeting.application,
+    buyingSituation: state.marketingTargeting.buyingSituation,
+    geography: filters.geo.value,
+    buyerRole: state.marketingTargeting.buyerRole,
+  };
+}
+
+function pmmTargetingKey(targeting = pmmTargetingSelection()) {
+  return [targeting.market, targeting.application, targeting.buyingSituation, targeting.geography, targeting.buyerRole].join(" > ");
+}
+
+function pmmTargetingDisplayValue(value, allLabel) {
+  return value === "All" ? allLabel : value;
+}
+
+function pmmRecordTargetingText(item) {
+  if (!item) return "";
+  if (typeof item === "string") return item;
+  try {
+    return JSON.stringify(item);
+  } catch {
+    return String(item);
+  }
+}
+
+function pmmApplicationDefinition(value = state.marketingTargeting.application) {
+  return pmmApplicationDefinitions.find((definition) => definition.value === value);
+}
+
+function pmmApplicationMatchesTarget(item, application = state.marketingTargeting.application) {
+  if (application === "All") return true;
+  const text = pmmRecordTargetingText(item);
+  if (application === "Other supported applications") {
+    return !pmmApplicationDefinitions.some((definition) => definition.pattern?.test(text));
+  }
+  return Boolean(pmmApplicationDefinition(application)?.pattern?.test(text));
+}
+
+function pmmBuyingSituationMatchesTarget(item, buyingSituation = state.marketingTargeting.buyingSituation) {
+  if (buyingSituation === "All") return true;
+  const definition = pmmBuyingSituationDefinitions.find((entry) => entry.value === buyingSituation);
+  return Boolean(definition?.pattern?.test(pmmRecordTargetingText(item)));
+}
+
+function pmmBuyerRoleMatchesTarget(item, buyerRole = state.marketingTargeting.buyerRole) {
+  if (buyerRole === "All") return true;
+  const definition = pmmBuyerRoleTargetDefinitions.find((entry) => entry.value === buyerRole);
+  return Boolean(definition?.pattern?.test(pmmRecordTargetingText(item)));
+}
+
+function pmmTargetingMatches(item, { includeBuyerRole = false } = {}) {
+  if (state.view !== "Marketing") return true;
+  return pmmApplicationMatchesTarget(item)
+    && pmmBuyingSituationMatchesTarget(item)
+    && (!includeBuyerRole || pmmBuyerRoleMatchesTarget(item));
+}
+
+function pmmApplicationsForSelectedMarket() {
+  const market = filters.segment.value;
+  return pmmApplicationDefinitions.filter((definition) => market === "All"
+    || definition.markets.includes("All")
+    || definition.markets.includes(market));
+}
+
+function normalizeMarketingTargeting() {
+  const applications = pmmApplicationsForSelectedMarket();
+  if (state.marketingTargeting.application !== "All"
+    && !applications.some((definition) => definition.value === state.marketingTargeting.application)) {
+    state.marketingTargeting.application = "All";
+  }
+  const optionMarkup = (value, label, selected) => `<option value="${escapeHtml(value)}" ${selected === value ? "selected" : ""}>${escapeHtml(label)}</option>`;
+  marketingTargetFilters.application.innerHTML = [
+    optionMarkup("All", "All supported applications", state.marketingTargeting.application),
+    ...applications.map((definition) => optionMarkup(definition.value, definition.label, state.marketingTargeting.application)),
+  ].join("");
+  marketingTargetFilters.buyingSituation.innerHTML = [
+    optionMarkup("All", "All buying situations", state.marketingTargeting.buyingSituation),
+    ...pmmBuyingSituationDefinitions.map((definition) => optionMarkup(definition.value, definition.label, state.marketingTargeting.buyingSituation)),
+  ].join("");
+  marketingTargetFilters.buyerRole.innerHTML = [
+    optionMarkup("All", "All buyer roles", state.marketingTargeting.buyerRole),
+    ...pmmBuyerRoleTargetDefinitions.map((definition) => optionMarkup(definition.value, definition.label, state.marketingTargeting.buyerRole)),
+  ].join("");
+}
+
+function pmmTargetedBuyerRole(fallback = "Buyer role unresolved") {
+  return state.marketingTargeting.buyerRole === "All" ? fallback : state.marketingTargeting.buyerRole;
+}
+
+function pmmTargetedBuyingSituation(fallback = "Buying situation unresolved") {
+  return state.marketingTargeting.buyingSituation === "All" ? fallback : state.marketingTargeting.buyingSituation;
 }
 
 function pmmListItems(items, fallback = []) {
@@ -1275,24 +1500,53 @@ function pmmEvidenceConfidence(evidenceLinks) {
 function marketingCompetitorContext(competitor, signals = currentSignals()) {
   const profile = competitorIntentProfile(competitor, signals);
   const comparisonContext = battlecardComparisonForCompetitor(competitor);
-  const evidenceLinks = battlecardEvidenceLinks(competitor);
-  const counterMessage = pmmUsableText(
+  const broadEvidenceLinks = battlecardEvidenceLinks(competitor);
+  const targetEvidenceLinks = pmmTargetCompetitorEvidenceSources(competitor, signals);
+  const targeted = state.marketingTargeting.application !== "All" || state.marketingTargeting.buyingSituation !== "All";
+  const evidenceLinks = targeted ? targetEvidenceLinks : broadEvidenceLinks;
+  const targeting = pmmTargetingSelection();
+  const baseCounterMessage = pmmUsableText(
     comparisonContext.comparison?.watersPositioning || profile?.response?.differentiate,
     "A counter-message is unresolved because the filtered evidence does not support one.",
   );
-  const positioning = pmmUsableText(
+  const counterMessage = targeted
+    ? `For ${pmmTargetingDisplayValue(targeting.application, "the selected workflow")}, adapt the governing workflow position to the observed ${competitor} emphasis; do not assert advantage until target-compatible proof and approval are established.`
+    : baseCounterMessage;
+  const basePositioning = pmmUsableText(
     profile?.likelyNext || profile?.intent || profile?.focus,
     "A positioning inference is unresolved for the active filters.",
   );
+  const positioning = targeted
+    ? targetEvidenceLinks.length
+      ? `${competitor} appears to be emphasizing ${pmmTargetingDisplayValue(targeting.application, targeting.buyingSituation).toLowerCase()} in the matched public evidence. This is an analyst inference, not market-prevalence evidence.`
+      : "A positioning inference is unresolved because no target-compatible competitor evidence is loaded."
+    : basePositioning;
+  const baseProofPoints = battlecardProofPoints(comparisonContext);
+  const targetedWatersProof = pmmTargetWatersProofPoints();
+  const proofPoints = targeted
+    ? pmmDeduplicateSources([...baseProofPoints.filter((proof) => pmmTargetingMatches(proof)), ...targetedWatersProof])
+    : baseProofPoints;
   return {
     competitor,
     profile,
     ...comparisonContext,
     evidenceLinks,
+    targetEvidenceLinks,
+    targetPriority: pmmCompetitorTargetPriority(targetEvidenceLinks),
     counterMessage,
     positioning,
-    proofPoints: battlecardProofPoints(comparisonContext),
+    proofPoints,
   };
+}
+
+function marketingPrioritizedCompetitorContexts(signals = currentSignals()) {
+  const targeted = state.marketingTargeting.application !== "All" || state.marketingTargeting.buyingSituation !== "All";
+  return marketingActiveCompetitors()
+    .map((competitor) => marketingCompetitorContext(competitor, signals))
+    .filter((context) => !targeted || context.targetPriority.sourceCount > 0)
+    .sort((left, right) => right.targetPriority.score - left.targetPriority.score
+      || right.targetPriority.domains - left.targetPriority.domains
+      || left.competitor.localeCompare(right.competitor));
 }
 
 function pmmEmptyState(message) {
@@ -1345,6 +1599,14 @@ function pmmDeduplicateSources(sources) {
 }
 
 function marketingDecisionThemes(context) {
+  const targeted = state.marketingTargeting.application !== "All" || state.marketingTargeting.buyingSituation !== "All";
+  if (targeted) {
+    return context.targetEvidenceLinks.slice(0, 4).map((source) => ({
+      claim: pmmUsableText(source.detail, `${context.competitor} has published target-compatible ${source.evidenceType || "workflow"} evidence.`),
+      label: pmmUsableText(source.label, "Target-compatible competitor evidence"),
+      items: [{ ...source, title: source.label, url: source.url }],
+    }));
+  }
   const themes = competitorActivityThemes(context.profile)
     .map((theme) => ({
       claim: pmmUsableText(theme.insight || theme.title),
@@ -1397,12 +1659,100 @@ function pmmWordOverlap(left, right) {
   return [...leftWords].filter((word) => rightWords.has(word)).length;
 }
 
-function pmmSuggestedCounterPosition(context, audience) {
+function pmmGoverningPosition(contexts, selectedSwingAttribute = "Swing attribute unresolved — no priority-segment scorecard is available") {
+  const targeting = pmmTargetingSelection();
+  const filteredCustomerRecords = pmmAppendixCustomerLanguageRecords();
+  const proofRecords = contexts.flatMap((context) => context.proofPoints.map((proof) => ({
+    url: proof.url,
+    label: proof.label,
+    sourceName: "Waters public source",
+    detail: proof.detail,
+    evidenceRole: "Observed Waters proof",
+  })));
+  const sourcePool = pmmDeduplicateSources([
+    ...filteredCustomerRecords.map((record) => ({
+      url: record.url,
+      label: record.title,
+      sourceName: record.sourceName,
+      detail: record.description,
+      date: record.date,
+      confidence: record.confidence,
+      evidenceRole: "Observed customer language",
+    })),
+    ...proofRecords,
+  ]);
+  const pillar = (name, statement, relevancePattern) => {
+    const sources = sourcePool.filter((source) => relevancePattern.test(`${source.label} ${source.detail}`)).slice(0, 4);
+    return {
+      name,
+      statement,
+      sources,
+      supportState: sources.length ? "Evidence located — substantiation and approval still required" : "Supporting proof not located",
+    };
+  };
+  const selectedSegment = targeting.market === "All"
+    ? "Priority segment unresolved — no approved segment selection"
+    : `${targeting.market}${targeting.application !== "All" ? ` · ${targeting.application}` : ""} — active evidence filter, not an approved strategic priority`;
+  const targetCustomer = targeting.buyerRole === "All"
+    ? "Analytical laboratory buying committees responsible for regulated LC method execution and transfer"
+    : `${targeting.buyerRole} within analytical laboratory buying committees responsible for regulated LC workflows`;
+  const targetBuyingSituation = targeting.buyingSituation === "All"
+    ? "Platform replacement, workflow modernization, or method-transfer evaluation where operational continuity and compliance risk shape the decision."
+    : `${targeting.buyingSituation} — selected targeting hypothesis; direct prevalence and win/loss evidence are unavailable.`;
+  const targetingAdaptation = `Proposed — not approved: adapt the governing workflow position for ${pmmTargetingDisplayValue(targeting.market, "all supported markets")} · ${pmmTargetingDisplayValue(targeting.application, "all supported applications")} · ${pmmTargetingDisplayValue(targeting.buyingSituation, "all buying situations")} · ${pmmTargetingDisplayValue(targeting.geography, "all geographies")} · ${pmmTargetingDisplayValue(targeting.buyerRole, "the full buying committee")}.`;
+  return {
+    id: "next-gen-lc-governing-position",
+    targeting,
+    targetingKey: pmmTargetingKey(targeting),
+    targetingAdaptation,
+    targetCustomer: targetCustomer,
+    prioritySegment: selectedSegment,
+    customerJob: "Execute reliable, transferable, compliant analytical workflows from method setup and transfer through routine operation and data review.",
+    buyingSituation: targetBuyingSituation,
+    referenceClass: "Liquid chromatography workflow platform for regulated analytical laboratories",
+    primaryValueProposition: "Next Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications.",
+    pointOfParity: "Expected modern LC separation performance, pressure range, usability, connectivity, and serviceability required to enter a contemporary HPLC/UHPLC evaluation.",
+    pointOfDifference: "Differentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone.",
+    selectedSwingAttribute,
+    evidencePillars: [
+      pillar("Reliable routine execution", "Evidence must connect uptime, diagnostics, serviceability, and reproducible operation to the customer workflow.", /reliab|uptime|diagnostic|service(?:ability)?|maintenance|reproducib/i),
+      pillar("Transferable methods", "Evidence must show how methods and data move across systems without unsupported time, equivalency, or performance claims.", /method[- ]transfer|migration|compatib|method continuity|cross-platform/i),
+      pillar("Compliant analytical workflows", "Evidence must support data integrity, traceability, validation, and regulated-workflow use without implying legal approval.", /compliance|compliant|regulated|validation|data integrity|traceab/i),
+    ],
+    exclusions: [
+      "We are not claiming that this proposed position is approved Waters messaging.",
+      "We are not claiming comparative hardware superiority without controlled, comparable substantiation.",
+      "We are not claiming guaranteed uptime, faster method transfer, regulatory compliance outcomes, or customer performance without specific approved proof.",
+    ],
+    approvalState: "Proposed — not approved",
+    approver: "Approver needed",
+    lastReviewedDate: "Review date unavailable",
+    evidenceClassification: "Analyst/rule-based inference grounded in filtered public evidence",
+  };
+}
+
+function pmmGoverningTrace(governingPosition, localAdaptation) {
+  const local = pmmUsableText(localAdaptation, "Local adaptation unresolved");
+  const evaluation = PmmDataContract.evaluateGoverningAlignment(
+    local,
+    `${governingPosition.customerJob} ${governingPosition.primaryValueProposition} ${governingPosition.pointOfDifference} ${governingPosition.targetingAdaptation}`,
+  );
+  return { governingPositionId: governingPosition.id, localAdaptation: local, ...evaluation };
+}
+
+function pmmSuggestedCounterPosition(context, audience, governingPosition) {
   const criterion = String(audience?.criterion || "").toLowerCase();
-  const response = /cost|method transfer/.test(criterion)
-    ? context.profile?.response?.differentiate
-    : context.profile?.response?.defend;
-  return pmmUsableText(response, context.counterMessage);
+  const targeted = state.marketingTargeting.application !== "All" || state.marketingTargeting.buyingSituation !== "All" || state.marketingTargeting.buyerRole !== "All";
+  const response = targeted
+    ? context.counterMessage
+    : /cost|method transfer/.test(criterion)
+      ? context.profile?.response?.differentiate
+      : context.profile?.response?.defend;
+  const localAdaptation = pmmUsableText(response, context.counterMessage);
+  return {
+    text: `${governingPosition.primaryValueProposition} ${governingPosition.targetingAdaptation} ${context.competitor} adaptation: ${localAdaptation}`,
+    trace: pmmGoverningTrace(governingPosition, localAdaptation),
+  };
 }
 
 function pmmRelevantProofPoints(context, audience, theme, counterPosition) {
@@ -1423,7 +1773,7 @@ function pmmDecisionRecency(sources) {
   return { date: dated[0], days, points, label: `${formatDate(dated[0])} · ${days} day${days === 1 ? "" : "s"} before data as-of` };
 }
 
-function pmmDecisionCandidate(context, audience, theme, index) {
+function pmmDecisionCandidate(context, audience, theme, index, governingPosition) {
   if (!audience && !theme) {
     return {
       competitor: context.competitor,
@@ -1463,8 +1813,8 @@ function pmmDecisionCandidate(context, audience, theme, index) {
     confidence: audience.confidence,
     evidenceRole: "Customer evidence",
   }));
-  const counterPosition = pmmSuggestedCounterPosition(context, audience);
-  const availableProof = pmmRelevantProofPoints(context, audience, theme, counterPosition);
+  const counterPosition = pmmSuggestedCounterPosition(context, audience, governingPosition);
+  const availableProof = pmmRelevantProofPoints(context, audience, theme, counterPosition.text);
   const proofSources = availableProof.map((proof) => ({
     url: proof.url,
     label: proof.label,
@@ -1507,10 +1857,12 @@ function pmmDecisionCandidate(context, audience, theme, index) {
     competitor: context.competitor,
     audience: audience?.audience || "Audience unresolved",
     buyerRole: audience?.buyerRole || "Buyer role unresolved",
+    audienceClassification: audience?.classification || (customerCriteriaSources ? "observed" : "inference"),
     buyingCriterion: audience?.criterion || "Buying criterion unresolved",
     buyingTrigger: audience?.trigger || "Buying situation unresolved — no matching customer record",
     competitorClaim: theme?.claim || "Competitor narrative unresolved for the active filters.",
-    counterPosition,
+    counterPosition: counterPosition.text,
+    governingTrace: counterPosition.trace,
     availableProof,
     missingProof,
     activation,
@@ -1521,39 +1873,18 @@ function pmmDecisionCandidate(context, audience, theme, index) {
     claimRepetition,
     sourceDiversity,
     customerCriteriaSources,
+    targetEvidenceEligible: audience?.classification === "inference" && themeSources.length > 0,
     scoreFactors,
     priorityScore,
   };
 }
 
-function marketingPositioningDecisionCandidates(contexts) {
-  if (!contexts.length) {
-    return Array.from({ length: 3 }, () => ({
-      competitor: "Competitor unresolved",
-      audience: "Audience unresolved",
-      buyerRole: "Buyer role unresolved",
-      buyingCriterion: "Buying criterion unresolved",
-      buyingTrigger: "Buying situation unresolved — no matching evidence",
-      competitorClaim: "Competitor narrative unresolved for the active filters.",
-      counterPosition: "Counter-position unresolved — evidence and approval are required.",
-      availableProof: [],
-      missingProof: "Proof unresolved — no matching competitor comparison is available.",
-      activation: "Activation unresolved — exact supporting evidence is required before an action is proposed.",
-      intendedChannel: "Channel unresolved",
-      exactSources: [],
-      confidence: 0,
-      recency: { label: "Recency unresolved" },
-      claimRepetition: 0,
-      sourceDiversity: 0,
-      customerCriteriaSources: 0,
-      scoreFactors: { recency: 0, sourceDiversity: 0, repetition: 0, customerCriterion: 0, confidence: 0, proofGap: 0 },
-      priorityScore: 0,
-    }));
-  }
+function marketingPositioningDecisionCandidates(contexts, governingPosition) {
+  if (!contexts.length) return [];
+  const targeting = pmmTargetingSelection();
   const candidates = contexts.flatMap((context) => {
     const audiences = marketingAudienceOptionsForCompetitor(context.competitor);
-    const themes = marketingDecisionThemes(context);
-    const audienceCandidates = audiences.map((audience, index) => pmmDecisionCandidate(context, audience, {
+    const observedCandidates = audiences.map((audience, index) => pmmDecisionCandidate(context, { ...audience, classification: "observed" }, {
       claim: audience.trigger,
       label: `${audience.criterion} customer narrative`,
       items: audience.links.map((link) => ({
@@ -1561,19 +1892,33 @@ function marketingPositioningDecisionCandidates(contexts) {
         title: link.label,
         sourceName: "Exact public customer record",
       })),
-    }, index));
-    const narrativeCandidates = themes.map((theme, index) => pmmDecisionCandidate(context, null, theme, index + audienceCandidates.length));
-    const combined = [...audienceCandidates, ...narrativeCandidates];
-    while (combined.length < 3) combined.push(pmmDecisionCandidate(context, null, null, combined.length));
-    return combined;
+    }, index, governingPosition));
+    if (observedCandidates.length || (targeting.application === "All" && targeting.buyingSituation === "All")) return observedCandidates;
+    const inferredAudience = {
+      audience: targeting.market === "All" ? "Audience unresolved" : targeting.market,
+      buyerRole: pmmTargetedBuyerRole(),
+      criterion: targeting.application === "All" ? "Buying criterion unresolved" : targeting.application,
+      trigger: pmmTargetedBuyingSituation(`${targeting.application} workflow evaluation — buying situation requires validation`),
+      links: [],
+      items: [],
+      confidence: 0,
+      classification: "inference",
+    };
+    return marketingDecisionThemes(context).slice(0, 1).map((theme, index) => pmmDecisionCandidate(
+      context,
+      inferredAudience,
+      theme,
+      index,
+      governingPosition,
+    ));
   });
   const pool = contexts.length > 1
-    ? contexts.map((context) => candidates.filter((candidate) => candidate.competitor === context.competitor).sort((a, b) => b.priorityScore - a.priorityScore)[0])
+    ? contexts.map((context) => PmmDataContract.selectPositioningDecisions(
+      candidates.filter((candidate) => candidate.competitor === context.competitor),
+      1,
+    )[0])
     : candidates;
-  return pool
-    .filter(Boolean)
-    .sort((a, b) => b.priorityScore - a.priorityScore || b.confidence - a.confidence || a.competitor.localeCompare(b.competitor))
-    .slice(0, 3);
+  return PmmDataContract.selectPositioningDecisions(pool.filter(Boolean), 3);
 }
 
 function pmmDecisionSourceMarkup(source) {
@@ -1584,15 +1929,55 @@ function pmmChangeSummaryMarkup() {
   return `<aside class="pmm-change-summary" aria-label="What changed since the last refresh"><div><span>What Changed Since the Last Refresh</span><strong>Change detection unavailable</strong></div><p>The current refresh records completion time, but no comparable prior PMM positioning-decision snapshot is loaded. No delta is inferred.</p></aside>`;
 }
 
-function renderMarketingPositioningDecisions(decisions) {
+function pmmGoverningPositionMarkup(position) {
+  return `<article class="pmm-governing-position" data-governing-position-id="${escapeHtml(position.id)}" aria-labelledby="pmmGoverningPositionTitle">
+    <header class="pmm-governing-header">
+      <div><div class="pmm-eyebrow">Canonical PMM Object</div><h3 id="pmmGoverningPositionTitle">Governing Position</h3><p>Competitor narratives, counter-positions, claims, and activation assets inherit from this proposed position.</p></div>
+      ${pmmEvidenceTypeMarkup("inference", position.approvalState)}
+    </header>
+    <dl class="pmm-governing-fields">
+      <div><dt>Target customer</dt><dd>${escapeHtml(position.targetCustomer)}</dd></div>
+      <div><dt>Priority segment</dt><dd>${escapeHtml(position.prioritySegment)}</dd></div>
+      <div><dt>Customer job to be done</dt><dd>${escapeHtml(position.customerJob)}</dd></div>
+      <div><dt>Buying situation or trigger</dt><dd>${escapeHtml(position.buyingSituation)}</dd></div>
+      <div><dt>Reference class / category</dt><dd>${escapeHtml(position.referenceClass)}</dd></div>
+      <div class="pmm-governing-target-adaptation"><dt>Hierarchical targeting adaptation</dt><dd>${escapeHtml(position.targetingAdaptation)}</dd></div>
+      <div class="pmm-governing-value"><dt>Primary value proposition</dt><dd>${escapeHtml(position.primaryValueProposition)}</dd></div>
+      <div class="pmm-governing-parity"><dt>Point of parity</dt><dd>${escapeHtml(position.pointOfParity)}</dd></div>
+      <div class="pmm-governing-difference"><dt>Point of difference</dt><dd>${escapeHtml(position.pointOfDifference)}</dd></div>
+      <div class="pmm-governing-swing"><dt>Selected swing attribute</dt><dd>${escapeHtml(position.selectedSwingAttribute)}</dd></div>
+    </dl>
+    <section class="pmm-governing-pillars" aria-labelledby="pmmEvidencePillarsTitle"><div><span>Evidence architecture</span><h4 id="pmmEvidencePillarsTitle">Three Evidence Pillars</h4></div><div>${position.evidencePillars.map((pillar, index) => `<article><span>Pillar ${index + 1}</span><strong>${escapeHtml(pillar.name)}</strong><p>${escapeHtml(pillar.statement)}</p><small>${escapeHtml(pillar.supportState)}</small>${pillar.sources.length ? `<div class="pmm-inline-links">${pillar.sources.map((source) => `<a href="${escapeHtml(source.url)}" target="_blank" rel="noreferrer">${escapeHtml(source.label)} ↗</a>`).join("")}</div>` : `<p class="pmm-unresolved">Supporting evidence link unavailable.</p>`}</article>`).join("")}</div></section>
+    <section class="pmm-governing-exclusions"><span>Explicit exclusions — what we are not claiming</span><ul>${position.exclusions.map((exclusion) => `<li>${escapeHtml(exclusion)}</li>`).join("")}</ul></section>
+    <div class="pmm-governing-governance" aria-label="Governing position approval and review state">
+      ${pmmStatusMarkup("unresolved", "Approval state", position.approvalState)}
+      ${pmmStatusMarkup("unresolved", "Approver", position.approver)}
+      ${pmmStatusMarkup("unresolved", "Last reviewed", position.lastReviewedDate)}
+      ${pmmStatusMarkup("inference", "Classification", position.evidenceClassification)}
+    </div>
+  </article>`;
+}
+
+function pmmGoverningTraceMarkup(position, trace) {
+  const statusKind = trace.status === "aligned" ? "observed" : "unresolved";
+  const statusLabel = trace.status === "contradiction" ? "Contradiction flagged" : trace.status === "unsupported" ? "Unsupported deviation" : "Aligned adaptation";
+  return `<section class="pmm-governing-trace" data-governing-position-ref="${escapeHtml(trace.governingPositionId)}" data-alignment-status="${escapeHtml(trace.status)}">
+    <div class="pmm-governing-trace-heading"><span>Governing Position Trace</span>${pmmEvidenceTypeMarkup("inference", position.approvalState)}</div>
+    <dl><div><dt>Inherited customer / segment</dt><dd>${escapeHtml(position.targetCustomer)} · ${escapeHtml(position.prioritySegment)}</dd></div><div><dt>Inherited targeting adaptation</dt><dd>${escapeHtml(position.targetingAdaptation)}</dd></div><div><dt>Inherited job / category</dt><dd>${escapeHtml(position.customerJob)} · ${escapeHtml(position.referenceClass)}</dd></div><div><dt>Inherited value proposition</dt><dd>${escapeHtml(position.primaryValueProposition)}</dd></div><div><dt>Inherited point of parity</dt><dd>${escapeHtml(position.pointOfParity)}</dd></div><div><dt>Inherited point of difference</dt><dd>${escapeHtml(position.pointOfDifference)}</dd></div><div><dt>Local adaptation</dt><dd>${escapeHtml(trace.localAdaptation)}</dd></div></dl>
+    <div class="pmm-governing-alignment pmm-governing-alignment-${escapeHtml(trace.status)}">${pmmStatusMarkup(statusKind, statusLabel, trace.message)}</div>
+  </section>`;
+}
+
+function renderMarketingPositioningDecisions(decisions, governingPosition) {
   const target = byId("pmmPositioningDecisions");
   if (!decisions.length) {
-    target.innerHTML = `${pmmChangeSummaryMarkup()}${pmmEmptyState("No positioning decision can be supported by the active filters.")}`;
+    target.innerHTML = `${pmmGoverningPositionMarkup(governingPosition)}${pmmChangeSummaryMarkup()}${pmmEmptyState("No positioning decision can be supported by the active filters.")}`;
     return;
   }
   target.innerHTML = `
+    ${pmmGoverningPositionMarkup(governingPosition)}
     ${pmmChangeSummaryMarkup()}
-    <div class="pmm-decision-legend" aria-label="Evidence labels">${pmmEvidenceTypeMarkup("observed", "Observed evidence")}${pmmEvidenceTypeMarkup("inference", "Analyst/rule-based inference")}${pmmEvidenceTypeMarkup("approval", "Approved Waters claim — unresolved")}</div>
+    <div class="pmm-decision-legend" aria-label="Evidence labels">${pmmEvidenceTypeMarkup("observed", "Observed evidence")}${pmmEvidenceTypeMarkup("inference", "Analyst/rule-based inference")}${pmmEvidenceTypeMarkup("unresolved", "Approved Waters claim — unresolved")}</div>
     <p class="pmm-priority-method" role="note">Priority combines recency, source diversity, repeated narrative evidence, customer buying-criterion evidence, confidence, and proof gaps. Raw record volume is not used as a standalone measure of commercial importance.</p>
     <div class="pmm-decision-grid">${decisions.map((decision, index) => `<article class="pmm-decision-card pmm-positioning-decision" data-positioning-rank="${index + 1}">
       <header class="pmm-decision-header">
@@ -1602,7 +1987,7 @@ function renderMarketingPositioningDecisions(decisions) {
       </header>
       <div class="pmm-decision-question-grid">
         <section>
-          <div class="pmm-question-heading"><b>1</b><span>Audience and Buying Situation</span>${pmmEvidenceTypeMarkup(decision.customerCriteriaSources ? "observed" : "unresolved", decision.customerCriteriaSources ? "Observed evidence" : "Unresolved")}</div>
+          <div class="pmm-question-heading"><b>1</b><span>Audience and Buying Situation</span>${pmmEvidenceTypeMarkup(decision.audienceClassification === "observed" ? "observed" : "inference", decision.audienceClassification === "observed" ? "Observed evidence" : "Analyst hypothesis · validation required")}</div>
           <dl><div><dt>Audience</dt><dd>${escapeHtml(decision.audience)}</dd></div><div><dt>Buyer role</dt><dd>${escapeHtml(decision.buyerRole)}</dd></div><div><dt>Situation / trigger</dt><dd>${escapeHtml(decision.buyingTrigger)}</dd></div></dl>
         </section>
         <section>
@@ -1617,7 +2002,7 @@ function renderMarketingPositioningDecisions(decisions) {
         </section>
         <section>
           <div class="pmm-question-heading"><b>4</b><span>Proof and Substantiation</span>${pmmEvidenceTypeMarkup("observed", "Observed Waters sources")}</div>
-          <div class="pmm-decision-proof"><div><strong>Available proof</strong>${decision.availableProof.length ? `<ul>${decision.availableProof.map((proof) => `<li><span>${escapeHtml(proof.detail)}</span>${isHttpUrl(proof.url) ? `<a href="${escapeHtml(proof.url)}" target="_blank" rel="noreferrer">${escapeHtml(proof.label)} ↗</a>` : ""}</li>`).join("")}</ul>` : `<p>Proof unresolved — no sourced Waters proof matches this decision.</p>`}</div><div class="pmm-missing-proof"><strong>Missing proof</strong><p>${escapeHtml(decision.missingProof)}</p></div></div>
+          <div class="pmm-decision-proof"><div><strong>Applicable proof</strong>${decision.availableProof.length ? `<ul>${decision.availableProof.map((proof) => `<li><span>${escapeHtml(proof.detail)}</span>${isHttpUrl(proof.url) ? `<a href="${escapeHtml(proof.url)}" target="_blank" rel="noreferrer">${escapeHtml(proof.label)} ↗</a>` : ""}</li>`).join("")}</ul>` : `<p>Proof unresolved — no evidence passed the governed compatibility checks.</p>`}${decision.rejectedProof?.length ? `<p class="pmm-inapplicable-proof-note"><strong>${decision.rejectedProof.length} evidence record${decision.rejectedProof.length === 1 ? " was" : "s were"} blocked as Inapplicable.</strong> Review the Claims and Proof Readiness registry for dimension-level mismatches.</p>` : ""}</div><div class="pmm-missing-proof"><strong>Missing study or approval</strong><p>${escapeHtml(decision.missingProof)}</p></div></div>
         </section>
         <section>
           <div class="pmm-question-heading"><b>5</b><span>Activation Required</span>${pmmEvidenceTypeMarkup("inference", "Analyst recommendation")}</div>
@@ -1632,9 +2017,10 @@ function renderMarketingPositioningDecisions(decisions) {
       </div>
       <div class="pmm-decision-evidence-footer">
         <div><span>Confidence and Recency</span><strong>${decision.confidence ? `${escapeHtml(confidenceLabel(decision.confidence))} · ${decision.confidence}/100` : "Confidence unresolved"}</strong><small>${escapeHtml(decision.recency.label)}</small></div>
-        <div><span>Why This Ranked Here</span><p>Recency ${decision.scoreFactors.recency} · source diversity ${decision.scoreFactors.sourceDiversity} · repetition ${decision.scoreFactors.repetition} · customer criterion ${decision.scoreFactors.customerCriterion} · confidence ${decision.scoreFactors.confidence} · proof gap ${decision.scoreFactors.proofGap}</p><small>${decision.sourceDiversity} source famil${decision.sourceDiversity === 1 ? "y" : "ies"}; ${decision.customerCriteriaSources} exact customer source${decision.customerCriteriaSources === 1 ? "" : "s"}.</small></div>
+        <div><span>Why This Ranked Here</span><p>Recency ${decision.scoreFactors.recency} · source-domain diversity ${decision.scoreFactors.sourceDiversity} · repetition ${decision.scoreFactors.repetition} · customer criterion ${decision.scoreFactors.customerCriterion} · confidence ${decision.scoreFactors.confidence} · proof gap ${decision.scoreFactors.proofGap}</p><small>${decision.sourceDiversity} source domain${decision.sourceDiversity === 1 ? "" : "s"}; ${decision.customerCriteriaSources} exact customer source URL${decision.customerCriteriaSources === 1 ? "" : "s"}.</small></div>
         <div class="pmm-decision-sources"><span>Exact Evidence Links</span>${decision.exactSources.length ? decision.exactSources.slice(0, 6).map(pmmDecisionSourceMarkup).join("") : `<p>Exact evidence links unavailable. Activation remains unresolved.</p>`}</div>
       </div>
+      ${pmmGoverningTraceMarkup(governingPosition, decision.governingTrace)}
     </article>`).join("")}</div>`;
 }
 
@@ -1644,7 +2030,7 @@ const pmmClaimEvidenceClassifications = {
   approved: "Approved Waters claim",
 };
 
-const pmmClaimReadinessValues = ["Ready", "Weak", "Missing", "Legally unapproved"];
+const pmmClaimReadinessValues = ["Proven", "Directional", "Unsupported"];
 
 function pmmObservedCustomerLanguage(item) {
   const language = String(item?.customerLanguageSignal || "").trim();
@@ -1653,19 +2039,119 @@ function pmmObservedCustomerLanguage(item) {
   return exactEvidence && usableLanguage ? language : "";
 }
 
-function pmmClaimReadiness({ approvalEstablished, availableProof, claimSources, confidence, recency, sourceDiversity }) {
-  if (!availableProof.length || !claimSources.length) {
-    return { value: "Missing", reason: "No relevant substantiating proof was located for this claim and buying context." };
-  }
-  if (!approvalEstablished) {
-    return { value: "Legally unapproved", reason: "Relevant technical evidence exists, but legal or claims approval is not established." };
-  }
-  const weak = confidence < 70 || sourceDiversity < 2 || recency.days === null || recency.days > 365;
-  if (weak) return { value: "Weak", reason: "Evidence exists but lacks sufficient confidence, diversity, specificity, or recency." };
-  return { value: "Ready", reason: "Relevant proof is traceable and approval is established." };
+function pmmClaimType(proposedWording, buyingCriterion) {
+  const criterion = String(buyingCriterion || "").toLowerCase();
+  if (/cost|tco|economic|price/.test(criterion)) return "economic";
+  if (/ease|usability|setup|training/.test(criterion)) return "usability";
+  if (/reliab|uptime|sensitivity|accuracy|precision|reproduc/.test(criterion)) return "performance";
+  if (/compliance|compliant|data integrity|regulated|validation/.test(criterion)) return "compliance";
+  if (/workflow|method transfer|migration|compatib/.test(criterion)) return "workflow";
+  const text = String(proposedWording || "").toLowerCase();
+  if (/cost|tco|economic|price|labor|downtime/.test(text)) return "economic";
+  if (/compliance|compliant|data integrity|regulated|validation/.test(text)) return "compliance";
+  if (/ease|easy|usability|setup|training|user/.test(text)) return "usability";
+  if (/versus|comparative|superior|differentiat/.test(text)) return "comparative";
+  if (/reliab|uptime|sensitivity|accuracy|precision|reproduc/.test(text)) return "performance";
+  return "workflow";
 }
 
-function pmmClaimRow(context, audience, theme, item = null, index = 0) {
+function pmmClaimAttributeCodes(claimType, proposedWording, buyingCriterion) {
+  const criterion = String(buyingCriterion || "").toLowerCase();
+  if (/cost|tco|economic|price/.test(criterion)) return ["COST_TCO"];
+  if (/ease|usability|setup|training/.test(criterion)) return ["USABILITY_SETUP"];
+  if (/reliab|uptime/.test(criterion)) return ["LC_RELIABILITY"];
+  if (/method transfer|migration|compatib/.test(criterion)) return ["METHOD_TRANSFER"];
+  if (/compliance|compliant|data integrity|regulated|validation/.test(criterion)) return ["COMPLIANCE_CONTROL"];
+  const text = String(proposedWording || "").toLowerCase();
+  if (/cost|tco|economic|price/.test(text)) return ["COST_TCO"];
+  if (/ease|usability|setup|training/.test(text)) return ["USABILITY_SETUP"];
+  if (/method transfer|transferable|migration|compatib/.test(text)) return ["METHOD_TRANSFER"];
+  if (/compliance|compliant|data integrity|regulated|validation/.test(text)) return ["COMPLIANCE_CONTROL"];
+  if (/reliab|uptime|service lifecycle|serviceability/.test(text)) return ["LC_RELIABILITY"];
+  if (/sensitivity|accuracy|precision|reproduc/.test(text)) return ["ANALYTICAL_PERFORMANCE"];
+  return claimType === "workflow" ? ["WORKFLOW_EXECUTION"] : [claimType.toUpperCase()];
+}
+
+function pmmClaimCompatibilityProfile(row, governingPosition) {
+  const segmentApplication = [row.audience, row.application]
+    .filter((value) => value && !/unresolved|^All$/i.test(value));
+  return {
+    productWorkflow: ["LC_PLATFORM"],
+    attributes: pmmClaimAttributeCodes(row.claimType, row.claimBasisWording || row.proposedClaimWording, row.buyingCriterion),
+    segmentApplication,
+    segment: row.audience && !/unresolved/i.test(row.audience) ? [row.audience] : [],
+    application: row.application && row.application !== "All" ? [row.application] : [],
+    comparator: row.referenceBaseline !== "Baseline unresolved" ? [row.referenceBaseline] : [],
+    testConditions: ["CONTROLLED_COMPARISON"],
+    asOfDate: state.data?.asOfDate,
+    maxAgeDays: 1095,
+    governingPositionId: governingPosition.id,
+  };
+}
+
+function pmmEvidenceCompatibilityProfile(proof) {
+  const text = `${proof.label || ""} ${proof.detail || ""} ${proof.url || ""}`.toLowerCase();
+  const productWorkflow = /bioaccord|multi-attribute monitoring|\bmam\b/.test(text)
+    ? ["BIOACCORD_MAM", "LCMS_WORKFLOW"]
+    : /xevo tq absolute/.test(text)
+      ? ["XEVO_TQ_ABSOLUTE", "LCMSMS_WORKFLOW"]
+      : /about[\/-]waters|about waters|company profile|corporate/.test(text)
+        ? ["CORPORATE_PROFILE"]
+        : /acquity|alliance|arc premier|hplc|uhplc|liquid chromatography/.test(text)
+          ? ["LC_PLATFORM"]
+          : [];
+  const attributes = [
+    /cost|tco|price|economic/.test(text) ? "COST_TCO" : "",
+    /ease|usability|setup|training/.test(text) ? "USABILITY_SETUP" : "",
+    /method transfer|migration|compatib/.test(text) ? "METHOD_TRANSFER" : "",
+    /compliance|compliant|data integrity|regulated|validation/.test(text) ? "COMPLIANCE_CONTROL" : "",
+    /reliab|uptime|service lifecycle|serviceability/.test(text) ? "LC_RELIABILITY" : "",
+    /sensitivity|accuracy|precision|reproduc/.test(text) ? "ANALYTICAL_PERFORMANCE" : "",
+  ].filter(Boolean);
+  const segment = [
+    /biopharma|biopharmaceutical|multi-attribute|\bmam\b/.test(text) ? "Biopharma" : "",
+    /environmental|\bpfas\b/.test(text) ? "Environmental" : "",
+    /clinical|therapeutic monitoring/.test(text) ? "Clinical" : "",
+    /food safety|food testing|food matrices/.test(text) ? "Food & Beverage" : "",
+    /\bpharma\b|pharmaceutical/.test(text) && !/biopharma|biopharmaceutical/.test(text) ? "Pharma" : "",
+  ].filter(Boolean);
+  const application = [
+    /multi-attribute|\bmam\b/.test(text) ? "MAM" : "",
+    /oligo(?:nucleotide)?|anti-sense|\baso\b/.test(text) ? "Oligo" : "",
+    /\blnp\b|lipid nanoparticle|\brna\b|mrna/.test(text) ? "LNP/RNA" : "",
+    /protein characterization|intact protein|peptide mapping|proteomics|glycan/.test(text) ? "Protein characterization" : "",
+    /\bpfas\b|per- and polyfluoroalkyl|tfa|ultrashort-chain/.test(text) ? "PFAS" : "",
+    /nitrosamine|ndma|n-nitroso/.test(text) ? "Nitrosamines" : "",
+    /routine qc|quality control|system suitability|batch review/.test(text) ? "Routine QC" : "",
+  ].filter(Boolean);
+  const segmentApplication = [...segment, ...application];
+  const comparator = marketingBattlecardCompetitors.filter((competitor) => text.includes(competitor.toLowerCase()));
+  const testConditions = /same sample|same method|controlled|head-to-head|identical conditions|matched conditions/.test(text)
+    ? ["CONTROLLED_COMPARISON"]
+    : /launch|press release|newsroom/.test(text)
+      ? ["LAUNCH_ANNOUNCEMENT"]
+      : /about[\/-]waters|about waters|company profile|corporate/.test(text)
+        ? ["CORPORATE_DESCRIPTION"]
+        : [];
+  return { productWorkflow, attributes, segmentApplication, segment, application, comparator, testConditions, date: proof.date || "" };
+}
+
+function pmmClaimNextRequiredAction(row) {
+  const segment = row.audience === "Audience unresolved" ? "the intended segment" : row.audience;
+  const comparator = row.referenceBaseline === "Baseline unresolved" ? "the stated baseline" : row.referenceBaseline;
+  const approval = "Then obtain documented claims/legal approval, approved wording, an owner, and an expiration date.";
+  if (row.claimType === "economic") return `Commission a comparative TCO study for ${segment} LC against ${comparator}, with acquisition, service, consumables, labor, downtime, utilization, geography, currency, and analysis horizon held explicit. ${approval}`;
+  if (row.claimType === "usability") return `Run a controlled ${segment} LC usability study against ${comparator}, measuring setup steps, training time, task completion, error recovery, and regulated-workflow controls under the same protocol. ${approval}`;
+  if (row.claimType === "compliance") return `Run a validated ${segment} LC workflow study against ${comparator}, documenting data-integrity controls, audit trail behavior, traceability, deviations, and validation conditions. ${approval}`;
+  if (row.claimType === "performance") return `Run a controlled ${segment} LC reliability study against ${comparator} under matched method, workload, environment, maintenance, and observation periods; capture uptime, failures, recovery, transfer results, and data-integrity controls. ${approval}`;
+  return `Run a controlled ${segment} LC workflow study against ${comparator} using matched products, methods, attributes, test conditions, and decision criteria. ${approval}`;
+}
+
+function pmmClaimRow(context, audience, theme, governingPosition, item = null, index = 0) {
+  const targeting = pmmTargetingSelection();
+  const audienceName = audience?.audience || (targeting.market === "All" ? "Audience unresolved" : targeting.market);
+  const buyerRole = audience?.buyerRole || pmmTargetedBuyerRole();
+  const buyingCriterion = audience?.criterion || (targeting.application === "All" ? "Buying criterion unresolved" : targeting.application);
   const observedLanguage = pmmObservedCustomerLanguage(item);
   const evidenceClassification = observedLanguage ? "observed" : "inference";
   const claim = observedLanguage || pmmUsableText(
@@ -1675,7 +2161,7 @@ function pmmClaimRow(context, audience, theme, item = null, index = 0) {
   const claimItems = audience?.links?.length
     ? audience.links.map((link) => ({ ...link, title: link.label, sourceName: "Exact public customer record" }))
     : (theme?.items || []);
-  const candidate = pmmDecisionCandidate(context, audience, { claim, label: theme?.label || `${audience?.criterion || "Claim"} evidence`, items: claimItems }, index);
+  const candidate = pmmDecisionCandidate(context, audience, { claim, label: theme?.label || `${audience?.criterion || "Claim"} evidence`, items: claimItems }, index, governingPosition);
   const claimSources = pmmDeduplicateSources(claimItems.map((source) => ({
     url: source.url,
     label: source.title || source.label || "Claim source",
@@ -1685,14 +2171,33 @@ function pmmClaimRow(context, audience, theme, item = null, index = 0) {
     evidenceRole: evidenceClassification === "observed" ? "Observed language" : "Inference basis",
   })));
   const approvalEstablished = false;
-  const readiness = pmmClaimReadiness({
-    approvalEstablished,
-    availableProof: candidate.availableProof,
-    claimSources,
-    confidence: candidate.confidence,
-    recency: candidate.recency,
-    sourceDiversity: candidate.sourceDiversity,
-  });
+  const proposedClaimWording = candidate.counterPosition;
+  const claimBasisWording = candidate.governingTrace.localAdaptation;
+  const claimType = pmmClaimType(claimBasisWording, buyingCriterion);
+  const referenceBaseline = context.competitor || "Baseline unresolved";
+  const rowForCompatibility = {
+    claimType,
+    proposedClaimWording,
+    claimBasisWording,
+    buyingCriterion,
+    audience: audienceName,
+    application: targeting.application,
+    referenceBaseline,
+  };
+  const claimProfile = pmmClaimCompatibilityProfile(rowForCompatibility, governingPosition);
+  const evidenceRecords = pmmDeduplicateSources(candidate.availableProof).map((proof) => ({
+    ...proof,
+    compatibility: PmmDataContract.evaluateClaimEvidenceCompatibility(claimProfile, pmmEvidenceCompatibilityProfile(proof)),
+    independent: false,
+    sourceOrganizationId: "",
+  }));
+  const substantiation = PmmDataContract.claimSubstantiation(evidenceRecords);
+  const comparabilityStatus = evidenceRecords.some((proof) => proof.compatibility.status === "Applicable")
+    ? "Applicable"
+    : evidenceRecords.some((proof) => proof.compatibility.status === "Partially applicable")
+      ? "Partially applicable"
+      : "Inapplicable";
+  const readiness = PmmDataContract.claimCommercialReadiness(substantiation.status, approvalEstablished);
   const sentiment = item?.sentiment || "Not classified";
   const concernRecord = /negative|neutral|mixed/i.test(sentiment);
   const caveat = concernRecord
@@ -1704,14 +2209,34 @@ function pmmClaimRow(context, audience, theme, item = null, index = 0) {
     competitor: context.competitor,
     claim,
     evidenceClassification,
-    audience: audience?.audience || "Audience unresolved",
-    buyerRole: audience?.buyerRole || "Buyer role unresolved",
-    buyingCriterion: audience?.criterion || "Buying criterion unresolved",
-    counterPosition: candidate.counterPosition,
-    availableProof: candidate.availableProof,
+    classificationLabel: pmmClaimEvidenceClassifications[evidenceClassification],
+    audience: audienceName,
+    buyerRole,
+    buyingCriterion,
+    counterPosition: proposedClaimWording,
+    proposedClaimWording,
+    claimType,
+    application: targeting.application,
+    buyingSituation: targeting.buyingSituation,
+    geography: targeting.geography,
+    segmentApplication: `${audienceName} · ${pmmTargetingDisplayValue(targeting.application, buyingCriterion)}`,
+    intendedChannel: candidate.intendedChannel,
+    referenceBaseline,
+    governingTrace: candidate.governingTrace,
+    availableProof: evidenceRecords,
+    evidenceRecords,
+    uniqueRecordCount: evidenceRecords.length,
+    independentSourceCount: substantiation.independentSourceCount,
+    independentSourceState: substantiation.independentSourceCount ? `${substantiation.independentSourceCount} established independent source organization${substantiation.independentSourceCount === 1 ? "" : "s"}` : "0 established independent source organizations — independence metadata unavailable",
+    comparabilityStatus,
+    substantiationStatus: substantiation.status,
+    substantiationReason: substantiation.reason,
     missingProof: candidate.missingProof,
-    approvalState: "Approval not established.",
+    approvalState: "Approval not established",
     approvalEstablished,
+    approvedWording: "Approved wording unavailable — no approval record",
+    owner: "Owner needed",
+    expirationDate: "Expiration date needed",
     readiness,
     confidence: candidate.confidence,
     recency: candidate.recency,
@@ -1721,10 +2246,12 @@ function pmmClaimRow(context, audience, theme, item = null, index = 0) {
     caveat,
     sentiment,
     concernRecord,
+    nextRequiredAction: pmmClaimNextRequiredAction(rowForCompatibility),
   };
 }
 
-function marketingClaimsProofRows(contexts) {
+function marketingClaimsProofRows(contexts, governingPosition) {
+  const targeting = pmmTargetingSelection();
   return contexts.flatMap((context) => {
     const audiences = marketingAudienceOptionsForCompetitor(context.competitor);
     const themes = marketingDecisionThemes(context);
@@ -1734,10 +2261,53 @@ function marketingClaimsProofRows(contexts) {
         claim: audience.trigger,
         label: `${audience.criterion} customer evidence`,
         items: audience.links,
-      }, item, index);
+      }, governingPosition, item, index);
     });
-    const inferenceRows = themes.slice(0, 2).map((theme, index) => pmmClaimRow(context, null, theme, null, customerRows.length + index));
+    const inferredAudience = targeting.application !== "All" || targeting.buyingSituation !== "All" || targeting.buyerRole !== "All"
+      ? {
+        audience: targeting.market === "All" ? "Audience unresolved" : targeting.market,
+        buyerRole: pmmTargetedBuyerRole(),
+        criterion: targeting.application === "All" ? "Buying criterion unresolved" : targeting.application,
+        trigger: pmmTargetedBuyingSituation(`${targeting.application} workflow evaluation — validation required`),
+        links: [],
+        items: [],
+        confidence: 0,
+        classification: "inference",
+      }
+      : null;
+    const inferenceRows = themes.slice(0, 2).map((theme, index) => pmmClaimRow(context, inferredAudience, theme, governingPosition, null, customerRows.length + index));
     return [...customerRows, ...inferenceRows];
+  });
+}
+
+function pmmApplyClaimsRegistryToDecisions(decisions, claimRows) {
+  return decisions.map((decision) => {
+    const governedClaim = claimRows.find((row) => row.competitor === decision.competitor
+      && row.audience === decision.audience
+      && row.buyingCriterion === decision.buyingCriterion);
+    if (!governedClaim) return {
+      ...decision,
+      availableProof: [],
+      rejectedProof: decision.availableProof,
+      missingProof: "No governed claim registry row matches this positioning decision. Compatibility review is required before proof or activation.",
+      claimRegistry: null,
+    };
+    const acceptedProof = governedClaim.evidenceRecords.filter((proof) => proof.compatibility.status === "Applicable");
+    const rejectedProof = governedClaim.evidenceRecords.filter((proof) => proof.compatibility.status === "Inapplicable");
+    const rejectedUrls = new Set(rejectedProof.map((proof) => canonicalEvidenceUrl(proof.url)));
+    return {
+      ...decision,
+      availableProof: acceptedProof,
+      rejectedProof,
+      exactSources: decision.exactSources.filter((source) => !rejectedUrls.has(canonicalEvidenceUrl(source.url))),
+      missingProof: governedClaim.nextRequiredAction,
+      claimRegistry: {
+        substantiationStatus: governedClaim.substantiationStatus,
+        comparabilityStatus: governedClaim.comparabilityStatus,
+        approvalState: governedClaim.approvalState,
+        readiness: governedClaim.readiness.value,
+      },
+    };
   });
 }
 
@@ -1755,18 +2325,32 @@ function pmmClaimSourceLinksMarkup(sources, limit = 4) {
   return `<div class="pmm-claim-source-links">${sources.slice(0, limit).map((source) => `<a href="${escapeHtml(source.url)}" target="_blank" rel="noreferrer"><strong>${escapeHtml(source.label || source.sourceName)}</strong><small>${escapeHtml(source.sourceName || "Public source")} · ${source.date ? escapeHtml(formatDate(source.date)) : "Date unavailable"}</small></a>`).join("")}</div>`;
 }
 
-function pmmClaimProofMarkup(proof) {
-  return `<li><span>${escapeHtml(proof.detail)}</span>${isHttpUrl(proof.url) ? `<a href="${escapeHtml(proof.url)}" target="_blank" rel="noreferrer">${escapeHtml(proof.label)} ↗</a>` : `<small>Source unavailable</small>`}</li>`;
+function pmmCompatibilityCheckMarkup(check) {
+  const tone = check.status === "Match" ? "match" : check.status === "Mismatch" ? "mismatch" : "missing";
+  const expected = check.expected.length ? check.expected.join(", ") : "Not required";
+  const observed = check.observed.length ? check.observed.join(", ") : "Not established";
+  return `<li class="pmm-compatibility-${tone}"><strong>${escapeHtml(check.label)} · ${escapeHtml(check.status)}</strong><small>Required: ${escapeHtml(expected)} · Evidence: ${escapeHtml(observed)}</small></li>`;
 }
 
-function pmmClaimReadinessMarkup(readiness) {
-  const className = readiness.value.toLowerCase().replace(/\s+/g, "-");
-  return `<div class="pmm-readiness pmm-readiness-${escapeHtml(className)}"><strong>${escapeHtml(readiness.value)}</strong><span>${escapeHtml(readiness.reason)}</span></div>`;
+function pmmClaimEvidenceRegistryMarkup(records) {
+  if (!records.length) return `<div class="pmm-missing-indicator"><strong>Unsupported</strong><span>No exact supporting evidence record was located.</span></div>`;
+  return `<div class="pmm-registry-evidence-list">${records.map((proof) => {
+    const className = proof.compatibility.status.toLowerCase().replace(/\s+/g, "-");
+    return `<article class="pmm-registry-evidence pmm-comparability-${escapeHtml(className)}" data-evidence-comparability="${escapeHtml(proof.compatibility.status)}"><header><strong>${escapeHtml(proof.label)}</strong><span>${escapeHtml(proof.compatibility.status)}</span></header><p>${escapeHtml(proof.detail)}</p>${isHttpUrl(proof.url) ? `<a href="${escapeHtml(proof.url)}" target="_blank" rel="noreferrer">Open exact evidence ↗</a>` : `<small>Source unavailable</small>`}<ul>${proof.compatibility.checks.map(pmmCompatibilityCheckMarkup).join("")}</ul></article>`;
+  }).join("")}</div>`;
 }
 
-function renderMarketingClaimsProof(contexts) {
+function pmmClaimSubstantiationMarkup(row) {
+  const className = row.substantiationStatus.toLowerCase();
+  return `<div class="pmm-readiness pmm-substantiation-${escapeHtml(className)}"><strong>${escapeHtml(row.substantiationStatus)}</strong><span>${escapeHtml(row.substantiationReason)}</span><small>Commercial readiness: ${escapeHtml(row.readiness.value)} · ${escapeHtml(row.readiness.reason)}</small></div>`;
+}
+
+function marketingVisibleClaimRows(rows) {
+  return PmmDataContract.filterClaimRows(rows, state.marketingClaimsFilters);
+}
+
+function renderMarketingClaimsProof(rows, visibleRows, governingPosition) {
   const target = byId("pmmClaimsProof");
-  const rows = marketingClaimsProofRows(contexts);
   const audiences = pmmClaimsFilterOptions(rows.map((row) => ({ ...row, audienceCriterion: `${row.audience} · ${row.buyingCriterion}` })), "audienceCriterion");
   const classifications = Object.values(pmmClaimEvidenceClassifications);
   if (state.marketingClaimsFilters.audience !== "All" && !audiences.includes(state.marketingClaimsFilters.audience)) {
@@ -1778,144 +2362,335 @@ function renderMarketingClaimsProof(contexts) {
   if (state.marketingClaimsFilters.readiness !== "All" && !pmmClaimReadinessValues.includes(state.marketingClaimsFilters.readiness)) {
     state.marketingClaimsFilters.readiness = "All";
   }
-  const activeFilters = state.marketingClaimsFilters;
-  const visibleRows = rows.filter((row) => {
-    const audienceCriterion = `${row.audience} · ${row.buyingCriterion}`;
-    return (activeFilters.readiness === "All" || row.readiness.value === activeFilters.readiness)
-      && (activeFilters.audience === "All" || audienceCriterion === activeFilters.audience)
-      && (activeFilters.classification === "All" || pmmClaimEvidenceClassifications[row.evidenceClassification] === activeFilters.classification);
-  });
   target.innerHTML = `
     <div class="pmm-claims-matrix-intro">
-      <div><strong>Claims readiness is proof plus approval.</strong><p>Technical evidence never establishes legal approval. No approval records are loaded, so no row can be marked Ready.</p></div>
+      <div><strong>Governed claims registry for regulated-lab commercialization.</strong><p>Every proposed wording is compatibility-checked across product/workflow, attribute, segment/application, comparator, test conditions, and date/relevance. Inapplicable evidence is blocked from substantiation. No approval records are loaded, so no claim can be Ready.</p></div>
       <div class="pmm-decision-legend" aria-label="Claims evidence classifications">${pmmEvidenceTypeMarkup("observed", pmmClaimEvidenceClassifications.observed)}${pmmEvidenceTypeMarkup("inference", pmmClaimEvidenceClassifications.inference)}${pmmEvidenceTypeMarkup("approval", pmmClaimEvidenceClassifications.approved)}</div>
     </div>
-    <form class="pmm-claims-filters" aria-label="Filter claims and proof readiness matrix">
-      ${pmmClaimsFilterMarkup("Readiness", "readiness", pmmClaimReadinessValues, "All readiness states")}
+    <form class="pmm-claims-filters" aria-label="Filter governed claims registry">
+      ${pmmClaimsFilterMarkup("Substantiation", "readiness", pmmClaimReadinessValues, "All substantiation states")}
       ${pmmClaimsFilterMarkup("Audience / buying criterion", "audience", audiences, "All audiences and criteria")}
       ${pmmClaimsFilterMarkup("Evidence classification", "classification", classifications, "All evidence classifications")}
       <button type="button" data-pmm-claims-clear>Clear matrix filters</button>
       <p>Competitor filtering uses the global Competitor filter above.</p>
     </form>
     <div class="pmm-claims-result-count" aria-live="polite">${visibleRows.length} of ${rows.length} claim${rows.length === 1 ? "" : "s"}</div>
-    ${visibleRows.length ? `<div class="pmm-claims-table-wrap"><table class="pmm-claims-matrix"><caption class="sr-only">Product Marketing claims and proof readiness</caption><thead><tr><th>Competitor</th><th>Competitor claim</th><th>Evidence classification</th><th>Audience / buying criterion</th><th>Waters counter-position</th><th>Available proof</th><th>Missing substantiation</th><th>Approval state</th><th>Readiness</th><th>Confidence / recency</th><th>Sources</th></tr></thead><tbody>${visibleRows.map((row) => `<tr data-claim-readiness="${escapeHtml(row.readiness.value)}" data-claim-classification="${escapeHtml(pmmClaimEvidenceClassifications[row.evidenceClassification])}">
-      <td><strong>${escapeHtml(row.competitor)}</strong></td>
-      <td><p>${escapeHtml(row.claim)}</p>${pmmClaimSourceLinksMarkup(row.claimSources, 2)}<small class="pmm-source-caveat ${row.concernRecord ? "is-concern" : ""}">${escapeHtml(row.caveat)}</small></td>
-      <td>${pmmEvidenceTypeMarkup(row.evidenceClassification, pmmClaimEvidenceClassifications[row.evidenceClassification])}</td>
-      <td><strong>${escapeHtml(row.audience)}</strong><span>${escapeHtml(row.buyerRole)} · ${escapeHtml(row.buyingCriterion)}</span></td>
-      <td><p>${escapeHtml(row.counterPosition)}</p>${pmmEvidenceTypeMarkup("inference", "Proposed inference — not approved")}</td>
-      <td>${row.availableProof.length ? `<ul class="pmm-claim-proof-items">${row.availableProof.map(pmmClaimProofMarkup).join("")}</ul><small class="pmm-source-caveat">Technical evidence does not establish legal approval.</small>` : `<div class="pmm-missing-indicator"><strong>Proof missing</strong><span>No relevant Waters proof located.</span></div>`}</td>
-      <td><div class="pmm-missing-indicator"><strong>Substantiation gap</strong><span>${escapeHtml(row.missingProof)}</span></div></td>
-      <td>${pmmStatusMarkup("unresolved", "Approval", row.approvalState)}</td>
-      <td>${pmmClaimReadinessMarkup(row.readiness)}</td>
-      <td><strong>${row.confidence ? `${escapeHtml(confidenceLabel(row.confidence))} · ${row.confidence}/100` : "Confidence unavailable"}</strong><span>${escapeHtml(row.recency.label)}</span><small>${row.sourceDiversity} source famil${row.sourceDiversity === 1 ? "y" : "ies"}</small></td>
-      <td>${pmmClaimSourceLinksMarkup(row.sources)}</td>
+    ${visibleRows.length ? `<div class="pmm-claims-table-wrap"><table class="pmm-claims-matrix pmm-claims-registry"><caption class="sr-only">Governed Product Marketing claims registry</caption><thead><tr><th>Exact proposed claim wording</th><th>Type</th><th>Segment / application</th><th>Buyer / channel</th><th>Reference competitor or baseline</th><th>Exact supporting evidence and compatibility</th><th>Source counts</th><th>Evidence comparability</th><th>Substantiation</th><th>Legal / claims approval</th><th>Governance and next action</th></tr></thead><tbody>${visibleRows.map((row) => `<tr data-claim-context="${escapeHtml(`${row.buyingCriterion} for ${row.audience}`)}" data-claim-readiness="${escapeHtml(row.readiness.value)}" data-substantiation-status="${escapeHtml(row.substantiationStatus)}" data-evidence-comparability="${escapeHtml(row.comparabilityStatus)}" data-claim-classification="${escapeHtml(pmmClaimEvidenceClassifications[row.evidenceClassification])}">
+      <td><div class="pmm-registry-claim-wording"><span>Exact proposed wording</span><p>${escapeHtml(row.proposedClaimWording)}</p>${pmmEvidenceTypeMarkup("inference", "Proposed — not approved")}<small>Registry context: ${escapeHtml(row.buyingCriterion)} for ${escapeHtml(row.audience)} · Inherits ${escapeHtml(governingPosition.id)}</small></div></td>
+      <td><strong class="pmm-claim-type">${escapeHtml(row.claimType)}</strong></td>
+      <td><strong>${escapeHtml(row.segmentApplication)}</strong><small>${escapeHtml(row.caveat)}</small></td>
+      <td><strong>${escapeHtml(row.buyerRole)}</strong><span>${escapeHtml(row.intendedChannel)}</span></td>
+      <td><strong>${escapeHtml(row.referenceBaseline)}</strong><small>Competitor-specific comparison baseline; equivalence must be demonstrated.</small></td>
+      <td>${pmmClaimEvidenceRegistryMarkup(row.evidenceRecords)}</td>
+      <td><strong>${row.uniqueRecordCount} unique evidence record${row.uniqueRecordCount === 1 ? "" : "s"}</strong><span>${escapeHtml(row.independentSourceState)}</span><small>Unique URLs are not treated as independent organizations.</small></td>
+      <td><div class="pmm-comparability-summary pmm-comparability-${escapeHtml(row.comparabilityStatus.toLowerCase().replace(/\s+/g, "-"))}"><strong>${escapeHtml(row.comparabilityStatus)}</strong><span>${row.evidenceRecords.length ? "Automated checks shown with each evidence record." : "No evidence available for compatibility review."}</span></div></td>
+      <td>${pmmClaimSubstantiationMarkup(row)}</td>
+      <td>${pmmStatusMarkup("unresolved", "Legal / claims approval", row.approvalState)}<div class="pmm-approved-wording"><span>Approved wording</span><strong>${escapeHtml(row.approvedWording)}</strong></div></td>
+      <td><div class="pmm-registry-governance">${pmmStatusMarkup("unresolved", "Owner", row.owner)}${pmmStatusMarkup("unresolved", "Expiration", row.expirationDate)}<div class="pmm-next-required-action"><span>Next required action</span><p>${escapeHtml(row.nextRequiredAction)}</p></div></div></td>
     </tr>`).join("")}</tbody></table></div>` : pmmEmptyState(rows.length ? "No claims match the matrix filters. Clear a matrix filter or adjust the global filters." : "No supported claims match the active global filters. Unrelated evidence was not substituted.")}`;
 }
 
-function pmmAudienceTrigger(productMaturity = "") {
-  const maturity = String(productMaturity).trim().toLowerCase();
-  if (maturity.includes("upgrade candidate")) return "Platform upgrade or replacement evaluation";
-  if (maturity.includes("legacy competitor") || maturity.includes("legacy system")) return "Legacy lifecycle, serviceability, or method-continuity review";
-  if (maturity.includes("competitor user")) return "Competitive replacement or vendor-comparison evaluation";
-  if (maturity.includes("multi-vendor")) return "Vendor consolidation, integration, or service review";
-  if (maturity.includes("current waters")) return "Operational issue, renewal, expansion, or workflow-improvement review";
-  if (maturity.includes("new buyer")) return "Initial platform evaluation";
-  if (maturity.includes("public evidence")) return "Trigger unresolved — public evidence does not establish an active purchase event";
-  return "Trigger unresolved";
+const pmmBuyingCommitteeRoleDefinitions = [
+  {
+    key: "bench-user",
+    label: "Bench user / analyst",
+    match: /\banalyst\b|instrument specialist/i,
+    decisionPower: "user",
+    job: "Execute routine methods, recognize failures, recover quickly, and complete data review without avoidable rework.",
+    concern: "Daily usability, reliability, troubleshooting burden, training, and workflow handoffs.",
+    message: "Make reliable routine execution and faster issue isolation concrete in the user's actual method and software workflow.",
+    proof: "Task-based workflow study measuring setup steps, task completion, error recovery, repeat runs, and review effort.",
+    asset: "Workflow demo · application note · operator quick guide",
+  },
+  {
+    key: "method-developer",
+    label: "Method developer",
+    match: /method developer/i,
+    decisionPower: "influencer",
+    job: "Develop, transfer, optimize, and troubleshoot methods across instruments, sites, and applications.",
+    concern: "Method equivalency, transfer effort, robustness, flexibility, and the cost of redevelopment.",
+    message: "Position Next Gen LC around transferable methods with explicit equivalency boundaries and migration support.",
+    proof: "Controlled cross-platform method-transfer study with matched conditions, acceptance criteria, failures, and remediation effort.",
+    asset: "Method-transfer guide · comparative application note · technical workshop",
+  },
+  {
+    key: "quality-veto",
+    label: "QC/QA or validation veto",
+    match: /QA|QC|quality|compliance|validation/i,
+    decisionPower: "veto",
+    job: "Protect validated operation, audit readiness, data integrity, and controlled change.",
+    concern: "Validation burden, traceability, audit trails, procedural control, and unsupported compliance claims.",
+    message: "Show how the workflow supports controlled, traceable operation without promising regulatory outcomes.",
+    proof: "Validation package review, audit-trail and data-integrity assessment, change-control mapping, and regulated-user evidence.",
+    asset: "Validation dossier · compliance brief · QA review session",
+  },
+  {
+    key: "it-veto",
+    label: "IT / data-integrity veto",
+    match: /\bIT\b|informatics|data integrity|CDS administrator|system administrator/i,
+    decisionPower: "veto",
+    job: "Maintain secure, supportable data flows, system integration, access control, and lifecycle governance.",
+    concern: "Integration architecture, cybersecurity, identity and access, auditability, support model, and upgrade impact.",
+    message: "Package the instrument and informatics path as one governed data workflow with explicit integration and lifecycle boundaries.",
+    proof: "Architecture and security review, interface validation, access-control testing, audit-trail assessment, and lifecycle-support evidence.",
+    asset: "IT architecture brief · data-integrity checklist · technical review",
+  },
+  {
+    key: "lab-manager",
+    label: "Lab-manager decision maker",
+    match: /lab manager|laboratory manager|manager/i,
+    decisionPower: "decider",
+    job: "Deliver laboratory capacity, quality, uptime, staffing readiness, and service continuity.",
+    concern: "Operational risk, uptime, training, service response, utilization, and migration disruption.",
+    message: "Frame the decision around reliable throughput and lower workflow risk across implementation and routine use.",
+    proof: "Reference workflow, uptime and recovery study, implementation plan, training evidence, and service-level documentation.",
+    asset: "Decision brief · customer proof · sales deck",
+  },
+  {
+    key: "economic-buyer",
+    label: "Procurement / economic buyer",
+    match: /procurement|purchasing|economic buyer/i,
+    decisionPower: "buyer",
+    job: "Establish commercial comparability, contract terms, lifecycle cost, and purchase defensibility.",
+    concern: "Acquisition cost, consumables, service, labor, downtime, contract risk, and economic comparability.",
+    message: "Use a transparent lifecycle-value case; do not imply TCO advantage without a controlled economic model.",
+    proof: "Segment-specific comparative TCO model with price, service, consumables, labor, downtime, utilization, geography, and time horizon.",
+    asset: "Economic value brief · procurement worksheet · commercial proposal",
+  },
+  {
+    key: "executive-sponsor",
+    label: "Executive sponsor — where relevant",
+    match: /executive|director|vice president|\bVP\b|sponsor/i,
+    decisionPower: "decider",
+    job: "Sponsor material capital or transformation decisions and ensure alignment with quality, capacity, and business priorities.",
+    concern: "Business continuity, strategic fit, implementation exposure, organization-wide adoption, and measurable outcomes.",
+    message: "Connect the workflow position to a bounded business outcome and implementation risk; keep performance claims substantiated.",
+    proof: "Approved business case, executive reference, implementation-risk plan, and agreed outcome measurement.",
+    asset: "Executive brief · business case · sponsor review",
+  },
+];
+
+const pmmFishbeinAttributes = [
+  { key: "reliability", label: "Reliable routine execution", pattern: /reliab|uptime|service|maintenance|diagnostic|reproduc/i },
+  { key: "ease", label: "Ease of use and recovery", pattern: /ease|usability|setup|training|troubleshoot|recovery/i },
+  { key: "transfer", label: "Method transfer and continuity", pattern: /method transfer|continuity|migration|compatib|validated method/i },
+  { key: "compliance", label: "Compliance and data integrity", pattern: /compliance|data integrity|audit|validation|regulated|traceab/i },
+  { key: "throughput", label: "Throughput and review efficiency", pattern: /throughput|review|automation|cycle time|capacity|sample/i },
+  { key: "economics", label: "Lifecycle economics", pattern: /cost|price|economic|TCO|consumable|downtime|labor/i },
+];
+
+function pmmFishbeinHypothesisWeights(segment, targeting = pmmTargetingSelection()) {
+  const profiles = {
+    Pharma: [20, 15, 20, 20, 15, 10],
+    Biopharma: [20, 15, 20, 15, 20, 10],
+    Clinical: [20, 20, 10, 20, 20, 10],
+    "Food safety": [20, 15, 10, 15, 20, 20],
+    Environmental: [20, 15, 10, 20, 20, 15],
+    "CRO/CDMO": [20, 15, 20, 15, 20, 10],
+    Academic: [20, 20, 10, 10, 20, 20],
+    Government: [20, 15, 15, 20, 15, 15],
+  };
+  const base = [...(profiles[segment] || [17, 17, 17, 17, 16, 16])];
+  const applicationAdjustments = {
+    MAM: [0, -5, 8, 12, 2, -5],
+    Oligo: [-5, -5, 12, 5, 2, -4],
+    "LNP/RNA": [-2, 0, 8, 3, 6, -4],
+    "Protein characterization": [-3, 0, 0, -3, 12, -6],
+    PFAS: [10, -5, -5, 8, 2, -10],
+    Nitrosamines: [2, -5, -5, 8, 8, -8],
+    "Routine QC": [6, 5, 2, 6, -4, -5],
+  };
+  const situationAdjustments = {
+    Greenfield: [0, 5, -5, 0, 4, 6],
+    "Competitive replacement": [6, 2, 2, 0, 2, 3],
+    "Waters installed-base upgrade": [3, 2, 8, 2, 0, 5],
+    "Validated-method migration": [4, -4, 15, 8, -4, -2],
+  };
+  const roleAdjustments = {
+    "Bench user / analyst": [4, 10, 0, 0, 4, -4],
+    "Method developer": [0, 0, 12, 2, 2, -4],
+    "QC/QA or validation veto": [2, -3, 5, 12, -3, -3],
+    "IT / data-integrity veto": [0, -2, 0, 14, -4, -3],
+    "Lab-manager decision maker": [7, 2, 0, 2, 5, 5],
+    "Procurement / economic buyer": [0, -3, -3, 0, -3, 18],
+    "Executive sponsor": [4, -3, 0, 2, 4, 10],
+  };
+  [applicationAdjustments[targeting.application], situationAdjustments[targeting.buyingSituation], roleAdjustments[targeting.buyerRole]]
+    .filter(Boolean)
+    .forEach((adjustment) => adjustment.forEach((value, index) => { base[index] += value; }));
+  return base.map((value) => Math.max(1, value));
 }
 
-function pmmAudienceBuyingSituations() {
-  const groups = new Map();
-  currentCustomerVoiceItems().forEach((item) => {
-    const dimensions = [
-      item.userRole || "Buyer role unresolved",
-      item.labType || "Lab / account context unresolved",
-      item.productMaturity || "Account status unresolved",
-      item.platform || "Current platform unresolved",
-      item.buyingPriority || "Purchase-driving criterion unresolved",
-    ];
-    const key = dimensions.join("::");
-    if (!groups.has(key)) groups.set(key, []);
-    groups.get(key).push(item);
+function pmmFishbeinHypothesisScores(competitor) {
+  const waters = { reliability: 3, ease: 3, transfer: 4, compliance: 4, throughput: 3, economics: 3 };
+  const rivals = {
+    Agilent: { reliability: 4, ease: 4, transfer: 3, compliance: 3, throughput: 4, economics: 2 },
+    "Thermo Fisher": { reliability: 4, ease: 3, transfer: 3, compliance: 4, throughput: 4, economics: 2 },
+    Shimadzu: { reliability: 4, ease: 3, transfer: 3, compliance: 3, throughput: 3, economics: 4 },
+    SCIEX: { reliability: 3, ease: 4, transfer: 2, compliance: 3, throughput: 4, economics: 3 },
+    PerkinElmer: { reliability: 3, ease: 3, transfer: 3, compliance: 3, throughput: 3, economics: 3 },
+  };
+  return { waters, competitor: rivals[competitor] || Object.fromEntries(pmmFishbeinAttributes.map((attribute) => [attribute.key, 3])) };
+}
+
+function pmmCommitteePrioritySegments(positioningDecisions) {
+  const seen = new Set();
+  return positioningDecisions.filter((decision) => {
+    const segment = String(decision.audience || "").trim();
+    if (!segment || /unresolved/i.test(segment) || seen.has(segment)) return false;
+    seen.add(segment);
+    return true;
+  }).map((decision) => ({
+    segment: decision.audience,
+    competitor: decision.competitor,
+    buyingCriterion: decision.buyingCriterion,
+    decision,
+  }));
+}
+
+function pmmCommitteeEvidenceSources(items, limit = 5) {
+  return uniqueCustomerVoiceLinks(items, limit).map((link) => ({
+    url: link.url,
+    label: link.label,
+    date: link.sourceDate,
+    sourceName: "Exact public customer record",
+    confidence: Math.max(...items.map((item) => Number(item.confidence || 0)), 0),
+  }));
+}
+
+function pmmFishbeinAttributeSources(segmentItems, context, attribute) {
+  const customerItems = segmentItems.filter((item) => attribute.pattern.test(`${item.buyingPriority} ${item.category} ${item.theme} ${item.customerLanguageSignal}`));
+  const customerSources = pmmCommitteeEvidenceSources(customerItems, 3);
+  const competitorSources = (context?.evidenceLinks || []).filter((source) =>
+    attribute.pattern.test(`${source.label || ""} ${source.detail || ""} ${source.evidenceType || ""}`)
+  ).map((source) => ({ ...source, sourceName: source.sourceName || "Competitor public source" }));
+  return pmmDeduplicateSources([...customerSources, ...competitorSources]).slice(0, 4);
+}
+
+function pmmCommitteeRoleModel(definition, segmentItems, swingAttribute) {
+  const matchedItems = segmentItems.filter((item) => definition.match.test(item.userRole || ""));
+  const sources = pmmCommitteeEvidenceSources(matchedItems, 4);
+  const objectionItem = matchedItems.find((item) => item.sentiment === "Negative")
+    || matchedItems.find((item) => item.sentiment === "Mixed");
+  const observed = sources.length > 0;
+  return {
+    ...definition,
+    classification: observed ? "observed" : "inference",
+    classificationLabel: observed ? "Role observed · decision model inferred" : "Inferred role · validation required",
+    message: `Proposed — not approved: ${definition.message} Current calculated swing attribute: ${swingAttribute.label}.`,
+    objection: objectionItem?.theme || "Hypothesis — validation required; no role-specific objection is observed in the filtered evidence.",
+    sources,
+    confidence: observed ? pmmEvidenceConfidence(sources) : 0,
+  };
+}
+
+function pmmBuyingCommitteeModel(positioningDecisions, contexts) {
+  const prioritySegments = pmmCommitteePrioritySegments(positioningDecisions);
+  const targeting = pmmTargetingSelection();
+  const segments = prioritySegments.map((priority) => {
+    const segmentItems = currentCustomerVoiceItems().filter((item) => item.labType === priority.segment);
+    const context = contexts.find((item) => item.competitor === priority.competitor);
+    const weights = pmmFishbeinHypothesisWeights(priority.segment, targeting);
+    const baselineWeights = pmmFishbeinHypothesisWeights(priority.segment, {
+      ...targeting,
+      application: "All",
+      buyingSituation: "All",
+      buyerRole: "All",
+    });
+    const scores = pmmFishbeinHypothesisScores(priority.competitor);
+    const scorecard = PmmDataContract.fishbeinScorecard(pmmFishbeinAttributes.map((attribute, index) => ({
+      ...attribute,
+      weight: weights[index],
+      watersScore: scores.waters[attribute.key],
+      competitorScore: scores.competitor[attribute.key],
+      sources: pmmFishbeinAttributeSources(segmentItems, context, attribute),
+    })));
+    const baselineScorecard = PmmDataContract.fishbeinScorecard(pmmFishbeinAttributes.map((attribute, index) => ({
+      ...attribute,
+      weight: baselineWeights[index],
+      watersScore: scores.waters[attribute.key],
+      competitorScore: scores.competitor[attribute.key],
+      sources: [],
+    })));
+    return {
+      ...priority,
+      application: targeting.application,
+      buyingSituation: targeting.buyingSituation,
+      buyerRole: targeting.buyerRole,
+      sourceCount: uniqueCustomerVoiceLinks(segmentItems, 100).length,
+      scorecard,
+      baselineSwingAttribute: baselineScorecard.swingAttribute,
+      roles: pmmBuyingCommitteeRoleDefinitions.map((definition) => pmmCommitteeRoleModel(definition, segmentItems, scorecard.swingAttribute)),
+    };
   });
-
-  return [...groups.values()]
-    .map((items) => {
-      const sortedItems = items.slice().sort((a, b) =>
-        Number(b.confidence || 0) - Number(a.confidence || 0)
-        || String(customerVoiceEvidenceDate(b) || "").localeCompare(String(customerVoiceEvidenceDate(a) || ""))
-      );
-      const representative = sortedItems[0] || {};
-      const links = uniqueCustomerVoiceLinks(sortedItems, 20);
-      const languageItem = sortedItems.find((item) => pmmObservedCustomerLanguage(item));
-      const objectionItem = sortedItems.find((item) => item.sentiment === "Negative")
-        || sortedItems.find((item) => item.sentiment === "Mixed");
-      const hasForumEvidence = links.some((link) => {
-        const type = normalizedCustomerVoiceSourceType(link.sourceType);
-        return type === "reddit" || type === "community_forum";
-      });
-      const latestDate = links.map((link) => link.sourceDate || "").filter(Boolean).sort().at(-1) || "";
-      return {
-        items: sortedItems,
-        links,
-        sourceCount: links.length,
-        buyerRole: representative.userRole || "Buyer role unresolved",
-        labContext: [representative.labType, representative.productMaturity].filter(Boolean).join(" · ") || "Lab / account context unresolved",
-        currentPlatform: [representative.platform, representative.product].filter(Boolean).join(" · ") || "Current platform unresolved",
-        trigger: pmmAudienceTrigger(representative.productMaturity),
-        objection: objectionItem?.theme || objectionItem?.category || "No supported objection found in matching evidence",
-        criterion: representative.buyingPriority || "Purchase-driving criterion unresolved",
-        observedLanguage: languageItem ? pmmObservedCustomerLanguage(languageItem) : "",
-        directionalLanguage: languageItem ? "" : representative.customerLanguageSignal || representative.theme || "Directional language unavailable",
-        confidence: averageConfidence(sortedItems),
-        latestDate,
-        recency: pmmDecisionRecency(links.map((link) => ({ sourceDate: link.sourceDate }))).label,
-        hasForumEvidence,
-      };
-    })
-    .sort((a, b) => b.sourceCount - a.sourceCount
-      || String(b.latestDate).localeCompare(String(a.latestDate))
-      || b.confidence - a.confidence)
-    .slice(0, 8);
+  const selectedSegment = filters.segment.value === "All"
+    ? segments[0]
+    : segments.find((segment) => segment.segment === filters.segment.value || (filters.segment.value === "CDMO" && segment.segment === "CRO/CDMO"));
+  const selectedSwingAttribute = selectedSegment
+    ? `${selectedSegment.segment}: ${selectedSegment.scorecard.swingAttribute.label} (${selectedSegment.scorecard.swingAttribute.weight}% hypothesis weight; weighted difference ${selectedSegment.scorecard.swingAttribute.weightedDifference.toFixed(2)}). Hypothesis — replace with win/loss, survey, or conjoint evidence.`
+    : "Swing attribute unresolved — no priority-segment scorecard is available";
+  return { segments, selectedSwingAttribute };
 }
 
-function renderMarketingAudienceCriteria() {
+function pmmCommitteeSourceLinksMarkup(sources) {
+  if (!sources.length) return `<p class="pmm-committee-unresolved">Hypothesis — validation required. No exact role-specific evidence link is available.</p>`;
+  return `<div class="pmm-committee-links">${sources.map((source) => `<a href="${escapeHtml(source.url)}" target="_blank" rel="noreferrer">${escapeHtml(source.label)}${source.date ? ` · ${escapeHtml(formatDate(source.date))}` : ""} ↗</a>`).join("")}</div>`;
+}
+
+function pmmCommitteeRoleMarkup(role) {
+  return `<article class="pmm-committee-role pmm-committee-role-${escapeHtml(role.classification)}" data-committee-role="${escapeHtml(role.key)}" data-role-classification="${escapeHtml(role.classification)}">
+    <header><h5>${escapeHtml(role.label)}</h5>${pmmEvidenceTypeMarkup(role.classification, role.classificationLabel)}</header>
+    <dl>
+      <div><dt>Job</dt><dd>${escapeHtml(role.job)}</dd></div>
+      <div><dt>Concern</dt><dd>${escapeHtml(role.concern)}</dd></div>
+      <div><dt>Decision power</dt><dd><strong>${escapeHtml(role.decisionPower)}</strong><small>Rule-based committee model; authority is not confirmed.</small></dd></div>
+      <div><dt>Message</dt><dd>${escapeHtml(role.message)}</dd></div>
+      <div><dt>Required proof</dt><dd>${escapeHtml(role.proof)}</dd></div>
+      <div><dt>Objection</dt><dd>${escapeHtml(role.objection)}</dd></div>
+      <div><dt>Preferred asset / channel</dt><dd>${escapeHtml(role.asset)} <small>Hypothesis — validate with the role.</small></dd></div>
+    </dl>
+    <div class="pmm-committee-role-evidence"><strong>${role.sources.length ? `${role.sources.length} exact role source${role.sources.length === 1 ? "" : "s"}` : "Role evidence unresolved"}</strong><span>${role.confidence ? `${escapeHtml(confidenceLabel(role.confidence))} confidence · ${role.confidence}/100` : "Confidence unresolved"}</span>${pmmCommitteeSourceLinksMarkup(role.sources)}</div>
+  </article>`;
+}
+
+function pmmFishbeinSourcesMarkup(sources) {
+  if (!sources.length) return `<span class="pmm-fishbein-hypothesis">Hypothesis — validation required</span>`;
+  return `<div class="pmm-fishbein-sources">${sources.map((source) => `<a href="${escapeHtml(source.url)}" target="_blank" rel="noreferrer">${escapeHtml(source.label)} ↗</a>`).join("")}<small>Sources provide context only; they do not validate the numeric hypothesis score.</small></div>`;
+}
+
+function pmmFishbeinScorecardMarkup(segment) {
+  const { scorecard } = segment;
+  return `<section class="pmm-fishbein" aria-labelledby="pmmFishbein${escapeHtml(segment.segment.replace(/[^a-z0-9]/gi, ""))}">
+    <header><div><span>Fishbein-Style Working Model</span><h4 id="pmmFishbein${escapeHtml(segment.segment.replace(/[^a-z0-9]/gi, ""))}">Buying Attribute Scorecard</h4><p>Weights and 1–5 scores are analyst hypotheses, not measured buyer preference or comparative performance.</p><small>Re-derived for ${escapeHtml(pmmTargetingKey())}; geography-specific preference evidence is unavailable.</small></div><div class="pmm-fishbein-total"><strong>${scorecard.weightTotal}%</strong><span>hypothesis weights</span></div></header>
+    <div class="pmm-fishbein-table-wrap"><table class="pmm-fishbein-table"><caption class="sr-only">${escapeHtml(segment.segment)} Fishbein-style buying attribute scorecard</caption><thead><tr><th>Buying attribute</th><th>Segment-specific weight</th><th>Waters score</th><th>${escapeHtml(segment.competitor)} score</th><th>Evidence confidence</th><th>Weighted difference</th><th>Swing attribute</th></tr></thead><tbody>${scorecard.rows.map((row) => {
+      const confidence = pmmEvidenceConfidence(row.sources);
+      const isSwing = row.key === scorecard.swingAttribute.key;
+      return `<tr class="${isSwing ? "pmm-fishbein-swing-row" : ""}" data-fishbein-attribute="${escapeHtml(row.key)}" data-weight="${row.weight}" data-weighted-difference="${row.weightedDifference}"><td><strong>${escapeHtml(row.label)}</strong>${pmmFishbeinSourcesMarkup(row.sources)}</td><td><strong>${row.weight}%</strong><small>Hypothesis — validation required</small></td><td><strong>${row.watersScore}/5</strong><small>Hypothesis — validation required</small></td><td><strong>${row.competitorScore}/5</strong><small>Hypothesis — validation required</small></td><td>${confidence ? `<strong>${escapeHtml(confidenceLabel(confidence))} · ${confidence}/100</strong><small>Context-source confidence; numeric score remains hypothetical.</small>` : `<span class="pmm-fishbein-hypothesis">Confidence unresolved</span>`}</td><td><strong>${row.weightedDifference > 0 ? "+" : ""}${row.weightedDifference.toFixed(2)}</strong><small>weight × (Waters − competitor)</small></td><td>${isSwing ? `<strong>Calculated swing</strong><small>Largest absolute weighted difference</small>` : "—"}</td></tr>`;
+    }).join("")}</tbody><tfoot><tr><th>Weighted total</th><td>${scorecard.weightTotal}%</td><td>${scorecard.watersWeightedScore.toFixed(2)}</td><td>${scorecard.competitorWeightedScore.toFixed(2)}</td><td colspan="2">Hypothesis model only</td><td>${escapeHtml(scorecard.swingAttribute.label)}</td></tr></tfoot></table></div>
+  </section>`;
+}
+
+function pmmWeightReplacementWorkflowMarkup() {
+  return `<aside class="pmm-weight-workflow" aria-labelledby="pmmWeightWorkflowTitle"><div><span>Replace Hypotheses with Measured Preference</span><h4 id="pmmWeightWorkflowTitle">Weight and Score Validation Workflow</h4></div><ol><li><strong>Win/loss:</strong> code decision criteria, committee role, veto reason, alternative, and outcome by segment.</li><li><strong>Survey:</strong> measure attribute importance and perceived vendor performance with sample and role metadata.</li><li><strong>Conjoint:</strong> estimate trade-offs where price, workflow risk, performance, service, and compliance compete.</li><li><strong>Govern:</strong> replace a hypothesis only with a dated study, methodology, sample, owner, and review/expiration state.</li></ol><p>Owner needed · Deadline needed · Minimum sample and approval threshold unresolved. No backend workflow record is available.</p></aside>`;
+}
+
+function renderMarketingAudienceCriteria(customerLanguageRecords, buyingCommittee) {
   const target = byId("pmmAudienceCriteria");
-  const situations = pmmAudienceBuyingSituations();
-  if (!situations.length) {
-    target.innerHTML = pmmEmptyState("No audience or buying-situation evidence matches the active filters. Broaden the filters or add traceable customer evidence; no audience conclusion is inferred.");
+  if (!buyingCommittee.segments.length) {
+    target.innerHTML = pmmEmptyState("No evidence-backed positioning decision identifies a priority-segment working set under the active filters. Buying committees and weights are not fabricated.");
     return;
   }
   target.innerHTML = `
-    <div class="pmm-audience-intro">
-      <div><div class="pmm-eyebrow">Most represented audiences in the current evidence — not strategic priority</div><h3>Audience and Buying-Situation Evidence</h3><p>Ordered by independent exact-source representation for review. Frequency in this dataset is not a measure of commercial attractiveness, market size, or strategic priority.</p></div>
-      <p class="pmm-forum-caveat">Forum evidence can surface objections and customer language, but it is complaint-biased and is not representative market research.</p>
+    <div class="pmm-audience-intro pmm-committee-intro">
+      <div><div class="pmm-eyebrow">Buying committees · governed working hypotheses</div><h3>Segment Buying Committees and Decision Criteria</h3><p><strong>${buyingCommittee.segments.length} priority-segment working set${buyingCommittee.segments.length === 1 ? "" : "s"}</strong> inherit from the displayed positioning decisions. ${customerLanguageRecords.length} unique customer-language URLs match the global filters. Neither segment inclusion nor record frequency establishes commercial attractiveness.</p></div>
+      <div class="pmm-decision-legend">${pmmEvidenceTypeMarkup("observed", "Role observed in exact evidence")}${pmmEvidenceTypeMarkup("inference", "Inferred role · validation required")}${pmmEvidenceTypeMarkup("hypothesis", "Weight or score hypothesis")}</div>
     </div>
-    <div class="pmm-audience-grid">${situations.map((situation) => {
-      const confidence = averageConfidence(situation.items);
-      const lowSample = situation.sourceCount < 3;
-      const sourceLinks = situation.links.length
-        ? situation.links.map((link) => `<a href="${escapeHtml(link.url)}" target="_blank" rel="noreferrer">${escapeHtml(link.label)}${link.sourceDate ? ` · ${escapeHtml(link.sourceDate)}` : ""} ↗</a>`).join("")
-        : `<span class="pmm-unresolved">Exact evidence links unavailable</span>`;
-      return `<article class="pmm-audience-card pmm-audience-buying-card">
-        <header class="pmm-audience-header"><div><div class="pmm-eyebrow">Buying-situation evidence</div><h4>${escapeHtml(situation.buyerRole)}</h4></div><span class="pmm-source-count">${situation.sourceCount} independent source${situation.sourceCount === 1 ? "" : "s"}</span></header>
-        <dl class="pmm-audience-facts">
-          <div><dt>Buyer role ${pmmEvidenceTypeMarkup("inference", "Coded analyst/rule-based inference")}</dt><dd>${escapeHtml(situation.buyerRole)}</dd></div>
-          <div><dt>Lab / account context ${pmmEvidenceTypeMarkup("inference", "Coded analyst/rule-based inference")}</dt><dd>${escapeHtml(situation.labContext)}</dd></div>
-          <div><dt>Current platform ${pmmEvidenceTypeMarkup("inference", "Coded analyst/rule-based inference")}</dt><dd>${escapeHtml(situation.currentPlatform)}</dd></div>
-          <div><dt>Trigger event ${pmmEvidenceTypeMarkup("inference", "Analyst/rule-based inference")}</dt><dd>${escapeHtml(situation.trigger)}</dd></div>
-          <div><dt>Objection ${pmmEvidenceTypeMarkup("inference", "Analyst/rule-based inference")}</dt><dd>${escapeHtml(situation.objection)}</dd></div>
-          <div><dt>Purchase-driving criterion ${pmmEvidenceTypeMarkup("inference", "Coded analyst/rule-based inference")}</dt><dd>${escapeHtml(situation.criterion)}</dd></div>
-        </dl>
-        <div class="pmm-audience-language"><div class="pmm-audience-label">Observed customer language ${pmmEvidenceTypeMarkup("observed", "Observed customer or competitor language")}</div>${situation.observedLanguage
-          ? `<blockquote>“${escapeHtml(situation.observedLanguage)}”</blockquote>`
-          : `<p class="pmm-unresolved">Observed customer language unavailable.</p><p class="pmm-directional-language">${pmmEvidenceTypeMarkup("inference", "Analyst/rule-based inference")} Directional synthesis: ${escapeHtml(situation.directionalLanguage)}</p>`}</div>
-        <div class="pmm-audience-sources"><div class="pmm-audience-label">Exact evidence links · ${situation.sourceCount} source${situation.sourceCount === 1 ? "" : "s"}</div><div class="pmm-inline-links">${sourceLinks}</div></div>
-        <div class="pmm-card-footer"><span class="confidence confidence-${confidenceLabel(confidence).toLowerCase()}">${escapeHtml(confidenceLabel(confidence))} confidence</span><span>${escapeHtml(situation.recency)}</span></div>
-        <div class="pmm-audience-caveats"><strong>Caveats</strong>${lowSample ? `<p class="pmm-low-sample">Low sample — fewer than 3 independent sources; do not treat this as a reliable audience-perception conclusion.</p>` : ""}${situation.hasForumEvidence ? `<p>Includes forum evidence: useful for surfacing objections and language, but complaint-biased and not representative market research.</p>` : ""}${!lowSample && !situation.hasForumEvidence ? `<p>No additional source caveat identified beyond the limits of the filtered evidence set.</p>` : ""}</div>
-      </article>`;
-    }).join("")}</div>`;
+    <p class="pmm-forum-caveat">Forum evidence can surface objections and customer language, but it is complaint-biased and is not representative market research. Committee authority, veto power, weights, and scores require primary research.</p>
+    <div class="pmm-committee-segments">${buyingCommittee.segments.map((segment, index) => `<details class="pmm-committee-segment" ${index === 0 ? "open" : ""}><summary><span><small>Priority-segment working set ${index + 1}</small><strong>${escapeHtml(segment.segment)}${segment.application !== "All" ? ` · ${escapeHtml(segment.application)}` : ""}</strong><em>Reference competitor: ${escapeHtml(segment.competitor)} · criterion: ${escapeHtml(segment.buyingCriterion)}</em></span><span><b>${segment.scorecard.weightTotal}%</b> hypothesis weights · swing: ${escapeHtml(segment.scorecard.swingAttribute.label)}</span></summary><div class="pmm-committee-segment-body">
+      <section class="pmm-buying-committee" aria-labelledby="pmmCommittee${index}Title"><header><div><span>Decision Unit</span><h4 id="pmmCommittee${index}Title">${escapeHtml(segment.segment)} Buying Committee</h4><p>Every required role remains visible; missing roles are explicitly inferred rather than treated as observed.</p></div><strong>${segment.sourceCount} unique segment source URL${segment.sourceCount === 1 ? "" : "s"}</strong></header><div class="pmm-committee-grid">${segment.roles.map(pmmCommitteeRoleMarkup).join("")}</div></section>
+      ${pmmFishbeinScorecardMarkup(segment)}
+    </div></details>`).join("")}</div>
+    ${pmmWeightReplacementWorkflowMarkup()}`;
 }
 
 function pmmNarrativeApplicationNotes(context) {
@@ -2079,8 +2854,10 @@ function pmmNarrativeAudience(context, notes) {
   const note = notes[0];
   if (note) return {
     audience: null,
-    text: `${note.marketSegment || "Audience unresolved"}; buyer role unresolved; evaluation context: ${note.applicationArea || "workflow unresolved"}`,
-    caveat: "Audience is inferred from official application-note context; no matching customer record establishes buyer role or priority.",
+    text: `${note.marketSegment || "Audience unresolved"}; ${pmmTargetedBuyerRole("buyer role unresolved")}; ${pmmTargetedBuyingSituation("buying situation unresolved")}; evaluation context: ${note.applicationArea || "workflow unresolved"}`,
+    caveat: state.marketingTargeting.buyerRole === "All"
+      ? "Audience is inferred from official application-note context; no matching customer record establishes buyer role or priority."
+      : "The selected buyer role is a targeting hypothesis; the application note does not establish that role's authority, message, or objection.",
   };
   return { audience: null, text: "Audience and buying situation unresolved.", caveat: "No matching customer or application-note context is available." };
 }
@@ -2111,11 +2888,12 @@ function pmmNarrativeActivation(context, conferences, workflowRead) {
   return { asset, action, translation };
 }
 
-function pmmCompetitiveNarrative(context) {
+function pmmCompetitiveNarrative(context, governingPosition) {
   const notes = pmmNarrativeApplicationNotes(context);
   const conferences = pmmNarrativeConferenceEvidence(context.competitor);
   const workflowRead = pmmNarrativeApplicationRead(context.competitor, notes);
   const audienceRead = pmmNarrativeAudience(context, notes);
+  const counterPosition = pmmSuggestedCounterPosition(context, audienceRead.audience, governingPosition);
   const sources = pmmNarrativeSources(context, notes, conferences, audienceRead.audience);
   const observedClaim = pmmNarrativeObservedClaim(context, notes);
   const recency = pmmDecisionRecency(sources);
@@ -2151,7 +2929,8 @@ function pmmCompetitiveNarrative(context) {
     observedClaim,
     whatChanged: pmmNarrativeChange(context, notes, workflowRead),
     likelyPositioning: context.positioning,
-    counterPosition: context.counterMessage,
+    counterPosition: counterPosition.text,
+    governingTrace: counterPosition.trace,
     activation,
     recency,
     sourceDiversity,
@@ -2170,24 +2949,374 @@ function pmmNarrativeSourceMarkup(source) {
   return `<a href="${escapeHtml(source.url)}" target="_blank" rel="noreferrer"><span>${escapeHtml(source.evidenceType || "Observed public evidence")}</span><strong>${escapeHtml(source.label || source.sourceName)}</strong><small>${escapeHtml(source.sourceName || "Public source")} · ${escapeHtml(dateLabel)}</small></a>`;
 }
 
-function renderMarketingCompetitiveNarrative(signals = currentSignals()) {
+function pmmMarketChoiceSource(item, link, evidenceRole = "Observed customer evidence") {
+  return {
+    url: link.url,
+    label: link.label || item.theme || "Exact public customer record",
+    sourceName: item.sourceName || "Public customer source",
+    date: link.sourceDate || item.dateCaptured,
+    confidence: item.confidence,
+    evidenceType: evidenceRole,
+  };
+}
+
+function pmmIsDirectCustomerChoiceLink(link) {
+  if (!isHttpUrl(link?.url) || link.sourceType === "regulatory") return false;
+  return !pmmSourceHostname(link).includes("fda.gov");
+}
+
+function pmmMarketChoiceCustomerEvidence(pattern, { company } = {}) {
+  const candidateItems = customerVoiceItemsForHorizon(filters.horizon.value, { ignoreCompetitor: true })
+    .filter((item) => !company || item.company === company)
+    .filter((item) => pattern.test(`${item.theme} ${item.customerLanguageSignal} ${item.category} ${item.productMaturity} ${item.labType}`));
+  const items = candidateItems.filter((item) => customerVoiceSourceLinks(item).some(pmmIsDirectCustomerChoiceLink));
+  const sources = pmmDeduplicateSources(items.flatMap((item) =>
+    customerVoiceSourceLinks(item)
+      .filter(pmmIsDirectCustomerChoiceLink)
+      .map((link) => pmmMarketChoiceSource(item, link)),
+  ));
+  return { items, sources };
+}
+
+function pmmMarketChoiceEvidenceConfidence(sources) {
+  const confidence = pmmEvidenceConfidence(sources);
+  return confidence
+    ? `${confidenceLabel(confidence)} · ${confidence}/100`
+    : "Confidence unscored — exact sources are available, but no compatible confidence score is loaded";
+}
+
+function pmmMarketChoiceObservedAlternative({ level, name, items, sources, watersResponse, requiredProof, fallbackSituation }) {
+  const primary = items[0];
+  const segment = [...new Set(items.map((item) => item.labType).filter(Boolean))].join(", ") || "Segment unresolved";
+  return {
+    level,
+    name,
+    classification: "observed",
+    classificationLabel: "Observed customer-source evidence",
+    whyChoose: primary?.customerLanguageSignal || primary?.theme || "Observed choice rationale unresolved.",
+    segment,
+    buyingSituation: primary?.theme || fallbackSituation || "Buying situation unresolved",
+    objection: primary?.buyingPriority
+      ? `${primary.buyingPriority} is an observed decision criterion; a direct switching objection is not established.`
+      : "Primary objection to switching is not established in the loaded evidence.",
+    watersResponse,
+    requiredProof,
+    evidenceConfidence: pmmMarketChoiceEvidenceConfidence(sources),
+    sources,
+    caveat: "Public customer-language records surface criteria and objections but do not establish market prevalence or win/loss causality.",
+  };
+}
+
+function pmmMarketChoiceHypothesisAlternative({ level, name, whyChoose, buyingSituation, watersResponse, requiredProof, sources = [], caveat }) {
+  return {
+    level,
+    name,
+    classification: "hypothesis",
+    classificationLabel: sources.length
+      ? "Observed competitor evidence · customer-choice hypothesis"
+      : "Strategic hypothesis requiring validation",
+    whyChoose,
+    segment: filters.segment.value === "All"
+      ? "Segment unresolved — validation required"
+      : `${filters.segment.value} is the active evidence filter, not validated demand evidence`,
+    buyingSituation,
+    objection: "Primary objection to switching is unresolved — direct customer or win/loss evidence is required.",
+    watersResponse,
+    requiredProof,
+    evidenceConfidence: sources.length
+      ? `${pmmMarketChoiceEvidenceConfidence(sources)} · customer-choice confidence unresolved`
+      : "Confidence unresolved — validation required",
+    sources,
+    caveat: caveat || "No direct customer-choice or win/loss evidence was located; this alternative is not a statement of prevalence.",
+  };
+}
+
+function pmmMarketChoiceFormAlternative(context, governingPosition) {
+  const customerEvidence = pmmMarketChoiceCustomerEvidence(/./, { company: context.competitor });
+  const supportedChoiceItems = customerEvidence.items.filter((item) => item.sentiment === "Positive");
+  const supportedChoiceSources = pmmDeduplicateSources(supportedChoiceItems.flatMap((item) =>
+    customerVoiceSourceLinks(item).map((link) => pmmMarketChoiceSource(item, link)),
+  ));
+  const officialSources = pmmDeduplicateSources(context.evidenceLinks.map((source) => ({
+    ...source,
+    evidenceType: source.evidenceType || "Observed competitor evidence",
+  })));
+  const sources = pmmDeduplicateSources([...customerEvidence.sources, ...officialSources]).slice(0, 6);
+  const watersResponse = `${governingPosition.pointOfDifference} ${context.competitor} response: ${context.counterMessage}`;
+  if (supportedChoiceSources.length) return pmmMarketChoiceObservedAlternative({
+    level: "Form rivals",
+    name: context.competitor,
+    items: supportedChoiceItems,
+    sources: pmmDeduplicateSources([...supportedChoiceSources, ...officialSources]).slice(0, 6),
+    watersResponse,
+    requiredProof: `Direct ${context.competitor} win/loss evidence plus a controlled workflow comparison against the buying criterion are still required.`,
+    fallbackSituation: "Direct platform comparison or replacement evaluation",
+  });
+  return pmmMarketChoiceHypothesisAlternative({
+    level: "Form rivals",
+    name: context.competitor,
+    whyChoose: customerEvidence.sources.length
+      ? `Public customer records exist for ${context.competitor}, but no supported positive choice rationale was located; negative or neutral records are treated as objections, not strengths.`
+      : `Public ${context.competitor} sources establish visible positioning and product activity; why a customer selects it is not established.`,
+    buyingSituation: "Direct platform comparison or replacement evaluation — strategic hypothesis requiring validation",
+    watersResponse,
+    requiredProof: `Direct ${context.competitor} customer interviews, coded win/loss evidence, and comparable workflow testing.`,
+    sources,
+    caveat: customerEvidence.sources.length
+      ? "Customer-source objections are traceable, but they are not evidence of why customers choose this rival. Choice rationale and prevalence remain unestablished."
+      : "Competitor sources are traceable, but they do not establish customer choice, switching behavior, or market prevalence.",
+  });
+}
+
+function pmmMarketChoiceRelevantFormAlternatives(signals, governingPosition) {
+  if (filters.competitor.value !== "All" && marketingBattlecardCompetitors.includes(filters.competitor.value)) return [];
+  const eligible = [...signals, ...currentLaunches()]
+    .filter((item) => item.competitor && !["Waters", "Market-wide", ...marketingBattlecardCompetitors].includes(item.competitor));
+  const names = [...new Set(eligible.map((item) => item.competitor))].slice(0, 3);
+  return names.map((name) => {
+    const records = eligible.filter((item) => item.competitor === name);
+    const sources = pmmDeduplicateSources(records.map((item) => ({
+      url: item.sourceUrl || timelineUrlForLaunch(item),
+      label: item.title || item.product || `${name} public evidence`,
+      sourceName: item.sourceName || "Official public source",
+      date: item.date,
+      confidence: item.confidence,
+      evidenceType: "Observed competitor evidence",
+    }))).slice(0, 4);
+    const customerEvidence = pmmMarketChoiceCustomerEvidence(/./, { company: name });
+    const supportedChoiceItems = customerEvidence.items.filter((item) => item.sentiment === "Positive");
+    const supportedChoiceSources = pmmDeduplicateSources(supportedChoiceItems.flatMap((item) =>
+      customerVoiceSourceLinks(item).map((link) => pmmMarketChoiceSource(item, link)),
+    ));
+    const combinedSources = pmmDeduplicateSources([...customerEvidence.sources, ...sources]);
+    const response = `${governingPosition.pointOfDifference} A ${name}-specific approved counter-position is not established.`;
+    return supportedChoiceSources.length
+      ? pmmMarketChoiceObservedAlternative({
+        level: "Form rivals",
+        name,
+        items: supportedChoiceItems,
+        sources: pmmDeduplicateSources([...supportedChoiceSources, ...sources]),
+        watersResponse: response,
+        requiredProof: `Direct ${name} win/loss evidence and a comparable workflow study are required.`,
+        fallbackSituation: "Direct platform comparison or replacement evaluation",
+      })
+      : pmmMarketChoiceHypothesisAlternative({
+        level: "Form rivals",
+        name,
+        whyChoose: customerEvidence.sources.length
+          ? `Customer-source records exist for ${name}, but no supported positive selection rationale was located; concerns are not treated as strengths.`
+          : `${name} appears in filtered public competitor evidence; customer selection rationale is not established.`,
+        buyingSituation: "Buying situation unresolved — customer validation required",
+        watersResponse: response,
+        requiredProof: `Direct ${name} customer interviews, win/loss evidence, and comparable workflow testing.`,
+        sources: combinedSources,
+        caveat: "Included as a relevant-other form rival because filtered public evidence exists; customer choice and prevalence are not established.",
+      });
+  });
+}
+
+function pmmMarketChoice(contexts, governingPosition, signals = currentSignals()) {
+  const proposedResponse = `${governingPosition.pointOfDifference} Proposed — not approved.`;
+  const workaroundEvidence = pmmMarketChoiceCustomerEvidence(/workaround|split software|contact closure|alternative analytical|manual review|local expert/i);
+  const inertiaEvidence = pmmMarketChoiceCustomerEvidence(/validated method|method continuity|legacy|replacement timing|upgrade friction|known methods/i);
+  const extensionEvidence = pmmMarketChoiceCustomerEvidence(/legacy|parts|serviceability|maintenance|second-hand|extend/i);
+  const deferEvidence = pmmMarketChoiceCustomerEvidence(/replacement timing|upgrade friction|validation burden|lower risk migration|defer/i);
+  const watersInstalledEvidence = customerVoiceItemsForHorizon(filters.horizon.value, { ignoreCompetitor: true })
+    .filter((item) => item.company === "Waters");
+  const watersInstalledSources = pmmDeduplicateSources(watersInstalledEvidence.flatMap((item) =>
+    customerVoiceSourceLinks(item)
+      .filter(pmmIsDirectCustomerChoiceLink)
+      .map((link) => pmmMarketChoiceSource(item, link, "Observed Waters-user public evidence")),
+  ));
+  const currentWorkaround = workaroundEvidence.items[0];
+  const switchingRecord = inertiaEvidence.items[0];
+  const formRivals = [
+    ...contexts.map((context) => pmmMarketChoiceFormAlternative(context, governingPosition)),
+    ...pmmMarketChoiceRelevantFormAlternatives(signals, governingPosition),
+  ];
+  const categoryAlternatives = [
+    pmmMarketChoiceHypothesisAlternative({
+      level: "Category / resource alternatives",
+      name: "Outsource testing",
+      whyChoose: "Strategic hypothesis: a buyer may prefer external capacity or specialist execution to purchasing and operating another platform.",
+      buyingSituation: "Capacity constraint, specialist-method need, or capital-avoidance decision — validation required",
+      watersResponse: proposedResponse,
+      requiredProof: "Win/loss coding for outsource-versus-buy decisions, buyer interviews, decision criteria, and comparable cost/risk evidence.",
+    }),
+    pmmMarketChoiceHypothesisAlternative({
+      level: "Category / resource alternatives",
+      name: "Use a CRO/CDMO",
+      whyChoose: "Strategic hypothesis: a sponsor may transfer analytical execution to an external development or manufacturing partner.",
+      buyingSituation: "Development, method transfer, scale-up, or regulated execution requiring external capability — validation required",
+      watersResponse: proposedResponse,
+      requiredProof: "Direct sponsor and CRO/CDMO interviews, outsource-versus-insource win/loss evidence, and documented workflow economics.",
+    }),
+    workaroundEvidence.sources.length
+      ? pmmMarketChoiceObservedAlternative({
+        level: "Category / resource alternatives",
+        name: "Alternative analytical workflow",
+        items: workaroundEvidence.items,
+        sources: workaroundEvidence.sources,
+        watersResponse: proposedResponse,
+        requiredProof: "Workflow-specific comparison showing when the proposed Waters path reduces handoffs or workaround burden under comparable conditions.",
+      })
+      : pmmMarketChoiceHypothesisAlternative({
+        level: "Category / resource alternatives",
+        name: "Alternative analytical workflow",
+        whyChoose: "Strategic hypothesis: a laboratory may meet the analytical job through a different instrument, software path, or manual workflow.",
+        buyingSituation: "Workflow redesign or method-selection decision — validation required",
+        watersResponse: proposedResponse,
+        requiredProof: "Customer workflow mapping, alternative-method interviews, and comparable outcome, compliance, and effort evidence.",
+      }),
+  ];
+  const inertiaAlternatives = [
+    inertiaEvidence.sources.length
+      ? pmmMarketChoiceObservedAlternative({
+        level: "Inertia",
+        name: "Do nothing / keep the validated method",
+        items: inertiaEvidence.items,
+        sources: inertiaEvidence.sources,
+        watersResponse: proposedResponse,
+        requiredProof: "A validated migration study showing method continuity, equivalency boundaries, validation effort, and operational risk.",
+      })
+      : pmmMarketChoiceHypothesisAlternative({
+        level: "Inertia",
+        name: "Do nothing / keep the validated method",
+        whyChoose: "Strategic hypothesis: retaining a validated method may appear safer than introducing transfer and revalidation risk.",
+        buyingSituation: "Validated-method continuity or replacement decision — validation required",
+        watersResponse: proposedResponse,
+        requiredProof: "Direct buyer evidence and a validated method-migration study with equivalency and revalidation boundaries.",
+      }),
+    extensionEvidence.sources.length
+      ? pmmMarketChoiceObservedAlternative({
+        level: "Inertia",
+        name: "Extend the existing system",
+        items: extensionEvidence.items,
+        sources: extensionEvidence.sources,
+        watersResponse: proposedResponse,
+        requiredProof: "Lifecycle cost, serviceability, parts-risk, downtime, and migration evidence for an extend-versus-replace decision.",
+      })
+      : pmmMarketChoiceHypothesisAlternative({
+        level: "Inertia",
+        name: "Extend the existing system",
+        whyChoose: "Strategic hypothesis: familiar operation and continued service may defer the disruption of replacement.",
+        buyingSituation: "Lifecycle extension or replacement decision — validation required",
+        watersResponse: proposedResponse,
+        requiredProof: "Installed-system interviews plus lifecycle cost, serviceability, downtime, and migration evidence.",
+      }),
+    deferEvidence.sources.length
+      ? pmmMarketChoiceObservedAlternative({
+        level: "Inertia",
+        name: "Defer replacement",
+        items: deferEvidence.items,
+        sources: deferEvidence.sources,
+        watersResponse: proposedResponse,
+        requiredProof: "Direct deferral-reason coding, replacement timing data, and evidence that de-risks the migration decision.",
+      })
+      : pmmMarketChoiceHypothesisAlternative({
+        level: "Inertia",
+        name: "Defer replacement",
+        whyChoose: "Strategic hypothesis: the customer may postpone replacement when urgency, budget, or migration confidence is insufficient.",
+        buyingSituation: "Replacement timing decision — validation required",
+        watersResponse: proposedResponse,
+        requiredProof: "Win/loss and no-decision reason codes, buyer interviews, and replacement timing evidence.",
+      }),
+  ];
+  return {
+    customer: {
+      job: governingPosition.customerJob,
+      unmetNeed: governingPosition.pointOfDifference,
+      currentWorkaround: currentWorkaround
+        ? `${currentWorkaround.customerLanguageSignal || currentWorkaround.theme}`
+        : "Current workaround is not established in the filtered customer evidence.",
+      workaroundClassification: currentWorkaround ? "observed" : "hypothesis",
+      switchingTrigger: switchingRecord?.theme || governingPosition.buyingSituation,
+      switchingClassification: switchingRecord ? "observed" : "inference",
+      sources: pmmDeduplicateSources([...workaroundEvidence.sources, ...inertiaEvidence.sources]),
+    },
+    company: {
+      capabilities: governingPosition.evidencePillars.map((pillar) => pillar.name),
+      proof: pmmDeduplicateSources(governingPosition.evidencePillars.flatMap((pillar) => pillar.sources)),
+      installedBase: watersInstalledSources.length
+        ? `${watersInstalledSources.length} unique Waters-user public source URL${watersInstalledSources.length === 1 ? "" : "s"} match the active market, geography, technology, and horizon filters. Commercial installed-base advantage is not established.`
+        : "Installed-base advantage is not established; no compatible Waters-user source matches the active filters.",
+      installedBaseSources: watersInstalledSources.slice(0, 4),
+      limitations: governingPosition.exclusions,
+    },
+    competition: {
+      summary: "Customers can choose a direct form rival, a different resource or analytical approach, or inertia. The loaded evidence does not support market-share or prevalence estimates for these choices.",
+    },
+    levels: [
+      { number: 1, name: "Form rivals", alternatives: formRivals },
+      { number: 2, name: "Category / resource alternatives", alternatives: categoryAlternatives },
+      { number: 3, name: "Inertia", alternatives: inertiaAlternatives },
+    ],
+  };
+}
+
+function pmmMarketChoiceLinksMarkup(sources) {
+  if (!sources.length) return `<p class="pmm-market-choice-no-source">Exact customer or win/loss evidence unavailable.</p>`;
+  return `<div class="pmm-market-choice-links">${sources.slice(0, 6).map((source) => `<a href="${escapeHtml(source.url)}" target="_blank" rel="noreferrer"><strong>${escapeHtml(source.label || source.sourceName)}</strong><small>${escapeHtml(source.evidenceType || "Observed public evidence")}${source.date ? ` · ${escapeHtml(formatDate(source.date))}` : " · Date unresolved"}</small></a>`).join("")}</div>`;
+}
+
+function pmmMarketChoiceAlternativeMarkup(alternative) {
+  const hypothesis = alternative.classification === "hypothesis";
+  return `<article class="pmm-market-alternative pmm-market-alternative-${escapeHtml(alternative.classification)}" data-market-choice-classification="${escapeHtml(alternative.classification)}">
+    <header><h6>${escapeHtml(alternative.name)}</h6>${pmmEvidenceTypeMarkup(hypothesis ? "hypothesis" : "observed", alternative.classificationLabel)}</header>
+    <dl>
+      <div><dt>Why customers choose it</dt><dd>${escapeHtml(alternative.whyChoose)}</dd></div>
+      <div><dt>Segment and buying situation</dt><dd><strong>${escapeHtml(alternative.segment)}</strong><span>${escapeHtml(alternative.buyingSituation)}</span></dd></div>
+      <div><dt>Primary objection to switching</dt><dd>${escapeHtml(alternative.objection)}</dd></div>
+      <div><dt>Waters response</dt><dd>${escapeHtml(alternative.watersResponse)} <em>Approval not established.</em></dd></div>
+      <div><dt>Required proof</dt><dd>${escapeHtml(alternative.requiredProof)}</dd></div>
+      <div><dt>Evidence confidence</dt><dd>${escapeHtml(alternative.evidenceConfidence)}</dd></div>
+    </dl>
+    <p class="pmm-market-choice-caveat">${escapeHtml(alternative.caveat)}</p>
+    ${pmmMarketChoiceLinksMarkup(alternative.sources)}
+  </article>`;
+}
+
+function pmmMarketChoiceMarkup(marketChoice) {
+  return `<section class="pmm-market-choice" aria-labelledby="pmmMarketChoiceTitle">
+    <header class="pmm-market-choice-header"><div><div class="pmm-eyebrow">Choice Before Rivalry</div><h4 id="pmmMarketChoiceTitle">Market Choice</h4><p>Define the market around the customer job, Waters' right to compete, and every credible alternative before adapting a competitor narrative.</p></div><div class="pmm-decision-legend">${pmmEvidenceTypeMarkup("observed", "Observed evidence")}${pmmEvidenceTypeMarkup("inference", "Analyst/rule-based inference")}${pmmEvidenceTypeMarkup("hypothesis", "Strategic hypothesis requiring validation")}</div></header>
+    <aside class="pmm-market-prevalence-note" role="note"><strong>Market prevalence unavailable.</strong><span>Displayed records and source URLs describe evidence coverage only; they do not establish market share, alternative frequency, or commercial attractiveness.</span></aside>
+    <div class="pmm-three-cs" aria-label="Market Choice three Cs">
+      <article><header><span>1</span><h5>Customer</h5></header><dl><div><dt>Job</dt><dd>${escapeHtml(marketChoice.customer.job)} ${pmmEvidenceTypeMarkup("inference", "Governing-position inference")}</dd></div><div><dt>Unmet need</dt><dd>${escapeHtml(marketChoice.customer.unmetNeed)} ${pmmEvidenceTypeMarkup("inference", "Proposed — not approved")}</dd></div><div><dt>Current workaround</dt><dd>${escapeHtml(marketChoice.customer.currentWorkaround)} ${pmmEvidenceTypeMarkup(marketChoice.customer.workaroundClassification, marketChoice.customer.workaroundClassification === "observed" ? "Observed customer evidence" : "Strategic hypothesis requiring validation")}</dd></div><div><dt>Switching trigger</dt><dd>${escapeHtml(marketChoice.customer.switchingTrigger)} ${pmmEvidenceTypeMarkup(marketChoice.customer.switchingClassification, marketChoice.customer.switchingClassification === "observed" ? "Observed customer evidence" : "Analyst/rule-based inference")}</dd></div></dl>${pmmMarketChoiceLinksMarkup(marketChoice.customer.sources)}</article>
+      <article><header><span>2</span><h5>Company</h5></header><dl><div><dt>Waters capabilities</dt><dd>${escapeHtml(marketChoice.company.capabilities.join(" · ") || "Capabilities unresolved")}</dd></div><div><dt>Proof</dt><dd>${marketChoice.company.proof.length ? `${marketChoice.company.proof.length} exact public proof source URL${marketChoice.company.proof.length === 1 ? "" : "s"}; substantiation and approval remain unresolved.` : "Applicable proof not located."}</dd></div><div><dt>Installed-base advantage</dt><dd>${escapeHtml(marketChoice.company.installedBase)}</dd></div><div><dt>Limitations</dt><dd><ul>${marketChoice.company.limitations.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></dd></div></dl>${pmmMarketChoiceLinksMarkup(pmmDeduplicateSources([...marketChoice.company.proof, ...marketChoice.company.installedBaseSources]))}</article>
+      <article><header><span>3</span><h5>Competition</h5></header><p>${escapeHtml(marketChoice.competition.summary)}</p><ol>${marketChoice.levels.map((level) => `<li><strong>${escapeHtml(level.name)}</strong><span>${level.alternatives.length} visible alternative${level.alternatives.length === 1 ? "" : "s"}</span></li>`).join("")}</ol></article>
+    </div>
+    <div class="pmm-competitor-onion" aria-labelledby="pmmCompetitorOnionTitle"><div class="pmm-competitor-onion-heading"><span>Three Explicit Levels</span><h5 id="pmmCompetitorOnionTitle">Competitor Onion</h5></div>${marketChoice.levels.map((level) => `<section class="pmm-onion-level pmm-onion-level-${level.number}" aria-labelledby="pmmOnionLevel${level.number}Title"><header><span>Level ${level.number}</span><h5 id="pmmOnionLevel${level.number}Title">${escapeHtml(level.name)}</h5></header>${level.alternatives.length ? `<div class="pmm-market-alternative-grid">${level.alternatives.map(pmmMarketChoiceAlternativeMarkup).join("")}</div>` : pmmEmptyState("No form-rival evidence matches the active competitor filter.")}</section>`).join("")}</div>
+  </section>`;
+}
+
+function renderMarketingCompetitiveNarrative(signals = currentSignals(), governingPosition, marketChoice, modelContexts) {
   const target = byId("pmmCompetitiveNarrative");
-  const competitors = marketingActiveCompetitors();
+  const contexts = modelContexts || state.marketingWorkspaceModel?.contexts || marketingPrioritizedCompetitorContexts(signals);
+  const competitors = contexts.map((context) => context.competitor);
+  const governing = governingPosition || state.marketingGoverningPosition || pmmGoverningPosition(
+    contexts,
+  );
+  const choice = marketChoice || state.marketingMarketChoice || pmmMarketChoice(
+    contexts,
+    governing,
+    signals,
+  );
   if (!competitors.length) {
-    target.innerHTML = pmmEmptyState("Competitive narratives are available for Agilent, Thermo, Shimadzu, and SCIEX; none matches the active competitor filter.");
+    target.innerHTML = `${pmmMarketChoiceMarkup(choice)}${pmmEmptyState("Prioritized competitor narratives are available for Agilent, Thermo, Shimadzu, and SCIEX; none matches the active competitor filter.")}`;
     return;
   }
-  const narratives = competitors
-    .map((competitor) => pmmCompetitiveNarrative(marketingCompetitorContext(competitor, signals)))
+  const narratives = contexts
+    .map((context) => pmmCompetitiveNarrative(context, governing))
     .sort((a, b) => b.score - a.score || b.confidence - a.confidence || a.competitor.localeCompare(b.competitor));
   if (!narratives.some((item) => item.competitor === state.activeBattlecardCompetitor)) {
     state.activeBattlecardCompetitor = narratives[0].competitor;
   }
   const narrative = narratives.find((item) => item.competitor === state.activeBattlecardCompetitor) || narratives[0];
   target.innerHTML = `
-    <div class="pmm-narrative-intro"><div><strong>One canonical narrative per competitor.</strong><p>Claims, intent, application-note patterns, comparator guidance, launches, conferences, and short-horizon defense are synthesized here. Raw feeds remain supporting evidence.</p></div><div class="pmm-decision-legend">${pmmEvidenceTypeMarkup("observed", "Observed competitor evidence")}${pmmEvidenceTypeMarkup("inference", "Analyst/rule-based inference")}${pmmEvidenceTypeMarkup("approval", "Proposed Waters position — not approved")}</div></div>
+    ${pmmMarketChoiceMarkup(choice)}
+    <div class="pmm-narrative-intro"><div><strong>One canonical narrative per competitor.</strong><p>Claims, intent, application-note patterns, comparator guidance, launches, conferences, and short-horizon defense inherit the Governing Position and are synthesized here. Raw feeds remain supporting evidence.</p></div><div class="pmm-decision-legend">${pmmEvidenceTypeMarkup("observed", "Observed competitor evidence")}${pmmEvidenceTypeMarkup("inference", "Analyst/rule-based inference")}${pmmEvidenceTypeMarkup("unresolved", "Proposed Waters position — not approved")}</div></div>
     <div class="battlecard-tabs pmm-narrative-tabs" role="tablist" aria-label="Prioritized competitor narratives">
-      ${narratives.map((item, index) => `<button type="button" role="tab" data-battlecard-competitor="${escapeHtml(item.competitor)}" aria-selected="${item.competitor === narrative.competitor}" class="${item.competitor === narrative.competitor ? "active" : ""}"><strong>${escapeHtml(item.competitor === "Thermo Fisher" ? "Thermo" : item.competitor)}</strong><span>Priority ${index + 1} · ${item.sourceDiversity} source domain${item.sourceDiversity === 1 ? "" : "s"}</span></button>`).join("")}
+      ${narratives.map((item, index) => `<button type="button" role="tab" data-battlecard-competitor="${escapeHtml(item.competitor)}" aria-selected="${item.competitor === narrative.competitor}" class="${item.competitor === narrative.competitor ? "active" : ""}"><strong>${escapeHtml(item.competitor === "Thermo Fisher" ? "Thermo" : item.competitor)}</strong><span>Evidence-fit priority ${index + 1} · ${item.context.targetPriority.label}</span></button>`).join("")}
     </div>
     <article class="competitive-battlecard competitive-narrative-card" role="tabpanel" aria-label="${escapeHtml(narrative.competitor)} canonical competitive narrative">
       <header class="battlecard-header pmm-narrative-header">
@@ -2200,8 +3329,9 @@ function renderMarketingCompetitiveNarrative(signals = currentSignals()) {
         <section><div class="pmm-narrative-label"><span>Likely Positioning</span>${pmmEvidenceTypeMarkup("inference", "Analyst/rule-based inference")}</div><p>${escapeHtml(narrative.likelyPositioning)}</p></section>
         <section><div class="pmm-narrative-label"><span>Workflow Ownership Signal</span>${pmmEvidenceTypeMarkup("inference", "Application-note pattern inference")}</div><p>${escapeHtml(narrative.workflowRead.text)}</p><small>Application-note counts are shown only to distinguish a repeated cluster from an early single-note signal. Publication volume is not used.</small></section>
         <section><div class="pmm-narrative-label"><span>Target Audience or Buying Situation</span>${pmmEvidenceTypeMarkup("inference", "Evidence-based audience inference")}</div><p>${escapeHtml(narrative.audienceRead.text)}</p><small>${escapeHtml(narrative.audienceRead.caveat)}</small></section>
-        <section class="pmm-narrative-counter"><div class="pmm-narrative-label"><span>Waters Counter-Position</span>${pmmEvidenceTypeMarkup("approval", "Proposed — not approved")}</div><p>${escapeHtml(narrative.counterPosition)}</p><small>Approval not established.</small></section>
+        <section class="pmm-narrative-counter"><div class="pmm-narrative-label"><span>Waters Counter-Position</span>${pmmEvidenceTypeMarkup("inference", "Proposed — not approved")}</div><p>${escapeHtml(narrative.counterPosition)}</p><small>Approval not established.</small></section>
       </div>
+      ${pmmGoverningTraceMarkup(governing, narrative.governingTrace)}
       <section class="pmm-narrative-decision">
         <div><span>PMM Decision</span><h5>${escapeHtml(narrative.activation.asset)}</h5></div>
         <p><strong>${escapeHtml(narrative.activation.action)}</strong></p>
@@ -2264,15 +3394,15 @@ function pmmActivationActionType(assetType) {
   })[assetType] || "Positioning";
 }
 
-function pmmActivationDeliverable(decision, rank) {
+function pmmActivationDeliverable(decision, rank, governingPosition) {
   const proofCount = decision.availableProof.length;
   const evidenceAvailable = decision.exactSources.length > 0;
   const assetType = evidenceAvailable ? pmmActivationAssetType(decision) : "Asset unresolved";
   const actionType = evidenceAvailable ? pmmActivationActionType(assetType) : "Action type unresolved";
   const relatedDecision = `Priority ${rank} · ${decision.competitor} · ${decision.buyingCriterion}`;
   const reason = decision.missingProof
-    ? `Close the substantiation gap before activating the proposed counter-position: ${decision.missingProof}`
-    : `Package the proposed counter-position for ${decision.buyerRole} in the identified buying situation.`;
+    ? `Support the governing workflow position by closing this substantiation gap before activation: ${decision.missingProof}`
+    : `Package the governing value proposition and ${decision.competitor} adaptation for ${decision.buyerRole} in the identified buying situation.`;
   const requiredProof = proofCount
     ? `${proofCount} sourced Waters proof item${proofCount === 1 ? " is" : "s are"} available for review. ${decision.missingProof || "Any remaining substantiation gap is unresolved."}`
     : decision.missingProof || "Required proof is unresolved.";
@@ -2282,6 +3412,7 @@ function pmmActivationDeliverable(decision, rank) {
   const action = evidenceAvailable
     ? configuredAction || `Create a ${assetType.toLowerCase()} that packages the proposed position, evidence, caveats, and open proof questions.`
     : "Action unresolved — exact supporting evidence is required before a deliverable is commissioned.";
+  const governingTrace = pmmGoverningTrace(governingPosition, `${action} ${reason}`);
   return {
     rank,
     relatedDecision,
@@ -2297,17 +3428,24 @@ function pmmActivationDeliverable(decision, rank) {
     requiredProof: `${requiredProof} Approval not established.`,
     successMeasure: "Measure needed — no success measure is assigned",
     sources: decision.exactSources,
+    governingPositionId: governingPosition.id,
+    governingTrace,
+    approvalState: governingPosition.approvalState,
   };
 }
 
-function renderMarketingActivationBacklog(decisions) {
+function renderMarketingActivationBacklog(decisions, governingPosition, breakReport, activationActions = []) {
   const target = byId("pmmActivationBacklog");
+  const breakMarkup = pmmBreakReportMarkup(breakReport, governingPosition.targeting);
   if (!decisions.length) {
-    target.innerHTML = pmmEmptyState("No PMM action can be linked to a positioning decision under the active filters.");
+    target.innerHTML = `${breakMarkup}${pmmEmptyState("No PMM action can be linked to a positioning decision under the active hierarchical target. The export retains this unresolved state.")}`;
     return;
   }
-  const deliverables = decisions.map((decision, index) => pmmActivationDeliverable(decision, index + 1));
+  const deliverables = activationActions.length
+    ? activationActions
+    : decisions.map((decision, index) => pmmActivationDeliverable(decision, index + 1, governingPosition));
   target.innerHTML = `
+    ${breakMarkup}
     <div class="pmm-backlog-intro">
       <div><div class="pmm-eyebrow">Recommended PMM Actions</div><h3>Positioning Decisions Converted into Deliverables</h3><p>Each item traces to one prioritized positioning decision. Recommendations are analyst/rule-based inference; workflow ownership, timing, approval, and measurement remain unresolved unless explicitly evidenced.</p></div>
       <div class="pmm-asset-taxonomy" aria-label="Supported PMM asset types"><span>Supported asset types</span><div>${pmmActivationAssetTypes.map((type) => `<span>${escapeHtml(type)}</span>`).join("")}</div></div>
@@ -2316,7 +3454,7 @@ function renderMarketingActivationBacklog(decisions) {
     <div class="pmm-backlog" role="list">${deliverables.map((item) => `<article class="pmm-backlog-item" role="listitem" data-positioning-rank="${item.rank}" data-activation-asset="${escapeHtml(item.assetType)}">
       <header class="pmm-backlog-header">
         <div><span>Related Positioning Decision</span><strong>${escapeHtml(item.relatedDecision)}</strong></div>
-        ${pmmEvidenceTypeMarkup(item.sources.length ? "inference" : "unresolved", item.sources.length ? "Analyst/rule-based recommendation" : "Unresolved — no recommendation")}
+        ${pmmEvidenceTypeMarkup(item.sources.length ? "inference" : "unresolved", item.sources.length ? `${item.approvalState} · analyst/rule-based recommendation` : "Unresolved — no recommendation")}
       </header>
       <div class="pmm-backlog-body">
         <section class="pmm-backlog-deliverable"><div><span>Asset / Action</span><strong class="pmm-asset-type">${escapeHtml(item.assetType)}</strong><small>${escapeHtml(item.actionType)}</small></div><p>${escapeHtml(item.action)}</p></section>
@@ -2332,6 +3470,7 @@ function renderMarketingActivationBacklog(decisions) {
           ${pmmStatusMarkup("unresolved", "Success measure", item.successMeasure)}
         </div>
         <section class="pmm-backlog-proof"><span>Required Proof or Approval</span><p>${escapeHtml(item.requiredProof)}</p></section>
+        <section class="pmm-backlog-governing-trace" data-governing-position-ref="${escapeHtml(item.governingPositionId)}" data-alignment-status="${escapeHtml(item.governingTrace.status)}"><span>Governing Position Trace</span><p>Inherits ${escapeHtml(governingPosition.primaryValueProposition)}</p><p><strong>Local asset adaptation:</strong> ${escapeHtml(item.action)}</p><small>${escapeHtml(item.governingTrace.message)}</small></section>
         <section class="pmm-backlog-sources"><span>Evidence Links</span>${item.sources.length ? `<div>${item.sources.slice(0, 6).map(pmmDecisionSourceMarkup).join("")}</div>` : `<p class="pmm-unresolved">Exact evidence links unavailable. The action remains unresolved.</p>`}</section>
       </div>
     </article>`).join("")}</div>`;
@@ -2468,6 +3607,7 @@ function pmmAppendixSourceCoverageRecords() {
       filters.technology.value,
       `${source.source} ${(source.signalCoverage || []).join(" ")}`,
     ))
+    .filter((source) => pmmTargetingMatches(source))
     .map((source) => pmmAppendixRecord({
       title: source.source,
       type: `Source coverage · ${source.group || "Unclassified"}`,
@@ -2540,6 +3680,7 @@ function pmmAppendixHistoricalCapabilityRecords() {
   });
   return [...historical, ...technical]
     .filter((record) => record.url)
+    .filter((record) => pmmTargetingMatches(record))
     .sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
 }
 
@@ -2553,8 +3694,11 @@ function pmmAppendixRecordMarkup(record) {
   const sourceLink = record.url && record.linkAvailable
     ? `<a href="${escapeHtml(record.url)}" target="_blank" rel="noreferrer">Open exact source ↗</a>`
     : `<span class="pmm-unresolved">Source link unavailable</span>`;
+  const consolidationNote = record.mergedRecordCount > 1
+    ? `<small class="pmm-appendix-record-caveat">${record.mergedRecordCount} evidence records share this canonical URL and are counted once.</small>`
+    : "";
   return `<article class="pmm-appendix-record">
-    <div><span>${escapeHtml(record.type)}</span><strong>${escapeHtml(record.title)}</strong>${record.description ? `<p>${escapeHtml(record.description)}</p>` : ""}<small>${escapeHtml(record.sourceName)} · ${escapeHtml(date)} · ${escapeHtml(confidence)}</small>${record.caveat ? `<small class="pmm-appendix-record-caveat">${escapeHtml(record.caveat)}</small>` : ""}</div>
+    <div><span>${escapeHtml(record.type)}</span><strong>${escapeHtml(record.title)}</strong>${record.description ? `<p>${escapeHtml(record.description)}</p>` : ""}<small>${escapeHtml(record.sourceName)} · ${escapeHtml(date)} · ${escapeHtml(confidence)}${record.sourceDomain ? ` · ${escapeHtml(record.sourceDomain)}` : ""}</small>${record.caveat ? `<small class="pmm-appendix-record-caveat">${escapeHtml(record.caveat)}</small>` : ""}${consolidationNote}</div>
     ${sourceLink}
   </article>`;
 }
@@ -2568,8 +3712,7 @@ function pmmAppendixGroupMarkup(group) {
   </details>`;
 }
 
-function renderMarketingEvidenceAppendix(contexts, signals) {
-  const target = byId("pmmEvidenceAppendix");
+function marketingEvidenceAppendixModel(signals) {
   const launchConferenceRecords = pmmAppendixLaunchConferenceRecords();
   const applicationPublicationRecords = pmmAppendixApplicationPublicationRecords(signals);
   const filingPartnershipRecords = pmmAppendixFilingPartnershipRecords(signals);
@@ -2580,7 +3723,7 @@ function renderMarketingEvidenceAppendix(contexts, signals) {
     ...filingPartnershipRecords,
     ...customerLanguageRecords,
   ]);
-  const groups = [
+  const rawGroups = [
     {
       title: "Launches and Conferences",
       description: "Official launches, event programs, sponsorship records, and confirmation caveats.",
@@ -2631,38 +3774,168 @@ function renderMarketingEvidenceAppendix(contexts, signals) {
       emptyState: "No historical product or technical-comparison record matches the active competitor and technology filters.",
     },
   ];
-  const totalRecords = groups.reduce((total, group) => total + group.records.length, 0);
-  const directlyLinked = groups.reduce((total, group) => total + group.records.filter((record) => record.url && record.linkAvailable).length, 0);
+  const appendix = PmmDataContract.consolidateAppendixGroups(rawGroups);
+  return { ...appendix, customerLanguageRecords };
+}
+
+function renderMarketingEvidenceAppendix(appendix) {
+  const target = byId("pmmEvidenceAppendix");
+  const displayedRecords = appendix.groups.reduce((total, group) => total + group.records.length, 0);
   target.innerHTML = `
     <div class="pmm-appendix-intro">
       <div><div class="pmm-eyebrow">Secondary Intelligence · Collapsed by Default</div><h3>Evidence Without Decision-Flow Competition</h3><p>Leadership synthesis remains in the Leadership view. Raw feeds, catalogs, coverage diagnostics, and detailed records are consolidated here and do not create PMM recommendations by themselves.</p></div>
-      <div class="pmm-appendix-summary" aria-label="Appendix evidence summary"><strong>${totalRecords}</strong><span>filtered records</span><small>${directlyLinked} exact source link${directlyLinked === 1 ? "" : "s"}</small></div>
+      <div class="pmm-appendix-summary" aria-label="Appendix evidence summary"><strong>${appendix.uniqueSourceCount}</strong><span>unique canonical source URLs</span><small>${displayedRecords} displayed entries · ${appendix.duplicateRecordCount} duplicate record${appendix.duplicateRecordCount === 1 ? "" : "s"} consolidated${appendix.unlinkedRecordCount ? ` · ${appendix.unlinkedRecordCount} unlinked record${appendix.unlinkedRecordCount === 1 ? "" : "s"}` : ""}</small></div>
     </div>
-    <div class="pmm-appendix-groups">${groups.map(pmmAppendixGroupMarkup).join("")}</div>`;
+    <div class="pmm-appendix-groups">${appendix.groups.map(pmmAppendixGroupMarkup).join("")}</div>`;
 }
 
-function renderMarketingSourceCounts(contexts, positioningDecisionCount) {
-  const customerLinks = uniqueCustomerVoiceLinks(currentCustomerVoiceItems(), 1000);
-  const directEvidenceCount = contexts.reduce((total, context) => total + context.evidenceLinks.length, 0);
+function normalizeMarketingClaimFilters(rows) {
+  const audiences = pmmClaimsFilterOptions(rows.map((row) => ({ ...row, audienceCriterion: `${row.audience} · ${row.buyingCriterion}` })), "audienceCriterion");
+  const classifications = Object.values(pmmClaimEvidenceClassifications);
+  if (state.marketingClaimsFilters.audience !== "All" && !audiences.includes(state.marketingClaimsFilters.audience)) state.marketingClaimsFilters.audience = "All";
+  if (state.marketingClaimsFilters.classification !== "All" && !classifications.includes(state.marketingClaimsFilters.classification)) state.marketingClaimsFilters.classification = "All";
+  if (state.marketingClaimsFilters.readiness !== "All" && !pmmClaimReadinessValues.includes(state.marketingClaimsFilters.readiness)) state.marketingClaimsFilters.readiness = "All";
+}
+
+function pmmMetricPill({ id, label, value, target, definition }) {
+  const tooltipId = `pmm-metric-${id}-definition`;
+  return `<a class="source-pill source-pill-link pmm-metric-pill" href="#${escapeHtml(target)}" data-evidence-target="${escapeHtml(target)}" data-pmm-metric="${escapeHtml(id)}" aria-describedby="${tooltipId}"><span>${escapeHtml(label)} <b class="pmm-metric-info" aria-hidden="true">i</b></span><strong>${value}<small>View →</small></strong><span id="${tooltipId}" class="pmm-metric-tooltip" role="tooltip">${escapeHtml(definition)}</span></a>`;
+}
+
+function renderMarketingSourceCounts(model) {
+  const { kpis } = model;
   byId("sourceCounts").innerHTML = `
     <div class="source-pill"><span>Role view</span><strong>Product Marketing</strong></div>
     <div class="source-pill"><span>Time window</span><strong>${escapeHtml(horizonLabel())}</strong></div>
-    <a class="source-pill source-pill-link" href="#pmm-positioning-decisions" data-evidence-target="pmm-positioning-decisions"><span>Positioning decisions</span><strong>${positioningDecisionCount}<small>View →</small></strong></a>
-    <a class="source-pill source-pill-link" href="#pmm-claims-proof" data-evidence-target="pmm-claims-proof"><span>Claims awaiting approval</span><strong>${contexts.length}<small>View →</small></strong></a>
-    <a class="source-pill source-pill-link" href="#pmm-audience-criteria" data-evidence-target="pmm-audience-criteria"><span>Exact customer sources</span><strong>${customerLinks.length}<small>View →</small></strong></a>
-    <a class="source-pill source-pill-link" href="#pmm-evidence-appendix" data-evidence-target="pmm-evidence-appendix"><span>Direct evidence sources</span><strong>${directEvidenceCount}<small>View →</small></strong></a>`;
+    ${pmmMetricPill({ id: "positioning-decisions", label: "Positioning decisions", value: kpis.positioningDecisions, target: "pmm-positioning-decisions", definition: "Displayed positioning-decision cards. Calculation: eligible evidence-backed decision candidates after all global filters, limited to three. Unit: displayed cards. Matrix-only claim filters do not apply." })}
+    ${pmmMetricPill({ id: "claims-awaiting-approval", label: "Claims without approval", value: kpis.claimsAwaitingApproval, target: "pmm-claims-proof", definition: "Displayed registry rows with no established legal/claims approval record. Calculation: visible claim rows where approvalEstablished is false, regardless of substantiation status. Unit: displayed rows. Global and claims-registry filters apply." })}
+    ${pmmMetricPill({ id: "exact-customer-sources", label: "Exact customer sources", value: kpis.customerLanguageSources, target: "pmm-audience-criteria", definition: "Unique canonical URLs in the filtered customer-language evidence set. Calculation: valid exact customer URLs after URL normalization and deduplication. Unit: unique URLs, not records or independent organizations. All global filters apply." })}
+    ${pmmMetricPill({ id: "direct-evidence-sources", label: "Direct evidence sources", value: kpis.directEvidenceSources, target: "pmm-evidence-appendix", definition: "Unique canonical URLs displayed in the Evidence appendix. Calculation: valid linked appendix records after global URL deduplication; unlinked records are excluded. Unit: unique URLs, not records or independent organizations. All applicable global filters apply; the historical group intentionally ignores horizon, geography, and market where those fields do not exist." })}`;
+}
+
+function pmmTargetingBreakReportModel(claimRows, buyingCommittee, positioningDecisions, narratives) {
+  return PmmDataContract.buildTargetingBreakReport({
+    claimRows,
+    buyingCommittee,
+    governingTraces: [
+      ...positioningDecisions.map((decision) => ({ ...decision.governingTrace, label: `${decision.competitor} positioning decision` })),
+      ...narratives.map((narrative) => ({ ...narrative.governingTrace, label: `${narrative.competitor} competitive narrative` })),
+    ],
+    requiredBuyerRoles: pmmBuyingCommitteeRoleDefinitions.map((role) => ({ key: role.key, label: role.label })),
+    economicAssumptions: [
+      "Acquisition price, discount, currency, and contract terms are unavailable.",
+      "Service, consumables, labor, training, and downtime assumptions are unavailable.",
+      "Utilization, migration effort, validation effort, and analysis horizon are unavailable.",
+      "No approved segment-specific economic model or owner is loaded.",
+    ],
+  });
+}
+
+function renderMarketingTargetingContext(model) {
+  const target = byId("pmmTargetingContext");
+  const targeting = model.governingPosition.targeting;
+  const path = [
+    ["Market", pmmTargetingDisplayValue(targeting.market, "All markets")],
+    ["Application / workflow", pmmTargetingDisplayValue(targeting.application, "All supported applications")],
+    ["Buying situation", pmmTargetingDisplayValue(targeting.buyingSituation, "All buying situations")],
+    ["Geography", pmmTargetingDisplayValue(targeting.geography, "All geographies")],
+    ["Buyer role", pmmTargetingDisplayValue(targeting.buyerRole, "Full buying committee")],
+  ];
+  target.innerHTML = `<div><div class="pmm-eyebrow">Canonical Targeting Selector</div><h3>Hierarchical Targeting</h3><p id="pmmTargetingHelp">Market and geography reuse the global filters. Application, buying situation, and buyer role narrow the same canonical PMM model; no downstream artifact keeps an earlier segment silently.</p></div>
+    <ol class="pmm-targeting-path">${path.map(([label, value]) => `<li><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></li>`).join("")}</ol>
+    <div class="pmm-targeting-reconciliation" aria-live="polite"><strong>${model.contexts.length} target-compatible competitor${model.contexts.length === 1 ? "" : "s"}</strong><span>${model.positioningDecisions.length} positioning decision${model.positioningDecisions.length === 1 ? "" : "s"} · ${model.claimRows.length} governed claim${model.claimRows.length === 1 ? "" : "s"} · ${model.appendix.uniqueSourceCount} evidence URL${model.appendix.uniqueSourceCount === 1 ? "" : "s"}</span></div>
+    <div class="pmm-targeting-priority"><span>Competitor priority · evidence fit, not market attractiveness</span>${model.contexts.length ? `<ol>${model.contexts.map((context, index) => `<li><b>${index + 1}</b><strong>${escapeHtml(context.competitor)}</strong><small>${escapeHtml(context.targetPriority.label)}</small></li>`).join("")}</ol>` : `<p>No competitor has target-compatible evidence under this hierarchy.</p>`}</div>`;
+}
+
+function pmmBreakReportList(items, itemMarkup, emptyMessage) {
+  return items.length ? `<ul>${items.map(itemMarkup).join("")}</ul>` : `<p class="pmm-break-clear">${escapeHtml(emptyMessage)}</p>`;
+}
+
+function pmmBreakReportMarkup(report, targeting) {
+  const swingMessage = report.swingChange.changed
+    ? `${report.swingChange.baseline} → ${report.swingChange.current}`
+    : `${report.swingChange.current}; no change from the comparable market-baseline hypothesis.`;
+  return `<section class="pmm-break-report" aria-labelledby="pmmBreakReportTitle">
+    <header><div><div class="pmm-eyebrow">Pre-Activation Gate</div><h3 id="pmmBreakReportTitle">What Breaks?</h3><p>These gaps are recalculated for ${escapeHtml(pmmTargetingKey(targeting))}. They remain attached to the export and block unsupported claims from silently carrying between targets.</p></div><strong>${report.unsupportedClaims.length + report.inapplicableProof.length + report.missingBuyerRoles.length + report.missingEconomicAssumptions.length + report.conflictingMessages.length}</strong></header>
+    <div class="pmm-break-grid">
+      <article><h4>Unsupported claims <span>${report.unsupportedClaims.length}</span></h4>${pmmBreakReportList(report.unsupportedClaims, (row) => `<li><strong>${escapeHtml(row.competitor)}</strong><span>${escapeHtml(row.proposedClaimWording)}</span></li>`, "No unsupported claim rows are present.")}</article>
+      <article><h4>Inapplicable proof <span>${report.inapplicableProof.length}</span></h4>${pmmBreakReportList(report.inapplicableProof, (item) => `<li><strong>${escapeHtml(item.record.label || "Evidence record")}</strong><span>Does not match the governed claim dimensions.</span></li>`, "No proof record is currently classified Inapplicable.")}</article>
+      <article><h4>Missing buyer roles <span>${report.missingBuyerRoles.length}</span></h4>${pmmBreakReportList(report.missingBuyerRoles, (role) => `<li><span>${escapeHtml(role.label)}</span></li>`, "Every required role has at least one exact target-compatible source.")}</article>
+      <article><h4>Missing economic assumptions <span>${report.missingEconomicAssumptions.length}</span></h4>${pmmBreakReportList(report.missingEconomicAssumptions, (item) => `<li><span>${escapeHtml(item)}</span></li>`, "No economic assumption gap detected.")}</article>
+      <article><h4>Changed swing attribute <span>${report.swingChange.changed ? "Changed" : "Stable"}</span></h4><p>${escapeHtml(swingMessage)}</p><small>Both values are hypothesis-model calculations, not measured buyer preference.</small></article>
+      <article><h4>Governing-position conflicts <span>${report.conflictingMessages.length}</span></h4>${pmmBreakReportList(report.conflictingMessages, (trace) => `<li><strong>${escapeHtml(trace.label || "Downstream message")}</strong><span>${escapeHtml(trace.message)}</span></li>`, "No contradiction or unsupported deviation was detected by the governing-position rule check.")}</article>
+    </div>
+    <div class="pmm-export-gate"><div><strong>Governed export</strong><span>The export contains only the current hierarchy plus its unresolved and inapplicable states.</span></div><button type="button" data-pmm-export-targeting>Export current PMM snapshot</button></div>
+  </section>`;
+}
+
+function exportMarketingTargetingSnapshot() {
+  const model = state.marketingWorkspaceModel;
+  if (!model) return;
+  const exportData = {
+    generatedAt: new Date().toISOString(),
+    dataAsOf: state.data?.asOfDate || null,
+    targeting: model.governingPosition.targeting,
+    governingPosition: model.governingPosition,
+    breakReport: model.breakReport,
+    competitorPriority: model.contexts.map((context, index) => ({ rank: index + 1, competitor: context.competitor, ...context.targetPriority })),
+    positioningDecisions: model.positioningDecisions,
+    claims: model.claimRows,
+    narratives: model.narratives,
+    activationActions: model.activationActions,
+    caveat: "Internal proposed PMM work product. Approval is not established unless an explicit approval record says otherwise.",
+  };
+  const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = `waters-pmm-${pmmTargetingKey(model.governingPosition.targeting).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}.json`;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+}
+
+function buildMarketingWorkspaceModel(signals) {
+  normalizeMarketingTargeting();
+  const contexts = marketingPrioritizedCompetitorContexts(signals);
+  const provisionalGoverningPosition = pmmGoverningPosition(contexts);
+  const provisionalPositioningDecisions = marketingPositioningDecisionCandidates(contexts, provisionalGoverningPosition);
+  const buyingCommittee = pmmBuyingCommitteeModel(provisionalPositioningDecisions, contexts);
+  const governingPosition = pmmGoverningPosition(contexts, buyingCommittee.selectedSwingAttribute);
+  state.marketingGoverningPosition = governingPosition;
+  const marketChoice = pmmMarketChoice(contexts, governingPosition, signals);
+  state.marketingMarketChoice = marketChoice;
+  const positioningDecisionCandidates = marketingPositioningDecisionCandidates(contexts, governingPosition);
+  const claimRows = marketingClaimsProofRows(contexts, governingPosition);
+  const positioningDecisions = pmmApplyClaimsRegistryToDecisions(positioningDecisionCandidates, claimRows);
+  const narratives = contexts.map((context) => pmmCompetitiveNarrative(context, governingPosition))
+    .sort((left, right) => right.score - left.score || right.confidence - left.confidence || left.competitor.localeCompare(right.competitor));
+  const activationActions = positioningDecisions.map((decision, index) => pmmActivationDeliverable(decision, index + 1, governingPosition));
+  const breakReport = pmmTargetingBreakReportModel(claimRows, buyingCommittee, positioningDecisions, narratives);
+  normalizeMarketingClaimFilters(claimRows);
+  const visibleClaimRows = marketingVisibleClaimRows(claimRows);
+  const appendix = marketingEvidenceAppendixModel(signals);
+  const kpis = PmmDataContract.buildKpis({
+    positioningDecisions,
+    visibleClaimRows,
+    customerLanguageRecords: appendix.customerLanguageRecords,
+    appendix,
+  });
+  return { contexts, governingPosition, marketChoice, buyingCommittee, positioningDecisions, claimRows, visibleClaimRows, narratives, activationActions, breakReport, appendix, kpis };
 }
 
 function renderMarketingWorkspace(signals) {
-  const contexts = marketingActiveCompetitors().map((competitor) => marketingCompetitorContext(competitor, signals));
-  const positioningDecisions = marketingPositioningDecisionCandidates(contexts);
-  renderMarketingPositioningDecisions(positioningDecisions);
-  renderMarketingClaimsProof(contexts);
-  renderMarketingAudienceCriteria();
-  renderMarketingCompetitiveNarrative(signals);
-  renderMarketingActivationBacklog(positioningDecisions);
-  renderMarketingEvidenceAppendix(contexts, signals);
-  renderMarketingSourceCounts(contexts, positioningDecisions.length);
+  const model = buildMarketingWorkspaceModel(signals);
+  state.marketingWorkspaceModel = model;
+  renderMarketingTargetingContext(model);
+  renderMarketingPositioningDecisions(model.positioningDecisions, model.governingPosition);
+  renderMarketingClaimsProof(model.claimRows, model.visibleClaimRows, model.governingPosition);
+  renderMarketingAudienceCriteria(model.appendix.customerLanguageRecords, model.buyingCommittee);
+  renderMarketingCompetitiveNarrative(signals, model.governingPosition, model.marketChoice, model.contexts);
+  renderMarketingActivationBacklog(model.positioningDecisions, model.governingPosition, model.breakReport, model.activationActions);
+  renderMarketingEvidenceAppendix(model.appendix);
+  renderMarketingSourceCounts(model);
 }
 
 function renderProductComparator() {
@@ -2736,6 +4009,17 @@ function setupComparisonPanel() {
 
 function setupMarketingWorkspaceControls() {
   document.addEventListener("change", (event) => {
+    const targetingControl = event.target.closest("[data-pmm-target-filter]");
+    if (targetingControl && state.view === "Marketing") {
+      const key = targetingControl.dataset.pmmTargetFilter;
+      if (key in state.marketingTargeting) {
+        state.marketingTargeting[key] = targetingControl.value;
+        state.marketingClaimsFilters = { readiness: "All", audience: "All", classification: "All" };
+        state.activeBattlecardCompetitor = "";
+        render();
+      }
+      return;
+    }
     const control = event.target.closest("[data-pmm-claims-filter]");
     if (!control || state.view !== "Marketing") return;
     const key = control.dataset.pmmClaimsFilter;
@@ -2744,6 +4028,12 @@ function setupMarketingWorkspaceControls() {
     render();
   });
   document.addEventListener("click", (event) => {
+    const exportButton = event.target.closest("[data-pmm-export-targeting]");
+    if (exportButton && state.view === "Marketing") {
+      event.preventDefault();
+      exportMarketingTargetingSnapshot();
+      return;
+    }
     const clearButton = event.target.closest("[data-pmm-claims-clear]");
     if (!clearButton || state.view !== "Marketing") return;
     event.preventDefault();
@@ -3032,7 +4322,8 @@ function filteredSignalsForHorizon(horizonValue) {
       `${signal.title} ${signal.summary} ${signal.signalType} ${signal.pmImplication || ""}`,
     );
     const competitorMatch = filters.competitor.value === "All" || signal.competitor === filters.competitor.value;
-    return categoryMatch && horizonMatch && geoMatch && segmentMatch && technologyMatch && competitorMatch;
+    return categoryMatch && horizonMatch && geoMatch && segmentMatch && technologyMatch && competitorMatch
+      && pmmTargetingMatches(signal);
   });
 }
 
@@ -3108,6 +4399,7 @@ function filteredLaunchesForHorizon(horizonValue) {
       `${launch.product} ${launch.launchType} ${launch.marketSegment || ""}`,
     ))
     .filter((launch) => filters.competitor.value === "All" || launch.competitor === filters.competitor.value)
+    .filter((launch) => pmmTargetingMatches(launch))
     .sort((a, b) => new Date(b.date) - new Date(a.date));
 }
 
@@ -3119,6 +4411,7 @@ function currentConferenceSources() {
     .filter((event) => filters.segment.value === "All" || event.marketSegments.includes(filters.segment.value))
     .filter((event) => filters.technology.value === "All" || event.technologyFocus.some((technology) => technologyMatchesFilter(technology, filters.technology.value, event.eventName)))
     .filter((event) => filters.competitor.value === "All" || event.competitorWatch.some((competitor) => competitor.name === filters.competitor.value))
+    .filter((event) => pmmTargetingMatches(event))
     .sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
 }
 
@@ -3139,6 +4432,7 @@ function filteredFilingInsightsForHorizon(horizonValue) {
       );
     })
     .filter((insight) => filters.competitor.value === "All" || insight.competitor === filters.competitor.value)
+    .filter((insight) => pmmTargetingMatches(insight))
     .sort((a, b) => (b.impactScore || 0) - (a.impactScore || 0));
 }
 
@@ -3194,11 +4488,11 @@ function actionForRecommendation(rec, breakdown) {
   if (rec.regionalEvidenceMissing) return "Monitor";
   const momentum = breakdown.evidence?.trend ? trendMomentum(breakdown.evidence.trend, filters.horizon.value) : null;
   const directEvidence = breakdown.evidence.launches.length + breakdown.evidence.strategic.length + breakdown.evidence.filings.length;
-  if ((breakdown.total < 35 || breakdown.confidenceState?.state === "Weak signal") && (momentum?.label === "Accelerating" || directEvidence > 0)) return "Monitor";
-  if (breakdown.total < 35 || breakdown.confidenceState?.state === "Weak signal") return "Deprioritize";
-  if (breakdown.total < 50) return "Monitor";
+  if ((breakdown.rankingScore < 35 || breakdown.evidencePriority === "Low") && (momentum?.label === "Accelerating" || directEvidence > 0)) return "Monitor";
+  if (breakdown.rankingScore < 35 || breakdown.evidencePriority === "Low") return "Deprioritize";
+  if (breakdown.rankingScore < 50) return "Monitor";
   if ((breakdown.customerPull ?? breakdown.customerEvidence) < 10 && /software|automation|informatics|oligo|rna|lnp|pfas|regulated|workflow/.test(text)) return "Validate";
-  return breakdown.total >= 78 ? "Prepare roadmap decision" : "Validate";
+  return breakdown.rankingScore >= 78 ? "Prepare roadmap decision" : "Validate";
 }
 
 function actionClass(action) {
@@ -3255,39 +4549,15 @@ function customerPullEvidenceForRecommendation(rec) {
 }
 
 function confidenceStateForBreakdown(breakdown) {
-  const independentSignals = breakdown.evidence.launches.length + breakdown.evidence.strategic.length + breakdown.evidence.filings.length + (breakdown.evidence.trend ? 1 : 0);
-  if (breakdown.total >= 78 && breakdown.competitorPressure >= 15 && breakdown.customerPull >= 12 && breakdown.decisionRelevance >= 16) {
-    return {
-      state: "Strategic threat",
-      className: "strategic-threat",
-      guidance: "Independent public evidence supports choosing and resourcing a roadmap response now.",
-    };
-  }
-  if (breakdown.total >= 72 && breakdown.customerPull >= 14 && breakdown.evidenceQualityFreshness >= 8) {
-    return {
-      state: "Ready for PM decision",
-      className: "decision-ready",
-      guidance: "Public evidence is strong enough to choose among the documented roadmap options.",
-    };
-  }
-  if (breakdown.total >= 62 && independentSignals >= 3) {
-    return {
-      state: "Emerging trend",
-      className: "emerging",
-      guidance: "The evidence supports a targeted validation artifact, but not a roadmap commitment yet.",
-    };
-  }
-  if (breakdown.total >= 45 && independentSignals >= 1) {
-    return {
-      state: "Directional signal",
-      className: "directional",
-      guidance: "Verify the conclusion with more public evidence before changing the roadmap.",
-    };
-  }
+  const stateLabel = breakdown.evidencePriority === "High"
+    ? "Evidence priority: High"
+    : breakdown.evidencePriority === "Medium"
+      ? "Evidence priority: Medium"
+      : "Evidence priority: Low";
   return {
-    state: "Weak signal",
-    className: "weak",
-    guidance: "There is not enough public evidence to recommend a product change.",
+    state: stateLabel,
+    className: breakdown.evidencePriority === "High" ? "emerging" : breakdown.evidencePriority === "Medium" ? "directional" : "weak",
+    guidance: breakdown.magnitude.status,
   };
 }
 
@@ -3345,8 +4615,27 @@ function strategicPriorityBreakdown(rec, signals) {
   if (!evidence.strategic.length && competitorPressure < 10) evidenceLimitations.push("no strategic-move signal");
   if (customerPull < 8) evidenceLimitations.push("weak public customer voice");
   if (sourceQuality.issues > 0) evidenceLimitations.push("one or more sources need review");
-  const rawScore = trendAcceleration + competitorPressure + customerPull + decisionRelevance + evidenceQualityFreshness + strategicUrgency;
-  const total = Math.max(0, Math.min(100, rawScore));
+  const rankingScore = Math.max(0, Math.min(100, trendAcceleration + competitorPressure + customerPull + decisionRelevance + evidenceQualityFreshness + strategicUrgency));
+  const magnitude = competitiveMethodology.unquantifiedMagnitude({
+    ...(rec.businessMagnitude || {}),
+    affectedSegment: rec.businessMagnitude?.affectedSegment || rec.marketSegment || "Not established from public evidence",
+    geography: filters.geo.value === "All"
+      ? rec.businessMagnitude?.geography || "Not established from public evidence"
+      : filters.geo.value,
+    installedBaseOrReplacementCohort: rec.businessMagnitude?.installedBaseOrReplacementCohort,
+    revenueOrShareAtRiskBand: rec.businessMagnitude?.revenueOrShareAtRiskBand,
+    timeHorizon: rec.businessMagnitude?.timeHorizon || "0–24 months",
+    basis: rec.businessMagnitude?.basis,
+    magnitudeConfidence: rec.businessMagnitude?.magnitudeConfidence,
+    validationOwner: rec.businessMagnitude?.validationOwner || rec.decisionOwners || "Product Management + Commercial Analytics",
+    nextStep: rec.businessMagnitude?.nextStep,
+  });
+  const evidencePriority = competitiveMethodology.evidencePriority({
+    applicationTrend: activityLevelFromTwenty(trendAcceleration),
+    competitorActivity: activityLevelFromTwenty(competitorPressure),
+    customerEvidence: activityLevelFromTwenty(customerPull),
+    sourceQuality: evidenceQualityFreshness >= 8 ? "High" : evidenceQualityFreshness >= 5 ? "Medium" : "Low",
+  });
   const breakdown = {
     trendAcceleration,
     competitorPressure,
@@ -3361,8 +4650,10 @@ function strategicPriorityBreakdown(rec, signals) {
     independentSignals,
     latestEvidenceDate,
     recencyDays,
-    total,
-    rawScore,
+    total: null,
+    rankingScore,
+    evidencePriority,
+    magnitude,
     evidenceLimitations,
     evidence,
     customerPullEvidence,
@@ -3432,7 +4723,7 @@ function currentRecommendationSet(signals) {
     })
     .filter((rec) => recommendationHasHorizonEvidence(rec))
     .filter((rec) => recommendationHasGeographicEvidence(rec))
-    .sort((a, b) => (b.priorityBreakdown.total + b.roleFit) - (a.priorityBreakdown.total + a.roleFit) || recommendationPriorityRank(a.priority) - recommendationPriorityRank(b.priority));
+    .sort((a, b) => (b.priorityBreakdown.rankingScore + b.roleFit) - (a.priorityBreakdown.rankingScore + a.roleFit) || recommendationPriorityRank(a.priority) - recommendationPriorityRank(b.priority));
   if (ranked.length) return ranked;
 
   const generated = scopeRecommendationFromEvidence(signals);
@@ -3606,6 +4897,7 @@ function scoreDriverMarkup(breakdown, linkAudit = false) {
     { key: "trendAcceleration", label: "Application trend", value: activityLevelFromTwenty(breakdown.trendAcceleration) },
     { key: "competitorPressure", label: "Competitor activity", value: activityLevelFromTwenty(breakdown.competitorPressure) },
     { key: "evidenceQualityFreshness", label: "Source quality", value: `${sourceQualityScore}/10` },
+    { key: "magnitude", label: "Business impact", value: "Unquantified" },
   ];
   const recency = breakdown.recencyDays === null ? "No dated evidence" : `${breakdown.recencyDays} days`;
   const sourceFamilies = breakdown.sourceFamilies || [];
@@ -3653,7 +4945,27 @@ function scoreDriverMarkup(breakdown, linkAudit = false) {
 }
 
 function priorityBreakdownText(breakdown) {
-  return `Priority ${breakdown.total}/100. Visible public-signal drivers: application trend activity ${activityLevelFromTwenty(breakdown.trendAcceleration)}, competitor activity ${activityLevelFromTwenty(breakdown.competitorPressure)}, and source quality and recency ${breakdown.evidenceQualityFreshness}/10. Linked public sources: ${breakdown.publicSourceCount}; different evidence types: ${breakdown.sourceFamilies?.length || 0}; newest evidence: ${breakdown.latestEvidenceDate || "not dated"}.`;
+  return `${breakdown.confidenceState.state}; business impact: Unquantified. Application trend activity is ${activityLevelFromTwenty(breakdown.trendAcceleration)}, competitor activity is ${activityLevelFromTwenty(breakdown.competitorPressure)}, and source quality is ${breakdown.evidenceQualityFreshness}/10. Linked public sources: ${breakdown.publicSourceCount}; newest evidence: ${breakdown.latestEvidenceDate || "not dated"}.`;
+}
+
+function businessMagnitudeMarkup(magnitude, compact = false) {
+  const value = magnitude || competitiveMethodology.unquantifiedMagnitude();
+  if (compact) return `<span class="magnitude-status">${escapeHtml(value.status)}</span>`;
+  return `
+    <section class="business-magnitude" aria-label="Waters business exposure">
+      <div class="business-magnitude-header"><strong>Waters business exposure</strong><span>${escapeHtml(value.status)}</span></div>
+      <dl>
+        <div><dt>Affected segment</dt><dd>${escapeHtml(value.affectedSegment)}</dd></div>
+        <div><dt>Geography</dt><dd>${escapeHtml(value.geography)}</dd></div>
+        <div><dt>Installed-base / replacement cohort</dt><dd>${escapeHtml(value.cohort)}</dd></div>
+        <div><dt>Revenue / share-at-risk band</dt><dd>${escapeHtml(value.exposureBand)}</dd></div>
+        <div><dt>Time horizon</dt><dd>${escapeHtml(value.timeHorizon)}</dd></div>
+        <div><dt>Magnitude confidence</dt><dd>${escapeHtml(value.confidence)}</dd></div>
+      </dl>
+      <p><b>Basis:</b> ${escapeHtml(value.basis)}</p>
+      <p><b>Validation owner / next step:</b> ${escapeHtml(value.validationOwner)} — ${escapeHtml(value.nextStep)}</p>
+    </section>
+  `;
 }
 
 function competitorIntentForRecommendation(rec, signals) {
@@ -4359,8 +5671,8 @@ function renderDirectorSummary(signals) {
   const items = [
     {
       label: context.summaryLabel,
-      headline: `${strategicThemeForRecommendation(topRecommendation)} ${confidenceDisplayLabel(breakdown.confidenceState.state)}: ${breakdown.total}/100.`,
-      detail: `${evidenceCountSummary(breakdown)} in ${horizonLabel()}. Visible score drivers: competitor activity ${activityLevelFromTwenty(breakdown.competitorPressure)} and source quality ${breakdown.evidenceQualityFreshness}/10.`,
+      headline: `${strategicThemeForRecommendation(topRecommendation)} Evidence priority: ${breakdown.evidencePriority}.`,
+      detail: `${evidenceCountSummary(breakdown)} in ${horizonLabel()}. Business impact remains unquantified pending Waters installed-base, pipeline, win/loss, and engineering-effort evidence.`,
       action: `Time-window decision rule: ${context.decisionRule} ${breakdown.confidenceState.guidance}`,
     },
     {
@@ -4411,6 +5723,7 @@ function executiveDecisionMarkup(recommendation, breakdown) {
         <div><dt>Next PM Considerations</dt><dd>${escapeHtml(deliverable)}</dd></div>
       </dl>
       <p class="executive-decision-gate"><b>Investment gate</b><span>${escapeHtml(gate)}</span></p>
+      ${businessMagnitudeMarkup(breakdown.magnitude)}
     </article>
   `;
 }
@@ -4507,7 +5820,7 @@ function recommendationsByConfidence(signals) {
   return currentRecommendationSet(signals)
     .slice()
     .sort((a, b) =>
-      (b.priorityBreakdown?.total || 0) - (a.priorityBreakdown?.total || 0)
+      (b.priorityBreakdown?.rankingScore || 0) - (a.priorityBreakdown?.rankingScore || 0)
       || (b.roleFit || 0) - (a.roleFit || 0)
       || String(a.title || "").localeCompare(String(b.title || ""))
     );
@@ -4702,7 +6015,7 @@ function leadershipBriefText(highlights, recommendations) {
   const decisionText = recommendations.length
     ? [
         `DECISION QUEUE: ${recommendations.length} prioritized decision${recommendations.length === 1 ? "" : "s"}.`,
-        `Highest current priority: ${recommendations[0].title} (${recommendations[0].priorityBreakdown.total}/100).`,
+        `Highest current evidence priority: ${recommendations[0].title} (${recommendations[0].priorityBreakdown.evidencePriority}; business impact unquantified).`,
       ].join("\n")
     : "DECISION QUEUE: No decision is supported under the active filters.";
   return [...header, ...highlightText, decisionText].join("\n\n");
@@ -4723,7 +6036,7 @@ function leadershipDecisionCardMarkup(recommendation, signals, index) {
       </div>
       <div class="leadership-decision-meta">
         <span>Status: ${escapeHtml(recommendation.decisionStatus || "Decision review required")}</span>
-        <span>Priority ${breakdown.total}/100</span>
+        <span>${escapeHtml(breakdown.confidenceState.state)}; business impact: Unquantified</span>
         <span>${evidenceLinks.length} exact source${evidenceLinks.length === 1 ? "" : "s"}</span>
       </div>
       <div class="leadership-decision-why">
@@ -4731,6 +6044,7 @@ function leadershipDecisionCardMarkup(recommendation, signals, index) {
         <p>${escapeHtml(recommendation.whyNow || recommendation.why)}</p>
       </div>
       <p class="leadership-decision-scope"><b>Waters capability affected</b><span>${escapeHtml(recommendation.affectedCapability || recommendation.technology)}</span></p>
+      ${businessMagnitudeMarkup(breakdown.magnitude)}
       <details class="leadership-decision-evidence">
         <summary><span>Review decision evidence and validation</span><small>${evidenceLinks.length} source${evidenceLinks.length === 1 ? "" : "s"}</small></summary>
         <div class="leadership-evidence-body">
@@ -4785,6 +6099,7 @@ function leadershipHighlightCardMarkup(highlight) {
       </div>
       <h4>${escapeHtml(highlight.title)}</h4>
       <p>${escapeHtml(highlight.detail)}</p>
+      <p class="leadership-highlight-magnitude"><b>Waters business exposure:</b> UNQUANTIFIED — validation required</p>
       <footer>
         ${sectionLink}
         ${sourceLink}
@@ -4796,6 +6111,7 @@ function leadershipHighlightCardMarkup(highlight) {
 function leadershipHighlightsMarkup(highlights, recommendations) {
   return `
     <article class="leadership-snapshot" aria-label="Executive highlights across the competitive intelligence page">
+      <h4 class="leadership-snapshot-thesis">${escapeHtml(leadershipBriefThesis())}</h4>
       <div class="leadership-highlight-grid">
         ${highlights.map(leadershipHighlightCardMarkup).join("")}
       </div>
@@ -4849,7 +6165,6 @@ function renderStrategicRead(signals) {
     return;
   }
   const breakdown = topRecommendation.priorityBreakdown;
-  const confidence = breakdown.total;
   const sourceQuality = sourceQualityLabel();
   const scope = filterScopeLabel();
   const validation = validationNeedsForRecommendation(topRecommendation);
@@ -4860,7 +6175,7 @@ function renderStrategicRead(signals) {
     ["customer", breakdown.customerPullEvidence.estimatedMentions, `estimated customer/public mention${breakdown.customerPullEvidence.estimatedMentions === 1 ? "" : "s"}`],
   ]);
 
-  byId("strategicConfidence").textContent = `${confidenceDisplayLabel(breakdown.confidenceState.state)} · ${confidence}/100`;
+  byId("strategicConfidence").textContent = `Evidence priority: ${breakdown.evidencePriority} · Business impact: Unquantified`;
   byId("strategicRead").innerHTML = `
     <div class="readout-hero">
       <div>
@@ -5154,7 +6469,7 @@ function renderDecisionQueue(signals) {
                 <div class="decision-queue-title">
                   <span class="decision-queue-rank">Decision ${index + 1}</span>
                 </div>
-                <span class="confidence-pill ${tone.className}">Priority score · ${breakdown.total}/100</span>
+                <span class="confidence-pill ${tone.className}">${escapeHtml(breakdown.confidenceState.state)}; business impact: Unquantified</span>
               </div>
               <h4>${escapeHtml(rec.title)}</h4>
               <div class="decision-why">
@@ -5162,8 +6477,15 @@ function renderDecisionQueue(signals) {
                 ${decisionUrgencyMarkup(rec, index)}
               </div>
               <dl class="decision-queue-facts">
+                <div><dt>Accountable owner</dt><dd>${escapeHtml(rec.decisionOwners || "Product Management owner")}</dd></div>
+                <div><dt>Decision date</dt><dd>${escapeHtml(rec.decisionDue || "Next roadmap review")}</dd></div>
                 <div><dt>Next PM Considerations</dt><dd>${escapeHtml(facts.deliverable)}</dd></div>
+                <div><dt>Decision options</dt><dd>${escapeHtml((rec.decisionOptions || ["Build", "Package", "Reposition", "Partner", "Monitor", "Stop"]).join(" · "))}</dd></div>
+                <div><dt>Final go / no-go gate</dt><dd>${escapeHtml(rec.decisionGate || validationGateForRecommendation(rec, breakdown))}</dd></div>
+                <div><dt>Engineering / validation effort</dt><dd>${escapeHtml(rec.engineeringValidationEffort || "Unquantified — validation required")}</dd></div>
+                <div><dt>Outstanding internal evidence</dt><dd>${escapeHtml((rec.outstandingInternalEvidence || breakdown.magnitude.requiredInternalData || []).join(" · "))}</dd></div>
               </dl>
+              ${businessMagnitudeMarkup(breakdown.magnitude)}
               ${scoreDriverMarkup(breakdown)}
             </article>
           `;
@@ -5307,8 +6629,8 @@ function competitorIntentProfile(competitor, signals) {
       },
     },
     SCIEX: {
-      focus: "ZenoTOF, high-throughput MS, quantitative sensitivity, and software-versioned instrument stories",
-      intent: "Keep pressure on LC-MS/MS quantitation, HRMS depth, and workflow speed",
+      focus: "Software-integrated instrument operation and workflow packaging",
+      intent: "Make SCIEX OS part of the instrument value proposition; broader HRMS depth is not verified by the current evidence",
       shortTermImpact: "Waters may need sharper proof in LC-MS/MS quantitation, HRMS sensitivity, high-throughput screening, and software-assisted data review for competitive evaluations.",
       midLongTermImpact: "SCIEX could shape customer expectations around instrument-plus-software performance cycles, making Waters' LC-MS roadmap look slower if workflow speed and informatics are not prominent.",
       response: {
@@ -5318,8 +6640,8 @@ function competitorIntentProfile(competitor, signals) {
       },
     },
     PerkinElmer: {
-      focus: "LC portfolio coverage with adjacent life-science software and workflow signals",
-      intent: "Compete more through workflow software and application ecosystems than visible LC hardware refreshes",
+      focus: "Current PerkinElmer LC portfolio activity; Revvity evidence is excluded",
+      intent: "Maintain LC portfolio visibility while the current evidence remains too sparse for a broader software or ecosystem conclusion",
       shortTermImpact: "Direct LC hardware threat appears lower, but Waters should watch software, service, and application-workflow claims that influence procurement shortlists.",
       midLongTermImpact: "If PerkinElmer builds a stronger workflow ecosystem around LC-adjacent software and services, Waters could face more pressure in value-oriented labs and integrated analytics workflows.",
       response: {
@@ -5371,52 +6693,59 @@ function competitorIntentProfile(competitor, signals) {
       detail: insight.evidence || insight.whyItMatters || insight.pmImplication,
     })),
   ].sort((a, b) => new Date(b.date) - new Date(a.date));
-  const evidenceGroups = [
-    {
-      key: "launches",
-      label: `launch signal${launches.length === 1 ? "" : "s"}`,
-      items: evidenceItems.filter((item) => item.type === "Launch"),
-    },
-    {
-      key: "strategic",
-      label: `strategic move${strategic.length === 1 ? "" : "s"}`,
-      items: evidenceItems.filter((item) => item.type === "Strategic move"),
-    },
-    {
-      key: "earnings",
-      label: `earnings result${earnings.length === 1 ? "" : "s"}`,
-      items: evidenceItems.filter((item) => item.type === "Earnings result"),
-    },
-    {
-      key: "filings",
-      label: `filing insight${filings.length === 1 ? "" : "s"}`,
-      items: evidenceItems.filter((item) => item.type === "Filing insight"),
-    },
-  ].filter((group) => group.items.length);
+  const inference = competitiveMethodology.assessInference(evidenceItems, competitor);
+  const evidenceGroups = inference.families.map((family, index) => ({
+    key: `family-${index}`,
+    label: family.familyLabel,
+    items: family.records,
+  }));
   const sourceHealth = competitorSourceHealth(competitor);
-  const confidenceScore = Math.max(10, Math.min(95,
-    Math.min(40, evidenceCount * 10)
-    + evidenceBits.length * 15
-    + Math.min(15, sourceHealth.good * 5)
-    - sourceHealth.issues * 10
-    - sourceHealth.manual * 3
-  ));
-  const confidence = confidenceScore >= 75 ? "Strong public evidence" : confidenceScore >= 50 ? "Moderate public evidence" : confidenceScore >= 30 ? "Limited public evidence" : "Very little matching evidence";
-  const risk = evidenceCount >= 4 ? "High" : evidenceCount >= 1 ? "Medium" : "Watch";
+  const confidence = inference.label;
+  const risk = "Watch";
   const horizonProfile = horizonCompetitorProfile(profileCopy, competitor, evidenceItems);
+  const interpretationChecks = {
+    Agilent: {
+      alternative: "The activity may reflect coordinated portfolio promotion and regional market development rather than a durable shift toward one integrated platform strategy.",
+      falsifier: "The inference weakens if the next two launch cycles stop pairing instruments with OpenLab or partner software, AI-enabled execution, regional hubs, and CrossLab services.",
+    },
+    "Thermo Fisher": {
+      alternative: "Chromatography and MS resilience may be offsetting portfolio weakness rather than signaling a new end-to-end workflow investment thesis.",
+      falsifier: "The inference weakens if subsequent earnings and launches do not connect chromatography/MS with bioproduction, software, or account-level workflow bundles.",
+    },
+    Shimadzu: {
+      alternative: "The Nexera activity may be a normal platform refresh concentrated on routine LC replacements rather than a broader workflow-ownership strategy.",
+      falsifier: "The inference weakens if follow-on releases do not extend into software, automation, method transfer, or application-specific packages.",
+    },
+    SCIEX: {
+      alternative: "novus V55 with SCIEX OS 5.0 may be a version-cycle packaging decision, not proof of broader HRMS depth or a sustained platform strategy.",
+      falsifier: "Any claim about HRMS depth remains unverified until a separate dated primary source shows an HRMS product, method, or workflow expansion.",
+    },
+    PerkinElmer: {
+      alternative: "The limited current PerkinElmer evidence may reflect normal portfolio maintenance; Revvity filings and acquisitions are excluded unless an explicit current entity relationship is documented.",
+      falsifier: "The inference remains unconfirmed unless current PerkinElmer sources show repeated LC, software, service, or application-workflow investment.",
+    },
+  }[competitor] || {};
+  const magnitude = competitiveMethodology.unquantifiedMagnitude({
+    affectedSegment: profileCopy?.focus || "Not established from public evidence",
+    validationOwner: "Competitive Intelligence + Product Management + Commercial Analytics",
+  });
   return {
     competitor,
     ...horizonProfile,
     evidence: evidenceBits.length ? evidenceBits.join(" · ") : "No matching public evidence in the selected filters; continue checking the linked sources",
     confidence,
-    confidenceScore,
+    confidenceScore: null,
+    inference,
+    alternative: interpretationChecks.alternative || "A normal release cycle could explain the observed activity; additional independent evidence is required.",
+    falsifier: interpretationChecks.falsifier || "The inference weakens if the next dated evidence does not repeat the same strategic direction.",
+    magnitude,
     sourceHealth,
     risk,
     evidenceCount,
     evidenceItems,
     evidenceGroups,
     evidenceTypeCount: evidenceBits.length,
-    className: confidenceScore >= 75 ? "strong" : confidenceScore >= 40 ? "directional" : "needs-validation",
+    className: inference.label === "High" ? "strong" : inference.label === "Low" ? "needs-validation" : "directional",
   };
 }
 
@@ -5505,8 +6834,8 @@ function competitorIntentDetailMarkup(profile) {
         </div>
         <div class="intent-header-meta">
           <div class="intent-badges">
-            <span class="confidence-pill ${profile.className}" title="This score reflects the number of matching public records, the variety of evidence types, and whether source links are working.">Confidence score · ${profile.confidenceScore}/100</span>
-            <span class="tag ${profile.risk === "High" ? "high" : profile.risk === "Medium" ? "medium" : "low"}">${profile.risk === "Watch" ? "No immediate response" : `${escapeHtml(profile.risk)} potential impact`}</span>
+            <span class="confidence-pill ${profile.className}">Inference confidence · ${escapeHtml(profile.confidence)}</span>
+            <span class="tag medium">Business impact · Unquantified</span>
           </div>
           ${profile.evidenceGroups.length ? `
             <span class="intent-evidence-count-links intent-header-evidence">
@@ -5522,10 +6851,26 @@ function competitorIntentDetailMarkup(profile) {
       ${competitorActivityMarkup(profile)}
       <div class="intent-strategy-layout">
         <section class="intent-now intent-likely-direction">
-          <span>${escapeHtml(profile.competitor)}'s Likely Direction</span>
+          <span>Strategic inference · ${escapeHtml(profile.competitor)}'s likely direction</span>
           <strong>${escapeHtml(profile.likelyNext || competitorDirectionStatement(profile))}</strong>
         </section>
       </div>
+      <div class="intent-methodology-grid">
+        <section><span>Alternative reading</span><p>${escapeHtml(profile.alternative)}</p></section>
+        <section><span>Falsifier / signal to watch</span><p>${escapeHtml(profile.falsifier)}</p></section>
+      </div>
+      ${profile.inference.limitation ? `<p class="intent-evidence-limitation"><b>Evidence limitation:</b> ${escapeHtml(profile.inference.limitation)}</p>` : ""}
+      <details class="intent-confidence-rubric">
+        <summary>Why the inference confidence is ${escapeHtml(profile.confidence)}</summary>
+        <dl>
+          <div><dt>Source independence</dt><dd>${escapeHtml(profile.inference.rubric.sourceIndependence)}</dd></div>
+          <div><dt>Directness</dt><dd>${escapeHtml(profile.inference.rubric.directness)}</dd></div>
+          <div><dt>Temporal consistency</dt><dd>${escapeHtml(profile.inference.rubric.temporalConsistency)}</dd></div>
+          <div><dt>Corroboration</dt><dd>${escapeHtml(profile.inference.rubric.corroboration)}</dd></div>
+          <div><dt>Contradictions / alternatives</dt><dd>${escapeHtml(profile.inference.rubric.contradictions)}</dd></div>
+        </dl>
+      </details>
+      ${businessMagnitudeMarkup(profile.magnitude)}
       <details class="intent-decision-detail">
         <summary>
           <span>Waters PM Considerations</span>
@@ -5553,7 +6898,7 @@ function renderCompetitorIntentCards(signals) {
   const threatRank = { High: 3, Medium: 2, Watch: 1 };
   const profiles = competitors
     .map((competitor) => competitorIntentProfile(competitor, signals))
-    .sort((a, b) => (threatRank[b.risk] || 0) - (threatRank[a.risk] || 0) || b.confidenceScore - a.confidenceScore || competitorOrder.indexOf(a.competitor) - competitorOrder.indexOf(b.competitor));
+    .sort((a, b) => (threatRank[b.risk] || 0) - (threatRank[a.risk] || 0) || b.evidenceCount - a.evidenceCount || competitorOrder.indexOf(a.competitor) - competitorOrder.indexOf(b.competitor));
   state.competitorIntentProfiles = profiles;
   const selectedProfile = profiles.find((profile) => profile.competitor === state.activeIntentCompetitor) || profiles[0];
   state.activeIntentCompetitor = selectedProfile?.competitor || "";
@@ -5730,6 +7075,7 @@ function roadmapImpactHeatmapMarkup(signals) {
       <div class="capability-heatmap-grid" role="table" aria-label="Waters capability priority heatmap">
         <div class="capability-heatmap-header" role="row">
         ${sortHeaders}
+        <strong role="columnheader">Waters business exposure</strong>
         </div>
         ${visibleRows
           .map(
@@ -5747,6 +7093,7 @@ function roadmapImpactHeatmapMarkup(signals) {
                 ` : `<b>No linked records</b>`}
                 ${evidence ? `<small>${escapeHtml(evidence)}</small>` : ""}
                 </span>
+                <span class="capability-heatmap-magnitude" data-label="Waters business exposure"><b>UNQUANTIFIED</b><small>Validation required</small></span>
               </div>
             `,
           )
@@ -6010,6 +7357,7 @@ function customerVoiceItemsForHorizon(horizonValue, { ignoreCompetitor = false }
       return technologyMatchesFilter("", filters.technology.value, text);
     })
     .filter((item) => ignoreCompetitor || filters.competitor.value === "All" || item.company === filters.competitor.value)
+    .filter((item) => pmmTargetingMatches(item, { includeBuyerRole: true }))
     .filter((item) => {
       if (!term) return true;
       const haystack = [
@@ -6961,8 +8309,14 @@ function csvEscape(value) {
 
 function exportCustomerVoiceSummary() {
   const rows = currentCustomerVoiceItems();
-  const headers = ["Newest evidence date", "Company", "Product", "Sentiment", "Category", "Lab type", "User role", "Buying priority", "Product maturity", "Geography", "Confidence", "Customer language signal", "Source", "PM interpretation"];
+  const snapshot = competitiveMethodology.snapshotMetadata(state.data);
+  const topDecision = recommendationsByConfidence(currentSignals())[0];
+  const headers = ["Snapshot ID", "As-of timestamp", "Decision owner", "Required go/no-go output", "Newest evidence date", "Company", "Product", "Sentiment", "Category", "Lab type", "User role", "Buying priority", "Product maturity", "Geography", "Confidence", "Customer language signal", "Source", "PM interpretation"];
   const body = rows.map((item) => [
+    snapshot.snapshotId,
+    snapshot.asOfTimestamp,
+    topDecision?.decisionOwners || "Product Management",
+    topDecision?.decisionDeliverable || "No decision output linked",
     customerVoiceEvidenceDate(item),
     item.company,
     item.product,
@@ -6983,7 +8337,7 @@ function exportCustomerVoiceSummary() {
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
   link.href = url;
-  link.download = `waters-customer-voice-${state.customerVoice?.asOfDate || "export"}.csv`;
+  link.download = `waters-customer-voice-${snapshot.snapshotId}.csv`;
   document.body.appendChild(link);
   link.click();
   link.remove();
@@ -7183,7 +8537,7 @@ function renderDecisionMetrics() {
     <article class="decision-row success">
       <span></span>
       <div>
-        <strong>${breakdown.total}/100 highest priority score for the selected filters</strong>
+        <strong>Evidence priority: ${escapeHtml(breakdown.evidencePriority)}; business impact: Unquantified</strong>
         <p>${escapeHtml(priorityBreakdownText(breakdown))}</p>
       </div>
     </article>
@@ -7809,6 +9163,7 @@ function currentCompetitorApplicationNotes() {
       `${note.title} ${note.applicationArea} ${note.products} ${note.evidenceStatement}`,
     ))
     .filter((note) => filters.competitor.value === "All" || note.competitor === filters.competitor.value)
+    .filter((note) => pmmTargetingMatches(note))
     .sort((a, b) => new Date(b.date) - new Date(a.date));
 }
 
@@ -8510,6 +9865,10 @@ function updateRolePanelVisibility() {
   const navigationLabel = byId("sectionNavigationLabel");
 
   appShell?.classList.toggle("marketing-view", marketingView);
+  document.querySelectorAll(".pmm-hierarchy-filter").forEach((control) => {
+    control.hidden = !marketingView;
+    control.setAttribute("aria-hidden", String(!marketingView));
+  });
   if (appShell) {
     [...appShell.children].forEach((child) => {
       child.classList.toggle("standard-role-section", !child.matches(".topbar, .filters, #marketingWorkspace"));
@@ -8540,6 +9899,7 @@ function updateRolePanelVisibility() {
 function render() {
   state.view = filters.role.value;
   updateRolePanelVisibility();
+  if (state.view === "Marketing") normalizeMarketingTargeting();
   const signals = currentSignals();
   byId("currentViewBadge").textContent = viewCopy[state.view].viewLabel;
   byId("viewSubtitle").textContent = viewCopy[state.view].subtitle;

@@ -62,8 +62,8 @@
       ]
     },
     {
-      "competitor": "PerkinElmer",
-      "displayCompany": "Revvity / PerkinElmer-related",
+      "competitor": "Revvity",
+      "displayCompany": "Revvity",
       "coverageNote": "The displayed 10-Q names one completed acquisition; it does not identify a separate merger or operating partnership.",
       "items": [
         {
@@ -173,19 +173,19 @@
     {
       "id": "revvity-software-ai-life-sciences-2026",
       "date": "2026-05-12",
-      "competitor": "PerkinElmer",
+      "competitor": "Revvity",
       "filingType": "10-Q / 10-K",
-      "sourceName": "PerkinElmer-related SEC filings",
+      "sourceName": "Revvity SEC filing",
       "sourceUrl": "https://www.sec.gov/Archives/edgar/data/31791/000003179126000019/revv-20260405.htm",
-      "headline": "PerkinElmer-related life-science software and AI signals are rising",
+      "headline": "Revvity life-science software and AI signals are rising",
       "evidence": "Public filing evidence points to Life Sciences Solutions and Software growth, plus AI, acquisitions/licensing, and software platforms that support analytical and chromatography workflows.",
       "filingNavigation": {
         "searchTerms": ["Life Sciences Solutions", "Software", "AI", "licensing", "platform", "analytics"],
         "whereToLook": "Business segment discussion, software revenue commentary, and strategy/acquisition sections.",
-        "whyThisSurfacesTheInsight": "These terms find the places where PerkinElmer-related filings describe workflow software, AI, and analytical platforms rather than LC hardware refreshes.",
+        "whyThisSurfacesTheInsight": "These terms find the places where Revvity filings describe workflow software, AI, and analytical platforms rather than LC hardware refreshes.",
         "watersReadout": "Use the passage to monitor whether competition is shifting toward vendor-neutral software, AI-assisted decision support, chromatography data workflows, and lab productivity."
       },
-      "whyItMatters": "PerkinElmer-related competition may show up less as LC hardware refreshes and more as software, automation, and lab workflow ecosystems.",
+      "whyItMatters": "Revvity competition may show up less as LC hardware refreshes and more as software, automation, and lab workflow ecosystems. This is not attributed to the current PerkinElmer entity.",
       "pmImplication": "Waters should track software-enabled analytical workflow gaps, including vendor-neutral data processing, chromatography method development, and AI-assisted decision support.",
       "marketSegment": "Pharma",
       "technology": "Software",

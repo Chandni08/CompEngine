@@ -65,10 +65,11 @@ test("the redundant Waters takeaway callout is removed", () => {
   }
 });
 
-test("the integrated heatmap uses four aligned columns and signal colors", () => {
+test("the integrated heatmap uses five aligned columns including business exposure", () => {
   for (const stylesheet of [css, deploymentCss]) {
     assert.match(stylesheet, /\.capability-heatmap-grid/);
-    assert.match(stylesheet, /grid-template-columns:\s*minmax\(180px, 1\.2fr\)\s+minmax\(140px, 0\.85fr\)\s+minmax\(140px, 0\.85fr\)\s+minmax\(210px, 1\.2fr\)/);
+    assert.match(stylesheet, /grid-template-columns:\s*minmax\(170px, 1\.1fr\)\s+minmax\(125px, 0\.75fr\)\s+minmax\(125px, 0\.75fr\)\s+minmax\(190px, 1\.1fr\)\s+minmax\(150px, 0\.85fr\)/);
+    assert.match(stylesheet, /\.capability-heatmap-magnitude/);
     assert.match(stylesheet, /\.capability-trend-high/);
     assert.match(stylesheet, /\.capability-pressure-high/);
   }

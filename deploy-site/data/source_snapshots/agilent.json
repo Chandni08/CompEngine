@@ -1,0 +1,120 @@
+{
+  "capturedAt": "2026-07-29T00:26:40+00:00",
+  "productInventoryInitialized": true,
+  "pressIndexInitialized": true,
+  "products": {
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/triple-quadrupole-lc-ms/6475-triple-quadrupole-lc-ms": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-supplies-accessories": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-supplies-accessories/cleaning-maintenance-supplies-for-lc-ms": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/high-throughput-lc-ms/rapidfire-cartridges": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/quadrupole-time-of-flight-lc-ms/revident-lc-q-tof": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/high-throughput-lc-ms": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-solvents": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-application-solutions/pesticides-tmrm-database-for-triple-quadrupole-lc-ms": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-ion-sources/atmospheric-pressure-chemical-ionization-source-apci": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-application-solutions/metabolomics-dmrm-database-method": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-application-solutions/comprehensive-veterinary-drug-dmrm-solution": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/triple-quadrupole-lc-ms/ultivo-triple-quadrupole-lc-ms-lc-tq": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/high-throughput-lc-ms/rapidfire-integrator-software": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-solvents/infinitylab-methanol-for-lc-ms": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/quadrupole-time-of-flight-lc-ms": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-solvents/infinitylab-water-for-lc-ms": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-supplies-accessories/tuning-performance-standards-for-lc-ms": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/quadrupole-time-of-flight-lc-ms/6545xt-advancebio-lc-q-tof": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-ion-sources/nanospray-source": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/high-throughput-lc-ms/rapidfire-400": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/time-of-flight-lc-ms/6230-time-of-flight-tof-lc-ms": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-supplies-accessories/instrument-supplies-for-lc-ms": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-application-solutions/veterinary-drug-tmrm-database-for-triple-quadrupole-lc-ms": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/time-of-flight-lc-ms": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/quadrupole-time-of-flight-lc-ms/6530-q-tof-lc-ms": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/triple-quadrupole-lc-ms/6495-triple-quadrupole-lc-ms": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-ion-sources/jet-stream-technology-ion-source-ajs": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/single-quadrupole-lc-ms": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/high-throughput-lc-ms/streamselect-lc-ms-system": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-ion-sources/electrospray-esi-source": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-solvents/solvent-additives": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-ion-sources/capillary-electrospray-source": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-ion-sources": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-ion-sources/multimode-source": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/quadrupole-time-of-flight-lc-ms/6560-ion-mobility-lc-q-tof": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/triple-quadrupole-lc-ms": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-application-solutions/forensic-toxicology-tmrm-database-for-triple-quadrupole-lc-ms": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-supplies-accessories/vacuum-pump-supplies-for-lc-ms": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/single-quadrupole-lc-ms/pro-iq-series": "2026-05-09",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/quadrupole-time-of-flight-lc-ms/exd-cell-for-lc-q-tof": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-application-solutions/pfas-mrm-database-for-lc-tq": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/quadrupole-time-of-flight-lc-ms/6546-lc-q-tof": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/high-throughput-lc-ms/rapidfire-analyzer-software": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-application-solutions": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-supplies-accessories/quiet-cover-for-lc-ms": "2026-07-05",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-solvents/infinitylab-acetonitrile-for-lc-ms": "2026-07-05"
+  },
+  "pressReleases": {
+    "https://www.agilent.com/about/newsroom/presrel/2026/28jul-gp26015.html": {
+      "date": "2026-07-28",
+      "title": "Agilent to Announce Third-Quarter Fiscal Year 2026 Financial Results on Aug. 26",
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/28jul-gp26015.html",
+      "classification": "product",
+      "pageTitle": "Agilent to Announce Third-Quarter Fiscal Year 2026 Financial Results on Aug. 26",
+      "excerpt": "Skip to main content ABOUT AGILENT CONTACT US UNITED STATES ACCOUNT PRODUCTS APPLICATIONS & INDUSTRIES TRAINING & EVENTS SERVICES SUPPORT & RESOURCES ORDER CENTER | 0 Home About Newsroom Press Releases 2026 Agilent to Announce Third-Quarter Fiscal Year 2026 Financial Results on Aug. 26 Newsroom Press Releases Media Coverage Media Rooms Awards PR Contacts Subscribe Investor Relations Share: Press Release Agilent to Announce Third-Quarter Fiscal Year 2026 Financial Results on Aug. 26 SANTA CLARA, Calif., July 28, 2026 Agilent Technologies Inc. (NYSE: A) will release financial results for the third quarter of fiscal year 2026 after the stock market closes on Wednesday, Aug. 26. The company will host a conference call to discuss the results at 1:30 p.m. PDT the same day. To join the listen-only conference call webcast, click the link on the Events section of Agilent\u2019s Investor Relations website. A recording of the call will also be available on the website for 90 days. About Agilent Technologies Agilent Technologies, Inc. (NYSE: A) is a global leader in analytical and clinical laboratory technologies, delivering insights and innovation that help our customers bring great science to life. Agilent\u2019s full range of solutions includes instruments, software, services, and expertise that provide trusted answers to our customers' most challenging questions. The company generated revenue of $6.95 billion in fiscal year 2025 and employs approximately 18,000 people worldwide. Information about Agilent is available at www.agilent.com. To receive the latest Agilent news, subscribe to the Agilent Newsroom. Follow Agilent on LinkedIn and Facebook. Investor Contact Tejas Savant Agilent Technologies Inc. +1 917-574-4018 tejas.savant@agilent.com Media Contact Christian Col\u00f3n Agilent Technologies Inc. +1 302-867-4117 christian.colon@agilent.com Newsroom Highlights Previous From Instruments to Workflows: What Actually Changes When AI Comes to the Lab Article Agilent Ranks Among World's Best Employers Award Bringing Great Science to Life - Sustainably 2024 ESG Report AI is a Transformative Enabler that\u2019s Reshaping How Science is Conducted in Labs Article Agilent Reports Second-Quarter Fiscal Year 2026 Financial Results Press Release Agilent Named to Newsweek's List of America's Greenest Companies 2026 Award From Instruments to Workflows: What Actually Changes When AI Comes to the La"
+    },
+    "https://www.agilent.com/about/newsroom/presrel/2026/23jul-ca26027.html": {
+      "date": "2026-07-23",
+      "title": "Agilent Receives EU Approval for PD-L1 IHC 22C3 pharmDx in Epithelial Ovarian, Fallopian Tube, or Primary Peritoneal Carcinoma",
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/23jul-ca26027.html",
+      "classification": "corporate"
+    },
+    "https://www.agilent.com/about/newsroom/presrel/2026/14jul-ca26026.html": {
+      "date": "2026-07-14",
+      "title": "Agilent Receives FDA Approval for PD-L1 IHC 28-8 pharmDx in Esophageal Squamous Cell Carcinoma (ESCC), Gastric, Gastroesophageal Junction (GEJ), and Esophageal Adenocarcinoma",
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/14jul-ca26026.html",
+      "classification": "corporate"
+    },
+    "https://www.agilent.com/about/newsroom/presrel/2026/08jul-ca26025.html": {
+      "date": "2026-07-08",
+      "title": "Agilent Expands Altura Portfolio with Inert Size Exclusion and PLRP-S Columns for Biotherapeutic Analysis",
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/08jul-ca26025.html",
+      "classification": "product"
+    },
+    "https://www.agilent.com/about/newsroom/presrel/2026/01jul-ca26024.html": {
+      "date": "2026-07-01",
+      "title": "Agilent Launches AI-Driven Analysis Module for Agilent xCELLigence RTCA eSight",
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/01jul-ca26024.html",
+      "classification": "product"
+    },
+    "https://www.agilent.com/about/newsroom/presrel/2026/25jun-gp26014.html": {
+      "date": "2026-06-25",
+      "title": "Agilent Completes Acquisition of Biocare Medical",
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/25jun-gp26014.html",
+      "classification": "corporate"
+    },
+    "https://www.agilent.com/about/newsroom/presrel/2026/03jun-gp26013.html": {
+      "date": "2026-06-03",
+      "title": "Agilent, OpenAI, BCG Collaborate to Accelerate Customer-Focused, AI-Driven Scientific Innovation",
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/03jun-gp26013.html",
+      "classification": "corporate"
+    },
+    "https://www.agilent.com/about/newsroom/presrel/2026/02jun-ca26023.html": {
+      "date": "2026-06-02",
+      "title": "Agilent Receives FDA Approval for Expanded Use of PD-L1 IHC 22C3 pharmDx on Dako Omnis in Esophageal Squamous Cell Carcinoma, Triple-Negative Breast Cancer, Cervical Cancer, and Gastric or Gastroesophageal Junction Adenocarcinoma",
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/02jun-ca26023.html",
+      "classification": "corporate"
+    },
+    "https://www.agilent.com/about/newsroom/presrel/2026/01jun-ca26022.html": {
+      "date": "2026-06-01",
+      "title": "Agilent and Sound Analytics Collaborate to Advance LC/MS Workflows for Drug Metabolism Research",
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/01jun-ca26022.html",
+      "classification": "product"
+    },
+    "https://www.agilent.com/about/newsroom/presrel/2026/29may-ca26021.html": {
+      "date": "2026-05-29",
+      "title": "Agilent Showcases Integrated Mass Spectrometry and Chromatography Solutions at ASMS 2026",
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/29may-ca26021.html",
+      "classification": "product"
+    }
+  }
+}

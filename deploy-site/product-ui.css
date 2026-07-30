@@ -526,6 +526,128 @@ summary:focus-visible {
   }
 }
 
+.intent-methodology-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.intent-methodology-grid section,
+.business-magnitude {
+  border: 1px solid #d5e3e6;
+  border-radius: 10px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.intent-methodology-grid span,
+.business-magnitude-header strong {
+  color: #087786;
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.intent-methodology-grid p,
+.business-magnitude p {
+  margin: 6px 0 0;
+  color: #405862;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.intent-evidence-limitation {
+  margin: 0;
+  border-left: 4px solid #d58c00;
+  padding: 10px 12px;
+  background: #fff7e4;
+  color: #624c19;
+}
+
+.intent-confidence-rubric {
+  border: 1px solid #d5e3e6;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.intent-confidence-rubric summary {
+  padding: 11px 12px;
+  color: #087786;
+  font-size: 12px;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.intent-confidence-rubric dl,
+.business-magnitude dl {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
+  padding: 0 12px 12px;
+}
+
+.intent-confidence-rubric dl div,
+.business-magnitude dl div {
+  display: grid;
+  gap: 3px;
+  border-top: 1px solid #e3ecee;
+  padding-top: 8px;
+}
+
+.intent-confidence-rubric dt,
+.business-magnitude dt {
+  color: #60747a;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.intent-confidence-rubric dd,
+.business-magnitude dd {
+  margin: 0;
+  color: #183943;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.business-magnitude {
+  display: grid;
+  gap: 8px;
+  border-left: 4px solid #d58c00;
+  background: #fffaf0;
+}
+
+.business-magnitude-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.business-magnitude-header span,
+.magnitude-status {
+  border-radius: 999px;
+  padding: 5px 9px;
+  background: #fff0c7;
+  color: #845d00;
+  font-size: 10px;
+  font-weight: 850;
+}
+
+.business-magnitude dl {
+  padding: 0;
+}
+
+@media (max-width: 720px) {
+  .intent-methodology-grid,
+  .intent-confidence-rubric dl,
+  .business-magnitude dl {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 @media (max-width: 640px) {
   .evidence-pagination {
     align-items: stretch;
@@ -2820,6 +2942,15 @@ body {
 .leadership-snapshot {
   display: grid;
   gap: 10px;
+}
+
+.leadership-snapshot-thesis {
+  margin: 0 0 16px;
+  max-width: 1120px;
+  font-size: clamp(1.2rem, 1.8vw, 1.7rem);
+  line-height: 1.25;
+  font-weight: 750;
+  color: var(--ink, #153640);
 }
 
 .leadership-brief-thesis {
@@ -5681,7 +5812,7 @@ th {
 .capability-heatmap-header,
 .capability-heatmap-row {
   display: grid;
-  grid-template-columns: minmax(180px, 1.2fr) minmax(140px, 0.85fr) minmax(140px, 0.85fr) minmax(210px, 1.2fr);
+  grid-template-columns: minmax(170px, 1.1fr) minmax(125px, 0.75fr) minmax(125px, 0.75fr) minmax(190px, 1.1fr) minmax(150px, 0.85fr);
   gap: 1px;
 }
 
@@ -5699,10 +5830,21 @@ th {
 }
 
 .capability-heatmap-name,
-.capability-heatmap-evidence {
+.capability-heatmap-evidence,
+.capability-heatmap-magnitude {
   display: grid;
   align-content: center;
   background: #ffffff;
+}
+
+.capability-heatmap-magnitude {
+  gap: 3px;
+  color: #8b5e00;
+}
+
+.capability-heatmap-magnitude small {
+  color: #60747a;
+  font-size: 10px;
 }
 
 .capability-heatmap-name {
@@ -5805,7 +5947,8 @@ th {
   }
 
   .capability-heatmap-name,
-  .capability-heatmap-evidence {
+  .capability-heatmap-evidence,
+  .capability-heatmap-magnitude {
     grid-column: 1 / -1;
   }
 

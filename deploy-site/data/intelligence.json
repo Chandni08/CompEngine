@@ -1,6 +1,7 @@
 {
   "generatedAt": "2026-07-28T20:26:11",
   "asOfDate": "2026-07-28",
+  "snapshotId": "waters-ci-20260728-202611",
   "competitors": [
     {
       "id": "thermo",
@@ -14663,6 +14664,25 @@
     {
       "title": "Decide whether to package a PFAS-ready regulated quantitation workflow",
       "ownerView": "Product",
+      "decisionOwners": "Product Management and Applications",
+      "decisionDue": "August 7, 2026",
+      "decisionDeliverable": "Choose build, package existing capability, reposition, partner, monitor, or stop for a PFAS-ready regulated quantitation workflow",
+      "decisionOptions": ["Build", "Package existing capability", "Reposition", "Partner", "Monitor", "Stop"],
+      "decisionGate": "Make a final go/no-go decision only after a shared-method claims matrix identifies a commercially material Waters proof or capability gap and the required validation and engineering effort are estimated.",
+      "engineeringValidationEffort": "Medium — application validation and claims substantiation; engineering impact depends on whether shared-method testing identifies a true capability gap.",
+      "outstandingInternalEvidence": ["Waters installed base and replacement timing in regulated PFAS labs", "PFAS opportunity pipeline and win/loss evidence", "Shared-method sensitivity, matrix robustness, and carryover comparison", "Applications and engineering effort estimate"],
+      "businessMagnitude": {
+        "status": "UNQUANTIFIED — validation required",
+        "affectedSegment": "Environmental and regulated testing",
+        "geography": "Global; prioritize US regulated PFAS laboratories",
+        "installedBaseOrReplacementCohort": "Waters LC-MS/MS systems used for environmental and contract testing; cohort size unavailable in public data",
+        "revenueOrShareAtRiskBand": "Unknown",
+        "timeHorizon": "Current roadmap cycle through 24 months",
+        "basis": "Public scientific activity and competitor method proof establish relevance, not Waters revenue or share exposure",
+        "magnitudeConfidence": "Unquantified",
+        "validationOwner": "Product Management, Applications, Commercial Operations",
+        "nextStep": "Join installed-base, pipeline, win/loss, and application-gap evidence before assigning a magnitude band"
+      },
       "why": "The dataset contains 335 PFAS and environmental-contaminant PubMed records in the last year, a current PFAS serum LC-MS/MS method, and a Shimadzu LCMS-8065XE product record positioned for PFAS and regulated quantitation.",
       "whyNow": "What changed: 335 PFAS and environmental-contaminant records were published in the last year, including 36 in the last 30 days; a directly relevant serum LC-MS/MS method was published July 21, 2026, and Shimadzu is already positioning the LCMS-8065XE for PFAS and regulated quantitation. Decision window: The claims-matrix go/no-go is due August 7, 2026, before the next roadmap review. Cost of waiting: Waiting leaves the next roadmap review without a decision on whether Waters has a product-capability gap or an application-package gap, while current method and competitor proof are already available.",
       "urgency": {
@@ -14721,7 +14741,22 @@
       "decisionOwners": "LC Platform PM and Software Lead",
       "decisionDue": "August 14, 2026",
       "decisionDeliverable": "One recommendation: build, package existing capabilities, reposition, or stop",
+      "decisionOptions": ["Build", "Package existing capability", "Reposition", "Partner", "Monitor", "Stop"],
       "decisionGate": "Shift roadmap capacity only if at least five customer or field records confirm the same customer-visible gap and both customer value and engineering effort are quantified.",
+      "engineeringValidationEffort": "Medium — four shared-workflow benchmarks plus software, service, applications, and field review; engineering effort remains unknown until a repeatable gap is confirmed.",
+      "outstandingInternalEvidence": ["Installed-base and replacement cohort by segment and geography", "Win/loss and opportunity-stage evidence tied to workflow friction", "Service and field recurrence for setup, diagnostics, transfer, and review", "Engineering estimate for each validated gap"],
+      "businessMagnitude": {
+        "status": "UNQUANTIFIED — validation required",
+        "affectedSegment": "Pharma and biopharma LC / LC-MS workflows",
+        "geography": "Global",
+        "installedBaseOrReplacementCohort": "Alliance, ACQUITY, and Empower-connected replacement and upgrade cohorts; size unavailable in public data",
+        "revenueOrShareAtRiskBand": "Unknown",
+        "timeHorizon": "Next roadmap cycle through 36 months",
+        "basis": "Competitor workflow convergence is visible; Waters commercial exposure is not available in public sources",
+        "magnitudeConfidence": "Unquantified",
+        "validationOwner": "LC Platform PM, Software Lead, Commercial Operations",
+        "nextStep": "Quantify exposed installed base, pipeline, win/loss, customer value, and engineering effort before moving capacity"
+      },
       "ownerView": "Product",
       "why": "The dataset shows 1,137 lab-automation and software-workflow publications, Shimadzu's Nexera X4 launch, Thermo Fisher's Vanquish Amplify page update, and SCIEX's software-led novus V55 launch.",
       "whyNow": "What changed: 1,137 lab-automation and software-workflow records were published in the last year, including 111 in the last 30 days; Shimadzu launched Nexera X4 on March 3, SCIEX launched novus V55 with SCIEX OS 5.0 on June 1, and Thermo Fisher updated Vanquish Amplify on June 29. Decision window: The cross-functional build, package, reposition, or stop recommendation is due August 14, 2026. Cost of waiting: Waiting carries the workflow question into the next roadmap review without knowing whether Waters needs a product requirement, a packaging change, or only stronger positioning—so capacity could be shifted for the wrong reason or not shifted when a real gap exists.",
@@ -14794,6 +14829,25 @@
     {
       "title": "Decide whether Next Gen LC needs an oligonucleotide method-readiness package",
       "ownerView": "Product",
+      "decisionOwners": "Biopharma Applications and Next Gen LC PM",
+      "decisionDue": "August 21, 2026",
+      "decisionDeliverable": "Choose package existing capability, build, partner, monitor, or stop for an oligonucleotide method-readiness offer",
+      "decisionOptions": ["Package existing capability", "Build", "Partner", "Monitor", "Stop"],
+      "decisionGate": "Make a final go/no-go choice among package, build, partner, monitor, or stop only after shared-workflow tests and commercial evidence establish both customer value and required effort.",
+      "engineeringValidationEffort": "Medium — compatibility, recovery, carryover, transfer, and software-template benchmarking; new engineering depends on the gaps found.",
+      "outstandingInternalEvidence": ["Oligonucleotide opportunity pipeline and loss reasons", "Installed-base and replacement cohort in biopharma accounts", "Shared-workflow recovery, carryover, transfer, and handoff benchmarks", "Applications, partner, and engineering effort estimates"],
+      "businessMagnitude": {
+        "status": "UNQUANTIFIED — validation required",
+        "affectedSegment": "Biopharma oligonucleotide and RNA therapeutics",
+        "geography": "Global; assess US, Europe, and APAC separately",
+        "installedBaseOrReplacementCohort": "Next Gen LC and Alliance / ACQUITY systems used in oligonucleotide development and QC; cohort size unavailable in public data",
+        "revenueOrShareAtRiskBand": "Unknown",
+        "timeHorizon": "Next roadmap cycle through 36 months",
+        "basis": "Scientific activity and competitor packaging establish strategic relevance but not Waters demand or revenue exposure",
+        "magnitudeConfidence": "Unquantified",
+        "validationOwner": "Biopharma Applications, Next Gen LC PM, Commercial Operations",
+        "nextStep": "Quantify customer cohort, pipeline, win/loss, willingness to pay, and package-versus-partner effort"
+      },
       "why": "The dataset contains 659 oligonucleotide and nucleic-acid publications in the last year and an official Agilent-NATi partnership focused on lipid-conjugated oligonucleotide research.",
       "whyNow": "What changed: 659 oligonucleotide and nucleic-acid records were published in the last year, including 64 in the last 30 days; Agilent announced its lipid-conjugated oligonucleotide research partnership with NATi on May 20, 2026. Decision window: The fund, partner, or monitor recommendation is due August 21, 2026, after benchmarking three competitor workflow claims and five public user needs. Cost of waiting: Waiting leaves the next roadmap review without a decision on dedicated compatibility, carryover, transfer, and software-template requirements while competitors continue building workflow-specific proof.",
       "urgency": {
@@ -14824,8 +14878,8 @@
         "decisionWindow": "The fund, partner, or monitor recommendation is due August 21, 2026, after benchmarking three competitor workflow claims and five public user needs.",
         "delayRisk": "Waiting leaves the next roadmap review without a decision on dedicated compatibility, carryover, transfer, and software-template requirements while competitors continue building workflow-specific proof."
       },
-      "action": "Build a Next Gen LC oligonucleotide method-readiness dossier covering column and solvent compatibility, carryover, sample throughput, method transfer, detector/MS handoff, software templates, and the application assets required for one reference workflow.",
-      "nextAction": "By August 21, 2026, Biopharma Applications and the Next Gen LC PM must map the current Waters assets, benchmark three competitor workflow claims, document five public user needs, and return a fund, partner, or monitor recommendation.",
+      "action": "Evaluate package existing capability, build, partner, monitor, and stop options for an oligonucleotide method-readiness offer using shared-workflow benchmarks and commercial evidence.",
+      "nextAction": "By August 21, 2026, Biopharma Applications and the Next Gen LC PM must return a final package, build, partner, monitor, or stop recommendation with supporting customer value and effort evidence.",
       "affectedCapability": "Next Gen LC biopharma method readiness and Alliance iS method-transfer patterns, including carryover control, fluidics compatibility, software templates, and LC-to-MS workflow handoff",
       "decisionStatus": "Validation artifact required",
       "evidenceBasis": {
