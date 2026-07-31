@@ -1,0 +1,399 @@
+{
+  "generatedAt": "2026-07-31T13:34:24+00:00",
+  "competitor": "PerkinElmer",
+  "windowStart": "2023-08-01",
+  "newsroom": [
+    {
+      "url": "https://www.perkinelmer.com/corporate-and-newsroom/perkinelmer-and-covalent-announce-strategic-collaboration",
+      "title": "PerkinElmer and Covalent Announce Strategic Collaboration to Advance Failure Analysis and Materials",
+      "date": "2026-07-09",
+      "lastmod": "2026-07-09"
+    },
+    {
+      "url": "https://www.perkinelmer.com/corporate-and-newsroom/pacbio-and-covaris-announce-joint-workflow-enabling-hifi-sequencing-ffpe-tumor-samples",
+      "title": "PacBio and Covaris Announce Joint Workflow Enabling HiFi Sequencing of FFPE Tumor Samples",
+      "date": "2026-04-15",
+      "lastmod": "2026-04-15"
+    },
+    {
+      "url": "https://www.perkinelmer.com/corporate-and-newsroom/strategic-partnership-between-covaris-and-hamilton-empowers-labs-with-sonication-star",
+      "title": "Strategic Partnership between Covaris and Hamilton Empowers Labs with Sonication STAR",
+      "date": "2025-07-29",
+      "lastmod": "2025-07-29"
+    }
+  ],
+  "products": [
+    {
+      "url": "https://www.perkinelmer.com/in/library/app-fast-reliable-honey-authenticity-testing-for-3-methoxytyramine-analysis-on-the-qsight-500-lc-msms.html",
+      "lastmod": "2026-04-24"
+    },
+    {
+      "url": "https://www.perkinelmer.com/in/library/app-reliable-and-robus-lc-msms-workflow-for-fosetyl-ai-and-metabolites-in-fruit-matrices.html",
+      "lastmod": "2026-01-12"
+    },
+    {
+      "url": "https://www.perkinelmer.com/in/library/abr-determination-of-antimony-speciation-in-soil-using-hplc-icp-ms.html",
+      "lastmod": "2025-09-12"
+    },
+    {
+      "url": "https://www.perkinelmer.com/in/library/cus-how-tera-environnement-is-shaping-the-future-of-pfas-air-monitoring-with-the-qsight-lcmsms.html",
+      "lastmod": "2025-07-18"
+    },
+    {
+      "url": "https://www.perkinelmer.com/library/app-nexsar-hplc-icp-ms-hg-speciation-in-fish.html",
+      "lastmod": "2025-05-26"
+    },
+    {
+      "url": "https://www.perkinelmer.com/library/app-determination-of-ochratoxin-a-in-wine-by-lc-ms.html",
+      "lastmod": "2025-05-26"
+    },
+    {
+      "url": "https://www.perkinelmer.com/in/library/bro-nexsar-hplc-icp-ms-speciation-solution.html",
+      "lastmod": "2025-05-26"
+    },
+    {
+      "url": "https://www.perkinelmer.com/in/library/app-determination-of-sulfonamides-in-milk-by-uplc-ms-ms.html",
+      "lastmod": "2025-05-01"
+    },
+    {
+      "url": "https://www.perkinelmer.com/in/library/app-automated-vet-drugs-analysis-in-chicken-by-spme-uhplc-ms-ms.html",
+      "lastmod": "2025-05-01"
+    },
+    {
+      "url": "https://www.perkinelmer.com/in/library/atl-lc-ms-ms-basics-how-it-works-design-enhancements-key-applications.html",
+      "lastmod": "2025-05-01"
+    },
+    {
+      "url": "https://www.perkinelmer.com/in/library/alt-driving-lab-efficiency-performance-lc-ms-ms.html",
+      "lastmod": "2025-05-01"
+    },
+    {
+      "url": "https://www.perkinelmer.com/in/library/gde-hplc-guide-choosing-right-detector.html",
+      "lastmod": "2025-05-01"
+    },
+    {
+      "url": "https://www.perkinelmer.com/in/library/fly-perkinelmer-pfas-qsight-lc-ms-quantitative-workflow.html",
+      "lastmod": "2025-05-01"
+    },
+    {
+      "url": "https://www.perkinelmer.com/in/library/bro-lc-300-hplc-uhplc-systems-interactive-brochure.html",
+      "lastmod": "2025-05-01"
+    },
+    {
+      "url": "https://www.perkinelmer.com/in/library/bro-enhancing-food-testing-productivity-lc-ms-ms.html",
+      "lastmod": "2025-05-01"
+    },
+    {
+      "url": "https://www.perkinelmer.com/in/library/bro-productivity-power-two-qsight-lc-ms-ms-system.html",
+      "lastmod": "2025-05-01"
+    },
+    {
+      "url": "https://www.perkinelmer.com/library/app-hplc-phenolitic-antioxidants-in-editblefats-and-oils.html",
+      "lastmod": "2025-03-28"
+    },
+    {
+      "url": "https://www.perkinelmer.com/library/app-lc-ms-pesticides-application-notes-compendium.html",
+      "lastmod": "2025-03-28"
+    },
+    {
+      "url": "https://www.perkinelmer.com/library/app-hplc-acrylate-monomers-final.html",
+      "lastmod": "2025-03-28"
+    },
+    {
+      "url": "https://www.perkinelmer.com/library/app-hplc-deternination-of-urea-content-in-urea-based-fertilizers.html",
+      "lastmod": "2025-03-28"
+    },
+    {
+      "url": "https://www.perkinelmer.com/library/app-hplc-analysis-of-ibuprofen-purity-using-lc-300-in-accordance-with-usp.html",
+      "lastmod": "2025-03-28"
+    },
+    {
+      "url": "https://www.perkinelmer.com/library/app-hplc-analysis-of-mrna-with-pda-detection.html",
+      "lastmod": "2025-03-28"
+    },
+    {
+      "url": "https://www.perkinelmer.com/library/app-hplc-rapid-quantitation-of-vitamins.html",
+      "lastmod": "2025-03-28"
+    },
+    {
+      "url": "https://www.perkinelmer.com/library/app-lc-ms-ms-nitrosamines-in-tobacco-products.html",
+      "lastmod": "2025-03-28"
+    },
+    {
+      "url": "https://www.perkinelmer.com/library/pp-lc-ms-ms-improved-throughput-and-flexibility-for-compliant-drinking-water.html",
+      "lastmod": "2025-03-28"
+    },
+    {
+      "url": "https://www.perkinelmer.com/library/app-lc-ms-ms-pfas-analysis-aqueous-samples-by-epa-method-1633.html",
+      "lastmod": "2025-03-28"
+    },
+    {
+      "url": "https://content.perkinelmer.com/sg/library/validation-method-for-the-determination-of-pesticides-in-water-by-lc-ms-ms.html",
+      "lastmod": "2025-03-27"
+    },
+    {
+      "url": "https://www.perkinelmer.com/library/qsight-500-lc-msms-system-video.html",
+      "lastmod": "2025-03-03"
+    },
+    {
+      "url": "https://www.perkinelmer.com/perkinelmer-launches-qsightr-500-lcmsms-pittcon-2025-empowering-labs-speed-accuracy-and-unmatched",
+      "lastmod": "2025-03-03"
+    },
+    {
+      "url": "https://www.perkinelmer.com/library/spc-qsight-500-lc-ms-ms.html",
+      "lastmod": "2025-02-28"
+    },
+    {
+      "url": "https://www.perkinelmer.com/library/bro-qsight-500-lc-ms-ms.html",
+      "lastmod": "2025-02-28"
+    },
+    {
+      "url": "https://content.perkinelmer.com/sg/library/complex-matrices-how-the-perkinelmer-qsight-lc-ms-ms-can-help-tackle-the-toughest-samples.html",
+      "lastmod": "2025-01-18"
+    },
+    {
+      "url": "https://content.perkinelmer.com/sg/library/introduction-to-hplc.html",
+      "lastmod": "2025-01-15"
+    },
+    {
+      "url": "https://content.perkinelmer.com/sg/library/lc-ms-tips-and-tricks.html",
+      "lastmod": "2025-01-15"
+    },
+    {
+      "url": "https://content.perkinelmer.com/sg/library/determination-of-emerging-contaminants-in-water-by-lc-ms-ms.html",
+      "lastmod": "2025-01-15"
+    },
+    {
+      "url": "https://content.perkinelmer.com/sg/library/maximizing-your-hplc-method-development.html",
+      "lastmod": "2024-12-09"
+    },
+    {
+      "url": "https://content.perkinelmer.com/sg/library/determination-of-urea-content-in-fertilizers-by-hplc.html",
+      "lastmod": "2024-12-06"
+    },
+    {
+      "url": "https://content.perkinelmer.com/sg/library/efficient-robust-and-reliable-performance-for-lc-ms-ms-analysis.html",
+      "lastmod": "2024-12-06"
+    },
+    {
+      "url": "https://content.perkinelmer.com/sg/library/food-safety-advances-in-methods-for-determination-of-allergens-in-food-by-lc-ms-ms.html",
+      "lastmod": "2024-12-05"
+    },
+    {
+      "url": "https://content.perkinelmer.com/sg/library/food-safety-determination-of-mycotoxins-in-food-by-lc-ms-ms.html",
+      "lastmod": "2024-12-05"
+    },
+    {
+      "url": "https://content.perkinelmer.com/sg/library/food-safety-determination-of-veterinary-drugs-in-food-by-lc-ms-ms.html",
+      "lastmod": "2024-12-05"
+    },
+    {
+      "url": "https://content.perkinelmer.com/sg/library/hplc-columns-the-foundation-of-great-chromatography.html",
+      "lastmod": "2024-12-04"
+    },
+    {
+      "url": "https://content.perkinelmer.com/sg/library/qsight-lc-ms-ms-in-toxicology-research-at-boston-university.html",
+      "lastmod": "2024-12-03"
+    },
+    {
+      "url": "https://content.perkinelmer.com/sg/library/analysis-of-contaminants-in-food-matrices-by-LC-MSMS.html",
+      "lastmod": "2024-12-02"
+    },
+    {
+      "url": "https://content.perkinelmer.com/sg/library/monitoring-cyanotoxins-in-drinking-water-by-LC-MS-MS.html",
+      "lastmod": "2024-12-02"
+    },
+    {
+      "url": "https://content.perkinelmer.com/sg/library/water-contaminants-analysis-of-pfas-using-lc-ms-ms-technology.html",
+      "lastmod": "2024-12-02"
+    },
+    {
+      "url": "https://content.perkinelmer.com/sg/library/water-contaminants-analysis-of-polar-contaminants-and-glyphosate-with-qsight-lc-ms-ms.html",
+      "lastmod": "2024-12-02"
+    },
+    {
+      "url": "https://content.perkinelmer.com/sg/library/preparative-hplc-and-greener-preparative-solutions.html",
+      "lastmod": "2024-12-02"
+    },
+    {
+      "url": "https://content.perkinelmer.com/sg/library/foundations-of-speciation-knowing-your-hplc.html",
+      "lastmod": "2024-12-02"
+    },
+    {
+      "url": "https://content.perkinelmer.com/sg/library/customer-lc-ms-ms-spotlight-professor-sabra-botch-jones.html",
+      "lastmod": "2024-11-27"
+    },
+    {
+      "url": "https://content.perkinelmer.com/sg/library/an-introduction-to-lc-ms-ms.html",
+      "lastmod": "2024-11-27"
+    },
+    {
+      "url": "https://www.perkinelmer.com/sg/library/monitoring-pharmaceuticals-and-personal-care-products-in-drinking-water-by-lc-ms-ms.html",
+      "lastmod": "2024-11-26"
+    },
+    {
+      "url": "https://content.perkinelmer.com/sg/library/choosing-the-right-hplc-columns-webinar.html",
+      "lastmod": "2024-11-25"
+    },
+    {
+      "url": "https://content.perkinelmer.com/sg/library/performance-and-productivity-with-the-lc-300-hplc-and-uhplc-systems-i.html",
+      "lastmod": "2024-11-25"
+    },
+    {
+      "url": "https://content.perkinelmer.com/sg/library/hplc-troubleshooting-conquering-common-challenges.html",
+      "lastmod": "2024-11-25"
+    },
+    {
+      "url": "https://www.perkinelmer.com/sg/library/navigating-the-labyrinth-of-lc-ms-ms-contamination.html",
+      "lastmod": "2024-11-25"
+    },
+    {
+      "url": "https://content.perkinelmer.com/sg/library/basics-of-hplc-troubleshooting.html",
+      "lastmod": "2024-11-22"
+    },
+    {
+      "url": "https://content.perkinelmer.com/sg/library/lc-ms-ms-tour-video-dr-niladri-chatterjee-icar-cift.html",
+      "lastmod": "2024-11-21"
+    },
+    {
+      "url": "https://www.perkinelmer.com/sg/library/app-ferulic-acid-analysis-in-angelica-sinensis-radix-by-hplc.html",
+      "lastmod": "2024-11-13"
+    },
+    {
+      "url": "https://www.perkinelmer.com/sg/library/gde-basics-hplc-uhplc-lc-columns-training.html",
+      "lastmod": "2024-10-30"
+    },
+    {
+      "url": "https://www.perkinelmer.com/sg/library/gde-selecting-hplc-columns-going-under-the-hood.html",
+      "lastmod": "2024-10-30"
+    },
+    {
+      "url": "https://www.perkinelmer.com/sg/library/app-hplc-analysis-of-oleanolic-acid-and-ursonic-acid-in-eriobotrya-japonica-leaf.html",
+      "lastmod": "2024-10-25"
+    },
+    {
+      "url": "https://www.perkinelmer.com/sg/library/abr-optimizing-the-separation-of-fourtocopherols-and-fourtocotrienols-via-rp-hplc.html",
+      "lastmod": "2024-10-14"
+    },
+    {
+      "url": "https://www.perkinelmer.com/sg/library/abr-hplc-analysis-of-betamethasone-dipropionate.html",
+      "lastmod": "2024-10-11"
+    },
+    {
+      "url": "https://www.perkinelmer.com/sg/library/abr-hplc-analysis-of-finasteride-using-lc-300-in-accordance-with-the-usp.html",
+      "lastmod": "2024-10-11"
+    },
+    {
+      "url": "https://www.perkinelmer.com/sg/library/abr-hplc-analysis-of-lamotrigine-using-lc300-in-accordance-with-usp.html",
+      "lastmod": "2024-10-11"
+    },
+    {
+      "url": "https://www.perkinelmer.com/sg/library/abr-hplc-analysis-of-levetiracetam-using-lc-300-in-accordance-with-usp.html",
+      "lastmod": "2024-10-11"
+    },
+    {
+      "url": "https://www.perkinelmer.com/sg/library/abr-hplc-analysis-of-meloxicam.html",
+      "lastmod": "2024-10-11"
+    },
+    {
+      "url": "https://www.perkinelmer.com/sg/library/abr-hplc-analysis-of-omeprazole-using-lc-300-in-accordance-with-usp.html",
+      "lastmod": "2024-10-11"
+    },
+    {
+      "url": "https://www.perkinelmer.com/sg/library/abr-hplc-analysis-of-pregabalin-using-lc-300-in-accordance-with-usp.html",
+      "lastmod": "2024-10-11"
+    },
+    {
+      "url": "https://www.perkinelmer.com/sg/library/abr-hplc-assay-of-risperidone-impurities-using-lc-300-in-accordance-with-usp.html",
+      "lastmod": "2024-10-11"
+    },
+    {
+      "url": "https://www.perkinelmer.com/sg/library/abr-hplc-assay-of-risperidone-using-lc-300-in-accordance-with-usp.html",
+      "lastmod": "2024-10-11"
+    },
+    {
+      "url": "https://www.perkinelmer.com/sg/library/abr-determination-of-organotin-in-tap-water-by-hplc-icp-ms.html",
+      "lastmod": "2024-10-11"
+    },
+    {
+      "url": "https://www.perkinelmer.com/sg/library/abr-hplc-analysis-of-vitamin-c-using-quasar-biphenyl-column.html",
+      "lastmod": "2024-10-11"
+    },
+    {
+      "url": "https://www.perkinelmer.com/sg/library/abr-warfarin-analysis-using-a-quasar-aq-uhplc-column.html",
+      "lastmod": "2024-10-11"
+    },
+    {
+      "url": "https://www.perkinelmer.com/sg/library/wht-fast-and-efficient-hplc-separations-with-superficially-porous-particles.html",
+      "lastmod": "2024-10-09"
+    },
+    {
+      "url": "https://www.perkinelmer.com/sg/library/wht-uhplc-instrumentation-and-method-transfer-guidelines.html",
+      "lastmod": "2024-10-09"
+    },
+    {
+      "url": "https://www.perkinelmer.com/sg/library/pst-aflatoxins-food-matrices-fluorescence-hplc-analysis.html",
+      "lastmod": "2024-10-09"
+    },
+    {
+      "url": "https://content.perkinelmer.com/sg/library/uhplc-method-transfer-basics.html",
+      "lastmod": "2024-07-11"
+    },
+    {
+      "url": "https://content.perkinelmer.com/sg/library/intro-to-hplc-column-selection.html",
+      "lastmod": "2024-07-11"
+    },
+    {
+      "url": "https://content.perkinelmer.com/sg/library/hpcl-to-uhplc-method-transfer-series.html",
+      "lastmod": "2024-07-11"
+    },
+    {
+      "url": "https://content.perkinelmer.com/sg/library/hplc-conference-resources.html",
+      "lastmod": "2024-07-11"
+    },
+    {
+      "url": "https://www.perkinelmer.com/sg/library/best-practices-for-hplc-to-uhplc-method-transfer.html",
+      "lastmod": "2024-07-11"
+    },
+    {
+      "url": "https://www.perkinelmer.com/sg/library/case-study-in-uhplc-method-transfer.html",
+      "lastmod": "2024-07-11"
+    },
+    {
+      "url": "https://www.perkinelmer.com/sg/library/chromatography-simplified-liquid-chromatography-basics.html",
+      "lastmod": "2024-07-11"
+    }
+  ],
+  "sourceStatus": [
+    {
+      "sourceId": "perkinelmer-news",
+      "url": "https://www.perkinelmer.com/corporate-and-newsroom",
+      "method": "official_sitemap_and_public_pages",
+      "attemptedAt": "2026-07-31T13:34:24+00:00",
+      "succeededAt": "2026-07-31T13:34:24+00:00",
+      "recordsSeen": 4,
+      "recordsIngested": 3,
+      "engineNewestDate": "2026-07-09",
+      "sourceNewestDate": "2026-07-09",
+      "collectionOutcome": "collected",
+      "completeness": "complete",
+      "coverage": "complete",
+      "required": true
+    },
+    {
+      "sourceId": "perkinelmer-lc-products",
+      "url": "https://www.perkinelmer.com/category/liquid-chromatography",
+      "method": "official_sitemap",
+      "attemptedAt": "2026-07-31T13:34:24+00:00",
+      "succeededAt": "2026-07-31T13:34:24+00:00",
+      "recordsSeen": 85,
+      "recordsIngested": 85,
+      "engineNewestDate": "2026-04-24",
+      "sourceNewestDate": "2026-04-24",
+      "collectionOutcome": "collected",
+      "completeness": "complete",
+      "coverage": "complete",
+      "required": true
+    }
+  ]
+}

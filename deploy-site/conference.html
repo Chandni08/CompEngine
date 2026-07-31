@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Upcoming Conferences · Next Gen Competitive Intelligence</title>
+    <link rel="stylesheet" href="conference-page.css?v=20260723-responsive-width-7" />
+  </head>
+  <body>
+    <aside class="conference-sidebar">
+      <div class="conference-brand">
+        <div class="conference-brand-mark">W</div>
+        <div>
+          <span>Waters Next Gen</span>
+          <strong>Competitive Intelligence</strong>
+        </div>
+      </div>
+      <nav aria-label="Conference page navigation">
+        <a href="index.html">← Dashboard Overview</a>
+        <a class="active" href="conference.html" aria-current="page">Upcoming Conferences</a>
+        <a href="publications.html">Publication Intelligence</a>
+      </nav>
+      <div class="conference-sidebar-note">
+        <span>Page purpose</span>
+        <p>Decide where Waters should show up, what to prove, and which competitor claims to monitor.</p>
+      </div>
+    </aside>
+
+    <main class="conference-page-shell">
+      <header class="conference-page-header">
+        <div>
+          <p class="conference-breadcrumb"><a href="index.html">Dashboard</a><span>/</span>Upcoming Conferences</p>
+          <h1>Upcoming Conferences</h1>
+          <p>Upcoming events, competitor content, Waters scientific preparation, booth recommendations, and exact source evidence.</p>
+        </div>
+        <div class="conference-header-actions">
+          <button id="copyConferenceBrief" type="button">Copy selected brief</button>
+          <a href="index.html">Back to dashboard</a>
+        </div>
+      </header>
+
+      <section class="conference-filter-bar" aria-label="Conference filters">
+        <label>Market
+          <select id="conferenceMarketFilter"><option value="All">All markets</option></select>
+        </label>
+        <label>Technology
+          <select id="conferenceTechnologyFilter"><option value="All">All technologies</option></select>
+        </label>
+        <label>Competitor
+          <select id="conferenceCompetitorFilter"><option value="All">All competitors</option></select>
+        </label>
+        <button id="resetConferenceFilters" class="conference-reset" type="button">Reset</button>
+      </section>
+
+      <section id="conferenceStats" class="conference-stat-grid" aria-label="Conference summary"></section>
+
+      <section class="conference-timeline-panel" aria-labelledby="timelineHeading">
+        <div class="conference-section-header">
+          <div>
+            <span>Chronological view</span>
+            <h2 id="timelineHeading">Upcoming Conference Timeline</h2>
+          </div>
+          <p id="conferenceResultCount">Loading events</p>
+        </div>
+        <div id="conferenceTimeline" class="conference-timeline" role="tablist" aria-label="Upcoming conferences"></div>
+      </section>
+
+      <section class="conference-workspace" aria-label="Conference preparation workspace">
+        <nav class="conference-event-rail" aria-label="Conference list">
+          <div class="conference-rail-heading">
+            <span>Upcoming events</span>
+            <strong>Select a conference</strong>
+          </div>
+          <div id="conferenceEventList" class="conference-event-list" role="tablist"></div>
+          <nav id="conferenceEventPagination" class="conference-event-pagination" aria-label="Conference list pages" hidden></nav>
+        </nav>
+        <article id="conferenceEventDetail" class="conference-event-detail" aria-live="polite"></article>
+      </section>
+    </main>
+
+    <dialog id="competitorAppearancesModal" class="conference-modal" aria-labelledby="competitorAppearancesTitle">
+      <div class="conference-modal-shell">
+        <header>
+          <div>
+            <span>Conference monitoring</span>
+            <h2 id="competitorAppearancesTitle">Competitor Appearances to Monitor</h2>
+            <p id="competitorAppearancesSummary"></p>
+          </div>
+          <button type="button" data-close-competitor-appearances aria-label="Close competitor appearances">×</button>
+        </header>
+        <div id="competitorAppearancesList" class="competitor-appearances-list"></div>
+      </div>
+    </dialog>
+
+    <script src="conference-page.js?v=20260723-event-pagination-7"></script>
+  </body>
+</html>

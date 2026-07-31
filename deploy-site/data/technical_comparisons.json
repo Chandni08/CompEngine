@@ -1,0 +1,381 @@
+{
+  "generatedAt": "2026-07-17T16:30:00-04:00",
+  "scope": "Method-performance and transferability comparison using public primary sources. A missing directly comparable value is never inferred: it is marked as requiring controlled testing.",
+  "profiles": [
+    {
+      "launchId": "agilent-1290-infinity-iii-fld-2026",
+      "watersId": "acquity-uplc-i-class-plus",
+      "comparisonBasis": "Published fluorescence-detector specifications: Agilent 1290 Infinity III FLD versus the ACQUITY UPLC FLR Detector configured with the Waters ACQUITY UPLC I-Class PLUS System.",
+      "watersProduct": "ACQUITY UPLC I-Class PLUS with ACQUITY UPLC FLR Detector",
+      "asOfDate": "2026-07-26",
+      "rows": [
+        {
+          "dimension": "Comparable detector configuration",
+          "competitorValue": "Agilent positions the 1290 Infinity III FLD as a fluorescence detector for UHPLC workflows and for standalone or in-line use with LC/MS.",
+          "watersValue": "Waters specifies the ACQUITY UPLC FLR Detector for ACQUITY UPLC I-Class PLUS, H-Class PLUS, and Premier systems.",
+          "interpretation": "Compare the Agilent FLD with the Waters FLR detector inside the selected I-Class PLUS configuration—not with the UHPLC system alone.",
+          "evidenceType": "verified",
+          "competitorSourceUrl": "https://www.agilent.com/en/product/liquid-chromatography/hplc-components-accessories/hplc-detectors/1290-fluorescence-detector",
+          "watersSourceUrl": "https://www.waters.com/content/dam/waters/en/library/specifications/2020/waters-specification-ACQUITYUPLCFLRDetectorspecifications-720001985.pdf"
+        },
+        {
+          "dimension": "Raman sensitivity (published S/N)",
+          "competitorValue": "Agilent specifies Raman S/N above 2,500 and Raman S/N versus dark above 30,000 for the 1290 Infinity III FLD.",
+          "watersValue": "Waters specifies Raman S/N above 1,000 for the ACQUITY UPLC FLR Detector.",
+          "interpretation": "Agilent publishes the stronger headline sensitivity specification. Because the vendors state different test settings, treat this as a Waters proof gap to examine—not a demonstrated application-level sensitivity lead.",
+          "evidenceType": "conditions-differ",
+          "competitorSourceUrl": "https://www.agilent.com/cs/library/usermanuals/public/G7123-Fluorescence-Detector-UseMa-en-D0129488.pdf",
+          "watersSourceUrl": "https://www.waters.com/content/dam/waters/en/library/specifications/2020/waters-specification-ACQUITYUPLCFLRDetectorspecifications-720001985.pdf"
+        },
+        {
+          "dimension": "Maximum acquisition rate",
+          "competitorValue": "Agilent specifies a maximum data rate of 160 Hz for the 1290 Infinity III FLD.",
+          "watersValue": "Waters specifies data acquisition up to 80 Hz for the ACQUITY UPLC FLR Detector.",
+          "interpretation": "Agilent publishes twice the maximum acquisition rate. This matters when very narrow UHPLC peaks require more points across peak; otherwise the practical advantage may be limited by filtering, sensitivity, and method settings.",
+          "evidenceType": "verified",
+          "competitorSourceUrl": "https://www.agilent.com/cs/library/usermanuals/public/G7123-Fluorescence-Detector-UseMa-en-D0129488.pdf",
+          "watersSourceUrl": "https://www.waters.com/content/dam/waters/en/library/specifications/2020/waters-specification-ACQUITYUPLCFLRDetectorspecifications-720001985.pdf"
+        },
+        {
+          "dimension": "Flow-cell volume",
+          "competitorValue": "Agilent offers 2 µL and 13 µL flow cells for the 1290 Infinity III FLD.",
+          "watersValue": "Waters specifies a flow-cell volume below 2 µL for the ACQUITY UPLC FLR Detector.",
+          "interpretation": "Both vendors publish UHPLC-scale low-volume cells; Waters lists the smaller nominal standard-cell volume. Peak integrity still depends on the complete post-column flow path, not cell volume alone.",
+          "evidenceType": "verified",
+          "competitorSourceUrl": "https://www.agilent.com/cs/library/usermanuals/public/G7123-Fluorescence-Detector-UseMa-en-D0129488.pdf",
+          "watersSourceUrl": "https://www.waters.com/content/dam/waters/en/library/specifications/2020/waters-specification-ACQUITYUPLCFLRDetectorspecifications-720001985.pdf"
+        },
+        {
+          "dimension": "Wavelength coverage",
+          "competitorValue": "Agilent specifies a settable excitation/emission range of 200–1,200 nm and a spectral scan range of 200–800 nm.",
+          "watersValue": "Waters specifies 200–890 nm excitation and 210–900 nm emission ranges.",
+          "interpretation": "The usable ranges substantially overlap. The difference matters only for methods operating near the wavelength limits; confirm whether target fluorophores require Agilent's wider settable upper range or Waters' published emission coverage to 900 nm.",
+          "evidenceType": "conditions-differ",
+          "competitorSourceUrl": "https://www.agilent.com/cs/library/usermanuals/public/G7123-Fluorescence-Detector-UseMa-en-D0129488.pdf",
+          "watersSourceUrl": "https://www.waters.com/content/dam/waters/en/library/specifications/2020/waters-specification-ACQUITYUPLCFLRDetectorspecifications-720001985.pdf"
+        },
+        {
+          "dimension": "Wavelength accuracy / repeatability",
+          "competitorValue": "Agilent specifies ±3.0 nm wavelength accuracy and ±0.2 nm wavelength precision.",
+          "watersValue": "Waters specifies ±3 nm wavelength accuracy and ±0.25 nm wavelength repeatability.",
+          "interpretation": "Published accuracy is aligned; Agilent's repeatability figure is tighter by 0.05 nm. This is a low-priority difference unless the target method's selectivity is unusually sensitive to small wavelength shifts.",
+          "evidenceType": "verified",
+          "competitorSourceUrl": "https://www.agilent.com/cs/library/usermanuals/public/G7123-Fluorescence-Detector-UseMa-en-D0129488.pdf",
+          "watersSourceUrl": "https://www.waters.com/content/dam/waters/en/library/specifications/2020/waters-specification-ACQUITYUPLCFLRDetectorspecifications-720001985.pdf"
+        },
+        {
+          "dimension": "Flow-cell pressure limit",
+          "competitorValue": "Agilent specifies a 60 bar (6 MPa) maximum pressure for the 1290 Infinity III FLD flow cell.",
+          "watersValue": "Waters specifies a 500 psi (34 bar) pressure limit for the ACQUITY UPLC FLR Detector flow cell.",
+          "interpretation": "Agilent publishes greater flow-cell pressure headroom. This is relevant mainly when restrictive post-column plumbing or serial detectors create backpressure; it is not a general chromatographic-performance advantage.",
+          "evidenceType": "verified",
+          "competitorSourceUrl": "https://www.agilent.com/cs/library/usermanuals/public/G7123-Fluorescence-Detector-UseMa-en-D0129488.pdf",
+          "watersSourceUrl": "https://www.waters.com/content/dam/waters/en/library/specifications/2020/waters-specification-ACQUITYUPLCFLRDetectorspecifications-720001985.pdf"
+        },
+        {
+          "dimension": "Published pH range",
+          "competitorValue": "Agilent specifies a pH range of 1.0–12.5 for the 1290 Infinity III FLD, solvent dependent.",
+          "watersValue": "Waters specifies a pH range of 1–12.5 for the ACQUITY UPLC I-Class PLUS System.",
+          "interpretation": "The published pH ranges are aligned, so this is not a useful differentiation point for the selected pair.",
+          "evidenceType": "verified",
+          "competitorSourceUrl": "https://www.agilent.com/cs/library/usermanuals/public/G7123-Fluorescence-Detector-UseMa-en-D0129488.pdf",
+          "watersSourceUrl": "https://www.waters.com/nextgen/us/en/products/chromatography/chromatography-systems/acquity-uplc-i-class-plus-system.html"
+        }
+      ],
+      "limitations": [
+        "Published maximum specifications do not establish performance on the same fluorescence method, analyte, filtering, flow cell, or integration settings.",
+        "The sensitivity figures use vendor-defined test settings; use them to identify proof priorities rather than to claim application superiority."
+      ]
+    },
+    {
+      "launchId": "agilent-1290-infinity-iii-2024",
+      "watersId": "acquity-premier-system",
+      "comparisonBasis": "Method-transfer comparison: Agilent 1290 Infinity III LC versus Waters ACQUITY Premier System using a shared method, matched configuration, and named reference columns.",
+      "watersProduct": "ACQUITY Premier System",
+      "asOfDate": "2026-07-17",
+      "rows": [
+        {
+          "dimension": "System / gradient dwell (delay) volume",
+          "competitorValue": "Agilent publishes a pump delay volume as low as 10 µL, but total configured system dwell volume is not stated on the reviewed product page.",
+          "watersValue": "Waters describes ACQUITY Premier as low-dispersion, but a directly comparable total configured dwell-volume value is not stated on the reviewed public page.",
+          "interpretation": "Requires controlled testing. Measure time-to-gradient and calculated dwell volume on both complete configurations at the same flow before judging retention-time transferability.",
+          "evidenceType": "requires-controlled-testing",
+          "competitorSourceUrl": "https://www.agilent.com/en/product/liquid-chromatography/hplc-components-accessories/hplc-pumps/1290-high-speed-pump",
+          "watersSourceUrl": "https://www.waters.com/nextgen/en/products/chromatography/chromatography-systems/acquity-premier-system.html"
+        },
+        {
+          "dimension": "Extra-column dispersion / band broadening",
+          "competitorValue": "Agilent claims low dispersion for the 1290 Infinity III, but the reviewed primary source does not publish a common-condition variance or peak-width result for the complete configuration.",
+          "watersValue": "Waters claims low dispersion for ACQUITY Premier, but the reviewed primary source does not publish a result under the same tubing, detector cell, column, and method conditions.",
+          "interpretation": "Requires controlled testing. Run the same low-volume tracer and narrow-peak method, then compare system variance, observed peak width, resolution loss, and sensitivity loss.",
+          "evidenceType": "requires-controlled-testing",
+          "competitorSourceUrl": "https://www.agilent.com/en/product/liquid-chromatography/hplc-systems/analytical-hplc-systems/1290-lc-system",
+          "watersSourceUrl": "https://www.waters.com/nextgen/en/products/chromatography/chromatography-systems/acquity-premier-system.html"
+        },
+        {
+          "dimension": "Injection precision (%RSD)",
+          "competitorValue": "The 1290 Infinity III Hybrid Multisampler manual specifies less than 0.15% RSD, or SD below 20 nL, whichever is greater, using caffeine and the stated solvent conditions.",
+          "watersValue": "A directly comparable ACQUITY Premier injection-precision value under the same injection volume, analyte, and detector conditions was not found in the reviewed public primary source.",
+          "interpretation": "Requires controlled testing. Compare area and retention-time %RSD at low, mid, and high injection volumes using the same vial, sample, needle-wash, and detection method.",
+          "evidenceType": "requires-controlled-testing",
+          "competitorSourceUrl": "https://www.agilent.com/cs/library/usermanuals/public/InfinityLab-Hybrid-Multisamplers-UseMa-en-D0029905.pdf",
+          "watersSourceUrl": "https://www.waters.com/nextgen/en/products/chromatography/chromatography-systems/acquity-premier-system.html"
+        },
+        {
+          "dimension": "Carryover on a shared sticky-analyte method",
+          "competitorValue": "Agilent publishes less than 9 ppm for a challenging compound with the 1290 Infinity III Multisampler multiwash configuration.",
+          "watersValue": "Waters publishes sample carryover at or below 0.002% using caffeine under UV conditions for ACQUITY Premier.",
+          "interpretation": "The analytes, units, configurations, and protocols differ. Run the same sticky-analyte panel, concentration ratio, wash solvents, injection volume, blank sequence, and detector method.",
+          "evidenceType": "conditions-differ",
+          "competitorSourceUrl": "https://www.agilent.com/en/products/liquid-chromatography/infinitylab-lc-series-modules/lc-injection-systems/1290-infinity-ii-multisampler",
+          "watersSourceUrl": "https://www.waters.com/nextgen/en/products/chromatography/chromatography-systems/acquity-premier-system.html"
+        },
+        {
+          "dimension": "Column plate efficiency (plates/m)",
+          "competitorValue": "No shared-method plates-per-meter result is published for a named Agilent reference column on the selected 1290 configuration.",
+          "watersValue": "No shared-method plates-per-meter result is published for a matched Waters reference column on the selected ACQUITY Premier configuration.",
+          "interpretation": "Requires controlled testing. Select columns with the same dimensions and USP class, then report plates/m, asymmetry, resolution, and pressure under the transferred method.",
+          "evidenceType": "requires-controlled-testing",
+          "competitorSourceUrl": "https://www.agilent.com/store/en_US/Prod-959758-902/959758-902",
+          "watersSourceUrl": "https://www.waters.com/nextgen/us/en/shop/columns/176000864-acquity-uplc-beh-c18-column-130a-17--m-21-mm-x-100-mm-3-pk.html"
+        },
+        {
+          "dimension": "Particle and bonding technology",
+          "competitorValue": "A reference ZORBAX RRHD Eclipse Plus C18 column is 1.8 µm fully porous silica with double endcapping, 95 Å pores, and C18 bonding.",
+          "watersValue": "A reference ACQUITY UPLC BEH C18 column is 1.7 µm fully porous hybrid BEH material with trifunctional C18 bonding, endcapping, and 130 Å pores.",
+          "interpretation": "These are not chemically identical columns even though both are C18. Transfer risk should be judged through selectivity, retention, peak shape, and recovery on the target analytes, not particle size alone.",
+          "evidenceType": "verified",
+          "competitorSourceUrl": "https://www.agilent.com/store/en_US/Prod-959758-902/959758-902",
+          "watersSourceUrl": "https://www.waters.com/nextgen/us/en/shop/columns/176000864-acquity-uplc-beh-c18-column-130a-17--m-21-mm-x-100-mm-3-pk.html"
+        },
+        {
+          "dimension": "Column batch-to-batch reproducibility",
+          "competitorValue": "Agilent publishes lot-to-lot reproducibility claims for its column portfolio, but no common multi-lot dataset is loaded for the selected paired chemistry and target method.",
+          "watersValue": "Waters publishes batch-to-batch reproducibility claims for ACQUITY UPLC columns, but no common multi-lot dataset is loaded for the selected paired chemistry and target method.",
+          "interpretation": "Requires controlled testing. Test at least three independently manufactured lots per column and compare retention, selectivity, plates/m, tailing, and recovery against method-system-suitability limits.",
+          "evidenceType": "requires-controlled-testing",
+          "competitorSourceUrl": "https://www.agilent.com/en/product/small-molecule-columns/reversed-phase-hplc-columns/infinitylab-poroshell-120",
+          "watersSourceUrl": "https://www.waters.com/nextgen/us/en/products/columns/acquity-uplc-columns.html"
+        },
+        {
+          "dimension": "USP L-column class",
+          "competitorValue": "The selected ZORBAX RRHD Eclipse Plus C18 reference column is listed as USP L1.",
+          "watersValue": "The selected ACQUITY UPLC BEH C18 reference column is listed as USP L1.",
+          "interpretation": "Both reference columns are L1, but USP class does not establish equivalent selectivity. Confirm allowable method adjustments and system suitability with the actual compendial method.",
+          "evidenceType": "verified",
+          "competitorSourceUrl": "https://www.agilent.com/store/en_US/Prod-959758-902/959758-902",
+          "watersSourceUrl": "https://www.waters.com/nextgen/us/en/shop/columns/176000864-acquity-uplc-beh-c18-column-130a-17--m-21-mm-x-100-mm-3-pk.html"
+        }
+      ],
+      "limitations": [
+        "Dwell volume and dispersion depend on the complete configured flow path, not the pump or system family name alone.",
+        "Published injection-precision and carryover claims use vendor-specific analytes and procedures and do not constitute a head-to-head result.",
+        "USP L classification is a chemistry grouping, not proof of equivalent selectivity or successful method transfer."
+      ]
+    },
+    {
+      "launchId": "shimadzu-nexera-x4-2026",
+      "watersId": "acquity-uplc-i-class-plus",
+      "comparisonBasis": "Method-transfer comparison: Shimadzu Nexera X4 Series versus Waters ACQUITY UPLC I-Class PLUS using a shared method, matched configuration, and named reference columns.",
+      "watersProduct": "ACQUITY UPLC I-Class PLUS System",
+      "asOfDate": "2026-07-17",
+      "rows": [
+        {
+          "dimension": "System / gradient dwell (delay) volume",
+          "competitorValue": "The reviewed Nexera X4 primary source describes high-speed, high-precision gradients but does not publish a total configured dwell-volume value.",
+          "watersValue": "Waters describes I-Class PLUS as having ultra-low delay volume, but the reviewed public product page does not state a directly comparable total configured value.",
+          "interpretation": "Requires controlled testing. Measure the delivered gradient delay on both full configurations at the same flow and model the retention-time shift before transferring a gradient method.",
+          "evidenceType": "requires-controlled-testing",
+          "competitorSourceUrl": "https://www.ssi.shimadzu.com/products/liquid-chromatography/hplcuhplc/nexera-x4/spec.html",
+          "watersSourceUrl": "https://www.waters.com/nextgen/us/en/products/chromatography/chromatography-systems/acquity-uplc-i-class-plus-system.html"
+        },
+        {
+          "dimension": "Extra-column dispersion / band broadening",
+          "competitorValue": "Shimadzu states that Nexflow minimizes extra-column band broadening, but no common-condition system-variance result is published in the reviewed source.",
+          "watersValue": "Waters claims industry-leading ultra-low dispersion, but no result under the same tubing, detector cell, column, and method conditions is published in the reviewed source.",
+          "interpretation": "Requires controlled testing. Compare system variance and peak-width inflation with the same low-volume tracer, detector settings, connections, and narrow-peak method.",
+          "evidenceType": "requires-controlled-testing",
+          "competitorSourceUrl": "https://www.ssi.shimadzu.com/products/liquid-chromatography/hplcuhplc/nexera-x4/spec.html",
+          "watersSourceUrl": "https://www.waters.com/nextgen/us/en/products/chromatography/chromatography-systems/acquity-uplc-i-class-plus-system.html"
+        },
+        {
+          "dimension": "Injection precision (%RSD)",
+          "competitorValue": "Shimadzu publishes injection-volume reproducibility from at or below 1.0% RSD at 0.5-0.9 µL to at or below 0.15% RSD above 5.0 µL, under specified conditions.",
+          "watersValue": "Waters publishes I-Class PLUS injection accuracy at or below 0.25% RSD, but the public support article does not establish the same injection-volume bands and test conditions as Shimadzu.",
+          "interpretation": "Published values use different protocols. Run the same sample and injection-volume series, reporting area and retention-time %RSD at volumes that matter to the transferred method.",
+          "evidenceType": "conditions-differ",
+          "competitorSourceUrl": "https://www.ssi.shimadzu.com/products/liquid-chromatography/hplcuhplc/nexera-x4/spec.html",
+          "watersSourceUrl": "https://support.waters.com/KB_Inst/Chromatography/WKB97891_Are_there_any_differences_in_the_specifications_of_ACQUITY_UPLC_I-Class_and_I-Class_PLUS"
+        },
+        {
+          "dimension": "Carryover on a shared sticky-analyte method",
+          "competitorValue": "Shimadzu publishes at or below 0.0010% without rinse and typically at or below 0.0003% with rinse, under specified conditions.",
+          "watersValue": "Waters publishes carryover below 0.001% for I-Class PLUS, using its own test conditions.",
+          "interpretation": "The headline values are close but not directly comparable. Run the same sticky-analyte panel, concentration ratio, rinse sequence, injection volume, blanks, and detector method.",
+          "evidenceType": "conditions-differ",
+          "competitorSourceUrl": "https://www.ssi.shimadzu.com/products/liquid-chromatography/hplcuhplc/nexera-x4/spec.html",
+          "watersSourceUrl": "https://support.waters.com/KB_Inst/Chromatography/WKB97891_Are_there_any_differences_in_the_specifications_of_ACQUITY_UPLC_I-Class_and_I-Class_PLUS"
+        },
+        {
+          "dimension": "Column plate efficiency (plates/m)",
+          "competitorValue": "Shimadzu publishes application-specific plate counts for Velox C18, but no shared plates-per-meter result is loaded for a matched Nexera X4 method and column geometry.",
+          "watersValue": "No shared plates-per-meter result is loaded for the matched ACQUITY UPLC BEH C18 geometry and method.",
+          "interpretation": "Requires controlled testing. Use columns with the same dimensions and USP class, then compare plates/m, asymmetry, resolution, pressure, and sensitivity on both systems.",
+          "evidenceType": "requires-controlled-testing",
+          "competitorSourceUrl": "https://www.shimadzu.com/an/products/liquid-chromatography/hplc-consumables/velox/shim-pack-velox-c18/index.html",
+          "watersSourceUrl": "https://www.waters.com/nextgen/us/en/shop/columns/176000864-acquity-uplc-beh-c18-column-130a-17--m-21-mm-x-100-mm-3-pk.html"
+        },
+        {
+          "dimension": "Particle and bonding technology",
+          "competitorValue": "A reference Shim-pack Velox C18 uses superficially porous particles, C18 bonding, endcapping, 90 Å pores, and is available in 1.8, 2.7, and 5 µm sizes.",
+          "watersValue": "A reference ACQUITY UPLC BEH C18 uses 1.7 µm fully porous hybrid BEH particles, trifunctional C18 bonding, endcapping, and 130 Å pores.",
+          "interpretation": "Core-shell silica and fully porous hybrid particles can differ in efficiency, selectivity, loading, and pH behavior. Transfer success must be demonstrated with the target analytes.",
+          "evidenceType": "verified",
+          "competitorSourceUrl": "https://www.shimadzu.com/an/products/liquid-chromatography/hplc-consumables/velox/shim-pack-velox-lc-columns/features.html",
+          "watersSourceUrl": "https://www.waters.com/nextgen/us/en/shop/columns/176000864-acquity-uplc-beh-c18-column-130a-17--m-21-mm-x-100-mm-3-pk.html"
+        },
+        {
+          "dimension": "Column batch-to-batch reproducibility",
+          "competitorValue": "Shimadzu publishes a five-lot reproducibility example for a Velox Biphenyl method, not the selected C18 transfer method.",
+          "watersValue": "Waters publishes batch-to-batch reproducibility claims for ACQUITY UPLC columns, but no common multi-lot dataset is loaded for the selected paired C18 method.",
+          "interpretation": "Requires controlled testing. Test at least three independent lots per selected C18 column and compare selectivity, retention, plates/m, tailing, and recovery against method limits.",
+          "evidenceType": "requires-controlled-testing",
+          "competitorSourceUrl": "https://www.shimadzu.com/an/sites/shimadzu.com.an/files/pim/pim_document_file/brochures/10609/c190-e219.pdf",
+          "watersSourceUrl": "https://www.waters.com/nextgen/us/en/products/columns/acquity-uplc-columns.html"
+        },
+        {
+          "dimension": "USP L-column class",
+          "competitorValue": "The selected Shim-pack Velox C18 reference chemistry is listed as USP L1.",
+          "watersValue": "The selected ACQUITY UPLC BEH C18 reference chemistry is listed as USP L1.",
+          "interpretation": "Both are L1, but USP class does not guarantee equivalent selectivity. Verify permitted adjustments and system suitability with the exact compendial method.",
+          "evidenceType": "verified",
+          "competitorSourceUrl": "https://www.shimadzu.com/an/products/liquid-chromatography/hplc-consumables/velox/shim-pack-velox-lc-columns/features.html",
+          "watersSourceUrl": "https://www.waters.com/nextgen/us/en/shop/columns/176000864-acquity-uplc-beh-c18-column-130a-17--m-21-mm-x-100-mm-3-pk.html"
+        }
+      ],
+      "limitations": [
+        "Neither vendor's qualitative low-dispersion claim substitutes for a complete configured system-variance measurement.",
+        "Injection precision and carryover are published under different vendor conditions and cannot support a winner without a shared method.",
+        "The reference columns provide a transfer test starting point; they are not asserted to be chemically equivalent because both carry an L1 classification."
+      ]
+    },
+    {
+      "launchId": "agilent-6230c-lctof-2026",
+      "watersId": "bioaccord-lcms-system",
+      "comparisonBasis": "Shared-method performance comparison: Agilent 6230C plus OpenLab MAM versus Waters BioAccord LC-MS using the same sample, chromatography, processing rules, and acceptance criteria.",
+      "watersProduct": "BioAccord LC-MS System with ACQUITY Premier",
+      "asOfDate": "2026-07-17",
+      "rows": [
+        {
+          "dimension": "Sensitivity / LOQ on a shared method",
+          "competitorValue": "Agilent publishes low-picogram on-column sensitivity and installation specifications for reserpine, not an LOQ from a shared BioAccord MAM method.",
+          "watersValue": "Waters publishes application-specific BioAccord sensitivity and MAM performance, but not an LOQ from the same sample preparation, LC method, acquisition, and processing rules as Agilent.",
+          "interpretation": "Requires controlled testing. Establish peptide-level LOQ, precision, recovery, false-positive rate, and sequence coverage from one dilution series and one predefined MAM processing method.",
+          "evidenceType": "requires-controlled-testing",
+          "competitorSourceUrl": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/time-of-flight-lc-ms/6230-time-of-flight-tof-lc-ms",
+          "watersSourceUrl": "https://www.waters.com/nextgen/tw/zh/library/application-notes/2021/the-bioaccord-system-with-acquity-premier-for-improved-peptide-cqa-monitoring.html"
+        },
+        {
+          "dimension": "Polarity-switching speed",
+          "competitorValue": "Agilent publishes a 2 Hz polarity-switching duty cycle for the 6230C.",
+          "watersValue": "A directly comparable BioAccord polarity-switching speed was not found in the reviewed public primary source.",
+          "interpretation": "Requires controlled testing if the target workflow uses both polarities. Measure settling time, cycle time, mass accuracy, sensitivity, and data density after each switch.",
+          "evidenceType": "requires-controlled-testing",
+          "competitorSourceUrl": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/time-of-flight-lc-ms/6230-time-of-flight-tof-lc-ms",
+          "watersSourceUrl": "https://www.waters.com/nextgen/us/en/products/mass-spectrometry/mass-spectrometry-systems/bioaccord-lc-ms-system.html"
+        },
+        {
+          "dimension": "Dwell allocation / points across peak at large MRM panels",
+          "competitorValue": "The 6230C is a full-scan TOF, so transition dwell allocation is not a directly applicable MRM metric; it publishes acquisition up to 30 spectra/second.",
+          "watersValue": "BioAccord is also a full-scan accurate-mass workflow rather than a triple-quadrupole MRM platform; a directly comparable large-panel MRM value is not applicable.",
+          "interpretation": "For this TOF workflow, replace MRM dwell with controlled testing of scans across the narrowest chromatographic peak, feature detection completeness, and quantitative precision at peak concurrency.",
+          "evidenceType": "requires-controlled-testing",
+          "competitorSourceUrl": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/time-of-flight-lc-ms/6230-time-of-flight-tof-lc-ms",
+          "watersSourceUrl": "https://www.waters.com/nextgen/us/en/products/mass-spectrometry/mass-spectrometry-systems/bioaccord-lc-ms-system.html"
+        },
+        {
+          "dimension": "Cross-talk / interference rejection",
+          "competitorValue": "A directly comparable cross-talk or interference-rejection value for the shared MAM method was not found in the reviewed Agilent primary source.",
+          "watersValue": "A directly comparable cross-talk or interference-rejection value for the same method was not found in the reviewed Waters primary source.",
+          "interpretation": "Requires controlled testing. Challenge both workflows with co-eluting high-abundance species and isotopic interferences, then compare false annotations, mass error, recovery, and review burden.",
+          "evidenceType": "requires-controlled-testing",
+          "competitorSourceUrl": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/time-of-flight-lc-ms/6230-time-of-flight-tof-lc-ms",
+          "watersSourceUrl": "https://www.waters.com/nextgen/us/en/products/mass-spectrometry/mass-spectrometry-systems/bioaccord-lc-ms-system.html"
+        },
+        {
+          "dimension": "Linear dynamic range",
+          "competitorValue": "Agilent publishes up to five orders of in-spectrum dynamic range for the 6230C.",
+          "watersValue": "Waters reports three orders of linear range for a BioAccord amino-acid application, while MAM performance is application dependent; this is not the same analyte set or protocol.",
+          "interpretation": "Published figures describe different tests. Run the same MAM dilution series and report per-analyte linear range, residuals, precision, carryover, and saturation behavior.",
+          "evidenceType": "conditions-differ",
+          "competitorSourceUrl": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/time-of-flight-lc-ms/6230-time-of-flight-tof-lc-ms",
+          "watersSourceUrl": "https://www.waters.com/content/dam/waters/en/app-notes/2022/720007766/720007766-en.pdf"
+        }
+      ],
+      "limitations": [
+        "6230C and BioAccord are full-scan accurate-mass workflows; triple-quadrupole MRM dwell and cross-talk specifications are not directly applicable without translating them into full-scan data-density and interference tests.",
+        "Published sensitivity and dynamic-range claims use different analytes, matrices, chromatographic methods, and calculations.",
+        "A defensible comparison requires one end-to-end MAM protocol with predefined LOQ, precision, feature-detection, linearity, and review-effort acceptance criteria."
+      ]
+    },
+    {
+      "launchId": "sciex-novus-v55-2026",
+      "watersId": "xevo-tq-absolute",
+      "comparisonBasis": "Shared-method triple-quadrupole comparison: SCIEX novus V55 plus SCIEX OS 5.0 versus Waters Xevo TQ Absolute using the same sample, LC method, transition panel, and quantitation rules.",
+      "watersProduct": "Xevo TQ Absolute",
+      "asOfDate": "2026-07-17",
+      "rows": [
+        {
+          "dimension": "Sensitivity / LOQ on a shared method",
+          "competitorValue": "SCIEX claims exceptional sensitivity and publishes application-specific LOQs, but no LOQ from a controlled head-to-head method against Xevo TQ Absolute is provided.",
+          "watersValue": "Waters publishes application-specific sensitivity for Xevo TQ Absolute, but no LOQ from the same sample preparation, chromatography, transitions, calibration, and processing rules as SCIEX.",
+          "interpretation": "Requires controlled testing. Compare matrix-matched LOQ, accuracy, precision, recovery, ion suppression, and carryover across a shared dilution series rather than vendor-specific sensitivity claims.",
+          "evidenceType": "requires-controlled-testing",
+          "competitorSourceUrl": "https://sciex.com/products/mass-spectrometers/triple-quad-systems/novus-v55-system",
+          "watersSourceUrl": "https://www.waters.com/nextgen/en/products/mass-spectrometry-systems/xevo-tq-absolute.html"
+        },
+        {
+          "dimension": "Polarity-switching speed",
+          "competitorValue": "A SCIEX technical note reports 5 ms settling time in a novus V55 pesticide method containing 1,411 positive and negative transitions.",
+          "watersValue": "Waters operating guidance specifies a 15 ms minimum for positive/negative ESI switching and recommends at least 125 ms overall cycle time for reliable long-term use.",
+          "interpretation": "SCIEX publishes the faster method-specific switching value, but switching speed alone is not the outcome. Test signal settling, LOQ, precision, and points across peak on the same mixed-polarity panel.",
+          "evidenceType": "conditions-differ",
+          "competitorSourceUrl": "https://sciex.com/tech-notes/food-beverage/food-and-beverage/maximizing-throughput-with-accelerated-mrm-aemrm-novus-v55",
+          "watersSourceUrl": "https://help.waters.com/content/dam/waters/en/support/usermanuals/2022/715008065/715008065.pdf"
+        },
+        {
+          "dimension": "Dwell allocation / points across peak at large MRM panels",
+          "competitorValue": "SCIEX publishes up to 1,000 MRMs/second; in a pesticide method, 1 ms minimum dwell and at least 10 points across peak were maintained at 369 concurrent transitions.",
+          "watersValue": "Waters publishes 1 ms minimum dwell and Auto-Dwell assignment of dwell, inter-channel, and inter-scan delays to target an optimal number of points across each peak; no matched maximum-panel result is published in the reviewed source.",
+          "interpretation": "SCIEX has stronger public large-panel proof, but the methods are not matched. Run identical scheduled panels at peak concurrency and compare data points, peak integration, accuracy, precision, and missed transitions.",
+          "evidenceType": "conditions-differ",
+          "competitorSourceUrl": "https://sciex.com/tech-notes/food-beverage/food-and-beverage/maximizing-throughput-with-accelerated-mrm-aemrm-novus-v55",
+          "watersSourceUrl": "https://help.waters.com/content/dam/waters/en/support/usermanuals/2022/715008065/715008065.pdf"
+        },
+        {
+          "dimension": "Cross-talk",
+          "competitorValue": "A directly comparable cross-talk value under the shared high-concurrency panel was not found in the reviewed SCIEX primary source.",
+          "watersValue": "A directly comparable cross-talk value under the same transitions, abundance ratios, collision conditions, and timing was not found in the reviewed Waters primary source.",
+          "interpretation": "Requires controlled testing. Use adjacent high/low abundance transitions and shared product ions, then quantify false signal, ion-ratio bias, recovery, and the effect of dwell and pause settings.",
+          "evidenceType": "requires-controlled-testing",
+          "competitorSourceUrl": "https://sciex.com/products/mass-spectrometers/triple-quad-systems/novus-v55-system",
+          "watersSourceUrl": "https://www.waters.com/nextgen/en/products/mass-spectrometry-systems/xevo-tq-absolute.html"
+        },
+        {
+          "dimension": "Linear dynamic range",
+          "competitorValue": "A directly comparable linear dynamic range for the shared analyte panel and calibration model was not found in the reviewed SCIEX primary source.",
+          "watersValue": "Waters publishes six orders of linear dynamic range for a specific MassTrak IVD configuration, not for the same analyte panel and method as SCIEX.",
+          "interpretation": "Requires controlled testing. Use the same matrix-matched calibration series and report per-analyte range, residuals, weighting, precision, saturation, and carryover before claiming an advantage.",
+          "evidenceType": "requires-controlled-testing",
+          "competitorSourceUrl": "https://sciex.com/products/mass-spectrometers/triple-quad-systems/novus-v55-system",
+          "watersSourceUrl": "https://www.waters.com/nextgen/us/en/products/in-vitro-diagnostics-solutions/lc-ms-ms-ivd-systems-portfolio/masstrak-acquity-uplc-i-class-plus-xevo-tq-absolute-ivd-system.html"
+        }
+      ],
+      "limitations": [
+        "SCIEX's large-panel technical note and Waters' operating specifications are not a head-to-head test and use different methods and reporting contexts.",
+        "Vendor sensitivity and dynamic-range claims cannot be ranked without the same analytes, matrix, LC method, calibration model, and acceptance criteria.",
+        "The controlled comparison must preserve peak width and MRM concurrency so polarity switching and dwell allocation are assessed under the actual transfer challenge."
+      ]
+    }
+  ]
+}
