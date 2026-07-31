@@ -65,20 +65,6 @@ REGULATORY_SOURCES = (
         "publicAccessScope": "Public preview only; full compendial text is not verified by this collector.",
     },
     {
-        "id": "usp-232-233-elemental-impurities",
-        "source": "USP <232>/<233> Elemental Impurities",
-        "publisher": "United States Pharmacopeia",
-        "url": "https://www.usp.org/impurities/elemental-impurities-updates",
-        "marketSegments": ["Pharma", "Biopharma", "CDMO", "Clinical", "Food & Beverage"],
-        "signalCoverage": ["Elemental impurity limits", "ICP-MS procedures", "Procedure validation", "Compendial updates"],
-        "whatToMeasure": "Permitted exposure changes, procedure revisions, validation requirements, and effective dates for elemental impurity testing.",
-        "whyItMatters": "The chapters create regulated ICP-MS and sample-preparation requirements adjacent to LC-MS laboratory workflows and informatics.",
-        "documentIdentifier": "USP–NF General Chapters <232> and <233>",
-        "revisionDate": None,
-        "effectiveDate": None,
-        "publicAccessScope": "Official public update page; compendial chapter content may require access.",
-    },
-    {
         "id": "ich-q2-r2",
         "source": "ICH Q2(R2) Validation of Analytical Procedures",
         "publisher": "International Council for Harmonisation",
@@ -928,6 +914,10 @@ def main(*, trade_only: bool = False) -> int:
     journal_data = read_json(JOURNAL_FILE)
     conference_data = read_json(CONFERENCE_FILE)
     source_catalog = read_json(SOURCE_CATALOG_FILE)
+    source_catalog["sources"] = [
+        source for source in source_catalog.get("sources", [])
+        if source.get("id") != "usp-232-233-elemental-impurities"
+    ]
 
     trade_entries, trade_sources = collect_trade_sources(journal_data)
     if trade_only:

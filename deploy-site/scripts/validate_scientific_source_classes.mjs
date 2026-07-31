@@ -27,7 +27,6 @@ const REQUIRED_CONFERENCES = new Map([
 const REQUIRED_REGULATORY = new Map([
   ["usp-621-chromatography", ["doi.usp.org"]],
   ["usp-1058-instrument-qualification", ["doi.usp.org"]],
-  ["usp-232-233-elemental-impurities", ["www.usp.org"]],
   ["ich-q2-r2", ["database.ich.org"]],
   ["ich-q14", ["database.ich.org"]],
   ["fda-warning-letters-analytical-findings", ["www.fda.gov"]],

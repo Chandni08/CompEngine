@@ -1,9 +1,9 @@
 {
   "cadence": "daily",
   "status": "partial",
-  "lastAttemptAt": "2026-07-31T13:52:11+00:00",
+  "lastAttemptAt": "2026-07-31T14:03:07+00:00",
   "lastSuccessfulRefreshAt": "2026-07-30T11:33:59+00:00",
-  "startedAt": "2026-07-31T13:52:11+00:00",
+  "startedAt": "2026-07-31T14:03:07+00:00",
   "automatedDomains": [
     "PubMed publication trends and competitor-linked publications",
     "SEC filing discovery",
@@ -22,8 +22,8 @@
     "Conference preparation",
     "PM recommendations"
   ],
-  "message": "Automated refresh completed; reachable sources refreshed and remaining source limitations are disclosed.",
-  "buildPublishedAt": "2026-07-31T13:52:11+00:00",
+  "message": "Removed the inaccessible USP elemental-impurities source; remaining source limitations are disclosed.",
+  "buildPublishedAt": "2026-07-31T14:03:07+00:00",
   "sourcesVerifiedAt": null,
   "allRequiredSourcesCurrent": false,
   "requiredSourceBlockers": [
@@ -51,7 +51,6 @@
     "conference-ebf-open-symposium-2026",
     "usp-621-chromatography",
     "usp-1058-instrument-qualification",
-    "usp-232-233-elemental-impurities",
     "ich-q2-r2",
     "ich-q14",
     "fda-warning-letters-analytical-findings",
@@ -86,7 +85,7 @@
     "BLOCKED": 3,
     "CURRENT": 16,
     "DISABLED": 0,
-    "ERROR": 1,
+    "ERROR": 0,
     "MISSING": 0,
     "PARTIAL": 61,
     "STALE": 0,
@@ -96,7 +95,7 @@
     "BLOCKED": 3,
     "CURRENT": 16,
     "DISABLED": 0,
-    "ERROR": 1,
+    "ERROR": 0,
     "MISSING": 0,
     "PARTIAL": 61,
     "STALE": 0,
