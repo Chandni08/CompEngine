@@ -11468,6 +11468,9 @@ function renderSourceCounts(signals) {
   const upcomingConferenceSources = currentConferenceSources();
   const activeCompetitors = new Set(launches.map((launch) => launch.competitor)).size;
   const horizonDelta = horizonDeltaSummary();
+  const publicEvidenceSourcePill = state.view === "Product"
+    ? ""
+    : `<a class="source-pill source-pill-link" href="#evidence-signal-feed" data-evidence-target="evidence-signal-feed" aria-label="View ${displaySignals(signals).length} public evidence records"><span>Public evidence records</span><strong>${displaySignals(signals).length}<small>View →</small></strong></a>`;
   byId("sourceCounts").innerHTML = `
     <div class="source-pill"><span>Role view</span><strong>${escapeHtml(state.view)}</strong></div>
     <div class="source-pill"><span>Time window</span><strong>${horizonLabel()}</strong></div>
@@ -11476,7 +11479,7 @@ function renderSourceCounts(signals) {
       <strong><small>${escapeHtml(horizonDelta.launches)}</small><small>${escapeHtml(horizonDelta.signals)}</small></strong>
     </div>
     <a class="source-pill source-pill-link" href="#competitive-timeline-section" data-evidence-target="competitive-timeline-section" aria-label="View ${launches.length} matching launches"><span>Matching launches</span><strong>${launches.length}<small>View →</small></strong></a>
-    <a class="source-pill source-pill-link" href="#evidence-signal-feed" data-evidence-target="evidence-signal-feed" aria-label="View ${displaySignals(signals).length} public evidence records"><span>Public evidence records</span><strong>${displaySignals(signals).length}<small>View →</small></strong></a>
+    ${publicEvidenceSourcePill}
     <a class="source-pill source-pill-link" href="#filing-evidence" data-evidence-target="filing-evidence" aria-label="View ${filingInsights.length} filing insights"><span>Filing insights</span><strong>${filingInsights.length}<small>View →</small></strong></a>
     <div class="source-pill"><span>Publication records</span><strong>${publicationRecords.toLocaleString()}</strong></div>
     <a class="source-pill source-pill-link" href="#customer-voice" data-evidence-target="customer-voice" aria-label="View ${customerVoiceSignals.length} customer-voice theme summaries and their public sources"><span>Public customer voice</span><strong>${customerVoiceSignals.length} theme summaries<small>View →</small></strong></a>
@@ -11496,10 +11499,20 @@ function populateCompetitors() {
 
 function updateRolePanelVisibility() {
   const competitorCoveragePanel = document.querySelector(".competitor-coverage-panel");
+  const publicEvidencePanel = byId("evidence-signal-feed");
+  const publicEvidenceNav = byId("publicEvidenceNav");
   const hiddenForProductManagement = state.view === "Product";
   if (competitorCoveragePanel) {
     competitorCoveragePanel.hidden = hiddenForProductManagement;
     competitorCoveragePanel.setAttribute("aria-hidden", String(hiddenForProductManagement));
+  }
+  if (publicEvidencePanel) {
+    publicEvidencePanel.hidden = hiddenForProductManagement;
+    publicEvidencePanel.setAttribute("aria-hidden", String(hiddenForProductManagement));
+  }
+  if (publicEvidenceNav) {
+    publicEvidenceNav.hidden = hiddenForProductManagement;
+    publicEvidenceNav.setAttribute("aria-hidden", String(hiddenForProductManagement));
   }
 
   const marketingView = state.view === "Marketing";
