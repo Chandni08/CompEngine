@@ -16,7 +16,8 @@ test("Market Choice renders exactly once before competitor-specific narratives i
   assert.equal(sectionCount, 8);
   assert.equal((renderer.match(/pmmMarketChoiceMarkup\(choice\)/g) || []).length, 2, "one normal render and one competitor-empty render path are expected");
   assert.ok(renderer.indexOf("pmmMarketChoiceMarkup(choice)") < renderer.indexOf("One canonical narrative per competitor"));
-  assert.match(app, /const marketChoice = pmmMarketChoice\(contexts, governingPosition, signals\)/);
+  assert.match(app, /const governedSignals = pmmGovernedRecords\(signals\)/);
+  assert.match(app, /const marketChoice = pmmMarketChoice\(contexts, governingPosition, governedSignals\)/);
   assert.match(app, /state\.marketingMarketChoice = marketChoice/);
 });
 

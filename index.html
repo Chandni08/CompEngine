@@ -149,6 +149,24 @@
             <option value="All">All buyer roles</option>
           </select>
         </label>
+        <label class="pmm-hierarchy-filter" hidden>
+          Field citation
+          <select id="pmmFieldCitableFilter" data-pmm-governance-filter="fieldCitable" aria-describedby="pmmGovernanceHelp">
+            <option value="All">All citation states</option>
+            <option value="true">Field-citable only</option>
+            <option value="false">Not field-citable</option>
+          </select>
+        </label>
+        <label class="pmm-hierarchy-filter" hidden>
+          Approval state
+          <select id="pmmApprovalStateFilter" data-pmm-governance-filter="approvalState" aria-describedby="pmmGovernanceHelp">
+            <option value="All">All approval states</option>
+            <option value="draft">Draft</option>
+            <option value="in-review">In review</option>
+            <option value="approved">Approved</option>
+            <option value="blocked">Blocked</option>
+          </select>
+        </label>
         <label>
           Technology
           <select id="technologyFilter">
@@ -182,6 +200,7 @@
           </select>
         </label>
         <span id="pmmTargetingHelp" class="sr-only">Product Marketing filters tailor product battlecards, pitches, and downstream evidence.</span>
+        <span id="pmmGovernanceHelp" class="sr-only">Product Marketing evidence filters apply the field-citation and approval-state gate before downstream transformations.</span>
       </section>
 
       <div id="marketingWorkspace" class="marketing-workspace" hidden>
@@ -652,6 +671,7 @@
     <script src="leadership-brief-thesis.js?v=20260728-1"></script>
     <script src="comparison-logic.js?v=20260723-all-pairs-1"></script>
     <script src="competitive-methodology.js?v=20260729-1"></script>
+    <script src="evidence-governance.js?v=20260802-1"></script>
     <script src="pmm-data-contract.js?v=20260729-pmm-hierarchical-targeting-1"></script>
     <script src="product-match-model.js?v=20260731-product-gap-map-5"></script>
     <script src="vendor/pptxgen.bundle.js?v=4.0.1"></script>

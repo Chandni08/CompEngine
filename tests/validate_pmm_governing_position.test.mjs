@@ -41,7 +41,8 @@ test("the governing model contains every required positioning field", () => {
 });
 
 test("unapproved governing language propagates to all downstream PMM objects", () => {
-  assert.match(app, /approvalState: "Proposed — not approved"/);
+  assert.match(app, /approvalState: "draft"/);
+  assert.match(app, /draft: "Draft — not approved"/);
   assert.match(app, /state\.marketingGoverningPosition = governingPosition/);
   assert.match(app, /marketingPositioningDecisionCandidates\(contexts, governingPosition\)/);
   assert.match(app, /marketingClaimsProofRows\(contexts, governingPosition\)/);
