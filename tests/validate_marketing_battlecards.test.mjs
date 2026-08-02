@@ -4,17 +4,19 @@ import test from "node:test";
 
 const root = new URL("../", import.meta.url);
 
-test("Product Marketing has exactly six ordered primary sections", async () => {
+test("Product Marketing has exactly eight ordered primary sections", async () => {
   const index = await readFile(new URL("index.html", root), "utf8");
   const workspace = index.match(/<div id="marketingWorkspace"[\s\S]*?<section id="leadership-brief"/)?.[0] || "";
   const sectionIds = [...workspace.matchAll(/<section id="([^"]+)" class="panel pmm-primary-section"/g)].map((match) => match[1]);
 
   assert.deepEqual(sectionIds, [
+    "pmm-governing-position",
     "pmm-positioning-decisions",
-    "pmm-claims-proof",
-    "pmm-audience-criteria",
-    "pmm-competitive-narrative",
-    "pmm-activation-backlog",
+    "pmm-claims-risk",
+    "pmm-segment-cascade",
+    "pmm-competitive-narratives",
+    "pmm-adoption-value",
+    "pmm-activation-artifacts",
     "pmm-evidence-appendix",
   ]);
   assert.match(workspace, /id="pmm-evidence-appendix"[^>]*data-default-collapsed="true"/);
@@ -26,15 +28,18 @@ test("Product Marketing uses dedicated navigation and a dedicated render path", 
 
   assert.match(index, /id="marketingSectionNavigation"[^>]*hidden/);
   for (const id of [
+    "pmm-governing-position",
     "pmm-positioning-decisions",
-    "pmm-claims-proof",
-    "pmm-audience-criteria",
-    "pmm-competitive-narrative",
-    "pmm-activation-backlog",
+    "pmm-claims-risk",
+    "pmm-segment-cascade",
+    "pmm-competitive-narratives",
+    "pmm-adoption-value",
+    "pmm-activation-artifacts",
     "pmm-evidence-appendix",
   ]) assert.match(index, new RegExp(`data-section-nav="${id}"`));
 
-  assert.match(app, /if \(state\.view === "Marketing"\) \{[\s\S]*?byId\("viewTitle"\)\.textContent = viewCopy\.Marketing\.title;\s*renderMarketingWorkspace\(signals\);\s*scheduleSectionNavRefresh\(\);\s*return;/s);
+  assert.match(app, /if \(state\.view === "Marketing"\) \{[\s\S]*?byId\("viewTitle"\)\.textContent = viewCopy\.Marketing\.title;\s*setCustomerVoiceTab\(state\.activeCustomerVoiceTab\);\s*renderMarketingWorkspace\(signals\);\s*scheduleSectionNavRefresh\(\);\s*return;/s);
+  assert.match(app, /child\.matches\("\.topbar, \.filters, #marketingWorkspace, #customer-voice"\)/);
   assert.match(app, /marketingWorkspace\.hidden = !marketingView/);
   assert.match(app, /standardNavigation\.hidden = marketingView/);
   assert.match(app, /marketingNavigation\.hidden = !marketingView/);
@@ -59,14 +64,14 @@ test("competitive narratives synthesize evidence into one canonical PMM decision
     "Waters Counter-Position",
     "PMM Decision",
     "Evidence Caveats",
-    "Underlying Evidence Links",
+    "Canonical Evidence References",
   ]) assert.match(renderer, new RegExp(field));
   assert.match(renderer, /One canonical narrative per competitor/);
   assert.match(renderer, /Observed competitor evidence/);
   assert.match(renderer, /Analyst\/rule-based inference/);
   assert.match(renderer, /Proposed Waters position — not approved/);
   assert.match(renderer, /Approval not established/);
-  assert.match(renderer, /this is not a raw event or launch feed/);
+  assert.match(renderer, /Evidence details and source caveats live once in the collapsed appendix/);
   assert.equal((renderer.match(/Observed Competitor Claim or Workflow Emphasis/g) || []).length, 1);
 });
 
@@ -88,8 +93,8 @@ test("competitive narrative logic treats application notes, launches, and confer
 test("Marketing copy states the decision-and-activation purpose", async () => {
   const app = await readFile(new URL("app.js", root), "utf8");
 
-  assert.match(app, /Product Marketing Decision & Activation Workspace/);
-  assert.match(app, /A decision-and-activation workspace for positioning, proof, and enablement\./);
+  assert.match(app, /PMM Market Leadership Workspace/);
+  assert.match(app, /Win product selections with evidence-backed claims, competitive battlecards, and proof priorities\./);
 });
 
 test("Positioning Decisions renders exactly three evidence-linked PMM decisions", async () => {
@@ -123,47 +128,46 @@ test("Positioning prioritization is explainable and refresh deltas are not inven
   assert.match(app, /No delta is inferred/);
 });
 
-test("Activation Backlog converts every positioning decision into a governed PMM deliverable", async () => {
+test("Activation Backlog produces governed, filter-specific PMM artifacts", async () => {
   const app = await readFile(new URL("app.js", root), "utf8");
   const index = await readFile(new URL("index.html", root), "utf8");
-  const renderer = app.match(/const pmmActivationAssetTypes[\s\S]*?\n}\n\nfunction pmmAppendixRecord/)?.[0] || "";
+  const renderer = app.match(/const pmmArtifactDefinitions[\s\S]*?\n}\n\nfunction pmmAppendixRecord/)?.[0] || "";
   const renderedMarkup = app.match(/function renderMarketingActivationBacklog[\s\S]*?\n}\n\nfunction pmmAppendixRecord/)?.[0] || "";
 
-  for (const assetType of [
-    "Battlecard",
-    "Webpage",
-    "Campaign",
-    "Launch kit",
-    "Sales deck",
-    "Application note",
-    "Customer proof",
-    "Message test",
-  ]) assert.match(app, new RegExp(`"${assetType}"`));
+  for (const artifact of [
+    "One-Page Competitive Battlecard",
+    "Positioning and Messaging Brief",
+    "Regulated Claims Sheet",
+    "Campaign and Message Plan",
+    "Sales-Deck Outline",
+    "Message-Test Brief",
+    "Customer-Proof Request Brief",
+  ]) assert.match(app, new RegExp(`"${artifact}"`));
 
   for (const field of [
-    "Related Positioning Decision",
-    "Asset / Action",
-    "Reason It Is Needed",
-    "Intended Audience",
-    "Intended Channel",
+    "Target / buying situation",
+    "Governing Position",
+    "Role-Specific Messages",
+    "Competitor Response",
+    "Claims and Approval State",
+    "Proof and Caveats",
+    "Objection Handling",
+    "Unsupported-Content Warnings",
     "Owner",
-    "Deadline",
-    "Status",
-    "Required Proof or Approval",
+    "Due date",
+    "Production status",
     "Success measure",
-    "Evidence Links",
+    "Evidence Footnotes",
   ]) assert.match(renderer, new RegExp(field));
 
-  assert.match(renderer, /Recommended PMM Actions/);
-  assert.match(index, /Recommended PMM actions that convert positioning and proof gaps into traceable deliverables/);
-  assert.match(app, /const deliverables = decisions\.map\(\(decision, index\) => pmmActivationDeliverable\(decision, index \+ 1\)\)/);
-  assert.match(app, /renderMarketingActivationBacklog\(positioningDecisions\)/);
-  assert.match(renderer, /Owner needed — no workflow assignment is available/);
-  assert.match(renderer, /Deadline needed — no workflow date is available/);
-  assert.match(renderer, /Measure needed — no success measure is assigned/);
-  assert.match(renderer, /Approval not established/);
-  assert.match(renderer, /Asset unresolved/);
-  assert.match(renderer, /Unresolved — no recommendation/);
+  assert.match(renderer, /Artifact Production Workflow/);
+  assert.match(index, /Battlecards, claims sheets, decks, tests, and proof requests generated from the selected product and target/);
+  assert.match(app, /const artifactProduction = pmmArtifactProductionModel\(buyingCommittee, governingPosition, claimRows, narratives\)/);
+  assert.match(app, /renderMarketingActivationBacklog\(model\.positioningDecisions, model\.governingPosition, model\.breakReport, model\.activationActions, model\.artifactProduction\)/);
+  assert.match(renderer, /DRAFT — NOT APPROVED/);
+  assert.match(renderer, /Export claims registry CSV/);
+  assert.match(renderer, /Copy approved text only/);
+  assert.match(renderer, /not formal assignments or claims approval records/);
   assert.doesNotMatch(renderedMarkup, /defin(?:e|ing) product requirements?|roadmap prioritization|engineering validation plans?|product KPIs?/i);
 });
 
@@ -210,38 +214,38 @@ test("Evidence Appendix consolidates secondary intelligence into closed, traceab
 
 test("Claims and Proof Readiness renders the required evidence-governed matrix", async () => {
   const app = await readFile(new URL("app.js", root), "utf8");
-  const renderer = app.match(/function renderMarketingClaimsProof[\s\S]*?\n}\n\nfunction pmmAudienceTrigger/)?.[0] || "";
+  const renderer = app.match(/function renderMarketingClaimsProof[\s\S]*?\n}\n\nconst pmmBuyingCommitteeRoleDefinitions/)?.[0] || "";
   const columns = [
-    "Competitor",
-    "Competitor claim",
-    "Evidence classification",
-    "Audience / buying criterion",
-    "Waters counter-position",
-    "Available proof",
-    "Missing substantiation",
-    "Approval state",
-    "Readiness",
-    "Confidence / recency",
-    "Sources",
+    "Exact proposed claim wording",
+    "Segment / application",
+    "Buyer / channel",
+    "Reference competitor or baseline",
+    "Exact supporting evidence and compatibility",
+    "Source counts",
+    "Evidence comparability",
+    "Substantiation",
+    "Legal / claims approval",
+    "Governance and next action",
   ];
 
   for (const column of columns) assert.match(renderer, new RegExp(column.replace("/", "\\/"), "i"));
-  assert.match(app, /const pmmClaimReadinessValues = \["Ready", "Weak", "Missing", "Legally unapproved"\]/);
+  assert.match(app, /const pmmClaimReadinessValues = \["Proven", "Directional", "Unsupported"\]/);
   assert.match(app, /Observed customer or competitor language/);
   assert.match(app, /Analyst\/rule-based inference/);
   assert.match(app, /Approved Waters claim/);
   assert.match(app, /Approval not established/);
-  assert.match(renderer, /Technical evidence does not establish legal approval/);
-  assert.match(renderer, /Proposed inference — not approved/);
+  assert.match(renderer, /Inapplicable evidence is blocked from substantiation/);
+  assert.match(renderer, /Proposed — not approved/);
 });
 
 test("Claims readiness rules cannot infer approval or promote concern records as strengths", async () => {
   const app = await readFile(new URL("app.js", root), "utf8");
-  const readinessRule = app.match(/function pmmClaimReadiness[\s\S]*?\n}/)?.[0] || "";
+  const contract = await readFile(new URL("pmm-data-contract.js", root), "utf8");
 
-  assert.match(readinessRule, /if \(!availableProof\.length \|\| !claimSources\.length\)[\s\S]*?"Missing"/);
-  assert.match(readinessRule, /if \(!approvalEstablished\)[\s\S]*?"Legally unapproved"/);
-  assert.match(readinessRule, /return \{ value: "Ready"/);
+  assert.match(contract, /substantiationStatus === "Proven" && approvalEstablished === true/);
+  assert.match(contract, /value: "Ready"/);
+  assert.match(contract, /value: "Blocked"/);
+  assert.match(contract, /"Inapplicable"/);
   assert.match(app, /const approvalEstablished = false/);
   assert.match(app, /Negative customer record|\$\{sentiment\} customer record/);
   assert.match(app, /never as a competitor strength/);
@@ -249,10 +253,10 @@ test("Claims readiness rules cannot infer approval or promote concern records as
 
 test("Claims matrix filters do not duplicate the global competitor filter", async () => {
   const app = await readFile(new URL("app.js", root), "utf8");
-  const renderer = app.match(/function renderMarketingClaimsProof[\s\S]*?\n}\n\nfunction pmmAudienceTrigger/)?.[0] || "";
+  const renderer = app.match(/function renderMarketingClaimsProof[\s\S]*?\n}\n\nconst pmmBuyingCommitteeRoleDefinitions/)?.[0] || "";
 
   assert.match(app, /data-pmm-claims-filter="\$\{escapeHtml\(key\)\}"/);
-  assert.match(renderer, /Readiness/);
+  assert.match(renderer, /Substantiation/);
   assert.match(renderer, /Audience \/ buying criterion/);
   assert.match(renderer, /Evidence classification/);
   assert.match(renderer, /Competitor filtering uses the global Competitor filter above/);
@@ -260,27 +264,22 @@ test("Claims matrix filters do not duplicate the global competitor filter", asyn
   assert.match(app, /function setupMarketingWorkspaceControls/);
 });
 
-test("Audience and Buying Criteria uses evidence-backed buying-situation cards", async () => {
+test("Audience and Buying Criteria uses governed buying committees and scorecards", async () => {
   const app = await readFile(new URL("app.js", root), "utf8");
   const renderer = app.match(/function renderMarketingAudienceCriteria[\s\S]*?\n}\n\nfunction renderMarketingCompetitiveNarrative/)?.[0] || "";
 
   for (const field of [
-    "Buyer role",
-    "Lab / account context",
-    "Current platform",
-    "Trigger event",
+    "Buying Committee",
+    "Decision Unit",
+    "priority-segment working set",
     "Objection",
-    "Purchase-driving criterion",
-    "Observed customer language",
-    "Exact evidence links",
-    "Caveats",
   ]) assert.match(renderer, new RegExp(field.replace("/", "\\/"), "i"));
-  assert.match(renderer, /Most represented audiences in the current evidence/);
-  assert.match(renderer, /not a measure of commercial attractiveness/);
-  assert.match(renderer, /Low sample — fewer than 3 independent sources/);
+  for (const workflowField of ["Weight and Score Validation Workflow", "win/loss", "survey", "conjoint"])
+    assert.match(app, new RegExp(workflowField.replace("/", "\\/"), "i"));
+  assert.match(renderer, /Neither segment inclusion nor record frequency establishes commercial attractiveness/);
   assert.match(renderer, /complaint-biased and (?:is )?not representative market research/);
-  assert.match(renderer, /Observed customer language unavailable/);
-  assert.match(renderer, /Analyst\/rule-based inference/);
+  assert.match(renderer, /Inferred role · validation required/);
+  assert.match(renderer, /Weight or score hypothesis/);
 });
 
 test("vendor perception is separated from market-wide themes and has no negative fallback", async () => {

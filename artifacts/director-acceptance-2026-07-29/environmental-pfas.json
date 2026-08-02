@@ -1,0 +1,348 @@
+{
+  "adoption": {
+    "planCount": 1,
+    "plans": [
+      {
+        "assumptionStates": [
+          "Assumption — unsourced",
+          "Assumption — unsourced",
+          "Assumption — unsourced",
+          "Assumption — unsourced",
+          "Assumption — unsourced",
+          "Assumption — unsourced",
+          "Assumption — unsourced",
+          "Assumption — unsourced",
+          "Assumption — unsourced",
+          "Assumption — unsourced"
+        ],
+        "baseline": "Shimadzu · LCMS-8065XE Triple Quadrupole LC-MS/MS",
+        "blocked": "Total monetary EVC and value claim blocked",
+        "dimensions": [
+          "relative-advantage",
+          "compatibility",
+          "complexity",
+          "observability",
+          "risk",
+          "trialability"
+        ],
+        "evcMetrics": 10,
+        "title": "Environmental Adoption and Value Plan",
+        "valueClaimEligible": "false"
+      }
+    ]
+  },
+  "artifacts": {
+    "copyApprovedDisabled": true,
+    "copyApprovedText": "No approved text to copy",
+    "count": 7,
+    "draftCount": 7,
+    "exportCount": 7,
+    "items": [
+      {
+        "approval": "draft",
+        "claimsText": "Claims and Approval StateNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications. Proposed — not approved: adapt the governing workflow position for Environmental · PFAS · all buying situations · all geographies · the full buying committee. Shimadzu adaptation: For PFAS, adapt the governing workflow position to the observed Shimadzu emphasis; do not assert advantage until target-compatible proof and approval are established.Unsupported · Approval not establishedNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications. Proposed — not approved: adapt the governing workflow position for Environmental · PFAS · all buying situations · all geographies · the full buying committee. Shimadzu adaptation: For PFAS, adapt the governing workflow position to the observed Shimadzu emphasis; do not assert advantage until target-compatible proof and approval are established.Unsupported · Approval not established",
+        "exportText": "Export PPTX",
+        "footnotes": 5,
+        "id": "Environmental::Shimadzu::competitive-battlecard",
+        "open": true,
+        "warnings": "Unsupported-Content WarningsOne or more included claims have no established legal/claims approval. The output must remain DRAFT — NOT APPROVED.2 included claims are Unsupported after compatibility review.4 evidence records are Inapplicable and cannot be used as proof.",
+        "watermark": "DRAFT — NOT APPROVED"
+      },
+      {
+        "approval": "draft",
+        "claimsText": "Claims and Approval StateNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications. Proposed — not approved: adapt the governing workflow position for Environmental · PFAS · all buying situations · all geographies · the full buying committee. Shimadzu adaptation: For PFAS, adapt the governing workflow position to the observed Shimadzu emphasis; do not assert advantage until target-compatible proof and approval are established.Unsupported · Approval not establishedNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications. Proposed — not approved: adapt the governing workflow position for Environmental · PFAS · all buying situations · all geographies · the full buying committee. Shimadzu adaptation: For PFAS, adapt the governing workflow position to the observed Shimadzu emphasis; do not assert advantage until target-compatible proof and approval are established.Unsupported · Approval not established",
+        "exportText": "Export DOCX",
+        "footnotes": 5,
+        "id": "Environmental::Shimadzu::positioning-messaging-brief",
+        "open": true,
+        "warnings": "Unsupported-Content WarningsOne or more included claims have no established legal/claims approval. The output must remain DRAFT — NOT APPROVED.2 included claims are Unsupported after compatibility review.4 evidence records are Inapplicable and cannot be used as proof.",
+        "watermark": "DRAFT — NOT APPROVED"
+      },
+      {
+        "approval": "draft",
+        "claimsText": "Claims and Approval StateNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications. Proposed — not approved: adapt the governing workflow position for Environmental · PFAS · all buying situations · all geographies · the full buying committee. Shimadzu adaptation: For PFAS, adapt the governing workflow position to the observed Shimadzu emphasis; do not assert advantage until target-compatible proof and approval are established.Unsupported · Approval not establishedNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications. Proposed — not approved: adapt the governing workflow position for Environmental · PFAS · all buying situations · all geographies · the full buying committee. Shimadzu adaptation: For PFAS, adapt the governing workflow position to the observed Shimadzu emphasis; do not assert advantage until target-compatible proof and approval are established.Unsupported · Approval not established",
+        "exportText": "Export DOCX",
+        "footnotes": 5,
+        "id": "Environmental::Shimadzu::regulated-claims-sheet",
+        "open": true,
+        "warnings": "Unsupported-Content WarningsOne or more included claims have no established legal/claims approval. The output must remain DRAFT — NOT APPROVED.2 included claims are Unsupported after compatibility review.4 evidence records are Inapplicable and cannot be used as proof.",
+        "watermark": "DRAFT — NOT APPROVED"
+      },
+      {
+        "approval": "draft",
+        "claimsText": "Claims and Approval StateNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications. Proposed — not approved: adapt the governing workflow position for Environmental · PFAS · all buying situations · all geographies · the full buying committee. Shimadzu adaptation: For PFAS, adapt the governing workflow position to the observed Shimadzu emphasis; do not assert advantage until target-compatible proof and approval are established.Unsupported · Approval not establishedNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications. Proposed — not approved: adapt the governing workflow position for Environmental · PFAS · all buying situations · all geographies · the full buying committee. Shimadzu adaptation: For PFAS, adapt the governing workflow position to the observed Shimadzu emphasis; do not assert advantage until target-compatible proof and approval are established.Unsupported · Approval not established",
+        "exportText": "Export DOCX",
+        "footnotes": 5,
+        "id": "Environmental::Shimadzu::campaign-message-plan",
+        "open": true,
+        "warnings": "Unsupported-Content WarningsOne or more included claims have no established legal/claims approval. The output must remain DRAFT — NOT APPROVED.2 included claims are Unsupported after compatibility review.4 evidence records are Inapplicable and cannot be used as proof.",
+        "watermark": "DRAFT — NOT APPROVED"
+      },
+      {
+        "approval": "draft",
+        "claimsText": "Claims and Approval StateNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications. Proposed — not approved: adapt the governing workflow position for Environmental · PFAS · all buying situations · all geographies · the full buying committee. Shimadzu adaptation: For PFAS, adapt the governing workflow position to the observed Shimadzu emphasis; do not assert advantage until target-compatible proof and approval are established.Unsupported · Approval not establishedNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications. Proposed — not approved: adapt the governing workflow position for Environmental · PFAS · all buying situations · all geographies · the full buying committee. Shimadzu adaptation: For PFAS, adapt the governing workflow position to the observed Shimadzu emphasis; do not assert advantage until target-compatible proof and approval are established.Unsupported · Approval not established",
+        "exportText": "Export PPTX",
+        "footnotes": 5,
+        "id": "Environmental::Shimadzu::sales-deck-outline",
+        "open": false,
+        "warnings": "Unsupported-Content WarningsOne or more included claims have no established legal/claims approval. The output must remain DRAFT — NOT APPROVED.2 included claims are Unsupported after compatibility review.4 evidence records are Inapplicable and cannot be used as proof.",
+        "watermark": "DRAFT — NOT APPROVED"
+      },
+      {
+        "approval": "draft",
+        "claimsText": "Claims and Approval StateNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications. Proposed — not approved: adapt the governing workflow position for Environmental · PFAS · all buying situations · all geographies · the full buying committee. Shimadzu adaptation: For PFAS, adapt the governing workflow position to the observed Shimadzu emphasis; do not assert advantage until target-compatible proof and approval are established.Unsupported · Approval not establishedNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications. Proposed — not approved: adapt the governing workflow position for Environmental · PFAS · all buying situations · all geographies · the full buying committee. Shimadzu adaptation: For PFAS, adapt the governing workflow position to the observed Shimadzu emphasis; do not assert advantage until target-compatible proof and approval are established.Unsupported · Approval not established",
+        "exportText": "Export DOCX",
+        "footnotes": 5,
+        "id": "Environmental::Shimadzu::message-test-brief",
+        "open": false,
+        "warnings": "Unsupported-Content WarningsOne or more included claims have no established legal/claims approval. The output must remain DRAFT — NOT APPROVED.2 included claims are Unsupported after compatibility review.4 evidence records are Inapplicable and cannot be used as proof.",
+        "watermark": "DRAFT — NOT APPROVED"
+      },
+      {
+        "approval": "draft",
+        "claimsText": "Claims and Approval StateNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications. Proposed — not approved: adapt the governing workflow position for Environmental · PFAS · all buying situations · all geographies · the full buying committee. Shimadzu adaptation: For PFAS, adapt the governing workflow position to the observed Shimadzu emphasis; do not assert advantage until target-compatible proof and approval are established.Unsupported · Approval not establishedNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications. Proposed — not approved: adapt the governing workflow position for Environmental · PFAS · all buying situations · all geographies · the full buying committee. Shimadzu adaptation: For PFAS, adapt the governing workflow position to the observed Shimadzu emphasis; do not assert advantage until target-compatible proof and approval are established.Unsupported · Approval not established",
+        "exportText": "Export DOCX",
+        "footnotes": 5,
+        "id": "Environmental::Shimadzu::customer-proof-request",
+        "open": false,
+        "warnings": "Unsupported-Content WarningsOne or more included claims have no established legal/claims approval. The output must remain DRAFT — NOT APPROVED.2 included claims are Unsupported after compatibility review.4 evidence records are Inapplicable and cannot be used as proof.",
+        "watermark": "DRAFT — NOT APPROVED"
+      }
+    ],
+    "openCount": 4,
+    "registryExport": true,
+    "watermarkedCount": 7
+  },
+  "breakReport": {
+    "articles": {
+      "Changed swing attribute": {
+        "heading": "Changed swing attribute Stable",
+        "text": "Changed swing attribute StableReliable routine execution; no change from the comparable market-baseline hypothesis.Both values are hypothesis-model calculations, not measured buyer preference."
+      },
+      "Governing-position conflicts": {
+        "heading": "Governing-position conflicts 0",
+        "text": "Governing-position conflicts 0No contradiction or unsupported deviation was detected by the governing-position rule check."
+      },
+      "Inapplicable proof": {
+        "heading": "Inapplicable proof 11",
+        "text": "Inapplicable proof 11Alliance iS HPLC SystemDoes not match the governed claim dimensions.ACQUITY Premier LC and environmental sample-preparation workflowDoes not match the governed claim dimensions.Xevo TQ Absolute XRDoes not match the governed claim dimensions.ACQUITY Premier LC and environmental sample-preparation workflowDoes not match the governed claim dimensions.ACQUITY Premier LC and environmental sample-preparation workflowDoes not match the governed claim dimensions.ACQUITY Premier LC and environmental sample-preparation workflowDoes not match the governed claim dimensions.ACQUITY Premier LC and environmental sample-preparation workflowDoes not match the governed claim dimensions.Xevo TQ Absolute XRDoes not match the governed claim dimensions.ACQUITY Premier LC and environmental sample-preparation workflowDoes not match the governed claim dimensions.Alliance iS HPLC SystemDoes not match the governed claim dimensions.ACQUITY Premier LC and environmental sample-preparation workflowDoes not match the governed claim dimensions."
+      },
+      "Missing buyer roles": {
+        "heading": "Missing buyer roles 7",
+        "text": "Missing buyer roles 7Bench user / analystMethod developerQC/QA or validation vetoIT / data-integrity vetoLab-manager decision makerProcurement / economic buyerExecutive sponsor — where relevant"
+      },
+      "Missing economic assumptions": {
+        "heading": "Missing economic assumptions 3",
+        "text": "Missing economic assumptions 3Environmental EVC has 10 incomplete low/base/high assumption ranges.Environmental EVC has no sourced numeric time, cost, or outcome value.Environmental EVC monetary conversion inputs and approved economic-model ownership are unresolved."
+      },
+      "Unsupported claims": {
+        "heading": "Unsupported claims 6",
+        "text": "Unsupported claims 6ShimadzuNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications. Proposed — not approved: adapt the governing workflow position for Environmental · PFAS · all buying situations · all geographies · the full buying committee. Shimadzu adaptation: For PFAS, adapt the governing workflow position to the observed Shimadzu emphasis; do not assert advantage until target-compatible proof and approval are established.ShimadzuNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications. Proposed — not approved: adapt the governing workflow position for Environmental · PFAS · all buying situations · all geographies · the full buying committee. Shimadzu adaptation: For PFAS, adapt the governing workflow position to the observed Shimadzu emphasis; do not assert advantage until target-compatible proof and approval are established.AgilentNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications. Proposed — not approved: adapt the governing workflow position for Environmental · PFAS · all buying situations · all geographies · the full buying committee. Agilent adaptation: For PFAS, adapt the governing workflow position to the observed Agilent emphasis; do not assert advantage until target-compatible proof and approval are established.SCIEXNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications. Proposed — not approved: adapt the governing workflow position for Environmental · PFAS · all buying situations · all geographies · the full buying committee. SCIEX adaptation: For PFAS, adapt the governing workflow position to the observed SCIEX emphasis; do not assert advantage until target-compatible proof and approval are established.SCIEXNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications. Proposed — not approved: adapt the governing workflow position for Environmental · PFAS · all buying situations · all geographies · the full buying committee. SCIEX adaptation: For PFAS, adapt the governing workflow position to the observed SCIEX emphasis; do not assert advantage until target-compatible proof and approval are established.Thermo FisherNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications. Proposed — not approved: adapt the governing workflow position for Environmental · PFAS · all buying situations · all geographies · the full buying committee. Thermo Fisher adaptation: For PFAS, adapt the governing workflow position to the observed Thermo Fisher emphasis; do not assert advantage until target-compatible proof and approval are established."
+      }
+    },
+    "total": 27
+  },
+  "claims": {
+    "comparability": {
+      "Inapplicable": 6,
+      "Partially applicable": 1
+    },
+    "inapplicableEvidence": 11,
+    "readiness": {
+      "Blocked": 7
+    },
+    "readyRows": 0,
+    "substantiation": {
+      "Directional": 1,
+      "Unsupported": 6
+    }
+  },
+  "committees": [
+    {
+      "inferredRoles": 7,
+      "label": "Environmental · PFAS",
+      "observedRoles": 0,
+      "roleCount": 7,
+      "roleKeys": [
+        "bench-user",
+        "method-developer",
+        "quality-veto",
+        "it-veto",
+        "lab-manager",
+        "economic-buyer",
+        "executive-sponsor"
+      ],
+      "swing": "Reliable routine execution",
+      "swingDifference": -0.3,
+      "weightTotal": 100
+    }
+  ],
+  "destinations": {
+    "appendixUnique": 29,
+    "claimRows": 7,
+    "claimRowsWithoutApproval": 7,
+    "customerUrlSummary": 0,
+    "decisionCards": 3
+  },
+  "filters": {
+    "application": "PFAS",
+    "buyer": "All buyer roles",
+    "buying": "All buying situations",
+    "competitor": "All",
+    "geography": "All geographies",
+    "horizon": "1 year",
+    "market": "Environmental"
+  },
+  "governing": {
+    "difference": "Differentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone.",
+    "id": "next-gen-lc-governing-position",
+    "parity": "Expected modern LC separation performance, pressure range, usability, connectivity, and serviceability required to enter a contemporary HPLC/UHPLC evaluation.",
+    "status": "Approval stateProposed — not approved ApproverApprover needed Last reviewedReview date unavailable ClassificationAnalyst/rule-based inference grounded in filtered public evidence",
+    "swing": "Environmental: Reliable routine execution (30% hypothesis weight; weighted difference -0.30). Hypothesis — replace with win/loss, survey, or conjoint evidence.",
+    "targeting": "Proposed — not approved: adapt the governing workflow position for Environmental · PFAS · all buying situations · all geographies · the full buying committee.",
+    "value": "Next Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications."
+  },
+  "highestRiskClaim": "Highest Risk Under Current FiltersNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications. Proposed — not approved: adapt the governing workflow position for Environmental · PFAS · all buying situations · all geographies · the full buying committee. Shimadzu adaptation: For PFAS, adapt the governing workflow position to the observed Shimadzu emphasis; do not assert advantage until target-compatible proof and approval are established.Unsupported substantiation · Approval not established · 100 governed risk points",
+  "marketChoice": {
+    "alternatives": [
+      {
+        "classification": "hypothesis",
+        "name": "Shimadzu",
+        "sourceRefs": 2,
+        "text": "ShimadzuObserved competitor evidence · customer-choice hypothesis Why customers choose itPublic Shimadzu sources establish visible positioning and product activity; why a customer selects it is not established. Segment and buying situationEnvironmental is the active evidence filter, not validated demand evidenceDirect platform comparison or replacement evaluation — strategic hypothesis requiring validation Primary objection to switchingPrimary objection to switching is unresolved — direct customer or win/loss evidence is required. Waters responseDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone. Shimadzu response: For PFAS, adapt the governing workflow position to the observed Shimadzu emphasis; do not assert advantage until target-compatible proof and approval are established. Approval not established. Required proofDirect Shimadzu customer interviews, coded win/loss evidence, and comparable workflow testing. Evidence confidenceHigh · 86/100 · customer-choice confidence unresolved Competitor sources are traceable, but they do not establish customer choice, switching behavior, or market prevalence. EV-DD2A80B7 · Observed launch evidenceLCMS-8065XE Triple Quadrupole LC-MS/MSOpen canonical evidence and caveats →EV-29AA2C75 · Expected — not confirmedSETAC North America 2026 competitor evidenceOpen canonical evidence and caveats →"
+      },
+      {
+        "classification": "hypothesis",
+        "name": "Agilent",
+        "sourceRefs": 2,
+        "text": "AgilentObserved competitor evidence · customer-choice hypothesis Why customers choose itPublic Agilent sources establish visible positioning and product activity; why a customer selects it is not established. Segment and buying situationEnvironmental is the active evidence filter, not validated demand evidenceDirect platform comparison or replacement evaluation — strategic hypothesis requiring validation Primary objection to switchingPrimary objection to switching is unresolved — direct customer or win/loss evidence is required. Waters responseDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone. Agilent response: For PFAS, adapt the governing workflow position to the observed Agilent emphasis; do not assert advantage until target-compatible proof and approval are established. Approval not established. Required proofDirect Agilent customer interviews, coded win/loss evidence, and comparable workflow testing. Evidence confidenceConfidence unscored — exact sources are available, but no compatible confidence score is loaded · customer-choice confidence unresolved Competitor sources are traceable, but they do not establish customer choice, switching behavior, or market prevalence. EV-FFFF142F · Scientific application intelligenceA direct SPE clean-up after protein precipitation methodology to remove endogenous steroid sulfate MRM interferences for PFAS analysis of serum samples by isotope dilution LC-MS/MSOpen canonical evidence and caveats →EV-C86781D9 · Expected — not confirmedACS Fall 2026 competitor evidenceOpen canonical evidence and caveats →"
+      },
+      {
+        "classification": "hypothesis",
+        "name": "SCIEX",
+        "sourceRefs": 3,
+        "text": "SCIEXObserved competitor evidence · customer-choice hypothesis Why customers choose itPublic SCIEX sources establish visible positioning and product activity; why a customer selects it is not established. Segment and buying situationEnvironmental is the active evidence filter, not validated demand evidenceDirect platform comparison or replacement evaluation — strategic hypothesis requiring validation Primary objection to switchingPrimary objection to switching is unresolved — direct customer or win/loss evidence is required. Waters responseDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone. SCIEX response: For PFAS, adapt the governing workflow position to the observed SCIEX emphasis; do not assert advantage until target-compatible proof and approval are established. Approval not established. Required proofDirect SCIEX customer interviews, coded win/loss evidence, and comparable workflow testing. Evidence confidenceConfidence unscored — exact sources are available, but no compatible confidence score is loaded · customer-choice confidence unresolved Competitor sources are traceable, but they do not establish customer choice, switching behavior, or market prevalence. EV-A325E4EC · Observed application evidenceRoutine Application of EPA Method 1633A to Environmental Samples Using the novus V55 SystemOpen canonical evidence and caveats →EV-95EABCF3 · Observed application evidenceA Fast and Ultra-Sensitive Method for Analysis of TFA in Multiple Water SourcesOpen canonical evidence and caveats →EV-EDDC2F67 · Conference participation evidenceACS Fall 2026 competitor evidenceOpen canonical evidence and caveats →"
+      },
+      {
+        "classification": "hypothesis",
+        "name": "Thermo Fisher",
+        "sourceRefs": 1,
+        "text": "Thermo FisherObserved competitor evidence · customer-choice hypothesis Why customers choose itPublic Thermo Fisher sources establish visible positioning and product activity; why a customer selects it is not established. Segment and buying situationEnvironmental is the active evidence filter, not validated demand evidenceDirect platform comparison or replacement evaluation — strategic hypothesis requiring validation Primary objection to switchingPrimary objection to switching is unresolved — direct customer or win/loss evidence is required. Waters responseDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone. Thermo Fisher response: For PFAS, adapt the governing workflow position to the observed Thermo Fisher emphasis; do not assert advantage until target-compatible proof and approval are established. Approval not established. Required proofDirect Thermo Fisher customer interviews, coded win/loss evidence, and comparable workflow testing. Evidence confidenceConfidence unscored — exact sources are available, but no compatible confidence score is loaded · customer-choice confidence unresolved Competitor sources are traceable, but they do not establish customer choice, switching behavior, or market prevalence. EV-1E1ACDD1 · Observed application evidenceDirect Injection LC-MS/MS Quantification of C1-C4 Ultrashort-Chain PFAS in Drinking WaterOpen canonical evidence and caveats →"
+      },
+      {
+        "classification": "hypothesis",
+        "name": "Outsource testing",
+        "sourceRefs": 0,
+        "text": "Outsource testingStrategic hypothesis requiring validation Why customers choose itStrategic hypothesis: a buyer may prefer external capacity or specialist execution to purchasing and operating another platform. Segment and buying situationEnvironmental is the active evidence filter, not validated demand evidenceCapacity constraint, specialist-method need, or capital-avoidance decision — validation required Primary objection to switchingPrimary objection to switching is unresolved — direct customer or win/loss evidence is required. Waters responseDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone. Proposed — not approved. Approval not established. Required proofWin/loss coding for outsource-versus-buy decisions, buyer interviews, decision criteria, and comparable cost/risk evidence. Evidence confidenceConfidence unresolved — validation required No direct customer-choice or win/loss evidence was located; this alternative is not a statement of prevalence. Exact customer or win/loss evidence unavailable."
+      },
+      {
+        "classification": "hypothesis",
+        "name": "Use a CRO/CDMO",
+        "sourceRefs": 0,
+        "text": "Use a CRO/CDMOStrategic hypothesis requiring validation Why customers choose itStrategic hypothesis: a sponsor may transfer analytical execution to an external development or manufacturing partner. Segment and buying situationEnvironmental is the active evidence filter, not validated demand evidenceDevelopment, method transfer, scale-up, or regulated execution requiring external capability — validation required Primary objection to switchingPrimary objection to switching is unresolved — direct customer or win/loss evidence is required. Waters responseDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone. Proposed — not approved. Approval not established. Required proofDirect sponsor and CRO/CDMO interviews, outsource-versus-insource win/loss evidence, and documented workflow economics. Evidence confidenceConfidence unresolved — validation required No direct customer-choice or win/loss evidence was located; this alternative is not a statement of prevalence. Exact customer or win/loss evidence unavailable."
+      },
+      {
+        "classification": "hypothesis",
+        "name": "Alternative analytical workflow",
+        "sourceRefs": 0,
+        "text": "Alternative analytical workflowStrategic hypothesis requiring validation Why customers choose itStrategic hypothesis: a laboratory may meet the analytical job through a different instrument, software path, or manual workflow. Segment and buying situationEnvironmental is the active evidence filter, not validated demand evidenceWorkflow redesign or method-selection decision — validation required Primary objection to switchingPrimary objection to switching is unresolved — direct customer or win/loss evidence is required. Waters responseDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone. Proposed — not approved. Approval not established. Required proofCustomer workflow mapping, alternative-method interviews, and comparable outcome, compliance, and effort evidence. Evidence confidenceConfidence unresolved — validation required No direct customer-choice or win/loss evidence was located; this alternative is not a statement of prevalence. Exact customer or win/loss evidence unavailable."
+      },
+      {
+        "classification": "hypothesis",
+        "name": "Do nothing / keep the validated method",
+        "sourceRefs": 0,
+        "text": "Do nothing / keep the validated methodStrategic hypothesis requiring validation Why customers choose itStrategic hypothesis: retaining a validated method may appear safer than introducing transfer and revalidation risk. Segment and buying situationEnvironmental is the active evidence filter, not validated demand evidenceValidated-method continuity or replacement decision — validation required Primary objection to switchingPrimary objection to switching is unresolved — direct customer or win/loss evidence is required. Waters responseDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone. Proposed — not approved. Approval not established. Required proofDirect buyer evidence and a validated method-migration study with equivalency and revalidation boundaries. Evidence confidenceConfidence unresolved — validation required No direct customer-choice or win/loss evidence was located; this alternative is not a statement of prevalence. Exact customer or win/loss evidence unavailable."
+      },
+      {
+        "classification": "hypothesis",
+        "name": "Extend the existing system",
+        "sourceRefs": 0,
+        "text": "Extend the existing systemStrategic hypothesis requiring validation Why customers choose itStrategic hypothesis: familiar operation and continued service may defer the disruption of replacement. Segment and buying situationEnvironmental is the active evidence filter, not validated demand evidenceLifecycle extension or replacement decision — validation required Primary objection to switchingPrimary objection to switching is unresolved — direct customer or win/loss evidence is required. Waters responseDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone. Proposed — not approved. Approval not established. Required proofInstalled-system interviews plus lifecycle cost, serviceability, downtime, and migration evidence. Evidence confidenceConfidence unresolved — validation required No direct customer-choice or win/loss evidence was located; this alternative is not a statement of prevalence. Exact customer or win/loss evidence unavailable."
+      },
+      {
+        "classification": "hypothesis",
+        "name": "Defer replacement",
+        "sourceRefs": 0,
+        "text": "Defer replacementStrategic hypothesis requiring validation Why customers choose itStrategic hypothesis: the customer may postpone replacement when urgency, budget, or migration confidence is insufficient. Segment and buying situationEnvironmental is the active evidence filter, not validated demand evidenceReplacement timing decision — validation required Primary objection to switchingPrimary objection to switching is unresolved — direct customer or win/loss evidence is required. Waters responseDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone. Proposed — not approved. Approval not established. Required proofWin/loss and no-decision reason codes, buyer interviews, and replacement timing evidence. Evidence confidenceConfidence unresolved — validation required No direct customer-choice or win/loss evidence was located; this alternative is not a statement of prevalence. Exact customer or win/loss evidence unavailable."
+      }
+    ],
+    "doNothing": "[Circular]",
+    "outsourcing": "[Circular]"
+  },
+  "metricTooltips": {
+    "claims-awaiting-approval": "Displayed registry rows with no established legal/claims approval record. Calculation: visible claim rows where approvalEstablished is false, regardless of substantiation status. Unit: displayed rows. Global and claims-registry filters apply.",
+    "direct-evidence-sources": "Unique canonical URLs displayed in the Evidence appendix. Calculation: valid linked appendix records after global URL deduplication; unlinked records are excluded. Unit: unique URLs, not records or independent organizations. All applicable global filters apply; the historical group intentionally ignores horizon, geography, and market where those fields do not exist.",
+    "exact-customer-sources": "Unique canonical URLs in the filtered customer-language evidence set. Calculation: valid exact customer URLs after URL normalization and deduplication. Unit: unique URLs, not records or independent organizations. All global filters apply.",
+    "positioning-decisions": "Displayed positioning-decision cards. Calculation: eligible evidence-backed decision candidates after all global filters, limited to three. Unit: displayed cards. Matrix-only claim filters do not apply."
+  },
+  "metrics": {
+    "claims-awaiting-approval": 7,
+    "direct-evidence-sources": 29,
+    "exact-customer-sources": 0,
+    "positioning-decisions": 3
+  },
+  "name": "Environmental → PFAS",
+  "pageSections": 8,
+  "provenance": {
+    "appendixRecords": 29,
+    "dateUnresolved": 16,
+    "evidenceRefs": 77,
+    "linkedSources": 29,
+    "sourceUrls": [
+      "https://www.setac.org/discover-events/global-meetings/setac-north-america-47th-annual-meeting.html",
+      "https://www.acs.org/events/all-events/acs-fall-2026.html",
+      "https://www.shimadzu.com/news/2025/6n31zbu4tkmozoh2.html",
+      "https://documents.thermofisher.com/TFS-Assets/CMD/Application-Notes/an-004442-en-pfas-tsq-altis-plus-efox-editon-an004442-em-en.pdf",
+      "https://sciex.com/tech-notes/environmental-industrial/water-and-soil/routine-application-of-epa-method-environmental-samples-using-the-novusv55",
+      "https://sciex.com/tech-notes/environmental-industrial/water-and-soil/fast-and-ultra-sensitive-method-for-analysis-of-tfa",
+      "https://pubmed.ncbi.nlm.nih.gov/42398371/",
+      "https://pubmed.ncbi.nlm.nih.gov/",
+      "https://www.waters.com/nextgen/us/en/products/chromatography/chromatography-systems/acquity-premier-system-with-multi-dimensional-technology.html",
+      "https://www.waters.com/nextgen/en/products/chromatography/chromatography-systems/alliance-is-hplc-system.html",
+      "https://www.waters.com/nextgen/ee/en/library/application-notes/2025/enhanced-reliability-for-long-term-pfas-analysis-with-the-xevo-tq-absolute-xr-mass-spectrometer.html",
+      "https://www.shimadzu.com/an/sites/shimadzu.com.an/files/pim/pim_document_file/applications/application_note/26436/an_02-ssi-lcms-157-en.pdf",
+      "https://www.waters.com/nextgen/us/en/products/mass-spectrometry/mass-spectrometry-systems/xevo-mrt.html",
+      "https://www.agilent.com/cs/library/applications/an-pesticide-screening-revident-lc-qtof-5994-8751en-agilent.pdf",
+      "https://www.shimadzu.com/news/",
+      "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/index.html",
+      "https://www.setac.org/discover-events/global-meetings/setac-north-america-47th-annual-meeting/program/daily-schedule.html",
+      "https://www.setac.org/discover-events/global-meetings/setac-north-america-47th-annual-meeting/exhibits-supporters/exhibitor-listing-and-floor-plan.html",
+      "https://sciex.com/about-us/press-releases",
+      "https://sciex.com/products/mass-spectrometers",
+      "https://www.acs.org/events/fall/exhibit.html",
+      "https://www.agilent.com/about/newsroom/presrel.html",
+      "https://www.agilent.com/products0.xml",
+      "https://ir.thermofisher.com/investors/news-events/news/default.aspx",
+      "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry.html",
+      "https://www.thermofisher.com/sitemap-us-en.xml",
+      "https://www.thermofisher.com/blog/analyteguru/liquid-chromatography/feed/",
+      "https://www.thermofisher.com/blog/analyteguru/mass-spectrometry/feed/",
+      "https://www.thermofisher.com/blog/analyteguru/proteomics/feed/"
+    ],
+    "unlinkedRecords": 0,
+    "unresolvedEvidenceRefs": 0
+  },
+  "startHere": "Start Here · Decide, Then ActivateThe Next PMM DecisionOne governed path from segment choice to activation. Open the first decision below before reviewing supporting analysis.Priority 1PFAS for EnvironmentalBuild a PFAS/regulated quantitation claims matrix against Shimadzu LCMS-8065XE, SCIEX, and Thermo. Chosen segmentEnvironmental · PFAS Governing position statusProposed — not approved Swing attributeEnvironmental: Reliable routine execution (30% hypothesis weight; weighted difference -0.30). Hypothesis — replace with win/loss, survey, or conjoint evidence. Highest-risk claimNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications. Proposed — not approved: adapt the governing workflow position for Environmental · PFAS · all buying situations · all geographies · the full buying committee. Agilent adaptation: For PFAS, adapt the governing workflow position to the observed Agilent emphasis; do not assert advantage until target-compatible proof and approval are established.Unsupported · Approval not established Competitor / inertia threatShimadzu · Do nothing / keep the validated method Next required decisionRun a controlled Environmental LC workflow study against Shimadzu using matched products, methods, attributes, test conditions, and decision criteria. Then obtain documented claims/legal approval, approved wording, an owner, and an expiration date. Nearest activation deadlineDeadline needed",
+  "traces": [
+    {
+      "ref": "next-gen-lc-governing-position",
+      "status": "aligned",
+      "text": "Governing Position TraceProposed — not approved Inherited customer / segmentAnalytical laboratory buying committees responsible for regulated LC method execution and transfer · Environmental · PFAS — active evidence filter, not an approved strategic priorityInherited targeting adaptationProposed — not approved: adapt the governing workflow position for Environmental · PFAS · all buying situations · all geographies · the full buying committee.Inherited job / categoryExecute reliable, transferable, compliant analytical workflows from method setup and transfer through routine operation and data review. · Liquid chromatography workflow platform for regulated analytical laboratoriesInherited value propositionNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications.Inherited point of parityExpected modern LC separation performance, pressure range, usability, connectivity, and serviceability required to enter a contemporary HPLC/UHPLC evaluation.Inherited point of differenceDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone.Local adaptationFor PFAS, adapt the governing workflow position to the observed Shimadzu emphasis; do not assert advantage until target-compatible proof and approval are established. Aligned adaptationNo contradiction detected. Local language inherits the governing workflow frame; approval remains unresolved."
+    },
+    {
+      "ref": "next-gen-lc-governing-position",
+      "status": "aligned",
+      "text": "Governing Position TraceProposed — not approved Inherited customer / segmentAnalytical laboratory buying committees responsible for regulated LC method execution and transfer · Environmental · PFAS — active evidence filter, not an approved strategic priorityInherited targeting adaptationProposed — not approved: adapt the governing workflow position for Environmental · PFAS · all buying situations · all geographies · the full buying committee.Inherited job / categoryExecute reliable, transferable, compliant analytical workflows from method setup and transfer through routine operation and data review. · Liquid chromatography workflow platform for regulated analytical laboratoriesInherited value propositionNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications.Inherited point of parityExpected modern LC separation performance, pressure range, usability, connectivity, and serviceability required to enter a contemporary HPLC/UHPLC evaluation.Inherited point of differenceDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone.Local adaptationFor PFAS, adapt the governing workflow position to the observed Agilent emphasis; do not assert advantage until target-compatible proof and approval are established. Aligned adaptationNo contradiction detected. Local language inherits the governing workflow frame; approval remains unresolved."
+    },
+    {
+      "ref": "next-gen-lc-governing-position",
+      "status": "aligned",
+      "text": "Governing Position TraceProposed — not approved Inherited customer / segmentAnalytical laboratory buying committees responsible for regulated LC method execution and transfer · Environmental · PFAS — active evidence filter, not an approved strategic priorityInherited targeting adaptationProposed — not approved: adapt the governing workflow position for Environmental · PFAS · all buying situations · all geographies · the full buying committee.Inherited job / categoryExecute reliable, transferable, compliant analytical workflows from method setup and transfer through routine operation and data review. · Liquid chromatography workflow platform for regulated analytical laboratoriesInherited value propositionNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications.Inherited point of parityExpected modern LC separation performance, pressure range, usability, connectivity, and serviceability required to enter a contemporary HPLC/UHPLC evaluation.Inherited point of differenceDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone.Local adaptationFor PFAS, adapt the governing workflow position to the observed SCIEX emphasis; do not assert advantage until target-compatible proof and approval are established. Aligned adaptationNo contradiction detected. Local language inherits the governing workflow frame; approval remains unresolved."
+    },
+    {
+      "ref": "next-gen-lc-governing-position",
+      "status": "aligned",
+      "text": "Governing Position TraceProposed — not approved Inherited customer / segmentAnalytical laboratory buying committees responsible for regulated LC method execution and transfer · Environmental · PFAS — active evidence filter, not an approved strategic priorityInherited targeting adaptationProposed — not approved: adapt the governing workflow position for Environmental · PFAS · all buying situations · all geographies · the full buying committee.Inherited job / categoryExecute reliable, transferable, compliant analytical workflows from method setup and transfer through routine operation and data review. · Liquid chromatography workflow platform for regulated analytical laboratoriesInherited value propositionNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications.Inherited point of parityExpected modern LC separation performance, pressure range, usability, connectivity, and serviceability required to enter a contemporary HPLC/UHPLC evaluation.Inherited point of differenceDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone.Local adaptationFor PFAS, adapt the governing workflow position to the observed Shimadzu emphasis; do not assert advantage until target-compatible proof and approval are established. Aligned adaptationNo contradiction detected. Local language inherits the governing workflow frame; approval remains unresolved."
+    }
+  ]
+}

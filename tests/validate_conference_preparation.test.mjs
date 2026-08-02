@@ -8,6 +8,19 @@ test("the shipped conference briefs separate confirmed content from expectations
   assert.deepEqual(validateConferencePreparation(catalog), []);
 });
 
+test("the Bioprocessing Summit derivation note is hidden from conference intelligence", async () => {
+  const [catalogText, conferencePage, dashboardApp] = await Promise.all([
+    readFile(new URL("../data/conference_preparation.json", import.meta.url), "utf8"),
+    readFile(new URL("../conference-page.js", import.meta.url), "utf8"),
+    readFile(new URL("../app.js", import.meta.url), "utf8"),
+  ]);
+  const catalog = JSON.parse(catalogText);
+  const event = catalog.events.find((item) => item.id === "bioprocessing-summit-us-2026-prep");
+  assert.equal(event.competitorContent[0].displayEvidenceBasis, false);
+  assert.match(conferencePage, /item\.displayEvidenceBasis === false/);
+  assert.match(dashboardApp, /item\.displayEvidenceBasis === false/);
+});
+
 test("confirmed competitor content cannot cite a portfolio page as event proof", () => {
   const catalog = {
     asOfDate: "2026-07-17",

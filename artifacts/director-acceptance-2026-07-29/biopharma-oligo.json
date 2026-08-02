@@ -1,0 +1,338 @@
+{
+  "adoption": {
+    "planCount": 1,
+    "plans": [
+      {
+        "assumptionStates": [
+          "Assumption — unsourced",
+          "Assumption — unsourced",
+          "Assumption — unsourced",
+          "Assumption — unsourced",
+          "Assumption — unsourced",
+          "Assumption — unsourced",
+          "Assumption — unsourced",
+          "Assumption — unsourced",
+          "Assumption — unsourced",
+          "Assumption — unsourced"
+        ],
+        "baseline": "SCIEX · exact product/workflow unresolved",
+        "blocked": "Total monetary EVC and value claim blocked",
+        "dimensions": [
+          "relative-advantage",
+          "compatibility",
+          "complexity",
+          "observability",
+          "risk",
+          "trialability"
+        ],
+        "evcMetrics": 10,
+        "title": "Biopharma Adoption and Value Plan",
+        "valueClaimEligible": "false"
+      }
+    ]
+  },
+  "artifacts": {
+    "copyApprovedDisabled": true,
+    "copyApprovedText": "No approved text to copy",
+    "count": 7,
+    "draftCount": 7,
+    "exportCount": 7,
+    "items": [
+      {
+        "approval": "draft",
+        "claimsText": "Claims and Approval StateNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications. Proposed — not approved: adapt the governing workflow position for Biopharma · Oligo · all buying situations · all geographies · the full buying committee. SCIEX adaptation: For Oligo, adapt the governing workflow position to the observed SCIEX emphasis; do not assert advantage until target-compatible proof and approval are established.Directional · Approval not establishedNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications. Proposed — not approved: adapt the governing workflow position for Biopharma · Oligo · all buying situations · all geographies · the full buying committee. SCIEX adaptation: For Oligo, adapt the governing workflow position to the observed SCIEX emphasis; do not assert advantage until target-compatible proof and approval are established.Directional · Approval not established",
+        "exportText": "Export PPTX",
+        "footnotes": 5,
+        "id": "Biopharma::SCIEX::competitive-battlecard",
+        "open": true,
+        "warnings": "Unsupported-Content WarningsOne or more included claims have no established legal/claims approval. The output must remain DRAFT — NOT APPROVED.2 evidence records are Inapplicable and cannot be used as proof.",
+        "watermark": "DRAFT — NOT APPROVED"
+      },
+      {
+        "approval": "draft",
+        "claimsText": "Claims and Approval StateNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications. Proposed — not approved: adapt the governing workflow position for Biopharma · Oligo · all buying situations · all geographies · the full buying committee. SCIEX adaptation: For Oligo, adapt the governing workflow position to the observed SCIEX emphasis; do not assert advantage until target-compatible proof and approval are established.Directional · Approval not establishedNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications. Proposed — not approved: adapt the governing workflow position for Biopharma · Oligo · all buying situations · all geographies · the full buying committee. SCIEX adaptation: For Oligo, adapt the governing workflow position to the observed SCIEX emphasis; do not assert advantage until target-compatible proof and approval are established.Directional · Approval not established",
+        "exportText": "Export DOCX",
+        "footnotes": 5,
+        "id": "Biopharma::SCIEX::positioning-messaging-brief",
+        "open": true,
+        "warnings": "Unsupported-Content WarningsOne or more included claims have no established legal/claims approval. The output must remain DRAFT — NOT APPROVED.2 evidence records are Inapplicable and cannot be used as proof.",
+        "watermark": "DRAFT — NOT APPROVED"
+      },
+      {
+        "approval": "draft",
+        "claimsText": "Claims and Approval StateNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications. Proposed — not approved: adapt the governing workflow position for Biopharma · Oligo · all buying situations · all geographies · the full buying committee. SCIEX adaptation: For Oligo, adapt the governing workflow position to the observed SCIEX emphasis; do not assert advantage until target-compatible proof and approval are established.Directional · Approval not establishedNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications. Proposed — not approved: adapt the governing workflow position for Biopharma · Oligo · all buying situations · all geographies · the full buying committee. SCIEX adaptation: For Oligo, adapt the governing workflow position to the observed SCIEX emphasis; do not assert advantage until target-compatible proof and approval are established.Directional · Approval not established",
+        "exportText": "Export DOCX",
+        "footnotes": 5,
+        "id": "Biopharma::SCIEX::regulated-claims-sheet",
+        "open": true,
+        "warnings": "Unsupported-Content WarningsOne or more included claims have no established legal/claims approval. The output must remain DRAFT — NOT APPROVED.2 evidence records are Inapplicable and cannot be used as proof.",
+        "watermark": "DRAFT — NOT APPROVED"
+      },
+      {
+        "approval": "draft",
+        "claimsText": "Claims and Approval StateNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications. Proposed — not approved: adapt the governing workflow position for Biopharma · Oligo · all buying situations · all geographies · the full buying committee. SCIEX adaptation: For Oligo, adapt the governing workflow position to the observed SCIEX emphasis; do not assert advantage until target-compatible proof and approval are established.Directional · Approval not establishedNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications. Proposed — not approved: adapt the governing workflow position for Biopharma · Oligo · all buying situations · all geographies · the full buying committee. SCIEX adaptation: For Oligo, adapt the governing workflow position to the observed SCIEX emphasis; do not assert advantage until target-compatible proof and approval are established.Directional · Approval not established",
+        "exportText": "Export DOCX",
+        "footnotes": 5,
+        "id": "Biopharma::SCIEX::campaign-message-plan",
+        "open": true,
+        "warnings": "Unsupported-Content WarningsOne or more included claims have no established legal/claims approval. The output must remain DRAFT — NOT APPROVED.2 evidence records are Inapplicable and cannot be used as proof.",
+        "watermark": "DRAFT — NOT APPROVED"
+      },
+      {
+        "approval": "draft",
+        "claimsText": "Claims and Approval StateNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications. Proposed — not approved: adapt the governing workflow position for Biopharma · Oligo · all buying situations · all geographies · the full buying committee. SCIEX adaptation: For Oligo, adapt the governing workflow position to the observed SCIEX emphasis; do not assert advantage until target-compatible proof and approval are established.Directional · Approval not establishedNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications. Proposed — not approved: adapt the governing workflow position for Biopharma · Oligo · all buying situations · all geographies · the full buying committee. SCIEX adaptation: For Oligo, adapt the governing workflow position to the observed SCIEX emphasis; do not assert advantage until target-compatible proof and approval are established.Directional · Approval not established",
+        "exportText": "Export PPTX",
+        "footnotes": 5,
+        "id": "Biopharma::SCIEX::sales-deck-outline",
+        "open": false,
+        "warnings": "Unsupported-Content WarningsOne or more included claims have no established legal/claims approval. The output must remain DRAFT — NOT APPROVED.2 evidence records are Inapplicable and cannot be used as proof.",
+        "watermark": "DRAFT — NOT APPROVED"
+      },
+      {
+        "approval": "draft",
+        "claimsText": "Claims and Approval StateNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications. Proposed — not approved: adapt the governing workflow position for Biopharma · Oligo · all buying situations · all geographies · the full buying committee. SCIEX adaptation: For Oligo, adapt the governing workflow position to the observed SCIEX emphasis; do not assert advantage until target-compatible proof and approval are established.Directional · Approval not establishedNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications. Proposed — not approved: adapt the governing workflow position for Biopharma · Oligo · all buying situations · all geographies · the full buying committee. SCIEX adaptation: For Oligo, adapt the governing workflow position to the observed SCIEX emphasis; do not assert advantage until target-compatible proof and approval are established.Directional · Approval not established",
+        "exportText": "Export DOCX",
+        "footnotes": 5,
+        "id": "Biopharma::SCIEX::message-test-brief",
+        "open": false,
+        "warnings": "Unsupported-Content WarningsOne or more included claims have no established legal/claims approval. The output must remain DRAFT — NOT APPROVED.2 evidence records are Inapplicable and cannot be used as proof.",
+        "watermark": "DRAFT — NOT APPROVED"
+      },
+      {
+        "approval": "draft",
+        "claimsText": "Claims and Approval StateNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications. Proposed — not approved: adapt the governing workflow position for Biopharma · Oligo · all buying situations · all geographies · the full buying committee. SCIEX adaptation: For Oligo, adapt the governing workflow position to the observed SCIEX emphasis; do not assert advantage until target-compatible proof and approval are established.Directional · Approval not establishedNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications. Proposed — not approved: adapt the governing workflow position for Biopharma · Oligo · all buying situations · all geographies · the full buying committee. SCIEX adaptation: For Oligo, adapt the governing workflow position to the observed SCIEX emphasis; do not assert advantage until target-compatible proof and approval are established.Directional · Approval not established",
+        "exportText": "Export DOCX",
+        "footnotes": 5,
+        "id": "Biopharma::SCIEX::customer-proof-request",
+        "open": false,
+        "warnings": "Unsupported-Content WarningsOne or more included claims have no established legal/claims approval. The output must remain DRAFT — NOT APPROVED.2 evidence records are Inapplicable and cannot be used as proof.",
+        "watermark": "DRAFT — NOT APPROVED"
+      }
+    ],
+    "openCount": 4,
+    "registryExport": true,
+    "watermarkedCount": 7
+  },
+  "breakReport": {
+    "articles": {
+      "Changed swing attribute": {
+        "heading": "Changed swing attribute Stable",
+        "text": "Changed swing attribute StableMethod transfer and continuity; no change from the comparable market-baseline hypothesis.Both values are hypothesis-model calculations, not measured buyer preference."
+      },
+      "Governing-position conflicts": {
+        "heading": "Governing-position conflicts 0",
+        "text": "Governing-position conflicts 0No contradiction or unsupported deviation was detected by the governing-position rule check."
+      },
+      "Inapplicable proof": {
+        "heading": "Inapplicable proof 9",
+        "text": "Inapplicable proof 9BioAccord LC-MS System with ACQUITY PremierDoes not match the governed claim dimensions.Alliance iS Bio HPLC System with Empower CDSDoes not match the governed claim dimensions.BioAccord LC-MS System with ACQUITY PremierDoes not match the governed claim dimensions.Alliance iS Bio HPLC System with Empower CDSDoes not match the governed claim dimensions.Alliance iS Bio HPLC System with Empower CDSDoes not match the governed claim dimensions.BioAccord LC-MS System with ACQUITY PremierDoes not match the governed claim dimensions.Alliance iS Bio HPLC System with Empower CDSDoes not match the governed claim dimensions.Alliance iS Bio HPLC System with Empower CDSDoes not match the governed claim dimensions.Alliance iS Bio HPLC System with Empower CDSDoes not match the governed claim dimensions."
+      },
+      "Missing buyer roles": {
+        "heading": "Missing buyer roles 7",
+        "text": "Missing buyer roles 7Bench user / analystMethod developerQC/QA or validation vetoIT / data-integrity vetoLab-manager decision makerProcurement / economic buyerExecutive sponsor — where relevant"
+      },
+      "Missing economic assumptions": {
+        "heading": "Missing economic assumptions 3",
+        "text": "Missing economic assumptions 3Biopharma EVC has 10 incomplete low/base/high assumption ranges.Biopharma EVC has no sourced numeric time, cost, or outcome value.Biopharma EVC monetary conversion inputs and approved economic-model ownership are unresolved."
+      },
+      "Unsupported claims": {
+        "heading": "Unsupported claims 0",
+        "text": "Unsupported claims 0No unsupported claim rows are present."
+      }
+    },
+    "total": 19
+  },
+  "claims": {
+    "comparability": {
+      "Partially applicable": 6
+    },
+    "inapplicableEvidence": 9,
+    "readiness": {
+      "Blocked": 6
+    },
+    "readyRows": 0,
+    "substantiation": {
+      "Directional": 6
+    }
+  },
+  "committees": [
+    {
+      "inferredRoles": 7,
+      "label": "Biopharma · Oligo",
+      "observedRoles": 0,
+      "roleCount": 7,
+      "roleKeys": [
+        "bench-user",
+        "method-developer",
+        "quality-veto",
+        "it-veto",
+        "lab-manager",
+        "economic-buyer",
+        "executive-sponsor"
+      ],
+      "swing": "Method transfer and continuity",
+      "swingDifference": 0.6,
+      "weightTotal": 100
+    }
+  ],
+  "destinations": {
+    "appendixUnique": 27,
+    "claimRows": 6,
+    "claimRowsWithoutApproval": 6,
+    "customerUrlSummary": 0,
+    "decisionCards": 3
+  },
+  "filters": {
+    "application": "Oligo",
+    "buyer": "All buyer roles",
+    "buying": "All buying situations",
+    "competitor": "All",
+    "geography": "All geographies",
+    "horizon": "1 year",
+    "market": "Biopharma"
+  },
+  "governing": {
+    "difference": "Differentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone.",
+    "id": "next-gen-lc-governing-position",
+    "parity": "Expected modern LC separation performance, pressure range, usability, connectivity, and serviceability required to enter a contemporary HPLC/UHPLC evaluation.",
+    "status": "Approval stateProposed — not approved ApproverApprover needed Last reviewedReview date unavailable ClassificationAnalyst/rule-based inference grounded in filtered public evidence",
+    "swing": "Biopharma: Method transfer and continuity (30% hypothesis weight; weighted difference 0.60). Hypothesis — replace with win/loss, survey, or conjoint evidence.",
+    "targeting": "Proposed — not approved: adapt the governing workflow position for Biopharma · Oligo · all buying situations · all geographies · the full buying committee.",
+    "value": "Next Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications."
+  },
+  "highestRiskClaim": "Highest Risk Under Current FiltersNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications. Proposed — not approved: adapt the governing workflow position for Biopharma · Oligo · all buying situations · all geographies · the full buying committee. Thermo Fisher adaptation: For Oligo, adapt the governing workflow position to the observed Thermo Fisher emphasis; do not assert advantage until target-compatible proof and approval are established.Directional substantiation · Approval not established · 75 governed risk points",
+  "marketChoice": {
+    "alternatives": [
+      {
+        "classification": "hypothesis",
+        "name": "Thermo Fisher",
+        "sourceRefs": 3,
+        "text": "Thermo FisherObserved competitor evidence · customer-choice hypothesis Why customers choose itPublic Thermo Fisher sources establish visible positioning and product activity; why a customer selects it is not established. Segment and buying situationBiopharma is the active evidence filter, not validated demand evidenceDirect platform comparison or replacement evaluation — strategic hypothesis requiring validation Primary objection to switchingPrimary objection to switching is unresolved — direct customer or win/loss evidence is required. Waters responseDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone. Thermo Fisher response: For Oligo, adapt the governing workflow position to the observed Thermo Fisher emphasis; do not assert advantage until target-compatible proof and approval are established. Approval not established. Required proofDirect Thermo Fisher customer interviews, coded win/loss evidence, and comparable workflow testing. Evidence confidenceConfidence unscored — exact sources are available, but no compatible confidence score is loaded · customer-choice confidence unresolved Competitor sources are traceable, but they do not establish customer choice, switching behavior, or market prevalence. EV-5D98060A · Observed application evidenceAn Integrated LC-MS System Performance Evaluation Test for Oligonucleotide AnalysisOpen canonical evidence and caveats →EV-9FD24C27 · Expected — not confirmedBioprocessing Summit US competitor evidenceOpen canonical evidence and caveats →EV-6DC0A7CF · Expected — not confirmedCASSS Mass Spec 2026 competitor evidenceOpen canonical evidence and caveats →"
+      },
+      {
+        "classification": "hypothesis",
+        "name": "Agilent",
+        "sourceRefs": 3,
+        "text": "AgilentObserved competitor evidence · customer-choice hypothesis Why customers choose itPublic Agilent sources establish visible positioning and product activity; why a customer selects it is not established. Segment and buying situationBiopharma is the active evidence filter, not validated demand evidenceDirect platform comparison or replacement evaluation — strategic hypothesis requiring validation Primary objection to switchingPrimary objection to switching is unresolved — direct customer or win/loss evidence is required. Waters responseDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone. Agilent response: For Oligo, adapt the governing workflow position to the observed Agilent emphasis; do not assert advantage until target-compatible proof and approval are established. Approval not established. Required proofDirect Agilent customer interviews, coded win/loss evidence, and comparable workflow testing. Evidence confidenceConfidence unscored — exact sources are available, but no compatible confidence score is loaded · customer-choice confidence unresolved Competitor sources are traceable, but they do not establish customer choice, switching behavior, or market prevalence. EV-1612B5FE · Observed application evidenceAutomated LC/MS Quality Control of Anti-Sense OligonucleotidesOpen canonical evidence and caveats →EV-3A246A1B · Corporate intelligenceAgilent and Singapore NATi partner on lipid-conjugated oligonucleotide researchOpen canonical evidence and caveats →EV-33A78CE9 · Expected — not confirmedCASSS Mass Spec 2026 competitor evidenceOpen canonical evidence and caveats →"
+      },
+      {
+        "classification": "hypothesis",
+        "name": "SCIEX",
+        "sourceRefs": 2,
+        "text": "SCIEXObserved competitor evidence · customer-choice hypothesis Why customers choose itPublic SCIEX sources establish visible positioning and product activity; why a customer selects it is not established. Segment and buying situationBiopharma is the active evidence filter, not validated demand evidenceDirect platform comparison or replacement evaluation — strategic hypothesis requiring validation Primary objection to switchingPrimary objection to switching is unresolved — direct customer or win/loss evidence is required. Waters responseDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone. SCIEX response: For Oligo, adapt the governing workflow position to the observed SCIEX emphasis; do not assert advantage until target-compatible proof and approval are established. Approval not established. Required proofDirect SCIEX customer interviews, coded win/loss evidence, and comparable workflow testing. Evidence confidenceConfidence unscored — exact sources are available, but no compatible confidence score is loaded · customer-choice confidence unresolved Competitor sources are traceable, but they do not establish customer choice, switching behavior, or market prevalence. EV-E377AFF5 · Conference participation evidenceCASSS Mass Spec 2026 competitor evidenceOpen canonical evidence and caveats →EV-7FE8331A · Conference participation evidenceTIDES Europe competitor evidenceOpen canonical evidence and caveats →"
+      },
+      {
+        "classification": "hypothesis",
+        "name": "Outsource testing",
+        "sourceRefs": 0,
+        "text": "Outsource testingStrategic hypothesis requiring validation Why customers choose itStrategic hypothesis: a buyer may prefer external capacity or specialist execution to purchasing and operating another platform. Segment and buying situationBiopharma is the active evidence filter, not validated demand evidenceCapacity constraint, specialist-method need, or capital-avoidance decision — validation required Primary objection to switchingPrimary objection to switching is unresolved — direct customer or win/loss evidence is required. Waters responseDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone. Proposed — not approved. Approval not established. Required proofWin/loss coding for outsource-versus-buy decisions, buyer interviews, decision criteria, and comparable cost/risk evidence. Evidence confidenceConfidence unresolved — validation required No direct customer-choice or win/loss evidence was located; this alternative is not a statement of prevalence. Exact customer or win/loss evidence unavailable."
+      },
+      {
+        "classification": "hypothesis",
+        "name": "Use a CRO/CDMO",
+        "sourceRefs": 0,
+        "text": "Use a CRO/CDMOStrategic hypothesis requiring validation Why customers choose itStrategic hypothesis: a sponsor may transfer analytical execution to an external development or manufacturing partner. Segment and buying situationBiopharma is the active evidence filter, not validated demand evidenceDevelopment, method transfer, scale-up, or regulated execution requiring external capability — validation required Primary objection to switchingPrimary objection to switching is unresolved — direct customer or win/loss evidence is required. Waters responseDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone. Proposed — not approved. Approval not established. Required proofDirect sponsor and CRO/CDMO interviews, outsource-versus-insource win/loss evidence, and documented workflow economics. Evidence confidenceConfidence unresolved — validation required No direct customer-choice or win/loss evidence was located; this alternative is not a statement of prevalence. Exact customer or win/loss evidence unavailable."
+      },
+      {
+        "classification": "hypothesis",
+        "name": "Alternative analytical workflow",
+        "sourceRefs": 0,
+        "text": "Alternative analytical workflowStrategic hypothesis requiring validation Why customers choose itStrategic hypothesis: a laboratory may meet the analytical job through a different instrument, software path, or manual workflow. Segment and buying situationBiopharma is the active evidence filter, not validated demand evidenceWorkflow redesign or method-selection decision — validation required Primary objection to switchingPrimary objection to switching is unresolved — direct customer or win/loss evidence is required. Waters responseDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone. Proposed — not approved. Approval not established. Required proofCustomer workflow mapping, alternative-method interviews, and comparable outcome, compliance, and effort evidence. Evidence confidenceConfidence unresolved — validation required No direct customer-choice or win/loss evidence was located; this alternative is not a statement of prevalence. Exact customer or win/loss evidence unavailable."
+      },
+      {
+        "classification": "hypothesis",
+        "name": "Do nothing / keep the validated method",
+        "sourceRefs": 0,
+        "text": "Do nothing / keep the validated methodStrategic hypothesis requiring validation Why customers choose itStrategic hypothesis: retaining a validated method may appear safer than introducing transfer and revalidation risk. Segment and buying situationBiopharma is the active evidence filter, not validated demand evidenceValidated-method continuity or replacement decision — validation required Primary objection to switchingPrimary objection to switching is unresolved — direct customer or win/loss evidence is required. Waters responseDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone. Proposed — not approved. Approval not established. Required proofDirect buyer evidence and a validated method-migration study with equivalency and revalidation boundaries. Evidence confidenceConfidence unresolved — validation required No direct customer-choice or win/loss evidence was located; this alternative is not a statement of prevalence. Exact customer or win/loss evidence unavailable."
+      },
+      {
+        "classification": "hypothesis",
+        "name": "Extend the existing system",
+        "sourceRefs": 0,
+        "text": "Extend the existing systemStrategic hypothesis requiring validation Why customers choose itStrategic hypothesis: familiar operation and continued service may defer the disruption of replacement. Segment and buying situationBiopharma is the active evidence filter, not validated demand evidenceLifecycle extension or replacement decision — validation required Primary objection to switchingPrimary objection to switching is unresolved — direct customer or win/loss evidence is required. Waters responseDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone. Proposed — not approved. Approval not established. Required proofInstalled-system interviews plus lifecycle cost, serviceability, downtime, and migration evidence. Evidence confidenceConfidence unresolved — validation required No direct customer-choice or win/loss evidence was located; this alternative is not a statement of prevalence. Exact customer or win/loss evidence unavailable."
+      },
+      {
+        "classification": "hypothesis",
+        "name": "Defer replacement",
+        "sourceRefs": 0,
+        "text": "Defer replacementStrategic hypothesis requiring validation Why customers choose itStrategic hypothesis: the customer may postpone replacement when urgency, budget, or migration confidence is insufficient. Segment and buying situationBiopharma is the active evidence filter, not validated demand evidenceReplacement timing decision — validation required Primary objection to switchingPrimary objection to switching is unresolved — direct customer or win/loss evidence is required. Waters responseDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone. Proposed — not approved. Approval not established. Required proofWin/loss and no-decision reason codes, buyer interviews, and replacement timing evidence. Evidence confidenceConfidence unresolved — validation required No direct customer-choice or win/loss evidence was located; this alternative is not a statement of prevalence. Exact customer or win/loss evidence unavailable."
+      }
+    ],
+    "doNothing": "[Circular]",
+    "outsourcing": "[Circular]"
+  },
+  "metricTooltips": {
+    "claims-awaiting-approval": "Displayed registry rows with no established legal/claims approval record. Calculation: visible claim rows where approvalEstablished is false, regardless of substantiation status. Unit: displayed rows. Global and claims-registry filters apply.",
+    "direct-evidence-sources": "Unique canonical URLs displayed in the Evidence appendix. Calculation: valid linked appendix records after global URL deduplication; unlinked records are excluded. Unit: unique URLs, not records or independent organizations. All applicable global filters apply; the historical group intentionally ignores horizon, geography, and market where those fields do not exist.",
+    "exact-customer-sources": "Unique canonical URLs in the filtered customer-language evidence set. Calculation: valid exact customer URLs after URL normalization and deduplication. Unit: unique URLs, not records or independent organizations. All global filters apply.",
+    "positioning-decisions": "Displayed positioning-decision cards. Calculation: eligible evidence-backed decision candidates after all global filters, limited to three. Unit: displayed cards. Matrix-only claim filters do not apply."
+  },
+  "metrics": {
+    "claims-awaiting-approval": 6,
+    "direct-evidence-sources": 27,
+    "exact-customer-sources": 0,
+    "positioning-decisions": 3
+  },
+  "name": "Biopharma → Oligo",
+  "pageSections": 8,
+  "provenance": {
+    "appendixRecords": 27,
+    "dateUnresolved": 14,
+    "evidenceRefs": 81,
+    "linkedSources": 27,
+    "sourceUrls": [
+      "https://informaconnect.com/tides-europe/",
+      "https://www.casss.org/mass-spectrometry/attend",
+      "https://www.bioprocessingsummit.com/",
+      "https://documents.thermofisher.com/TFS-Assets/CMD/Application-Notes/an-001954-bt-integrated-lc-ms-oligonucleotide-analysis-an001954-na-en.pdf",
+      "https://www.agilent.com/en/product/software-informatics/chromatography-software/chromatography-add-on/oligo-analysis-accelerator-for-openlab-cds",
+      "https://pubmed.ncbi.nlm.nih.gov/",
+      "https://www.agilent.com/about/newsroom/presrel/2026/20may-ca26015.html",
+      "https://www.waters.com/nextgen/us/en/products/informatics-and-software/chromatography-software/empower-software-solutions/empower-cds.html",
+      "https://www.waters.com/nextgen/en/products/chromatography/chromatography-systems/alliance-is-hplc-system.html",
+      "https://www.waters.com/nextgen/us/en/products/mass-spectrometry/mass-spectrometry-systems/bioaccord-lc-ms-system.html",
+      "https://www.waters.com/nextgen/us/en/products/chromatography/chromatography-systems/acquity-premier-system-with-multi-dimensional-technology.html",
+      "https://www.bioprocessingsummit.com/sponsors",
+      "https://ir.thermofisher.com/investors/news-events/news/default.aspx",
+      "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry.html",
+      "https://www.thermofisher.com/sitemap-us-en.xml",
+      "https://www.thermofisher.com/blog/analyteguru/liquid-chromatography/feed/",
+      "https://www.thermofisher.com/blog/analyteguru/mass-spectrometry/feed/",
+      "https://www.thermofisher.com/blog/analyteguru/proteomics/feed/",
+      "https://www.thermofisher.com/blog/analyteguru/new-technical-note-robust-high-throughput-peptide-quantitation-on-the-tsq-certis-triple-quadrupole-ms-with-optispray-technology/",
+      "https://virtual.oxfordabstracts.com/event/76939/program",
+      "https://informaconnect.com/tides-europe/agenda/",
+      "https://informaconnect.com/tides-europe/third-party-partners/",
+      "https://sciex.com/about-us/press-releases",
+      "https://sciex.com/products/mass-spectrometers",
+      "https://www.agilent.com/about/newsroom/presrel.html",
+      "https://www.agilent.com/products0.xml",
+      "https://www.agilent.com/about/newsroom/presrel/2026/29may-ca26021.html"
+    ],
+    "unlinkedRecords": 0,
+    "unresolvedEvidenceRefs": 0
+  },
+  "startHere": "Start Here · Decide, Then ActivateThe Next PMM DecisionOne governed path from segment choice to activation. Open the first decision below before reviewing supporting analysis.Priority 1Oligo for BiopharmaCreate an internal sales-enablement brief that packages the proposed position, proof, proof gaps, and message-testing questions. Chosen segmentBiopharma · Oligo Governing position statusProposed — not approved Swing attributeBiopharma: Method transfer and continuity (30% hypothesis weight; weighted difference 0.60). Hypothesis — replace with win/loss, survey, or conjoint evidence. Highest-risk claimNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications. Proposed — not approved: adapt the governing workflow position for Biopharma · Oligo · all buying situations · all geographies · the full buying committee. Agilent adaptation: For Oligo, adapt the governing workflow position to the observed Agilent emphasis; do not assert advantage until target-compatible proof and approval are established.Directional · Approval not established Competitor / inertia threatThermo Fisher · Do nothing / keep the validated method Next required decisionRun a controlled Biopharma LC workflow study against SCIEX using matched products, methods, attributes, test conditions, and decision criteria. Then obtain documented claims/legal approval, approved wording, an owner, and an expiration date. Nearest activation deadlineDeadline needed",
+  "traces": [
+    {
+      "ref": "next-gen-lc-governing-position",
+      "status": "aligned",
+      "text": "Governing Position TraceProposed — not approved Inherited customer / segmentAnalytical laboratory buying committees responsible for regulated LC method execution and transfer · Biopharma · Oligo — active evidence filter, not an approved strategic priorityInherited targeting adaptationProposed — not approved: adapt the governing workflow position for Biopharma · Oligo · all buying situations · all geographies · the full buying committee.Inherited job / categoryExecute reliable, transferable, compliant analytical workflows from method setup and transfer through routine operation and data review. · Liquid chromatography workflow platform for regulated analytical laboratoriesInherited value propositionNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications.Inherited point of parityExpected modern LC separation performance, pressure range, usability, connectivity, and serviceability required to enter a contemporary HPLC/UHPLC evaluation.Inherited point of differenceDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone.Local adaptationFor Oligo, adapt the governing workflow position to the observed SCIEX emphasis; do not assert advantage until target-compatible proof and approval are established. Aligned adaptationNo contradiction detected. Local language inherits the governing workflow frame; approval remains unresolved."
+    },
+    {
+      "ref": "next-gen-lc-governing-position",
+      "status": "aligned",
+      "text": "Governing Position TraceProposed — not approved Inherited customer / segmentAnalytical laboratory buying committees responsible for regulated LC method execution and transfer · Biopharma · Oligo — active evidence filter, not an approved strategic priorityInherited targeting adaptationProposed — not approved: adapt the governing workflow position for Biopharma · Oligo · all buying situations · all geographies · the full buying committee.Inherited job / categoryExecute reliable, transferable, compliant analytical workflows from method setup and transfer through routine operation and data review. · Liquid chromatography workflow platform for regulated analytical laboratoriesInherited value propositionNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications.Inherited point of parityExpected modern LC separation performance, pressure range, usability, connectivity, and serviceability required to enter a contemporary HPLC/UHPLC evaluation.Inherited point of differenceDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone.Local adaptationFor Oligo, adapt the governing workflow position to the observed Agilent emphasis; do not assert advantage until target-compatible proof and approval are established. Aligned adaptationNo contradiction detected. Local language inherits the governing workflow frame; approval remains unresolved."
+    },
+    {
+      "ref": "next-gen-lc-governing-position",
+      "status": "aligned",
+      "text": "Governing Position TraceProposed — not approved Inherited customer / segmentAnalytical laboratory buying committees responsible for regulated LC method execution and transfer · Biopharma · Oligo — active evidence filter, not an approved strategic priorityInherited targeting adaptationProposed — not approved: adapt the governing workflow position for Biopharma · Oligo · all buying situations · all geographies · the full buying committee.Inherited job / categoryExecute reliable, transferable, compliant analytical workflows from method setup and transfer through routine operation and data review. · Liquid chromatography workflow platform for regulated analytical laboratoriesInherited value propositionNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications.Inherited point of parityExpected modern LC separation performance, pressure range, usability, connectivity, and serviceability required to enter a contemporary HPLC/UHPLC evaluation.Inherited point of differenceDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone.Local adaptationFor Oligo, adapt the governing workflow position to the observed Thermo Fisher emphasis; do not assert advantage until target-compatible proof and approval are established. Aligned adaptationNo contradiction detected. Local language inherits the governing workflow frame; approval remains unresolved."
+    },
+    {
+      "ref": "next-gen-lc-governing-position",
+      "status": "aligned",
+      "text": "Governing Position TraceProposed — not approved Inherited customer / segmentAnalytical laboratory buying committees responsible for regulated LC method execution and transfer · Biopharma · Oligo — active evidence filter, not an approved strategic priorityInherited targeting adaptationProposed — not approved: adapt the governing workflow position for Biopharma · Oligo · all buying situations · all geographies · the full buying committee.Inherited job / categoryExecute reliable, transferable, compliant analytical workflows from method setup and transfer through routine operation and data review. · Liquid chromatography workflow platform for regulated analytical laboratoriesInherited value propositionNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications.Inherited point of parityExpected modern LC separation performance, pressure range, usability, connectivity, and serviceability required to enter a contemporary HPLC/UHPLC evaluation.Inherited point of differenceDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone.Local adaptationFor Oligo, adapt the governing workflow position to the observed Thermo Fisher emphasis; do not assert advantage until target-compatible proof and approval are established. Aligned adaptationNo contradiction detected. Local language inherits the governing workflow frame; approval remains unresolved."
+    }
+  ]
+}

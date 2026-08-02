@@ -160,6 +160,16 @@ test("filing insights use Waters implication instead of Waters readout", () => {
   assert.match(deploymentApp, /Waters implication/);
 });
 
+test("filing insights omit the filing navigation guide", () => {
+  assert.doesNotMatch(app, /How to find this insight inside the filing/);
+  assert.doesNotMatch(deploymentApp, /How to find this insight inside the filing/);
+});
+
+test("non-PubMed observed topics omit the dated-records summary line", () => {
+  assert.doesNotMatch(app, /dated records form recurring topics across/);
+  assert.doesNotMatch(deploymentApp, /dated records form recurring topics across/);
+});
+
 test("strategic partnerships omit scoring and score breakdowns", () => {
   const strategicRenderer = app.match(/function renderStrategicSignals\(signals\)[\s\S]*?function setupStrategicPagination\(\)/)?.[0] || "";
   const deploymentStrategicRenderer = deploymentApp.match(/function renderStrategicSignals\(signals\)[\s\S]*?function setupStrategicPagination\(\)/)?.[0] || "";

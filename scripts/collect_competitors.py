@@ -42,7 +42,7 @@ REQUEST_HEADERS = {
     "Accept-Language": "en-US,en;q=0.9",
 }
 TECHNICAL_FEED_VERSION = 3
-RECENT_RELEASE_REPLAY_DAYS = 45
+RECENT_RELEASE_REPLAY_DAYS = 120
 RELEVANCE_PATTERN = re.compile(
     r"\b(?:lc[/-]?ms(?:/ms)?|hplc|uhplc|uplc|liquid chromatograph(?:y|er)?|"
     r"mass spectrom(?:etry|eter)|nexera|labsolutions|zenotof|novus|sciex os|"
@@ -206,6 +206,36 @@ def concise_thermo_ir_summary(title: str, short_body: str) -> str:
     return (summary[:317].rstrip() + "...") if len(summary) > 320 else summary
 
 
+def thermo_earnings_pm_enrichment(title: str) -> dict[str, object]:
+    """Attach an evidence-bounded PM readout to the verified Q2 2026 release."""
+    if "reports second quarter 2026 results" not in title.lower():
+        return {}
+    return {
+        "summary": (
+            "Thermo paired higher Analytical Instruments revenue and margin with "
+            "AI-enabled Orbitrap launches and new bioprocess and proteomics customer infrastructure."
+        ),
+        "earningsMetrics": [
+            {"label": "Analytical Instruments revenue", "value": "$1.847B", "change": "+6.9% YoY"},
+            {"label": "Analytical Instruments segment income", "value": "$424M", "change": "+30.5% YoY"},
+            {"label": "Analytical Instruments margin", "value": "23.0%", "change": "+4.2 pts YoY"},
+        ],
+        "pmInsights": [
+            "Portfolio economics: Analytical Instruments revenue increased 6.9% to $1.847 billion; segment income increased 30.5% to $424 million and margin expanded 4.2 points to 23.0%.",
+            "Product direction: Orbitrap Tribrid Apex and Excedion pair AI-driven analytics with multiomics, structural biology, biopharma characterization, small-molecule analysis and hard-to-detect drug-development targets.",
+            "Commercial model: the Plainville Bioprocess Design Center and PRECISE-SG100K collaboration extend Thermo into pharma and biotech co-development and integrated Olink plus Orbitrap Astral proteomics.",
+        ],
+        "watersPmImplication": (
+            "Assess Thermo at the workflow level—separations and MS, analytics, application proof "
+            "and customer co-development—not on instrument specifications alone."
+        ),
+        "evidenceBoundary": (
+            "The release does not separate LC or chromatography revenue, unit growth, pricing or market share; "
+            "Analytical Instruments performance is not evidence of LC share gain."
+        ),
+    }
+
+
 def thermo_ir_metadata(title: str) -> dict[str, str]:
     lower = title.lower()
     if "earnings conference call" in lower:
@@ -237,13 +267,13 @@ def thermo_ir_metadata(title: str) -> dict[str, str]:
     }
 
 
-def parse_thermo_ir_releases(body: str) -> dict[str, dict[str, str]]:
+def parse_thermo_ir_releases(body: str) -> dict[str, dict[str, object]]:
     """Parse Thermo Fisher's official Q4 investor-relations news API response."""
     try:
         payload = json.loads(body)
     except json.JSONDecodeError:
         return {}
-    releases: dict[str, dict[str, str]] = {}
+    releases: dict[str, dict[str, object]] = {}
     for item in payload.get("GetPressReleaseListResult", []):
         title = clean_text(str(item.get("Headline") or ""))
         path = str(item.get("LinkToDetailPage") or "")
@@ -256,6 +286,7 @@ def parse_thermo_ir_releases(body: str) -> dict[str, dict[str, str]]:
             **normalize_release(url, title, published),
             **metadata,
             "summary": concise_thermo_ir_summary(title, str(item.get("ShortBody") or "")),
+            **thermo_earnings_pm_enrichment(title),
             "sourceId": "thermo-news",
             "sourceName": "Thermo Fisher investor relations news",
         }
@@ -272,8 +303,6 @@ def parse_shimadzu_releases(body: str) -> dict[str, dict[str, str]]:
         if not (date_match and title_match and url_match):
             continue
         title = clean_text(title_match.group(1))
-        if not relevant_release(title):
-            continue
         url = urljoin("https://www.shimadzu.com", url_match.group(1))
         releases[url] = normalize_release(url, title, parse_date(date_match.group(1)))
     return releases
@@ -293,8 +322,6 @@ def parse_sciex_releases(body: str) -> dict[str, dict[str, str]]:
         if len(paragraphs) < 2 or not url_match:
             continue
         title = clean_text(paragraphs[1])
-        if not relevant_release(title):
-            continue
         url = url_match.group(1).replace("sciex.com//", "sciex.com/")
         releases[url] = normalize_release(url, title, parse_date(paragraphs[0]))
     return releases
@@ -534,7 +561,23 @@ def monitor_delta(
                     candidates.append({"url": url, "lastmod": modified.isoformat(), "previousLastmod": "baseline", "category": "LC/MS", "baselineDiscovery": True})
             updated_products = sorted(candidates, key=lambda item: str(item["lastmod"]), reverse=True)[:12]
 
+    # Sitemap membership and last-modified values are inventory observations, not
+    # proof that page content or a commercial product changed.  Preserve them for
+    # future comparisons, but do not emit product-change records until a collector
+    # also provides a validated before/after page-content diff.
+    unverified_inventory_changes = {
+        "new": new_products,
+        "updated": updated_products,
+        "missing": discontinued_products,
+    }
+    new_products = [item for item in new_products if item.get("changeEvidence")]
+    updated_products = [item for item in updated_products if item.get("changeEvidence")]
+    discontinued_products = [item for item in discontinued_products if item.get("changeEvidence")]
+
+    all_technical_insights = {**previous_technical_insights, **technical_insights}
     write_json(snapshot_file, {
+        "snapshotSchemaVersion": 2,
+        "observationType": "sitemap_inventory",
         "capturedAt": utc_now(),
         "initialized": True,
         "products": products,
@@ -543,8 +586,9 @@ def monitor_delta(
         "pressReleases": releases,
         # RSS feeds expose only a rolling window. Retain previously seen URLs so
         # an older post cannot be emitted again after it leaves and re-enters a feed.
-        "technicalInsights": {**previous_technical_insights, **technical_insights},
+        "technicalInsights": all_technical_insights,
         "technicalFeedVersion": TECHNICAL_FEED_VERSION,
+        "unverifiedInventoryChanges": unverified_inventory_changes,
     })
     return {
         "generatedAt": utc_now(),
@@ -565,8 +609,20 @@ def monitor_delta(
         "new_products": new_products,
         "discontinued_products": discontinued_products,
         "updated_products": updated_products,
+        "unverified_inventory_changes": unverified_inventory_changes,
         "new_press_releases": sorted(new_releases, key=lambda item: item.get("date", ""), reverse=True),
+        "recent_press_releases": sorted(
+            [
+                release for release in releases.values()
+                if str(release.get("date", ""))[:10] >= (date.today() - timedelta(days=RECENT_RELEASE_REPLAY_DAYS)).isoformat()
+            ],
+            key=lambda item: item.get("date", ""),
+            reverse=True,
+        ),
         "new_technical_insights": sorted(new_technical_insights, key=lambda item: item.get("date", ""), reverse=True),
+        # Consumers that maintain catalogs need the complete retained inventory,
+        # not only the first-seen delta emitted by new_technical_insights.
+        "technical_insights": sorted(all_technical_insights.values(), key=lambda item: item.get("date", ""), reverse=True),
         "source_status": statuses,
     }
 

@@ -11,6 +11,9 @@ const validProduct = {
   technology: "LC",
   sourceName: "Agilent product history",
   sourceUrl: "https://www.agilent.com/about/example.html",
+  evidenceStatus: "verified",
+  supportingExcerpt: "Example LC introduced in 2006",
+  sourceLocation: "Product history entry",
   confidence: 98,
 };
 

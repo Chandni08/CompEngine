@@ -4,6 +4,7 @@ const validators = [
   "validate_heading_consistency.mjs",
   "validate_customer_voice_sources.mjs",
   "validate_product_launch_press_releases.mjs",
+  "validate_competitor_application_notes.mjs",
   "validate_historical_product_catalog.mjs",
   "validate_historical_waters_catalog.mjs",
 ];

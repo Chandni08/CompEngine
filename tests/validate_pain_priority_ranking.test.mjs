@@ -6,10 +6,12 @@ const app = fs.readFileSync(new URL("../app.js", import.meta.url), "utf8");
 const deployApp = fs.readFileSync(new URL("../deploy-site/app.js", import.meta.url), "utf8");
 const index = fs.readFileSync(new URL("../index.html", import.meta.url), "utf8");
 const styles = fs.readFileSync(new URL("../styles.css", import.meta.url), "utf8");
+const deployStyles = fs.readFileSync(new URL("../deploy-site/styles.css", import.meta.url), "utf8");
 
 test("pain priorities use the requested transparent formula", () => {
   assert.match(app, /score:\s*recurrence \* severity\.score \* strategicFit\.score/);
   assert.match(app, /Priority = recurrence × severity × Next Gen LC fit/);
+  assert.doesNotMatch(app, /class="pain-priority-score">Priority /);
   assert.match(app, /canonicalEvidenceUrl\(link\.url\)/);
   assert.match(app, /customerPainSeverity/);
   assert.match(app, /customerPainStrategicFit/);
@@ -27,8 +29,12 @@ test("ranked tracker has distinct top-priority and compact backlog treatments", 
   assert.match(styles, /\.pain-priority-row-top/);
   assert.match(styles, /\.pain-quarter-label/);
   assert.match(styles, /\.pain-priority-backlog/);
+  assert.match(styles, /grid-template-areas:\s*\n\s*"rank content"\s*\n\s*"\. evidence"/);
+  assert.match(styles, /\.pain-priority-evidence \.voice-link-list a[\s\S]*overflow-wrap: anywhere/);
+  assert.doesNotMatch(styles, /\.pain-priority-score/);
 });
 
 test("deploy mirror contains the same pain-priority implementation", () => {
   assert.equal(deployApp, app);
+  assert.equal(deployStyles, styles);
 });

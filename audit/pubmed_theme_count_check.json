@@ -1,0 +1,242 @@
+[
+  {
+    "name": "LNP and RNA therapeutics workflows",
+    "period": "30d",
+    "stored": 107,
+    "actual": 109,
+    "query": "(\"lipid nanoparticle\" OR LNP OR \"RNA therapeutics\" OR mRNA) AND (\"LC-MS\" OR chromatography OR \"mass spectrometry\")",
+    "endDate": "2026-07-28"
+  },
+  {
+    "name": "LNP and RNA therapeutics workflows",
+    "period": "60d",
+    "stored": 194,
+    "actual": 196,
+    "query": "(\"lipid nanoparticle\" OR LNP OR \"RNA therapeutics\" OR mRNA) AND (\"LC-MS\" OR chromatography OR \"mass spectrometry\")",
+    "endDate": "2026-07-28"
+  },
+  {
+    "name": "LNP and RNA therapeutics workflows",
+    "period": "90d",
+    "stored": 273,
+    "actual": 275,
+    "query": "(\"lipid nanoparticle\" OR LNP OR \"RNA therapeutics\" OR mRNA) AND (\"LC-MS\" OR chromatography OR \"mass spectrometry\")",
+    "endDate": "2026-07-28"
+  },
+  {
+    "name": "LNP and RNA therapeutics workflows",
+    "period": "1y",
+    "stored": 918,
+    "actual": 920,
+    "query": "(\"lipid nanoparticle\" OR LNP OR \"RNA therapeutics\" OR mRNA) AND (\"LC-MS\" OR chromatography OR \"mass spectrometry\")",
+    "endDate": "2026-07-28"
+  },
+  {
+    "name": "LNP and RNA therapeutics workflows",
+    "period": "3y",
+    "stored": 2470,
+    "actual": 2472,
+    "query": "(\"lipid nanoparticle\" OR LNP OR \"RNA therapeutics\" OR mRNA) AND (\"LC-MS\" OR chromatography OR \"mass spectrometry\")",
+    "endDate": "2026-07-28"
+  },
+  {
+    "name": "LNP and RNA therapeutics workflows",
+    "period": "5y",
+    "stored": 3903,
+    "actual": 3905,
+    "query": "(\"lipid nanoparticle\" OR LNP OR \"RNA therapeutics\" OR mRNA) AND (\"LC-MS\" OR chromatography OR \"mass spectrometry\")",
+    "endDate": "2026-07-28"
+  },
+  {
+    "name": "Oligonucleotide and nucleic-acid analytics",
+    "period": "30d",
+    "stored": 64,
+    "actual": 69,
+    "query": "(oligonucleotide OR \"nucleic acid\" OR siRNA) AND (\"LC-MS\" OR chromatography OR \"mass spectrometry\")",
+    "endDate": "2026-07-28"
+  },
+  {
+    "name": "Oligonucleotide and nucleic-acid analytics",
+    "period": "60d",
+    "stored": 121,
+    "actual": 128,
+    "query": "(oligonucleotide OR \"nucleic acid\" OR siRNA) AND (\"LC-MS\" OR chromatography OR \"mass spectrometry\")",
+    "endDate": "2026-07-28"
+  },
+  {
+    "name": "Oligonucleotide and nucleic-acid analytics",
+    "period": "90d",
+    "stored": 193,
+    "actual": 200,
+    "query": "(oligonucleotide OR \"nucleic acid\" OR siRNA) AND (\"LC-MS\" OR chromatography OR \"mass spectrometry\")",
+    "endDate": "2026-07-28"
+  },
+  {
+    "name": "Oligonucleotide and nucleic-acid analytics",
+    "period": "1y",
+    "stored": 659,
+    "actual": 666,
+    "query": "(oligonucleotide OR \"nucleic acid\" OR siRNA) AND (\"LC-MS\" OR chromatography OR \"mass spectrometry\")",
+    "endDate": "2026-07-28"
+  },
+  {
+    "name": "Oligonucleotide and nucleic-acid analytics",
+    "period": "3y",
+    "stored": 1514,
+    "actual": 1521,
+    "query": "(oligonucleotide OR \"nucleic acid\" OR siRNA) AND (\"LC-MS\" OR chromatography OR \"mass spectrometry\")",
+    "endDate": "2026-07-28"
+  },
+  {
+    "name": "Oligonucleotide and nucleic-acid analytics",
+    "period": "5y",
+    "stored": 2228,
+    "actual": 2235,
+    "query": "(oligonucleotide OR \"nucleic acid\" OR siRNA) AND (\"LC-MS\" OR chromatography OR \"mass spectrometry\")",
+    "endDate": "2026-07-28"
+  },
+  {
+    "name": "PFAS and environmental contaminant testing",
+    "period": "30d",
+    "stored": 36,
+    "actual": 36,
+    "query": "(PFAS OR \"per- and polyfluoroalkyl\") AND (\"LC-MS\" OR \"LC-MS/MS\" OR chromatography)",
+    "endDate": "2026-07-28"
+  },
+  {
+    "name": "PFAS and environmental contaminant testing",
+    "period": "60d",
+    "stored": 77,
+    "actual": 77,
+    "query": "(PFAS OR \"per- and polyfluoroalkyl\") AND (\"LC-MS\" OR \"LC-MS/MS\" OR chromatography)",
+    "endDate": "2026-07-28"
+  },
+  {
+    "name": "PFAS and environmental contaminant testing",
+    "period": "90d",
+    "stored": 109,
+    "actual": 109,
+    "query": "(PFAS OR \"per- and polyfluoroalkyl\") AND (\"LC-MS\" OR \"LC-MS/MS\" OR chromatography)",
+    "endDate": "2026-07-28"
+  },
+  {
+    "name": "PFAS and environmental contaminant testing",
+    "period": "1y",
+    "stored": 335,
+    "actual": 335,
+    "query": "(PFAS OR \"per- and polyfluoroalkyl\") AND (\"LC-MS\" OR \"LC-MS/MS\" OR chromatography)",
+    "endDate": "2026-07-28"
+  },
+  {
+    "name": "PFAS and environmental contaminant testing",
+    "period": "3y",
+    "stored": 703,
+    "actual": 703,
+    "query": "(PFAS OR \"per- and polyfluoroalkyl\") AND (\"LC-MS\" OR \"LC-MS/MS\" OR chromatography)",
+    "endDate": "2026-07-28"
+  },
+  {
+    "name": "PFAS and environmental contaminant testing",
+    "period": "5y",
+    "stored": 951,
+    "actual": 951,
+    "query": "(PFAS OR \"per- and polyfluoroalkyl\") AND (\"LC-MS\" OR \"LC-MS/MS\" OR chromatography)",
+    "endDate": "2026-07-28"
+  },
+  {
+    "name": "High-resolution proteomics and metabolomics",
+    "period": "30d",
+    "stored": 900,
+    "actual": 922,
+    "query": "(proteomics OR metabolomics) AND (\"LC-MS\" OR Orbitrap OR \"mass spectrometry\")",
+    "endDate": "2026-07-28"
+  },
+  {
+    "name": "High-resolution proteomics and metabolomics",
+    "period": "60d",
+    "stored": 1837,
+    "actual": 1862,
+    "query": "(proteomics OR metabolomics) AND (\"LC-MS\" OR Orbitrap OR \"mass spectrometry\")",
+    "endDate": "2026-07-28"
+  },
+  {
+    "name": "High-resolution proteomics and metabolomics",
+    "period": "90d",
+    "stored": 2756,
+    "actual": 2781,
+    "query": "(proteomics OR metabolomics) AND (\"LC-MS\" OR Orbitrap OR \"mass spectrometry\")",
+    "endDate": "2026-07-28"
+  },
+  {
+    "name": "High-resolution proteomics and metabolomics",
+    "period": "1y",
+    "stored": 9869,
+    "actual": 9894,
+    "query": "(proteomics OR metabolomics) AND (\"LC-MS\" OR Orbitrap OR \"mass spectrometry\")",
+    "endDate": "2026-07-28"
+  },
+  {
+    "name": "High-resolution proteomics and metabolomics",
+    "period": "3y",
+    "stored": 24750,
+    "actual": 24775,
+    "query": "(proteomics OR metabolomics) AND (\"LC-MS\" OR Orbitrap OR \"mass spectrometry\")",
+    "endDate": "2026-07-28"
+  },
+  {
+    "name": "High-resolution proteomics and metabolomics",
+    "period": "5y",
+    "stored": 38900,
+    "actual": 38925,
+    "query": "(proteomics OR metabolomics) AND (\"LC-MS\" OR Orbitrap OR \"mass spectrometry\")",
+    "endDate": "2026-07-28"
+  },
+  {
+    "name": "Lab automation and software-enabled workflows",
+    "period": "30d",
+    "stored": 111,
+    "actual": 112,
+    "query": "(\"laboratory automation\" OR \"workflow software\" OR \"AI\") AND (\"LC-MS\" OR chromatography OR \"mass spectrometry\")",
+    "endDate": "2026-07-28"
+  },
+  {
+    "name": "Lab automation and software-enabled workflows",
+    "period": "60d",
+    "stored": 221,
+    "actual": 224,
+    "query": "(\"laboratory automation\" OR \"workflow software\" OR \"AI\") AND (\"LC-MS\" OR chromatography OR \"mass spectrometry\")",
+    "endDate": "2026-07-28"
+  },
+  {
+    "name": "Lab automation and software-enabled workflows",
+    "period": "90d",
+    "stored": 321,
+    "actual": 324,
+    "query": "(\"laboratory automation\" OR \"workflow software\" OR \"AI\") AND (\"LC-MS\" OR chromatography OR \"mass spectrometry\")",
+    "endDate": "2026-07-28"
+  },
+  {
+    "name": "Lab automation and software-enabled workflows",
+    "period": "1y",
+    "stored": 1137,
+    "actual": 1140,
+    "query": "(\"laboratory automation\" OR \"workflow software\" OR \"AI\") AND (\"LC-MS\" OR chromatography OR \"mass spectrometry\")",
+    "endDate": "2026-07-28"
+  },
+  {
+    "name": "Lab automation and software-enabled workflows",
+    "period": "3y",
+    "stored": 2699,
+    "actual": 2702,
+    "query": "(\"laboratory automation\" OR \"workflow software\" OR \"AI\") AND (\"LC-MS\" OR chromatography OR \"mass spectrometry\")",
+    "endDate": "2026-07-28"
+  },
+  {
+    "name": "Lab automation and software-enabled workflows",
+    "period": "5y",
+    "stored": 3883,
+    "actual": 3886,
+    "query": "(\"laboratory automation\" OR \"workflow software\" OR \"AI\") AND (\"LC-MS\" OR chromatography OR \"mass spectrometry\")",
+    "endDate": "2026-07-28"
+  }
+]

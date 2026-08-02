@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-26T14:55:00",
+  "generatedAt": "2026-07-29T23:30:00-04:00",
   "source": "SEC filings reviewed for roadmap, product, market, and competitor strategy implications",
   "companyCorporateMoves": [
     {
@@ -14,10 +14,25 @@
           "status": "Definitive agreement; subject to regulatory approval and closing conditions",
           "filingEvidence": "Agilent agreed to acquire Biocare, a provider of clinical and research solutions, and plans to place it in Life Sciences and Diagnostics Markets.",
           "strategicReadout": "This broadens Agilent beyond analytical instruments toward clinical and research workflow ownership; monitor integration with instruments, software, services, and consumables.",
-          "searchTerms": ["Pending Acquisition", "Biocare", "BC Midco I, Inc.", "$950 million"],
-          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1090872/000109087226000055/a-20260430.htm"
+          "searchTerms": [
+            "Pending Acquisition",
+            "Biocare",
+            "BC Midco I, Inc.",
+            "$950 million"
+          ],
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1090872/000109087226000055/a-20260430.htm",
+          "registrant": "Agilent Technologies, Inc.",
+          "relatedOperatingBusiness": null,
+          "languageType": "analyst_paraphrase",
+          "retrievalDate": "2026-07-29T23:30:00-04:00",
+          "sourceDate": "2026-03-06",
+          "sourceDateType": "filing",
+          "attributionBoundary": "The cited filing is attributable to Agilent Technologies, Inc. as registrant.",
+          "evidenceStatus": "partial",
+          "caveat": "Analyst interpretation; no exact filing excerpt is retained for this claim."
         }
-      ]
+      ],
+      "registrant": "Agilent Technologies, Inc."
     },
     {
       "competitor": "Thermo Fisher",
@@ -32,8 +47,21 @@
           "status": "Completed",
           "filingEvidence": "Thermo acquired Clario to add clinical-trial endpoint data solutions and expand patient-data decision support within Laboratory Products and Biopharma Services.",
           "strategicReadout": "This extends Thermo's workflow position from laboratory products into clinical-trial data and decision support, increasing end-to-end biopharma account leverage.",
-          "searchTerms": ["Clario Holdings, Inc.", "endpoint data solutions", "$9,099"],
-          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/97745/000009774526000092/tmo-20260328.htm"
+          "searchTerms": [
+            "Clario Holdings, Inc.",
+            "endpoint data solutions",
+            "$9,099"
+          ],
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/97745/000009774526000092/tmo-20260328.htm",
+          "registrant": "Thermo Fisher Scientific Inc.",
+          "relatedOperatingBusiness": null,
+          "languageType": "analyst_paraphrase",
+          "retrievalDate": "2026-07-29T23:30:00-04:00",
+          "sourceDate": "2026-03-24",
+          "sourceDateType": "filing",
+          "attributionBoundary": "The cited filing is attributable to Thermo Fisher Scientific Inc. as registrant.",
+          "evidenceStatus": "partial",
+          "caveat": "Analyst interpretation; no exact filing excerpt is retained for this claim."
         },
         {
           "type": "Acquisition",
@@ -44,8 +72,21 @@
           "status": "Completed",
           "filingEvidence": "Thermo acquired Solventum's purification and filtration business to strengthen upstream and downstream bioproduction workflows.",
           "strategicReadout": "This is the clearest transaction link to Waters: Thermo is adding bioproduction workflow breadth around its chromatography and mass-spectrometry portfolio.",
-          "searchTerms": ["Solventum Corporation", "filtration and separation", "$3,865"],
-          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/97745/000009774526000092/tmo-20260328.htm"
+          "searchTerms": [
+            "Solventum Corporation",
+            "filtration and separation",
+            "$3,865"
+          ],
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/97745/000009774526000092/tmo-20260328.htm",
+          "registrant": "Thermo Fisher Scientific Inc.",
+          "relatedOperatingBusiness": null,
+          "languageType": "analyst_paraphrase",
+          "retrievalDate": "2026-07-29T23:30:00-04:00",
+          "sourceDate": "2025-09-01",
+          "sourceDateType": "filing",
+          "attributionBoundary": "The cited filing is attributable to Thermo Fisher Scientific Inc. as registrant.",
+          "evidenceStatus": "partial",
+          "caveat": "Analyst interpretation; no exact filing excerpt is retained for this claim."
         },
         {
           "type": "Divestiture agreement",
@@ -56,14 +97,28 @@
           "status": "Agreement signed; expected to close in the second half of 2026",
           "filingEvidence": "Thermo agreed to sell its Specialty Diagnostics microbiology business to Astorg, subject to approvals and closing conditions.",
           "strategicReadout": "This signals portfolio concentration: Thermo is funding growth platforms while pruning a diagnostics asset outside its highest-priority workflow bets.",
-          "searchTerms": ["Astorg", "microbiology business", "$1.075 billion"],
-          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/97745/000009774526000092/tmo-20260328.htm"
+          "searchTerms": [
+            "Astorg",
+            "microbiology business",
+            "$1.075 billion"
+          ],
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/97745/000009774526000092/tmo-20260328.htm",
+          "registrant": "Thermo Fisher Scientific Inc.",
+          "relatedOperatingBusiness": null,
+          "languageType": "analyst_paraphrase",
+          "retrievalDate": "2026-07-29T23:30:00-04:00",
+          "sourceDate": "2026-04-27",
+          "sourceDateType": "filing",
+          "attributionBoundary": "The cited filing is attributable to Thermo Fisher Scientific Inc. as registrant.",
+          "evidenceStatus": "partial",
+          "caveat": "Analyst interpretation; no exact filing excerpt is retained for this claim."
         }
-      ]
+      ],
+      "registrant": "Thermo Fisher Scientific Inc."
     },
     {
-      "competitor": "PerkinElmer",
-      "displayCompany": "Revvity / PerkinElmer-related",
+      "competitor": "Revvity",
+      "displayCompany": "Revvity",
       "coverageNote": "The displayed 10-Q names one completed acquisition; it does not identify a separate merger or operating partnership.",
       "items": [
         {
@@ -76,10 +131,25 @@
           "status": "Completed",
           "filingEvidence": "Revvity acquired ACD/Labs, a scientific-software provider for analytical characterization and molecular design in pharmaceutical and materials markets.",
           "strategicReadout": "This makes the software signal concrete: the company is buying analytical-characterization and molecular-design capabilities rather than relying only on internal platform development.",
-          "searchTerms": ["Advanced Chemistry Development Inc.", "ACD/Labs", "$72.0 million"],
-          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/31791/000003179126000019/revv-20260405.htm"
+          "searchTerms": [
+            "Advanced Chemistry Development Inc.",
+            "ACD/Labs",
+            "$72.0 million"
+          ],
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/31791/000003179126000019/revv-20260405.htm",
+          "registrant": "Revvity, Inc.",
+          "evidenceStatus": "verified",
+          "sourceLocation": "Note 3: Business Combinations",
+          "supportingExcerpt": "completed its acquisition of Advanced Chemistry Development Inc. (ACD/Labs) for $72.0 million",
+          "relatedOperatingBusiness": null,
+          "languageType": "analyst_paraphrase",
+          "retrievalDate": "2026-07-29T23:30:00-04:00",
+          "sourceDate": "2026-01-01",
+          "sourceDateType": "filing",
+          "attributionBoundary": "The cited filing is attributable to Revvity, Inc. as registrant."
         }
-      ]
+      ],
+      "registrant": "Revvity, Inc."
     }
   ],
   "insights": [
@@ -93,7 +163,13 @@
       "headline": "Agilent says LC and LC-MS are helping drive pharma, APAC, and advanced-materials growth",
       "evidence": "Agilent reported product revenue growth led by liquid chromatography and said pharma growth was led by LC, LC-MS, and Advanced Therapeutics; Asia Pacific growth also included LC and LC-MS.",
       "filingNavigation": {
-        "searchTerms": ["liquid chromatography", "LC-MS", "Advanced Therapeutics", "Asia Pacific", "pharmaceutical"],
+        "searchTerms": [
+          "liquid chromatography",
+          "LC-MS",
+          "Advanced Therapeutics",
+          "Asia Pacific",
+          "pharmaceutical"
+        ],
         "whereToLook": "Management's discussion of Life Sciences and Applied Markets Group revenue by product line, end market, and geography.",
         "watersReadout": "Use the passage to compare Waters roadmap proof against Agilent's stated LC/LC-MS growth engines in pharma, APAC, and advanced materials."
       },
@@ -102,7 +178,18 @@
       "marketSegment": "Pharma",
       "technology": "LC-MS",
       "impactScore": 88,
-      "priority": "High"
+      "priority": "High",
+      "evidenceStatus": "verified",
+      "languageType": "analyst_paraphrase",
+      "sourceLocation": "MD&A: Life Sciences and Applied Markets Group revenue discussion",
+      "supportingExcerpt": "very strong revenue growth in our liquid chromatography",
+      "caveat": "The headline is an analyst paraphrase of the cited filing passage.",
+      "registrant": "Agilent Technologies, Inc.",
+      "relatedOperatingBusiness": null,
+      "retrievalDate": "2026-07-29T23:30:00-04:00",
+      "sourceDate": "2026-06-01",
+      "sourceDateType": "filing",
+      "attributionBoundary": "The cited filing is attributable to Agilent Technologies, Inc. as registrant."
     },
     {
       "id": "agilent-crosslab-service-growth-2026-q2",
@@ -114,7 +201,13 @@
       "headline": "Agilent CrossLab and services growth points to lifecycle/service differentiation",
       "evidence": "Agilent reported services and other revenue increased 10% for both the three- and six-month periods, with growth from contract repair, consulting, and preventative maintenance.",
       "filingNavigation": {
-        "searchTerms": ["services and other revenue", "contract repair", "consulting", "preventative maintenance", "CrossLab"],
+        "searchTerms": [
+          "services and other revenue",
+          "contract repair",
+          "consulting",
+          "preventative maintenance",
+          "CrossLab"
+        ],
         "whereToLook": "Revenue discussion for Agilent CrossLab / services and other revenue in the quarterly operating results.",
         "whyThisSurfacesTheInsight": "These terms surface the evidence that Agilent is growing through lifecycle services, consulting, and maintenance, which affects instrument buying criteria beyond hardware performance.",
         "watersReadout": "Use the passage to test whether Waters roadmap and PMM messages connect LC systems with service lifecycle, uptime, compliance, and workflow continuity."
@@ -124,7 +217,16 @@
       "marketSegment": "Pharma",
       "technology": "Portfolio",
       "impactScore": 80,
-      "priority": "High"
+      "priority": "High",
+      "registrant": "Agilent Technologies, Inc.",
+      "relatedOperatingBusiness": null,
+      "languageType": "analyst_paraphrase",
+      "retrievalDate": "2026-07-29T23:30:00-04:00",
+      "sourceDate": "2026-06-01",
+      "sourceDateType": "filing",
+      "attributionBoundary": "The cited filing is attributable to Agilent Technologies, Inc. as registrant.",
+      "evidenceStatus": "partial",
+      "caveat": "Analyst interpretation; no exact filing excerpt is retained for this claim."
     },
     {
       "id": "thermo-bioproduction-chrom-ms-2026-q1",
@@ -136,7 +238,13 @@
       "headline": "Thermo is pairing bioproduction investment with chromatography and MS resilience",
       "evidence": "Thermo described a 2025 filtration and separation acquisition strengthening bioproduction, and reported chromatography and mass spectrometry growth offsetting weakness elsewhere in Analytical Instruments.",
       "filingNavigation": {
-        "searchTerms": ["filtration and separation", "bioproduction", "chromatography", "mass spectrometry", "Analytical Instruments"],
+        "searchTerms": [
+          "filtration and separation",
+          "bioproduction",
+          "chromatography",
+          "mass spectrometry",
+          "Analytical Instruments"
+        ],
         "whereToLook": "Acquisition/business overview language plus Analytical Instruments segment revenue discussion.",
         "whyThisSurfacesTheInsight": "The combined terms connect Thermo's bioproduction expansion with chromatography and MS resilience, which is the strategic threat to Waters' biopharma workflow positioning.",
         "watersReadout": "Use the passage to pressure-test Waters LNP, biologics, and bioprocess LC-MS workflow coverage against Thermo's broader end-to-end biopharma story."
@@ -146,7 +254,16 @@
       "marketSegment": "Biopharma",
       "technology": "LC-MS",
       "impactScore": 86,
-      "priority": "High"
+      "priority": "High",
+      "registrant": "Thermo Fisher Scientific Inc.",
+      "relatedOperatingBusiness": null,
+      "languageType": "analyst_paraphrase",
+      "retrievalDate": "2026-07-29T23:30:00-04:00",
+      "sourceDate": "2026-05-01",
+      "sourceDateType": "filing",
+      "attributionBoundary": "The cited filing is attributable to Thermo Fisher Scientific Inc. as registrant.",
+      "evidenceStatus": "partial",
+      "caveat": "Analyst interpretation; no exact filing excerpt is retained for this claim."
     },
     {
       "id": "thermo-analytical-instruments-margin-pressure-2026-q1",
@@ -158,7 +275,14 @@
       "headline": "Thermo Analytical Instruments was flat with margin pressure despite chromatography/MS growth",
       "evidence": "Thermo reported Analytical Instruments revenue was essentially flat, with lower margin tied to tariffs, business mix, and lower volume; chromatography and MS growth largely offset electron microscopy weakness.",
       "filingNavigation": {
-        "searchTerms": ["Analytical Instruments", "chromatography", "mass spectrometry", "tariffs", "business mix", "lower volume"],
+        "searchTerms": [
+          "Analytical Instruments",
+          "chromatography",
+          "mass spectrometry",
+          "tariffs",
+          "business mix",
+          "lower volume"
+        ],
         "whereToLook": "Analytical Instruments segment operating results and margin commentary.",
         "whyThisSurfacesTheInsight": "These terms identify the mixed signal: chromatography/MS growth is real, but segment economics are pressured by volume, mix, and tariffs.",
         "watersReadout": "Use the passage to refine Waters pricing, margin, and value messaging in instrument-heavy markets, especially academic, government, and China-exposed workflows."
@@ -168,29 +292,53 @@
       "marketSegment": "Academic",
       "technology": "LC-MS",
       "impactScore": 76,
-      "priority": "Medium"
+      "priority": "Medium",
+      "registrant": "Thermo Fisher Scientific Inc.",
+      "relatedOperatingBusiness": null,
+      "languageType": "analyst_paraphrase",
+      "retrievalDate": "2026-07-29T23:30:00-04:00",
+      "sourceDate": "2026-05-01",
+      "sourceDateType": "filing",
+      "attributionBoundary": "The cited filing is attributable to Thermo Fisher Scientific Inc. as registrant.",
+      "evidenceStatus": "partial",
+      "caveat": "Analyst interpretation; no exact filing excerpt is retained for this claim."
     },
     {
       "id": "revvity-software-ai-life-sciences-2026",
       "date": "2026-05-12",
-      "competitor": "PerkinElmer",
+      "competitor": "Revvity",
       "filingType": "10-Q / 10-K",
-      "sourceName": "PerkinElmer-related SEC filings",
+      "sourceName": "Revvity SEC filing",
       "sourceUrl": "https://www.sec.gov/Archives/edgar/data/31791/000003179126000019/revv-20260405.htm",
-      "headline": "PerkinElmer-related life-science software and AI signals are rising",
-      "evidence": "Public filing evidence points to Life Sciences Solutions and Software growth, plus AI, acquisitions/licensing, and software platforms that support analytical and chromatography workflows.",
+      "headline": "Revvity expanded Life Sciences software through ACD/Labs while quarterly software revenue increased",
+      "evidence": "Revvity reported a $7.9 million increase in Software revenue and strategic investment in software, and acquired ACD/Labs for scientific software supporting analytical characterization and molecular design.",
       "filingNavigation": {
-        "searchTerms": ["Life Sciences Solutions", "Software", "AI", "licensing", "platform", "analytics"],
-        "whereToLook": "Business segment discussion, software revenue commentary, and strategy/acquisition sections.",
-        "whyThisSurfacesTheInsight": "These terms find the places where PerkinElmer-related filings describe workflow software, AI, and analytical platforms rather than LC hardware refreshes.",
-        "watersReadout": "Use the passage to monitor whether competition is shifting toward vendor-neutral software, AI-assisted decision support, chromatography data workflows, and lab productivity."
+        "searchTerms": [
+          "Advanced Chemistry Development Inc.",
+          "$72.0 million",
+          "$7.9 million in Software revenue",
+          "strategic investments in software"
+        ],
+        "whereToLook": "Note 3: Business Combinations and Life Sciences segment results.",
+        "whyThisSurfacesTheInsight": "The filing explicitly supports a scientific-software acquisition and software-revenue growth; it does not mention AI or chromatography.",
+        "watersReadout": "Monitor analytical-characterization and molecular-design software as a Life Sciences investment area without attributing an AI or chromatography strategy to this filing."
       },
-      "whyItMatters": "PerkinElmer-related competition may show up less as LC hardware refreshes and more as software, automation, and lab workflow ecosystems.",
-      "pmImplication": "Waters should track software-enabled analytical workflow gaps, including vendor-neutral data processing, chromatography method development, and AI-assisted decision support.",
+      "whyItMatters": "The filing shows Revvity adding analytical-characterization and molecular-design software to its Life Sciences segment. It does not establish an AI or chromatography strategy and is not attributed to the current PerkinElmer entity.",
+      "pmImplication": "Waters should monitor ACD/Labs integration where analytical-characterization software overlaps with laboratory data interpretation and scientific workflows.",
       "marketSegment": "Pharma",
       "technology": "Software",
-      "impactScore": 84,
-      "priority": "High"
+      "impactScore": 68,
+      "priority": "Medium",
+      "registrant": "Revvity, Inc.",
+      "evidenceStatus": "verified",
+      "sourceLocation": "Note 3 and Life Sciences segment results",
+      "supportingExcerpt": "increase of $7.9 million in Software revenue",
+      "relatedOperatingBusiness": null,
+      "languageType": "analyst_paraphrase",
+      "retrievalDate": "2026-07-29T23:30:00-04:00",
+      "sourceDate": "2026-05-12",
+      "sourceDateType": "filing",
+      "attributionBoundary": "The cited filing is attributable to Revvity, Inc. as registrant."
     }
   ],
   "suppressedFilingTypes": [
@@ -198,5 +346,7 @@
       "filingType": "8-K",
       "reason": "Generic 8-K rows are suppressed unless the content contains a product, partnership, acquisition, investment, customer, or strategy signal."
     }
-  ]
+  ],
+  "schemaVersion": 2,
+  "provenanceRemediatedAt": "2026-08-02T20:07:22Z"
 }

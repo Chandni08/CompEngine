@@ -6,11 +6,13 @@ from __future__ import annotations
 import hashlib
 import json
 import logging
+import os
 import re
 import sys
 from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Any, Callable
+from urllib.parse import urlparse
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -68,6 +70,14 @@ SOURCE_DEFINITIONS = {
         "coverage": "Official FDA Warning Letter index and Form 483 bulk workbooks filtered to regulated laboratory and data-control findings.",
     },
 }
+DOMAIN_SOURCE_MAP = {
+    "chromforum.org": ("chromforum-lc-discussions", "Chromatography Forum", "community_forum"),
+    "selectscience.net": ("selectscience-lc-reviews", "SelectScience product reviews and articles", "structured_review"),
+    "labwrench.com": ("labwrench-lc-discussions", "LabWrench", "community_forum"),
+    "reddit.com": ("reddit-lc-discussions", "Reddit official OAuth API", "reddit"),
+    "redd.it": ("reddit-lc-discussions", "Reddit official OAuth API", "reddit"),
+    "fda.gov": ("fda-regulatory-lab-findings", "FDA official bulk regulatory data", "regulatory"),
+}
 VENDOR_TERMS = {
     "Waters": ("waters", "acquity", "alliance", "empower", "masslynx", "targetlynx", "unifi", "xevo", "synapt"),
     "Agilent": ("agilent", "infinitylab", "openlab", "1260", "1290"),
@@ -107,6 +117,45 @@ def infer_source_type(url: str, record_type: str = "") -> str:
     return "community_forum"
 
 
+def canonical_source_identity(url: str) -> tuple[str, str, str] | None:
+    """Return the only permitted source identity for a canonical URL domain."""
+    host = re.sub(r"^www\.", "", urlparse(url).hostname or "")
+    for domain, identity in DOMAIN_SOURCE_MAP.items():
+        if host == domain or host.endswith(f".{domain}"):
+            return identity
+    return None
+
+
+def reconcile_source_identity(data: dict[str, Any]) -> int:
+    """Repair legacy source labels that conflict with the exact record URL."""
+    repaired = 0
+    for feedback in data.get("feedback", []):
+        records = feedback.get("evidenceRecords") or []
+        identities = {
+            canonical_source_identity(str(record.get("url") or feedback.get("sourceUrl") or ""))
+            for record in records
+        }
+        identities.discard(None)
+        if len(identities) != 1:
+            continue
+        source_id, source_name, source_type = identities.pop()
+        if feedback.get("sourceIds") != [source_id]:
+            feedback["sourceIds"] = [source_id]
+            repaired += 1
+        if feedback.get("sourceName") != source_name:
+            feedback["sourceName"] = source_name
+            repaired += 1
+        for record in records:
+            if record.get("sourceName") != source_name:
+                record["sourceName"] = source_name
+                repaired += 1
+            if record.get("sourceType") != source_type:
+                record["sourceType"] = source_type
+                record["sourceCredibility"] = SOURCE_CREDIBILITY[source_type]
+                repaired += 1
+    return repaired
+
+
 def migrate_evidence_schema(data: dict[str, Any]) -> int:
     migrated = 0
     for feedback in data.get("feedback", []):
@@ -120,6 +169,16 @@ def migrate_evidence_schema(data: dict[str, Any]) -> int:
             credibility = SOURCE_CREDIBILITY[source_type]
             if record.get("sourceCredibility") != credibility:
                 record["sourceCredibility"] = credibility
+                migrated += 1
+            if not record.get("firstSeenAt"):
+                record["firstSeenAt"] = feedback.get("dateCaptured") or data.get("generatedAt") or utc_now()
+                migrated += 1
+            if not record.get("lastSeenAt"):
+                record["lastSeenAt"] = data.get("generatedAt") or utc_now()
+                migrated += 1
+            if not record.get("contentHash"):
+                basis = "\n".join((str(record.get("label", "")), str(record.get("excerpt", "")), str(record.get("reviewText", ""))))
+                record["contentHash"] = hashlib.sha256(basis.encode("utf-8")).hexdigest()
                 migrated += 1
     return migrated
 
@@ -203,6 +262,7 @@ def feedback_from_record(record: EvidenceRecord, source_id: str) -> dict[str, An
         "category": category,
         "estimatedMentions5y": 1,
         "theme": category,
+        "languageType": "analyst_paraphrase",
         "customerLanguageSignal": (record.review_text or record.excerpt or record.label)[:500],
         "pmInterpretation": pm_interpretation,
         "labType": "Pharma" if record.source_type == "regulatory" else "Unspecified public contributor",
@@ -230,10 +290,13 @@ def merge_records(data: dict[str, Any], records_by_adapter: dict[str, list[Evide
             if key in existing_urls:
                 target = existing_urls[key]
                 schema = record.to_schema()
-                for field in ("label", "sourceKeywords", "recordType", "sourceDate", "sourceType", "sourceCredibility", "sourceName", "rating", "reviewText", "excerpt", "redditId", "subreddit", "regulatoryFindings", "regulatoryEntries", "regulatoryDataset", "fiscalYear"):
+                first_seen = target.get("firstSeenAt") or schema["firstSeenAt"]
+                for field in ("label", "sourceKeywords", "recordType", "sourceDate", "sourceType", "sourceCredibility", "sourceName", "rating", "reviewText", "excerpt", "redditId", "subreddit", "regulatoryFindings", "regulatoryEntries", "regulatoryDataset", "fiscalYear", "contentHash"):
                     if field in schema and target.get(field) != schema[field]:
                         target[field] = schema[field]
                         enriched += 1
+                target["firstSeenAt"] = first_seen
+                target["lastSeenAt"] = schema["lastSeenAt"]
                 continue
             data.setdefault("feedback", []).append(feedback_from_record(record, source_id))
             existing_urls[key] = data["feedback"][-1]["evidenceRecords"][0]
@@ -276,15 +339,83 @@ def refresh_generated_feedback_fields(data: dict[str, Any]) -> int:
     return refreshed
 
 
-def update_source_registry(data: dict[str, Any], results: dict[str, list[EvidenceRecord]], errors: dict[str, str]) -> None:
+def prune_out_of_scope_labwrench_feedback(data: dict[str, Any]) -> int:
+    """Remove collector-owned forum-index noise admitted by legacy page-chrome matching."""
+    trusted_urls = {
+        canonical_url(url)
+        for url in labwrench.DEFAULT_SEEDS
+        if urlparse(url).path.lower().startswith(("/thread/", "/articles/"))
+    }
+    kept: list[dict[str, Any]] = []
+    removed = 0
+    for feedback in data.get("feedback", []):
+        records = feedback.get("evidenceRecords") or []
+        record = records[0] if records else {}
+        record_url = canonical_url(str(record.get("url") or feedback.get("sourceUrl") or ""))
+        is_collector_owned = str(feedback.get("id", "")).startswith("cv-public-")
+        is_labwrench = "labwrench.com" in record_url
+        title = re.sub(r"^LabWrench:\s*", "", str(record.get("label") or ""), flags=re.I)
+        if is_collector_owned and is_labwrench and record_url not in trusted_urls and not labwrench.discovered_title_relevant(title):
+            removed += 1
+            continue
+        kept.append(feedback)
+    data["feedback"] = kept
+    return removed
+
+
+def _adapter_outcome(adapter_name: str, records: list[EvidenceRecord], errors: dict[str, str]) -> tuple[str, str, str]:
+    env_names = {
+        "chromforum": "CUSTOMER_VOICE_CHROMFORUM_ENABLED",
+        "selectscience": "CUSTOMER_VOICE_SELECTSCIENCE_ENABLED",
+        "labwrench": "CUSTOMER_VOICE_LABWRENCH_ENABLED",
+        "reddit": "CUSTOMER_VOICE_REDDIT_ENABLED",
+        "fda": "CUSTOMER_VOICE_FDA_ENABLED",
+    }
+    raw = os.getenv(env_names[adapter_name], "true").strip().lower()
+    if raw in {"0", "false", "no", "off", "disabled"}:
+        return "disabled", "none", "Adapter disabled by environment configuration."
+    if adapter_name == "reddit" and not (os.getenv("REDDIT_CLIENT_ID") and os.getenv("REDDIT_CLIENT_SECRET")):
+        return "skipped_missing_credentials", "unverified", "Reddit OAuth credentials are not configured; no API request was made."
+    if adapter_name in errors:
+        return "error", "unverified", errors[adapter_name]
+    if records:
+        completeness = "complete" if adapter_name in {"fda"} else "partial" if adapter_name in {"chromforum", "labwrench"} else "complete"
+        return "collected" if completeness == "complete" else "partial", completeness, "Public records were collected through the approved adapter."
+    coverage = "complete" if adapter_name in {"fda"} else "partial"
+    return "checked_empty", coverage, "The approved endpoint was checked and returned no qualifying records."
+
+
+def update_source_registry(
+    data: dict[str, Any],
+    results: dict[str, list[EvidenceRecord]],
+    errors: dict[str, str],
+    selected_adapters: set[str] | None = None,
+) -> None:
     existing = {item.get("id"): item for item in data.get("sources", []) if item.get("id")}
     for adapter_name, definition in SOURCE_DEFINITIONS.items():
+        if selected_adapters is not None and adapter_name not in selected_adapters:
+            continue
         current = dict(existing.get(definition["id"], {}))
         current.update(definition)
         current["sourceCredibility"] = SOURCE_CREDIBILITY[definition["sourceType"]]
-        current["status"] = "error_skipped" if adapter_name in errors else "collected" if results.get(adapter_name) else "checked_no_new_records"
+        outcome, completeness, reason = _adapter_outcome(adapter_name, results.get(adapter_name, []), errors)
+        current["status"] = outcome
+        current["collectionOutcome"] = outcome
+        current["collectionMethod"] = "official_api" if adapter_name == "reddit" else "official_bulk_download" if adapter_name == "fda" else "robots_aware_public_pages"
+        current["required"] = adapter_name == "fda"
         current["recordsCollected"] = len(results.get(adapter_name, []))
+        current["recordsSeen"] = len(results.get(adapter_name, []))
+        current["recordsIngested"] = len(results.get(adapter_name, []))
+        current["completeness"] = completeness
+        current["coverageState"] = completeness
+        current["reason"] = reason
         current["lastCheckedAt"] = utc_now()
+        current["attemptedAt"] = current["lastCheckedAt"]
+        current["succeededAt"] = current["lastCheckedAt"] if outcome in {"collected", "checked_empty", "partial"} else None
+        dates = [record.source_date for record in results.get(adapter_name, [])]
+        current["engineNewestDate"] = max(dates, default=None)
+        current["sourceNewestDate"] = max(dates, default=None) if completeness == "complete" else None
+        current["newestItemPresent"] = True if dates and completeness == "complete" else None
         if adapter_name in errors:
             current["lastError"] = errors[adapter_name]
         else:
@@ -297,10 +428,20 @@ def main() -> int:
     logging.basicConfig(level=logging.INFO, format="customer-voice: %(levelname)s %(message)s")
     data = read_json(DATA_FILE)
     migrated = migrate_evidence_schema(data)
+    identity_repairs = reconcile_source_identity(data)
     results: dict[str, list[EvidenceRecord]] = {}
     errors: dict[str, str] = {}
+    selected_raw = os.getenv("CUSTOMER_VOICE_ADAPTERS", "").strip()
+    selected_adapters = {
+        item.strip().lower() for item in selected_raw.split(",") if item.strip()
+    } or {name for name, _ in ADAPTERS}
+    unknown_adapters = selected_adapters - {name for name, _ in ADAPTERS}
+    if unknown_adapters:
+        raise ValueError(f"Unknown CUSTOMER_VOICE_ADAPTERS: {', '.join(sorted(unknown_adapters))}")
     # Adapter order is a compliance boundary. Do not reorder without approval.
     for adapter_name, collector in ADAPTERS:
+        if adapter_name not in selected_adapters:
+            continue
         try:
             records = collector()
             results[adapter_name] = records
@@ -311,16 +452,20 @@ def main() -> int:
             LOGGER.exception("%s adapter failed and was skipped", adapter_name)
     added, enriched = merge_records(data, results)
     summaries_refreshed = refresh_generated_feedback_fields(data)
-    update_source_registry(data, results, errors)
+    out_of_scope_removed = prune_out_of_scope_labwrench_feedback(data)
+    update_source_registry(data, results, errors, selected_adapters)
     data["generatedAt"] = utc_now()
     data["asOfDate"] = date.today().isoformat()
     data["ingestion"] = {
         "adapterOrder": [name for name, _ in ADAPTERS],
+        "selectedAdapters": [name for name, _ in ADAPTERS if name in selected_adapters],
         "sourceCredibilityWeights": SOURCE_CREDIBILITY,
         "recordsAdded": added,
         "recordsEnriched": enriched,
         "schemaFieldsMigrated": migrated,
+        "sourceIdentityRepairs": identity_repairs,
         "generatedSummariesRefreshed": summaries_refreshed,
+        "outOfScopeRecordsRemoved": out_of_scope_removed,
         "adapterRecordCounts": {name: len(records) for name, records in results.items()},
         "skippedAdapterErrors": errors,
         "completedAt": utc_now(),

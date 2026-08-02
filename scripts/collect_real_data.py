@@ -10,13 +10,16 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
-from datetime import date, datetime, timedelta
+from datetime import date, datetime, timedelta, timezone
 from html.parser import HTMLParser
 from pathlib import Path
+
+from provenance import pubmed_esearch_url, pubmed_provenance
 
 
 TODAY = date.today()
 OUT = Path(__file__).resolve().parents[1] / "data" / "intelligence.json"
+PUBMED_OBSERVATIONS = Path(__file__).resolve().parents[1] / "data" / "pubmed_query_observations.json"
 USER_AGENT = "WatersCompetitiveIntelligenceEngine/0.2 (+https://www.waters.com/)"
 AUTOMATED_PUBMED_PREFIXES = ("pubmed-", "trend-")
 AUTOMATED_SEC_PREFIXES = ("sec-",)
@@ -304,6 +307,39 @@ def pubmed_count(query: str, start: date, end: date = TODAY) -> int:
     return 0
 
 
+def pubmed_counts_with_provenance(query: str) -> tuple[dict[str, int], dict[str, dict]]:
+    """Retrieve every horizon once and preserve the exact auditable query."""
+    retrieved_at = datetime.now(timezone.utc).isoformat(timespec="microseconds").replace("+00:00", "Z")
+    counts: dict[str, int] = {}
+    provenance: dict[str, dict] = {}
+    for label, days in HORIZONS.items():
+        start = TODAY - timedelta(days=days)
+        count = pubmed_count(query, start)
+        counts[label] = count
+        provenance[label] = pubmed_provenance(query, start, TODAY, count, retrieved_at=retrieved_at)
+    append_pubmed_observations(provenance.values())
+    # Never repair, smooth, or normalize a retrieved count. If nested horizons
+    # are inconsistent, downstream validation must fail and retain the last
+    # known-good dataset rather than changing the primary observation.
+    return counts, provenance
+
+
+def append_pubmed_observations(observations) -> None:
+    """Append immutable PubMed query observations without rewriting prior retrievals."""
+    existing = {"schemaVersion": 1, "observations": []}
+    if PUBMED_OBSERVATIONS.exists():
+        existing = json.loads(PUBMED_OBSERVATIONS.read_text(encoding="utf-8"))
+    seen = {item.get("observationID") for item in existing.get("observations", [])}
+    for observation in observations:
+        if observation.get("observationID") not in seen:
+            existing.setdefault("observations", []).append(observation)
+            seen.add(observation.get("observationID"))
+    PUBMED_OBSERVATIONS.write_text(
+        json.dumps(existing, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
+
+
 def pubmed_ids(query: str, years: int = 5, retmax: int = 6) -> list[str]:
     start = TODAY - timedelta(days=365 * years)
     term = f'({query}) AND ("{start:%Y/%m/%d}"[Date - Publication] : "{TODAY:%Y/%m/%d}"[Date - Publication])'
@@ -350,45 +386,17 @@ def pubmed_summaries(ids: list[str]) -> list[dict]:
 def clean_pubdate(raw: str) -> str:
     match = re.search(r"\d{4}(?:\s+[A-Za-z]{3})?(?:\s+\d{1,2})?", raw or "")
     if not match:
-        return f"{TODAY:%Y-%m-%d}"
+        return ""
     text = match.group(0)
     for fmt in ("%Y %b %d", "%Y %b", "%Y"):
         try:
             parsed = datetime.strptime(text, fmt)
             if parsed.date() > TODAY:
-                return f"{TODAY:%Y-%m-%d}"
+                return ""
             return f"{parsed:%Y-%m-%d}"
         except ValueError:
             continue
-    return f"{TODAY:%Y-%m-%d}"
-
-
-def normalize_counts(counts: dict[str, int]) -> dict[str, int]:
-    ordered = ["30d", "60d", "90d", "1y", "3y", "5y"]
-    running_max = 0
-    normalized = {}
-    for label in ordered:
-        running_max = max(running_max, int(counts.get(label, 0)))
-        normalized[label] = running_max
-    return normalized
-
-
-def pubmed_counts_by_horizon(query: str) -> dict[str, int]:
-    counts = {
-        label: pubmed_count(query, TODAY - timedelta(days=days))
-        for label, days in HORIZONS.items()
-    }
-    ordered = ["30d", "60d", "90d", "1y", "3y", "5y"]
-    for index, label in enumerate(ordered[1:], start=1):
-        previous = ordered[index - 1]
-        if counts[label] < counts[previous]:
-            for _ in range(2):
-                retried = pubmed_count(query, TODAY - timedelta(days=HORIZONS[label]))
-                counts[label] = max(counts[label], retried)
-                if counts[label] >= counts[previous]:
-                    break
-                time.sleep(0.5)
-    return normalize_counts(counts)
+    return ""
 
 
 def infer_theme(text: str) -> tuple[str, str, str]:
@@ -410,7 +418,6 @@ def source_health() -> list[dict]:
     health = []
     for source in SOURCE_REGISTRY:
         status, body = fetch(source["url"], timeout=12)
-        agilent_waf_challenge = source.get("competitor") == "Agilent" and status == 403
         title = ""
         if body and b"<html" in body[:1000].lower():
             parser = TitleParser()
@@ -420,13 +427,10 @@ def source_health() -> list[dict]:
             {
                 **source,
                 "httpStatus": status,
-                "status": "live" if (status and 200 <= status < 400) or agilent_waf_challenge else "check_needed",
-                "sourceQuality": "reliable" if source.get("competitor") == "Agilent" else "standard",
-                "collectionStatus": "headless_browser_required" if agilent_waf_challenge else "plain_fetch",
-                "reliabilityNote": (
-                    "Agilent WAF challenges do not reduce source quality; sitemap and press-release indexes remain authoritative."
-                    if agilent_waf_challenge else ""
-                ),
+                "status": "live" if status and 200 <= status < 400 else "blocked" if status in {401, 403} else "check_needed",
+                "sourceQuality": "standard",
+                "collectionStatus": "blocked_by_access_control" if status in {401, 403} else "plain_fetch",
+                "reliabilityNote": "A blocked fetch is not counted as a healthy extraction." if status in {401, 403} else "",
                 "title": title,
                 "lastChecked": f"{datetime.now().isoformat(timespec='seconds')}",
             }
@@ -442,7 +446,7 @@ def collect_pubmed_signals() -> tuple[list[dict], dict]:
 
     for competitor in COMPETITORS:
         query = " OR ".join(f'"{term}"' for term in competitor["queries"])
-        counts = pubmed_counts_by_horizon(query)
+        counts, query_provenance = pubmed_counts_with_provenance(query)
         trends["competitors"].append(
             {
                 "competitor": competitor["name"],
@@ -450,6 +454,7 @@ def collect_pubmed_signals() -> tuple[list[dict], dict]:
                 "counts": counts,
                 "source": "PubMed",
                 "query": query,
+                "queryProvenance": query_provenance,
             }
         )
         # Keep representative records from every year in the supported horizon.
@@ -469,6 +474,8 @@ def collect_pubmed_signals() -> tuple[list[dict], dict]:
             if not title:
                 continue
             date_str = clean_pubdate(item.get("pubdate", ""))
+            if not date_str:
+                continue
             theme, technology, segment = infer_theme(f"{title} {item.get('fulljournalname', '')}")
             signals.append(
                 {
@@ -489,13 +496,51 @@ def collect_pubmed_signals() -> tuple[list[dict], dict]:
                     "intent": "Application pull-through or workflow visibility",
                 }
             )
+        newest_item = max(
+            (
+                {"pmid": str(item.get("uid", "")), "date": clean_pubdate(item.get("pubdate", ""))}
+                for item in summaries
+                if item.get("uid") and clean_pubdate(item.get("pubdate", ""))
+            ),
+            key=lambda item: item["date"],
+            default={"pmid": None, "date": None},
+        )
+        trends["competitors"][-1]["itemEvidence"] = {
+            "scope": "representative_sample",
+            "sampleStrategy": "Up to two newest PubMed records per calendar-year slice in the rolling three-year window.",
+            "queryExecutedAt": query_provenance["1y"]["retrievedAt"],
+            "currentResultCount": counts["1y"],
+            "newestSampledPmid": newest_item["pmid"],
+            "newestSampledDate": newest_item["date"],
+            "newestSampledPmidIngested": bool(newest_item["pmid"] and f"pubmed-{newest_item['pmid']}" in {signal["id"] for signal in signals}),
+        }
         time.sleep(0.25)
 
     for theme in THEMES:
-        counts = pubmed_counts_by_horizon(theme["query"])
+        counts, query_provenance = pubmed_counts_with_provenance(theme["query"])
         one_year = counts["1y"]
         three_year_avg = max(round(counts["3y"] / 3, 1), 1)
         strength = min(100, int((one_year / three_year_avg) * 50))
+        latest_ids = pubmed_ids_between(theme["query"], TODAY - timedelta(days=HORIZONS["1y"]), TODAY, retmax=1)
+        latest_summaries = pubmed_summaries(latest_ids)
+        latest_summary = latest_summaries[0] if latest_summaries else {}
+        latest_pmid = str(latest_summary.get("uid") or "")
+        latest_date = clean_pubdate(latest_summary.get("pubdate", ""))
+        latest_ingested = False
+        if latest_pmid and latest_date:
+            if latest_pmid not in seen_pmids:
+                title = re.sub(r"\s+", " ", latest_summary.get("title", "")).strip().rstrip(".")
+                if title:
+                    signals.append({
+                        "id": f"pubmed-{latest_pmid}", "date": latest_date, "competitor": "Market-wide",
+                        "category": "Scientific application intelligence", "signalType": "Scientific publication",
+                        "title": title, "summary": f"Newest PubMed item returned for the {theme['name']} query.",
+                        "sourceName": "PubMed", "sourceUrl": f"https://pubmed.ncbi.nlm.nih.gov/{latest_pmid}/",
+                        "geography": "Global", "marketSegment": theme["segment"], "technology": theme["technology"],
+                        "theme": theme["name"], "evidenceCount": 1, "intent": "Newest-item freshness verification",
+                    })
+                    seen_pmids.add(latest_pmid)
+            latest_ingested = any(signal.get("id") == f"pubmed-{latest_pmid}" for signal in signals)
         trends["themes"].append(
             {
                 "theme": theme["name"],
@@ -505,6 +550,16 @@ def collect_pubmed_signals() -> tuple[list[dict], dict]:
                 "strengthScore": strength,
                 "source": "PubMed",
                 "query": theme["query"],
+                "queryProvenance": query_provenance,
+                "itemEvidence": {
+                    "scope": "representative_sample",
+                    "sampleStrategy": "Newest item in the one-year query plus aggregate counts for every configured horizon.",
+                    "queryExecutedAt": query_provenance["1y"]["retrievedAt"],
+                    "currentResultCount": one_year,
+                    "newestPmid": latest_pmid or None,
+                    "newestDate": latest_date or None,
+                    "newestPmidIngested": latest_ingested,
+                },
             }
         )
         if one_year > 0:
@@ -518,7 +573,10 @@ def collect_pubmed_signals() -> tuple[list[dict], dict]:
                     "title": f"{theme['name']} shows {one_year} PubMed records in the last year",
                     "summary": f"Real PubMed count for the last year: {one_year}; five-year count: {counts['5y']}.",
                     "sourceName": "PubMed",
-                    "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/",
+                    "sourceUrl": query_provenance["1y"]["resultsUrl"],
+                    "sourceApiUrl": query_provenance["1y"]["apiUrl"],
+                    "retrievedAt": query_provenance["1y"]["retrievedAt"],
+                    "queryHash": query_provenance["1y"]["queryHash"],
                     "geography": "Global",
                     "marketSegment": theme["segment"],
                     "technology": theme["technology"],
@@ -536,27 +594,39 @@ def collect_pubmed_signals() -> tuple[list[dict], dict]:
 def collect_sec_signals() -> list[dict]:
     signals: list[dict] = []
     earliest_supported = TODAY - timedelta(days=HORIZONS["3y"])
+    canonical_registrants = {
+        "0000313616": "Danaher Corporation",
+        "0000031791": "Revvity, Inc.",
+    }
     for competitor in COMPETITORS:
         cik = competitor.get("cik")
         if not cik:
             continue
         url = f"https://data.sec.gov/submissions/CIK{cik}.json"
         data = fetch_json(url)
+        registrant = canonical_registrants.get(
+            cik,
+            re.sub(r"\s+/[A-Z]+/?$", "", str(data.get("name") or competitor["name"]), flags=re.I).strip(),
+        )
+        related_business = competitor["name"] if registrant.lower() != competitor["name"].lower() else None
         recent = data.get("filings", {}).get("recent", {})
         forms = recent.get("form", [])
         dates = recent.get("filingDate", [])
         accessions = recent.get("accessionNumber", [])
         documents = recent.get("primaryDocument", [])
-        # Annual and quarterly filings provide an auditable historical spine;
-        # retain only a small recent sample of 8-Ks to prevent event noise from
-        # dominating competitor activity scores.
-        limits = {"10-K": 3, "10-Q": 9, "8-K": 4}
+        # Retain every in-window 8-K. Completeness is a collection concern;
+        # ranking/noise control belongs in the presentation layer.
+        limits = {"10-K": 10_000, "10-Q": 10_000, "8-K": 10_000}
         added_by_form = {form: 0 for form in limits}
+        seen_accessions: set[str] = set()
         for form, filing_date, accession, document in zip(forms, dates, accessions, documents):
             if form not in limits or filing_date < earliest_supported.isoformat():
                 continue
+            if not accession or accession in seen_accessions:
+                continue
             if added_by_form[form] >= limits[form]:
                 continue
+            seen_accessions.add(accession)
             accession_path = accession.replace("-", "")
             cik_path = str(int(cik))
             filing_url = f"https://www.sec.gov/Archives/edgar/data/{cik_path}/{accession_path}/{document}"
@@ -564,11 +634,17 @@ def collect_sec_signals() -> list[dict]:
                 {
                     "id": f"sec-{competitor['id']}-{accession}",
                     "date": filing_date,
-                    "competitor": competitor["name"],
+                    "competitor": registrant,
+                    "registrant": registrant,
+                    "relatedOperatingBusiness": related_business,
+                    "attributionBoundary": (
+                        f"This is a {registrant} filing. It is not attributed to {related_business} unless the cited filing passage explicitly names that operating business."
+                        if related_business else "The filing is attributed to the SEC registrant."
+                    ),
                     "category": "Corporate intelligence",
                     "signalType": "Investor filing",
-                    "title": f"{competitor['name']} filed {form}",
-                    "summary": f"Public SEC filing from {data.get('name', competitor['name'])}; useful for strategy, capital allocation, risk, and segment-language tracking.",
+                    "title": f"{registrant} filed {form}",
+                    "summary": f"Public SEC filing by {registrant}; useful for strategy, capital allocation, risk, and segment-language tracking.",
                     "sourceName": "SEC EDGAR",
                     "sourceUrl": filing_url,
                     "geography": "Global",

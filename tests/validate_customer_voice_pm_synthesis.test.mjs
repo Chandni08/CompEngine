@@ -7,29 +7,29 @@ const deployApp = readFileSync(new URL("../deploy-site/app.js", import.meta.url)
 const css = readFileSync(new URL("../product-ui.css", import.meta.url), "utf8");
 const deployCss = readFileSync(new URL("../deploy-site/product-ui.css", import.meta.url), "utf8");
 
-test("customer voice is organized around four purchase-driving themes", () => {
-  assert.match(app, /label: "Method Transfer"/);
-  assert.match(app, /label: "Troubleshooting & Recovery Time"/);
-  assert.match(app, /label: "Data Export & Portability"/);
-  assert.match(app, /label: "Workflow Setup"/);
-  assert.match(app, /customerVoiceComparisonCompanies = \["Waters", "Agilent", "Thermo Fisher", "SCIEX"\]/);
-  assert.match(app, /class="customer-theme-matrix"/);
+test("customer voice is organized into company-level findings", () => {
+  assert.match(app, /Object\.keys\(customerVoiceIdentityTerms\)/);
+  assert.match(app, /class="company-voice-list"/);
+  assert.match(app, /class="company-voice-card/);
+  assert.match(app, /What Customers Value/);
+  assert.match(app, /Pain Points and Unmet Needs/);
+  assert.match(app, /Waters PM Opportunity/);
+  assert.match(app, /Whitespace for Waters/);
   assert.doesNotMatch(app, /vendor-source-records/);
   assert.doesNotMatch(app, /vendor-source-record-footer/);
 });
 
-test("theme and company source records open on demand in the shared evidence modal", () => {
-  assert.match(app, /function openCustomerThemeEvidence\(themeKey, company\)/);
+test("company source records open on demand in the shared evidence modal", () => {
+  assert.match(app, /function openCompanyVoiceEvidence\(company\)/);
   assert.match(app, /evidenceGroups\.map\(\(group\) => customerVoiceEvidenceCardMarkup\(group\)\)/);
-  assert.match(app, /data-customer-theme-sources/);
-  assert.match(app, /data-customer-theme-company/);
+  assert.match(app, /data-company-voice-sources/);
+  assert.match(app, /openCompanyVoiceEvidence\(companyTrigger\.dataset\.companyVoiceSources\)/);
   assert.match(app, /setupCompanyVoiceDrilldowns\(\);/);
 });
 
-test("theme matrix stays side-by-side and scrolls on narrow screens", () => {
-  assert.match(css, /\.customer-theme-matrix-wrap\s*\{[\s\S]*?overflow-x:\s*auto/);
-  assert.match(css, /\.customer-theme-matrix\s*\{[\s\S]*?min-width:\s*1080px[\s\S]*?table-layout:\s*fixed/);
-  assert.match(css, /\.customer-theme-question-column\s*\{[\s\S]*?width:\s*22%/);
+test("company insight cards use three columns and stack on narrow screens", () => {
+  assert.match(css, /\.company-voice-insight-grid\s*\{[\s\S]*?grid-template-columns:\s*repeat\(3, minmax\(0, 1fr\)\)/);
+  assert.match(css, /@media \(max-width: 720px\)[\s\S]*?\.company-voice-insight-grid\s*\{[\s\S]*?grid-template-columns:\s*minmax\(0, 1fr\)/);
 });
 
 test("customer voice PM synthesis ships identically", () => {

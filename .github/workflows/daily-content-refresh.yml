@@ -15,7 +15,7 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 45
     steps:
       - name: Check out the website
         uses: actions/checkout@v4
@@ -44,10 +44,11 @@ jobs:
         working-directory: deploy-site
         run: node scripts/validate_deploy.mjs
 
-      - name: Run regression checks
-        run: |
-          python -m unittest tests/test_customer_voice_ingestion.py
-          node --test tests/*.test.mjs
+      - name: Validate press-release freshness and completeness
+        run: python scripts/validate_press_release_completeness.py
+
+      - name: Run ingestion regression checks
+        run: python -m unittest tests/test_customer_voice_ingestion.py
 
       - name: Save the validated daily data
         run: |

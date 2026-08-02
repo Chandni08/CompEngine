@@ -16,13 +16,13 @@ test("follow-up decision cards omit owners and due dates", () => {
   assert.doesNotMatch(decisionQueueRenderer, /<dt>Required output<\/dt>/);
 });
 
-test("required output uses the complete action text", () => {
+test("Next PM Considerations prioritizes the detailed action text", () => {
   const factsStart = app.indexOf("function leadershipDecisionFacts(");
   const factsEnd = app.indexOf("\nfunction ", factsStart + 1);
   const factsRenderer = app.slice(factsStart, factsEnd);
 
   assert.doesNotMatch(factsRenderer, /compactText\(recommendation\.action/);
-  assert.match(factsRenderer, /recommendation\.decisionDeliverable \|\| recommendation\.action \|\| nextAction/);
+  assert.match(factsRenderer, /recommendation\.action \|\| recommendation\.decisionDeliverable \|\| nextAction/);
 });
 
 test("Next PM Considerations uses a bold label and normal-weight text", () => {

@@ -1,0 +1,229 @@
+{
+  "adoption": {
+    "planCount": 0,
+    "plans": []
+  },
+  "artifacts": {
+    "copyApprovedDisabled": false,
+    "copyApprovedText": "",
+    "count": 0,
+    "draftCount": 0,
+    "exportCount": 0,
+    "items": [],
+    "openCount": 0,
+    "registryExport": false,
+    "watermarkedCount": 0
+  },
+  "breakReport": {
+    "articles": {
+      "Changed swing attribute": {
+        "heading": "Changed swing attribute Stable",
+        "text": "Changed swing attribute StableSwing attribute unresolved; no change from the comparable market-baseline hypothesis.Both values are hypothesis-model calculations, not measured buyer preference."
+      },
+      "Governing-position conflicts": {
+        "heading": "Governing-position conflicts 0",
+        "text": "Governing-position conflicts 0No contradiction or unsupported deviation was detected by the governing-position rule check."
+      },
+      "Inapplicable proof": {
+        "heading": "Inapplicable proof 1",
+        "text": "Inapplicable proof 1BioAccord LC-MS System with ACQUITY PremierDoes not match the governed claim dimensions."
+      },
+      "Missing buyer roles": {
+        "heading": "Missing buyer roles 7",
+        "text": "Missing buyer roles 7Bench user / analystMethod developerQC/QA or validation vetoIT / data-integrity vetoLab-manager decision makerProcurement / economic buyerExecutive sponsor — where relevant"
+      },
+      "Missing economic assumptions": {
+        "heading": "Missing economic assumptions 1",
+        "text": "Missing economic assumptions 1No priority-segment EVC model can be created under the active filters."
+      },
+      "Unsupported claims": {
+        "heading": "Unsupported claims 2",
+        "text": "Unsupported claims 2Thermo FisherNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications. Proposed — not approved: adapt the governing workflow position for all supported markets · all supported applications · Validated-method migration · all geographies · the full buying committee. Thermo Fisher adaptation: For the selected workflow, adapt the governing workflow position to the observed Thermo Fisher emphasis; do not assert advantage until target-compatible proof and approval are established.SCIEXNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications. Proposed — not approved: adapt the governing workflow position for all supported markets · all supported applications · Validated-method migration · all geographies · the full buying committee. SCIEX adaptation: For the selected workflow, adapt the governing workflow position to the observed SCIEX emphasis; do not assert advantage until target-compatible proof and approval are established."
+      }
+    },
+    "total": 11
+  },
+  "claims": {
+    "comparability": {
+      "Inapplicable": 2,
+      "Partially applicable": 2
+    },
+    "inapplicableEvidence": 1,
+    "readiness": {
+      "Blocked": 4
+    },
+    "readyRows": 0,
+    "substantiation": {
+      "Directional": 2,
+      "Unsupported": 2
+    }
+  },
+  "committees": [],
+  "destinations": {
+    "appendixUnique": 28,
+    "claimRows": 4,
+    "claimRowsWithoutApproval": 4,
+    "customerUrlSummary": 0,
+    "decisionCards": 3
+  },
+  "filters": {
+    "application": "All supported applications",
+    "buyer": "All buyer roles",
+    "buying": "Validated-method migration",
+    "competitor": "All",
+    "geography": "All geographies",
+    "horizon": "1 year",
+    "market": "All"
+  },
+  "governing": {
+    "difference": "Differentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone.",
+    "id": "next-gen-lc-governing-position",
+    "parity": "Expected modern LC separation performance, pressure range, usability, connectivity, and serviceability required to enter a contemporary HPLC/UHPLC evaluation.",
+    "status": "Approval stateProposed — not approved ApproverApprover needed Last reviewedReview date unavailable ClassificationAnalyst/rule-based inference grounded in filtered public evidence",
+    "swing": "Swing attribute unresolved — no priority-segment scorecard is available",
+    "targeting": "Proposed — not approved: adapt the governing workflow position for all supported markets · all supported applications · Validated-method migration · all geographies · the full buying committee.",
+    "value": "Next Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications."
+  },
+  "highestRiskClaim": "Highest Risk Under Current FiltersNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications. Proposed — not approved: adapt the governing workflow position for all supported markets · all supported applications · Validated-method migration · all geographies · the full buying committee. Thermo Fisher adaptation: For the selected workflow, adapt the governing workflow position to the observed Thermo Fisher emphasis; do not assert advantage until target-compatible proof and approval are established.Unsupported substantiation · Approval not established · 85 governed risk points",
+  "marketChoice": {
+    "alternatives": [
+      {
+        "classification": "hypothesis",
+        "name": "Thermo Fisher",
+        "sourceRefs": 2,
+        "text": "Thermo FisherObserved competitor evidence · customer-choice hypothesis Why customers choose itPublic Thermo Fisher sources establish visible positioning and product activity; why a customer selects it is not established. Segment and buying situationSegment unresolved — validation requiredDirect platform comparison or replacement evaluation — strategic hypothesis requiring validation Primary objection to switchingPrimary objection to switching is unresolved — direct customer or win/loss evidence is required. Waters responseDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone. Thermo Fisher response: For the selected workflow, adapt the governing workflow position to the observed Thermo Fisher emphasis; do not assert advantage until target-compatible proof and approval are established. Approval not established. Required proofDirect Thermo Fisher customer interviews, coded win/loss evidence, and comparable workflow testing. Evidence confidenceConfidence unscored — exact sources are available, but no compatible confidence score is loaded · customer-choice confidence unresolved Competitor sources are traceable, but they do not establish customer choice, switching behavior, or market prevalence. EV-9FD24C27 · Expected — not confirmedBioprocessing Summit US competitor evidenceOpen canonical evidence and caveats →EV-1E1ACDD1 · Expected — not confirmedACS Fall 2026 competitor evidenceOpen canonical evidence and caveats →"
+      },
+      {
+        "classification": "hypothesis",
+        "name": "Agilent",
+        "sourceRefs": 1,
+        "text": "AgilentObserved competitor evidence · customer-choice hypothesis Why customers choose itPublic Agilent sources establish visible positioning and product activity; why a customer selects it is not established. Segment and buying situationSegment unresolved — validation requiredDirect platform comparison or replacement evaluation — strategic hypothesis requiring validation Primary objection to switchingPrimary objection to switching is unresolved — direct customer or win/loss evidence is required. Waters responseDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone. Agilent response: For the selected workflow, adapt the governing workflow position to the observed Agilent emphasis; do not assert advantage until target-compatible proof and approval are established. Approval not established. Required proofDirect Agilent customer interviews, coded win/loss evidence, and comparable workflow testing. Evidence confidenceConfidence unscored — exact sources are available, but no compatible confidence score is loaded · customer-choice confidence unresolved Competitor sources are traceable, but they do not establish customer choice, switching behavior, or market prevalence. EV-C86781D9 · Expected — not confirmedACS Fall 2026 competitor evidenceOpen canonical evidence and caveats →"
+      },
+      {
+        "classification": "hypothesis",
+        "name": "SCIEX",
+        "sourceRefs": 1,
+        "text": "SCIEXObserved competitor evidence · customer-choice hypothesis Why customers choose itPublic SCIEX sources establish visible positioning and product activity; why a customer selects it is not established. Segment and buying situationSegment unresolved — validation requiredDirect platform comparison or replacement evaluation — strategic hypothesis requiring validation Primary objection to switchingPrimary objection to switching is unresolved — direct customer or win/loss evidence is required. Waters responseDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone. SCIEX response: For the selected workflow, adapt the governing workflow position to the observed SCIEX emphasis; do not assert advantage until target-compatible proof and approval are established. Approval not established. Required proofDirect SCIEX customer interviews, coded win/loss evidence, and comparable workflow testing. Evidence confidenceConfidence unscored — exact sources are available, but no compatible confidence score is loaded · customer-choice confidence unresolved Competitor sources are traceable, but they do not establish customer choice, switching behavior, or market prevalence. EV-EDDC2F67 · Conference participation evidenceACS Fall 2026 competitor evidenceOpen canonical evidence and caveats →"
+      },
+      {
+        "classification": "hypothesis",
+        "name": "PerkinElmer",
+        "sourceRefs": 1,
+        "text": "PerkinElmerObserved competitor evidence · customer-choice hypothesis Why customers choose itPerkinElmer appears in filtered public competitor evidence; customer selection rationale is not established. Segment and buying situationSegment unresolved — validation requiredBuying situation unresolved — customer validation required Primary objection to switchingPrimary objection to switching is unresolved — direct customer or win/loss evidence is required. Waters responseDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone. A PerkinElmer-specific approved counter-position is not established. Approval not established. Required proofDirect PerkinElmer customer interviews, win/loss evidence, and comparable workflow testing. Evidence confidenceConfidence unscored — exact sources are available, but no compatible confidence score is loaded · customer-choice confidence unresolved Included as a relevant-other form rival because filtered public evidence exists; customer choice and prevalence are not established. EV-769479CA · Observed competitor evidencePerkinElmer Project Farma expands PMIS offering with Oracle Primavera CloudOpen canonical evidence and caveats →"
+      },
+      {
+        "classification": "hypothesis",
+        "name": "Outsource testing",
+        "sourceRefs": 0,
+        "text": "Outsource testingStrategic hypothesis requiring validation Why customers choose itStrategic hypothesis: a buyer may prefer external capacity or specialist execution to purchasing and operating another platform. Segment and buying situationSegment unresolved — validation requiredCapacity constraint, specialist-method need, or capital-avoidance decision — validation required Primary objection to switchingPrimary objection to switching is unresolved — direct customer or win/loss evidence is required. Waters responseDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone. Proposed — not approved. Approval not established. Required proofWin/loss coding for outsource-versus-buy decisions, buyer interviews, decision criteria, and comparable cost/risk evidence. Evidence confidenceConfidence unresolved — validation required No direct customer-choice or win/loss evidence was located; this alternative is not a statement of prevalence. Exact customer or win/loss evidence unavailable."
+      },
+      {
+        "classification": "hypothesis",
+        "name": "Use a CRO/CDMO",
+        "sourceRefs": 0,
+        "text": "Use a CRO/CDMOStrategic hypothesis requiring validation Why customers choose itStrategic hypothesis: a sponsor may transfer analytical execution to an external development or manufacturing partner. Segment and buying situationSegment unresolved — validation requiredDevelopment, method transfer, scale-up, or regulated execution requiring external capability — validation required Primary objection to switchingPrimary objection to switching is unresolved — direct customer or win/loss evidence is required. Waters responseDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone. Proposed — not approved. Approval not established. Required proofDirect sponsor and CRO/CDMO interviews, outsource-versus-insource win/loss evidence, and documented workflow economics. Evidence confidenceConfidence unresolved — validation required No direct customer-choice or win/loss evidence was located; this alternative is not a statement of prevalence. Exact customer or win/loss evidence unavailable."
+      },
+      {
+        "classification": "observed",
+        "name": "Alternative analytical workflow",
+        "sourceRefs": 1,
+        "text": "Alternative analytical workflowObserved customer-source evidence Why customers choose itUsers described coordinating MassLynx with ChemStation and contact closure to run mixed-vendor hardware. Segment and buying situationChemical/materialsMixed-vendor instrument control can require split software and contact-closure workarounds Primary objection to switchingMethod transfer is an observed decision criterion; a direct switching objection is not established. Waters responseDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone. Proposed — not approved. Approval not established. Required proofWorkflow-specific comparison showing when the proposed Waters path reduces handoffs or workaround burden under comparable conditions. Evidence confidenceHigh · 78/100 Public customer-language records surface criteria and objections but do not establish market prevalence or win/loss causality. EV-B255EB01 · Observed customer evidenceReddit discussion: Software for Agilent chromatography with Waters XevoOpen canonical evidence and caveats →"
+      },
+      {
+        "classification": "observed",
+        "name": "Do nothing / keep the validated method",
+        "sourceRefs": 2,
+        "text": "Do nothing / keep the validated methodObserved customer-source evidence Why customers choose itPublic source mapping suggests upgrade candidates care about method continuity, familiar operation, validation burden, and lower risk migration. Segment and buying situationPharmaRoutine HPLC users need modernization without disrupting validated methods Primary objection to switchingMethod transfer is an observed decision criterion; a direct switching objection is not established. Waters responseDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone. Proposed — not approved. Approval not established. Required proofA validated migration study showing method continuity, equivalency boundaries, validation effort, and operational risk. Evidence confidenceMedium · 60/100 Public customer-language records surface criteria and objections but do not establish market prevalence or win/loss causality. EV-B45A7520 · Observed customer evidenceReddit discussion: compatibility between Waters and Agilent testing methodsOpen canonical evidence and caveats →EV-5AADF6A4 · Observed customer evidenceReddit discussion: Waters ACQUITY Arc LCMS UV baseline oscillationsOpen canonical evidence and caveats →"
+      },
+      {
+        "classification": "hypothesis",
+        "name": "Extend the existing system",
+        "sourceRefs": 0,
+        "text": "Extend the existing systemStrategic hypothesis requiring validation Why customers choose itStrategic hypothesis: familiar operation and continued service may defer the disruption of replacement. Segment and buying situationSegment unresolved — validation requiredLifecycle extension or replacement decision — validation required Primary objection to switchingPrimary objection to switching is unresolved — direct customer or win/loss evidence is required. Waters responseDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone. Proposed — not approved. Approval not established. Required proofInstalled-system interviews plus lifecycle cost, serviceability, downtime, and migration evidence. Evidence confidenceConfidence unresolved — validation required No direct customer-choice or win/loss evidence was located; this alternative is not a statement of prevalence. Exact customer or win/loss evidence unavailable."
+      },
+      {
+        "classification": "observed",
+        "name": "Defer replacement",
+        "sourceRefs": 2,
+        "text": "Defer replacementObserved customer-source evidence Why customers choose itPublic source mapping suggests upgrade candidates care about method continuity, familiar operation, validation burden, and lower risk migration. Segment and buying situationPharmaRoutine HPLC users need modernization without disrupting validated methods Primary objection to switchingMethod transfer is an observed decision criterion; a direct switching objection is not established. Waters responseDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone. Proposed — not approved. Approval not established. Required proofDirect deferral-reason coding, replacement timing data, and evidence that de-risks the migration decision. Evidence confidenceMedium · 60/100 Public customer-language records surface criteria and objections but do not establish market prevalence or win/loss causality. EV-B45A7520 · Observed customer evidenceReddit discussion: compatibility between Waters and Agilent testing methodsOpen canonical evidence and caveats →EV-5AADF6A4 · Observed customer evidenceReddit discussion: Waters ACQUITY Arc LCMS UV baseline oscillationsOpen canonical evidence and caveats →"
+      }
+    ],
+    "doNothing": "[Circular]",
+    "outsourcing": "[Circular]"
+  },
+  "metricTooltips": {
+    "claims-awaiting-approval": "Displayed registry rows with no established legal/claims approval record. Calculation: visible claim rows where approvalEstablished is false, regardless of substantiation status. Unit: displayed rows. Global and claims-registry filters apply.",
+    "direct-evidence-sources": "Unique canonical URLs displayed in the Evidence appendix. Calculation: valid linked appendix records after global URL deduplication; unlinked records are excluded. Unit: unique URLs, not records or independent organizations. All applicable global filters apply; the historical group intentionally ignores horizon, geography, and market where those fields do not exist.",
+    "exact-customer-sources": "Unique canonical URLs in the filtered customer-language evidence set. Calculation: valid exact customer URLs after URL normalization and deduplication. Unit: unique URLs, not records or independent organizations. All global filters apply.",
+    "positioning-decisions": "Displayed positioning-decision cards. Calculation: eligible evidence-backed decision candidates after all global filters, limited to three. Unit: displayed cards. Matrix-only claim filters do not apply."
+  },
+  "metrics": {
+    "claims-awaiting-approval": 4,
+    "direct-evidence-sources": 28,
+    "exact-customer-sources": 7,
+    "positioning-decisions": 3
+  },
+  "name": "Do nothing / keep the validated method",
+  "pageSections": 8,
+  "provenance": {
+    "appendixRecords": 28,
+    "dateUnresolved": 12,
+    "evidenceRefs": 35,
+    "linkedSources": 28,
+    "sourceUrls": [
+      "https://www.acs.org/events/all-events/acs-fall-2026.html",
+      "https://www.bioprocessingsummit.com/",
+      "https://www.perkinelmer.com/corporate-and-newsroom/project-farma-expands-pmis-offering-oracle-primavera-cloud",
+      "https://www.fda.gov/media/190190/download?attachment=",
+      "https://www.reddit.com/r/massspectrometry/comments/1rembme/imms_options/",
+      "https://www.reddit.com/r/massspectrometry/comments/1tausv5/ms_is_half_the_equation/",
+      "https://www.reddit.com/r/massspectrometry/comments/1up1dlw/best_software_to_use_agilent_g3540a_gc_with/",
+      "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1q24noh/reccomendations_for_new_hplc_system_for_routine/",
+      "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1tk17h8/how_to_solve_the_problem_of_compatibility_between/",
+      "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1somxpf/waters_acquity_arc_lcms_214_nm_uv_baseline/",
+      "https://www.agilent.com/cs/library/applications/an-pesticide-screening-revident-lc-qtof-5994-8751en-agilent.pdf",
+      "https://www.waters.com/nextgen/us/en/products/mass-spectrometry/mass-spectrometry-systems/xevo-mrt.html",
+      "https://www.bioprocessingsummit.com/sponsors",
+      "https://www.waters.com/nextgen/us/en/products/mass-spectrometry/mass-spectrometry-systems/bioaccord-lc-ms-system.html",
+      "https://documents.thermofisher.com/TFS-Assets/CMD/Application-Notes/an-004442-en-pfas-tsq-altis-plus-efox-editon-an004442-em-en.pdf",
+      "https://ir.thermofisher.com/investors/news-events/news/default.aspx",
+      "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry.html",
+      "https://www.thermofisher.com/sitemap-us-en.xml",
+      "https://www.thermofisher.com/blog/analyteguru/liquid-chromatography/feed/",
+      "https://www.thermofisher.com/blog/analyteguru/mass-spectrometry/feed/",
+      "https://www.thermofisher.com/blog/analyteguru/proteomics/feed/",
+      "https://www.waters.com/nextgen/en/products/chromatography/chromatography-systems/alliance-is-hplc-system.html",
+      "https://www.waters.com/nextgen/ee/en/library/application-notes/2025/enhanced-reliability-for-long-term-pfas-analysis-with-the-xevo-tq-absolute-xr-mass-spectrometer.html",
+      "https://www.acs.org/events/fall/exhibit.html",
+      "https://www.agilent.com/about/newsroom/presrel.html",
+      "https://www.agilent.com/products0.xml",
+      "https://sciex.com/about-us/press-releases",
+      "https://sciex.com/products/mass-spectrometers"
+    ],
+    "unlinkedRecords": 0,
+    "unresolvedEvidenceRefs": 0
+  },
+  "startHere": "Start Here · Decide, Then ActivateThe Next PMM DecisionOne governed path from segment choice to activation. Open the first decision below before reviewing supporting analysis.Priority 1Buying criterion unresolved for Audience unresolvedCreate an internal sales-enablement brief that packages the proposed position, proof, proof gaps, and message-testing questions. Chosen segmentSegment unresolved Governing position statusProposed — not approved Swing attributeSwing attribute unresolved — no priority-segment scorecard is available Highest-risk claimNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications. Proposed — not approved: adapt the governing workflow position for all supported markets · all supported applications · Validated-method migration · all geographies · the full buying committee. SCIEX adaptation: For the selected workflow, adapt the governing workflow position to the observed SCIEX emphasis; do not assert advantage until target-compatible proof and approval are established.Unsupported · Approval not established Competitor / inertia threatThermo Fisher · Do nothing / keep the validated method Next required decisionRun a controlled the intended segment LC workflow study against Agilent using matched products, methods, attributes, test conditions, and decision criteria. Then obtain documented claims/legal approval, approved wording, an owner, and an expiration date. Nearest activation deadlineDeadline needed",
+  "traces": [
+    {
+      "ref": "next-gen-lc-governing-position",
+      "status": "aligned",
+      "text": "Governing Position TraceProposed — not approved Inherited customer / segmentAnalytical laboratory buying committees responsible for regulated LC method execution and transfer · Priority segment unresolved — no approved segment selectionInherited targeting adaptationProposed — not approved: adapt the governing workflow position for all supported markets · all supported applications · Validated-method migration · all geographies · the full buying committee.Inherited job / categoryExecute reliable, transferable, compliant analytical workflows from method setup and transfer through routine operation and data review. · Liquid chromatography workflow platform for regulated analytical laboratoriesInherited value propositionNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications.Inherited point of parityExpected modern LC separation performance, pressure range, usability, connectivity, and serviceability required to enter a contemporary HPLC/UHPLC evaluation.Inherited point of differenceDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone.Local adaptationFor the selected workflow, adapt the governing workflow position to the observed Agilent emphasis; do not assert advantage until target-compatible proof and approval are established. Aligned adaptationNo contradiction detected. Local language inherits the governing workflow frame; approval remains unresolved."
+    },
+    {
+      "ref": "next-gen-lc-governing-position",
+      "status": "aligned",
+      "text": "Governing Position TraceProposed — not approved Inherited customer / segmentAnalytical laboratory buying committees responsible for regulated LC method execution and transfer · Priority segment unresolved — no approved segment selectionInherited targeting adaptationProposed — not approved: adapt the governing workflow position for all supported markets · all supported applications · Validated-method migration · all geographies · the full buying committee.Inherited job / categoryExecute reliable, transferable, compliant analytical workflows from method setup and transfer through routine operation and data review. · Liquid chromatography workflow platform for regulated analytical laboratoriesInherited value propositionNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications.Inherited point of parityExpected modern LC separation performance, pressure range, usability, connectivity, and serviceability required to enter a contemporary HPLC/UHPLC evaluation.Inherited point of differenceDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone.Local adaptationFor the selected workflow, adapt the governing workflow position to the observed Thermo Fisher emphasis; do not assert advantage until target-compatible proof and approval are established. Aligned adaptationNo contradiction detected. Local language inherits the governing workflow frame; approval remains unresolved."
+    },
+    {
+      "ref": "next-gen-lc-governing-position",
+      "status": "aligned",
+      "text": "Governing Position TraceProposed — not approved Inherited customer / segmentAnalytical laboratory buying committees responsible for regulated LC method execution and transfer · Priority segment unresolved — no approved segment selectionInherited targeting adaptationProposed — not approved: adapt the governing workflow position for all supported markets · all supported applications · Validated-method migration · all geographies · the full buying committee.Inherited job / categoryExecute reliable, transferable, compliant analytical workflows from method setup and transfer through routine operation and data review. · Liquid chromatography workflow platform for regulated analytical laboratoriesInherited value propositionNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications.Inherited point of parityExpected modern LC separation performance, pressure range, usability, connectivity, and serviceability required to enter a contemporary HPLC/UHPLC evaluation.Inherited point of differenceDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone.Local adaptationFor the selected workflow, adapt the governing workflow position to the observed SCIEX emphasis; do not assert advantage until target-compatible proof and approval are established. Aligned adaptationNo contradiction detected. Local language inherits the governing workflow frame; approval remains unresolved."
+    },
+    {
+      "ref": "next-gen-lc-governing-position",
+      "status": "aligned",
+      "text": "Governing Position TraceProposed — not approved Inherited customer / segmentAnalytical laboratory buying committees responsible for regulated LC method execution and transfer · Priority segment unresolved — no approved segment selectionInherited targeting adaptationProposed — not approved: adapt the governing workflow position for all supported markets · all supported applications · Validated-method migration · all geographies · the full buying committee.Inherited job / categoryExecute reliable, transferable, compliant analytical workflows from method setup and transfer through routine operation and data review. · Liquid chromatography workflow platform for regulated analytical laboratoriesInherited value propositionNext Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications.Inherited point of parityExpected modern LC separation performance, pressure range, usability, connectivity, and serviceability required to enter a contemporary HPLC/UHPLC evaluation.Inherited point of differenceDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone.Local adaptationFor the selected workflow, adapt the governing workflow position to the observed Agilent emphasis; do not assert advantage until target-compatible proof and approval are established. Aligned adaptationNo contradiction detected. Local language inherits the governing workflow frame; approval remains unresolved."
+    }
+  ]
+}

@@ -36,6 +36,11 @@
   white-space: nowrap;
 }
 
+.publication-stat-grid .publication-pm-signal strong {
+  overflow: visible;
+  white-space: normal;
+}
+
 .publication-stat-grid p { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.35; }
 
 .publication-stat-link {
@@ -93,6 +98,8 @@
   border-radius: 11px;
   background: #f3f9f9;
 }
+.publication-overall-summary-1 { grid-template-columns: minmax(0, 1fr); }
+.publication-overall-summary-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
 .publication-overall-summary article { display: grid; gap: 4px; border-left: 1px solid #cfe1e4; padding: 12px 14px; }
 .publication-overall-summary article:first-child { border-left: 0; }
@@ -211,6 +218,7 @@
 .publication-record-list small { color: var(--muted); font-size: 9px; }
 .publication-record-list strong { display: -webkit-box; overflow: hidden; font-size: 11px; line-height: 1.4; -webkit-box-orient: vertical; -webkit-line-clamp: 3; }
 .publication-record-list em { color: #087888; font-size: 9px; font-style: normal; font-weight: 750; }
+.publication-record-pagination { overflow: hidden; border: 1px solid #d7e3e5; border-radius: 9px; }
 .publication-record-list a { color: #007d8b; font-size: 9px; font-weight: 850; text-decoration: none; white-space: nowrap; }
 .publication-record-panel .conference-section-header p a { color: #007d8b; font-weight: 850; text-decoration: underline; text-underline-offset: 3px; }
 

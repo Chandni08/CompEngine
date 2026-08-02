@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Next Gen Competitive Intelligence Engine</title>
-    <link rel="stylesheet" href="styles.css?v=20260729-pmm-workspace-1" />
-    <link rel="stylesheet" href="product-ui.css?v=20260729-pmm-workspace-1" />
+    <link rel="stylesheet" href="styles.css?v=20260730-pmm-market-leadership-1" />
+    <link rel="stylesheet" href="product-ui.css?v=20260731-intent-carousel-1" />
   </head>
   <body>
     <aside class="sidebar">
@@ -43,20 +43,26 @@
             <a href="#filing-evidence" data-section-nav="filing-evidence">SEC Filing Insights</a>
             <a href="conference.html">Conference Intelligence ↗</a>
             <a href="publications.html">Publication Intelligence ↗</a>
-            <a href="#evidence-signal-feed" data-section-nav="evidence-signal-feed">All Public Evidence</a>
+            <a id="publicEvidenceNav" href="#evidence-signal-feed" data-section-nav="evidence-signal-feed">All Public Evidence</a>
           </div>
         </div>
         <div id="marketingSectionNavigation" class="section-nav-groups" hidden>
           <div class="section-nav-group">
-            <span>Decide</span>
-            <a href="#pmm-positioning-decisions" data-section-nav="pmm-positioning-decisions">Positioning Decisions</a>
-            <a href="#pmm-claims-proof" data-section-nav="pmm-claims-proof">Claims and Proof Readiness</a>
-            <a href="#pmm-audience-criteria" data-section-nav="pmm-audience-criteria">Audience and Buying Criteria</a>
+            <span>Win</span>
+            <a href="#pmm-head-to-head" data-section-nav="pmm-head-to-head">Product Battlecards</a>
+            <a href="#pmm-claims-risk" data-section-nav="pmm-claims-risk">Claim Control</a>
+            <a href="#pmm-positioning-decisions" data-section-nav="pmm-positioning-decisions">Proof Priorities</a>
           </div>
           <div class="section-nav-group">
-            <span>Activate</span>
-            <a href="#pmm-competitive-narrative" data-section-nav="pmm-competitive-narrative">Competitive Narrative</a>
-            <a href="#pmm-activation-backlog" data-section-nav="pmm-activation-backlog">Activation Backlog</a>
+            <span>Strategy</span>
+            <a href="#pmm-governing-position" data-section-nav="pmm-governing-position">Position Guardrails</a>
+            <a href="#pmm-segment-cascade" data-section-nav="pmm-segment-cascade">Buying Committee</a>
+            <a href="#pmm-competitive-narratives" data-section-nav="pmm-competitive-narratives">Competitor Plays</a>
+            <a href="#pmm-adoption-value" data-section-nav="pmm-adoption-value">Adoption / Value Proof</a>
+          </div>
+          <div class="section-nav-group">
+            <span>Ship</span>
+            <a href="#pmm-activation-artifacts" data-section-nav="pmm-activation-artifacts">Seller Assets</a>
             <a href="#pmm-evidence-appendix" data-section-nav="pmm-evidence-appendix">Evidence Appendix</a>
           </div>
         </div>
@@ -93,6 +99,12 @@
             <option value="Marketing">Product Marketing</option>
           </select>
         </label>
+        <label class="pmm-hierarchy-filter pmm-product-first-filter" hidden>
+          <span>1 · Waters product</span>
+          <select id="pmmWatersProductFilter" data-pmm-target-filter="watersProduct" aria-describedby="pmmTargetingHelp">
+            <option value="All">Choose a Waters product</option>
+          </select>
+        </label>
         <label>
           Geography
           <select id="geoFilter">
@@ -119,6 +131,24 @@
             <option>Food &amp; Beverage</option>
           </select>
         </label>
+        <label class="pmm-hierarchy-filter" hidden>
+          Application / workflow
+          <select id="pmmApplicationFilter" data-pmm-target-filter="application" aria-describedby="pmmTargetingHelp">
+            <option value="All">All supported applications</option>
+          </select>
+        </label>
+        <label class="pmm-hierarchy-filter" hidden>
+          Buying situation
+          <select id="pmmBuyingSituationFilter" data-pmm-target-filter="buyingSituation" aria-describedby="pmmTargetingHelp">
+            <option value="All">All buying situations</option>
+          </select>
+        </label>
+        <label class="pmm-hierarchy-filter" hidden>
+          Buyer role
+          <select id="pmmBuyerRoleFilter" data-pmm-target-filter="buyerRole" aria-describedby="pmmTargetingHelp">
+            <option value="All">All buyer roles</option>
+          </select>
+        </label>
         <label>
           Technology
           <select id="technologyFilter">
@@ -129,10 +159,16 @@
             <option>MS</option>
           </select>
         </label>
-        <label>
-          Competitor
+        <label class="competitor-filter-label">
+          <span class="standard-filter-label">Competitor</span><span class="pmm-filter-label">Battlecard competitor <small>optional</small></span>
           <select id="competitorFilter">
             <option>All</option>
+          </select>
+        </label>
+        <label class="pmm-head-to-head-filter" hidden>
+          Competitor product
+          <select id="pmmCompetitorProductFilter" aria-describedby="pmmHeadToHeadFilterHelp" disabled>
+            <option value="">Choose Waters product and competitor</option>
           </select>
         </label>
         <label>
@@ -145,54 +181,87 @@
             <option value="3y">3 years</option>
           </select>
         </label>
+        <span id="pmmTargetingHelp" class="sr-only">Product Marketing filters tailor product battlecards, pitches, and downstream evidence.</span>
       </section>
 
       <div id="marketingWorkspace" class="marketing-workspace" hidden>
+        <section id="pmmStartHere" class="pmm-start-here" aria-labelledby="pmmStartHereTitle"></section>
+
+        <section id="pmm-head-to-head" class="panel pmm-head-to-head-panel" aria-labelledby="pmmHeadToHeadTitle">
+          <div class="panel-header">
+            <div>
+              <h3 id="pmmHeadToHeadTitle">Evidence-Backed Product Battlecards</h3>
+              <p id="pmmHeadToHeadFilterHelp" class="panel-helper">Choose the Waters product. Each card separates defensible reasons to prefer Waters from hypotheses, proof gaps, and claims that must not be used.</p>
+            </div>
+          </div>
+          <div id="pmmHeadToHeadComparison"></div>
+        </section>
+
+        <section id="pmm-governing-position" class="panel pmm-primary-section" aria-labelledby="pmmGoverningSectionTitle" data-collapsible="true" data-default-collapsed="true" data-toggle-label="position guardrails">
+          <div class="panel-header">
+            <div>
+              <h3 id="pmmGoverningSectionTitle">Position Guardrails</h3>
+              <p class="panel-helper">The proposed narrative spine, evidence pillars, explicit exclusions, and approval state. Open when adapting a message—not for routine selling.</p>
+            </div>
+          </div>
+          <div id="pmmGoverningPosition"></div>
+        </section>
+
         <section id="pmm-positioning-decisions" class="panel pmm-primary-section" aria-labelledby="pmmPositioningTitle">
           <div class="panel-header">
             <div>
-              <h3 id="pmmPositioningTitle">Positioning Decisions</h3>
-              <p class="panel-helper">Decisions that need evidence, review, or approval before activation.</p>
+              <h3 id="pmmPositioningTitle">Three Proof Priorities to Win</h3>
+              <p class="panel-helper">The commercial claim, missing study, and seller asset that deserve PMM investment next.</p>
             </div>
           </div>
           <div id="pmmPositioningDecisions"></div>
         </section>
 
-        <section id="pmm-claims-proof" class="panel pmm-primary-section" aria-labelledby="pmmClaimsTitle">
+        <section id="pmm-claims-risk" class="panel pmm-primary-section" aria-labelledby="pmmClaimsTitle">
           <div class="panel-header">
             <div>
-              <h3 id="pmmClaimsTitle">Claims and Proof Readiness</h3>
-              <p class="panel-helper">Proposed messages, supporting proof, and explicit approval gaps.</p>
+              <h3 id="pmmClaimsTitle">Claim Control</h3>
+              <p class="panel-helper">Exact wording, applicable proof, blocked evidence, approval state, and the study required before field use.</p>
             </div>
           </div>
           <div id="pmmClaimsProof"></div>
         </section>
 
-        <section id="pmm-audience-criteria" class="panel pmm-primary-section" aria-labelledby="pmmAudienceTitle">
+        <section id="pmm-segment-cascade" class="panel pmm-primary-section" aria-labelledby="pmmAudienceTitle" data-collapsible="true" data-default-collapsed="true" data-toggle-label="buying committee detail">
           <div class="panel-header">
             <div>
-              <h3 id="pmmAudienceTitle">Audience and Buying Criteria</h3>
-              <p class="panel-helper">Traceable public customer evidence grouped by audience and criterion.</p>
+              <h3 id="pmmAudienceTitle">Buying Committee and Decision Criteria</h3>
+              <p class="panel-helper">Who uses, influences, vetoes, decides, and buys—and what proof each role requires.</p>
             </div>
           </div>
           <div id="pmmAudienceCriteria"></div>
         </section>
 
-        <section id="pmm-competitive-narrative" class="panel pmm-primary-section" aria-labelledby="pmmNarrativeTitle">
+        <section id="pmm-competitive-narratives" class="panel pmm-primary-section" aria-labelledby="pmmNarrativeTitle" data-collapsible="true" data-default-collapsed="true" data-toggle-label="competitor plays">
           <div class="panel-header">
             <div>
-              <h3 id="pmmNarrativeTitle">Competitive Narrative</h3>
-              <p class="panel-helper">Canonical competitor narratives that turn claims, workflow emphasis, launches, and events into PMM content decisions.</p>
+              <h3 id="pmmNarrativeTitle">Competitor Plays and Waters Response</h3>
+              <p class="panel-helper">Observed moves, inferred intent, the buying situation targeted, and the evidence-backed response Waters should build.</p>
             </div>
           </div>
           <div id="pmmCompetitiveNarrative"></div>
         </section>
 
-        <section id="pmm-activation-backlog" class="panel pmm-primary-section" aria-labelledby="pmmActivationTitle">
+        <section id="pmm-adoption-value" class="panel pmm-primary-section" aria-labelledby="pmmAdoptionTitle" data-collapsible="true" data-default-collapsed="true" data-toggle-label="adoption and value detail">
           <div class="panel-header">
             <div>
-              <h3 id="pmmActivationTitle">Activation Backlog</h3>
-              <p class="panel-helper">Recommended PMM actions that convert positioning and proof gaps into traceable deliverables.</p>
+              <h3 id="pmmAdoptionTitle">Adoption Barriers and Value Proof</h3>
+              <p class="panel-helper">Switching barriers, the tactic to remove each barrier, and value assumptions that still require customer validation.</p>
+            </div>
+          </div>
+          <div id="pmmAdoptionValuePlans"></div>
+        </section>
+
+        <section id="pmm-activation-artifacts" class="panel pmm-primary-section" aria-labelledby="pmmActivationTitle">
+          <div class="panel-header">
+            <div>
+              <h3 id="pmmActivationTitle">Seller Assets to Ship</h3>
+              <p class="panel-helper">Battlecards, claims sheets, decks, tests, and proof requests generated from the selected product and target.</p>
             </div>
           </div>
           <div id="pmmActivationBacklog"></div>
@@ -220,7 +289,7 @@
             <a
               id="exportLeadershipPptx"
               href="exports/waters-nextgen-leadership-brief.pptx"
-              download="Waters-Next-Gen-LC-Leadership-Brief-2026-07-23.pptx"
+              download="Waters-Next-Gen-LC-Leadership-Brief-waters-ci-20260728-202611.pptx"
               aria-label="Export the Leadership brief to PowerPoint"
             >Export PowerPoint</a>
           </div>
@@ -287,16 +356,14 @@
           <div class="customer-voice-summary-stack">
             <section class="customer-theme-matrix-section">
               <div class="mini-header">
-                <h4>Purchase-Driving Themes</h4>
-                <p class="panel-helper">Waters versus competitors on the pains that shape purchase and migration decisions.</p>
+                <h4>Customer Voice by Company</h4>
               </div>
-              <p class="customer-voice-normalization-note" role="note">Public forums over-represent complaints; source volume shows recurrence, not comparative sentiment or product quality.</p>
               <div id="customerCompetitorChart" class="customer-competitor-chart"></div>
             </section>
             <section>
               <div class="mini-header">
-                <h4>Evidence Coding Diagnostic</h4>
-                <p class="panel-helper">Source-coding quality check; not a market sentiment metric.</p>
+                <h4>Evidence Classification</h4>
+                <p class="panel-helper">Shows how reviewed sources were coded as favorable, mixed, or concern. It does not measure market sentiment.</p>
               </div>
               <div id="sentimentTrendChart" class="sentiment-trend-chart"></div>
             </section>
@@ -416,11 +483,12 @@
           <div id="competitiveTimeline" class="competitive-timeline"></div>
         </section>
 
-        <section id="competitive-capability-evidence" class="panel visual-panel" data-collapsible="true" data-quick-open="false" data-toggle-label="capability comparison">
+        <!-- Competitive Capability Evidence is intentionally hidden from the deployed dashboard. -->
+        <section id="competitive-capability-evidence" class="panel visual-panel" data-collapsible="true" data-quick-open="false" data-toggle-label="capability comparison" hidden>
           <div class="panel-header">
             <div>
             <h3>Competitive Capability Evidence</h3>
-            <p class="panel-helper">Strengths, parity, and evidence gaps.</p>
+            <p class="panel-helper">Product-scoped directional gap map with authority-tagged public evidence and an explicit worst-case portfolio roll-up.</p>
             </div>
           </div>
           <div id="featureGapMatrix" class="feature-gap-matrix"></div>
@@ -457,7 +525,6 @@
         <div class="panel-header">
           <div>
             <h3>Conference Intelligence</h3>
-            <p class="panel-helper">Conference preparation now has a dedicated timeline and event workspace.</p>
           </div>
           <span id="conferenceCount">0 sources</span>
         </div>
@@ -584,6 +651,12 @@
 
     <script src="leadership-brief-thesis.js?v=20260728-1"></script>
     <script src="comparison-logic.js?v=20260723-all-pairs-1"></script>
-    <script src="app.js?v=20260729-pmm-workspace-1"></script>
+    <script src="competitive-methodology.js?v=20260729-1"></script>
+    <script src="pmm-data-contract.js?v=20260729-pmm-hierarchical-targeting-1"></script>
+    <script src="product-match-model.js?v=20260731-product-gap-map-5"></script>
+    <script src="vendor/pptxgen.bundle.js?v=4.0.1"></script>
+    <script src="vendor/docx.iife.js?v=9.5.1"></script>
+    <script src="artifact-export.js?v=20260730-pmm-head-to-head-1"></script>
+    <script src="app.js?v=20260802-integrity-refresh-1"></script>
   </body>
 </html>

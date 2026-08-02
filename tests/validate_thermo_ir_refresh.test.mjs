@@ -17,7 +17,7 @@ test("Thermo Fisher investor relations is a registered critical daily source", a
   );
   assert.match(collector, /PressRelease\.svc\/GetPressReleaseList/);
   assert.match(collector, /parse_thermo_ir_releases/);
-  assert.match(collector, /RECENT_RELEASE_REPLAY_DAYS = 45/);
+  assert.match(collector, /RECENT_RELEASE_REPLAY_DAYS = 120/);
   assert.match(refresh, /"Thermo Fisher": \{"thermo-products", "thermo-ms-products", "thermo-news"\}/);
   assert.match(refresh, /The dataset must not be published as current/);
 });

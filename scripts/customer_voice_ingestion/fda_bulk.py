@@ -112,7 +112,7 @@ def _parse_date(value: str) -> str:
     return ""
 
 
-def _download(client: RobotsAwareClient, url: str) -> bytes | None:
+def _download(client: RobotsAwareClient, url: str) -> tuple[bytes, str | None] | None:
     response = client.get(
         url,
         in_scope,
@@ -123,10 +123,10 @@ def _download(client: RobotsAwareClient, url: str) -> bytes | None:
     if not response.content.startswith(b"PK\x03\x04"):
         LOGGER.warning("FDA bulk endpoint did not return an XLSX archive; skipping %s", url)
         return None
-    return response.content
+    return response.content, response.headers.get("Last-Modified")
 
 
-def _warning_record(content: bytes) -> EvidenceRecord | None:
+def _warning_record(content: bytes, last_modified: str | None = None) -> EvidenceRecord | None:
     sheets = _xlsx_sheets(content)
     rows = _row_dicts(next(iter(sheets.values()), []))
     candidates: list[dict[str, str]] = []
@@ -160,11 +160,15 @@ def _warning_record(content: bytes) -> EvidenceRecord | None:
         source_type="regulatory",
         source_name="U.S. FDA Warning Letters bulk download",
         excerpt=text,
-        metadata={"regulatoryEntries": candidates[:20], "regulatoryDataset": "warning_letters"},
+        metadata={
+            "regulatoryEntries": candidates[:20], "regulatoryDataset": "warning_letters",
+            "workbookParsedRowCount": len(rows), "qualifyingRowCount": len(candidates),
+            "newestQualifyingRecordDate": latest["date"], "workbookLastModified": last_modified,
+        },
     )
 
 
-def _form_483_record(content: bytes) -> EvidenceRecord | None:
+def _form_483_record(content: bytes, last_modified: str | None = None) -> EvidenceRecord | None:
     sheets = _xlsx_sheets(content)
     findings: list[dict[str, Any]] = []
     for program in ("Drugs", "Biologics"):
@@ -204,7 +208,12 @@ def _form_483_record(content: bytes) -> EvidenceRecord | None:
         source_type="regulatory",
         source_name="U.S. FDA Inspectional Observations bulk download",
         excerpt=text,
-        metadata={"regulatoryFindings": top, "regulatoryDataset": "form_483", "fiscalYear": 2025},
+        metadata={
+            "regulatoryFindings": top, "regulatoryDataset": "form_483", "fiscalYear": 2025,
+            "workbookParsedRowCount": sum(len(rows) for rows in sheets.values()),
+            "qualifyingRowCount": len(findings), "newestQualifyingRecordDate": "2025-09-30",
+            "workbookLastModified": last_modified,
+        },
     )
 
 
@@ -220,11 +229,12 @@ def collect(client: RobotsAwareClient | None = None) -> list[EvidenceRecord]:
         if not in_scope(url):
             LOGGER.warning("FDA bulk URL falls outside approved official endpoints; skipping %s", url)
             continue
-        content = _download(client, url)
-        if not content:
+        download = _download(client, url)
+        if not download:
             continue
+        content, last_modified = download
         try:
-            record = parser(content)
+            record = parser(content, last_modified)
             if record:
                 records.append(record)
         except (BadZipFile, ET.ParseError, KeyError, ValueError) as error:

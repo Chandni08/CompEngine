@@ -16,6 +16,10 @@ test("Thermo July earnings are included in the visible competitor-intent profile
   assert.ok(earnings, "the dated official earnings result must be present in intelligence.json");
   assert.equal(earnings.date, "2026-07-23");
   assert.match(earnings.sourceUrl, /^https:\/\/ir\.thermofisher\.com\//);
+  assert.equal(earnings.earningsMetrics.length, 3);
+  assert.equal(earnings.pmInsights.length, 3);
+  assert.match(earnings.summary, /Analytical Instruments revenue and margin/);
+  assert.match(earnings.evidenceBoundary, /not evidence of LC share gain/);
 
   assert.match(app, /function currentEarningsSignals\(signals\)/);
   assert.match(app, /function competitorIntentSignals\(signals\)/);
@@ -26,7 +30,12 @@ test("Thermo July earnings are included in the visible competitor-intent profile
     "switching competitors must preserve corporate results that product filters exclude",
   );
   assert.match(app, /const earnings = currentEarningsSignals\(signals\)\.filter\(\(signal\) => signal\.competitor === competitor\)/);
-  assert.match(app, /Q2 2026 Earnings Showed Double-Digit Revenue and EPS Growth/);
+  assert.match(app, /Analytical Instruments Expanded Revenue and Margin/);
+  assert.match(app, /AI-Enabled Orbitrap Platforms Target Application Workflows/);
+  assert.match(app, /function earningsPmReadoutMarkup\(signal\)/);
+  assert.match(app, /Product-management signal:/);
+  assert.match(app, /What Waters PM should know/);
+  assert.match(app, /Evidence boundary:/);
   assert.match(app, /earnings\.length \? `\$\{earnings\.length\} earnings result/);
   assert.match(app, /type: "Earnings result"/);
   assert.match(app, /const earnings = currentEarningsSignals\(competitorIntentSignals\(\[\]\)\)/);

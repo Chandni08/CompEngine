@@ -25,12 +25,31 @@ const requiredFields = [
   "sourceUrl",
 ];
 
-export function validateCompetitorApplicationNotes(catalog) {
+function hoursOld(value, now) {
+  const parsed = Date.parse(value || "");
+  return Number.isFinite(parsed) ? (now.getTime() - parsed) / 3_600_000 : Number.POSITIVE_INFINITY;
+}
+
+function newestDate(notes) {
+  return notes.map((note) => String(note.date || "").slice(0, 10)).filter(Boolean).sort().at(-1) || null;
+}
+
+export function validateCompetitorApplicationNotes(
+  catalog,
+  { now = new Date(), maxCatalogAgeHours = 36, maxCompetitorRecordAgeDays = 400 } = {},
+) {
   const errors = [];
   const notes = catalog?.notes || [];
   const ids = new Set();
   const urls = new Set();
   if (!notes.length) errors.push("catalog has no application notes");
+  if (Number(catalog?.schemaVersion || 0) < 3) errors.push("catalog schemaVersion must be at least 3");
+  if (hoursOld(catalog?.generatedAt, now) > maxCatalogAgeHours) {
+    errors.push(`catalog generatedAt is missing or older than ${maxCatalogAgeHours} hours`);
+  }
+  const currentUtcDate = now.toISOString().slice(0, 10);
+  if (catalog?.asOfDate !== currentUtcDate) errors.push(`catalog asOfDate must be ${currentUtcDate}`);
+
   notes.forEach((note, index) => {
     const prefix = `notes[${index}]`;
     requiredFields.forEach((field) => {
@@ -38,8 +57,9 @@ export function validateCompetitorApplicationNotes(catalog) {
     });
     if (ids.has(note.id)) errors.push(`${prefix} duplicates id ${note.id}`);
     ids.add(note.id);
-    if (urls.has(note.sourceUrl)) errors.push(`${prefix} duplicates sourceUrl ${note.sourceUrl}`);
-    urls.add(note.sourceUrl);
+    const canonicalUrl = String(note.sourceUrl || "").replace(/\/$/, "");
+    if (urls.has(canonicalUrl)) errors.push(`${prefix} duplicates sourceUrl ${note.sourceUrl}`);
+    urls.add(canonicalUrl);
     if (!/^\d{4}-\d{2}-\d{2}$/.test(note.date || "")) errors.push(`${prefix} has an invalid date`);
     if (!["day", "month", "year"].includes(note.datePrecision)) errors.push(`${prefix} has an invalid datePrecision`);
     if (!/application|technical note/i.test(note.sourceType || "")) errors.push(`${prefix} is not identified as application-note evidence`);
@@ -54,6 +74,59 @@ export function validateCompetitorApplicationNotes(catalog) {
       errors.push(`${prefix} has an invalid sourceUrl`);
     }
   });
+
+  const statuses = Array.isArray(catalog?.sourceStatus) ? catalog.sourceStatus : [];
+  for (const competitor of Object.keys(officialDomains)) {
+    const status = statuses.find((row) => row?.competitor === competitor);
+    const competitorNotes = notes.filter((note) => note.competitor === competitor);
+    if (!status) {
+      errors.push(`sourceStatus is missing ${competitor}`);
+      continue;
+    }
+    if (hoursOld(status.attemptedAt, now) > maxCatalogAgeHours) {
+      errors.push(`${competitor} application-note collection is older than ${maxCatalogAgeHours} hours`);
+    }
+    if (status.inventoryMode === "official_full_feed") {
+      if (status.coverageStatus !== "complete_inventory") {
+        errors.push(`${competitor} full-feed coverage is not marked complete_inventory`);
+      }
+      if (Number(status.inventoryRecordsSeen || 0) < 1) {
+        errors.push(`${competitor} full-feed collector returned zero application-note records`);
+      }
+      if (status.completenessStatus !== "complete") {
+        errors.push(`${competitor} application-note collection is incomplete`);
+      }
+    } else if (status.inventoryMode === "registered_official_records") {
+      if (status.coverageStatus !== "limited_inventory") {
+        errors.push(`${competitor} registered-record coverage must be marked limited_inventory`);
+      }
+      if (status.completenessStatus !== "registered_only") {
+        errors.push(`${competitor} registered application-note collection is incomplete`);
+      }
+    } else {
+      errors.push(`${competitor} has an unknown application-note inventoryMode`);
+    }
+    if (status.freshnessStatus !== "current") errors.push(`${competitor} application-note catalog is stale`);
+    if (Number(status.catalogRecords) !== competitorNotes.length) {
+      errors.push(`${competitor} catalogRecords does not match the catalog`);
+    }
+    if (Number(status.inventoryRecordsIngested || 0) > Number(status.inventoryRecordsSeen || 0)) {
+      errors.push(`${competitor} ingested more application notes than the source inventory reported`);
+    }
+    if ((status.missingDiscoveredUrls || []).length) {
+      errors.push(`${competitor} is missing ${status.missingDiscoveredUrls.length} discovered application-note URL(s)`);
+    }
+    if (status.newestDiscoveredPresent !== true) errors.push(`${competitor} newest discovered application note is not present`);
+    const actualNewest = newestDate(competitorNotes);
+    if (status.catalogNewestDate !== actualNewest) errors.push(`${competitor} catalogNewestDate does not match the catalog`);
+    if (status.sourceNewestDate && actualNewest && status.sourceNewestDate > actualNewest) {
+      errors.push(`${competitor} source inventory is newer than the application-note catalog`);
+    }
+    const ageDays = actualNewest ? (now.getTime() - Date.parse(`${actualNewest}T00:00:00Z`)) / 86_400_000 : Infinity;
+    if (ageDays > maxCompetitorRecordAgeDays) {
+      errors.push(`${competitor} newest application note is older than ${maxCompetitorRecordAgeDays} days`);
+    }
+  }
   return errors;
 }
 
@@ -68,7 +141,7 @@ async function main() {
     return;
   }
   const competitors = new Set(catalog.notes.map((note) => note.competitor));
-  console.log(`Validated ${catalog.notes.length} official application notes from ${competitors.size} competitors.`);
+  console.log(`Validated freshness and completeness for ${catalog.notes.length} official application notes from ${competitors.size} competitors.`);
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) await main();

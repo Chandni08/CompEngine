@@ -4,6 +4,9 @@ dist/
 .pw-browsers/
 audit-output/
 logs/
+.codex-pptx-tmp/
+tmp/
+output/
 *.zip
 __pycache__/
 *.py[cod]

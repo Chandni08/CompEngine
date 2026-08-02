@@ -1,0 +1,212 @@
+[
+  {
+    "name": "Thermo Fisher",
+    "period": "30d",
+    "stored": 254,
+    "actual": 251,
+    "query": "\"Orbitrap\" OR \"Vanquish\" OR \"Q Exactive\" OR \"TSQ Altis\" OR \"Thermo Fisher Scientific\""
+  },
+  {
+    "name": "Thermo Fisher",
+    "period": "60d",
+    "stored": 502,
+    "actual": 498,
+    "query": "\"Orbitrap\" OR \"Vanquish\" OR \"Q Exactive\" OR \"TSQ Altis\" OR \"Thermo Fisher Scientific\""
+  },
+  {
+    "name": "Thermo Fisher",
+    "period": "90d",
+    "stored": 729,
+    "actual": 725,
+    "query": "\"Orbitrap\" OR \"Vanquish\" OR \"Q Exactive\" OR \"TSQ Altis\" OR \"Thermo Fisher Scientific\""
+  },
+  {
+    "name": "Thermo Fisher",
+    "period": "1y",
+    "stored": 2399,
+    "actual": 2402,
+    "query": "\"Orbitrap\" OR \"Vanquish\" OR \"Q Exactive\" OR \"TSQ Altis\" OR \"Thermo Fisher Scientific\""
+  },
+  {
+    "name": "Thermo Fisher",
+    "period": "3y",
+    "stored": 5670,
+    "actual": 5672,
+    "query": "\"Orbitrap\" OR \"Vanquish\" OR \"Q Exactive\" OR \"TSQ Altis\" OR \"Thermo Fisher Scientific\""
+  },
+  {
+    "name": "Thermo Fisher",
+    "period": "5y",
+    "stored": 8600,
+    "actual": 8603,
+    "query": "\"Orbitrap\" OR \"Vanquish\" OR \"Q Exactive\" OR \"TSQ Altis\" OR \"Thermo Fisher Scientific\""
+  },
+  {
+    "name": "Agilent",
+    "period": "30d",
+    "stored": 4,
+    "actual": 4,
+    "query": "\"Agilent 1290\" OR \"Agilent InfinityLab\" OR \"Agilent LC/MS\" OR \"Agilent 6495\" OR \"Ultivo\""
+  },
+  {
+    "name": "Agilent",
+    "period": "60d",
+    "stored": 13,
+    "actual": 13,
+    "query": "\"Agilent 1290\" OR \"Agilent InfinityLab\" OR \"Agilent LC/MS\" OR \"Agilent 6495\" OR \"Ultivo\""
+  },
+  {
+    "name": "Agilent",
+    "period": "90d",
+    "stored": 21,
+    "actual": 21,
+    "query": "\"Agilent 1290\" OR \"Agilent InfinityLab\" OR \"Agilent LC/MS\" OR \"Agilent 6495\" OR \"Ultivo\""
+  },
+  {
+    "name": "Agilent",
+    "period": "1y",
+    "stored": 60,
+    "actual": 60,
+    "query": "\"Agilent 1290\" OR \"Agilent InfinityLab\" OR \"Agilent LC/MS\" OR \"Agilent 6495\" OR \"Ultivo\""
+  },
+  {
+    "name": "Agilent",
+    "period": "3y",
+    "stored": 172,
+    "actual": 172,
+    "query": "\"Agilent 1290\" OR \"Agilent InfinityLab\" OR \"Agilent LC/MS\" OR \"Agilent 6495\" OR \"Ultivo\""
+  },
+  {
+    "name": "Agilent",
+    "period": "5y",
+    "stored": 274,
+    "actual": 274,
+    "query": "\"Agilent 1290\" OR \"Agilent InfinityLab\" OR \"Agilent LC/MS\" OR \"Agilent 6495\" OR \"Ultivo\""
+  },
+  {
+    "name": "Shimadzu",
+    "period": "30d",
+    "stored": 0,
+    "actual": 0,
+    "query": "\"Shimadzu LCMS\" OR \"Shimadzu Nexera\" OR \"LCMS-8060\" OR \"LCMS-9030\" OR \"LCMS-9050\""
+  },
+  {
+    "name": "Shimadzu",
+    "period": "60d",
+    "stored": 1,
+    "actual": 1,
+    "query": "\"Shimadzu LCMS\" OR \"Shimadzu Nexera\" OR \"LCMS-8060\" OR \"LCMS-9030\" OR \"LCMS-9050\""
+  },
+  {
+    "name": "Shimadzu",
+    "period": "90d",
+    "stored": 1,
+    "actual": 1,
+    "query": "\"Shimadzu LCMS\" OR \"Shimadzu Nexera\" OR \"LCMS-8060\" OR \"LCMS-9030\" OR \"LCMS-9050\""
+  },
+  {
+    "name": "Shimadzu",
+    "period": "1y",
+    "stored": 3,
+    "actual": 3,
+    "query": "\"Shimadzu LCMS\" OR \"Shimadzu Nexera\" OR \"LCMS-8060\" OR \"LCMS-9030\" OR \"LCMS-9050\""
+  },
+  {
+    "name": "Shimadzu",
+    "period": "3y",
+    "stored": 8,
+    "actual": 8,
+    "query": "\"Shimadzu LCMS\" OR \"Shimadzu Nexera\" OR \"LCMS-8060\" OR \"LCMS-9030\" OR \"LCMS-9050\""
+  },
+  {
+    "name": "Shimadzu",
+    "period": "5y",
+    "stored": 15,
+    "actual": 15,
+    "query": "\"Shimadzu LCMS\" OR \"Shimadzu Nexera\" OR \"LCMS-8060\" OR \"LCMS-9030\" OR \"LCMS-9050\""
+  },
+  {
+    "name": "SCIEX",
+    "period": "30d",
+    "stored": 27,
+    "actual": 27,
+    "query": "\"SCIEX\" OR \"ZenoTOF\" OR \"TripleTOF\" OR \"QTRAP\" OR \"Echo MS\""
+  },
+  {
+    "name": "SCIEX",
+    "period": "60d",
+    "stored": 49,
+    "actual": 48,
+    "query": "\"SCIEX\" OR \"ZenoTOF\" OR \"TripleTOF\" OR \"QTRAP\" OR \"Echo MS\""
+  },
+  {
+    "name": "SCIEX",
+    "period": "90d",
+    "stored": 67,
+    "actual": 66,
+    "query": "\"SCIEX\" OR \"ZenoTOF\" OR \"TripleTOF\" OR \"QTRAP\" OR \"Echo MS\""
+  },
+  {
+    "name": "SCIEX",
+    "period": "1y",
+    "stored": 232,
+    "actual": 232,
+    "query": "\"SCIEX\" OR \"ZenoTOF\" OR \"TripleTOF\" OR \"QTRAP\" OR \"Echo MS\""
+  },
+  {
+    "name": "SCIEX",
+    "period": "3y",
+    "stored": 596,
+    "actual": 596,
+    "query": "\"SCIEX\" OR \"ZenoTOF\" OR \"TripleTOF\" OR \"QTRAP\" OR \"Echo MS\""
+  },
+  {
+    "name": "SCIEX",
+    "period": "5y",
+    "stored": 929,
+    "actual": 929,
+    "query": "\"SCIEX\" OR \"ZenoTOF\" OR \"TripleTOF\" OR \"QTRAP\" OR \"Echo MS\""
+  },
+  {
+    "name": "PerkinElmer",
+    "period": "30d",
+    "stored": 2,
+    "actual": 2,
+    "query": "\"PerkinElmer QSight\" OR \"PerkinElmer LC\" OR \"PerkinElmer chromatography\""
+  },
+  {
+    "name": "PerkinElmer",
+    "period": "60d",
+    "stored": 2,
+    "actual": 2,
+    "query": "\"PerkinElmer QSight\" OR \"PerkinElmer LC\" OR \"PerkinElmer chromatography\""
+  },
+  {
+    "name": "PerkinElmer",
+    "period": "90d",
+    "stored": 4,
+    "actual": 4,
+    "query": "\"PerkinElmer QSight\" OR \"PerkinElmer LC\" OR \"PerkinElmer chromatography\""
+  },
+  {
+    "name": "PerkinElmer",
+    "period": "1y",
+    "stored": 11,
+    "actual": 11,
+    "query": "\"PerkinElmer QSight\" OR \"PerkinElmer LC\" OR \"PerkinElmer chromatography\""
+  },
+  {
+    "name": "PerkinElmer",
+    "period": "3y",
+    "stored": 25,
+    "actual": 25,
+    "query": "\"PerkinElmer QSight\" OR \"PerkinElmer LC\" OR \"PerkinElmer chromatography\""
+  },
+  {
+    "name": "PerkinElmer",
+    "period": "5y",
+    "stored": 36,
+    "actual": 36,
+    "query": "\"PerkinElmer QSight\" OR \"PerkinElmer LC\" OR \"PerkinElmer chromatography\""
+  }
+]

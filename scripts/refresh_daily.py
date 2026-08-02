@@ -5,11 +5,15 @@ from __future__ import annotations
 
 import json
 import hashlib
+import re
 import shutil
 import subprocess
 import sys
 from datetime import date, datetime, timezone
 from pathlib import Path
+
+from provenance import valid_change_evidence
+from source_health import SourceHealth, migrate_legacy_source, write_ledger
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -20,17 +24,28 @@ STATUS_FILE = DATA_DIR / "refresh_status.json"
 COLLECTOR = ROOT / "scripts" / "collect_real_data.py"
 AGILENT_COLLECTOR = ROOT / "scripts" / "collect_agilent.py"
 COMPETITOR_COLLECTOR = ROOT / "scripts" / "collect_competitors.py"
+APPLICATION_NOTE_COLLECTOR = ROOT / "scripts" / "collect_competitor_application_notes.py"
 SCIENTIFIC_SOURCE_COLLECTOR = ROOT / "scripts" / "collect_scientific_sources.py"
 CUSTOMER_VOICE_COLLECTOR = ROOT / "scripts" / "collect_customer_voice.py"
+PERKINELMER_COLLECTOR = ROOT / "scripts" / "collect_perkinelmer.py"
 LINK_CHECKER = ROOT / "scripts" / "check_links.py"
+PROVENANCE_REMEDIATOR = ROOT / "scripts" / "remediate_provenance.py"
+HISTORICAL_COMPETITOR_VALIDATOR = ROOT / "scripts" / "validate_historical_product_catalog.mjs"
+HISTORICAL_WATERS_VALIDATOR = ROOT / "scripts" / "validate_historical_waters_catalog.mjs"
+PPTX_BUILDER = ROOT / "scripts" / "build_leadership_pptx.mjs"
 CUSTOMER_VOICE_VALIDATOR = ROOT / "scripts" / "validate_customer_voice_sources.mjs"
+APPLICATION_NOTE_VALIDATOR = ROOT / "scripts" / "validate_competitor_application_notes.mjs"
 PRODUCT_LAUNCH_VALIDATOR = ROOT / "scripts" / "validate_product_launch_press_releases.mjs"
+PRESS_RELEASE_COMPLETENESS_VALIDATOR = ROOT / "scripts" / "validate_press_release_completeness.py"
+INTEGRITY_ARTIFACT_BUILDER = ROOT / "scripts" / "build_integrity_artifacts.py"
 THERMO_MONITOR_VALIDATOR = ROOT / "scripts" / "validate_thermo_monitoring.mjs"
 SCIENTIFIC_SOURCE_VALIDATOR = ROOT / "scripts" / "validate_scientific_source_classes.mjs"
 SCORER = ROOT / "scripts" / "score.py"
 RECOMMENDATION_CURATOR = ROOT / "scripts" / "curate_recommendations.py"
 AGILENT_MONITOR_FILE = DATA_DIR / "agilent_monitor.json"
 COMPETITOR_MONITOR_FILE = DATA_DIR / "competitor_monitors.json"
+PERKINELMER_MONITOR_FILE = DATA_DIR / "perkinelmer_monitor.json"
+SOURCE_HEALTH_FILE = DATA_DIR / "source_health.json"
 
 AUTOMATED_DOMAINS = [
     "PubMed publication trends and competitor-linked publications",
@@ -39,8 +54,10 @@ AUTOMATED_DOMAINS = [
     "Agilent LC/MS product sitemap and press-release change detection",
     "Thermo Fisher, Shimadzu, and SCIEX product sitemap and press-release extraction",
     "Thermo Fisher LC/MS technical insight RSS extraction",
-    "Peer-reviewed journal metadata plus conference and regulatory source monitoring",
+    "Peer-reviewed journals plus publisher-owned trade, forum, learning, conference, and regulatory source monitoring",
     "Public customer voice from robots-compliant forums, structured reviews, Reddit OAuth, and FDA bulk data",
+    "PerkinElmer official newsroom and LC product sitemap",
+    "Competitor application-note catalog reconciliation, freshness, and completeness validation",
 ]
 
 CURATED_DOMAINS = [
@@ -98,7 +115,7 @@ def validate_intelligence(data: dict) -> None:
 def validate_agilent_monitor(data: dict) -> None:
     required = {
         "new_products", "discontinued_products", "updated_products",
-        "new_press_releases", "source_status",
+        "new_press_releases", "recent_press_releases", "source_status",
     }
     missing = sorted(required.difference(data))
     if missing:
@@ -113,7 +130,7 @@ def validate_competitor_monitor(data: dict) -> None:
         raise ValueError(f"Competitor monitor is missing: {', '.join(missing_competitors)}")
     required_fields = {
         "new_products", "discontinued_products", "updated_products",
-        "new_press_releases", "new_technical_insights", "source_status",
+        "new_press_releases", "recent_press_releases", "new_technical_insights", "source_status",
     }
     for competitor, monitor in competitors.items():
         missing_fields = sorted(required_fields.difference(monitor))
@@ -137,6 +154,89 @@ def validate_competitor_monitor(data: dict) -> None:
                 f"{competitor} critical source refresh incomplete: {', '.join(missing)}. "
                 "The dataset must not be published as current."
             )
+
+
+def validate_perkinelmer_monitor(data: dict) -> None:
+    required = {"newsroom", "recent_press_releases", "sourceStatus"}
+    missing = sorted(required.difference(data))
+    if missing:
+        raise ValueError(f"PerkinElmer monitor is missing: {', '.join(missing)}")
+
+
+def normalize_release_key(value: str) -> str:
+    return " ".join(re.sub(r"[^a-z0-9]+", " ", value.lower()).split())
+
+
+def reclassify_strategic_releases(signals: list[dict]) -> list[dict]:
+    """Keep partnerships and collaborations in corporate/strategic activity."""
+    strategic_pattern = re.compile(
+        r"\b(partnership|partner(?:s|ed|ing)?|collaboration|collaborat(?:e|es|ed|ing)|"
+        r"strategic initiative|research hub|customer experience center|acquisition|acquire[sd]?)\b",
+        re.I,
+    )
+    synthetic_context = "This official release documents a strategic collaboration, partnership, or acquisition signal."
+    for signal in signals:
+        if str(signal.get("signalType", "")).lower() not in {"press release", "official press release"}:
+            continue
+        wording = " ".join(str(signal.get(key, "")) for key in ("title", "summary", "intent"))
+        if strategic_pattern.search(wording):
+            signal["category"] = "Corporate intelligence"
+            summary = str(signal.get("summary", "")).replace(synthetic_context, "").strip()
+            title = str(signal.get("title", ""))
+            if re.search(r"\bcollaborat(?:e|es|ed|ing)\b", title, re.I) and not re.search(r"\bcollaboration\b", summary, re.I):
+                summary = f"{summary} This official release documents a strategic collaboration.".strip()
+            signal["summary"] = summary
+    return signals
+
+
+def dedupe_official_releases(signals: list[dict]) -> list[dict]:
+    """Keep one canonical signal when overlapping official feeds publish the same release."""
+    releases: dict[tuple[str, str, str], dict] = {}
+    release_urls: dict[tuple[str, str], tuple[str, str, str]] = {}
+    retained: list[dict] = []
+    for signal in signals:
+        signal_type = str(signal.get("signalType", "")).lower()
+        category = str(signal.get("category", "")).lower()
+        if not any(term in signal_type or term in category for term in ("press release", "earnings", "corporate", "regulatory")):
+            retained.append(signal)
+            continue
+        key = (
+            str(signal.get("competitor", "")).lower(),
+            str(signal.get("date", ""))[:10],
+            normalize_release_key(str(signal.get("title", ""))),
+        )
+        url_key = (
+            str(signal.get("competitor", "")).lower(),
+            str(signal.get("sourceUrl", "")).strip().lower(),
+        )
+        # A newsroom item may previously have been imported under a shortened
+        # analyst title and later under its official title.  The canonical URL
+        # identifies the release more reliably than either title.
+        if url_key[1] and url_key in release_urls:
+            prior_key = release_urls[url_key]
+            current = releases.get(prior_key)
+            if current is not None:
+                current_title = str(current.get("title", ""))
+                candidate_title = str(signal.get("title", ""))
+                if len(candidate_title) > len(current_title):
+                    del releases[prior_key]
+                    releases[key] = signal
+                    release_urls[url_key] = key
+                continue
+        current = releases.get(key)
+        if current is None:
+            releases[key] = signal
+            if url_key[1]:
+                release_urls[url_key] = key
+            continue
+        current_url = str(current.get("sourceUrl", ""))
+        candidate_url = str(signal.get("sourceUrl", ""))
+        # Prefer a dated newsroom release over a duplicate investor-relations mirror.
+        if "investor." in current_url and "investor." not in candidate_url:
+            releases[key] = signal
+            if url_key[1]:
+                release_urls[url_key] = key
+    return sorted([*retained, *releases.values()], key=lambda item: item.get("date", ""), reverse=True)
 
 
 def signal_id(prefix: str, url: str) -> str:
@@ -180,6 +280,11 @@ def merge_competitor_changes(intelligence: dict, monitor_data: dict) -> None:
             ("discontinued_products", "Possible product page removal", "removed"),
         ):
             for item in monitor.get(key, []):
+                # A sitemap URL or lastmod delta is not a page-content change.  Only
+                # publish a change claim when the collector preserved both page
+                # versions and an exact diff artifact.
+                if not valid_change_evidence(item.get("changeEvidence")):
+                    continue
                 url = item.get("url", "")
                 modified = item.get("lastmod") or today
                 name = product_name(url)
@@ -218,7 +323,7 @@ def merge_competitor_changes(intelligence: dict, monitor_data: dict) -> None:
                     "recommendation": recommendation,
                 })
 
-        for item in monitor.get("new_press_releases", []):
+        for item in monitor.get("recent_press_releases") or monitor.get("new_press_releases", []):
             url = item.get("url", "")
             classification = item.get("classification", "corporate")
             additions.append({
@@ -229,6 +334,10 @@ def merge_competitor_changes(intelligence: dict, monitor_data: dict) -> None:
                 "signalType": "Press release",
                 "title": item.get("title") or f"New {competitor} press release",
                 "summary": item.get("summary") or f"Official dated release extracted from {competitor}'s press or news index.",
+                "earningsMetrics": item.get("earningsMetrics") or [],
+                "pmInsights": item.get("pmInsights") or [],
+                "watersPmImplication": item.get("watersPmImplication") or "",
+                "evidenceBoundary": item.get("evidenceBoundary") or "",
                 "sourceName": item.get("sourceName") or f"{competitor} official press releases",
                 "sourceUrl": url,
                 "geography": "Global",
@@ -287,6 +396,8 @@ def merge_agilent_changes(intelligence: dict, monitor: dict) -> None:
     today = date.today().isoformat()
 
     for item in monitor.get("new_products", []):
+        if not valid_change_evidence(item.get("changeEvidence")):
+            continue
         url = item.get("url", "")
         additions.append({
             "id": signal_id("new-product", url),
@@ -308,6 +419,8 @@ def merge_agilent_changes(intelligence: dict, monitor: dict) -> None:
         })
 
     for item in monitor.get("updated_products", []):
+        if not valid_change_evidence(item.get("changeEvidence")):
+            continue
         url = item.get("url", "")
         additions.append({
             "id": signal_id("updated-product", f"{url}|{item.get('lastmod', '')}"),
@@ -349,27 +462,31 @@ def merge_agilent_changes(intelligence: dict, monitor: dict) -> None:
             "recommendation": "Confirm the lifecycle status through an official Agilent announcement before inferring whitespace.",
         })
 
-    for item in monitor.get("new_press_releases", []):
+    for item in monitor.get("recent_press_releases") or monitor.get("new_press_releases", []):
         url = item.get("url", "")
         classification = item.get("classification", "corporate")
-        additions.append({
+        signal = {
             "id": signal_id("press-release", url),
             "date": item.get("date") or today,
             "competitor": "Agilent",
             "category": "Product intelligence" if classification == "product" else "Corporate intelligence",
-            "signalType": "Press release",
+            "signalType": item.get("signalType") or "Press release",
             "title": item.get("title") or "New Agilent press release",
-            "summary": "New item detected on Agilent's authoritative dated press-release index.",
-            "sourceName": "Agilent press releases",
+            "summary": item.get("summary") or "New item detected on Agilent's authoritative dated press-release index.",
+            "sourceName": item.get("sourceName") or "Agilent press releases",
             "sourceUrl": url,
             "geography": "Global",
-            "marketSegment": "Pharma",
-            "technology": "Portfolio",
-            "theme": "Product release" if classification == "product" else "Corporate strategy",
+            "marketSegment": item.get("marketSegment") or "Pharma",
+            "technology": item.get("technology") or "Portfolio",
+            "theme": item.get("theme") or ("Product release" if classification == "product" else "Corporate strategy"),
             "evidenceCount": 1,
-            "intent": "Product and portfolio expansion" if classification == "product" else "Corporate strategic activity",
+            "intent": item.get("intent") or ("Product and portfolio expansion" if classification == "product" else "Corporate strategic activity"),
             "recommendation": "Review the release for concrete product, partnership, portfolio, and market-positioning implications for Waters.",
-        })
+        }
+        for field in ("earningsMetrics", "pmInsights", "watersPmImplication", "evidenceBoundary"):
+            if item.get(field):
+                signal[field] = item[field]
+        additions.append(signal)
 
     existing = {str(item.get("id")): item for item in intelligence.get("signals", []) if item.get("id")}
     for signal in additions:
@@ -381,7 +498,10 @@ def merge_agilent_changes(intelligence: dict, monitor: dict) -> None:
         for item in source_statuses
     )
     press_available = any(
-        item.get("status") == "available" and item.get("url") == "https://www.agilent.com/about/newsroom/presrel.html"
+        item.get("status") == "available" and (
+            item.get("url") == "https://www.agilent.com/about/newsroom/presrel.html"
+            or item.get("fetchMethod") == "official_ir_news_api"
+        )
         for item in source_statuses
     )
     intelligence.setdefault("refresh", {})["agilent"] = (
@@ -397,13 +517,236 @@ def merge_agilent_changes(intelligence: dict, monitor: dict) -> None:
     }
 
 
+def merge_perkinelmer_changes(intelligence: dict, monitor: dict) -> None:
+    additions: list[dict] = []
+    today = date.today().isoformat()
+    for item in monitor.get("recent_press_releases", []):
+        url = item.get("url", "")
+        classification = item.get("classification", "corporate")
+        additions.append({
+            "id": competitor_signal_id("PerkinElmer", "press-release", url),
+            "date": item.get("date") or today,
+            "competitor": "PerkinElmer",
+            "category": "Product intelligence" if classification == "product" else "Corporate intelligence",
+            "signalType": item.get("signalType") or "Press release",
+            "title": item.get("title") or "New PerkinElmer press release",
+            "summary": "Official dated release extracted from PerkinElmer's newsroom.",
+            "sourceName": "PerkinElmer official newsroom",
+            "sourceUrl": url,
+            "geography": "Global",
+            "marketSegment": "Pharma",
+            "technology": technology_for_url(f"{url} {item.get('title', '')}"),
+            "theme": item.get("theme") or "Corporate activity",
+            "evidenceCount": 1,
+            "intent": "Official product, portfolio, regulatory, or corporate activity",
+            "recommendation": "Review the release for concrete implications for Waters products, workflows, partnerships, and market access.",
+        })
+    existing = {str(item.get("id")): item for item in intelligence.get("signals", []) if item.get("id")}
+    for signal in additions:
+        existing[signal["id"]] = signal
+    intelligence["signals"] = dedupe_official_releases(list(existing.values()))
+    intelligence.setdefault("refresh", {})["perkinelmer"] = "success" if monitor.get("recent_press_releases") else "checked_empty"
+    intelligence["perkinelmerMonitor"] = {
+        "generatedAt": monitor.get("generatedAt"),
+        "changesDetected": len(additions),
+        "sourceStatus": monitor.get("sourceStatus", []),
+    }
+
+
 def sync_deploy_data() -> None:
     DEPLOY_DATA_DIR.mkdir(parents=True, exist_ok=True)
     for source in DATA_DIR.glob("*.json"):
         shutil.copy2(source, DEPLOY_DATA_DIR / source.name)
 
 
-def write_status(status: str, started_at: str, message: str, last_success: str | None) -> None:
+def _latest(values: list[str]) -> str | None:
+    cleaned = [str(value)[:10] for value in values if value and str(value)[:10]]
+    return max(cleaned, default=None)
+
+
+def _source_health_from_artifacts(intelligence: dict, checked_at: str) -> list[SourceHealth]:
+    rows: list[SourceHealth] = []
+    signals = intelligence.get("signals", [])
+    pubmed_dates = [item.get("date", "") for item in signals if "pubmed" in str(item.get("sourceName", "")).lower()]
+    sec_dates = [item.get("date", "") for item in signals if "sec" in str(item.get("sourceName", "")).lower()]
+    pubmed_item_health = [
+        item.get("itemEvidence", {})
+        for group in ("themes", "competitors")
+        for item in intelligence.get("trends", {}).get(group, [])
+        if item.get("itemEvidence")
+    ]
+    pubmed_source_newest = _latest([item.get("newestDate") or item.get("newestSampledDate") or "" for item in pubmed_item_health])
+    pubmed_newest_present = all(
+        item.get("newestPmidIngested", item.get("newestSampledPmidIngested", False))
+        for item in pubmed_item_health
+    ) if pubmed_item_health else False
+    for source_id, url, dates, method in (
+        ("pubmed-eutils", "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/", pubmed_dates, "official_api_aggregate_counts_plus_newest_item"),
+        (
+            "sec-edgar-submissions",
+            "https://www.sec.gov/search-filings/edgar-application-programming-interfaces",
+            sec_dates,
+            "official_api_all_in_window_filings",
+        ),
+    ):
+        newest = _latest(dates)
+        source_newest = pubmed_source_newest if source_id == "pubmed-eutils" else newest
+        newest_present = pubmed_newest_present if source_id == "pubmed-eutils" else bool(newest)
+        is_pubmed = source_id == "pubmed-eutils"
+        rows.append(SourceHealth(
+            sourceId=source_id, url=url, required=True, collectionMethod=method,
+            collectionOutcome="collected" if newest else "checked_empty", attemptedAt=checked_at,
+            succeededAt=checked_at, engineNewestDate=newest, sourceNewestDate=source_newest,
+            newestItemPresent=newest_present,
+            recordsSeen=len(dates), recordsIngested=len(dates),
+            completeness="partial" if is_pubmed else "complete", coverage="complete",
+            reason=(
+                "Aggregate PubMed counts cover every configured horizon; stored item-level evidence is an explicitly labeled representative sample that includes the newest PMID for each theme query."
+                if source_id == "pubmed-eutils" else "Every qualifying in-window SEC filing was collected and deduplicated by accession number."
+            ),
+        ))
+
+    journal_data = read_json(DATA_DIR / "journal_sources.json", {"sources": []})
+    for source in journal_data.get("sources", []):
+        if source.get("collectorType") != "crossref-journal":
+            continue
+        records = source.get("recentRecords", [])
+        newest = _latest([item.get("date", "") for item in records])
+        item_evidence = source.get("itemEvidence", {})
+        extracted = source.get("collectionStatus") == "extracted"
+        rows.append(SourceHealth(
+            sourceId=str(source.get("id")), url=str(source.get("metadataEndpoint") or source.get("homepage") or ""),
+            required=True, collectionMethod="crossref_cursor_pagination",
+            collectionOutcome="collected" if extracted and records else "error" if not extracted else "checked_empty",
+            attemptedAt=str(source.get("lastChecked") or checked_at), succeededAt=str(source.get("lastChecked") or checked_at) if extracted else None,
+            engineNewestDate=newest, sourceNewestDate=item_evidence.get("sourceNewestDate") or newest,
+            newestItemPresent=bool(item_evidence.get("newestDoiIngested")),
+            recordsSeen=int(item_evidence.get("sourceResultCount") or len(records)), recordsIngested=len(records),
+            completeness="complete" if "complete" in str(source.get("collectionDetail", "")).lower() else "partial",
+            coverage="complete" if "complete" in str(source.get("collectionDetail", "")).lower() else "partial",
+            reason=str(source.get("collectionDetail") or "Crossref collection status unavailable."),
+        ))
+
+    for source in journal_data.get("sources", []):
+        if source.get("collectorType") != "public-content-feed":
+            continue
+        records = source.get("recentRecords", [])
+        newest = _latest([item.get("date", "") for item in records])
+        item_evidence = source.get("itemEvidence", {})
+        status = str(source.get("collectionStatus") or "")
+        rows.append(SourceHealth(
+            sourceId=str(source.get("id")), url=str(source.get("homepage") or ""), required=False,
+            collectionMethod="publisher_public_metadata",
+            collectionOutcome="collected" if status == "extracted" and records else "partial" if records else "error",
+            attemptedAt=str(source.get("lastChecked") or checked_at),
+            succeededAt=str(source.get("lastChecked") or checked_at) if records else None,
+            engineNewestDate=newest, sourceNewestDate=item_evidence.get("sourceNewestDate") or newest,
+            newestItemPresent=bool(item_evidence.get("sourceNewestUrl")),
+            recordsSeen=int(item_evidence.get("sourceResultCount") or len(records)), recordsIngested=len(records),
+            completeness="partial", coverage="partial",
+            reason=str(source.get("collectionDetail") or "Publisher metadata collection status unavailable."),
+        ))
+
+    customer_data = read_json(DATA_DIR / "customer_voice.json", {"sources": []})
+    customer_ids = {definition for definition in ("chromforum-lc-discussions", "selectscience-lc-reviews", "labwrench-lc-discussions", "reddit-lc-discussions", "fda-regulatory-lab-findings")}
+    for source in customer_data.get("sources", []):
+        if source.get("id") in customer_ids:
+            rows.append(migrate_legacy_source(source, checked_at))
+
+    competitor_data = read_json(COMPETITOR_MONITOR_FILE, {"competitors": {}})
+    for competitor, monitor in competitor_data.get("competitors", {}).items():
+        dated = [item.get("date", "") or item.get("lastmod", "") for key in ("new_products", "updated_products", "new_press_releases", "new_technical_insights") for item in monitor.get(key, [])]
+        newest = _latest(dated)
+        for source in monitor.get("source_status", []):
+            extracted = source.get("extractionStatus") == "extracted"
+            count = int(source.get("extractedRecords") or 0)
+            method = str(source.get("fetchMethod") or "official_public_source")
+            source_id = str(source.get("sourceId") or f"{competitor.lower().replace(' ', '-')}-source")
+            inventory_complete = "sitemap" in method.lower() or "product" in source_id.lower()
+            completeness = "complete" if extracted and inventory_complete else "partial" if extracted else "unverified"
+            rows.append(SourceHealth(
+                sourceId=source_id,
+                url=str(source.get("url") or ""), required=True,
+                collectionMethod=method,
+                collectionOutcome="collected" if extracted and count and inventory_complete else "partial" if extracted else "error",
+                attemptedAt=str(source.get("checkedAt") or checked_at), succeededAt=str(source.get("checkedAt") or checked_at) if extracted else None,
+                engineNewestDate=newest if count else None, sourceNewestDate=newest if count else None,
+                recordsSeen=count, recordsIngested=count, completeness=completeness,
+                coverage="complete" if extracted and inventory_complete else "partial" if extracted else "unverified",
+                reason=(str(source.get("extractionReason") or source.get("status") or "")
+                        + (" Rolling newsroom/feed extraction is not proof of complete history." if extracted and not inventory_complete else "")),
+            ))
+
+    agilent = read_json(AGILENT_MONITOR_FILE, {"source_status": []})
+    agilent_dates = [item.get("date", "") or item.get("lastmod", "") for key in ("new_products", "updated_products", "new_press_releases") for item in agilent.get(key, [])]
+    agilent_newest = _latest(agilent_dates)
+    for index, source in enumerate(agilent.get("source_status", [])):
+        available = source.get("status") == "available"
+        unavailable_reason = str(source.get("reliabilityNote") or source.get("status") or "")
+        blocked = not available and any(token in unavailable_reason.lower() for token in ("403", "blocked", "denied", "robots"))
+        rows.append(SourceHealth(
+            sourceId=str(source.get("sourceId") or f"agilent-official-{index + 1}"), url=str(source.get("url") or ""), required=True,
+            collectionMethod=str(source.get("fetchMethod") or "official_public_source"),
+            collectionOutcome="partial" if available else "blocked_by_policy" if blocked else "error", attemptedAt=str(source.get("checkedAt") or checked_at),
+            succeededAt=str(source.get("checkedAt") or checked_at) if available else None,
+            engineNewestDate=agilent_newest, sourceNewestDate=agilent_newest,
+            recordsSeen=0, recordsIngested=0, completeness="partial" if available else "unverified",
+            coverage="partial" if available else "unverified",
+            reason=(unavailable_reason
+                    + (" Endpoint availability alone does not prove record-level completeness." if available else "")),
+        ))
+
+    perkin = read_json(PERKINELMER_MONITOR_FILE, {"sourceStatus": []})
+    for source in perkin.get("sourceStatus", []):
+        rows.append(SourceHealth(
+            sourceId=str(source.get("sourceId")), url=str(source.get("url") or ""), required=bool(source.get("required", True)),
+            collectionMethod=str(source.get("method") or "official_public_source"), collectionOutcome=str(source.get("collectionOutcome") or "error"),
+            attemptedAt=str(source.get("attemptedAt") or checked_at), succeededAt=source.get("succeededAt"),
+            engineNewestDate=source.get("engineNewestDate"), sourceNewestDate=source.get("sourceNewestDate"),
+            recordsSeen=int(source.get("recordsSeen") or 0), recordsIngested=int(source.get("recordsIngested") or 0),
+            completeness=str(source.get("completeness") or "unverified"), coverage=str(source.get("coverage") or "unverified"),
+            reason="Official PerkinElmer sitemap/newsroom collection.",
+        ))
+
+    # Mapped-only sources are visible in the ledger but never masquerade as
+    # collected evidence. They are optional until a legal record-level adapter exists.
+    for source in journal_data.get("sources", []):
+        if source.get("collectorType") in {"crossref-journal", "public-content-feed"}:
+            continue
+        rows.append(SourceHealth(
+            sourceId=f"mapped-{source.get('id')}", url=str(source.get("homepage") or ""), required=False,
+            collectionMethod="not_implemented", collectionOutcome="blocked_by_policy",
+            attemptedAt=checked_at, completeness="unverified", coverage="unverified",
+            reason="Source is mapped for monitoring but has no approved record-level collector.",
+        ))
+
+    source_catalog = read_json(DATA_DIR / "source_catalog.json", {"sources": []})
+    for source in source_catalog.get("sources", []):
+        source_class = str(source.get("sourceClass") or source.get("group") or "")
+        if source_class not in {"Conference/poster", "Regulatory/pharmacopeial"}:
+            continue
+        extracted = int(source.get("extractedRecords") or 0)
+        endpoint_reachable = bool(source.get("endpointReachable")) or int(source.get("endpointReachabilityCount") or 0) > 0
+        extraction_status = str(source.get("extractionStatus") or "")
+        if extracted > 0 and extraction_status == "extracted":
+            outcome, completeness = "collected", "complete"
+        elif endpoint_reachable or extraction_status == "partial":
+            outcome, completeness = "partial", "partial"
+        else:
+            outcome, completeness = "unreachable", "unverified"
+        rows.append(SourceHealth(
+            sourceId=str(source.get("id")), url=str(source.get("url") or ""), required=True,
+            collectionMethod=str(source.get("fetchMethod") or "official_public_source"),
+            collectionOutcome=outcome, attemptedAt=str(source.get("lastExtractionCheck") or checked_at),
+            succeededAt=str(source.get("lastExtractionCheck") or checked_at) if endpoint_reachable or extracted else None,
+            recordsSeen=extracted, recordsIngested=extracted, completeness=completeness,
+            coverage="complete" if extracted else "partial" if endpoint_reachable else "unverified",
+            reason=str(source.get("extractionReason") or source.get("issue") or "No record-level content was verified."),
+        ))
+    return rows
+
+
+def write_status(status: str, started_at: str, message: str, last_success: str | None, ledger: dict | None = None) -> None:
     finished_at = utc_now()
     value = {
         "cadence": "daily",
@@ -414,6 +757,13 @@ def write_status(status: str, started_at: str, message: str, last_success: str |
         "automatedDomains": AUTOMATED_DOMAINS,
         "curatedDomains": CURATED_DOMAINS,
         "message": message,
+        "buildPublishedAt": finished_at,
+        "sourcesVerifiedAt": (ledger or {}).get("sourcesVerifiedAt"),
+        "allRequiredSourcesCurrent": (ledger or {}).get("allRequiredSourcesCurrent", False),
+        "requiredSourceBlockers": (ledger or {}).get("requiredSourceBlockers", []),
+        "countsByState": (ledger or {}).get("countsByState", {}),
+        "sourceStateCounts": (ledger or {}).get("countsByState", {}),
+        "reloadSemantics": "The browser checks hourly for a newly published dataset. Source systems are fetched only by the scheduled refresh pipeline.",
     }
     write_json(STATUS_FILE, value)
 
@@ -428,38 +778,64 @@ def main() -> int:
         subprocess.run([sys.executable, str(SCIENTIFIC_SOURCE_COLLECTOR)], cwd=ROOT, check=True)
         subprocess.run([sys.executable, str(CUSTOMER_VOICE_COLLECTOR)], cwd=ROOT, check=True)
         subprocess.run([sys.executable, str(COLLECTOR)], cwd=ROOT, check=True)
-        subprocess.run([sys.executable, str(AGILENT_COLLECTOR)], cwd=ROOT, check=False)
+        subprocess.run([sys.executable, str(PERKINELMER_COLLECTOR)], cwd=ROOT, check=True)
+        subprocess.run([sys.executable, str(AGILENT_COLLECTOR)], cwd=ROOT, check=True)
         subprocess.run([sys.executable, str(COMPETITOR_COLLECTOR)], cwd=ROOT, check=True)
+        subprocess.run([sys.executable, str(APPLICATION_NOTE_COLLECTOR)], cwd=ROOT, check=True)
         refreshed = read_json(INTELLIGENCE_FILE)
         agilent_monitor = read_json(AGILENT_MONITOR_FILE)
         competitor_monitor = read_json(COMPETITOR_MONITOR_FILE)
+        perkinelmer_monitor = read_json(PERKINELMER_MONITOR_FILE)
         validate_agilent_monitor(agilent_monitor)
         validate_competitor_monitor(competitor_monitor)
+        validate_perkinelmer_monitor(perkinelmer_monitor)
         subprocess.run(["node", str(THERMO_MONITOR_VALIDATOR)], cwd=ROOT, check=True)
         subprocess.run(["node", str(SCIENTIFIC_SOURCE_VALIDATOR)], cwd=ROOT, check=True)
         merge_agilent_changes(refreshed, agilent_monitor)
         merge_competitor_changes(refreshed, competitor_monitor)
+        merge_perkinelmer_changes(refreshed, perkinelmer_monitor)
+        refreshed["signals"] = reclassify_strategic_releases(
+            dedupe_official_releases(refreshed.get("signals", []))
+        )
         write_json(INTELLIGENCE_FILE, refreshed)
         subprocess.run([sys.executable, str(RECOMMENDATION_CURATOR)], cwd=ROOT, check=True)
         subprocess.run([sys.executable, str(SCORER)], cwd=ROOT, check=True)
+        subprocess.run([sys.executable, str(LINK_CHECKER)], cwd=ROOT, check=True)
+        subprocess.run([sys.executable, str(PROVENANCE_REMEDIATOR)], cwd=ROOT, check=True)
         refreshed = read_json(INTELLIGENCE_FILE)
         validate_intelligence(refreshed)
-        subprocess.run([sys.executable, str(LINK_CHECKER)], cwd=ROOT, check=True)
         subprocess.run(["node", str(CUSTOMER_VOICE_VALIDATOR)], cwd=ROOT, check=True)
+        subprocess.run(["node", str(APPLICATION_NOTE_VALIDATOR)], cwd=ROOT, check=True)
         subprocess.run(["node", str(PRODUCT_LAUNCH_VALIDATOR)], cwd=ROOT, check=True)
+        subprocess.run([sys.executable, str(PRESS_RELEASE_COMPLETENESS_VALIDATOR)], cwd=ROOT, check=True)
+        subprocess.run(["node", str(HISTORICAL_COMPETITOR_VALIDATOR)], cwd=ROOT, check=True)
+        subprocess.run(["node", str(HISTORICAL_WATERS_VALIDATOR)], cwd=ROOT, check=True)
+        subprocess.run(["node", str(PPTX_BUILDER)], cwd=ROOT, check=True)
+        ledger = write_ledger(SOURCE_HEALTH_FILE, _source_health_from_artifacts(refreshed, utc_now()), build_published_at=utc_now())
+        subprocess.run([sys.executable, str(INTEGRITY_ARTIFACT_BUILDER)], cwd=ROOT, check=True)
         refresh_state = refreshed.get("refresh", {})
         domain_result = ", ".join(
             f"{label}: {refresh_state.get(key, 'unknown')}"
             for key, label in (("pubmed", "PubMed"), ("sec", "SEC"), ("sourceHealth", "source checks"))
         )
+        refresh_status = "success" if ledger["allRequiredSourcesCurrent"] else "partial"
         write_status(
-            "success",
+            refresh_status,
             started_at,
-            f"Automated refresh completed ({domain_result}, Agilent: {refresh_state.get('agilent', 'unknown')}); curated PM intelligence was preserved.",
+            f"Automated refresh completed ({domain_result}, Agilent: {refresh_state.get('agilent', 'unknown')}); "
+            + ("all required sources verified." if ledger["allRequiredSourcesCurrent"] else f"publication is partial; required-source blockers: {', '.join(ledger['requiredSourceBlockers'])}."),
             previous_success,
+            ledger,
         )
         sync_deploy_data()
-        print("Daily refresh completed and deploy-site data was synchronized.")
+        if not ledger["allRequiredSourcesCurrent"]:
+            # Publish the independently validated domains instead of withholding
+            # fresh official competitor records because an unrelated source is
+            # temporarily blocked.  The status artifact remains PARTIAL and names
+            # every blocker, so no stale domain is presented as current.
+            print("Daily refresh completed as PARTIAL; verified domains were synchronized and blockers remain explicit.")
+            return 0
+        print("Daily refresh completed, all required sources verified, and deploy-site data was synchronized.")
         return 0
     except Exception as error:  # Keep the last validated dataset available.
         if backup is not None:

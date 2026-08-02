@@ -72,7 +72,7 @@
     },
     {
       "id": "shimadzu-nexera-cl-lcms-2025",
-      "date": "2025-11-12",
+      "date": "2025-10-03",
       "competitor": "Shimadzu",
       "product": "Nexera CL LCMS System",
       "technology": "LC-MS",
@@ -84,7 +84,12 @@
       "pressReleaseUrl": "https://www.shimadzu.com/news/2025/w40jo6pvrivu5s7v.html",
       "confidence": 86,
       "pmImplication": "Shimadzu is adapting Nexera LC-MS into clinical applications and emphasizing biological-sample workflows, optional detectors, maintainability, and high sample counts.",
-      "roadmapQuestion": "Where should Waters defend LC-MS clinical and bioanalysis workflows with maintenance, uptime, and method-continuity proof?"
+      "roadmapQuestion": "Where should Waters defend LC-MS clinical and bioanalysis workflows with maintenance, uptime, and method-continuity proof?",
+      "launchDate": "2025-10-03",
+      "publicationDate": "2025-11-12",
+      "sourceDate": "2025-11-12",
+      "sourceDateType": "publication",
+      "dateCaveat": "Official news page published Nov 12, 2025; body states Japan launch on Oct 3, 2025."
     },
     {
       "id": "shimadzu-labsolutions-detect-2025",
@@ -270,5 +275,6 @@
       "pmImplication": "Agilent is still investing in LC module refreshes. PM should track how detector-module updates change full LC stack competitiveness.",
       "roadmapQuestion": "Do Waters detector and module roadmap messages keep pace with Agilent's Infinity III evolution?"
     }
-  ]
+  ],
+  "schemaVersion": 2
 }

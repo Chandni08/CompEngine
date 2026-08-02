@@ -4,8 +4,21 @@ const publicationState = {
   selectedTopic: "",
   sourcePage: 1,
   sourcePageSize: 6,
+  recordPage: 1,
+  recordPageSize: 12,
   filters: { sourceClass: "All", market: "All", topic: "All", period: "90" },
 };
+
+const MAIN_DASHBOARD_MARKETS = [
+  "Pharma",
+  "Biopharma",
+  "CDMO",
+  "Clinical",
+  "Academic",
+  "Government",
+  "Environmental",
+  "Food & Beverage",
+];
 
 const TOPIC_RULES = [
   ["LC, columns, and separation", /\b(?:liquid chromatography|hplc|uplc|uhplc|chromatograph|separation|column|stationary phase|retention)\b/i],
@@ -63,31 +76,43 @@ const APPLICATION_STREAM_RULES = [
 const ANALYTICAL_WORKFLOW_RULES = [
   {
     name: "Targeted LC-MS/MS quantitation and regulated assay validation",
+    dashboardLabel: "Validation-ready LC-MS/MS workflows",
+    pmPriority: "Prioritize assay robustness, method transfer, and validation support.",
     pattern: /\b(?:lc[-– ]?ms\/ms|tandem mass|quantif|quantitation|validated?|validation|assay|therapeutic monitoring|quality control|impurit)\b/i,
     context: "Multi-analyte panels, low-volume biological matrices, impurity assays, and formal validation are keeping precision, carryover, calibration range, and transferability central.",
   },
   {
     name: "HRMS identification, non-target screening, and structural elucidation",
+    dashboardLabel: "HRMS identification and unknown screening",
+    pmPriority: "Simplify confident unknown identification and expert review.",
     pattern: /\b(?:hrms|high.resolution|q[-– ]?tof|orbitrap|non.?target|nontarget|structur|identification|unknown|accurate mass)\b/i,
     context: "Non-target contaminant discovery, metabolite and impurity identification, accurate-mass confirmation, and lipid structural assignment are recurring HRMS use cases.",
   },
   {
     name: "Spatial, single-cell, and ambient MS imaging",
+    dashboardLabel: "Spatial and single-cell MS",
+    pmPriority: "Track specialized acquisition and analysis needs for spatial workflows.",
     pattern: /\b(?:imaging|single.cell|maldi msi|maldesi|ambient mass|desorption electrospray|spatial)\b/i,
     context: "MALDI/MSI, ambient ionization, and single-cell measurements are extending molecular coverage into spatial phenotyping and tissue-level discovery.",
   },
   {
     name: "Sample preparation, extraction, and matrix control",
+    dashboardLabel: "Sample preparation and matrix control",
+    pmPriority: "Address recovery, cleanup, and matrix-effect pain points.",
     pattern: /\b(?:sample preparation|extraction|spe\b|microextraction|derivati|matrix|cleanup|clean-up|hydrolysis|pre.?analytical)\b/i,
     context: "SPE, microextraction, derivatization, hydrolysis, and matrix-reference work show that upstream sample handling remains a major determinant of method sensitivity and robustness.",
   },
   {
     name: "Isomer, chiral, and stationary-phase selectivity",
+    dashboardLabel: "Difficult-separation selectivity",
+    pmPriority: "Differentiate through selectivity, columns, and application methods.",
     pattern: /\b(?:isomer|chiral|enantio|stationary phase|selectivity|retention|mixed.mode|hilic|reversed.phase|sfc|supercritical fluid)\b/i,
     context: "Chiral and isomer-resolved assays, mixed-mode and HILIC selectivity, and new bonded phases are targeting separations that generic pressure and flow specifications cannot explain.",
   },
   {
     name: "Omics profiling and biomarker discovery",
+    dashboardLabel: "Omics and biomarker discovery",
+    pmPriority: "Improve reproducible discovery-to-validation handoffs.",
     pattern: /\b(?:proteom|metabolom|lipidom|glycom|multi.omics|omics\b|biomarker)\b/i,
     context: "Proteomic, metabolomic, lipidomic, and glycomic studies emphasize coverage depth, normalization, data integration, and reproducible discovery-to-validation handoffs.",
   },
@@ -145,13 +170,21 @@ function rankedScienceStreams(records, rules, kind) {
     .sort((a, b) => b.count - a.count || b.journals.size - a.journals.size);
 }
 
+function sourceTrend(source) {
+  return source.publicationTrend || source.contentTrend || {};
+}
+
+function journalsOnly(sources) {
+  return sources.length > 0 && sources.every((source) => source.sourceClass === "Peer-reviewed journal");
+}
+
 function currentCount(source) {
-  const trend = source.publicationTrend || {};
+  const trend = sourceTrend(source);
   return publicationState.filters.period === "30" ? trend.last30Days : trend.last90Days;
 }
 
 function priorCount(source) {
-  const trend = source.publicationTrend || {};
+  const trend = sourceTrend(source);
   return publicationState.filters.period === "30" ? trend.prior30Days : trend.prior90Days;
 }
 
@@ -179,6 +212,16 @@ function populateSelect(id, values) {
   });
 }
 
+function populateMarketSelect() {
+  const select = byId("publicationMarketFilter");
+  MAIN_DASHBOARD_MARKETS.forEach((value) => {
+    const option = document.createElement("option");
+    option.value = value;
+    option.textContent = value;
+    select.append(option);
+  });
+}
+
 function formatDate(value) {
   if (!value) return "Date unavailable";
   return new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", year: "numeric" })
@@ -187,19 +230,21 @@ function formatDate(value) {
 
 function renderStats(sources) {
   const recordBacked = sources.filter((source) => Number.isFinite(currentCount(source)));
+  const journalView = journalsOnly(sources);
   const periodTotal = recordBacked.reduce((sum, source) => sum + currentCount(source), 0);
   const topSource = recordBacked[0];
-  const topicCounts = recordBacked.flatMap((source) => source.recentRecords || []).reduce((counts, record) => {
-    const topic = topicForTitle(record.title);
-    counts[topic] = (counts[topic] || 0) + 1;
-    return counts;
-  }, {});
-  const topTopic = Object.entries(topicCounts).sort((a, b) => b[1] - a[1])[0]?.[0] || "No dated records";
+  const exactRecords = recordBacked
+    .flatMap((source) => (source.recentRecords || []).map((record) => ({ ...record, journal: source.name })))
+    .filter((record) => publicationState.filters.topic === "All" || topicForTitle(record.title) === publicationState.filters.topic);
+  const leadingWorkflow = rankedScienceStreams(exactRecords, ANALYTICAL_WORKFLOW_RULES, "Product workflow")[0];
+  const leadingWorkflowDetail = leadingWorkflow
+    ? `${leadingWorkflow.count} exact titles across ${leadingWorkflow.journals.size} ${journalView ? `journal${leadingWorkflow.journals.size === 1 ? "" : "s"}` : `source${leadingWorkflow.journals.size === 1 ? "" : "s"}`} · ${leadingWorkflow.pmPriority}`
+    : "Broaden the filters to surface a recurring product workflow.";
   byId("publicationStats").innerHTML = `
     <article><span>Sources in view</span><strong>${sources.length}</strong><p>${recordBacked.length} with dated article streams</p><a class="publication-stat-link" href="#publicationSourceList" aria-label="View ${sources.length} publication sources">View ${sources.length} sources →</a></article>
-    <article><span>Publications in period</span><strong>${periodTotal.toLocaleString()}</strong><p>Crossref records across selected journals</p></article>
-    <article><span>Highest output</span><strong>${escapeHtml(topSource?.name || "—")}</strong><p>${topSource ? `${currentCount(topSource).toLocaleString()} publications` : "No dated stream"}</p></article>
-    <article><span>Leading recent topic</span><strong>${escapeHtml(topTopic)}</strong><p>Based on the latest exact article titles</p></article>
+    <article><span>${journalView ? "Publications in period" : "Records in period"}</span><strong>${periodTotal.toLocaleString()}</strong><p>${journalView ? "Crossref records across selected journals" : "Dated public records across selected sources"}</p></article>
+    <article><span>${journalView ? "Highest output" : "Most active source"}</span><strong>${escapeHtml(topSource?.name || "—")}</strong><p>${topSource ? `${currentCount(topSource).toLocaleString()} ${journalView ? "publications" : "records"}` : "No dated stream"}</p></article>
+    <article class="publication-pm-signal"><span>Top PM workflow</span><strong>${escapeHtml(leadingWorkflow?.dashboardLabel || "No workflow signal")}</strong><p>${escapeHtml(leadingWorkflowDetail)}</p></article>
   `;
 }
 
@@ -226,21 +271,22 @@ function recordsFromLastDays(sources, days) {
 function renderFreshHighlights(sources) {
   const panel = byId("publicationFreshHighlights");
   const { records, fromDate, throughDate } = recordsFromLastDays(sources, 15);
-  const journalCount = new Set(records.map((record) => record.journal)).size;
+  const sourceCount = new Set(records.map((record) => record.journal)).size;
+  const journalView = journalsOnly(sources);
   const streams = [
     ...rankedScienceStreams(records, APPLICATION_STREAM_RULES, "Application stream"),
     ...rankedScienceStreams(records, ANALYTICAL_WORKFLOW_RULES, "Analytical workflow"),
   ].sort((a, b) => b.count - a.count || b.journals.size - a.journals.size).slice(0, 3);
 
   if (!records.length || !streams.length) {
-    panel.innerHTML = `<div class="conference-no-results"><strong>No dated publication highlights surfaced in the last 15 days.</strong><p>Broaden the active filters to review the complete recent publication set.</p></div>`;
+    panel.innerHTML = `<div class="conference-no-results"><strong>No dated ${journalView ? "publication" : "source"} highlights surfaced in the last 15 days.</strong><p>Broaden the active filters to review the complete recent record set.</p></div>`;
     return;
   }
 
   panel.innerHTML = `
     <div class="conference-section-header publication-fresh-heading">
-      <div><span>Last 15 days</span><h2 id="publicationFreshHighlightsHeading">New Publication Highlights</h2></div>
-      <p>${records.length} exact titles · ${journalCount} journal${journalCount === 1 ? "" : "s"} · ${formatDate(fromDate)}–${formatDate(throughDate)}</p>
+      <div><span>Last 15 days</span><h2 id="publicationFreshHighlightsHeading">New ${journalView ? "Publication" : "Source"} Highlights</h2></div>
+      <p>${records.length} exact titles · ${sourceCount} ${journalView ? `journal${sourceCount === 1 ? "" : "s"}` : `source${sourceCount === 1 ? "" : "s"}`} · ${formatDate(fromDate)}–${formatDate(throughDate)}</p>
     </div>
     <div class="publication-fresh-grid">
       ${streams.map((stream) => {
@@ -250,7 +296,7 @@ function renderFreshHighlights(sources) {
             <div><span>${escapeHtml(stream.kind)}</span><strong>${stream.count} new title${stream.count === 1 ? "" : "s"}</strong></div>
             <h3>${escapeHtml(stream.name)}</h3>
             <p>${escapeHtml(stream.context)}</p>
-            <small>Surfaced across ${stream.journals.size} journal${stream.journals.size === 1 ? "" : "s"}</small>
+            <small>Surfaced across ${stream.journals.size} ${journalView ? `journal${stream.journals.size === 1 ? "" : "s"}` : `source${stream.journals.size === 1 ? "" : "s"}`}</small>
             <ul>
               ${matches.slice(0, 2).map((record) => `<li><a href="${escapeHtml(record.sourceUrl)}" target="_blank" rel="noreferrer">${escapeHtml(cleanTitle(record.title))} ↗</a><small>${escapeHtml(record.journal)} · ${formatDate(record.date)}</small></li>`).join("")}
             </ul>
@@ -262,8 +308,9 @@ function renderFreshHighlights(sources) {
 }
 
 function renderOverallTopicAnalysis(sources) {
-  const journals = sources.filter((source) => source.recentRecords?.length);
-  const exactRecords = journals.flatMap((source) => (source.recentRecords || []).map((record) => ({
+  const recordSources = sources.filter((source) => source.recentRecords?.length);
+  const journalView = journalsOnly(sources);
+  const exactRecords = recordSources.flatMap((source) => (source.recentRecords || []).map((record) => ({
     ...record,
     journal: source.name,
     topic: topicForTitle(record.title),
@@ -280,52 +327,48 @@ function renderOverallTopicAnalysis(sources) {
     return result;
   }, new Map());
   const rankedTopics = [...topicMap.values()].sort((a, b) => b.count - a.count || b.journals.size - a.journals.size);
-  const dominant = rankedTopics[0];
   const applicationStreams = rankedScienceStreams(filteredRecords, APPLICATION_STREAM_RULES, "Application stream");
   const workflowStreams = rankedScienceStreams(filteredRecords, ANALYTICAL_WORKFLOW_RULES, "Analytical workflow");
-  const leadingApplication = applicationStreams[0];
-  const leadingWorkflow = workflowStreams[0];
-  const secondaryWorkflow = workflowStreams[1] || applicationStreams[1];
-  const detailedStreams = [...applicationStreams, ...workflowStreams]
-    .sort((a, b) => b.count - a.count || b.journals.size - a.journals.size)
-    .slice(0, 6);
-  if (!detailedStreams.length) {
-    detailedStreams.push(...rankedTopics.slice(0, 6).map((entry) => ({
-      ...entry,
+  const rankedStreams = [...applicationStreams, ...workflowStreams]
+    .sort((a, b) => b.count - a.count || b.journals.size - a.journals.size || a.name.localeCompare(b.name));
+  if (!rankedStreams.length) {
+    rankedStreams.push(...rankedTopics.map((entry) => ({
       kind: "Technical theme",
       name: entry.topic,
       context: TOPIC_PM_CONTEXT[entry.topic] || "No detailed application stream was identified for this filtered title set.",
+      count: entry.count,
+      journals: new Set(entry.journals.keys()),
     })));
   }
+  const summaryStreams = rankedStreams.slice(0, 3);
+  const detailedStreams = rankedStreams.slice(3, 9);
   const panel = byId("publicationOverallAnalysis");
 
-  if (!journals.length || !classifiedRecords.length) {
-    panel.innerHTML = `<div class="conference-no-results"><strong>No classified publication topics match these filters.</strong><p>Reset or broaden the filters to restore the cross-journal analysis.</p></div>`;
+  if (!recordSources.length || !classifiedRecords.length) {
+    panel.innerHTML = `<div class="conference-no-results"><strong>No classified publication topics match these filters.</strong><p>Reset or broaden the filters to restore the cross-${journalView ? "journal" : "source"} analysis.</p></div>`;
     return;
   }
 
   panel.innerHTML = `
     <div class="conference-section-header publication-overall-heading">
-      <div><span>Cross-journal analysis</span><h2 id="publicationOverallHeading">Overall Topic Trends Across Publications</h2></div>
-      <p>${classifiedRecords.length} classified exact titles · ${journals.length} journals</p>
+      <div><span>Cross-${journalView ? "journal" : "source"} analysis</span><h2 id="publicationOverallHeading">Overall Topic Trends Across ${journalView ? "Publications" : "Source Records"}</h2></div>
+      <p>${classifiedRecords.length} classified exact titles · ${recordSources.length} ${journalView ? `journal${recordSources.length === 1 ? "" : "s"}` : `source${recordSources.length === 1 ? "" : "s"}`}</p>
     </div>
-    <div class="publication-overall-summary">
-      <article><span>Leading application stream</span><strong>${escapeHtml(leadingApplication?.name || dominant.topic)}</strong><p>${escapeHtml(leadingApplication?.context || TOPIC_PM_CONTEXT[dominant.topic])} ${leadingApplication ? `${leadingApplication.count} exact titles across ${leadingApplication.journals.size} journals.` : ""}</p></article>
-      <article><span>Dominant analytical workflow</span><strong>${escapeHtml(leadingWorkflow?.name || dominant.topic)}</strong><p>${escapeHtml(leadingWorkflow?.context || TOPIC_PM_CONTEXT[dominant.topic])} ${leadingWorkflow ? `${leadingWorkflow.count} exact titles across ${leadingWorkflow.journals.size} journals.` : ""}</p></article>
-      <article><span>Second major science stream</span><strong>${escapeHtml(secondaryWorkflow?.name || "No secondary stream identified")}</strong><p>${escapeHtml(secondaryWorkflow?.context || "The selected publication set does not contain a second recurring detailed science stream.")} ${secondaryWorkflow ? `${secondaryWorkflow.count} exact titles across ${secondaryWorkflow.journals.size} journals.` : ""}</p></article>
-    </div>
-    <div class="publication-overall-topics">
+    ${summaryStreams.length ? `<div class="publication-overall-summary publication-overall-summary-${Math.min(summaryStreams.length, 3)}">
+      ${summaryStreams.map((stream, index) => `<article><span>Overall rank #${index + 1} · ${escapeHtml(stream.kind)}</span><strong>${escapeHtml(stream.name)}</strong><p>${escapeHtml(stream.context)} ${stream.count} exact titles across ${stream.journals.size} ${journalView ? "journals" : "sources"}.</p></article>`).join("")}
+    </div>` : ""}
+    ${detailedStreams.length ? `<div class="publication-overall-topics">
       ${detailedStreams.map((entry, index) => {
         return `
           <article>
-            <div><span>#${index + 1} ${escapeHtml(entry.kind.toLowerCase())}</span><strong>${entry.count} exact titles</strong></div>
+            <div><span>Overall rank #${summaryStreams.length + index + 1} · ${escapeHtml(entry.kind)}</span><strong>${entry.count} exact titles</strong></div>
             <h3>${escapeHtml(entry.name)}</h3>
             <p>${escapeHtml(entry.context)}</p>
-            <small>Present across ${entry.journals.size} of ${journals.length} journals</small>
+            <small>Present across ${entry.journals.size} of ${recordSources.length} ${journalView ? "journals" : "sources"}</small>
           </article>
         `;
       }).join("")}
-    </div>
+    </div>` : ""}
   `;
 }
 
@@ -362,7 +405,12 @@ function topicSummary(records) {
     result[topic] = (result[topic] || 0) + 1;
     return result;
   }, {});
-  return Object.entries(counts).sort((a, b) => b[1] - a[1]);
+  return Object.entries(counts).sort((a, b) => {
+    const aIsCatchAll = a[0] === "Other analytical science";
+    const bIsCatchAll = b[0] === "Other analytical science";
+    if (aIsCatchAll !== bIsCatchAll) return aIsCatchAll ? 1 : -1;
+    return b[1] - a[1] || a[0].localeCompare(b[0]);
+  });
 }
 
 const COMPETITOR_TITLE_PATTERNS = [
@@ -383,15 +431,24 @@ function competitorTitleMentions(records) {
 }
 
 function renderJournalDetail(source) {
+  const journalSource = source.sourceClass === "Peer-reviewed journal";
   const topics = topicSummary(source.recentRecords || []);
   const topicMax = Math.max(1, ...topics.map(([, count]) => count));
   const exactRecords = source.recentRecords || [];
   const selectedTopic = topics.some(([topic]) => topic === publicationState.selectedTopic)
     ? publicationState.selectedTopic
     : "";
-  const records = (selectedTopic
+  const matchingRecords = (selectedTopic
     ? exactRecords.filter((record) => topicForTitle(record.title) === selectedTopic)
     : exactRecords.slice(0, 8));
+  const recordPageCount = selectedTopic
+    ? Math.max(1, Math.ceil(matchingRecords.length / publicationState.recordPageSize))
+    : 1;
+  publicationState.recordPage = Math.min(Math.max(1, publicationState.recordPage), recordPageCount);
+  const recordStart = (publicationState.recordPage - 1) * publicationState.recordPageSize;
+  const records = selectedTopic
+    ? matchingRecords.slice(recordStart, recordStart + publicationState.recordPageSize)
+    : matchingRecords;
   const classifiedTopics = topics.filter(([topic]) => topic !== "Other analytical science");
   const leadingTopic = classifiedTopics[0] || ["No classified topic", 0];
   const secondaryTopic = classifiedTopics[1] || ["No secondary topic", 0];
@@ -399,8 +456,8 @@ function renderJournalDetail(source) {
   const competitorMentionCount = competitorMentions.reduce((sum, item) => sum + item.count, 0);
   return `
     <header class="publication-detail-header">
-      <div><span>Selected journal</span><h2>${escapeHtml(source.name)}</h2><p>${escapeHtml(source.publisher || "Journal publisher")} · ISSN ${escapeHtml(source.issn || "not listed")}</p></div>
-      <a href="${escapeHtml(source.homepage)}" target="_blank" rel="noreferrer">Open journal website ↗</a>
+      <div><span>${journalSource ? "Selected journal" : "Selected source"}</span><h2>${escapeHtml(source.name)}</h2><p>${journalSource ? `${escapeHtml(source.publisher || "Journal publisher")} · ISSN ${escapeHtml(source.issn || "not listed")}` : escapeHtml(source.sourceType || "Trade, forum, or learning source")}</p></div>
+      <a href="${escapeHtml(source.homepage)}" target="_blank" rel="noreferrer">Open ${journalSource ? "journal" : "source"} website ↗</a>
     </header>
     <section class="publication-metric-strip publication-content-strip" aria-label="Publication content signals">
       <article><span>Leading content topic</span><strong>${escapeHtml(leadingTopic[0])}</strong><p>${leadingTopic[1]} of ${exactRecords.length} latest exact titles</p></article>
@@ -422,10 +479,19 @@ function renderJournalDetail(source) {
       </article>
     </section>
     <section id="publicationRecordPanel" class="publication-record-panel">
-      <div class="conference-section-header"><div><span>Exact evidence</span><h3>${selectedTopic ? escapeHtml(selectedTopic) : "Latest Publications"}</h3></div><p>${selectedTopic ? `${records.length} matching exact record${records.length === 1 ? "" : "s"} · <a href="#publicationRecordPanel" data-publication-topic="">Show all</a>` : `${source.extractedRecords || records.length} recent DOI records collected`}</p></div>
+      <div class="conference-section-header"><div><span>Exact evidence</span><h3>${selectedTopic ? escapeHtml(selectedTopic) : (journalSource ? "Latest Publications" : "Latest Source Records")}</h3></div><p>${selectedTopic ? `${matchingRecords.length} matching exact record${matchingRecords.length === 1 ? "" : "s"} · <a href="#publicationRecordPanel" data-publication-topic="">Show all</a>` : `${source.extractedRecords || records.length} ${journalSource ? "recent DOI records" : "dated public records"} collected`}</p></div>
       <div class="publication-record-list">
-        ${records.map((record) => `<article><span><small>${formatDate(record.date)}</small><strong>${escapeHtml(cleanTitle(record.title))}</strong><em>${escapeHtml(topicForTitle(record.title))}</em></span><a href="${escapeHtml(record.sourceUrl)}" target="_blank" rel="noreferrer">Open DOI ↗</a></article>`).join("")}
+        ${records.map((record) => `<article><span><small>${formatDate(record.date)}</small><strong>${escapeHtml(cleanTitle(record.title))}</strong><em>${escapeHtml(topicForTitle(record.title))}</em></span><a href="${escapeHtml(record.sourceUrl)}" target="_blank" rel="noreferrer">Open ${journalSource ? "DOI" : "source"} ↗</a></article>`).join("")}
       </div>
+      ${selectedTopic && recordPageCount > 1 ? `
+        <nav class="conference-event-pagination publication-record-pagination" aria-label="Exact evidence pages">
+          <span>Showing ${recordStart + 1}–${Math.min(recordStart + records.length, matchingRecords.length)} of ${matchingRecords.length} · Page ${publicationState.recordPage} of ${recordPageCount}</span>
+          <div>
+            <button type="button" data-publication-record-page="previous" ${publicationState.recordPage === 1 ? "disabled" : ""}>Previous</button>
+            <button type="button" data-publication-record-page="next" ${publicationState.recordPage === recordPageCount ? "disabled" : ""}>Next</button>
+          </div>
+        </nav>
+      ` : ""}
     </section>
   `;
 }
@@ -457,7 +523,7 @@ function renderMappedSourceDetail(source) {
 
 function renderDetail(source) {
   byId("publicationDetail").innerHTML = source
-    ? (source.publicationTrend ? renderJournalDetail(source) : renderMappedSourceDetail(source))
+    ? (source.recentRecords?.length || Object.keys(sourceTrend(source)).length ? renderJournalDetail(source) : renderMappedSourceDetail(source))
     : `<div class="conference-no-results"><strong>No publication matches these filters.</strong><p>Reset or broaden the filters to restore the source list.</p></div>`;
 }
 
@@ -466,6 +532,8 @@ function render() {
   if (!sources.some((source) => source.id === publicationState.selectedSourceId)) {
     publicationState.selectedSourceId = sources[0]?.id || "";
     publicationState.sourcePage = 1;
+    publicationState.selectedTopic = "";
+    publicationState.recordPage = 1;
   }
   renderStats(sources);
   renderFreshHighlights(sources);
@@ -477,6 +545,7 @@ function render() {
 function selectSource(id) {
   publicationState.selectedSourceId = id;
   publicationState.selectedTopic = "";
+  publicationState.recordPage = 1;
   const sources = filteredSources();
   const index = sources.findIndex((source) => source.id === id);
   if (index >= 0) publicationState.sourcePage = Math.floor(index / publicationState.sourcePageSize) + 1;
@@ -494,6 +563,7 @@ function bindEvents() {
     publicationState.filters[key] = event.target.value;
     publicationState.sourcePage = 1;
     publicationState.selectedTopic = "";
+    publicationState.recordPage = 1;
     render();
   }));
   byId("resetPublicationFilters").addEventListener("click", () => {
@@ -504,6 +574,7 @@ function bindEvents() {
     byId("publicationPeriodFilter").value = "90";
     publicationState.sourcePage = 1;
     publicationState.selectedTopic = "";
+    publicationState.recordPage = 1;
     render();
   });
   document.addEventListener("click", (event) => {
@@ -511,6 +582,15 @@ function bindEvents() {
     if (topicLink) {
       event.preventDefault();
       publicationState.selectedTopic = topicLink.dataset.publicationTopic || "";
+      publicationState.recordPage = 1;
+      const source = filteredSources().find((item) => item.id === publicationState.selectedSourceId);
+      renderDetail(source);
+      byId("publicationRecordPanel")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+    const recordPageButton = event.target.closest("[data-publication-record-page]");
+    if (recordPageButton && !recordPageButton.disabled) {
+      publicationState.recordPage += recordPageButton.dataset.publicationRecordPage === "next" ? 1 : -1;
       const source = filteredSources().find((item) => item.id === publicationState.selectedSourceId);
       renderDetail(source);
       byId("publicationRecordPanel")?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -532,9 +612,9 @@ async function init() {
   publicationState.data = await response.json();
   const sources = publicationState.data.sources || [];
   populateSelect("publicationClassFilter", uniqueSorted(sources.map(sourceClass)));
-  populateSelect("publicationMarketFilter", uniqueSorted(sources.flatMap(sourceMarkets)));
+  populateMarketSelect();
   populateSelect("publicationTopicFilter", uniqueSorted(sources.flatMap(sourceTopics)));
-  publicationState.selectedSourceId = sources.find((source) => source.publicationTrend)?.id || sources[0]?.id || "";
+  publicationState.selectedSourceId = sources.find((source) => source.recentRecords?.length)?.id || sources[0]?.id || "";
   bindEvents();
   render();
 }

@@ -1,0 +1,149 @@
+{
+  "adoption": {
+    "planCount": 0,
+    "plans": []
+  },
+  "artifacts": {
+    "copyApprovedDisabled": false,
+    "copyApprovedText": "",
+    "count": 0,
+    "draftCount": 0,
+    "exportCount": 0,
+    "items": [],
+    "openCount": 0,
+    "registryExport": false,
+    "watermarkedCount": 0
+  },
+  "breakReport": {
+    "articles": {
+      "Changed swing attribute": {
+        "heading": "Changed swing attribute Stable",
+        "text": "Changed swing attribute StableSwing attribute unresolved; no change from the comparable market-baseline hypothesis.Both values are hypothesis-model calculations, not measured buyer preference."
+      },
+      "Governing-position conflicts": {
+        "heading": "Governing-position conflicts 0",
+        "text": "Governing-position conflicts 0No contradiction or unsupported deviation was detected by the governing-position rule check."
+      },
+      "Inapplicable proof": {
+        "heading": "Inapplicable proof 0",
+        "text": "Inapplicable proof 0No proof record is currently classified Inapplicable."
+      },
+      "Missing buyer roles": {
+        "heading": "Missing buyer roles 7",
+        "text": "Missing buyer roles 7Bench user / analystMethod developerQC/QA or validation vetoIT / data-integrity vetoLab-manager decision makerProcurement / economic buyerExecutive sponsor — where relevant"
+      },
+      "Missing economic assumptions": {
+        "heading": "Missing economic assumptions 1",
+        "text": "Missing economic assumptions 1No priority-segment EVC model can be created under the active filters."
+      },
+      "Unsupported claims": {
+        "heading": "Unsupported claims 0",
+        "text": "Unsupported claims 0No unsupported claim rows are present."
+      }
+    },
+    "total": 8
+  },
+  "claims": {
+    "comparability": {},
+    "inapplicableEvidence": 0,
+    "readiness": {},
+    "readyRows": 0,
+    "substantiation": {}
+  },
+  "committees": [],
+  "destinations": {
+    "appendixUnique": 1,
+    "claimRows": 0,
+    "claimRowsWithoutApproval": 0,
+    "customerUrlSummary": 0,
+    "decisionCards": 0
+  },
+  "filters": {
+    "application": "Routine QC",
+    "buyer": "All buyer roles",
+    "buying": "Validated-method migration",
+    "competitor": "All",
+    "geography": "All geographies",
+    "horizon": "1 year",
+    "market": "Pharma"
+  },
+  "governing": {
+    "difference": "Differentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone.",
+    "id": "next-gen-lc-governing-position",
+    "parity": "Expected modern LC separation performance, pressure range, usability, connectivity, and serviceability required to enter a contemporary HPLC/UHPLC evaluation.",
+    "status": "Approval stateProposed — not approved ApproverApprover needed Last reviewedReview date unavailable ClassificationAnalyst/rule-based inference grounded in filtered public evidence",
+    "swing": "Swing attribute unresolved — no priority-segment scorecard is available",
+    "targeting": "Proposed — not approved: adapt the governing workflow position for Pharma · Routine QC · Validated-method migration · all geographies · the full buying committee.",
+    "value": "Next Gen LC should help laboratories execute reliable, transferable, compliant analytical workflows—not merely compete on UHPLC hardware specifications."
+  },
+  "highestRiskClaim": "Highest Risk Under Current FiltersNo matching claimNo unrelated claim was substituted.",
+  "marketChoice": {
+    "alternatives": [
+      {
+        "classification": "hypothesis",
+        "name": "Outsource testing",
+        "sourceRefs": 0,
+        "text": "Outsource testingStrategic hypothesis requiring validation Why customers choose itStrategic hypothesis: a buyer may prefer external capacity or specialist execution to purchasing and operating another platform. Segment and buying situationPharma is the active evidence filter, not validated demand evidenceCapacity constraint, specialist-method need, or capital-avoidance decision — validation required Primary objection to switchingPrimary objection to switching is unresolved — direct customer or win/loss evidence is required. Waters responseDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone. Proposed — not approved. Approval not established. Required proofWin/loss coding for outsource-versus-buy decisions, buyer interviews, decision criteria, and comparable cost/risk evidence. Evidence confidenceConfidence unresolved — validation required No direct customer-choice or win/loss evidence was located; this alternative is not a statement of prevalence. Exact customer or win/loss evidence unavailable."
+      },
+      {
+        "classification": "hypothesis",
+        "name": "Use a CRO/CDMO",
+        "sourceRefs": 0,
+        "text": "Use a CRO/CDMOStrategic hypothesis requiring validation Why customers choose itStrategic hypothesis: a sponsor may transfer analytical execution to an external development or manufacturing partner. Segment and buying situationPharma is the active evidence filter, not validated demand evidenceDevelopment, method transfer, scale-up, or regulated execution requiring external capability — validation required Primary objection to switchingPrimary objection to switching is unresolved — direct customer or win/loss evidence is required. Waters responseDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone. Proposed — not approved. Approval not established. Required proofDirect sponsor and CRO/CDMO interviews, outsource-versus-insource win/loss evidence, and documented workflow economics. Evidence confidenceConfidence unresolved — validation required No direct customer-choice or win/loss evidence was located; this alternative is not a statement of prevalence. Exact customer or win/loss evidence unavailable."
+      },
+      {
+        "classification": "hypothesis",
+        "name": "Alternative analytical workflow",
+        "sourceRefs": 0,
+        "text": "Alternative analytical workflowStrategic hypothesis requiring validation Why customers choose itStrategic hypothesis: a laboratory may meet the analytical job through a different instrument, software path, or manual workflow. Segment and buying situationPharma is the active evidence filter, not validated demand evidenceWorkflow redesign or method-selection decision — validation required Primary objection to switchingPrimary objection to switching is unresolved — direct customer or win/loss evidence is required. Waters responseDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone. Proposed — not approved. Approval not established. Required proofCustomer workflow mapping, alternative-method interviews, and comparable outcome, compliance, and effort evidence. Evidence confidenceConfidence unresolved — validation required No direct customer-choice or win/loss evidence was located; this alternative is not a statement of prevalence. Exact customer or win/loss evidence unavailable."
+      },
+      {
+        "classification": "hypothesis",
+        "name": "Do nothing / keep the validated method",
+        "sourceRefs": 0,
+        "text": "Do nothing / keep the validated methodStrategic hypothesis requiring validation Why customers choose itStrategic hypothesis: retaining a validated method may appear safer than introducing transfer and revalidation risk. Segment and buying situationPharma is the active evidence filter, not validated demand evidenceValidated-method continuity or replacement decision — validation required Primary objection to switchingPrimary objection to switching is unresolved — direct customer or win/loss evidence is required. Waters responseDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone. Proposed — not approved. Approval not established. Required proofDirect buyer evidence and a validated method-migration study with equivalency and revalidation boundaries. Evidence confidenceConfidence unresolved — validation required No direct customer-choice or win/loss evidence was located; this alternative is not a statement of prevalence. Exact customer or win/loss evidence unavailable."
+      },
+      {
+        "classification": "hypothesis",
+        "name": "Extend the existing system",
+        "sourceRefs": 0,
+        "text": "Extend the existing systemStrategic hypothesis requiring validation Why customers choose itStrategic hypothesis: familiar operation and continued service may defer the disruption of replacement. Segment and buying situationPharma is the active evidence filter, not validated demand evidenceLifecycle extension or replacement decision — validation required Primary objection to switchingPrimary objection to switching is unresolved — direct customer or win/loss evidence is required. Waters responseDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone. Proposed — not approved. Approval not established. Required proofInstalled-system interviews plus lifecycle cost, serviceability, downtime, and migration evidence. Evidence confidenceConfidence unresolved — validation required No direct customer-choice or win/loss evidence was located; this alternative is not a statement of prevalence. Exact customer or win/loss evidence unavailable."
+      },
+      {
+        "classification": "hypothesis",
+        "name": "Defer replacement",
+        "sourceRefs": 0,
+        "text": "Defer replacementStrategic hypothesis requiring validation Why customers choose itStrategic hypothesis: the customer may postpone replacement when urgency, budget, or migration confidence is insufficient. Segment and buying situationPharma is the active evidence filter, not validated demand evidenceReplacement timing decision — validation required Primary objection to switchingPrimary objection to switching is unresolved — direct customer or win/loss evidence is required. Waters responseDifferentiate on reducing workflow risk across method transfer, reliable routine execution, compliant operation, and data review rather than asserting specification leadership alone. Proposed — not approved. Approval not established. Required proofWin/loss and no-decision reason codes, buyer interviews, and replacement timing evidence. Evidence confidenceConfidence unresolved — validation required No direct customer-choice or win/loss evidence was located; this alternative is not a statement of prevalence. Exact customer or win/loss evidence unavailable."
+      }
+    ],
+    "doNothing": "[Circular]",
+    "outsourcing": "[Circular]"
+  },
+  "metricTooltips": {
+    "claims-awaiting-approval": "Displayed registry rows with no established legal/claims approval record. Calculation: visible claim rows where approvalEstablished is false, regardless of substantiation status. Unit: displayed rows. Global and claims-registry filters apply.",
+    "direct-evidence-sources": "Unique canonical URLs displayed in the Evidence appendix. Calculation: valid linked appendix records after global URL deduplication; unlinked records are excluded. Unit: unique URLs, not records or independent organizations. All applicable global filters apply; the historical group intentionally ignores horizon, geography, and market where those fields do not exist.",
+    "exact-customer-sources": "Unique canonical URLs in the filtered customer-language evidence set. Calculation: valid exact customer URLs after URL normalization and deduplication. Unit: unique URLs, not records or independent organizations. All global filters apply.",
+    "positioning-decisions": "Displayed positioning-decision cards. Calculation: eligible evidence-backed decision candidates after all global filters, limited to three. Unit: displayed cards. Matrix-only claim filters do not apply."
+  },
+  "metrics": {
+    "claims-awaiting-approval": 0,
+    "direct-evidence-sources": 1,
+    "exact-customer-sources": 1,
+    "positioning-decisions": 0
+  },
+  "name": "Pharma QC → validated-method migration",
+  "pageSections": 8,
+  "provenance": {
+    "appendixRecords": 1,
+    "dateUnresolved": 0,
+    "evidenceRefs": 3,
+    "linkedSources": 1,
+    "sourceUrls": [
+      "https://www.fda.gov/media/190190/download?attachment="
+    ],
+    "unlinkedRecords": 0,
+    "unresolvedEvidenceRefs": 0
+  },
+  "startHere": "Start Here · Decide, Then ActivateThe Next PMM DecisionOne governed path from segment choice to activation. Open the first decision below before reviewing supporting analysis.Priority 1Decision unresolvedNo evidence-backed decision matches the active filters. Chosen segmentPharma Governing position statusProposed — not approved Swing attributeSwing attribute unresolved — no priority-segment scorecard is available Highest-risk claimNo claim row matches the active filters. Competitor / inertia threatCompetitor unresolved · Do nothing / keep the validated method Next required decisionDecision unavailable Nearest activation deadlineDeadline needed",
+  "traces": []
+}

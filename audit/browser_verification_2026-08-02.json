@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-08-02",
+  "browser": "Codex in-app browser",
+  "baseUrl": "http://127.0.0.1:8765/",
+  "summary": {
+    "total": 20,
+    "passed": 20,
+    "failed": 0
+  },
+  "checks": [
+    {"name": "Main dashboard load", "status": "PASS", "evidence": "25 panels; 278 public records; 30 exact customer sources; 7 upcoming conferences; no load error"},
+    {"name": "Customer Pain & needs tab", "status": "PASS", "evidence": "24 pain rows and 6 need rows"},
+    {"name": "Customer Evidence tab", "status": "PASS", "evidence": "30 rows and 30 exact source links"},
+    {"name": "Role switching", "status": "PASS", "evidence": "Leadership, Product, Engineering, and Marketing selected and rendered"},
+    {"name": "Marketing Positioning tab", "status": "PASS", "evidence": "Positioning tab and panel visible; 9 PMM panels rendered"},
+    {"name": "Global filters", "status": "PASS", "evidence": "Geography, Market, Technology, and Competitor selections applied without load errors"},
+    {"name": "Horizon filters", "status": "PASS", "evidence": "30d, 60d, 90d, 1y, and 3y values applied"},
+    {"name": "Customer voice tabs", "status": "PASS", "evidence": "Summary, Pain & needs, and Evidence each selected the matching panel"},
+    {"name": "Collapsible panel and proof dialog", "status": "PASS", "evidence": "Trend panel reopened; proof dialog displayed 21 links"},
+    {"name": "Customer evidence table", "status": "PASS", "evidence": "30 rows and 30 source links"},
+    {"name": "Public evidence pagination", "status": "PASS", "evidence": "Page 2 showed records 11–20 of 278 and 10 table rows"},
+    {"name": "PMM targeting filters", "status": "PASS", "evidence": "Waters product, application, buying situation, and buyer role selections applied"},
+    {"name": "Conference interactions", "status": "PASS", "evidence": "Pagination moved from page 1 to page 2 and event detail changed"},
+    {"name": "Publication page load", "status": "PASS", "evidence": "31 articles, 24 links, four populated filters, and no load error"},
+    {"name": "Publication interactions", "status": "PASS", "evidence": "All four filters applied and pagination moved to page 2"},
+    {"name": "Back/forward navigation", "status": "PASS", "evidence": "Publications → conference → publications history traversal succeeded"},
+    {"name": "Dashboard responsive layout", "status": "PASS", "evidence": "No horizontal overflow at 390, 768, 1024, or 1440 px"},
+    {"name": "Auxiliary responsive layout", "status": "PASS", "evidence": "Conference and publication pages had no overflow at 390, 768, or 1440 px"},
+    {"name": "External evidence link types", "status": "PASS", "evidence": "282 valid external links; official product, publication, conference, and customer-source types represented"},
+    {"name": "Console warnings and errors", "status": "PASS", "evidence": "No warning or error entries"}
+  ],
+  "observedTruthState": {
+    "asOfLabel": "Real public data as of 2026-08-02",
+    "requiredSourceBlockers": 61,
+    "globallyCurrent": false
+  },
+  "defectsCorrectedDuringVerification": [
+    "Marketing role no longer hides the customer-positioning workspace.",
+    "Marketing render now recalculates the Marketing-only Positioning tab.",
+    "The app script cache key was advanced so deployed clients receive the corrected logic."
+  ]
+}

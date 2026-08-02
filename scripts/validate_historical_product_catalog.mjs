@@ -38,6 +38,15 @@ export function catalogProductErrors(product, coverage = { startYear: 1996, endY
     errors.push(`${context}: confidence must be between 0 and 100`);
   }
   if (!product?.sourceName) errors.push(`${context}: missing source name`);
+  if (!["verified", "unsupported"].includes(product?.evidenceStatus)) {
+    errors.push(`${context}: evidenceStatus must be verified or unsupported`);
+  }
+  if (product?.evidenceStatus === "verified" && (!product?.supportingExcerpt || !product?.sourceLocation)) {
+    errors.push(`${context}: verified rows require an exact supportingExcerpt and sourceLocation`);
+  }
+  if (product?.evidenceStatus === "unsupported" && !product?.caveat) {
+    errors.push(`${context}: unsupported rows require a caveat`);
+  }
   try {
     const url = new URL(product?.sourceUrl);
     if (url.protocol !== "https:") errors.push(`${context}: source URL must use HTTPS`);

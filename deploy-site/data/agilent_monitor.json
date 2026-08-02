@@ -1,17 +1,30 @@
 {
-  "generatedAt": "2026-07-29T00:26:40+00:00",
+  "generatedAt": "2026-08-02T20:04:50+00:00",
   "baselineCreated": {
     "productInventory": false,
     "pressIndex": false
   },
   "inventoryCounts": {
     "lcmsProductPages": 49,
-    "pressReleases": 10
+    "pressReleases": 34
   },
   "new_products": [],
   "discontinued_products": [],
   "updated_products": [],
+  "unverified_inventory_changes": {
+    "new": [],
+    "updated": [],
+    "missing": []
+  },
   "new_press_releases": [
+    {
+      "date": "2026-07-29",
+      "title": "Agilent Research Catalyst Award Presented to Eastern Institute of Technology, Ningbo",
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/29jul-ca26028.html",
+      "classification": "product",
+      "pageTitle": "Agilent Research Catalyst Award Presented to Eastern Institute of Technology, Ningbo",
+      "excerpt": "Skip to main content ABOUT AGILENT CONTACT US UNITED STATES ACCOUNT PRODUCTS APPLICATIONS & INDUSTRIES TRAINING & EVENTS SERVICES SUPPORT & RESOURCES ORDER CENTER | 0 Home About Newsroom Press Releases 2026 Agilent Research Catalyst Award Presented to Eastern Institute of Technology, Ningbo Newsroom Press Releases Media Coverage Media Rooms Awards PR Contacts Subscribe Investor Relations Share: Press Release Agilent Research Catalyst Award Presented to Eastern Institute of Technology, Ningbo Eastern Institute of Technology professor recognized for advancing PFAS and emerging contaminant analysis SANTA CLARA, Calif., July 29, 2026 Agilent Technologies Inc. (NYSE: A) today announced that the Eastern Institute of Technology, Ningbo has received an Agilent Research Catalyst (ARC) Award on behalf of Professor Zongwei Cai. The award recognizes Professor Cai's innovative research focused on developing advanced analytical approaches for detecting per- and polyfluoroalkyl substances (PFAS) and other emerging contaminants, a growing area of importance for environmental and public health research. Professor Cai is a globally recognized leader in environmental and bioanalytical chemistry. His research focuses on advancing analytical methods to detect trace environmental contaminants, including PFAS, endocrine-disrupting chemicals, and persistent organic pollutants. By combining high-sensitivity analytical techniques with organoid-based toxicological models, his work aims to improve understanding of how environmental contaminants affect human health. The awarded research combines advanced mass spectrometry techniques, innovative sample preparation methods, and organoid-based toxicology platforms to link chemical detection with biological impact. Professor Cai's team aims to develop a more comprehensive framework for assessing environmental contaminants and their potential health effects. \u201cPFAS and other emerging contaminants are increasingly recognized as critical environmental and public health challenges worldwide. Detecting these contaminants at trace levels requires continuous innovation in analytical science. Agilent has played a pioneering role in addressing PFAS background contamination, setting an important foundation for high-quality PFAS analysis. Through the ARC program, we are excited to expand our research using Agilent\u2019s advanced mass spectrometry and cellu"
+    },
     {
       "date": "2026-07-28",
       "title": "Agilent to Announce Third-Quarter Fiscal Year 2026 Financial Results on Aug. 26",
@@ -19,6 +32,520 @@
       "classification": "product",
       "pageTitle": "Agilent to Announce Third-Quarter Fiscal Year 2026 Financial Results on Aug. 26",
       "excerpt": "Skip to main content ABOUT AGILENT CONTACT US UNITED STATES ACCOUNT PRODUCTS APPLICATIONS & INDUSTRIES TRAINING & EVENTS SERVICES SUPPORT & RESOURCES ORDER CENTER | 0 Home About Newsroom Press Releases 2026 Agilent to Announce Third-Quarter Fiscal Year 2026 Financial Results on Aug. 26 Newsroom Press Releases Media Coverage Media Rooms Awards PR Contacts Subscribe Investor Relations Share: Press Release Agilent to Announce Third-Quarter Fiscal Year 2026 Financial Results on Aug. 26 SANTA CLARA, Calif., July 28, 2026 Agilent Technologies Inc. (NYSE: A) will release financial results for the third quarter of fiscal year 2026 after the stock market closes on Wednesday, Aug. 26. The company will host a conference call to discuss the results at 1:30 p.m. PDT the same day. To join the listen-only conference call webcast, click the link on the Events section of Agilent\u2019s Investor Relations website. A recording of the call will also be available on the website for 90 days. About Agilent Technologies Agilent Technologies, Inc. (NYSE: A) is a global leader in analytical and clinical laboratory technologies, delivering insights and innovation that help our customers bring great science to life. Agilent\u2019s full range of solutions includes instruments, software, services, and expertise that provide trusted answers to our customers' most challenging questions. The company generated revenue of $6.95 billion in fiscal year 2025 and employs approximately 18,000 people worldwide. Information about Agilent is available at www.agilent.com. To receive the latest Agilent news, subscribe to the Agilent Newsroom. Follow Agilent on LinkedIn and Facebook. Investor Contact Tejas Savant Agilent Technologies Inc. +1 917-574-4018 tejas.savant@agilent.com Media Contact Christian Col\u00f3n Agilent Technologies Inc. +1 302-867-4117 christian.colon@agilent.com Newsroom Highlights Previous From Instruments to Workflows: What Actually Changes When AI Comes to the Lab Article Agilent Ranks Among World's Best Employers Award Bringing Great Science to Life - Sustainably 2024 ESG Report AI is a Transformative Enabler that\u2019s Reshaping How Science is Conducted in Labs Article Agilent Reports Second-Quarter Fiscal Year 2026 Financial Results Press Release Agilent Named to Newsweek's List of America's Greenest Companies 2026 Award From Instruments to Workflows: What Actually Changes When AI Comes to the La"
+    },
+    {
+      "date": "2026-07-23",
+      "title": "Agilent Receives EU Approval for PD-L1 IHC 22C3 pharmDx in Epithelial Ovarian, Fallopian Tube, or Primary Peritoneal Carcinoma",
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/23jul-ca26027.html",
+      "classification": "corporate"
+    },
+    {
+      "date": "2026-07-14",
+      "title": "Agilent Receives FDA Approval for PD-L1 IHC 28-8 pharmDx in Esophageal Squamous Cell Carcinoma (ESCC), Gastric, Gastroesophageal Junction (GEJ), and Esophageal Adenocarcinoma",
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/14jul-ca26026.html",
+      "classification": "corporate",
+      "pageTitle": "Agilent Receives FDA Approval for PD-L1 IHC 28-8 pharmDx in Esophageal Squamous Cell Carcinoma (ESCC), Gastric, Gastroesophageal Junction (GEJ), and Esophageal Adenocarcinoma",
+      "excerpt": "Skip to main content ABOUT AGILENT CONTACT US UNITED STATES ACCOUNT PRODUCTS APPLICATIONS & INDUSTRIES TRAINING & EVENTS SERVICES SUPPORT & RESOURCES ORDER CENTER | 0 Home About Newsroom Press Releases 2026 Agilent Receives FDA Approval for PD-L1 IHC 28-8 pharmDx in Esophageal Squamous Cell Carcinoma (ESCC), Gastric, Gastroesophageal Junction (GEJ), and Esophageal Adenocarcinoma Newsroom Press Releases Media Coverage Media Rooms Awards PR Contacts Subscribe Investor Relations Share: Press Release Agilent Receives FDA Approval for PD-L1 IHC 28-8 pharmDx in Esophageal Squamous Cell Carcinoma (ESCC), Gastric, Gastroesophageal Junction (GEJ), and Esophageal Adenocarcinoma Test enables identification of patients whose tumors express PD-L1 and who may be eligible for treatment with OPDIVO\u00ae (nivolumab) or OPDIVO QVANTIG\u00ae SANTA CLARA, Calif., July 14, 2026 Agilent Technologies Inc. (NYSE: A) today announced that it has received U.S. Food and Drug Administration (FDA) approval for the PD\u2011L1 IHC 28\u20118 pharmDx assay as a companion diagnostic to identify patients with esophageal squamous cell carcinoma (ESCC), gastric, gastroesophageal junction (GEJ), and esophageal adenocarcinoma who may be eligible for treatment with OPDIVO\u00ae (nivolumab) or OPDIVO QVANTIG\u00ae (nivolumab and hyaluronidase\u2011nvhy), Bristol Myers Squibb\u2019s PD\u20111\u2011targeted immunotherapeutic agents. PD-L1 IHC 28-8 pharmDx is approved for exclusive use with the Agilent Autostainer Link 48 advanced staining solution. PD\u2011L1 IHC 28\u20118 pharmDx, Code SK005, is an FDA\u2011approved diagnostic aid for detecting PD\u2011L1 expression (Combined Positive Score [CPS] \u2265 1) in these tumor types for patients being considered for treatment with OPDIVO\u00ae or OPDIVO QVANTIG\u00ae. PD\u2011L1 expression is determined using CPS, which measures PD\u2011L1 staining in tumor and immune cells relative to the total number of viable tumor cells. \u201cThis FDA approval highlights the critical role of validated diagnostics in advancing precision oncology,\u201d said Majken Nielsen, vice president and general manager of Agilent\u2019s Clinical Diagnostics Division. \u201cBy expanding the indications for PD\u2011L1 IHC 28\u20118 pharmDx, we are supporting pathologists and clinicians with an FDA\u2011approved test designed to help guide treatment decisions for patients with gastric and esophageal cancers. This milestone reflects Agilent\u2019s ongoing commitment to delivering high\u2011quality diagnostics that enable"
+    },
+    {
+      "date": "2026-07-08",
+      "title": "Agilent Expands Altura Portfolio with Inert Size Exclusion and PLRP-S Columns for Biotherapeutic Analysis",
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/08jul-ca26025.html",
+      "classification": "product"
+    },
+    {
+      "date": "2026-07-01",
+      "title": "Agilent Launches AI-Driven Analysis Module for Agilent xCELLigence RTCA eSight",
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/01jul-ca26024.html",
+      "classification": "product",
+      "pageTitle": "Agilent Launches AI-Driven Analysis Module for Agilent xCELLigence RTCA eSight",
+      "excerpt": "Skip to main content ABOUT AGILENT CONTACT US UNITED STATES ACCOUNT PRODUCTS APPLICATIONS & INDUSTRIES TRAINING & EVENTS SERVICES SUPPORT & RESOURCES ORDER CENTER | 0 Home About Newsroom Press Releases 2026 Agilent Launches AI-Driven Analysis Module for Agilent xCELLigence RTCA eSight Newsroom Press Releases Media Coverage Media Rooms Awards PR Contacts Subscribe Investor Relations Share: Press Release Agilent Launches AI-Driven Analysis Module for Agilent xCELLigence RTCA eSight Simplifying label-free imaging analysis for more confident real-time cell analysis SANTA CLARA, Calif., July 01, 2026 Agilent Technologies Inc. (NYSE: A) today announced the launch of Agilent xCELLigence RTCA eSight AI, a new AI-powered software module that simplifies label-free imaging analysis by reducing manual cell segmentation steps and parameter tuning and supporting more consistent results. The software upgrade enhances the unique dual-readout capabilities of the Agilent xCELLigence RTCA eSight instrument with AI-driven cell imaging analysis, enabling researchers to gain imaging and impedance insights from the same cells in the same experiment with greater speed and confidence. This streamlined, integrated approach is expected to provide biopharma researchers with a more complete view of cell behavior while reducing variability across users and conditions. Traditional cell segmentation workflows rely on time-consuming and subjective manual setup and analysis steps that increase variability, error and rework, slowing experimental timelines while also requiring a higher level of experimental expertise to achieve consistent results. As biopharma research increasingly demands more complex experiments, higher throughput and greater consistency, integrated workflows are key to efficient scientific progress. AI-driven imaging analysis can help reduce variability across users while decreasing time spent on manual analysis. By replacing subjective, user-influenced thresholding and manual parameter tuning with a one-click approach, the new module delivers standardized analysis across skill levels, experiments and datasets. eSight imaging AI analysis is designed to ensure confident, reliable performance across users, cell types and assay conditions, providing the robustness and accuracy essential for real-world science and users with varying levels of imaging expertise. The new module i"
+    },
+    {
+      "date": "2026-06-25",
+      "title": "Agilent Completes Acquisition of Biocare Medical",
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/25jun-gp26014.html",
+      "classification": "corporate"
+    },
+    {
+      "date": "2026-06-03",
+      "title": "Agilent, OpenAI, BCG Collaborate to Accelerate Customer-Focused, AI-Driven Scientific Innovation",
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/03jun-gp26013.html",
+      "classification": "product",
+      "pageTitle": "Agilent, OpenAI, BCG Collaborate to Accelerate Customer-Focused, AI-Driven Scientific Innovation",
+      "excerpt": "Skip to main content ABOUT AGILENT CONTACT US UNITED STATES ACCOUNT PRODUCTS APPLICATIONS & INDUSTRIES TRAINING & EVENTS SERVICES SUPPORT & RESOURCES ORDER CENTER | 0 Home About Newsroom Press Releases 2026 Agilent, OpenAI, BCG Collaborate to Accelerate Customer-Focused, AI-Driven Scientific Innovation Newsroom Press Releases Media Coverage Media Rooms Awards PR Contacts Subscribe Investor Relations Share: Press Release Agilent, OpenAI, BCG Collaborate to Accelerate Customer-Focused, AI-Driven Scientific Innovation SANTA CLARA, Calif., June 03, 2026 Agilent Technologies Inc. (NYSE: A) today announced a collaboration with OpenAI and Boston Consulting Group (BCG) to accelerate the deployment of artificial intelligence (AI) across the company\u2019s products, operations, and customer workflows. \u201cAI is a top priority, and this partnership reflects both our ambition and our execution commitment \u2014 to build the enduring capability, operating model, and capacity required to consistently deliver AI\u2011driven innovation value for our customers,\u201d said Padraig McDonnell, president and CEO of Agilent. \u201cThrough this collaboration with OpenAI and BCG, we are accelerating deployment of AI across our business while advancing more intelligent instruments, software, and services. Our focus is simple: deliver faster, highest-quality insights to help our customers make better decisions.\u201d \u201cBy bringing advanced AI capabilities into Agilent\u2019s innovation and operations, we\u2019re enabling teams to unlock new insights, accelerate discovery, and build more intelligent, adaptive solutions,\u201d said Ashley Kramer, VP of Enterprise at OpenAI. \u201cWe are focused on outcomes while building the capabilities Agilent needs to lead in an AI-enabled future.\u201d \u201cTogether, we will help Agilent turn AI into a competitive advantage \u2014 moving from pilots to scaled deployment and redefining how value is created across the enterprise,\u201d said Matthew Kropp, a managing director and senior partner at BCG and Chief AI Officer at BCG X. Agilent has prioritized initial use cases designed to materially enhance the customer experience and accelerate its new product pipeline, with plans to expand these efforts significantly over the next six to 12 months. By combining Agilent\u2019s scientific expertise and data assets with OpenAI\u2019s advanced AI research and deployment capabilities and BCG\u2019s experience in large-scale transformation, the "
+    },
+    {
+      "date": "2026-06-02",
+      "title": "Agilent Receives FDA Approval for Expanded Use of PD-L1 IHC 22C3 pharmDx on Dako Omnis in Esophageal Squamous Cell Carcinoma, Triple-Negative Breast Cancer, Cervical Cancer, and Gastric or Gastroesophageal Junction Adenocarcinoma",
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/02jun-ca26023.html",
+      "classification": "corporate"
+    },
+    {
+      "date": "2026-06-01",
+      "title": "Agilent and Sound Analytics Collaborate to Advance LC/MS Workflows for Drug Metabolism Research",
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/01jun-ca26022.html",
+      "classification": "product",
+      "pageTitle": "Agilent and Sound Analytics Collaborate to Advance LC/MS Workflows for Drug Metabolism Research",
+      "excerpt": "Skip to main content ABOUT AGILENT CONTACT US UNITED STATES ACCOUNT PRODUCTS APPLICATIONS & INDUSTRIES TRAINING & EVENTS SERVICES SUPPORT & RESOURCES ORDER CENTER | 0 Home About Newsroom Press Releases 2026 Agilent and Sound Analytics Collaborate to Advance LC/MS Workflows for Drug Metabolism Research Newsroom Press Releases Media Coverage Media Rooms Awards PR Contacts Subscribe Investor Relations Share: Press Release Agilent and Sound Analytics Collaborate to Advance LC/MS Workflows for Drug Metabolism Research SANTA CLARA, Calif., June 01, 2026 Agilent Technologies Inc. and Sound Analytics, LLC, today announced a collaboration to deliver an integrated liquid chromatography\u2013triple quadrupole mass spectrometry (LC/MS) workflow designed to support drug metabolism and pharmacokinetics (DMPK) laboratories in biopharma and pharmaceutical research. The joint solution combines Agilent\u2019s 1290 Infinity III Liquid Chromatography system and 6495D triple quadrupole mass spectrometer with LeadScape\u2122 for Agilent software, developed by Sound Analytics. Together, the systems are designed to help DMPK laboratories improve efficiency, data quality, and ease of adoption within existing workflows. \u201cAs biopharma and pharmaceutical organizations work to accelerate drug development timelines, DMPK laboratories face increasing pressure to generate high\u2011quality data quickly and reliably,\u201d said Iris Mangelschots, vice president and general manager of the Liquid Phase Division at Agilent. \u201cThis collaboration reflects Agilent\u2019s focus on delivering integrated analytical workflows that help scientists move from detection to decision with confidence.\u201d The integrated workflow enables DMPK laboratories to utilize Agilent\u2019s LC and triple quadrupole MS systems alongside LeadScape for Agilent software, supporting routine and high\u2011throughput drug metabolism analysis within established laboratory workflows. The solution is designed to help laboratories balance sensitivity, speed, and robustness with system uptime and ease of operation. \u201cSound Analytics has a long history of supporting efficient workflows for DMPK laboratories,\u201d said Wayne Lootsma, president of Sound Analytics. \u201cWorking with Agilent allows us to expand the options available to LeadScape users by combining our software with reliable, high\u2011performance LC/MS systems, helping laboratories integrate new tools within established work"
+    },
+    {
+      "date": "2026-05-28",
+      "title": "Agilent Introduces OpenLab Sync to Support Guided, Digital Execution in the Laboratory",
+      "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Introduces-OpenLab-Sync-to-Support-Guided-Digital-Execution-in-the-Laboratory/default.aspx",
+      "sourceId": "agilent-investor-news",
+      "sourceName": "Agilent investor relations news",
+      "classification": "product",
+      "signalType": "Product release",
+      "marketSegment": "Corporate",
+      "technology": "Portfolio",
+      "theme": "Product and workflow expansion",
+      "intent": "Product and portfolio expansion",
+      "summary": "Agilent Technologies Inc. (NYSE: A) today announced the introduction of OpenLab Sync , a new Lab Execution System (LES) that enables laboratories to digitally connect scientific workflows from method design through execution at the bench. OpenLab Sync extends Agilent\u2019s OpenLab laboratory informatics portfolio beyond traditional data and sample management, enabling guided, standardized, and traceable execution of laboratory work in regulated environments. As laboratories face increasing regulatory scrutiny, workforce turnover, and pressure to standardize operations across sites, many continue to rely on static, paper-based procedures that can introduce variability and risk. OpenLab Sync addresses growing demands for consistency, data integrity, and audit readiness in regulated environments by providing step-by-step, guided digital workflows that help reduce ambiguity in laboratory procedures while improving traceability of bench-level activities across teams and locations. OpenLab Sync"
+    },
+    {
+      "date": "2026-05-27",
+      "title": "Agilent Reports Second-Quarter Fiscal Year 2026 Financial Results",
+      "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Reports-Second-Quarter-Fiscal-Year-2026-Financial-Results/default.aspx",
+      "sourceId": "agilent-investor-news",
+      "sourceName": "Agilent investor relations news",
+      "classification": "corporate",
+      "signalType": "Quarterly earnings result",
+      "marketSegment": "Corporate",
+      "technology": "Portfolio",
+      "theme": "Quarterly earnings and end-market demand",
+      "intent": "Corporate performance and investment capacity",
+      "summary": "Agilent paired broad-based revenue growth with higher Life Sciences and Diagnostics, CrossLab, and Applied Markets performance while raising fiscal 2026 revenue, margin, and EPS guidance.",
+      "earningsMetrics": [
+        {
+          "label": "Life Sciences and Diagnostics revenue",
+          "value": "$732M",
+          "detail": "+12% reported / +9% core year over year"
+        },
+        {
+          "label": "CrossLab revenue",
+          "value": "$759M",
+          "detail": "+6% reported / +2% core; 32.0% operating margin"
+        },
+        {
+          "label": "Applied Markets revenue",
+          "value": "$344M",
+          "detail": "+14% reported / +11% core year over year"
+        }
+      ],
+      "pmInsights": [
+        "All three operating groups grew; Life Sciences and Diagnostics and Applied Markets posted the strongest core growth.",
+        "CrossLab remained Agilent's largest reported group and carried a 32.0% operating margin, making lifecycle and service economics strategically material.",
+        "Agilent raised fiscal 2026 revenue, core-growth, operating-margin, and non-GAAP EPS guidance, increasing capacity to invest behind priority workflows."
+      ],
+      "watersPmImplication": "Assess Agilent as an installed-base lifecycle and workflow competitor\u2014not only an LC instrument competitor\u2014and track where CrossLab, software, and applications are bundled into regulated customer outcomes.",
+      "evidenceBoundary": "Agilent does not separately report LC or LC-MS revenue, units, pricing, or share; segment growth is not direct evidence of LC market-share gain."
+    },
+    {
+      "date": "2026-05-26",
+      "title": "Agilent Launches New GC Systems with GC Assist to Improve Laboratory Efficiency and Data Quality",
+      "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Launches-New-GC-Systems-with-GC-Assist-to-Improve-Laboratory-Efficiency-and-Data-Quality/default.aspx",
+      "sourceId": "agilent-investor-news",
+      "sourceName": "Agilent investor relations news",
+      "classification": "product",
+      "signalType": "Product release",
+      "marketSegment": "Corporate",
+      "technology": "LC/UHPLC",
+      "theme": "Product and workflow expansion",
+      "intent": "Product and portfolio expansion",
+      "summary": "New 8890B and 8860B gas chromatographs integrate intelligent monitoring and remote diagnostics Agilent Technologies Inc. (NYSE: A) today announced the launch of the new 8890B GC and 8860B GC with GC Assist. GC Assist is the new, advanced instrument intelligence that provides system monitoring, built-in troubleshooting, and remote connectivity to analytical instrumentation within the laboratory\u2019s secure network. These systems enable higher performance and productivity across gas chromatography analyses. The new systems are designed to help laboratories reduce unplanned downtime, improve data quality, and operate more efficiently by combining updated GC hardware with integrated system monitoring, diagnostics, step-by-step troubleshooting, and maintenance procedures through GC Assist. \u201cThese are our most advanced GC systems to date,\u201d said Warren Potts, vice president and general manager of the Gas Phase Division at Agilent. \u201cLaboratories are under pressure to deliver high-quality data"
+    },
+    {
+      "date": "2026-05-26",
+      "title": "Agilent Launches Multi-Attribute Method (MAM) Solution for BioPharma Quality Control",
+      "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Launches-Multi-Attribute-Method-MAM-Solution-for-BioPharma-Quality-Control/default.aspx",
+      "sourceId": "agilent-investor-news",
+      "sourceName": "Agilent investor relations news",
+      "classification": "product",
+      "signalType": "Product release",
+      "marketSegment": "Biopharma",
+      "technology": "LC/UHPLC",
+      "theme": "Product and workflow expansion",
+      "intent": "Product and portfolio expansion",
+      "summary": "Agilent Technologies Inc. (NYSE: A) today announced the release of a new multi-attribute method (MAM) workflow designed to help pharmaceutical and biopharmaceutical quality control (QC) laboratories implement liquid chromatography high-resolution mass spectrometry (LC/HRMS) in routine, regulated testing environments. The Agilent MAM solution brings together software, instrumentation, columns, consumables and standards to address practical and operational barriers that have historically limited the use of LC/HRMS in QC environments. The workflow is designed to support laboratories applying MAM to monitor critical quality attributes during late-stage development and commercial manufacturing. Regulatory and industry interest in MAM has increased as biologics grow more complex, and expectations for analytical control continue to evolve. Guidance such as United States Pharmacopeia (USP) chapter <1060> highlights considerations for implementing MAM using LC/HRMS, reinforcing its"
+    },
+    {
+      "date": "2026-05-22",
+      "title": "Agilent Unveils the 9500 ICP-MS: Redefining Trace Element Analysis",
+      "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Unveils-the-9500-ICP-MS-Redefining-Trace-Element-Analysis/default.aspx",
+      "sourceId": "agilent-investor-news",
+      "sourceName": "Agilent investor relations news",
+      "classification": "product",
+      "signalType": "Product release",
+      "marketSegment": "Corporate",
+      "technology": "Portfolio",
+      "theme": "Product and workflow expansion",
+      "intent": "Product and portfolio expansion",
+      "summary": "Next-generation ICP-MS/MS delivers faster measurements, simplified workflows, and easier access to advanced elemental analysis Agilent Technologies Inc. (NYSE: A) today announced the launch of the Agilent 9500 Triple Quadrupole ICP-MS , a next-generation inductively coupled plasma mass spectrometry system designed to help single quadrupole ICP-MS laboratories more easily transition to triple quadrupole technology for advanced trace elemental analysis. Agilent 9500 Triple Quadrupole ICP-MS System As testing demands grow more complex and skilled resources remain limited, laboratories face increasing pressure to deliver faster, interference-free results without adding operational burden. The Agilent 9500 ICP-MS addresses these challenges by improving productivity, simplifying advanced interference removal, and enabling laboratories to generate high-quality data with greater confidence. The system introduces innovations including Air Cell and Advanced Helium Mode (AHM), enabled by"
+    },
+    {
+      "date": "2026-05-21",
+      "title": "Agilent Launches 1290 Infinity III Fluorescence Detector for Confident Trace Analysis at UHPLC Speed",
+      "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Launches-1290-Infinity-III-Fluorescence-Detector-for-Confident-Trace-Analysis-at-UHPLC-Speed/default.aspx",
+      "sourceId": "agilent-investor-news",
+      "sourceName": "Agilent investor relations news",
+      "classification": "product",
+      "signalType": "Product release",
+      "marketSegment": "Corporate",
+      "technology": "LC/UHPLC",
+      "theme": "Product and workflow expansion",
+      "intent": "Product and portfolio expansion",
+      "summary": "Agilent Technologies Inc. (NYSE: A) today announced the launch of the Agilent 1290 Infinity III Fluorescence Detector (FLD), a new fluorescence detector designed specifically for modern ultra-high-performance liquid chromatography (UHPLC) workflows. The detector extends fluorescence detection into the UHPLC era by combining ultra-trace sensitivity, UHPLC-ready chromatographic performance, and routine-ready ease of use. 1290 Infinity III Fluorescence Detector with front-access service design. Designed for use as a standalone detector or in-line with LC/MS systems, the 1290 Infinity III FLD helps laboratories gain more analytical evidence and greater confidence from every injection. The detector preserves narrow UHPLC peak integrity while delivering rich spectral information, supporting confident decision-making in trace-level analysis. \u201cThe 1290 Infinity III Fluorescence Detector is designed to deliver clear customer value by combining ultra-trace sensitivity, UHPLC-ready peak"
+    },
+    {
+      "date": "2026-05-20",
+      "title": "Agilent Announces Cash Dividend of 25.5 Cents per Share",
+      "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Announces-Cash-Dividend-of-25-5-Cents-per-Share-cd1e68595/default.aspx",
+      "sourceId": "agilent-investor-news",
+      "sourceName": "Agilent investor relations news",
+      "classification": "product",
+      "signalType": "Product release",
+      "marketSegment": "Corporate",
+      "technology": "Software",
+      "theme": "Product and workflow expansion",
+      "intent": "Product and portfolio expansion",
+      "summary": "Agilent Technologies Inc. (NYSE: A) today announced a quarterly dividend of 25.5 cents per share of common stock. The quarterly dividend will be paid on July 22, 2026, to all shareholders of record as of the close of business on June 30, 2026. The timing and amounts of future dividends are subject to the determination and approval of Agilent\u2019s board of directors. About Agilent Technologies Agilent Technologies, Inc. (NYSE: A) is a global leader in analytical and clinical laboratory technologies, delivering insights and innovation that help our customers bring great science to life. Agilent\u2019s full range of solutions includes instruments, software, services, and expertise that provide trusted answers to our customers' most challenging questions. The company generated revenue of $6.95 billion in fiscal year 2025 and employs approximately 18,000 people worldwide. Information about Agilent is available at www.agilent.com . To receive the latest Agilent news, subscribe to the Agilent"
+    },
+    {
+      "date": "2026-05-19",
+      "title": "Agilent to Supply Next Generation Alarm Resolution Technology to U.S. Airport Security Screening Checkpoints ahead of FIFA World Cup 2026",
+      "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-to-Supply-Next-Generation-Alarm-Resolution-Technology-to-U-S--Airport-Security-Screening-Checkpoints-ahead-of-FIFA-World-Cup-2026/default.aspx",
+      "sourceId": "agilent-investor-news",
+      "sourceName": "Agilent investor relations news",
+      "classification": "product",
+      "signalType": "Product release",
+      "marketSegment": "Corporate",
+      "technology": "Portfolio",
+      "theme": "Product and workflow expansion",
+      "intent": "Product and portfolio expansion",
+      "summary": "Agilent has been awarded a contract by the Transportation Security Administration (TSA) to supply its Bulk Resolution Technology (BRT) systems to passenger security checkpoints at FIFA World Cup U.S. host city airports Agilent Technologies Inc. (NYSE: A) today announced that it has been awarded a contract by the Transportation Security Administration (TSA) and will deploy its new Bulk Alarm Resolution Technology (BRT) to security checkpoints at FIFA World Cup U.S. host city airports with the capabilities to screen larger quantities of liquids, powders, and solids commonly encountered in airport security screening operations. \u201cAgilent is thrilled to have been selected by TSA to modernize passenger security screening checkpoints at U.S. airports in advance of FIFA World Cup matches,\u201d said Geoff Winkett, vice president and general manager of the Spectroscopy and Vacuum Division at Agilent. \u201cTSA\u2019s deployment of the BRT, our next-generation alarm resolution technology, is a significant"
+    },
+    {
+      "date": "2026-05-11",
+      "title": "Agilent to Participate in Jefferies Global Healthcare Conference",
+      "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-to-Participate-in-Jefferies-Global-Healthcare-Conference/default.aspx",
+      "sourceId": "agilent-investor-news",
+      "sourceName": "Agilent investor relations news",
+      "classification": "product",
+      "signalType": "Product release",
+      "marketSegment": "Corporate",
+      "technology": "Software",
+      "theme": "Product and workflow expansion",
+      "intent": "Product and portfolio expansion",
+      "summary": "Agilent Technologies Inc. (NYSE: A) today announced that CEO Padraig McDonnell and CFO Adam Elinoff will participate in a fireside chat at the Jefferies Global Healthcare Conference. The event is scheduled for 9:20 EDT on Wednesday, June 3, 2026, in New York City. A live audio webcast and replay of the presentation will be available through Agilent\u2019s Investor Relations website. About Agilent Technologies Agilent Technologies, Inc. (NYSE: A) is a global leader in analytical and clinical laboratory technologies, delivering insights and innovation that help our customers bring great science to life. Agilent\u2019s full range of solutions includes instruments, software, services, and expertise that provide trusted answers to our customers' most challenging questions. The company generated revenue of $6.95 billion in fiscal year 2025 and employs approximately 18,000 people worldwide. Information about Agilent is available at www.agilent.com . To receive the latest Agilent news, subscribe to the"
+    },
+    {
+      "date": "2026-05-04",
+      "title": "Agilent Names Michael Buckner as Chief Legal Officer",
+      "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Names-Michael-Buckner-as-Chief-Legal-Officer/default.aspx",
+      "sourceId": "agilent-investor-news",
+      "sourceName": "Agilent investor relations news",
+      "classification": "corporate",
+      "signalType": "Acquisition",
+      "marketSegment": "Corporate",
+      "technology": "Portfolio",
+      "theme": "Portfolio expansion through acquisition",
+      "intent": "Capability and market expansion",
+      "summary": "Agilent Technologies Inc. (NYSE: A) today announced the appointment of Michael Buckner as chief legal officer, effective today. Buckner brings nearly three decades of experience as a senior global legal executive, with a proven track record of building and leading high-performing teams and deep expertise in complex transactions and regulatory environments. \u201cWe are thrilled to welcome Michael to the Agilent team,\u201d said Padraig McDonnell, Agilent president and CEO. \u201cHis experience leading global legal organizations, combined with his expertise across governance, compliance and regulatory matters, will play a key role as we continue to advance our strategy and deliver for our customers and stakeholders worldwide.\u201d Buckner joins Agilent from Danaher Corp., where he served as vice president, deputy general counsel, and chief M&A counsel. In this role, he led legal strategy for mergers and acquisitions, antitrust, intellectual property transactions, and debt securities, while overseeing"
+    },
+    {
+      "date": "2026-04-28",
+      "title": "Agilent to Announce Second-Quarter Fiscal Year 2026 Financial Results on May 27",
+      "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-to-Announce-Second-Quarter-Fiscal-Year-2026-Financial-Results-on-May-27/default.aspx",
+      "sourceId": "agilent-investor-news",
+      "sourceName": "Agilent investor relations news",
+      "classification": "corporate",
+      "signalType": "Earnings event announcement",
+      "marketSegment": "Corporate",
+      "technology": "Portfolio",
+      "theme": "Upcoming earnings event",
+      "intent": "Investor communication",
+      "summary": "\u200bAgilent Technologies Inc. (NYSE: A) will release financial results for the second quarter of fiscal year 2026 after the stock market closes on Wednesday, May 27. The company will host a conference call to discuss the results at 1:30 p.m. PDT the same day. To join the listen-only conference call webcast, click the link on the Events section of Agilent\u2019s Investor Relations website. A recording of the call will also be available on the website for 90 days. About Agilent Technologies Agilent Technologies, Inc. (NYSE: A) is a global leader in analytical and clinical laboratory technologies, delivering insights and innovation that help our customers bring great science to life. Agilent\u2019s full range of solutions includes instruments, software, services, and expertise that provide trusted answers to our customers' most challenging questions. The company generated revenue of $6.95 billion in fiscal year 2025 and employs approximately 18,000 people worldwide. Information about Agilent is"
+    },
+    {
+      "date": "2026-04-15",
+      "title": "Agilent Showcases Cancer Research Solutions at AACR 2026",
+      "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Showcases-Cancer-Research-Solutions-at-AACR-2026/default.aspx",
+      "sourceId": "agilent-investor-news",
+      "sourceName": "Agilent investor relations news",
+      "classification": "product",
+      "signalType": "Product release",
+      "marketSegment": "Corporate",
+      "technology": "Portfolio",
+      "theme": "Product and workflow expansion",
+      "intent": "Product and portfolio expansion",
+      "summary": "Agilent Technologies Inc. (NYSE: A) will present new technologies, scientific collaborations, and integrated workflows supporting cancer research and diagnostics at the American Association for Cancer Research (AACR) Annual Meeting on April 17\u201322, 2026, in San Diego, California. At the meeting, Agilent will highlight advances designed to connect discovery research, translational science, and companion diagnostics development, reflecting the growing demand for more integrated approaches across the cancer research continuum. Among the technologies featured is the BioTek Cytation 9 cell imaging multimode reader, the newest addition to the Cytation series of cell imaging and multimode microplate readers. Cytation 9 is designed to support advanced live\u2011cell and endpoint assays by combining automated microscopy with conventional microplate reading in a single system, supporting a range of cell\u2011based research applications. In addition, Agilent will provide an early preview of the upcoming"
+    }
+  ],
+  "recent_press_releases": [
+    {
+      "date": "2026-07-29",
+      "title": "Agilent Research Catalyst Award Presented to Eastern Institute of Technology, Ningbo",
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/29jul-ca26028.html",
+      "classification": "product",
+      "pageTitle": "Agilent Research Catalyst Award Presented to Eastern Institute of Technology, Ningbo",
+      "excerpt": "Skip to main content ABOUT AGILENT CONTACT US UNITED STATES ACCOUNT PRODUCTS APPLICATIONS & INDUSTRIES TRAINING & EVENTS SERVICES SUPPORT & RESOURCES ORDER CENTER | 0 Home About Newsroom Press Releases 2026 Agilent Research Catalyst Award Presented to Eastern Institute of Technology, Ningbo Newsroom Press Releases Media Coverage Media Rooms Awards PR Contacts Subscribe Investor Relations Share: Press Release Agilent Research Catalyst Award Presented to Eastern Institute of Technology, Ningbo Eastern Institute of Technology professor recognized for advancing PFAS and emerging contaminant analysis SANTA CLARA, Calif., July 29, 2026 Agilent Technologies Inc. (NYSE: A) today announced that the Eastern Institute of Technology, Ningbo has received an Agilent Research Catalyst (ARC) Award on behalf of Professor Zongwei Cai. The award recognizes Professor Cai's innovative research focused on developing advanced analytical approaches for detecting per- and polyfluoroalkyl substances (PFAS) and other emerging contaminants, a growing area of importance for environmental and public health research. Professor Cai is a globally recognized leader in environmental and bioanalytical chemistry. His research focuses on advancing analytical methods to detect trace environmental contaminants, including PFAS, endocrine-disrupting chemicals, and persistent organic pollutants. By combining high-sensitivity analytical techniques with organoid-based toxicological models, his work aims to improve understanding of how environmental contaminants affect human health. The awarded research combines advanced mass spectrometry techniques, innovative sample preparation methods, and organoid-based toxicology platforms to link chemical detection with biological impact. Professor Cai's team aims to develop a more comprehensive framework for assessing environmental contaminants and their potential health effects. \u201cPFAS and other emerging contaminants are increasingly recognized as critical environmental and public health challenges worldwide. Detecting these contaminants at trace levels requires continuous innovation in analytical science. Agilent has played a pioneering role in addressing PFAS background contamination, setting an important foundation for high-quality PFAS analysis. Through the ARC program, we are excited to expand our research using Agilent\u2019s advanced mass spectrometry and cellu"
+    },
+    {
+      "date": "2026-07-28",
+      "title": "Agilent to Announce Third-Quarter Fiscal Year 2026 Financial Results on Aug. 26",
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/28jul-gp26015.html",
+      "classification": "product",
+      "pageTitle": "Agilent to Announce Third-Quarter Fiscal Year 2026 Financial Results on Aug. 26",
+      "excerpt": "Skip to main content ABOUT AGILENT CONTACT US UNITED STATES ACCOUNT PRODUCTS APPLICATIONS & INDUSTRIES TRAINING & EVENTS SERVICES SUPPORT & RESOURCES ORDER CENTER | 0 Home About Newsroom Press Releases 2026 Agilent to Announce Third-Quarter Fiscal Year 2026 Financial Results on Aug. 26 Newsroom Press Releases Media Coverage Media Rooms Awards PR Contacts Subscribe Investor Relations Share: Press Release Agilent to Announce Third-Quarter Fiscal Year 2026 Financial Results on Aug. 26 SANTA CLARA, Calif., July 28, 2026 Agilent Technologies Inc. (NYSE: A) will release financial results for the third quarter of fiscal year 2026 after the stock market closes on Wednesday, Aug. 26. The company will host a conference call to discuss the results at 1:30 p.m. PDT the same day. To join the listen-only conference call webcast, click the link on the Events section of Agilent\u2019s Investor Relations website. A recording of the call will also be available on the website for 90 days. About Agilent Technologies Agilent Technologies, Inc. (NYSE: A) is a global leader in analytical and clinical laboratory technologies, delivering insights and innovation that help our customers bring great science to life. Agilent\u2019s full range of solutions includes instruments, software, services, and expertise that provide trusted answers to our customers' most challenging questions. The company generated revenue of $6.95 billion in fiscal year 2025 and employs approximately 18,000 people worldwide. Information about Agilent is available at www.agilent.com. To receive the latest Agilent news, subscribe to the Agilent Newsroom. Follow Agilent on LinkedIn and Facebook. Investor Contact Tejas Savant Agilent Technologies Inc. +1 917-574-4018 tejas.savant@agilent.com Media Contact Christian Col\u00f3n Agilent Technologies Inc. +1 302-867-4117 christian.colon@agilent.com Newsroom Highlights Previous From Instruments to Workflows: What Actually Changes When AI Comes to the Lab Article Agilent Ranks Among World's Best Employers Award Bringing Great Science to Life - Sustainably 2024 ESG Report AI is a Transformative Enabler that\u2019s Reshaping How Science is Conducted in Labs Article Agilent Reports Second-Quarter Fiscal Year 2026 Financial Results Press Release Agilent Named to Newsweek's List of America's Greenest Companies 2026 Award From Instruments to Workflows: What Actually Changes When AI Comes to the La"
+    },
+    {
+      "date": "2026-07-23",
+      "title": "Agilent Receives EU Approval for PD-L1 IHC 22C3 pharmDx in Epithelial Ovarian, Fallopian Tube, or Primary Peritoneal Carcinoma",
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/23jul-ca26027.html",
+      "classification": "corporate"
+    },
+    {
+      "date": "2026-07-14",
+      "title": "Agilent Receives FDA Approval for PD-L1 IHC 28-8 pharmDx in Esophageal Squamous Cell Carcinoma (ESCC), Gastric, Gastroesophageal Junction (GEJ), and Esophageal Adenocarcinoma",
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/14jul-ca26026.html",
+      "classification": "corporate",
+      "pageTitle": "Agilent Receives FDA Approval for PD-L1 IHC 28-8 pharmDx in Esophageal Squamous Cell Carcinoma (ESCC), Gastric, Gastroesophageal Junction (GEJ), and Esophageal Adenocarcinoma",
+      "excerpt": "Skip to main content ABOUT AGILENT CONTACT US UNITED STATES ACCOUNT PRODUCTS APPLICATIONS & INDUSTRIES TRAINING & EVENTS SERVICES SUPPORT & RESOURCES ORDER CENTER | 0 Home About Newsroom Press Releases 2026 Agilent Receives FDA Approval for PD-L1 IHC 28-8 pharmDx in Esophageal Squamous Cell Carcinoma (ESCC), Gastric, Gastroesophageal Junction (GEJ), and Esophageal Adenocarcinoma Newsroom Press Releases Media Coverage Media Rooms Awards PR Contacts Subscribe Investor Relations Share: Press Release Agilent Receives FDA Approval for PD-L1 IHC 28-8 pharmDx in Esophageal Squamous Cell Carcinoma (ESCC), Gastric, Gastroesophageal Junction (GEJ), and Esophageal Adenocarcinoma Test enables identification of patients whose tumors express PD-L1 and who may be eligible for treatment with OPDIVO\u00ae (nivolumab) or OPDIVO QVANTIG\u00ae SANTA CLARA, Calif., July 14, 2026 Agilent Technologies Inc. (NYSE: A) today announced that it has received U.S. Food and Drug Administration (FDA) approval for the PD\u2011L1 IHC 28\u20118 pharmDx assay as a companion diagnostic to identify patients with esophageal squamous cell carcinoma (ESCC), gastric, gastroesophageal junction (GEJ), and esophageal adenocarcinoma who may be eligible for treatment with OPDIVO\u00ae (nivolumab) or OPDIVO QVANTIG\u00ae (nivolumab and hyaluronidase\u2011nvhy), Bristol Myers Squibb\u2019s PD\u20111\u2011targeted immunotherapeutic agents. PD-L1 IHC 28-8 pharmDx is approved for exclusive use with the Agilent Autostainer Link 48 advanced staining solution. PD\u2011L1 IHC 28\u20118 pharmDx, Code SK005, is an FDA\u2011approved diagnostic aid for detecting PD\u2011L1 expression (Combined Positive Score [CPS] \u2265 1) in these tumor types for patients being considered for treatment with OPDIVO\u00ae or OPDIVO QVANTIG\u00ae. PD\u2011L1 expression is determined using CPS, which measures PD\u2011L1 staining in tumor and immune cells relative to the total number of viable tumor cells. \u201cThis FDA approval highlights the critical role of validated diagnostics in advancing precision oncology,\u201d said Majken Nielsen, vice president and general manager of Agilent\u2019s Clinical Diagnostics Division. \u201cBy expanding the indications for PD\u2011L1 IHC 28\u20118 pharmDx, we are supporting pathologists and clinicians with an FDA\u2011approved test designed to help guide treatment decisions for patients with gastric and esophageal cancers. This milestone reflects Agilent\u2019s ongoing commitment to delivering high\u2011quality diagnostics that enable"
+    },
+    {
+      "date": "2026-07-08",
+      "title": "Agilent Expands Altura Portfolio with Inert Size Exclusion and PLRP-S Columns for Biotherapeutic Analysis",
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/08jul-ca26025.html",
+      "classification": "product"
+    },
+    {
+      "date": "2026-07-01",
+      "title": "Agilent Launches AI-Driven Analysis Module for Agilent xCELLigence RTCA eSight",
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/01jul-ca26024.html",
+      "classification": "product",
+      "pageTitle": "Agilent Launches AI-Driven Analysis Module for Agilent xCELLigence RTCA eSight",
+      "excerpt": "Skip to main content ABOUT AGILENT CONTACT US UNITED STATES ACCOUNT PRODUCTS APPLICATIONS & INDUSTRIES TRAINING & EVENTS SERVICES SUPPORT & RESOURCES ORDER CENTER | 0 Home About Newsroom Press Releases 2026 Agilent Launches AI-Driven Analysis Module for Agilent xCELLigence RTCA eSight Newsroom Press Releases Media Coverage Media Rooms Awards PR Contacts Subscribe Investor Relations Share: Press Release Agilent Launches AI-Driven Analysis Module for Agilent xCELLigence RTCA eSight Simplifying label-free imaging analysis for more confident real-time cell analysis SANTA CLARA, Calif., July 01, 2026 Agilent Technologies Inc. (NYSE: A) today announced the launch of Agilent xCELLigence RTCA eSight AI, a new AI-powered software module that simplifies label-free imaging analysis by reducing manual cell segmentation steps and parameter tuning and supporting more consistent results. The software upgrade enhances the unique dual-readout capabilities of the Agilent xCELLigence RTCA eSight instrument with AI-driven cell imaging analysis, enabling researchers to gain imaging and impedance insights from the same cells in the same experiment with greater speed and confidence. This streamlined, integrated approach is expected to provide biopharma researchers with a more complete view of cell behavior while reducing variability across users and conditions. Traditional cell segmentation workflows rely on time-consuming and subjective manual setup and analysis steps that increase variability, error and rework, slowing experimental timelines while also requiring a higher level of experimental expertise to achieve consistent results. As biopharma research increasingly demands more complex experiments, higher throughput and greater consistency, integrated workflows are key to efficient scientific progress. AI-driven imaging analysis can help reduce variability across users while decreasing time spent on manual analysis. By replacing subjective, user-influenced thresholding and manual parameter tuning with a one-click approach, the new module delivers standardized analysis across skill levels, experiments and datasets. eSight imaging AI analysis is designed to ensure confident, reliable performance across users, cell types and assay conditions, providing the robustness and accuracy essential for real-world science and users with varying levels of imaging expertise. The new module i"
+    },
+    {
+      "date": "2026-06-25",
+      "title": "Agilent Completes Acquisition of Biocare Medical",
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/25jun-gp26014.html",
+      "classification": "corporate"
+    },
+    {
+      "date": "2026-06-03",
+      "title": "Agilent, OpenAI, BCG Collaborate to Accelerate Customer-Focused, AI-Driven Scientific Innovation",
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/03jun-gp26013.html",
+      "classification": "product",
+      "pageTitle": "Agilent, OpenAI, BCG Collaborate to Accelerate Customer-Focused, AI-Driven Scientific Innovation",
+      "excerpt": "Skip to main content ABOUT AGILENT CONTACT US UNITED STATES ACCOUNT PRODUCTS APPLICATIONS & INDUSTRIES TRAINING & EVENTS SERVICES SUPPORT & RESOURCES ORDER CENTER | 0 Home About Newsroom Press Releases 2026 Agilent, OpenAI, BCG Collaborate to Accelerate Customer-Focused, AI-Driven Scientific Innovation Newsroom Press Releases Media Coverage Media Rooms Awards PR Contacts Subscribe Investor Relations Share: Press Release Agilent, OpenAI, BCG Collaborate to Accelerate Customer-Focused, AI-Driven Scientific Innovation SANTA CLARA, Calif., June 03, 2026 Agilent Technologies Inc. (NYSE: A) today announced a collaboration with OpenAI and Boston Consulting Group (BCG) to accelerate the deployment of artificial intelligence (AI) across the company\u2019s products, operations, and customer workflows. \u201cAI is a top priority, and this partnership reflects both our ambition and our execution commitment \u2014 to build the enduring capability, operating model, and capacity required to consistently deliver AI\u2011driven innovation value for our customers,\u201d said Padraig McDonnell, president and CEO of Agilent. \u201cThrough this collaboration with OpenAI and BCG, we are accelerating deployment of AI across our business while advancing more intelligent instruments, software, and services. Our focus is simple: deliver faster, highest-quality insights to help our customers make better decisions.\u201d \u201cBy bringing advanced AI capabilities into Agilent\u2019s innovation and operations, we\u2019re enabling teams to unlock new insights, accelerate discovery, and build more intelligent, adaptive solutions,\u201d said Ashley Kramer, VP of Enterprise at OpenAI. \u201cWe are focused on outcomes while building the capabilities Agilent needs to lead in an AI-enabled future.\u201d \u201cTogether, we will help Agilent turn AI into a competitive advantage \u2014 moving from pilots to scaled deployment and redefining how value is created across the enterprise,\u201d said Matthew Kropp, a managing director and senior partner at BCG and Chief AI Officer at BCG X. Agilent has prioritized initial use cases designed to materially enhance the customer experience and accelerate its new product pipeline, with plans to expand these efforts significantly over the next six to 12 months. By combining Agilent\u2019s scientific expertise and data assets with OpenAI\u2019s advanced AI research and deployment capabilities and BCG\u2019s experience in large-scale transformation, the "
+    },
+    {
+      "date": "2026-06-02",
+      "title": "Agilent Receives FDA Approval for Expanded Use of PD-L1 IHC 22C3 pharmDx on Dako Omnis in Esophageal Squamous Cell Carcinoma, Triple-Negative Breast Cancer, Cervical Cancer, and Gastric or Gastroesophageal Junction Adenocarcinoma",
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/02jun-ca26023.html",
+      "classification": "corporate"
+    },
+    {
+      "date": "2026-06-01",
+      "title": "Agilent and Sound Analytics Collaborate to Advance LC/MS Workflows for Drug Metabolism Research",
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/01jun-ca26022.html",
+      "classification": "product",
+      "pageTitle": "Agilent and Sound Analytics Collaborate to Advance LC/MS Workflows for Drug Metabolism Research",
+      "excerpt": "Skip to main content ABOUT AGILENT CONTACT US UNITED STATES ACCOUNT PRODUCTS APPLICATIONS & INDUSTRIES TRAINING & EVENTS SERVICES SUPPORT & RESOURCES ORDER CENTER | 0 Home About Newsroom Press Releases 2026 Agilent and Sound Analytics Collaborate to Advance LC/MS Workflows for Drug Metabolism Research Newsroom Press Releases Media Coverage Media Rooms Awards PR Contacts Subscribe Investor Relations Share: Press Release Agilent and Sound Analytics Collaborate to Advance LC/MS Workflows for Drug Metabolism Research SANTA CLARA, Calif., June 01, 2026 Agilent Technologies Inc. and Sound Analytics, LLC, today announced a collaboration to deliver an integrated liquid chromatography\u2013triple quadrupole mass spectrometry (LC/MS) workflow designed to support drug metabolism and pharmacokinetics (DMPK) laboratories in biopharma and pharmaceutical research. The joint solution combines Agilent\u2019s 1290 Infinity III Liquid Chromatography system and 6495D triple quadrupole mass spectrometer with LeadScape\u2122 for Agilent software, developed by Sound Analytics. Together, the systems are designed to help DMPK laboratories improve efficiency, data quality, and ease of adoption within existing workflows. \u201cAs biopharma and pharmaceutical organizations work to accelerate drug development timelines, DMPK laboratories face increasing pressure to generate high\u2011quality data quickly and reliably,\u201d said Iris Mangelschots, vice president and general manager of the Liquid Phase Division at Agilent. \u201cThis collaboration reflects Agilent\u2019s focus on delivering integrated analytical workflows that help scientists move from detection to decision with confidence.\u201d The integrated workflow enables DMPK laboratories to utilize Agilent\u2019s LC and triple quadrupole MS systems alongside LeadScape for Agilent software, supporting routine and high\u2011throughput drug metabolism analysis within established laboratory workflows. The solution is designed to help laboratories balance sensitivity, speed, and robustness with system uptime and ease of operation. \u201cSound Analytics has a long history of supporting efficient workflows for DMPK laboratories,\u201d said Wayne Lootsma, president of Sound Analytics. \u201cWorking with Agilent allows us to expand the options available to LeadScape users by combining our software with reliable, high\u2011performance LC/MS systems, helping laboratories integrate new tools within established work"
+    },
+    {
+      "date": "2026-05-28",
+      "title": "Agilent Introduces OpenLab Sync to Support Guided, Digital Execution in the Laboratory",
+      "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Introduces-OpenLab-Sync-to-Support-Guided-Digital-Execution-in-the-Laboratory/default.aspx",
+      "sourceId": "agilent-investor-news",
+      "sourceName": "Agilent investor relations news",
+      "classification": "product",
+      "signalType": "Product release",
+      "marketSegment": "Corporate",
+      "technology": "Portfolio",
+      "theme": "Product and workflow expansion",
+      "intent": "Product and portfolio expansion",
+      "summary": "Agilent Technologies Inc. (NYSE: A) today announced the introduction of OpenLab Sync , a new Lab Execution System (LES) that enables laboratories to digitally connect scientific workflows from method design through execution at the bench. OpenLab Sync extends Agilent\u2019s OpenLab laboratory informatics portfolio beyond traditional data and sample management, enabling guided, standardized, and traceable execution of laboratory work in regulated environments. As laboratories face increasing regulatory scrutiny, workforce turnover, and pressure to standardize operations across sites, many continue to rely on static, paper-based procedures that can introduce variability and risk. OpenLab Sync addresses growing demands for consistency, data integrity, and audit readiness in regulated environments by providing step-by-step, guided digital workflows that help reduce ambiguity in laboratory procedures while improving traceability of bench-level activities across teams and locations. OpenLab Sync"
+    },
+    {
+      "date": "2026-05-27",
+      "title": "Agilent Reports Second-Quarter Fiscal Year 2026 Financial Results",
+      "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Reports-Second-Quarter-Fiscal-Year-2026-Financial-Results/default.aspx",
+      "sourceId": "agilent-investor-news",
+      "sourceName": "Agilent investor relations news",
+      "classification": "corporate",
+      "signalType": "Quarterly earnings result",
+      "marketSegment": "Corporate",
+      "technology": "Portfolio",
+      "theme": "Quarterly earnings and end-market demand",
+      "intent": "Corporate performance and investment capacity",
+      "summary": "Agilent paired broad-based revenue growth with higher Life Sciences and Diagnostics, CrossLab, and Applied Markets performance while raising fiscal 2026 revenue, margin, and EPS guidance.",
+      "earningsMetrics": [
+        {
+          "label": "Life Sciences and Diagnostics revenue",
+          "value": "$732M",
+          "detail": "+12% reported / +9% core year over year"
+        },
+        {
+          "label": "CrossLab revenue",
+          "value": "$759M",
+          "detail": "+6% reported / +2% core; 32.0% operating margin"
+        },
+        {
+          "label": "Applied Markets revenue",
+          "value": "$344M",
+          "detail": "+14% reported / +11% core year over year"
+        }
+      ],
+      "pmInsights": [
+        "All three operating groups grew; Life Sciences and Diagnostics and Applied Markets posted the strongest core growth.",
+        "CrossLab remained Agilent's largest reported group and carried a 32.0% operating margin, making lifecycle and service economics strategically material.",
+        "Agilent raised fiscal 2026 revenue, core-growth, operating-margin, and non-GAAP EPS guidance, increasing capacity to invest behind priority workflows."
+      ],
+      "watersPmImplication": "Assess Agilent as an installed-base lifecycle and workflow competitor\u2014not only an LC instrument competitor\u2014and track where CrossLab, software, and applications are bundled into regulated customer outcomes.",
+      "evidenceBoundary": "Agilent does not separately report LC or LC-MS revenue, units, pricing, or share; segment growth is not direct evidence of LC market-share gain."
+    },
+    {
+      "date": "2026-05-26",
+      "title": "Agilent Launches New GC Systems with GC Assist to Improve Laboratory Efficiency and Data Quality",
+      "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Launches-New-GC-Systems-with-GC-Assist-to-Improve-Laboratory-Efficiency-and-Data-Quality/default.aspx",
+      "sourceId": "agilent-investor-news",
+      "sourceName": "Agilent investor relations news",
+      "classification": "product",
+      "signalType": "Product release",
+      "marketSegment": "Corporate",
+      "technology": "LC/UHPLC",
+      "theme": "Product and workflow expansion",
+      "intent": "Product and portfolio expansion",
+      "summary": "New 8890B and 8860B gas chromatographs integrate intelligent monitoring and remote diagnostics Agilent Technologies Inc. (NYSE: A) today announced the launch of the new 8890B GC and 8860B GC with GC Assist. GC Assist is the new, advanced instrument intelligence that provides system monitoring, built-in troubleshooting, and remote connectivity to analytical instrumentation within the laboratory\u2019s secure network. These systems enable higher performance and productivity across gas chromatography analyses. The new systems are designed to help laboratories reduce unplanned downtime, improve data quality, and operate more efficiently by combining updated GC hardware with integrated system monitoring, diagnostics, step-by-step troubleshooting, and maintenance procedures through GC Assist. \u201cThese are our most advanced GC systems to date,\u201d said Warren Potts, vice president and general manager of the Gas Phase Division at Agilent. \u201cLaboratories are under pressure to deliver high-quality data"
+    },
+    {
+      "date": "2026-05-26",
+      "title": "Agilent Launches Multi-Attribute Method (MAM) Solution for BioPharma Quality Control",
+      "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Launches-Multi-Attribute-Method-MAM-Solution-for-BioPharma-Quality-Control/default.aspx",
+      "sourceId": "agilent-investor-news",
+      "sourceName": "Agilent investor relations news",
+      "classification": "product",
+      "signalType": "Product release",
+      "marketSegment": "Biopharma",
+      "technology": "LC/UHPLC",
+      "theme": "Product and workflow expansion",
+      "intent": "Product and portfolio expansion",
+      "summary": "Agilent Technologies Inc. (NYSE: A) today announced the release of a new multi-attribute method (MAM) workflow designed to help pharmaceutical and biopharmaceutical quality control (QC) laboratories implement liquid chromatography high-resolution mass spectrometry (LC/HRMS) in routine, regulated testing environments. The Agilent MAM solution brings together software, instrumentation, columns, consumables and standards to address practical and operational barriers that have historically limited the use of LC/HRMS in QC environments. The workflow is designed to support laboratories applying MAM to monitor critical quality attributes during late-stage development and commercial manufacturing. Regulatory and industry interest in MAM has increased as biologics grow more complex, and expectations for analytical control continue to evolve. Guidance such as United States Pharmacopeia (USP) chapter <1060> highlights considerations for implementing MAM using LC/HRMS, reinforcing its"
+    },
+    {
+      "date": "2026-05-22",
+      "title": "Agilent Unveils the 9500 ICP-MS: Redefining Trace Element Analysis",
+      "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Unveils-the-9500-ICP-MS-Redefining-Trace-Element-Analysis/default.aspx",
+      "sourceId": "agilent-investor-news",
+      "sourceName": "Agilent investor relations news",
+      "classification": "product",
+      "signalType": "Product release",
+      "marketSegment": "Corporate",
+      "technology": "Portfolio",
+      "theme": "Product and workflow expansion",
+      "intent": "Product and portfolio expansion",
+      "summary": "Next-generation ICP-MS/MS delivers faster measurements, simplified workflows, and easier access to advanced elemental analysis Agilent Technologies Inc. (NYSE: A) today announced the launch of the Agilent 9500 Triple Quadrupole ICP-MS , a next-generation inductively coupled plasma mass spectrometry system designed to help single quadrupole ICP-MS laboratories more easily transition to triple quadrupole technology for advanced trace elemental analysis. Agilent 9500 Triple Quadrupole ICP-MS System As testing demands grow more complex and skilled resources remain limited, laboratories face increasing pressure to deliver faster, interference-free results without adding operational burden. The Agilent 9500 ICP-MS addresses these challenges by improving productivity, simplifying advanced interference removal, and enabling laboratories to generate high-quality data with greater confidence. The system introduces innovations including Air Cell and Advanced Helium Mode (AHM), enabled by"
+    },
+    {
+      "date": "2026-05-21",
+      "title": "Agilent Launches 1290 Infinity III Fluorescence Detector for Confident Trace Analysis at UHPLC Speed",
+      "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Launches-1290-Infinity-III-Fluorescence-Detector-for-Confident-Trace-Analysis-at-UHPLC-Speed/default.aspx",
+      "sourceId": "agilent-investor-news",
+      "sourceName": "Agilent investor relations news",
+      "classification": "product",
+      "signalType": "Product release",
+      "marketSegment": "Corporate",
+      "technology": "LC/UHPLC",
+      "theme": "Product and workflow expansion",
+      "intent": "Product and portfolio expansion",
+      "summary": "Agilent Technologies Inc. (NYSE: A) today announced the launch of the Agilent 1290 Infinity III Fluorescence Detector (FLD), a new fluorescence detector designed specifically for modern ultra-high-performance liquid chromatography (UHPLC) workflows. The detector extends fluorescence detection into the UHPLC era by combining ultra-trace sensitivity, UHPLC-ready chromatographic performance, and routine-ready ease of use. 1290 Infinity III Fluorescence Detector with front-access service design. Designed for use as a standalone detector or in-line with LC/MS systems, the 1290 Infinity III FLD helps laboratories gain more analytical evidence and greater confidence from every injection. The detector preserves narrow UHPLC peak integrity while delivering rich spectral information, supporting confident decision-making in trace-level analysis. \u201cThe 1290 Infinity III Fluorescence Detector is designed to deliver clear customer value by combining ultra-trace sensitivity, UHPLC-ready peak"
+    },
+    {
+      "date": "2026-05-20",
+      "title": "Agilent Announces Cash Dividend of 25.5 Cents per Share",
+      "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Announces-Cash-Dividend-of-25-5-Cents-per-Share-cd1e68595/default.aspx",
+      "sourceId": "agilent-investor-news",
+      "sourceName": "Agilent investor relations news",
+      "classification": "product",
+      "signalType": "Product release",
+      "marketSegment": "Corporate",
+      "technology": "Software",
+      "theme": "Product and workflow expansion",
+      "intent": "Product and portfolio expansion",
+      "summary": "Agilent Technologies Inc. (NYSE: A) today announced a quarterly dividend of 25.5 cents per share of common stock. The quarterly dividend will be paid on July 22, 2026, to all shareholders of record as of the close of business on June 30, 2026. The timing and amounts of future dividends are subject to the determination and approval of Agilent\u2019s board of directors. About Agilent Technologies Agilent Technologies, Inc. (NYSE: A) is a global leader in analytical and clinical laboratory technologies, delivering insights and innovation that help our customers bring great science to life. Agilent\u2019s full range of solutions includes instruments, software, services, and expertise that provide trusted answers to our customers' most challenging questions. The company generated revenue of $6.95 billion in fiscal year 2025 and employs approximately 18,000 people worldwide. Information about Agilent is available at www.agilent.com . To receive the latest Agilent news, subscribe to the Agilent"
+    },
+    {
+      "date": "2026-05-19",
+      "title": "Agilent to Supply Next Generation Alarm Resolution Technology to U.S. Airport Security Screening Checkpoints ahead of FIFA World Cup 2026",
+      "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-to-Supply-Next-Generation-Alarm-Resolution-Technology-to-U-S--Airport-Security-Screening-Checkpoints-ahead-of-FIFA-World-Cup-2026/default.aspx",
+      "sourceId": "agilent-investor-news",
+      "sourceName": "Agilent investor relations news",
+      "classification": "product",
+      "signalType": "Product release",
+      "marketSegment": "Corporate",
+      "technology": "Portfolio",
+      "theme": "Product and workflow expansion",
+      "intent": "Product and portfolio expansion",
+      "summary": "Agilent has been awarded a contract by the Transportation Security Administration (TSA) to supply its Bulk Resolution Technology (BRT) systems to passenger security checkpoints at FIFA World Cup U.S. host city airports Agilent Technologies Inc. (NYSE: A) today announced that it has been awarded a contract by the Transportation Security Administration (TSA) and will deploy its new Bulk Alarm Resolution Technology (BRT) to security checkpoints at FIFA World Cup U.S. host city airports with the capabilities to screen larger quantities of liquids, powders, and solids commonly encountered in airport security screening operations. \u201cAgilent is thrilled to have been selected by TSA to modernize passenger security screening checkpoints at U.S. airports in advance of FIFA World Cup matches,\u201d said Geoff Winkett, vice president and general manager of the Spectroscopy and Vacuum Division at Agilent. \u201cTSA\u2019s deployment of the BRT, our next-generation alarm resolution technology, is a significant"
+    },
+    {
+      "date": "2026-05-11",
+      "title": "Agilent to Participate in Jefferies Global Healthcare Conference",
+      "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-to-Participate-in-Jefferies-Global-Healthcare-Conference/default.aspx",
+      "sourceId": "agilent-investor-news",
+      "sourceName": "Agilent investor relations news",
+      "classification": "product",
+      "signalType": "Product release",
+      "marketSegment": "Corporate",
+      "technology": "Software",
+      "theme": "Product and workflow expansion",
+      "intent": "Product and portfolio expansion",
+      "summary": "Agilent Technologies Inc. (NYSE: A) today announced that CEO Padraig McDonnell and CFO Adam Elinoff will participate in a fireside chat at the Jefferies Global Healthcare Conference. The event is scheduled for 9:20 EDT on Wednesday, June 3, 2026, in New York City. A live audio webcast and replay of the presentation will be available through Agilent\u2019s Investor Relations website. About Agilent Technologies Agilent Technologies, Inc. (NYSE: A) is a global leader in analytical and clinical laboratory technologies, delivering insights and innovation that help our customers bring great science to life. Agilent\u2019s full range of solutions includes instruments, software, services, and expertise that provide trusted answers to our customers' most challenging questions. The company generated revenue of $6.95 billion in fiscal year 2025 and employs approximately 18,000 people worldwide. Information about Agilent is available at www.agilent.com . To receive the latest Agilent news, subscribe to the"
+    },
+    {
+      "date": "2026-05-04",
+      "title": "Agilent Names Michael Buckner as Chief Legal Officer",
+      "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Names-Michael-Buckner-as-Chief-Legal-Officer/default.aspx",
+      "sourceId": "agilent-investor-news",
+      "sourceName": "Agilent investor relations news",
+      "classification": "corporate",
+      "signalType": "Acquisition",
+      "marketSegment": "Corporate",
+      "technology": "Portfolio",
+      "theme": "Portfolio expansion through acquisition",
+      "intent": "Capability and market expansion",
+      "summary": "Agilent Technologies Inc. (NYSE: A) today announced the appointment of Michael Buckner as chief legal officer, effective today. Buckner brings nearly three decades of experience as a senior global legal executive, with a proven track record of building and leading high-performing teams and deep expertise in complex transactions and regulatory environments. \u201cWe are thrilled to welcome Michael to the Agilent team,\u201d said Padraig McDonnell, Agilent president and CEO. \u201cHis experience leading global legal organizations, combined with his expertise across governance, compliance and regulatory matters, will play a key role as we continue to advance our strategy and deliver for our customers and stakeholders worldwide.\u201d Buckner joins Agilent from Danaher Corp., where he served as vice president, deputy general counsel, and chief M&A counsel. In this role, he led legal strategy for mergers and acquisitions, antitrust, intellectual property transactions, and debt securities, while overseeing"
+    },
+    {
+      "date": "2026-04-28",
+      "title": "Agilent to Announce Second-Quarter Fiscal Year 2026 Financial Results on May 27",
+      "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-to-Announce-Second-Quarter-Fiscal-Year-2026-Financial-Results-on-May-27/default.aspx",
+      "sourceId": "agilent-investor-news",
+      "sourceName": "Agilent investor relations news",
+      "classification": "corporate",
+      "signalType": "Earnings event announcement",
+      "marketSegment": "Corporate",
+      "technology": "Portfolio",
+      "theme": "Upcoming earnings event",
+      "intent": "Investor communication",
+      "summary": "\u200bAgilent Technologies Inc. (NYSE: A) will release financial results for the second quarter of fiscal year 2026 after the stock market closes on Wednesday, May 27. The company will host a conference call to discuss the results at 1:30 p.m. PDT the same day. To join the listen-only conference call webcast, click the link on the Events section of Agilent\u2019s Investor Relations website. A recording of the call will also be available on the website for 90 days. About Agilent Technologies Agilent Technologies, Inc. (NYSE: A) is a global leader in analytical and clinical laboratory technologies, delivering insights and innovation that help our customers bring great science to life. Agilent\u2019s full range of solutions includes instruments, software, services, and expertise that provide trusted answers to our customers' most challenging questions. The company generated revenue of $6.95 billion in fiscal year 2025 and employs approximately 18,000 people worldwide. Information about Agilent is"
+    },
+    {
+      "date": "2026-04-15",
+      "title": "Agilent Showcases Cancer Research Solutions at AACR 2026",
+      "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Showcases-Cancer-Research-Solutions-at-AACR-2026/default.aspx",
+      "sourceId": "agilent-investor-news",
+      "sourceName": "Agilent investor relations news",
+      "classification": "product",
+      "signalType": "Product release",
+      "marketSegment": "Corporate",
+      "technology": "Portfolio",
+      "theme": "Product and workflow expansion",
+      "intent": "Product and portfolio expansion",
+      "summary": "Agilent Technologies Inc. (NYSE: A) will present new technologies, scientific collaborations, and integrated workflows supporting cancer research and diagnostics at the American Association for Cancer Research (AACR) Annual Meeting on April 17\u201322, 2026, in San Diego, California. At the meeting, Agilent will highlight advances designed to connect discovery research, translational science, and companion diagnostics development, reflecting the growing demand for more integrated approaches across the cancer research continuum. Among the technologies featured is the BioTek Cytation 9 cell imaging multimode reader, the newest addition to the Cytation series of cell imaging and multimode microplate readers. Cytation 9 is designed to support advanced live\u2011cell and endpoint assays by combining automated microscopy with conventional microplate reading in a single system, supporting a range of cell\u2011based research applications. In addition, Agilent will provide an early preview of the upcoming"
     }
   ],
   "source_status": [
@@ -29,7 +556,7 @@
       "status": "available",
       "sourceQuality": "reliable",
       "reliabilityNote": "Authoritative sitemap index.",
-      "checkedAt": "2026-07-29T00:26:11+00:00"
+      "checkedAt": "2026-08-02T20:04:17+00:00"
     },
     {
       "url": "https://www.agilent.com/pim_commerce01.xml",
@@ -38,7 +565,7 @@
       "status": "available",
       "sourceQuality": "reliable",
       "reliabilityNote": "Authoritative product inventory.",
-      "checkedAt": "2026-07-29T00:26:12+00:00"
+      "checkedAt": "2026-08-02T20:04:18+00:00"
     },
     {
       "url": "https://www.agilent.com/pim_commerce1.xml",
@@ -47,7 +574,7 @@
       "status": "available",
       "sourceQuality": "reliable",
       "reliabilityNote": "Authoritative product inventory.",
-      "checkedAt": "2026-07-29T00:26:13+00:00"
+      "checkedAt": "2026-08-02T20:04:19+00:00"
     },
     {
       "url": "https://www.agilent.com/products0.xml",
@@ -56,34 +583,124 @@
       "status": "available",
       "sourceQuality": "reliable",
       "reliabilityNote": "Authoritative product inventory.",
-      "checkedAt": "2026-07-29T00:26:15+00:00"
+      "checkedAt": "2026-08-02T20:04:21+00:00"
     },
     {
       "url": "https://www.agilent.com/about/newsroom/presrel.html",
-      "fetchMethod": "real_browser",
+      "fetchMethod": "headless_browser_required",
+      "httpStatus": 403,
+      "status": "collection_review_needed",
+      "sourceQuality": "blocked",
+      "reliabilityNote": "HTTP 403 prevents extraction in this run; record as blocked, not healthy, until a permitted fetch succeeds.",
+      "checkedAt": "2026-08-02T20:04:28+00:00"
+    },
+    {
+      "url": "https://www.investor.agilent.com/news-and-events/news/default.aspx",
+      "fetchMethod": "official_ir_news_api",
       "httpStatus": 200,
       "status": "available",
       "sourceQuality": "reliable",
-      "reliabilityNote": "Authoritative dated press-release index.",
-      "checkedAt": "2026-07-29T00:26:25+00:00"
+      "reliabilityNote": "Official Agilent investor-relations news feed; 10-second crawl delay applied.",
+      "checkedAt": "2026-08-02T20:04:28+00:00"
     },
     {
       "url": "https://www.investor.agilent.com/overview/default.aspx",
-      "fetchMethod": "real_browser",
-      "httpStatus": 200,
-      "status": "available",
-      "sourceQuality": "reliable",
-      "reliabilityNote": "Investor relations source; 10-second crawl delay applied.",
-      "checkedAt": "2026-07-29T00:26:29+00:00"
+      "fetchMethod": "headless_browser_required",
+      "httpStatus": 403,
+      "status": "collection_review_needed",
+      "sourceQuality": "blocked",
+      "reliabilityNote": "HTTP 403 prevents extraction in this run; record as blocked, not healthy, until a permitted fetch succeeds.",
+      "checkedAt": "2026-08-02T20:04:38+00:00"
+    },
+    {
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/29jul-ca26028.html",
+      "fetchMethod": "headless_browser_required",
+      "httpStatus": 403,
+      "status": "collection_review_needed",
+      "sourceQuality": "blocked",
+      "reliabilityNote": "HTTP 403 prevents extraction in this run; record as blocked, not healthy, until a permitted fetch succeeds.",
+      "checkedAt": "2026-08-02T20:04:39+00:00"
     },
     {
       "url": "https://www.agilent.com/about/newsroom/presrel/2026/28jul-gp26015.html",
-      "fetchMethod": "real_browser",
-      "httpStatus": 200,
-      "status": "available",
-      "sourceQuality": "reliable",
-      "reliabilityNote": "New release fetched for classification and detail.",
-      "checkedAt": "2026-07-29T00:26:40+00:00"
+      "fetchMethod": "headless_browser_required",
+      "httpStatus": 403,
+      "status": "collection_review_needed",
+      "sourceQuality": "blocked",
+      "reliabilityNote": "HTTP 403 prevents extraction in this run; record as blocked, not healthy, until a permitted fetch succeeds.",
+      "checkedAt": "2026-08-02T20:04:40+00:00"
+    },
+    {
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/23jul-ca26027.html",
+      "fetchMethod": "headless_browser_required",
+      "httpStatus": 403,
+      "status": "collection_review_needed",
+      "sourceQuality": "blocked",
+      "reliabilityNote": "HTTP 403 prevents extraction in this run; record as blocked, not healthy, until a permitted fetch succeeds.",
+      "checkedAt": "2026-08-02T20:04:41+00:00"
+    },
+    {
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/14jul-ca26026.html",
+      "fetchMethod": "headless_browser_required",
+      "httpStatus": 403,
+      "status": "collection_review_needed",
+      "sourceQuality": "blocked",
+      "reliabilityNote": "HTTP 403 prevents extraction in this run; record as blocked, not healthy, until a permitted fetch succeeds.",
+      "checkedAt": "2026-08-02T20:04:43+00:00"
+    },
+    {
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/08jul-ca26025.html",
+      "fetchMethod": "headless_browser_required",
+      "httpStatus": 403,
+      "status": "collection_review_needed",
+      "sourceQuality": "blocked",
+      "reliabilityNote": "HTTP 403 prevents extraction in this run; record as blocked, not healthy, until a permitted fetch succeeds.",
+      "checkedAt": "2026-08-02T20:04:44+00:00"
+    },
+    {
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/01jul-ca26024.html",
+      "fetchMethod": "headless_browser_required",
+      "httpStatus": 403,
+      "status": "collection_review_needed",
+      "sourceQuality": "blocked",
+      "reliabilityNote": "HTTP 403 prevents extraction in this run; record as blocked, not healthy, until a permitted fetch succeeds.",
+      "checkedAt": "2026-08-02T20:04:45+00:00"
+    },
+    {
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/25jun-gp26014.html",
+      "fetchMethod": "headless_browser_required",
+      "httpStatus": 403,
+      "status": "collection_review_needed",
+      "sourceQuality": "blocked",
+      "reliabilityNote": "HTTP 403 prevents extraction in this run; record as blocked, not healthy, until a permitted fetch succeeds.",
+      "checkedAt": "2026-08-02T20:04:46+00:00"
+    },
+    {
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/03jun-gp26013.html",
+      "fetchMethod": "headless_browser_required",
+      "httpStatus": 403,
+      "status": "collection_review_needed",
+      "sourceQuality": "blocked",
+      "reliabilityNote": "HTTP 403 prevents extraction in this run; record as blocked, not healthy, until a permitted fetch succeeds.",
+      "checkedAt": "2026-08-02T20:04:48+00:00"
+    },
+    {
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/02jun-ca26023.html",
+      "fetchMethod": "headless_browser_required",
+      "httpStatus": 403,
+      "status": "collection_review_needed",
+      "sourceQuality": "blocked",
+      "reliabilityNote": "HTTP 403 prevents extraction in this run; record as blocked, not healthy, until a permitted fetch succeeds.",
+      "checkedAt": "2026-08-02T20:04:49+00:00"
+    },
+    {
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/01jun-ca26022.html",
+      "fetchMethod": "headless_browser_required",
+      "httpStatus": 403,
+      "status": "collection_review_needed",
+      "sourceQuality": "blocked",
+      "reliabilityNote": "HTTP 403 prevents extraction in this run; record as blocked, not healthy, until a permitted fetch succeeds.",
+      "checkedAt": "2026-08-02T20:04:50+00:00"
     }
   ],
   "monitoringNote": "Agilent WAF responses do not affect source quality. Authoritative sitemap and press indexes are monitored with an honest crawler identity."

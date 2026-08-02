@@ -1,0 +1,138 @@
+TAP version 13
+# Subtest: 1. KPI counts reconcile with destination panels in every scenario
+not ok 1 - 1. KPI counts reconcile with destination panels in every scenario
+  ---
+  duration_ms: 1.307208
+  type: 'test'
+  location: '/Users/chandni/Documents/CompetitionEngine/artifacts/director-acceptance-2026-07-29/scenario-acceptance.test.mjs:25:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Pharma QC → validated-method migration: customer URL destination
+
+    1 !== 0
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/chandni/Documents/CompetitionEngine/artifacts/director-acceptance-2026-07-29/scenario-acceptance.test.mjs:30:12)
+    Test.runInAsyncScope (node:async_hooks:228:14)
+    Test.run (node:internal/test_runner/test:1118:25)
+    Test.start (node:internal/test_runner/test:1015:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17)
+  ...
+# Subtest: 2. Positioning decisions derive from the governing position
+not ok 2 - 2. Positioning decisions derive from the governing position
+  ---
+  duration_ms: 0.421167
+  type: 'test'
+  location: '/Users/chandni/Documents/CompetitionEngine/artifacts/director-acceptance-2026-07-29/scenario-acceptance.test.mjs:34:1'
+  failureType: 'testCodeFailure'
+  error: 'Pharma QC → validated-method migration: no positioning decision rendered'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/chandni/Documents/CompetitionEngine/artifacts/director-acceptance-2026-07-29/scenario-acceptance.test.mjs:36:12)
+    Test.runInAsyncScope (node:async_hooks:228:14)
+    Test.run (node:internal/test_runner/test:1118:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+    Test.postRun (node:internal/test_runner/test:1247:19)
+    Test.run (node:internal/test_runner/test:1175:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3)
+  ...
+# Subtest: 3. Buying committee and calculated swing cascade are complete
+not ok 3 - 3. Buying committee and calculated swing cascade are complete
+  ---
+  duration_ms: 0.858917
+  type: 'test'
+  location: '/Users/chandni/Documents/CompetitionEngine/artifacts/director-acceptance-2026-07-29/scenario-acceptance.test.mjs:46:1'
+  failureType: 'testCodeFailure'
+  error: 'Pharma QC → validated-method migration: no buying committee rendered'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/chandni/Documents/CompetitionEngine/artifacts/director-acceptance-2026-07-29/scenario-acceptance.test.mjs:48:12)
+    Test.runInAsyncScope (node:async_hooks:228:14)
+    Test.run (node:internal/test_runner/test:1118:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+    Test.postRun (node:internal/test_runner/test:1247:19)
+    Test.run (node:internal/test_runner/test:1175:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:787:7)
+  ...
+# Subtest: 4. Claims, proof compatibility, and break-report controls remain safe
+ok 4 - 4. Claims, proof compatibility, and break-report controls remain safe
+  ---
+  duration_ms: 0.290792
+  type: 'test'
+  ...
+# Subtest: 5. ACCORD tactics and governed EVC are present for every scenario
+not ok 5 - 5. ACCORD tactics and governed EVC are present for every scenario
+  ---
+  duration_ms: 0.164292
+  type: 'test'
+  location: '/Users/chandni/Documents/CompetitionEngine/artifacts/director-acceptance-2026-07-29/scenario-acceptance.test.mjs:71:1'
+  failureType: 'testCodeFailure'
+  error: 'Pharma QC → validated-method migration: no adoption/value plan rendered'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/chandni/Documents/CompetitionEngine/artifacts/director-acceptance-2026-07-29/scenario-acceptance.test.mjs:73:12)
+    Test.runInAsyncScope (node:async_hooks:228:14)
+    Test.run (node:internal/test_runner/test:1118:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+    Test.postRun (node:internal/test_runner/test:1247:19)
+    Test.run (node:internal/test_runner/test:1175:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:787:7)
+  ...
+# Subtest: 6. Activation artifacts render with draft governance
+not ok 6 - 6. Activation artifacts render with draft governance
+  ---
+  duration_ms: 0.153791
+  type: 'test'
+  location: '/Users/chandni/Documents/CompetitionEngine/artifacts/director-acceptance-2026-07-29/scenario-acceptance.test.mjs:82:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Pharma QC → validated-method migration: artifact count
+
+    0 !== 7
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 7
+  actual: 0
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/chandni/Documents/CompetitionEngine/artifacts/director-acceptance-2026-07-29/scenario-acceptance.test.mjs:84:12)
+    Test.runInAsyncScope (node:async_hooks:228:14)
+    Test.run (node:internal/test_runner/test:1118:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+    Test.postRun (node:internal/test_runner/test:1247:19)
+    Test.run (node:internal/test_runner/test:1175:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:787:7)
+  ...
+# Subtest: 7. Canonical evidence references resolve and provenance remains explicit
+ok 7 - 7. Canonical evidence references resolve and provenance remains explicit
+  ---
+  duration_ms: 0.093417
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 2
+# fail 5
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 83.128625

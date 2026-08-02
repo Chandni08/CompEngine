@@ -13,8 +13,16 @@
       "endDate": "2026-08-13",
       "tier": "Tier 2",
       "website": "https://www.bioprocessingsummit.com/",
-      "marketSegments": ["Biopharma", "CDMO"],
-      "technologyFocus": ["LC", "LC-MS", "Bioprocess analytics", "QC"],
+      "marketSegments": [
+        "Biopharma",
+        "CDMO"
+      ],
+      "technologyFocus": [
+        "LC",
+        "LC-MS",
+        "Bioprocess analytics",
+        "QC"
+      ],
       "annualTheme": "Transforming Bioprocessing for the Digital Age",
       "scientificFocus": [
         "Modernizing analytics through Analytical Intelligence and Next-Generation Analytical Methods",
@@ -26,7 +34,10 @@
         "The program connects analytical methods with digitalization, AI, CMC, and complex-modality manufacturing."
       ],
       "competitorWatch": [
-        { "name": "Thermo Fisher", "status": "Premier sponsor; public agenda does not yet identify a Thermo Fisher talk title" }
+        {
+          "name": "Thermo Fisher",
+          "status": "Premier sponsor; public agenda does not yet identify a Thermo Fisher talk title"
+        }
       ],
       "competitorContent": [
         {
@@ -34,6 +45,7 @@
           "evidenceStatus": "Expected — not confirmed",
           "content": "Thermo Fisher is a 2026 premier sponsor. No competitor talk title is public on the event page, so expect a connected bioprocess, analytical, and digital-lab narrative rather than treating a specific session as confirmed.",
           "evidenceBasis": "The official sponsor page confirms participation; the event program emphasizes digital and AI-enabled bioprocessing, Analytical Intelligence, and next-generation analytical methods.",
+          "displayEvidenceBasis": false,
           "sourceLabel": "2026 sponsor and program evidence",
           "sourceUrl": "https://www.bioprocessingsummit.com/sponsors"
         }
@@ -74,8 +86,14 @@
         "Demonstrate BioAccord plus Alliance iS Bio as a connected development-to-QC story."
       ],
       "monitoringLinks": [
-        { "label": "2026 program", "url": "https://www.bioprocessingsummit.com/" },
-        { "label": "2026 sponsors", "url": "https://www.bioprocessingsummit.com/sponsors" }
+        {
+          "label": "2026 program",
+          "url": "https://www.bioprocessingsummit.com/"
+        },
+        {
+          "label": "2026 sponsors",
+          "url": "https://www.bioprocessingsummit.com/sponsors"
+        }
       ]
     },
     {
@@ -87,8 +105,18 @@
       "endDate": "2026-08-28",
       "tier": "Tier 1",
       "website": "https://www.imss.nl/",
-      "marketSegments": ["Academic", "Pharma", "Biopharma", "Environmental"],
-      "technologyFocus": ["LC-MS", "Mass spectrometry", "Instrumentation", "Data"],
+      "marketSegments": [
+        "Academic",
+        "Pharma",
+        "Biopharma",
+        "Environmental"
+      ],
+      "technologyFocus": [
+        "LC-MS",
+        "Mass spectrometry",
+        "Instrumentation",
+        "Data"
+      ],
       "annualTheme": "The present and future of mass spectrometry across five scientific themes",
       "scientificFocus": [
         "Fundamentals, instrumentation, and data",
@@ -100,11 +128,26 @@
         "Vendor seminars, innovation talks, and exhibitions make IMSC the highest-value 2026 event for new MS platform narratives."
       ],
       "competitorWatch": [
-        { "name": "Bruker", "status": "Confirmed lunch seminar on 4D multiomics and functional proteomics" },
-        { "name": "Agilent", "status": "Silver sponsor; public competitor seminar title not found" },
-        { "name": "Thermo Fisher", "status": "Silver sponsor; public competitor seminar title not found" },
-        { "name": "SCIEX", "status": "Bronze sponsor; public competitor seminar title not found" },
-        { "name": "Shimadzu", "status": "Bronze sponsor; public competitor seminar title not found" }
+        {
+          "name": "Bruker",
+          "status": "Confirmed lunch seminar on 4D multiomics and functional proteomics"
+        },
+        {
+          "name": "Agilent",
+          "status": "Silver sponsor; public competitor seminar title not found"
+        },
+        {
+          "name": "Thermo Fisher",
+          "status": "Silver sponsor; public competitor seminar title not found"
+        },
+        {
+          "name": "SCIEX",
+          "status": "Bronze sponsor; public competitor seminar title not found"
+        },
+        {
+          "name": "Shimadzu",
+          "status": "Bronze sponsor; public competitor seminar title not found"
+        }
       ],
       "competitorContent": [
         {
@@ -166,9 +209,18 @@
         "Prepare direct response cards for Bruker 4D multiomics and for late-posted Agilent, Thermo Fisher, SCIEX, and Shimadzu seminars."
       ],
       "monitoringLinks": [
-        { "label": "Conference overview", "url": "https://www.imss.nl/" },
-        { "label": "Shimadzu presence", "url": "https://www.shimadzu.eu/news-events/2026/IMSC.html" },
-        { "label": "Bruker seminar", "url": "https://www.bruker.com/en/landingpages/bdal/imsc.html" }
+        {
+          "label": "Conference overview",
+          "url": "https://www.imss.nl/"
+        },
+        {
+          "label": "Shimadzu presence",
+          "url": "https://www.shimadzu.eu/news-events/2026/IMSC.html"
+        },
+        {
+          "label": "Bruker seminar",
+          "url": "https://www.bruker.com/en/landingpages/bdal/imsc.html"
+        }
       ]
     },
     {
@@ -180,8 +232,16 @@
       "endDate": "2026-08-27",
       "tier": "Tier 2",
       "website": "https://www.acs.org/events/all-events/acs-fall-2026.html",
-      "marketSegments": ["Academic", "Pharma", "Environmental"],
-      "technologyFocus": ["LC", "LC-MS", "Chemistry applications"],
+      "marketSegments": [
+        "Academic",
+        "Pharma",
+        "Environmental"
+      ],
+      "technologyFocus": [
+        "LC",
+        "LC-MS",
+        "Chemistry applications"
+      ],
       "annualTheme": "Multitopic chemistry meeting",
       "scientificFocus": [
         "Emerging technologies, materials science, sustainability, and health",
@@ -193,9 +253,18 @@
         "Competitor differentiation is likely to appear through application proof, workflow simplicity, and sustainability rather than one event-wide instrument theme."
       ],
       "competitorWatch": [
-        { "name": "Agilent", "status": "Expected application-led expo content; exact 2026 session not confirmed" },
-        { "name": "Thermo Fisher", "status": "Expected application-led expo content; exact 2026 session not confirmed" },
-        { "name": "SCIEX", "status": "Expected application-led expo content; exact 2026 session not confirmed" }
+        {
+          "name": "Agilent",
+          "status": "Expected application-led expo content; exact 2026 session not confirmed"
+        },
+        {
+          "name": "Thermo Fisher",
+          "status": "Expected application-led expo content; exact 2026 session not confirmed"
+        },
+        {
+          "name": "SCIEX",
+          "status": "Expected application-led expo content; exact 2026 session not confirmed"
+        }
       ],
       "competitorContent": [
         {
@@ -257,8 +326,14 @@
         "Bring one high-impact live demonstration and support it with short application proof cards by audience."
       ],
       "monitoringLinks": [
-        { "label": "2026 meeting", "url": "https://www.acs.org/events/all-events/acs-fall-2026.html" },
-        { "label": "Expo and exhibitors", "url": "https://www.acs.org/events/fall/exhibit.html" }
+        {
+          "label": "2026 meeting",
+          "url": "https://www.acs.org/events/all-events/acs-fall-2026.html"
+        },
+        {
+          "label": "Expo and exhibitors",
+          "url": "https://www.acs.org/events/fall/exhibit.html"
+        }
       ]
     },
     {
@@ -270,8 +345,15 @@
       "endDate": "2026-09-18",
       "tier": "Tier 2",
       "website": "https://www.casss.org/mass-spectrometry/attend",
-      "marketSegments": ["Biopharma", "CDMO"],
-      "technologyFocus": ["LC-MS", "Biopharma characterization", "QC"],
+      "marketSegments": [
+        "Biopharma",
+        "CDMO"
+      ],
+      "technologyFocus": [
+        "LC-MS",
+        "Biopharma characterization",
+        "QC"
+      ],
       "annualTheme": "Practical application of mass spectrometry in the biotechnology industry",
       "scientificFocus": [
         "ADC characterization and multispecifics",
@@ -284,9 +366,18 @@
         "MAM, advanced modalities, and regulatory acceptance make transferability and data integrity as important as sensitivity."
       ],
       "competitorWatch": [
-        { "name": "Agilent", "status": "Expected MAM and QTOF workflow content; 2026 technical seminar title not yet public" },
-        { "name": "Thermo Fisher", "status": "Expected HRMS and peptide workflow content; 2026 technical seminar title not yet public" },
-        { "name": "SCIEX", "status": "Expected proteomics and biotherapeutic workflow content; 2026 technical seminar title not yet public" }
+        {
+          "name": "Agilent",
+          "status": "Expected MAM and QTOF workflow content; 2026 technical seminar title not yet public"
+        },
+        {
+          "name": "Thermo Fisher",
+          "status": "Expected HRMS and peptide workflow content; 2026 technical seminar title not yet public"
+        },
+        {
+          "name": "SCIEX",
+          "status": "Expected proteomics and biotherapeutic workflow content; 2026 technical seminar title not yet public"
+        }
       ],
       "competitorContent": [
         {
@@ -348,8 +439,14 @@
         "Use BioAccord plus ACQUITY Premier to answer both accessibility and analyte-recovery objections."
       ],
       "monitoringLinks": [
-        { "label": "2026 topics", "url": "https://www.casss.org/mass-spectrometry/attend" },
-        { "label": "Scientific program", "url": "https://virtual.oxfordabstracts.com/event/76939/program" }
+        {
+          "label": "2026 topics",
+          "url": "https://www.casss.org/mass-spectrometry/attend"
+        },
+        {
+          "label": "Scientific program",
+          "url": "https://virtual.oxfordabstracts.com/event/76939/program"
+        }
       ]
     },
     {
@@ -361,8 +458,16 @@
       "endDate": "2026-09-23",
       "tier": "Tier 2",
       "website": "https://www.lab-of-the-future.com/europe/",
-      "marketSegments": ["Pharma", "Biopharma"],
-      "technologyFocus": ["Software", "Automation", "AI", "Informatics"],
+      "marketSegments": [
+        "Pharma",
+        "Biopharma"
+      ],
+      "technologyFocus": [
+        "Software",
+        "Automation",
+        "AI",
+        "Informatics"
+      ],
       "annualTheme": "The meeting of innovation, collaboration, and technology",
       "scientificFocus": [
         "AI to Innovate and AI-enabled drug discovery",
@@ -375,8 +480,14 @@
         "Instrument vendors will be evaluated on how well hardware, software, data, and people operate as one workflow."
       ],
       "competitorWatch": [
-        { "name": "Thermo Fisher", "status": "Confirmed keynote content on a lab-in-the-loop future" },
-        { "name": "Agilent", "status": "Expected guided digital execution narrative; no event-specific session found" }
+        {
+          "name": "Thermo Fisher",
+          "status": "Confirmed keynote content on a lab-in-the-loop future"
+        },
+        {
+          "name": "Agilent",
+          "status": "Expected guided digital execution narrative; no event-specific session found"
+        }
       ],
       "competitorContent": [
         {
@@ -438,9 +549,18 @@
         "Prepare a direct response to Thermo Fisher’s lab-in-the-loop narrative using guided operation, system monitoring, and governed data."
       ],
       "monitoringLinks": [
-        { "label": "2026 themes", "url": "https://www.lab-of-the-future.com/europe/congress-themes/" },
-        { "label": "2026 agenda", "url": "https://www.lab-of-the-future.com/europe/agenda/" },
-        { "label": "2026 speakers", "url": "https://www.lab-of-the-future.com/europe/speakers/" }
+        {
+          "label": "2026 themes",
+          "url": "https://www.lab-of-the-future.com/europe/congress-themes/"
+        },
+        {
+          "label": "2026 agenda",
+          "url": "https://www.lab-of-the-future.com/europe/agenda/"
+        },
+        {
+          "label": "2026 speakers",
+          "url": "https://www.lab-of-the-future.com/europe/speakers/"
+        }
       ]
     },
     {
@@ -452,8 +572,17 @@
       "endDate": "2026-11-05",
       "tier": "Tier 2",
       "website": "https://informaconnect.com/tides-europe/",
-      "marketSegments": ["Biopharma", "CDMO"],
-      "technologyFocus": ["LC-MS", "Oligonucleotides", "Peptides", "mRNA", "LNP"],
+      "marketSegments": [
+        "Biopharma",
+        "CDMO"
+      ],
+      "technologyFocus": [
+        "LC-MS",
+        "Oligonucleotides",
+        "Peptides",
+        "mRNA",
+        "LNP"
+      ],
       "annualTheme": "Accelerate therapeutics to market, expedite R&D, and improve CMC efficiency",
       "scientificFocus": [
         "Oligonucleotide CMC across the product lifecycle and regulatory readiness",
@@ -466,9 +595,18 @@
         "Method selection, qualification time, purification, and product-quality evidence are central buying criteria."
       ],
       "competitorWatch": [
-        { "name": "Agilent", "status": "Confirmed sponsor/exhibitor; individual 2026 talk title not found" },
-        { "name": "Thermo Fisher", "status": "Confirmed sponsor/exhibitor; individual 2026 talk title not found" },
-        { "name": "SCIEX", "status": "Confirmed participant; individual 2026 talk title not found" }
+        {
+          "name": "Agilent",
+          "status": "Confirmed sponsor/exhibitor; individual 2026 talk title not found"
+        },
+        {
+          "name": "Thermo Fisher",
+          "status": "Confirmed sponsor/exhibitor; individual 2026 talk title not found"
+        },
+        {
+          "name": "SCIEX",
+          "status": "Confirmed participant; individual 2026 talk title not found"
+        }
       ],
       "competitorContent": [
         {
@@ -485,7 +623,10 @@
           "content": "Thermo Fisher is listed as a 2026 participant. Expect integrated LC-MS system-suitability and Chromeleon eWorkflow content for oligonucleotides; no Thermo Fisher session title was found in the public agenda reviewed.",
           "evidenceBasis": "Participation is confirmed by the event partner list; the expected topic comes from Thermo Fisher’s official oligonucleotide system-evaluation application note.",
           "sourceLabel": "Official Thermo Fisher oligo note",
-          "sourceUrl": "https://documents.thermofisher.com/TFS-Assets/CMD/Application-Notes/an-001954-bt-integrated-lc-ms-oligonucleotide-analysis-an001954-na-en.pdf"
+          "sourceUrl": "https://documents.thermofisher.com/TFS-Assets/CMD/Application-Notes/an-001954-bt-integrated-lc-ms-oligonucleotide-analysis-an001954-na-en.pdf",
+          "sourceDate": "2023-07",
+          "sourceDateType": "publication",
+          "sourceDatePrecision": "month"
         }
       ],
       "watersScientificContent": [
@@ -530,9 +671,18 @@
         "Use a live MaxPeak HPS comparison to create a clear reason to stop at the Waters booth."
       ],
       "monitoringLinks": [
-        { "label": "2026 agenda", "url": "https://informaconnect.com/tides-europe/agenda/" },
-        { "label": "2026 participants", "url": "https://informaconnect.com/tides-europe/third-party-partners/" },
-        { "label": "Event focus", "url": "https://informaconnect.com/tides-europe/" }
+        {
+          "label": "2026 agenda",
+          "url": "https://informaconnect.com/tides-europe/agenda/"
+        },
+        {
+          "label": "2026 participants",
+          "url": "https://informaconnect.com/tides-europe/third-party-partners/"
+        },
+        {
+          "label": "Event focus",
+          "url": "https://informaconnect.com/tides-europe/"
+        }
       ]
     },
     {
@@ -544,8 +694,16 @@
       "endDate": "2026-11-05",
       "tier": "Tier 2",
       "website": "https://www.setac.org/discover-events/global-meetings/setac-north-america-47th-annual-meeting.html",
-      "marketSegments": ["Environmental", "Government", "Academic"],
-      "technologyFocus": ["LC-MS/MS", "PFAS", "Environmental testing"],
+      "marketSegments": [
+        "Environmental",
+        "Government",
+        "Academic"
+      ],
+      "technologyFocus": [
+        "LC-MS/MS",
+        "PFAS",
+        "Environmental testing"
+      ],
       "annualTheme": "One Planet, Shared Future",
       "scientificFocus": [
         "Environmental science and science-informed decision-making",
@@ -557,9 +715,18 @@
         "Environmental laboratories need defensible results across water, soil, biosolids, tissue, and food matrices."
       ],
       "competitorWatch": [
-        { "name": "SCIEX", "status": "Expected EPA 1633A and TFA application content; event-specific talk not confirmed" },
-        { "name": "Thermo Fisher", "status": "Expected ultrashort-chain PFAS content; event-specific talk not confirmed" },
-        { "name": "Shimadzu", "status": "Expected food and environmental PFAS content; event-specific talk not confirmed" }
+        {
+          "name": "SCIEX",
+          "status": "Expected EPA 1633A and TFA application content; event-specific talk not confirmed"
+        },
+        {
+          "name": "Thermo Fisher",
+          "status": "Expected ultrashort-chain PFAS content; event-specific talk not confirmed"
+        },
+        {
+          "name": "Shimadzu",
+          "status": "Expected food and environmental PFAS content; event-specific talk not confirmed"
+        }
       ],
       "competitorContent": [
         {
@@ -584,7 +751,10 @@
           "content": "Expect PFAS analysis in food or complex environmental matrices, including seafood. No Shimadzu-specific SETAC session was confirmed in the public event pages reviewed.",
           "evidenceBasis": "The expectation comes from Shimadzu’s official PFAS-in-seafood application note, not an event-session listing.",
           "sourceLabel": "Official Shimadzu PFAS note",
-          "sourceUrl": "https://www.shimadzu.com/an/sites/shimadzu.com.an/files/pim/pim_document_file/applications/application_note/26436/an_02-ssi-lcms-157-en.pdf"
+          "sourceUrl": "https://www.shimadzu.com/an/sites/shimadzu.com.an/files/pim/pim_document_file/applications/application_note/26436/an_02-ssi-lcms-157-en.pdf",
+          "sourceDate": "2024-07",
+          "sourceDateType": "publication",
+          "sourceDatePrecision": "month"
         }
       ],
       "watersScientificContent": [
@@ -629,10 +799,20 @@
         "Prepare a competitive response for ultrashort PFAS, TFA, and complex matrices without implying validated coverage where it is not yet proven."
       ],
       "monitoringLinks": [
-        { "label": "2026 meeting and theme", "url": "https://www.setac.org/discover-events/global-meetings/setac-north-america-47th-annual-meeting.html" },
-        { "label": "2026 program", "url": "https://www.setac.org/discover-events/global-meetings/setac-north-america-47th-annual-meeting/program/daily-schedule.html" },
-        { "label": "Exhibitor listing", "url": "https://www.setac.org/discover-events/global-meetings/setac-north-america-47th-annual-meeting/exhibits-supporters/exhibitor-listing-and-floor-plan.html" }
+        {
+          "label": "2026 meeting and theme",
+          "url": "https://www.setac.org/discover-events/global-meetings/setac-north-america-47th-annual-meeting.html"
+        },
+        {
+          "label": "2026 program",
+          "url": "https://www.setac.org/discover-events/global-meetings/setac-north-america-47th-annual-meeting/program/daily-schedule.html"
+        },
+        {
+          "label": "Exhibitor listing",
+          "url": "https://www.setac.org/discover-events/global-meetings/setac-north-america-47th-annual-meeting/exhibits-supporters/exhibitor-listing-and-floor-plan.html"
+        }
       ]
     }
-  ]
+  ],
+  "schemaVersion": 2
 }

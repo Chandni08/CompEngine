@@ -14,6 +14,7 @@ from typing import Any
 
 import certifi
 import requests
+from urllib.parse import urlparse
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -28,6 +29,11 @@ USER_AGENT = (
 )
 URL_PATTERN = re.compile(r"https?://[^\s\"'<>]+", re.IGNORECASE)
 TRAILING_PUNCTUATION = ".,;:!?)]}"
+# Bulk journal item links were obtained from Crossref's official API during the
+# same run. Re-requesting thousands of DOI redirects here is redundant, slow,
+# and liable to trigger publisher rate limits. Their API endpoint and any links
+# promoted into user-facing evidence remain part of the ordinary link check.
+BULK_API_RECORD_KEYS = {"recentRecords"}
 
 
 def utc_now() -> str:
@@ -37,7 +43,9 @@ def utc_now() -> str:
 def urls_in_value(value: Any) -> set[str]:
     urls: set[str] = set()
     if isinstance(value, dict):
-        for child in value.values():
+        for key, child in value.items():
+            if key in BULK_API_RECORD_KEYS:
+                continue
             urls.update(urls_in_value(child))
     elif isinstance(value, list):
         for child in value:
@@ -85,6 +93,39 @@ def classify_http_status(http_status: int) -> str:
     return "blocked"
 
 
+def semantic_redirect_status(requested_url: str, final_url: str) -> tuple[str | None, str]:
+    """Detect successful HTTP responses that do not land on the cited evidence."""
+    requested = urlparse(requested_url)
+    final = urlparse(final_url)
+    final_path = (final.path or "/").lower()
+    if any(marker in final_path for marker in ("custom404", "/404", "/login", "/signin", "/sign-in")):
+        return "mislink", f"Redirected to non-evidence destination: {final_url}"
+    requested_path = (requested.path or "/").rstrip("/")
+    if requested_path and requested_path != "/" and final_path.rstrip("/") in {"", "/"}:
+        return "mislink", f"Deep link redirected to homepage: {final_url}"
+    return None, ""
+
+
+def semantic_body_status(content_type: str, body: str) -> tuple[str | None, str]:
+    """Detect custom error and access-control pages returned with HTTP 200."""
+    if not any(kind in content_type.lower() for kind in ("text", "html", "json", "xml")):
+        return None, ""
+    normalized = " ".join(body.lower().split())
+    custom_error_markers = (
+        "<title>404", "page not found", "the requested page could not be found",
+        "we couldn't find the page", "we could not find the page",
+    )
+    if any(marker in normalized for marker in custom_error_markers):
+        return "mislink", "HTTP success response contains a custom not-found page"
+    access_markers = (
+        "access denied", "verify you are human", "enable javascript and cookies to continue",
+        "unusual traffic", "captcha",
+    )
+    if any(marker in normalized for marker in access_markers):
+        return "blocked", "HTTP response contains an access-control or bot-challenge page"
+    return None, ""
+
+
 def check_url(url: str) -> dict[str, object]:
     checked_at = utc_now()
     try:
@@ -101,15 +142,35 @@ def check_url(url: str) -> dict[str, object]:
             verify=certifi.where(),
         )
         http_status = int(response.status_code)
+        final_url = response.url
+        chunks: list[bytes] = []
+        size = 0
+        for chunk in response.iter_content(chunk_size=8192):
+            if not chunk:
+                continue
+            chunks.append(chunk)
+            size += len(chunk)
+            if size >= 65536:
+                break
+        body = b"".join(chunks).decode(response.encoding or "utf-8", errors="replace")
+        redirect_status, redirect_reason = semantic_redirect_status(url, final_url)
+        body_status, body_reason = semantic_body_status(response.headers.get("Content-Type", ""), body)
         response.close()
+        semantic_status = redirect_status or body_status
+        semantic_reason = redirect_reason or body_reason
         return {
             "url": url,
             "httpStatus": http_status,
+            "finalUrl": final_url,
             "checkedAt": checked_at,
-            "status": classify_http_status(http_status),
+            "status": semantic_status or classify_http_status(http_status),
+            "reason": semantic_reason,
         }
     except (requests.Timeout, TimeoutError, socket.timeout):
-        status = "dead"
+        # A timeout does not prove that the cited page disappeared. Treat it
+        # like rate limiting or bot protection; only an explicit 404/410 or a
+        # DNS failure is strong enough to classify a URL as dead.
+        status = "blocked"
     except requests.ConnectionError as error:
         status = "dead" if is_dns_failure(error) else "blocked"
     except (requests.RequestException, OSError) as error:
@@ -155,10 +216,10 @@ def main() -> int:
     write_results(results)
     print_dead_table(results)
 
-    counts = {status: sum(result["status"] == status for result in results) for status in ("ok", "blocked", "dead")}
-    print(f"\nLink check complete: {counts['ok']} ok, {counts['blocked']} blocked, {counts['dead']} dead.")
-    if counts["dead"]:
-        print("Link check failed: remove or replace every dead URL before publishing.", file=sys.stderr)
+    counts = {status: sum(result["status"] == status for result in results) for status in ("ok", "blocked", "dead", "mislink")}
+    print(f"\nLink check complete: {counts['ok']} ok, {counts['blocked']} blocked, {counts['dead']} dead, {counts['mislink']} mislinks.")
+    if counts["dead"] or counts["mislink"]:
+        print("Link check failed: remove or replace every dead or semantically incorrect URL before publishing.", file=sys.stderr)
         return 1
     return 0
 

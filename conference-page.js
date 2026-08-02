@@ -145,7 +145,7 @@ function competitorContentMarkup(items) {
       <article class="competitor-evidence-card">
         <div><strong>${escapeHtml(item.competitor)}</strong><span class="evidence-status ${confirmed ? "confirmed" : "expected"}">${confirmed ? "Confirmed" : "Expected · not confirmed"}</span></div>
         <p>${escapeHtml(item.content)}</p>
-        <small><strong>How this was derived:</strong> ${escapeHtml(item.evidenceBasis)}</small>
+        ${item.displayEvidenceBasis === false ? "" : `<small><strong>How this was derived:</strong> ${escapeHtml(item.evidenceBasis)}</small>`}
         <a href="${escapeHtml(item.sourceUrl)}" target="_blank" rel="noreferrer">${escapeHtml(item.sourceLabel)} ↗</a>
       </article>
     `;

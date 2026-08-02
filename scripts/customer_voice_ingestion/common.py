@@ -8,7 +8,8 @@ import os
 import re
 import time
 from dataclasses import asdict, dataclass, field
-from datetime import date, datetime
+from datetime import date, datetime, timezone
+import hashlib
 from html import unescape
 from html.parser import HTMLParser
 from typing import Any, Callable, Iterable
@@ -99,6 +100,8 @@ class EvidenceRecord:
             raise ValueError(f"Evidence sourceDate must be YYYY-MM-DD: {self.source_date!r}")
 
     def to_schema(self) -> dict[str, Any]:
+        observed_at = datetime.now(timezone.utc).isoformat(timespec="seconds")
+        content_basis = "\n".join((self.label, self.excerpt, self.review_text, "|".join(self.source_keywords)))
         output: dict[str, Any] = {
             "label": self.label,
             "url": self.url,
@@ -109,6 +112,9 @@ class EvidenceRecord:
             "sourceType": self.source_type,
             "sourceCredibility": SOURCE_CREDIBILITY[self.source_type],
             "sourceName": self.source_name,
+            "firstSeenAt": observed_at,
+            "lastSeenAt": observed_at,
+            "contentHash": hashlib.sha256(content_basis.encode("utf-8")).hexdigest(),
         }
         if self.excerpt:
             output["excerpt"] = self.excerpt

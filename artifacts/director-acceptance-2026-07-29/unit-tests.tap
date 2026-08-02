@@ -1,0 +1,1984 @@
+TAP version 13
+# Subtest: non-PubMed journal signals use dated exact records available by the dashboard as-of date
+ok 1 - non-PubMed journal signals use dated exact records available by the dashboard as-of date
+  ---
+  duration_ms: 9.227458
+  type: 'test'
+  ...
+# Subtest: the application-trends UI separates observed non-PubMed records from source coverage
+ok 2 - the application-trends UI separates observed non-PubMed records from source coverage
+  ---
+  duration_ms: 5.981833
+  type: 'test'
+  ...
+# Subtest: competitor activity summary uses a compact four-column desktop grid
+ok 3 - competitor activity summary uses a compact four-column desktop grid
+  ---
+  duration_ms: 1.161209
+  type: 'test'
+  ...
+# Subtest: competitor activity summary omits the redundant evidence-count line
+ok 4 - competitor activity summary omits the redundant evidence-count line
+  ---
+  duration_ms: 0.682042
+  type: 'test'
+  ...
+# Subtest: competitor activity grid remains responsive
+ok 5 - competitor activity grid remains responsive
+  ---
+  duration_ms: 0.204125
+  type: 'test'
+  ...
+# Subtest: compact competitor activity styles ship identically
+ok 6 - compact competitor activity styles ship identically
+  ---
+  duration_ms: 0.072916
+  type: 'test'
+  ...
+# Subtest: score drivers use compact visual signal cards
+ok 7 - score drivers use compact visual signal cards
+  ---
+  duration_ms: 1.466333
+  type: 'test'
+  ...
+# Subtest: compact score strip becomes a vertical list on small screens
+ok 8 - compact score strip becomes a vertical list on small screens
+  ---
+  duration_ms: 0.295084
+  type: 'test'
+  ...
+# Subtest: compact score-strip styles ship identically
+ok 9 - compact score-strip styles ship identically
+  ---
+  duration_ms: 0.166292
+  type: 'test'
+  ...
+# Subtest: activity uses plain-language levels while source quality keeps its score
+ok 10 - activity uses plain-language levels while source quality keeps its score
+  ---
+  duration_ms: 1.025125
+  type: 'test'
+  ...
+# Subtest: catalog summary is compact and remains on one desktop line
+ok 11 - catalog summary is compact and remains on one desktop line
+  ---
+  duration_ms: 1.254875
+  type: 'test'
+  ...
+# Subtest: same-issuer press releases count as one source family
+ok 12 - same-issuer press releases count as one source family
+  ---
+  duration_ms: 1.673
+  type: 'test'
+  ...
+# Subtest: multiple insights from one SEC filing count as one source family
+ok 13 - multiple insights from one SEC filing count as one source family
+  ---
+  duration_ms: 0.162666
+  type: 'test'
+  ...
+# Subtest: issuer press releases plus its own filing cannot earn High inference confidence
+ok 14 - issuer press releases plus its own filing cannot earn High inference confidence
+  ---
+  duration_ms: 0.727917
+  type: 'test'
+  ...
+# Subtest: duplicate URLs and syndicated copies are deduplicated
+ok 15 - duplicate URLs and syndicated copies are deduplicated
+  ---
+  duration_ms: 0.365917
+  type: 'test'
+  ...
+# Subtest: business magnitude remains explicitly unquantified without internal Waters data
+ok 16 - business magnitude remains explicitly unquantified without internal Waters data
+  ---
+  duration_ms: 0.363
+  type: 'test'
+  ...
+# Subtest: recommendations carry owners, options, final gates, effort, internal evidence, and magnitude
+ok 17 - recommendations carry owners, options, final gates, effort, internal evidence, and magnitude
+  ---
+  duration_ms: 0.330291
+  type: 'test'
+  ...
+# Subtest: Revvity acquisition and filing records are not attributed to PerkinElmer
+ok 18 - Revvity acquisition and filing records are not attributed to PerkinElmer
+  ---
+  duration_ms: 0.162875
+  type: 'test'
+  ...
+# Subtest: web and exports use the same snapshot and inference vocabulary
+ok 19 - web and exports use the same snapshot and inference vocabulary
+  ---
+  duration_ms: 2.113583
+  type: 'test'
+  ...
+# Subtest: SCIEX intent explicitly avoids unsupported HRMS depth
+ok 20 - SCIEX intent explicitly avoids unsupported HRMS depth
+  ---
+  duration_ms: 2.298667
+  type: 'test'
+  ...
+# Subtest: every named competitor hypothesis includes an alternative reading and falsifier
+ok 21 - every named competitor hypothesis includes an alternative reading and falsifier
+  ---
+  duration_ms: 1.057666
+  type: 'test'
+  ...
+# Subtest: the shipped competitor application-note catalog uses official sources
+ok 22 - the shipped competitor application-note catalog uses official sources
+  ---
+  duration_ms: 6.621292
+  type: 'test'
+  ...
+# Subtest: a non-official application-note source is rejected
+ok 23 - a non-official application-note source is rejected
+  ---
+  duration_ms: 0.275167
+  type: 'test'
+  ...
+# Subtest: competitor intent count contains only the number of competitors
+ok 24 - competitor intent count contains only the number of competitors
+  ---
+  duration_ms: 1.870042
+  type: 'test'
+  ...
+# Subtest: competitor count wording ships identically
+ok 25 - competitor count wording ships identically
+  ---
+  duration_ms: 1.056417
+  type: 'test'
+  ...
+# Subtest: competitor intent cards do not render the removed focus line
+ok 26 - competitor intent cards do not render the removed focus line
+  ---
+  duration_ms: 3.173834
+  type: 'test'
+  ...
+# Subtest: competitor activity summary omits the redundant eyebrow
+ok 27 - competitor activity summary omits the redundant eyebrow
+  ---
+  duration_ms: 0.673333
+  type: 'test'
+  ...
+# Subtest: competitor activity summary omits the redundant lead sentence
+ok 28 - competitor activity summary omits the redundant lead sentence
+  ---
+  duration_ms: 1.538959
+  type: 'test'
+  ...
+# Subtest: competitor intent presents observed actions before forecast and response options
+ok 29 - competitor intent presents observed actions before forecast and response options
+  ---
+  duration_ms: 1.058375
+  type: 'test'
+  ...
+# Subtest: Agilent synthesis covers every current launch, strategic move, and filing insight
+ok 30 - Agilent synthesis covers every current launch, strategic move, and filing insight
+  ---
+  duration_ms: 4.890792
+  type: 'test'
+  ...
+# Subtest: activity evidence links and the yellow likely-direction panel ship identically
+ok 31 - activity evidence links and the yellow likely-direction panel ship identically
+  ---
+  duration_ms: 1.395875
+  type: 'test'
+  ...
+# Subtest: competitor selector and selected-company header omit company logos
+ok 32 - competitor selector and selected-company header omit company logos
+  ---
+  duration_ms: 2.104292
+  type: 'test'
+  ...
+# Subtest: logo-free competitor intent ships identically
+ok 33 - logo-free competitor intent ships identically
+  ---
+  duration_ms: 0.469292
+  type: 'test'
+  ...
+# Subtest: selected competitor panel uses the established competitor accent as a light theme
+ok 34 - selected competitor panel uses the established competitor accent as a light theme
+  ---
+  duration_ms: 2.2325
+  type: 'test'
+  ...
+# Subtest: competitor theme rendering ships identically
+ok 35 - competitor theme rendering ships identically
+  ---
+  duration_ms: 1.211125
+  type: 'test'
+  ...
+# Subtest: conference preparation paginates four cards at a time
+ok 36 - conference preparation paginates four cards at a time
+  ---
+  duration_ms: 1.267458
+  type: 'test'
+  ...
+# Subtest: conference pagination resets when filters reset
+ok 37 - conference pagination resets when filters reset
+  ---
+  duration_ms: 0.186708
+  type: 'test'
+  ...
+# Subtest: the shipped conference briefs separate confirmed content from expectations
+ok 38 - the shipped conference briefs separate confirmed content from expectations
+  ---
+  duration_ms: 9.820166
+  type: 'test'
+  ...
+# Subtest: confirmed competitor content cannot cite a portfolio page as event proof
+ok 39 - confirmed competitor content cannot cite a portfolio page as event proof
+  ---
+  duration_ms: 0.439541
+  type: 'test'
+  ...
+# Subtest: conference page fills the viewport beside its fixed desktop sidebar
+ok 40 - conference page fills the viewport beside its fixed desktop sidebar
+  ---
+  duration_ms: 7.553834
+  type: 'test'
+  ...
+# Subtest: conference page returns to a full-width flow at the tablet breakpoint
+ok 41 - conference page returns to a full-width flow at the tablet breakpoint
+  ---
+  duration_ms: 6.013417
+  type: 'test'
+  ...
+# Subtest: source and deploy conference styles stay synchronized
+ok 42 - source and deploy conference styles stay synchronized
+  ---
+  duration_ms: 3.593166
+  type: 'test'
+  ...
+# Subtest: the standalone roadmap impact section is removed
+ok 43 - the standalone roadmap impact section is removed
+  ---
+  duration_ms: 1.136375
+  type: 'test'
+  ...
+# Subtest: capability priorities are integrated into competitive capability evidence
+ok 44 - capability priorities are integrated into competitive capability evidence
+  ---
+  duration_ms: 10.07975
+  type: 'test'
+  ...
+# Subtest: the integrated capability heatmap remains sortable and evidence-linked
+ok 45 - the integrated capability heatmap remains sortable and evidence-linked
+  ---
+  duration_ms: 0.741708
+  type: 'test'
+  ...
+# Subtest: the redundant Waters takeaway callout is removed
+ok 46 - the redundant Waters takeaway callout is removed
+  ---
+  duration_ms: 1.838167
+  type: 'test'
+  ...
+# Subtest: the integrated heatmap uses five aligned columns including business exposure
+ok 47 - the integrated heatmap uses five aligned columns including business exposure
+  ---
+  duration_ms: 1.0355
+  type: 'test'
+  ...
+# Subtest: heatmap static assets ship consistently
+ok 48 - heatmap static assets ship consistently
+  ---
+  duration_ms: 0.202833
+  type: 'test'
+  ...
+# Subtest: customer needs rank by supporting-record count
+ok 49 - customer needs rank by supporting-record count
+  ---
+  duration_ms: 0.849708
+  type: 'test'
+  ...
+# Subtest: customer-needs ranking ships identically
+ok 50 - customer-needs ranking ships identically
+  ---
+  duration_ms: 1.053958
+  type: 'test'
+  ...
+# Subtest: customer voice contains only approved public evidence source classes
+ok 51 - customer voice contains only approved public evidence source classes
+  ---
+  duration_ms: 1.493292
+  type: 'test'
+  ...
+# Subtest: customer voice source catalog excludes vendor-owned and employee-authored material
+ok 52 - customer voice source catalog excludes vendor-owned and employee-authored material
+  ---
+  duration_ms: 0.296834
+  type: 'test'
+  ...
+# Subtest: runtime guard and deployment copies preserve the customer-only boundary
+ok 53 - runtime guard and deployment copies preserve the customer-only boundary
+  ---
+  duration_ms: 10.194917
+  type: 'test'
+  ...
+# Subtest: customer voice visibly distinguishes every retained public source class
+ok 54 - customer voice visibly distinguishes every retained public source class
+  ---
+  duration_ms: 0.965875
+  type: 'test'
+  ...
+# Subtest: each purchase-driving theme links pain to validation and a named roadmap decision
+ok 55 - each purchase-driving theme links pain to validation and a named roadmap decision
+  ---
+  duration_ms: 1.791541
+  type: 'test'
+  ...
+# Subtest: diagnostics and export feed the August 14 workflow-requirements decision
+ok 56 - diagnostics and export feed the August 14 workflow-requirements decision
+  ---
+  duration_ms: 0.691292
+  type: 'test'
+  ...
+# Subtest: roadmap inputs expose recurrence, validation, and decision navigation
+ok 57 - roadmap inputs expose recurrence, validation, and decision navigation
+  ---
+  duration_ms: 0.889625
+  type: 'test'
+  ...
+# Subtest: roadmap recurrence counts link to all exact sources for their theme
+ok 58 - roadmap recurrence counts link to all exact sources for their theme
+  ---
+  duration_ms: 2.769583
+  type: 'test'
+  ...
+# Subtest: deployment mirror matches the decision-input implementation
+ok 59 - deployment mirror matches the decision-input implementation
+  ---
+  duration_ms: 0.305458
+  type: 'test'
+  ...
+# Subtest: customer voice includes at least nineteen independent customer sources in the one-year view
+ok 60 - customer voice includes at least nineteen independent customer sources in the one-year view
+  ---
+  duration_ms: 1.070833
+  type: 'test'
+  ...
+# Subtest: customer voice evidence cards use the compact signal-first format
+ok 61 - customer voice evidence cards use the compact signal-first format
+  ---
+  duration_ms: 1.730166
+  type: 'test'
+  ...
+# Subtest: every evidence record carries the approved source type and credibility weight
+ok 62 - every evidence record carries the approved source type and credibility weight
+  ---
+  duration_ms: 3.521708
+  type: 'test'
+  ...
+# Subtest: collector preserves the approved adapter order and canonical URL dedup
+ok 63 - collector preserves the approved adapter order and canonical URL dedup
+  ---
+  duration_ms: 0.637542
+  type: 'test'
+  ...
+# Subtest: Reddit collection and validation use only official OAuth endpoints
+ok 64 - Reddit collection and validation use only official OAuth endpoints
+  ---
+  duration_ms: 0.516458
+  type: 'test'
+  ...
+# Subtest: new public source records are mirrored into the deployment data
+ok 65 - new public source records are mirrored into the deployment data
+  ---
+  duration_ms: 3.521375
+  type: 'test'
+  ...
+# Subtest: customer voice is organized around four purchase-driving themes
+ok 66 - customer voice is organized around four purchase-driving themes
+  ---
+  duration_ms: 2.532167
+  type: 'test'
+  ...
+# Subtest: theme and company source records open on demand in the shared evidence modal
+ok 67 - theme and company source records open on demand in the shared evidence modal
+  ---
+  duration_ms: 0.754709
+  type: 'test'
+  ...
+# Subtest: theme matrix stays side-by-side and scrolls on narrow screens
+ok 68 - theme matrix stays side-by-side and scrolls on narrow screens
+  ---
+  duration_ms: 0.4975
+  type: 'test'
+  ...
+# Subtest: customer voice PM synthesis ships identically
+ok 69 - customer voice PM synthesis ships identically
+  ---
+  duration_ms: 1.588
+  type: 'test'
+  ...
+# Subtest: accepts keywords that are present in the exact source
+ok 70 - accepts keywords that are present in the exact source
+  ---
+  duration_ms: 4.954333
+  type: 'test'
+  ...
+# Subtest: blocks a keyword that is absent from the exact source
+ok 71 - blocks a keyword that is absent from the exact source
+  ---
+  duration_ms: 0.344208
+  type: 'test'
+  ...
+# Subtest: validates Reddit discussion text through the official OAuth API endpoint
+ok 72 - validates Reddit discussion text through the official OAuth API endpoint
+  ---
+  duration_ms: 2.415
+  type: 'test'
+  ...
+# Subtest: requires recent vendor evidence to include a verified vendor or product term
+ok 73 - requires recent vendor evidence to include a verified vendor or product term
+  ---
+  duration_ms: 0.501292
+  type: 'test'
+  ...
+# Subtest: recognizes Waters LC-MS product and software names as vendor-specific evidence
+ok 74 - recognizes Waters LC-MS product and software names as vendor-specific evidence
+  ---
+  duration_ms: 0.206958
+  type: 'test'
+  ...
+# Subtest: prevents pressure evidence from being assigned to carryover
+ok 75 - prevents pressure evidence from being assigned to carryover
+  ---
+  duration_ms: 0.261083
+  type: 'test'
+  ...
+# Subtest: uses only fresh full-source cache entries covering every displayed keyword
+ok 76 - uses only fresh full-source cache entries covering every displayed keyword
+  ---
+  duration_ms: 0.304959
+  type: 'test'
+  ...
+# Subtest: customer voice summary uses one source-count-driven strength badge
+ok 77 - customer voice summary uses one source-count-driven strength badge
+  ---
+  duration_ms: 4.635875
+  type: 'test'
+  ...
+# Subtest: summary headlines state the finding rather than the evidence tier
+ok 78 - summary headlines state the finding rather than the evidence tier
+  ---
+  duration_ms: 0.8755
+  type: 'test'
+  ...
+# Subtest: summary cards retain a demoted prevalence caveat
+ok 79 - summary cards retain a demoted prevalence caveat
+  ---
+  duration_ms: 0.533792
+  type: 'test'
+  ...
+# Subtest: customer voice summary badge changes ship identically
+ok 80 - customer voice summary badge changes ship identically
+  ---
+  duration_ms: 1.224666
+  type: 'test'
+  ...
+# Subtest: the customer voice summary leads with the four-theme comparison
+ok 81 - the customer voice summary leads with the four-theme comparison
+  ---
+  duration_ms: 2.374916
+  type: 'test'
+  ...
+# Subtest: comparison cells distinguish evidence from absence of evidence
+ok 82 - comparison cells distinguish evidence from absence of evidence
+  ---
+  duration_ms: 0.8815
+  type: 'test'
+  ...
+# Subtest: the theme matrix ignores only the competitor filter
+ok 83 - the theme matrix ignores only the competitor filter
+  ---
+  duration_ms: 0.371167
+  type: 'test'
+  ...
+# Subtest: matrix is compact and screenshot-ready
+ok 84 - matrix is compact and screenshot-ready
+  ---
+  duration_ms: 2.031625
+  type: 'test'
+  ...
+# Subtest: recurrence uses unique source pages and honest evidence thresholds
+ok 85 - recurrence uses unique source pages and honest evidence thresholds
+  ---
+  duration_ms: 2.13075
+  type: 'test'
+  ...
+# Subtest: customer voice states the forum normalization caveat
+ok 86 - customer voice states the forum normalization caveat
+  ---
+  duration_ms: 0.191541
+  type: 'test'
+  ...
+# Subtest: sentiment totals use independent sources instead of summary ratios
+ok 87 - sentiment totals use independent sources instead of summary ratios
+  ---
+  duration_ms: 1.077292
+  type: 'test'
+  ...
+# Subtest: sentiment coding is not presented as a headline market metric
+ok 88 - sentiment coding is not presented as a headline market metric
+  ---
+  duration_ms: 0.709666
+  type: 'test'
+  ...
+# Subtest: daily refresh publishes only after the collector succeeds
+ok 89 - daily refresh publishes only after the collector succeeds
+  ---
+  duration_ms: 0.89275
+  type: 'test'
+  ...
+# Subtest: the OS schedule wakes Codex before its end-to-end automation runs
+ok 90 - the OS schedule wakes Codex before its end-to-end automation runs
+  ---
+  duration_ms: 0.310791
+  type: 'test'
+  ...
+# Subtest: daily publication validates, deploys, aliases, and verifies the Waters site
+ok 91 - daily publication validates, deploys, aliases, and verifies the Waters site
+  ---
+  duration_ms: 0.139458
+  type: 'test'
+  ...
+# Subtest: cloud refresh schedule validates before saving or deploying data
+ok 92 - cloud refresh schedule validates before saving or deploying data
+  ---
+  duration_ms: 0.106917
+  type: 'test'
+  ...
+# Subtest: product-ui.css keeps decision-card content top-aligned
+ok 93 - product-ui.css keeps decision-card content top-aligned
+  ---
+  duration_ms: 1.702125
+  type: 'test'
+  ...
+# Subtest: deploy-site/product-ui.css keeps decision-card content top-aligned
+ok 94 - deploy-site/product-ui.css keeps decision-card content top-aligned
+  ---
+  duration_ms: 2.846833
+  type: 'test'
+  ...
+# Subtest: follow-up decision cards omit owners and due dates
+ok 95 - follow-up decision cards omit owners and due dates
+  ---
+  duration_ms: 0.888042
+  type: 'test'
+  ...
+# Subtest: required output uses the complete action text
+ok 96 - required output uses the complete action text
+  ---
+  duration_ms: 0.47525
+  type: 'test'
+  ...
+# Subtest: Next PM Considerations uses a bold label and normal-weight text
+ok 97 - Next PM Considerations uses a bold label and normal-weight text
+  ---
+  duration_ms: 0.376708
+  type: 'test'
+  ...
+# Subtest: top three decisions share the Decisions needed card format
+ok 98 - top three decisions share the Decisions needed card format
+  ---
+  duration_ms: 0.133459
+  type: 'test'
+  ...
+# Subtest: leadership brief keeps context but does not duplicate Decision 1
+ok 99 - leadership brief keeps context but does not duplicate Decision 1
+  ---
+  duration_ms: 0.275958
+  type: 'test'
+  ...
+# Subtest: every roadmap decision has a structured evidence-backed urgency argument
+ok 100 - every roadmap decision has a structured evidence-backed urgency argument
+  ---
+  duration_ms: 0.972709
+  type: 'test'
+  ...
+# Subtest: urgency publication counts match the refreshed trend data
+ok 101 - urgency publication counts match the refreshed trend data
+  ---
+  duration_ms: 53.461958
+  type: 'test'
+  ...
+# Subtest: decision cards synthesize implications and why-now logic instead of listing launches
+ok 102 - decision cards synthesize implications and why-now logic instead of listing launches
+  ---
+  duration_ms: 3.19025
+  type: 'test'
+  ...
+# Subtest: competitor actions explicitly connect official evidence to each Waters decision
+ok 103 - competitor actions explicitly connect official evidence to each Waters decision
+  ---
+  duration_ms: 1.927625
+  type: 'test'
+  ...
+# Subtest: dashboard, conference, and publication structural headings use consistent title case
+ok 104 - dashboard, conference, and publication structural headings use consistent title case
+  ---
+  duration_ms: 4.630709
+  type: 'test'
+  ...
+# Subtest: deployment copies preserve the same heading capitalization
+ok 105 - deployment copies preserve the same heading capitalization
+  ---
+  duration_ms: 2.332583
+  type: 'test'
+  ...
+# Subtest: a lowercase second word fails the deployment heading validation
+ok 106 - a lowercase second word fails the deployment heading validation
+  ---
+  duration_ms: 0.388334
+  type: 'test'
+  ...
+# Subtest: accepts a sourced product from an official manufacturer domain
+ok 107 - accepts a sourced product from an official manufacturer domain
+  ---
+  duration_ms: 1.466541
+  type: 'test'
+  ...
+# Subtest: blocks non-official evidence and unlabeled pre-window products
+ok 108 - blocks non-official evidence and unlabeled pre-window products
+  ---
+  duration_ms: 0.359125
+  type: 'test'
+  ...
+# Subtest: blocks a historical record duplicated by a current launch
+ok 109 - blocks a historical record duplicated by a current launch
+  ---
+  duration_ms: 2.226541
+  type: 'test'
+  ...
+# Subtest: the shipped Waters catalog passes the deployment validation
+ok 110 - the shipped Waters catalog passes the deployment validation
+  ---
+  duration_ms: 12.508667
+  type: 'test'
+  ...
+# Subtest: a non-official historical source is rejected
+ok 111 - a non-official historical source is rejected
+  ---
+  duration_ms: 0.307083
+  type: 'test'
+  ...
+# Subtest: journal sources render in a two-row horizontal slider
+ok 112 - journal sources render in a two-row horizontal slider
+  ---
+  duration_ms: 2.700625
+  type: 'test'
+  ...
+# Subtest: journal source slider advances by the visible group
+ok 113 - journal source slider advances by the visible group
+  ---
+  duration_ms: 0.825292
+  type: 'test'
+  ...
+# Subtest: source renders two explicit launch-source links
+ok 114 - source renders two explicit launch-source links
+  ---
+  duration_ms: 1.710291
+  type: 'test'
+  ...
+# Subtest: deploy copy renders two explicit launch-source links
+ok 115 - deploy copy renders two explicit launch-source links
+  ---
+  duration_ms: 0.750708
+  type: 'test'
+  ...
+# Subtest: leadership brief actions remain in one row
+ok 116 - leadership brief actions remain in one row
+  ---
+  duration_ms: 1.058125
+  type: 'test'
+  ...
+# Subtest: leadership brief header has no subtitle
+ok 117 - leadership brief header has no subtitle
+  ---
+  duration_ms: 0.157375
+  type: 'test'
+  ...
+# Subtest: leadership conference highlight uses an event update instead of a Waters recommendation
+ok 118 - leadership conference highlight uses an event update instead of a Waters recommendation
+  ---
+  duration_ms: 2.115625
+  type: 'test'
+  ...
+# Subtest: Bioprocessing Summit update gives leadership a competitive implication
+ok 119 - Bioprocessing Summit update gives leadership a competitive implication
+  ---
+  duration_ms: 0.920875
+  type: 'test'
+  ...
+# Subtest: leadership conference update ships identically
+ok 120 - leadership conference update ships identically
+  ---
+  duration_ms: 0.299583
+  type: 'test'
+  ...
+# Subtest: corporate leadership signal shows the latest earnings or filing date in the top-right capsule
+ok 121 - corporate leadership signal shows the latest earnings or filing date in the top-right capsule
+  ---
+  duration_ms: 1.701834
+  type: 'test'
+  ...
+# Subtest: corporate leadership date ships identically
+ok 122 - corporate leadership date ships identically
+  ---
+  duration_ms: 0.36775
+  type: 'test'
+  ...
+# Subtest: Leadership Brief customer insights require corroboration across exact sources
+ok 123 - Leadership Brief customer insights require corroboration across exact sources
+  ---
+  duration_ms: 20.9965
+  type: 'test'
+  ...
+# Subtest: deployed app mirrors the substantiation gate
+ok 124 - deployed app mirrors the substantiation gate
+  ---
+  duration_ms: 16.191833
+  type: 'test'
+  ...
+# Subtest: roadmap recommendation titles state the decision rather than the validation task
+ok 125 - roadmap recommendation titles state the decision rather than the validation task
+  ---
+  duration_ms: 1.587875
+  type: 'test'
+  ...
+# Subtest: the lead workflow recommendation keeps validation as the supporting action
+ok 126 - the lead workflow recommendation keeps validation as the supporting action
+  ---
+  duration_ms: 0.329542
+  type: 'test'
+  ...
+# Subtest: leadership launch highlight uses factual context instead of PM recommendations
+ok 127 - leadership launch highlight uses factual context instead of PM recommendations
+  ---
+  duration_ms: 5.135541
+  type: 'test'
+  ...
+# Subtest: Agilent leadership context explains the MAM workflow action
+ok 128 - Agilent leadership context explains the MAM workflow action
+  ---
+  duration_ms: 0.523084
+  type: 'test'
+  ...
+# Subtest: leadership launch context ships identically
+ok 129 - leadership launch context ships identically
+  ---
+  duration_ms: 0.325209
+  type: 'test'
+  ...
+# Subtest: scientific leadership highlight shows its publication count in the top-right capsule
+ok 130 - scientific leadership highlight shows its publication count in the top-right capsule
+  ---
+  duration_ms: 3.568791
+  type: 'test'
+  ...
+# Subtest: leadership publication capsule ships identically
+ok 131 - leadership publication capsule ships identically
+  ---
+  duration_ms: 0.52
+  type: 'test'
+  ...
+# Subtest: Leadership Brief panel and PowerPoint reuse the same thesis generator
+ok 132 - Leadership Brief panel and PowerPoint reuse the same thesis generator
+  ---
+  duration_ms: 1.487208
+  type: 'test'
+  ...
+# Subtest: shared thesis module and page loading order ship identically
+ok 133 - shared thesis module and page loading order ship identically
+  ---
+  duration_ms: 0.405125
+  type: 'test'
+  ...
+# Subtest: shared thesis generator loads before the dashboard application
+ok 134 - shared thesis generator loads before the dashboard application
+  ---
+  duration_ms: 0.229292
+  type: 'test'
+  ...
+# Subtest: every market filter has multiple first-party non-PubMed sources
+ok 135 - every market filter has multiple first-party non-PubMed sources
+  ---
+  duration_ms: 8.85925
+  type: 'test'
+  ...
+# Subtest: a market with inadequate or PubMed-only coverage is rejected
+ok 136 - a market with inadequate or PubMed-only coverage is rejected
+  ---
+  duration_ms: 0.596834
+  type: 'test'
+  ...
+# Subtest: Product Marketing has exactly eight ordered primary sections
+ok 137 - Product Marketing has exactly eight ordered primary sections
+  ---
+  duration_ms: 10.311584
+  type: 'test'
+  ...
+# Subtest: Product Marketing uses dedicated navigation and a dedicated render path
+ok 138 - Product Marketing uses dedicated navigation and a dedicated render path
+  ---
+  duration_ms: 5.631875
+  type: 'test'
+  ...
+# Subtest: competitive narratives synthesize evidence into one canonical PMM decision card
+ok 139 - competitive narratives synthesize evidence into one canonical PMM decision card
+  ---
+  duration_ms: 4.161375
+  type: 'test'
+  ...
+# Subtest: competitive narrative logic treats application notes, launches, and conferences as synthesis inputs
+ok 140 - competitive narrative logic treats application notes, launches, and conferences as synthesis inputs
+  ---
+  duration_ms: 3.630542
+  type: 'test'
+  ...
+# Subtest: Marketing copy states the decision-and-activation purpose
+ok 141 - Marketing copy states the decision-and-activation purpose
+  ---
+  duration_ms: 2.827708
+  type: 'test'
+  ...
+# Subtest: Positioning Decisions renders exactly three evidence-linked PMM decisions
+ok 142 - Positioning Decisions renders exactly three evidence-linked PMM decisions
+  ---
+  duration_ms: 5.380917
+  type: 'test'
+  ...
+# Subtest: Positioning prioritization is explainable and refresh deltas are not invented
+ok 143 - Positioning prioritization is explainable and refresh deltas are not invented
+  ---
+  duration_ms: 4.111166
+  type: 'test'
+  ...
+# Subtest: Activation Backlog produces governed, filter-specific PMM artifacts
+ok 144 - Activation Backlog produces governed, filter-specific PMM artifacts
+  ---
+  duration_ms: 8.107916
+  type: 'test'
+  ...
+# Subtest: Evidence Appendix consolidates secondary intelligence into closed, traceable groups
+ok 145 - Evidence Appendix consolidates secondary intelligence into closed, traceable groups
+  ---
+  duration_ms: 12.127417
+  type: 'test'
+  ...
+# Subtest: Claims and Proof Readiness renders the required evidence-governed matrix
+ok 146 - Claims and Proof Readiness renders the required evidence-governed matrix
+  ---
+  duration_ms: 7.218916
+  type: 'test'
+  ...
+# Subtest: Claims readiness rules cannot infer approval or promote concern records as strengths
+ok 147 - Claims readiness rules cannot infer approval or promote concern records as strengths
+  ---
+  duration_ms: 15.399416
+  type: 'test'
+  ...
+# Subtest: Claims matrix filters do not duplicate the global competitor filter
+ok 148 - Claims matrix filters do not duplicate the global competitor filter
+  ---
+  duration_ms: 7.128583
+  type: 'test'
+  ...
+# Subtest: Audience and Buying Criteria uses governed buying committees and scorecards
+ok 149 - Audience and Buying Criteria uses governed buying committees and scorecards
+  ---
+  duration_ms: 3.206208
+  type: 'test'
+  ...
+# Subtest: vendor perception is separated from market-wide themes and has no negative fallback
+ok 150 - vendor perception is separated from market-wide themes and has no negative fallback
+  ---
+  duration_ms: 6.980583
+  type: 'test'
+  ...
+# Subtest: observed non-PubMed topics use three desktop columns
+ok 151 - observed non-PubMed topics use three desktop columns
+  ---
+  duration_ms: 1.022917
+  type: 'test'
+  ...
+# Subtest: observed non-PubMed topics remain responsive
+ok 152 - observed non-PubMed topics remain responsive
+  ---
+  duration_ms: 0.425208
+  type: 'test'
+  ...
+# Subtest: non-PubMed topic layout ships identically
+ok 153 - non-PubMed topic layout ships identically
+  ---
+  duration_ms: 0.257458
+  type: 'test'
+  ...
+# Subtest: dashboard filters stay in normal document flow
+ok 154 - dashboard filters stay in normal document flow
+  ---
+  duration_ms: 1.072541
+  type: 'test'
+  ...
+# Subtest: overall trend cards omit pace and evidence-volume eyebrow labels
+ok 155 - overall trend cards omit pace and evidence-volume eyebrow labels
+  ---
+  duration_ms: 1.611375
+  type: 'test'
+  ...
+# Subtest: overall trend cards use the PM consideration label
+ok 156 - overall trend cards use the PM consideration label
+  ---
+  duration_ms: 1.043042
+  type: 'test'
+  ...
+# Subtest: pain priorities use the requested transparent formula
+ok 157 - pain priorities use the requested transparent formula
+  ---
+  duration_ms: 2.112458
+  type: 'test'
+  ...
+# Subtest: pain tracker elevates one quarterly action and ranks descending
+ok 158 - pain tracker elevates one quarterly action and ranks descending
+  ---
+  duration_ms: 0.874
+  type: 'test'
+  ...
+# Subtest: ranked tracker has distinct top-priority and compact backlog treatments
+ok 159 - ranked tracker has distinct top-priority and compact backlog treatments
+  ---
+  duration_ms: 0.175208
+  type: 'test'
+  ...
+# Subtest: deploy mirror contains the same pain-priority implementation
+ok 160 - deploy mirror contains the same pain-priority implementation
+  ---
+  duration_ms: 0.3105
+  type: 'test'
+  ...
+# Subtest: all panel header actions remain in one horizontal row
+ok 161 - all panel header actions remain in one horizontal row
+  ---
+  duration_ms: 1.370333
+  type: 'test'
+  ...
+# Subtest: one-line panel header controls ship identically
+ok 162 - one-line panel header controls ship identically
+  ---
+  duration_ms: 0.229125
+  type: 'test'
+  ...
+# Subtest: every priority segment derives one complete ACCORD adoption plan
+ok 163 - every priority segment derives one complete ACCORD adoption plan
+  ---
+  duration_ms: 1.994625
+  type: 'test'
+  ...
+# Subtest: EVC exposes all three named baseline classes and keeps unresolved identity explicit
+ok 164 - EVC exposes all three named baseline classes and keeps unresolved identity explicit
+  ---
+  duration_ms: 0.71575
+  type: 'test'
+  ...
+# Subtest: all requested EVC drivers are editable low-base-high unsourced assumptions
+ok 165 - all requested EVC drivers are editable low-base-high unsourced assumptions
+  ---
+  duration_ms: 0.815167
+  type: 'test'
+  ...
+# Subtest: sensitivity ranges validate ordering and never combine unlike units
+ok 166 - sensitivity ranges validate ordering and never combine unlike units
+  ---
+  duration_ms: 6.118583
+  type: 'test'
+  ...
+# Subtest: modeled value cannot enter the claims registry without Proven substantiation
+ok 167 - modeled value cannot enter the claims registry without Proven substantiation
+  ---
+  duration_ms: 1.397458
+  type: 'test'
+  ...
+# Subtest: the plan has a dedicated position in the eight-section spine and remains accessible and responsive
+ok 168 - the plan has a dedicated position in the eight-section spine and remains accessible and responsive
+  ---
+  duration_ms: 0.686417
+  type: 'test'
+  ...
+# Subtest: the Activation Backlog renders seven governed artifact-production records
+ok 169 - the Activation Backlog renders seven governed artifact-production records
+  ---
+  duration_ms: 2.188167
+  type: 'test'
+  ...
+# Subtest: every artifact carries the required governed content fields and exact evidence footnotes
+ok 170 - every artifact carries the required governed content fields and exact evidence footnotes
+  ---
+  duration_ms: 0.818125
+  type: 'test'
+  ...
+# Subtest: workflow owner, due date, status, and measurement are editable and persisted by target
+ok 171 - workflow owner, due date, status, and measurement are editable and persisted by target
+  ---
+  duration_ms: 7.577917
+  type: 'test'
+  ...
+# Subtest: exports are filter-specific and preserve evidence links
+ok 172 - exports are filter-specific and preserve evidence links
+  ---
+  duration_ms: 0.936959
+  type: 'test'
+  ...
+# Subtest: draft and approved content cannot be confused
+ok 173 - draft and approved content cannot be confused
+  ---
+  duration_ms: 0.768666
+  type: 'test'
+  ...
+# Subtest: the artifact workflow remains inside the eight-section PMM narrative spine
+ok 174 - the artifact workflow remains inside the eight-section PMM narrative spine
+  ---
+  duration_ms: 0.452333
+  type: 'test'
+  ...
+# Subtest: every priority segment receives the complete governed buying committee
+ok 175 - every priority segment receives the complete governed buying committee
+  ---
+  duration_ms: 2.142
+  type: 'test'
+  ...
+# Subtest: committee roles expose every required decision field and explicit evidence state
+ok 176 - committee roles expose every required decision field and explicit evidence state
+  ---
+  duration_ms: 0.700416
+  type: 'test'
+  ...
+# Subtest: Fishbein weights always normalize to exactly 100 percent
+ok 177 - Fishbein weights always normalize to exactly 100 percent
+  ---
+  duration_ms: 0.854291
+  type: 'test'
+  ...
+# Subtest: the swing attribute is calculated from the largest absolute weighted difference
+ok 178 - the swing attribute is calculated from the largest absolute weighted difference
+  ---
+  duration_ms: 0.92125
+  type: 'test'
+  ...
+# Subtest: weights and scores cannot be presented as measured evidence
+ok 179 - weights and scores cannot be presented as measured evidence
+  ---
+  duration_ms: 0.727
+  type: 'test'
+  ...
+# Subtest: the governing position references the calculated selected-segment swing attribute
+ok 180 - the governing position references the calculated selected-segment swing attribute
+  ---
+  duration_ms: 0.42675
+  type: 'test'
+  ...
+# Subtest: buying-committee layouts retain keyboard focus and responsive behavior
+ok 181 - buying-committee layouts retain keyboard focus and responsive behavior
+  ---
+  duration_ms: 0.532125
+  type: 'test'
+  ...
+# Subtest: Reliability for Pharma rejects BioAccord MAM launch proof
+ok 182 - Reliability for Pharma rejects BioAccord MAM launch proof
+  ---
+  duration_ms: 1.233917
+  type: 'test'
+  ...
+# Subtest: Cost for Food safety rejects the generic About Waters page
+ok 183 - Cost for Food safety rejects the generic About Waters page
+  ---
+  duration_ms: 0.180875
+  type: 'test'
+  ...
+# Subtest: Ease of use for Clinical rejects biopharma MAM proof
+ok 184 - Ease of use for Clinical rejects biopharma MAM proof
+  ---
+  duration_ms: 0.156333
+  type: 'test'
+  ...
+# Subtest: Xevo TQ Absolute launch evidence cannot substantiate setup, compliance protection, or ease of use
+ok 185 - Xevo TQ Absolute launch evidence cannot substantiate setup, compliance protection, or ease of use
+  ---
+  duration_ms: 0.133875
+  type: 'test'
+  ...
+# Subtest: mismatched evidence cannot become Proven and Ready requires both proof and approval
+ok 186 - mismatched evidence cannot become Proven and Ready requires both proof and approval
+  ---
+  duration_ms: 0.21975
+  type: 'test'
+  ...
+# Subtest: unique records and independent corroboration are separate claim metrics
+ok 187 - unique records and independent corroboration are separate claim metrics
+  ---
+  duration_ms: 0.133833
+  type: 'test'
+  ...
+# Subtest: registry exposes every required governed claim field
+ok 188 - registry exposes every required governed claim field
+  ---
+  duration_ms: 2.732375
+  type: 'test'
+  ...
+# Subtest: registry compatibility governs positioning proof and activation inputs
+ok 189 - registry compatibility governs positioning proof and activation inputs
+  ---
+  duration_ms: 0.538209
+  type: 'test'
+  ...
+# Subtest: All Markets PMM KPI collections reconcile with their displayed destinations
+ok 190 - All Markets PMM KPI collections reconcile with their displayed destinations
+  ---
+  duration_ms: 3.677333
+  type: 'test'
+  ...
+# Subtest: Biopharma PMM KPI collections reconcile after segment filtering
+ok 191 - Biopharma PMM KPI collections reconcile after segment filtering
+  ---
+  duration_ms: 0.501125
+  type: 'test'
+  ...
+# Subtest: duplicate URLs are never counted as independent sources
+ok 192 - duplicate URLs are never counted as independent sources
+  ---
+  duration_ms: 0.276167
+  type: 'test'
+  ...
+# Subtest: governing-position alignment blocks contradictions and identifies unsupported deviations
+ok 193 - governing-position alignment blocks contradictions and identifies unsupported deviations
+  ---
+  duration_ms: 0.607334
+  type: 'test'
+  ...
+# Subtest: PMM rendering consumes one canonical workspace model
+ok 194 - PMM rendering consumes one canonical workspace model
+  ---
+  duration_ms: 1.237417
+  type: 'test'
+  ...
+# Subtest: every PMM KPI exposes an accessible calculation tooltip
+ok 195 - every PMM KPI exposes an accessible calculation tooltip
+  ---
+  duration_ms: 1.007125
+  type: 'test'
+  ...
+# Subtest: the PMM contract runtime is loaded and mirrored for deployment
+ok 196 - the PMM contract runtime is loaded and mirrored for deployment
+  ---
+  duration_ms: 5.810875
+  type: 'test'
+  ...
+# Subtest: exactly one governing-position module is rendered above PMM decisions
+ok 197 - exactly one governing-position module is rendered above PMM decisions
+  ---
+  duration_ms: 3.110708
+  type: 'test'
+  ...
+# Subtest: the governing model contains every required positioning field
+ok 198 - the governing model contains every required positioning field
+  ---
+  duration_ms: 1.720791
+  type: 'test'
+  ...
+# Subtest: unapproved governing language propagates to all downstream PMM objects
+ok 199 - unapproved governing language propagates to all downstream PMM objects
+  ---
+  duration_ms: 0.835625
+  type: 'test'
+  ...
+# Subtest: positioning decisions and competitor narratives display inherited fields and local adaptation
+ok 200 - positioning decisions and competitor narratives display inherited fields and local adaptation
+  ---
+  duration_ms: 0.43975
+  type: 'test'
+  ...
+# Subtest: contradictions and unsupported deviations are visibly flagged
+ok 201 - contradictions and unsupported deviations are visibly flagged
+  ---
+  duration_ms: 0.245667
+  type: 'test'
+  ...
+# Subtest: the PMM data contract documents governing-position inheritance
+ok 202 - the PMM data contract documents governing-position inheritance
+  ---
+  duration_ms: 0.177167
+  type: 'test'
+  ...
+# Subtest: hierarchical targeting exposes application, buying situation, geography, and buyer-role controls inside the eight-section spine
+ok 203 - hierarchical targeting exposes application, buying situation, geography, and buyer-role controls inside the eight-section spine
+  ---
+  duration_ms: 19.012292
+  type: 'test'
+  ...
+# Subtest: All → Biopharma → Oligo has exact target-compatible application evidence and rebuild hooks
+ok 204 - All → Biopharma → Oligo has exact target-compatible application evidence and rebuild hooks
+  ---
+  duration_ms: 0.863208
+  type: 'test'
+  ...
+# Subtest: All → Environmental → PFAS has exact target-compatible application evidence and rebuild hooks
+ok 205 - All → Environmental → PFAS has exact target-compatible application evidence and rebuild hooks
+  ---
+  duration_ms: 0.760542
+  type: 'test'
+  ...
+# Subtest: application compatibility blocks broad-market proof from silently carrying to another workflow
+ok 206 - application compatibility blocks broad-market proof from silently carrying to another workflow
+  ---
+  duration_ms: 0.4855
+  type: 'test'
+  ...
+# Subtest: What breaks report is canonical, complete, and rendered before activation and export
+ok 207 - What breaks report is canonical, complete, and rendered before activation and export
+  ---
+  duration_ms: 1.799375
+  type: 'test'
+  ...
+# Subtest: every hierarchical change re-derives governed downstream artifacts from one model
+ok 208 - every hierarchical change re-derives governed downstream artifacts from one model
+  ---
+  duration_ms: 0.859708
+  type: 'test'
+  ...
+# Subtest: Market Choice renders exactly once before competitor-specific narratives inside the eight-section spine
+ok 209 - Market Choice renders exactly once before competitor-specific narratives inside the eight-section spine
+  ---
+  duration_ms: 14.062583
+  type: 'test'
+  ...
+# Subtest: the Market Choice model implements all three Cs
+ok 210 - the Market Choice model implements all three Cs
+  ---
+  duration_ms: 5.49475
+  type: 'test'
+  ...
+# Subtest: the competitor onion includes form rivals, resource alternatives, and inertia
+ok 211 - the competitor onion includes form rivals, resource alternatives, and inertia
+  ---
+  duration_ms: 3.52275
+  type: 'test'
+  ...
+# Subtest: every alternative exposes decision fields and governed evidence states
+ok 212 - every alternative exposes decision fields and governed evidence states
+  ---
+  duration_ms: 6.574458
+  type: 'test'
+  ...
+# Subtest: form rivals remain source-linked and negative customer records cannot become choice strengths
+ok 213 - form rivals remain source-linked and negative customer records cannot become choice strengths
+  ---
+  duration_ms: 7.871417
+  type: 'test'
+  ...
+# Subtest: unsupported alternatives cannot imply prevalence or observed demand
+ok 214 - unsupported alternatives cannot imply prevalence or observed demand
+  ---
+  duration_ms: 4.395333
+  type: 'test'
+  ...
+# Subtest: the PMM workspace follows one eight-section narrative spine
+ok 215 - the PMM workspace follows one eight-section narrative spine
+  ---
+  duration_ms: 2.197958
+  type: 'test'
+  ...
+# Subtest: Start Here exposes the seven required decision signals and the priority-one action
+ok 216 - Start Here exposes the seven required decision signals and the priority-one action
+  ---
+  duration_ms: 1.027583
+  type: 'test'
+  ...
+# Subtest: repeated proof is represented by canonical evidence objects with expandable caveats
+ok 217 - repeated proof is represented by canonical evidence objects with expandable caveats
+  ---
+  duration_ms: 0.49875
+  type: 'test'
+  ...
+# Subtest: the narrative spine remains responsive and keyboard accessible
+ok 218 - the narrative spine remains responsive and keyboard accessible
+  ---
+  duration_ms: 1.110042
+  type: 'test'
+  ...
+# Subtest: every comparator selection returns a pair-specific impact and technical result
+ok 219 - every comparator selection returns a pair-specific impact and technical result
+  ---
+  duration_ms: 66.018667
+  type: 'test'
+  ...
+# Subtest: non-default Waters selections do not reuse another Waters assessment
+ok 220 - non-default Waters selections do not reuse another Waters assessment
+  ---
+  duration_ms: 0.745708
+  type: 'test'
+  ...
+# Subtest: Agilent 1290 Infinity III has a complete Waters decision readout
+ok 221 - Agilent 1290 Infinity III has a complete Waters decision readout
+  ---
+  duration_ms: 8.171458
+  type: 'test'
+  ...
+# Subtest: the exact product pair has sourced technical rows and explicit limits
+ok 222 - the exact product pair has sourced technical rows and explicit limits
+  ---
+  duration_ms: 3.184416
+  type: 'test'
+  ...
+# Subtest: Agilent fluorescence detector comparison uses published values only
+ok 223 - Agilent fluorescence detector comparison uses published values only
+  ---
+  duration_ms: 1.598584
+  type: 'test'
+  ...
+# Subtest: technical profiles prioritize method performance and identify controlled-test gaps
+ok 224 - technical profiles prioritize method performance and identify controlled-test gaps
+  ---
+  duration_ms: 3.405959
+  type: 'test'
+  ...
+# Subtest: competitor feature highlights replace the technical comparison table
+ok 225 - competitor feature highlights replace the technical comparison table
+  ---
+  duration_ms: 10.443625
+  type: 'test'
+  ...
+# Subtest: competitor feature highlights show published competitor claims and official sources
+ok 226 - competitor feature highlights show published competitor claims and official sources
+  ---
+  duration_ms: 7.619917
+  type: 'test'
+  ...
+# Subtest: competitor feature highlights do not change with the selected Waters system
+ok 227 - competitor feature highlights do not change with the selected Waters system
+  ---
+  duration_ms: 4.369333
+  type: 'test'
+  ...
+# Subtest: accepts an individual official press release
+ok 228 - accepts an individual official press release
+  ---
+  duration_ms: 1.865458
+  type: 'test'
+  ...
+# Subtest: blocks a product page from product-launch evidence
+ok 229 - blocks a product page from product-launch evidence
+  ---
+  duration_ms: 0.41
+  type: 'test'
+  ...
+# Subtest: allows a catalog-only product to opt out of launch evidence
+ok 230 - allows a catalog-only product to opt out of launch evidence
+  ---
+  duration_ms: 0.144125
+  type: 'test'
+  ...
+# Subtest: accepts an official product launch page
+ok 231 - accepts an official product launch page
+  ---
+  duration_ms: 1.294917
+  type: 'test'
+  ...
+# Subtest: blocks missing, non-official, or non-product launch pages
+ok 232 - blocks missing, non-official, or non-product launch pages
+  ---
+  duration_ms: 0.215917
+  type: 'test'
+  ...
+# Subtest: requires distinct product and press-release pages for launch evidence
+ok 233 - requires distinct product and press-release pages for launch evidence
+  ---
+  duration_ms: 0.219417
+  type: 'test'
+  ...
+# Subtest: Product Management view hides Competitor Coverage Health
+ok 234 - Product Management view hides Competitor Coverage Health
+  ---
+  duration_ms: 2.402625
+  type: 'test'
+  ...
+# Subtest: role-specific coverage visibility ships identically
+ok 235 - role-specific coverage visibility ships identically
+  ---
+  duration_ms: 0.676625
+  type: 'test'
+  ...
+# Subtest: public evidence library includes local search and filter controls
+ok 236 - public evidence library includes local search and filter controls
+  ---
+  duration_ms: 3.487541
+  type: 'test'
+  ...
+# Subtest: public evidence table removes the score breakdown column
+ok 237 - public evidence table removes the score breakdown column
+  ---
+  duration_ms: 0.864334
+  type: 'test'
+  ...
+# Subtest: public evidence filters are responsive and non-sticky
+ok 238 - public evidence filters are responsive and non-sticky
+  ---
+  duration_ms: 5.194166
+  type: 'test'
+  ...
+# Subtest: public evidence source and deploy assets stay synchronized
+ok 239 - public evidence source and deploy assets stay synchronized
+  ---
+  duration_ms: 2.09625
+  type: 'test'
+  ...
+# Subtest: public evidence library paginates ten records at a time
+ok 240 - public evidence library paginates ten records at a time
+  ---
+  duration_ms: 2.447916
+  type: 'test'
+  ...
+# Subtest: public evidence pagination resets when filters change
+ok 241 - public evidence pagination resets when filters change
+  ---
+  duration_ms: 2.002375
+  type: 'test'
+  ...
+# Subtest: publication intelligence is a standalone, linked workspace
+ok 242 - publication intelligence is a standalone, linked workspace
+  ---
+  duration_ms: 20.095875
+  type: 'test'
+  ...
+# Subtest: sources-in-view summary links directly to the monitored source list
+ok 243 - sources-in-view summary links directly to the monitored source list
+  ---
+  duration_ms: 0.769292
+  type: 'test'
+  ...
+# Subtest: publication page synthesizes overall topic trends across journals
+ok 244 - publication page synthesizes overall topic trends across journals
+  ---
+  duration_ms: 0.443667
+  type: 'test'
+  ...
+# Subtest: publication page surfaces linked highlights from the last 15 days
+ok 245 - publication page surfaces linked highlights from the last 15 days
+  ---
+  duration_ms: 0.246333
+  type: 'test'
+  ...
+# Subtest: journal detail prioritizes content themes and explicit competitor mentions over volume arithmetic
+ok 246 - journal detail prioritizes content themes and explicit competitor mentions over volume arithmetic
+  ---
+  duration_ms: 0.337917
+  type: 'test'
+  ...
+# Subtest: topic counts link to the exact publications behind each topic
+ok 247 - topic counts link to the exact publications behind each topic
+  ---
+  duration_ms: 0.375292
+  type: 'test'
+  ...
+# Subtest: dated journal streams include rolling current and prior period counts
+ok 248 - dated journal streams include rolling current and prior period counts
+  ---
+  duration_ms: 1.357375
+  type: 'test'
+  ...
+# Subtest: mapped trade and forum URLs do not receive fabricated publication trends
+ok 249 - mapped trade and forum URLs do not receive fabricated publication trends
+  ---
+  duration_ms: 0.2535
+  type: 'test'
+  ...
+# Subtest: journal trends compare rolling Crossref result counts and show exact DOI evidence
+ok 250 - journal trends compare rolling Crossref result counts and show exact DOI evidence
+  ---
+  duration_ms: 0.918916
+  type: 'test'
+  ...
+# Subtest: source and deploy publication assets remain identical
+ok 251 - source and deploy publication assets remain identical
+  ---
+  duration_ms: 0.622375
+  type: 'test'
+  ...
+# Subtest: roadmap impact map omits the customer-public records column
+ok 252 - roadmap impact map omits the customer-public records column
+  ---
+  duration_ms: 4.584542
+  type: 'test'
+  ...
+# Subtest: roadmap impact map omits the recommended-decision column
+ok 253 - roadmap impact map omits the recommended-decision column
+  ---
+  duration_ms: 0.750833
+  type: 'test'
+  ...
+# Subtest: four-column roadmap impact map ships identically
+ok 254 - four-column roadmap impact map ships identically
+  ---
+  duration_ms: 2.659583
+  type: 'test'
+  ...
+# Subtest: display-depth and reset controls are removed
+ok 255 - display-depth and reset controls are removed
+  ---
+  duration_ms: 1.089
+  type: 'test'
+  ...
+# Subtest: removed controls leave no runtime handlers or hidden view-depth state
+ok 256 - removed controls leave no runtime handlers or hidden view-depth state
+  ---
+  duration_ms: 7.391166
+  type: 'test'
+  ...
+# Subtest: source and deployment copies remain identical
+ok 257 - source and deployment copies remain identical
+  ---
+  duration_ms: 0.39825
+  type: 'test'
+  ...
+# Subtest: Overall Trend Analysis header omits the cross-source-theme capsule
+ok 258 - Overall Trend Analysis header omits the cross-source-theme capsule
+  ---
+  duration_ms: 1.5645
+  type: 'test'
+  ...
+# Subtest: removed trend-count capsule ships identically
+ok 259 - removed trend-count capsule ships identically
+  ---
+  duration_ms: 0.372333
+  type: 'test'
+  ...
+# Subtest: roadmap evidence rows do not repeat a strong-support line
+ok 260 - roadmap evidence rows do not repeat a strong-support line
+  ---
+  duration_ms: 2.627042
+  type: 'test'
+  ...
+# Subtest: removed strong-support wording ships identically
+ok 261 - removed strong-support wording ships identically
+  ---
+  duration_ms: 1.494042
+  type: 'test'
+  ...
+# Subtest: removed Roadmap Impact Map subtitle stays removed
+ok 262 - removed Roadmap Impact Map subtitle stays removed
+  ---
+  duration_ms: 1.491458
+  type: 'test'
+  ...
+# Subtest: leadership customer badge reports corroborating sources instead of analyst confidence
+ok 263 - leadership customer badge reports corroborating sources instead of analyst confidence
+  ---
+  duration_ms: 3.030292
+  type: 'test'
+  ...
+# Subtest: removed one-year pattern explanation stays removed
+ok 264 - removed one-year pattern explanation stays removed
+  ---
+  duration_ms: 1.081167
+  type: 'test'
+  ...
+# Subtest: removed evidence modal subtitle stays removed
+ok 265 - removed evidence modal subtitle stays removed
+  ---
+  duration_ms: 0.146042
+  type: 'test'
+  ...
+# Subtest: removed Application Trends subtitle stays removed
+ok 266 - removed Application Trends subtitle stays removed
+  ---
+  duration_ms: 0.12625
+  type: 'test'
+  ...
+# Subtest: removed source-separation explanation stays removed
+ok 267 - removed source-separation explanation stays removed
+  ---
+  duration_ms: 0.875416
+  type: 'test'
+  ...
+# Subtest: removed publication-pace disclaimer stays removed
+ok 268 - removed publication-pace disclaimer stays removed
+  ---
+  duration_ms: 0.715042
+  type: 'test'
+  ...
+# Subtest: removed launch-section subtitle stays removed
+ok 269 - removed launch-section subtitle stays removed
+  ---
+  duration_ms: 0.127584
+  type: 'test'
+  ...
+# Subtest: removed short-horizon defense subtitle stays removed
+ok 270 - removed short-horizon defense subtitle stays removed
+  ---
+  duration_ms: 0.611708
+  type: 'test'
+  ...
+# Subtest: short-horizon defense omits the old-baseline and new-signal comparison row
+ok 271 - short-horizon defense omits the old-baseline and new-signal comparison row
+  ---
+  duration_ms: 1.193667
+  type: 'test'
+  ...
+# Subtest: removed technical decision subtitle stays removed
+ok 272 - removed technical decision subtitle stays removed
+  ---
+  duration_ms: 0.521958
+  type: 'test'
+  ...
+# Subtest: Agilent filing insight omits the acquisition coverage disclaimer
+ok 273 - Agilent filing insight omits the acquisition coverage disclaimer
+  ---
+  duration_ms: 0.117125
+  type: 'test'
+  ...
+# Subtest: removed DOI methodology line stays removed
+ok 274 - removed DOI methodology line stays removed
+  ---
+  duration_ms: 1.233417
+  type: 'test'
+  ...
+# Subtest: removed non-PubMed coverage-target note stays removed
+ok 275 - removed non-PubMed coverage-target note stays removed
+  ---
+  duration_ms: 15.268375
+  type: 'test'
+  ...
+# Subtest: removed PubMed publication-pace label stays removed
+ok 276 - removed PubMed publication-pace label stays removed
+  ---
+  duration_ms: 28.045459
+  type: 'test'
+  ...
+# Subtest: removed Application Trend comparison explanation stays removed
+ok 277 - removed Application Trend comparison explanation stays removed
+  ---
+  duration_ms: 13.907708
+  type: 'test'
+  ...
+# Subtest: Application Trend cards omit momentum-status capsules
+ok 278 - Application Trend cards omit momentum-status capsules
+  ---
+  duration_ms: 5.064708
+  type: 'test'
+  ...
+# Subtest: competitor application-note analysis omits the independence callout
+ok 279 - competitor application-note analysis omits the independence callout
+  ---
+  duration_ms: 0.979042
+  type: 'test'
+  ...
+# Subtest: competitor application-note analysis omits the requested description
+ok 280 - competitor application-note analysis omits the requested description
+  ---
+  duration_ms: 3.809708
+  type: 'test'
+  ...
+# Subtest: competitor application-note summary omits the cluster disclaimer
+ok 281 - competitor application-note summary omits the cluster disclaimer
+  ---
+  duration_ms: 1.014209
+  type: 'test'
+  ...
+# Subtest: the removed Agilent filing-navigation explanation stays removed
+ok 282 - the removed Agilent filing-navigation explanation stays removed
+  ---
+  duration_ms: 0.268459
+  type: 'test'
+  ...
+# Subtest: the filing corporate-moves panel omits the redundant separator label
+ok 283 - the filing corporate-moves panel omits the redundant separator label
+  ---
+  duration_ms: 4.835167
+  type: 'test'
+  ...
+# Subtest: filing insights use Waters implication instead of Waters readout
+ok 284 - filing insights use Waters implication instead of Waters readout
+  ---
+  duration_ms: 6.315084
+  type: 'test'
+  ...
+# Subtest: strategic partnerships omit scoring and score breakdowns
+ok 285 - strategic partnerships omit scoring and score breakdowns
+  ---
+  duration_ms: 2.187875
+  type: 'test'
+  ...
+# Subtest: product comparison omits launch-evidence confidence panel
+ok 286 - product comparison omits launch-evidence confidence panel
+  ---
+  duration_ms: 6.7005
+  type: 'test'
+  ...
+# Subtest: dashboard panels contain mobile-safe headers, actions, and wide data regions
+ok 287 - dashboard panels contain mobile-safe headers, actions, and wide data regions
+  ---
+  duration_ms: 20.706834
+  type: 'test'
+  ...
+# Subtest: conference and publication subpages retain responsive breakpoints
+ok 288 - conference and publication subpages retain responsive breakpoints
+  ---
+  duration_ms: 4.294666
+  type: 'test'
+  ...
+# Subtest: responsive source and deploy assets stay synchronized
+ok 289 - responsive source and deploy assets stay synchronized
+  ---
+  duration_ms: 39.966375
+  type: 'test'
+  ...
+# Subtest: required LC-MS journals, conferences, and regulatory sources are registered
+ok 290 - required LC-MS journals, conferences, and regulatory sources are registered
+  ---
+  duration_ms: 10.083459
+  type: 'test'
+  ...
+# Subtest: invalid publisher URLs and missing market tags are rejected
+ok 291 - invalid publisher URLs and missing market tags are rejected
+  ---
+  duration_ms: 4.2765
+  type: 'test'
+  ...
+# Subtest: recommendation cards use evidence priority without unsupported numeric precision
+ok 292 - recommendation cards use evidence priority without unsupported numeric precision
+  ---
+  duration_ms: 3.649
+  type: 'test'
+  ...
+# Subtest: competitor profiles use methodological inference-confidence tiers
+ok 293 - competitor profiles use methodological inference-confidence tiers
+  ---
+  duration_ms: 0.493083
+  type: 'test'
+  ...
+# Subtest: customer-voice sentiment view omits the removed summary line
+ok 294 - customer-voice sentiment view omits the removed summary line
+  ---
+  duration_ms: 8.663167
+  type: 'test'
+  ...
+# Subtest: removed sentiment summary ships identically
+ok 295 - removed sentiment summary ships identically
+  ---
+  duration_ms: 15.587833
+  type: 'test'
+  ...
+# Subtest: sidebar navigation has an accessible responsive toggle
+ok 296 - sidebar navigation has an accessible responsive toggle
+  ---
+  duration_ms: 2.186375
+  type: 'test'
+  ...
+# Subtest: sidebar navigation scrolls directly and tracks the final page section
+ok 297 - sidebar navigation scrolls directly and tracks the final page section
+  ---
+  duration_ms: 0.547084
+  type: 'test'
+  ...
+# Subtest: desktop rail stays stable while responsive navigation collapses
+ok 298 - desktop rail stays stable while responsive navigation collapses
+  ---
+  duration_ms: 0.79825
+  type: 'test'
+  ...
+# Subtest: sidebar fixes ship identically
+ok 299 - sidebar fixes ship identically
+  ---
+  duration_ms: 0.428125
+  type: 'test'
+  ...
+# Subtest: market source coverage renders with competitor coverage health
+ok 300 - market source coverage renders with competitor coverage health
+  ---
+  duration_ms: 1.632375
+  type: 'test'
+  ...
+# Subtest: application trend markup no longer embeds source coverage
+ok 301 - application trend markup no longer embeds source coverage
+  ---
+  duration_ms: 0.750167
+  type: 'test'
+  ...
+# Subtest: Thermo July earnings are included in the visible competitor-intent profile
+ok 302 - Thermo July earnings are included in the visible competitor-intent profile
+  ---
+  duration_ms: 27.959125
+  type: 'test'
+  ...
+# Subtest: Leadership Brief prefers the latest official earnings result for its corporate signal
+ok 303 - Leadership Brief prefers the latest official earnings result for its corporate signal
+  ---
+  duration_ms: 6.328917
+  type: 'test'
+  ...
+# Subtest: Thermo Fisher investor relations is a registered critical daily source
+ok 304 - Thermo Fisher investor relations is a registered critical daily source
+  ---
+  duration_ms: 12.419209
+  type: 'test'
+  ...
+# Subtest: Thermo Fisher IR parser preserves the July earnings announcement and results URLs
+ok 305 - Thermo Fisher IR parser preserves the July earnings announcement and results URLs
+  ---
+  duration_ms: 2.705375
+  type: 'test'
+  ...
+# Subtest: the shipped Thermo monitor covers Dionex IC and Vanquish Neo nano-LC
+ok 306 - the shipped Thermo monitor covers Dionex IC and Vanquish Neo nano-LC
+  ---
+  duration_ms: 8.732583
+  type: 'test'
+  ...
+# Subtest: missing segments and non-official product URLs are rejected
+ok 307 - missing segments and non-official product URLs are rejected
+  ---
+  duration_ms: 10.062875
+  type: 'test'
+  ...
+# Subtest: Decisions needed uses three columns on wide screens
+ok 308 - Decisions needed uses three columns on wide screens
+  ---
+  duration_ms: 2.069958
+  type: 'test'
+  ...
+# Subtest: decision columns step down responsively
+ok 309 - decision columns step down responsively
+  ---
+  duration_ms: 0.74875
+  type: 'test'
+  ...
+# Subtest: decision score cards omit removed factors
+ok 310 - decision score cards omit removed factors
+  ---
+  duration_ms: 11.400333
+  type: 'test'
+  ...
+# Subtest: deployment copy matches the source implementation
+ok 311 - deployment copy matches the source implementation
+  ---
+  duration_ms: 0.418042
+  type: 'test'
+  ...
+# Subtest: competitive timeline puts the launch count beside the horizon
+ok 312 - competitive timeline puts the launch count beside the horizon
+  ---
+  duration_ms: 1.656833
+  type: 'test'
+  ...
+# Subtest: competitive timeline omits the launch summary strip
+ok 313 - competitive timeline omits the launch summary strip
+  ---
+  duration_ms: 0.724875
+  type: 'test'
+  ...
+# Subtest: overall-trend implication and consideration boxes align label and body copy
+ok 314 - overall-trend implication and consideration boxes align label and body copy
+  ---
+  duration_ms: 6.315583
+  type: 'test'
+  ...
+# Subtest: trend-card alignment styles ship identically
+ok 315 - trend-card alignment styles ship identically
+  ---
+  duration_ms: 2.365916
+  type: 'test'
+  ...
+# Subtest: leadership market highlight explains technical scope instead of repeating the growth metric
+ok 316 - leadership market highlight explains technical scope instead of repeating the growth metric
+  ---
+  duration_ms: 2.145667
+  type: 'test'
+  ...
+# Subtest: technical context covers every configured application-trend family
+ok 317 - technical context covers every configured application-trend family
+  ---
+  duration_ms: 1.125375
+  type: 'test'
+  ...
+# Subtest: deployment copy stays aligned with the application source
+ok 318 - deployment copy stays aligned with the application source
+  ---
+  duration_ms: 0.310917
+  type: 'test'
+  ...
+# Subtest: source and deploy typography styles stay identical
+ok 319 - source and deploy typography styles stay identical
+  ---
+  duration_ms: 1.503833
+  type: 'test'
+  ...
+# Subtest: section and subsection headings use the shared title hierarchy
+ok 320 - section and subsection headings use the shared title hierarchy
+  ---
+  duration_ms: 0.613458
+  type: 'test'
+  ...
+# Subtest: conference page headings keep a logical normal-style hierarchy
+ok 321 - conference page headings keep a logical normal-style hierarchy
+  ---
+  duration_ms: 0.436583
+  type: 'test'
+  ...
+# Subtest: nested titles cannot grow larger than their parent section
+ok 322 - nested titles cannot grow larger than their parent section
+  ---
+  duration_ms: 0.515291
+  type: 'test'
+  ...
+# Subtest: all panel subtitles override legacy italic section exceptions
+ok 323 - all panel subtitles override legacy italic section exceptions
+  ---
+  duration_ms: 0.56175
+  type: 'test'
+  ...
+# Subtest: vendor evidence panel omits the removed methodology note
+ok 324 - vendor evidence panel omits the removed methodology note
+  ---
+  duration_ms: 3.451792
+  type: 'test'
+  ...
+# Subtest: customer voice cards omit classification clutter
+ok 325 - customer voice cards omit classification clutter
+  ---
+  duration_ms: 2.341292
+  type: 'test'
+  ...
+# Subtest: customer voice compares purchase themes before showing source records
+ok 326 - customer voice compares purchase themes before showing source records
+  ---
+  duration_ms: 8.819084
+  type: 'test'
+  ...
+# Subtest: customer voice section uses the theme-centric PM title
+ok 327 - customer voice section uses the theme-centric PM title
+  ---
+  duration_ms: 1.533916
+  type: 'test'
+  ...
+# Subtest: company voice synthesis ships identically
+ok 328 - company voice synthesis ships identically
+  ---
+  duration_ms: 5.270333
+  type: 'test'
+  ...
+# Subtest: work-in-progress coverage panel and links are removed
+ok 329 - work-in-progress coverage panel and links are removed
+  ---
+  duration_ms: 1.822542
+  type: 'test'
+  ...
+1..329
+# tests 329
+# suites 0
+# pass 329
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1250.404625

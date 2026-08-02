@@ -1,0 +1,3246 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-08-02T20:43:07+00:00",
+  "panelCount": 41,
+  "subpanelCount": 8,
+  "panels": [
+    {
+      "pageId": "index.html",
+      "parentPanelId": null,
+      "panelId": "global-filters",
+      "subpanelId": null,
+      "visibleTitle": "Global Filters",
+      "navigationRoute": "index.html#global-filters",
+      "htmlContainer": ".filters",
+      "renderFunction": "render",
+      "sourceDataFiles": [
+        "data/intelligence.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "competitive_intelligence"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame",
+        "application",
+        "buyingSituation",
+        "buyerRole",
+        "competitorProduct"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "visible",
+      "hiddenExpandedStates": [
+        "collapsible-expanded",
+        "collapsible-collapsed"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [
+        "#global-filters"
+      ],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "interactive"
+    },
+    {
+      "pageId": "index.html",
+      "parentPanelId": null,
+      "panelId": "refresh-status",
+      "subpanelId": null,
+      "visibleTitle": "Build and Source Verification Status",
+      "navigationRoute": "index.html#refresh-status",
+      "htmlContainer": ".refresh-block",
+      "renderFunction": "renderRefreshStatus",
+      "sourceDataFiles": [
+        "data/refresh_status.json",
+        "data/source_health.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "competitive_intelligence"
+      ],
+      "availableFilters": [],
+      "availableTimeFrames": [],
+      "defaultState": "visible",
+      "hiddenExpandedStates": [
+        "collapsible-expanded",
+        "collapsible-collapsed"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [
+        "#refresh-status"
+      ],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "derived"
+    },
+    {
+      "pageId": "index.html",
+      "parentPanelId": null,
+      "panelId": "pmm-start-here",
+      "subpanelId": null,
+      "visibleTitle": "Product Marketing Start Here",
+      "navigationRoute": "index.html#pmm-start-here",
+      "htmlContainer": "#pmmStartHere",
+      "renderFunction": "renderMarketingWorkspace",
+      "sourceDataFiles": [
+        "data/intelligence.json",
+        "data/product_comparisons.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "competitive_intelligence",
+        "product"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "marketing-role-only",
+      "hiddenExpandedStates": [
+        "marketing-role-only"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [
+        "#pmm-start-here"
+      ],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "derived"
+    },
+    {
+      "pageId": "index.html",
+      "parentPanelId": null,
+      "panelId": "pmm-head-to-head",
+      "subpanelId": null,
+      "visibleTitle": "Head-to-Head Comparison",
+      "navigationRoute": "index.html#pmm-head-to-head",
+      "htmlContainer": "#pmm-head-to-head",
+      "renderFunction": "renderPmmHeadToHeadComparison",
+      "sourceDataFiles": [
+        "data/product_comparisons.json",
+        "data/technical_comparisons.json",
+        "data/historical_waters_catalog.json",
+        "data/historical_product_catalog.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "product"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "marketing-role-only",
+      "hiddenExpandedStates": [
+        "marketing-role-only"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [
+        "#pmm-head-to-head"
+      ],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "derived"
+    },
+    {
+      "pageId": "index.html",
+      "parentPanelId": null,
+      "panelId": "pmm-governing-position",
+      "subpanelId": null,
+      "visibleTitle": "Governing Position",
+      "navigationRoute": "index.html#pmm-governing-position",
+      "htmlContainer": "#pmm-governing-position",
+      "renderFunction": "renderPmmGoverningPosition",
+      "sourceDataFiles": [
+        "data/intelligence.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "competitive_intelligence"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "marketing-role-only",
+      "hiddenExpandedStates": [
+        "marketing-role-only"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [
+        "#pmm-governing-position"
+      ],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "manual-curation:PMM_DATA_CONTRACT.md",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "curated"
+    },
+    {
+      "pageId": "index.html",
+      "parentPanelId": null,
+      "panelId": "pmm-positioning-decisions",
+      "subpanelId": null,
+      "visibleTitle": "Positioning Decisions",
+      "navigationRoute": "index.html#pmm-positioning-decisions",
+      "htmlContainer": "#pmm-positioning-decisions",
+      "renderFunction": "renderPmmPositioningDecisions",
+      "sourceDataFiles": [
+        "data/intelligence.json",
+        "data/product_comparisons.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "competitive_intelligence",
+        "product"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "marketing-role-only",
+      "hiddenExpandedStates": [
+        "marketing-role-only"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [
+        "#pmm-positioning-decisions"
+      ],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "derived"
+    },
+    {
+      "pageId": "index.html",
+      "parentPanelId": null,
+      "panelId": "pmm-claims-risk",
+      "subpanelId": null,
+      "visibleTitle": "Claims and Risk",
+      "navigationRoute": "index.html#pmm-claims-risk",
+      "htmlContainer": "#pmm-claims-risk",
+      "renderFunction": "renderPmmClaimsRisk",
+      "sourceDataFiles": [
+        "data/intelligence.json",
+        "data/technical_comparisons.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "competitive_intelligence",
+        "product"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "marketing-role-only",
+      "hiddenExpandedStates": [
+        "marketing-role-only"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [
+        "#pmm-claims-risk"
+      ],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "derived"
+    },
+    {
+      "pageId": "index.html",
+      "parentPanelId": null,
+      "panelId": "pmm-segment-cascade",
+      "subpanelId": null,
+      "visibleTitle": "Segment Cascade",
+      "navigationRoute": "index.html#pmm-segment-cascade",
+      "htmlContainer": "#pmm-segment-cascade",
+      "renderFunction": "renderPmmSegmentCascade",
+      "sourceDataFiles": [
+        "data/intelligence.json",
+        "data/market_application_sources.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "competitive_intelligence"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "marketing-role-only",
+      "hiddenExpandedStates": [
+        "marketing-role-only"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [
+        "#pmm-segment-cascade"
+      ],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "derived"
+    },
+    {
+      "pageId": "index.html",
+      "parentPanelId": null,
+      "panelId": "pmm-competitive-narratives",
+      "subpanelId": null,
+      "visibleTitle": "Competitive Narratives",
+      "navigationRoute": "index.html#pmm-competitive-narratives",
+      "htmlContainer": "#pmm-competitive-narratives",
+      "renderFunction": "renderMarketingBattlecards",
+      "sourceDataFiles": [
+        "data/intelligence.json",
+        "data/product_comparisons.json",
+        "data/customer_voice.json",
+        "data/competitor_application_notes.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "competitive_intelligence",
+        "customer_voice",
+        "product"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "marketing-role-only",
+      "hiddenExpandedStates": [
+        "marketing-role-only"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [
+        "#pmm-competitive-narratives"
+      ],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "derived"
+    },
+    {
+      "pageId": "index.html",
+      "parentPanelId": null,
+      "panelId": "pmm-adoption-value",
+      "subpanelId": null,
+      "visibleTitle": "Adoption and Value",
+      "navigationRoute": "index.html#pmm-adoption-value",
+      "htmlContainer": "#pmm-adoption-value",
+      "renderFunction": "renderPmmAdoptionValue",
+      "sourceDataFiles": [
+        "data/intelligence.json",
+        "data/customer_voice.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "competitive_intelligence",
+        "customer_voice"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "marketing-role-only",
+      "hiddenExpandedStates": [
+        "marketing-role-only"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [
+        "#pmm-adoption-value"
+      ],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "derived"
+    },
+    {
+      "pageId": "index.html",
+      "parentPanelId": null,
+      "panelId": "pmm-activation-artifacts",
+      "subpanelId": null,
+      "visibleTitle": "Activation Artifacts",
+      "navigationRoute": "index.html#pmm-activation-artifacts",
+      "htmlContainer": "#pmm-activation-artifacts",
+      "renderFunction": "renderPmmActivationArtifacts",
+      "sourceDataFiles": [
+        "data/intelligence.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "competitive_intelligence"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "marketing-role-only",
+      "hiddenExpandedStates": [
+        "marketing-role-only"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [
+        "#pmm-activation-artifacts"
+      ],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "manual-curation:PMM_DATA_CONTRACT.md",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "curated"
+    },
+    {
+      "pageId": "index.html",
+      "parentPanelId": null,
+      "panelId": "pmm-evidence-appendix",
+      "subpanelId": null,
+      "visibleTitle": "Evidence Appendix",
+      "navigationRoute": "index.html#pmm-evidence-appendix",
+      "htmlContainer": "#pmm-evidence-appendix",
+      "renderFunction": "renderPmmEvidenceAppendix",
+      "sourceDataFiles": [
+        "data/intelligence.json",
+        "data/customer_voice.json",
+        "data/filing_insights.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "competitive_intelligence",
+        "customer_voice",
+        "filing"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "marketing-role-only",
+      "hiddenExpandedStates": [
+        "marketing-role-only"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [
+        "#pmm-evidence-appendix"
+      ],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "derived"
+    },
+    {
+      "pageId": "index.html",
+      "parentPanelId": null,
+      "panelId": "leadership-brief",
+      "subpanelId": null,
+      "visibleTitle": "Leadership Brief",
+      "navigationRoute": "index.html#leadership-brief",
+      "htmlContainer": "#leadership-brief",
+      "renderFunction": "renderDecisionPacket",
+      "sourceDataFiles": [
+        "data/intelligence.json",
+        "data/product_launches.json",
+        "data/filing_insights.json",
+        "data/customer_voice.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "competitive_intelligence",
+        "customer_voice",
+        "filing",
+        "product"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "visible",
+      "hiddenExpandedStates": [
+        "collapsible-expanded",
+        "collapsible-collapsed"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [
+        "#leadership-brief"
+      ],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "derived"
+    },
+    {
+      "pageId": "index.html",
+      "parentPanelId": null,
+      "panelId": "overall-trend-analysis",
+      "subpanelId": null,
+      "visibleTitle": "Overall Trend Analysis",
+      "navigationRoute": "index.html#overall-trend-analysis",
+      "htmlContainer": "#overall-trend-analysis",
+      "renderFunction": "renderOverallTrendAnalysis",
+      "sourceDataFiles": [
+        "data/intelligence.json",
+        "data/customer_voice.json",
+        "data/filing_insights.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "competitive_intelligence",
+        "customer_voice",
+        "filing"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "visible",
+      "hiddenExpandedStates": [
+        "collapsible-expanded",
+        "collapsible-collapsed"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [
+        "#overall-trend-analysis"
+      ],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "derived"
+    },
+    {
+      "pageId": "index.html",
+      "parentPanelId": null,
+      "panelId": "competitor-intent-section",
+      "subpanelId": null,
+      "visibleTitle": "Competitor Intent",
+      "navigationRoute": "index.html#competitor-intent-section",
+      "htmlContainer": "#competitor-intent-section",
+      "renderFunction": "renderCompetitorIntentCards",
+      "sourceDataFiles": [
+        "data/intelligence.json",
+        "data/product_launches.json",
+        "data/filing_insights.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "competitive_intelligence",
+        "filing",
+        "product"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "visible",
+      "hiddenExpandedStates": [
+        "collapsible-expanded",
+        "collapsible-collapsed"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [
+        "#competitor-intent-section"
+      ],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "derived"
+    },
+    {
+      "pageId": "index.html",
+      "parentPanelId": null,
+      "panelId": "decisions-needed",
+      "subpanelId": null,
+      "visibleTitle": "Decisions Needed",
+      "navigationRoute": "index.html#decisions-needed",
+      "htmlContainer": "#decisions-needed",
+      "renderFunction": "renderDecisionQueue",
+      "sourceDataFiles": [
+        "data/intelligence.json",
+        "data/customer_voice.json",
+        "data/filing_insights.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "competitive_intelligence",
+        "customer_voice",
+        "filing"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "visible",
+      "hiddenExpandedStates": [
+        "collapsible-expanded",
+        "collapsible-collapsed"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [
+        "#decisions-needed"
+      ],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "derived"
+    },
+    {
+      "pageId": "index.html",
+      "parentPanelId": null,
+      "panelId": "customer-voice",
+      "subpanelId": null,
+      "visibleTitle": "Customer Voice and Market Signals",
+      "navigationRoute": "index.html#customer-voice",
+      "htmlContainer": "#customer-voice",
+      "renderFunction": "renderCustomerVoiceSignals",
+      "sourceDataFiles": [
+        "data/customer_voice.json",
+        "data/intelligence.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "competitive_intelligence",
+        "customer_voice"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "visible",
+      "hiddenExpandedStates": [
+        "collapsible-expanded",
+        "collapsible-collapsed"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [
+        "#customer-voice"
+      ],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "derived"
+    },
+    {
+      "pageId": "index.html",
+      "parentPanelId": "customer-voice",
+      "panelId": "customer-summary",
+      "subpanelId": "customer-summary",
+      "visibleTitle": "Customer Voice Summary",
+      "navigationRoute": "index.html#customer-summary",
+      "htmlContainer": "[data-customer-voice-panel=\"summary\"]",
+      "renderFunction": "renderCustomerVoiceSummary",
+      "sourceDataFiles": [
+        "data/customer_voice.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "customer_voice"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "tab-summary-default",
+      "hiddenExpandedStates": [
+        "tab-summary-default"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [
+        "#customer-summary"
+      ],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "derived"
+    },
+    {
+      "pageId": "index.html",
+      "parentPanelId": "customer-voice",
+      "panelId": "customer-company",
+      "subpanelId": "customer-company",
+      "visibleTitle": "Customer Voice by Company",
+      "navigationRoute": "index.html#customer-company",
+      "htmlContainer": "#customerCompetitorChart",
+      "renderFunction": "renderCustomerCompetitorChart",
+      "sourceDataFiles": [
+        "data/customer_voice.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "customer_voice"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "visible",
+      "hiddenExpandedStates": [
+        "collapsible-expanded",
+        "collapsible-collapsed"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [
+        "#customer-company"
+      ],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "derived"
+    },
+    {
+      "pageId": "index.html",
+      "parentPanelId": "customer-voice",
+      "panelId": "customer-evidence-classification",
+      "subpanelId": "customer-evidence-classification",
+      "visibleTitle": "Evidence Classification",
+      "navigationRoute": "index.html#customer-evidence-classification",
+      "htmlContainer": "#sentimentTrendChart",
+      "renderFunction": "renderSentimentTrendChart",
+      "sourceDataFiles": [
+        "data/customer_voice.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "customer_voice"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "visible",
+      "hiddenExpandedStates": [
+        "collapsible-expanded",
+        "collapsible-collapsed"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [
+        "#customer-evidence-classification"
+      ],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "derived"
+    },
+    {
+      "pageId": "index.html",
+      "parentPanelId": "customer-voice",
+      "panelId": "customer-roadmap-inputs",
+      "subpanelId": "customer-roadmap-inputs",
+      "visibleTitle": "Roadmap Decision Inputs",
+      "navigationRoute": "index.html#customer-roadmap-inputs",
+      "htmlContainer": ".customer-roadmap-inputs",
+      "renderFunction": "customerRoadmapInputsMarkup",
+      "sourceDataFiles": [
+        "data/customer_voice.json",
+        "data/intelligence.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "competitive_intelligence",
+        "customer_voice"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "visible",
+      "hiddenExpandedStates": [
+        "collapsible-expanded",
+        "collapsible-collapsed"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [
+        "#customer-roadmap-inputs"
+      ],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "derived"
+    },
+    {
+      "pageId": "index.html",
+      "parentPanelId": "customer-voice",
+      "panelId": "customer-needs",
+      "subpanelId": "customer-needs",
+      "visibleTitle": "Pain and Needs",
+      "navigationRoute": "index.html#customer-needs",
+      "htmlContainer": "[data-customer-voice-panel=\"needs\"]",
+      "renderFunction": "renderPainPointTracker;renderUnmetNeeds",
+      "sourceDataFiles": [
+        "data/customer_voice.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "customer_voice"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "tab-hidden-default",
+      "hiddenExpandedStates": [
+        "tab-hidden-default"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [
+        "#customer-needs"
+      ],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "derived"
+    },
+    {
+      "pageId": "index.html",
+      "parentPanelId": "customer-voice",
+      "panelId": "customer-positioning",
+      "subpanelId": "customer-positioning",
+      "visibleTitle": "Positioning",
+      "navigationRoute": "index.html#customer-positioning",
+      "htmlContainer": "[data-customer-voice-panel=\"positioning\"]",
+      "renderFunction": "renderMarketPositioning;renderCustomerSegments;renderCompetitiveCustomerSignals;renderCustomerPmInsights",
+      "sourceDataFiles": [
+        "data/customer_voice.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "customer_voice"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "marketing-role-tab",
+      "hiddenExpandedStates": [
+        "marketing-role-tab"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [
+        "#customer-positioning"
+      ],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "derived"
+    },
+    {
+      "pageId": "index.html",
+      "parentPanelId": "customer-voice",
+      "panelId": "customer-evidence",
+      "subpanelId": "customer-evidence",
+      "visibleTitle": "Evidence and Source Links",
+      "navigationRoute": "index.html#customer-evidence",
+      "htmlContainer": "[data-customer-voice-panel=\"evidence\"]",
+      "renderFunction": "renderCustomerEvidenceTable",
+      "sourceDataFiles": [
+        "data/customer_voice.json",
+        "data/link_health.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "competitive_intelligence",
+        "customer_voice"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "tab-hidden-default",
+      "hiddenExpandedStates": [
+        "tab-hidden-default"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [
+        "#customer-evidence"
+      ],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "derived"
+    },
+    {
+      "pageId": "index.html",
+      "parentPanelId": null,
+      "panelId": "product-comparator",
+      "subpanelId": null,
+      "visibleTitle": "Product Comparator",
+      "navigationRoute": "index.html#product-comparator",
+      "htmlContainer": "#product-comparator",
+      "renderFunction": "renderProductComparator",
+      "sourceDataFiles": [
+        "data/product_comparisons.json",
+        "data/technical_comparisons.json",
+        "data/historical_waters_catalog.json",
+        "data/historical_product_catalog.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "product"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "visible",
+      "hiddenExpandedStates": [
+        "collapsible-expanded",
+        "collapsible-collapsed"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [
+        "#product-comparator"
+      ],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "derived"
+    },
+    {
+      "pageId": "index.html",
+      "parentPanelId": null,
+      "panelId": "competitive-timeline-section",
+      "subpanelId": null,
+      "visibleTitle": "Competitive Product Timeline",
+      "navigationRoute": "index.html#competitive-timeline-section",
+      "htmlContainer": "#competitive-timeline-section",
+      "renderFunction": "renderCompetitiveTimeline",
+      "sourceDataFiles": [
+        "data/product_launches.json",
+        "data/historical_product_catalog.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "product"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "visible",
+      "hiddenExpandedStates": [
+        "collapsible-expanded",
+        "collapsible-collapsed"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [
+        "#competitive-timeline-section"
+      ],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "derived"
+    },
+    {
+      "pageId": "index.html",
+      "parentPanelId": null,
+      "panelId": "competitive-capability-evidence",
+      "subpanelId": null,
+      "visibleTitle": "Competitive Capability Evidence",
+      "navigationRoute": "index.html#competitive-capability-evidence",
+      "htmlContainer": "#competitive-capability-evidence",
+      "renderFunction": "renderFeatureGapMatrix",
+      "sourceDataFiles": [
+        "data/product_comparisons.json",
+        "data/technical_comparisons.json",
+        "data/customer_voice.json",
+        "data/intelligence.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "competitive_intelligence",
+        "customer_voice",
+        "product"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "visible",
+      "hiddenExpandedStates": [
+        "collapsible-expanded",
+        "collapsible-collapsed"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [
+        "#competitive-capability-evidence"
+      ],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "derived"
+    },
+    {
+      "pageId": "index.html",
+      "parentPanelId": "competitive-timeline-section",
+      "panelId": "metric-grid",
+      "subpanelId": "metric-grid",
+      "visibleTitle": "Executive Product Metrics",
+      "navigationRoute": "index.html#metric-grid",
+      "htmlContainer": "#metricGrid",
+      "renderFunction": "renderMetrics",
+      "sourceDataFiles": [
+        "data/product_launches.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "product"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "visible",
+      "hiddenExpandedStates": [
+        "collapsible-expanded",
+        "collapsible-collapsed"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [
+        "#metric-grid"
+      ],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "derived"
+    },
+    {
+      "pageId": "index.html",
+      "parentPanelId": null,
+      "panelId": "filing-evidence",
+      "subpanelId": null,
+      "visibleTitle": "SEC Filing Evidence",
+      "navigationRoute": "index.html#filing-evidence",
+      "htmlContainer": "#filing-evidence",
+      "renderFunction": "renderFilingInsights",
+      "sourceDataFiles": [
+        "data/filing_insights.json",
+        "data/intelligence.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "competitive_intelligence",
+        "filing"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "visible",
+      "hiddenExpandedStates": [
+        "collapsible-expanded",
+        "collapsible-collapsed"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [
+        "#filing-evidence"
+      ],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "derived"
+    },
+    {
+      "pageId": "index.html",
+      "parentPanelId": null,
+      "panelId": "strategic-signals",
+      "subpanelId": null,
+      "visibleTitle": "Strategic Signals",
+      "navigationRoute": "index.html#strategic-signals",
+      "htmlContainer": "#strategicSignals",
+      "renderFunction": "renderStrategicSignals",
+      "sourceDataFiles": [
+        "data/intelligence.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "competitive_intelligence"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "paginated",
+      "hiddenExpandedStates": [
+        "paginated"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [
+        "#strategic-signals"
+      ],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "derived"
+    },
+    {
+      "pageId": "index.html",
+      "parentPanelId": null,
+      "panelId": "conference-intelligence",
+      "subpanelId": null,
+      "visibleTitle": "Conference Intelligence",
+      "navigationRoute": "index.html#conference-intelligence",
+      "htmlContainer": "#conference-intelligence",
+      "renderFunction": "renderConferenceSources",
+      "sourceDataFiles": [
+        "data/conference_sources.json",
+        "data/conference_preparation.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "conference"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "visible",
+      "hiddenExpandedStates": [
+        "collapsible-expanded",
+        "collapsible-collapsed"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [
+        "#conference-intelligence"
+      ],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "derived"
+    },
+    {
+      "pageId": "index.html",
+      "parentPanelId": null,
+      "panelId": "journal-forum-sources",
+      "subpanelId": null,
+      "visibleTitle": "Journal and Forum Sources",
+      "navigationRoute": "index.html#journal-forum-sources",
+      "htmlContainer": "#journal-forum-sources",
+      "renderFunction": "renderJournalForumSources",
+      "sourceDataFiles": [
+        "data/journal_sources.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "publication"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "visible",
+      "hiddenExpandedStates": [
+        "collapsible-expanded",
+        "collapsible-collapsed"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [
+        "#journal-forum-sources"
+      ],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "derived"
+    },
+    {
+      "pageId": "index.html",
+      "parentPanelId": null,
+      "panelId": "shortHorizonDefensePanel",
+      "subpanelId": null,
+      "visibleTitle": "Short-Horizon Defense",
+      "navigationRoute": "index.html#shortHorizonDefensePanel",
+      "htmlContainer": "#shortHorizonDefensePanel",
+      "renderFunction": "renderShortHorizonDefense",
+      "sourceDataFiles": [
+        "data/product_comparisons.json",
+        "data/technical_comparisons.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "product"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "conditionally-hidden",
+      "hiddenExpandedStates": [
+        "conditionally-hidden"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [
+        "#shortHorizonDefensePanel"
+      ],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "derived"
+    },
+    {
+      "pageId": "index.html",
+      "parentPanelId": null,
+      "panelId": "application-trends",
+      "subpanelId": null,
+      "visibleTitle": "Application Trends",
+      "navigationRoute": "index.html#application-trends",
+      "htmlContainer": "#application-trends",
+      "renderFunction": "renderTrends",
+      "sourceDataFiles": [
+        "data/intelligence.json",
+        "data/journal_sources.json",
+        "data/market_application_sources.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "competitive_intelligence",
+        "publication"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "visible",
+      "hiddenExpandedStates": [
+        "collapsible-expanded",
+        "collapsible-collapsed"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [
+        "#application-trends"
+      ],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "derived"
+    },
+    {
+      "pageId": "index.html",
+      "parentPanelId": null,
+      "panelId": "evidence-signal-feed",
+      "subpanelId": null,
+      "visibleTitle": "Public Evidence",
+      "navigationRoute": "index.html#evidence-signal-feed",
+      "htmlContainer": "#evidence-signal-feed",
+      "renderFunction": "renderSignals",
+      "sourceDataFiles": [
+        "data/intelligence.json",
+        "data/link_health.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "competitive_intelligence"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "paginated",
+      "hiddenExpandedStates": [
+        "paginated",
+        "hidden-in-product-role"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [
+        "#evidence-signal-feed"
+      ],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "derived"
+    },
+    {
+      "pageId": "index.html",
+      "parentPanelId": null,
+      "panelId": "competitor-coverage",
+      "subpanelId": null,
+      "visibleTitle": "Competitor Coverage",
+      "navigationRoute": "index.html#competitor-coverage",
+      "htmlContainer": ".competitor-coverage-panel",
+      "renderFunction": "renderCompetitorCoverageHealth",
+      "sourceDataFiles": [
+        "data/source_catalog.json",
+        "data/source_health.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "competitive_intelligence"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "hidden-in-product-role",
+      "hiddenExpandedStates": [
+        "hidden-in-product-role"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [
+        "#competitor-coverage"
+      ],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "derived"
+    },
+    {
+      "pageId": "index.html",
+      "parentPanelId": null,
+      "panelId": "decision-evidence-modal",
+      "subpanelId": null,
+      "visibleTitle": "Evidence Links",
+      "navigationRoute": "index.html#decision-evidence-modal",
+      "htmlContainer": "#decisionEvidenceModal",
+      "renderFunction": "openDecisionEvidence",
+      "sourceDataFiles": [
+        "data/intelligence.json",
+        "data/customer_voice.json",
+        "data/filing_insights.json",
+        "data/product_launches.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "competitive_intelligence",
+        "customer_voice",
+        "filing",
+        "product"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "modal-hidden-default",
+      "hiddenExpandedStates": [
+        "modal-hidden-default"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [
+        "#decision-evidence-modal"
+      ],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "derived"
+    },
+    {
+      "pageId": "conference.html",
+      "parentPanelId": null,
+      "panelId": "conference-filters",
+      "subpanelId": null,
+      "visibleTitle": "Conference Filters",
+      "navigationRoute": "conference.html#conference-filters",
+      "htmlContainer": ".conference-filter-bar",
+      "renderFunction": "render",
+      "sourceDataFiles": [
+        "data/conference_preparation.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "conference"
+      ],
+      "availableFilters": [
+        "timeFrame",
+        "conferenceType",
+        "competitor"
+      ],
+      "availableTimeFrames": [
+        "upcoming",
+        "past"
+      ],
+      "defaultState": "visible",
+      "hiddenExpandedStates": [
+        "collapsible-expanded",
+        "collapsible-collapsed"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "interactive"
+    },
+    {
+      "pageId": "conference.html",
+      "parentPanelId": null,
+      "panelId": "conference-stats",
+      "subpanelId": null,
+      "visibleTitle": "Conference Statistics",
+      "navigationRoute": "conference.html#conference-stats",
+      "htmlContainer": "#conferenceStats",
+      "renderFunction": "renderStats",
+      "sourceDataFiles": [
+        "data/conference_preparation.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "conference"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "visible",
+      "hiddenExpandedStates": [
+        "collapsible-expanded",
+        "collapsible-collapsed"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "derived"
+    },
+    {
+      "pageId": "conference.html",
+      "parentPanelId": null,
+      "panelId": "conference-timeline",
+      "subpanelId": null,
+      "visibleTitle": "Conference Timeline",
+      "navigationRoute": "conference.html#conference-timeline",
+      "htmlContainer": ".conference-timeline-panel",
+      "renderFunction": "renderTimeline",
+      "sourceDataFiles": [
+        "data/conference_preparation.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "conference"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "visible",
+      "hiddenExpandedStates": [
+        "collapsible-expanded",
+        "collapsible-collapsed"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "derived"
+    },
+    {
+      "pageId": "conference.html",
+      "parentPanelId": null,
+      "panelId": "conference-event-rail",
+      "subpanelId": null,
+      "visibleTitle": "Conference Event List",
+      "navigationRoute": "conference.html#conference-event-rail",
+      "htmlContainer": ".conference-event-rail",
+      "renderFunction": "renderEventRail",
+      "sourceDataFiles": [
+        "data/conference_preparation.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "conference"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "paginated",
+      "hiddenExpandedStates": [
+        "paginated"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "derived"
+    },
+    {
+      "pageId": "conference.html",
+      "parentPanelId": null,
+      "panelId": "conference-event-detail",
+      "subpanelId": null,
+      "visibleTitle": "Conference Event Detail",
+      "navigationRoute": "conference.html#conference-event-detail",
+      "htmlContainer": "#conferenceEventDetail",
+      "renderFunction": "renderEventDetail",
+      "sourceDataFiles": [
+        "data/conference_preparation.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "conference"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "visible",
+      "hiddenExpandedStates": [
+        "collapsible-expanded",
+        "collapsible-collapsed"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "derived"
+    },
+    {
+      "pageId": "conference.html",
+      "parentPanelId": null,
+      "panelId": "competitor-appearances-modal",
+      "subpanelId": null,
+      "visibleTitle": "Competitor Appearances",
+      "navigationRoute": "conference.html#competitor-appearances-modal",
+      "htmlContainer": "#competitorAppearancesModal",
+      "renderFunction": "openCompetitorAppearancesModal",
+      "sourceDataFiles": [
+        "data/conference_preparation.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "conference"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "modal-hidden-default",
+      "hiddenExpandedStates": [
+        "modal-hidden-default"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "derived"
+    },
+    {
+      "pageId": "publications.html",
+      "parentPanelId": null,
+      "panelId": "publication-filters",
+      "subpanelId": null,
+      "visibleTitle": "Publication Filters",
+      "navigationRoute": "publications.html#publication-filters",
+      "htmlContainer": ".publication-filter-bar",
+      "renderFunction": "render",
+      "sourceDataFiles": [
+        "data/journal_sources.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "publication"
+      ],
+      "availableFilters": [
+        "search",
+        "source",
+        "period"
+      ],
+      "availableTimeFrames": [
+        "rollingCurrent",
+        "priorPeriod"
+      ],
+      "defaultState": "visible",
+      "hiddenExpandedStates": [
+        "collapsible-expanded",
+        "collapsible-collapsed"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "interactive"
+    },
+    {
+      "pageId": "publications.html",
+      "parentPanelId": null,
+      "panelId": "publication-stats",
+      "subpanelId": null,
+      "visibleTitle": "Publication Statistics",
+      "navigationRoute": "publications.html#publication-stats",
+      "htmlContainer": "#publicationStats",
+      "renderFunction": "renderStats",
+      "sourceDataFiles": [
+        "data/journal_sources.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "publication"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "visible",
+      "hiddenExpandedStates": [
+        "collapsible-expanded",
+        "collapsible-collapsed"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "derived"
+    },
+    {
+      "pageId": "publications.html",
+      "parentPanelId": null,
+      "panelId": "publication-fresh-highlights",
+      "subpanelId": null,
+      "visibleTitle": "Fresh Publication Highlights",
+      "navigationRoute": "publications.html#publication-fresh-highlights",
+      "htmlContainer": "#publicationFreshHighlights",
+      "renderFunction": "renderFreshHighlights",
+      "sourceDataFiles": [
+        "data/journal_sources.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "publication"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "visible",
+      "hiddenExpandedStates": [
+        "collapsible-expanded",
+        "collapsible-collapsed"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "derived"
+    },
+    {
+      "pageId": "publications.html",
+      "parentPanelId": null,
+      "panelId": "publication-overall-analysis",
+      "subpanelId": null,
+      "visibleTitle": "Overall Publication Analysis",
+      "navigationRoute": "publications.html#publication-overall-analysis",
+      "htmlContainer": "#publicationOverallAnalysis",
+      "renderFunction": "renderOverallAnalysis",
+      "sourceDataFiles": [
+        "data/journal_sources.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "publication"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "visible",
+      "hiddenExpandedStates": [
+        "collapsible-expanded",
+        "collapsible-collapsed"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "derived"
+    },
+    {
+      "pageId": "publications.html",
+      "parentPanelId": null,
+      "panelId": "publication-source-rail",
+      "subpanelId": null,
+      "visibleTitle": "Publication Source List",
+      "navigationRoute": "publications.html#publication-source-rail",
+      "htmlContainer": ".publication-source-rail",
+      "renderFunction": "renderSourceRail",
+      "sourceDataFiles": [
+        "data/journal_sources.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "publication"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "paginated",
+      "hiddenExpandedStates": [
+        "paginated"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "derived"
+    },
+    {
+      "pageId": "publications.html",
+      "parentPanelId": null,
+      "panelId": "publication-detail",
+      "subpanelId": null,
+      "visibleTitle": "Publication Source Detail",
+      "navigationRoute": "publications.html#publication-detail",
+      "htmlContainer": "#publicationDetail",
+      "renderFunction": "renderPublicationDetail",
+      "sourceDataFiles": [
+        "data/journal_sources.json"
+      ],
+      "sourceFields": [
+        "id",
+        "date",
+        "title",
+        "sourceUrl"
+      ],
+      "derivedFields": [
+        "filteredCount",
+        "asOfDate"
+      ],
+      "competitorsRepresented": [
+        "Waters",
+        "Agilent",
+        "Thermo Fisher",
+        "Shimadzu",
+        "SCIEX / Danaher",
+        "PerkinElmer / Revvity"
+      ],
+      "sourceFamiliesRepresented": [
+        "publication"
+      ],
+      "availableFilters": [
+        "role",
+        "geography",
+        "market",
+        "technology",
+        "competitor",
+        "timeFrame"
+      ],
+      "availableTimeFrames": [
+        "30d",
+        "60d",
+        "90d",
+        "1y",
+        "3y"
+      ],
+      "defaultState": "visible",
+      "hiddenExpandedStates": [
+        "collapsible-expanded",
+        "collapsible-collapsed"
+      ],
+      "externalLinks": [
+        "dynamic:sourceUrl",
+        "dynamic:url"
+      ],
+      "internalLinks": [],
+      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
+      "currentAsOfDate": "2026-08-02",
+      "refreshCollector": "scripts/refresh_daily.py",
+      "validationFunction": "tests/test_panel_manifest.py",
+      "dataMode": "derived"
+    }
+  ]
+}

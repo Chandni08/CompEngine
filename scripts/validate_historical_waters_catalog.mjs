@@ -48,6 +48,17 @@ export function historicalWatersCatalogErrors(catalog, comparisonData) {
   const allSystems = [...currentSystems, ...historicalProducts];
   const coverage = catalog?.coverage || {};
   const errors = allSystems.flatMap((product) => watersProductErrors(product, coverage));
+  for (const product of historicalProducts) {
+    if (!["verified", "unsupported"].includes(product?.evidenceStatus)) {
+      errors.push(`${product?.id}: evidenceStatus must be verified or unsupported`);
+    }
+    if (product?.evidenceStatus === "verified" && (!product?.supportingExcerpt || !product?.sourceLocation)) {
+      errors.push(`${product?.id}: verified rows require an exact supportingExcerpt and sourceLocation`);
+    }
+    if (product?.evidenceStatus === "unsupported" && !product?.caveat) {
+      errors.push(`${product?.id}: unsupported rows require a caveat`);
+    }
+  }
   const ids = new Set();
   const names = new Set();
 

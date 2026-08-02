@@ -15,6 +15,16 @@
       "watchouts": ["Needs clear proof for setup simplicity, serviceability, and customer-visible workflow speed"],
       "sourceName": "Waters chromatography history",
       "sourceUrl": "https://www.waters.com/nextgen/us/en/products/chromatography.html",
+      "artifacts": [
+        {
+          "sourceType": "SPEC_SHEET",
+          "title": "ACQUITY Premier with Binary Solvent Management instrument specifications",
+          "url": "https://support.waters.com/%40api/deki/files/28009/Premier_specs_720007029en.pdf?revision=1",
+          "date": "2021-01-01",
+          "dateType": "Product introduction year",
+          "capabilities": ["pressure range", "analysis time", "throughput", "LC platform", "UHPLC modules"]
+        }
+      ],
       "confidence": 99
     },
     {
@@ -45,6 +55,24 @@
       "watchouts": ["Needs competitive proof against low-cost/value HPLC and regional service claims"],
       "sourceName": "Waters Alliance iS launch release",
       "sourceUrl": "https://ir.waters.com/News--Events/newsroom/news-details/2023/Waters-Introduces-Next-Generation-Alliance-iS-HPLC-System-Aimed-at-Reducing-Up-to-40-of-Common-Lab-Errors/default.aspx",
+      "artifacts": [
+        {
+          "sourceType": "SPEC_SHEET",
+          "title": "Alliance iS HPLC System specifications",
+          "url": "https://help.waters.com/help/en/product-support/alliance-is-system-support/715008450/80EE6BE.html",
+          "date": "2026-05-12",
+          "dateType": "Last updated",
+          "capabilities": ["pressure range", "analysis time", "throughput", "LC platform"]
+        },
+        {
+          "sourceType": "RELEASE_NOTES",
+          "title": "Alliance iS HPLC System Instrument Control Software 1.4.0 Release Notes",
+          "url": "https://help.waters.com/content/dam/waters/en/support/releasenotes/2024/715009558/715009558v02.pdf",
+          "date": "2025-01-09",
+          "dateType": "Published",
+          "capabilities": ["informatics / software", "automation ecosystem", "regulated methods"]
+        }
+      ],
       "confidence": 100
     },
     {
@@ -60,6 +88,16 @@
       "watchouts": ["Less compelling if the competitor is selling a major UHPLC performance leap"],
       "sourceName": "Waters Arc HPLC launch release",
       "sourceUrl": "https://ir.waters.com/News--Events/newsroom/news-details/2020/Waters-Introduces-the-New-Arc-High-Performance-Liquid-Chromatograph-to-Help-Laboratories-Meet-Quality-and-Production-Targets/default.aspx",
+      "artifacts": [
+        {
+          "sourceType": "SPEC_SHEET",
+          "title": "Arc HPLC System Guide and system specifications",
+          "url": "https://help.waters.com/content/dam/waters/en/support/usermanuals/2024/715007574/715007574v03.pdf",
+          "date": "2025-06-24",
+          "dateType": "Published",
+          "capabilities": ["pressure range", "analysis time", "throughput", "LC platform", "method transfer"]
+        }
+      ],
       "confidence": 100
     },
     {

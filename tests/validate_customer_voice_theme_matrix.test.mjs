@@ -8,46 +8,54 @@ const [app, html, css] = await Promise.all([
   readFile(new URL("../product-ui.css", import.meta.url), "utf8"),
 ]);
 
-test("the customer voice summary leads with the four-theme comparison", () => {
-  const matrixTitle = html.indexOf("Purchase-Driving Themes");
-  const sentimentTitle = html.indexOf("Evidence Coding Diagnostic");
+test("the customer voice summary leads with the company-grouped view", () => {
+  const matrixTitle = html.indexOf("Customer Voice by Company");
+  const sentimentTitle = html.indexOf("Evidence Classification");
   assert.ok(matrixTitle > -1 && sentimentTitle > -1);
-  assert.ok(matrixTitle < sentimentTitle, "theme matrix should appear before sentiment totals");
-  assert.match(app, /customerVoicePurchaseThemes = \[/);
-  assert.equal((app.match(/label: "(?:Method Transfer|Troubleshooting & Recovery Time|Data Export & Portability|Workflow Setup)"/g) || []).length, 4);
+  assert.ok(matrixTitle < sentimentTitle, "company view should appear before sentiment totals");
+  assert.match(app, /class="intent-master-detail company-voice-master-detail"/);
+  assert.doesNotMatch(html, />Purchase-Driving Themes<\/h4>/);
 });
 
-test("comparison cells distinguish evidence from absence of evidence", () => {
-  assert.match(app, /No vendor-specific customer wording is validated in the current sources\./);
-  assert.match(app, /const supportedItems = evidenceGroups\.length \? matchedItems : \[\]/);
-  assert.match(app, /label: "No direct signal"/);
-  assert.match(app, /companyVoiceEvidenceGroups\(company, matchedItems\)/);
+test("company cards separate strengths, concerns, and PM implications", () => {
+  assert.match(app, /const positiveItems = companyItems\.filter\(\(item\) => item\.sentiment === "Positive"\)/);
+  assert.match(app, /const concernItems = companyItems/);
+  assert.match(app, /What Customers Value/);
+  assert.match(app, /Pain Points and Unmet Needs/);
+  assert.match(app, /Waters PM Opportunity/);
 });
 
-test("the theme matrix ignores only the competitor filter", () => {
+test("company source drill-down admits only exact sources with verified company wording", () => {
+  assert.match(app, /function companyVoiceEvidenceGroups\(company, companyItems\)/);
+  assert.match(app, /link\?\.status !== "exact_record"/);
+  assert.match(app, /const verifiedWording = \(link\.sourceKeywords \|\| \[\]\)\.join\(" "\)\.toLowerCase\(\)/);
+  assert.match(app, /identityTerms\.some\(\(term\) => verifiedWording\.includes\(term\)\)/);
+});
+
+test("the company view ignores only the competitor filter", () => {
   assert.match(app, /customerVoiceItemsForHorizon\(filters\.horizon\.value, \{ ignoreCompetitor: true \}\)/);
   assert.match(app, /ignoreCompetitor \|\| filters\.competitor\.value === "All"/);
 });
 
-test("matrix is compact and screenshot-ready", () => {
-  assert.match(css, /\.customer-theme-matrix\s*\{[\s\S]*?table-layout:\s*fixed/);
-  assert.match(css, /\.customer-theme-cell p\s*\{[\s\S]*?font-size:\s*11px/);
-  assert.match(css, /\.customer-theme-status\s*\{[\s\S]*?border-radius:\s*999px/);
+test("company cards are compact and responsive", () => {
+  assert.match(css, /\.company-voice-card\s*\{[\s\S]*?padding:\s*12px/);
+  assert.match(css, /\.company-voice-selected-detail\s*\{[\s\S]*?align-self:\s*start;[\s\S]*?align-content:\s*start;/);
+  assert.match(css, /\.company-voice-insight-grid\s*\{[\s\S]*?repeat\(3, minmax\(0, 1fr\)\)/);
+  assert.match(css, /@media \(max-width: 720px\)[\s\S]*?\.company-voice-insight-grid/);
 });
 
 test("recurrence uses unique source pages and honest evidence thresholds", () => {
   assert.match(app, /function customerVoiceRecurrence\(sourceCount\)/);
-  assert.match(app, /sourceCount >= 3[\s\S]*?label: "Pattern"/);
-  assert.match(app, /sourceCount === 2[\s\S]*?label: "Emerging signal"/);
-  assert.match(app, /sourceCount === 1[\s\S]*?label: "Anecdote"/);
-  assert.match(app, /customerVoiceRecurrence\(evidenceGroups\.length\)/);
+  assert.match(app, /sourceCount >= 3[\s\S]*?className: "pattern"/);
+  assert.match(app, /sourceCount === 2[\s\S]*?className: "emerging"/);
+  assert.match(app, /sourceCount === 1[\s\S]*?className: "anecdote"/);
   assert.match(app, /independent source/);
-  assert.match(css, /\.customer-theme-recurrence\.pattern small/);
+  const chartRenderer = app.slice(app.indexOf("function renderCustomerCompetitorChart"), app.indexOf("function renderCustomerVoiceSummary"));
+  assert.doesNotMatch(chartRenderer, /recurrence\.label/);
 });
 
-test("customer voice states the forum normalization caveat", () => {
-  assert.match(html, /Public forums over-represent complaints; source volume shows recurrence, not comparative sentiment or product quality\./);
-  assert.match(css, /\.customer-voice-normalization-note/);
+test("customer voice omits the removed forum normalization caveat", () => {
+  assert.doesNotMatch(html, /Public forums over-represent complaints; source volume shows recurrence, not comparative sentiment or product quality\./);
 });
 
 test("sentiment totals use independent sources instead of summary ratios", () => {
@@ -56,8 +64,8 @@ test("sentiment totals use independent sources instead of summary ratios", () =>
   assert.doesNotMatch(app, /\$\{negatives\.length \+ mixed\.length\}\/\$\{items\.length\} concern summaries/);
 });
 
-test("sentiment coding is not presented as a headline market metric", () => {
-  assert.match(html, /Source-coding quality check; not a market sentiment metric\./);
+test("evidence classification is explained without presenting it as market sentiment", () => {
+  assert.match(html, /Shows how reviewed sources were coded as favorable, mixed, or concern\. It does not measure market sentiment\./);
   assert.doesNotMatch(html, /Overall Evidence by Sentiment/);
   assert.match(app, /Favorable-coded evidence/);
   assert.doesNotMatch(app, /Strengths to protect/);

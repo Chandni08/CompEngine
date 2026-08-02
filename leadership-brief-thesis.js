@@ -1,6 +1,6 @@
 (function registerLeadershipBriefThesis(root) {
   function leadershipBriefThesis() {
-    return "Workflow execution is becoming part of product competition";
+    return "Leadership Brief";
   }
 
   const api = { leadershipBriefThesis };

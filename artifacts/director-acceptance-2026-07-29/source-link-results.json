@@ -1,0 +1,3362 @@
+[
+  {
+    "url": "https://documents.thermofisher.com/TFS-Assets/CMD/Application-Notes/an-001954-bt-integrated-lc-ms-oligonucleotide-analysis-an001954-na-en.pdf",
+    "httpStatus": 200,
+    "finalUrl": "https://documents.thermofisher.com/TFS-Assets/CMD/Application-Notes/an-001954-bt-integrated-lc-ms-oligonucleotide-analysis-an001954-na-en.pdf",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:00+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://documents.thermofisher.com/TFS-Assets/CMD/Application-Notes/an-004442-en-pfas-tsq-altis-plus-efox-editon-an004442-em-en.pdf",
+    "httpStatus": 200,
+    "finalUrl": "https://documents.thermofisher.com/TFS-Assets/CMD/Application-Notes/an-004442-en-pfas-tsq-altis-plus-efox-editon-an004442-em-en.pdf",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:00+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://documents.thermofisher.com/TFS-Assets/CMD/brochures/in-73065-vanquish-uhplc-platform-in73065-en.pdf",
+    "httpStatus": 200,
+    "finalUrl": "https://documents.thermofisher.com/TFS-Assets/CMD/brochures/in-73065-vanquish-uhplc-platform-in73065-en.pdf",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:00+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://help.waters.com/content/dam/waters/en/support/usermanuals/2022/715008065/715008065.pdf",
+    "httpStatus": 403,
+    "finalUrl": "https://help.waters.com/content/dam/waters/en/support/usermanuals/2022/715008065/715008065.pdf",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:00+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://india.newsroom.thermofisher.com/2020-04-22-Thermo-Fisher-Scientific-Reports-First-Quarter-2020-Results",
+    "httpStatus": 200,
+    "finalUrl": "https://india.newsroom.thermofisher.com/2020-04-22-Thermo-Fisher-Scientific-Reports-First-Quarter-2020-Results",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:00+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://india.newsroom.thermofisher.com/press-releases?item=122601",
+    "httpStatus": 200,
+    "finalUrl": "https://india.newsroom.thermofisher.com/press-releases?item=122601",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:00+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://india.newsroom.thermofisher.com/press-releases?item=122743",
+    "httpStatus": 200,
+    "finalUrl": "https://india.newsroom.thermofisher.com/press-releases?item=122743",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:00+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://india.newsroom.thermofisher.com/press-releases?item=123138",
+    "httpStatus": 200,
+    "finalUrl": "https://india.newsroom.thermofisher.com/press-releases?item=123138",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:00+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://informaconnect.com/tides-europe/",
+    "httpStatus": 200,
+    "finalUrl": "https://informaconnect.com/tides-europe/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:00+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://informaconnect.com/tides-europe/agenda/",
+    "httpStatus": 200,
+    "finalUrl": "https://informaconnect.com/tides-europe/agenda/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:00+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://informaconnect.com/tides-europe/third-party-partners/",
+    "httpStatus": 200,
+    "finalUrl": "https://informaconnect.com/tides-europe/third-party-partners/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:00+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://ir.thermofisher.com/investors/news-events/news/default.aspx",
+    "httpStatus": 200,
+    "finalUrl": "https://ir.thermofisher.com/investors/news-events/news/default.aspx",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:00+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2011/Thermo-Fisher-Scientific-Launches-New-Cutting-Edge-Mass-Spectrometry-Instruments-at-ASMS-2011-2011-6-6/default.aspx",
+    "httpStatus": 200,
+    "finalUrl": "https://ir.thermofisher.com/investors/news-events/news/news-details/2011/Thermo-Fisher-Scientific-Launches-New-Cutting-Edge-Mass-Spectrometry-Instruments-at-ASMS-2011-2011-6-6/default.aspx",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:00+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2014/Thermo-Fisher-Scientific-Strengthens-its-Industry-Leading-Mass-Spectrometry-Portfolio-at-ASMS-2014-2014-6-16/default.aspx",
+    "httpStatus": 200,
+    "finalUrl": "https://ir.thermofisher.com/investors/news-events/news/news-details/2014/Thermo-Fisher-Scientific-Strengthens-its-Industry-Leading-Mass-Spectrometry-Portfolio-at-ASMS-2014-2014-6-16/default.aspx",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:00+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2015/Thermo-Fisher-Scientific-Strengthens-Technology-Leadership-in-Applied-Markets-at-Pittcon-2015-2015-3-9/default.aspx",
+    "httpStatus": 200,
+    "finalUrl": "https://ir.thermofisher.com/investors/news-events/news/news-details/2015/Thermo-Fisher-Scientific-Strengthens-Technology-Leadership-in-Applied-Markets-at-Pittcon-2015-2015-3-9/default.aspx",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:00+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2016/Thermo-Fisher-Scientific-Strengthens-Life-Sciences-Leadership-with-New-Instruments-Launched-at-ASMS-2016-2016-6-6/default.aspx",
+    "httpStatus": 200,
+    "finalUrl": "https://ir.thermofisher.com/investors/news-events/news/news-details/2016/Thermo-Fisher-Scientific-Strengthens-Life-Sciences-Leadership-with-New-Instruments-Launched-at-ASMS-2016-2016-6-6/default.aspx",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:00+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2017/Thermo-Fisher-Scientific-Raises-the-Bar-in-Mass-Spectrometry-Innovation-at-ASMS-2017-2017-6-5/default.aspx",
+    "httpStatus": 200,
+    "finalUrl": "https://ir.thermofisher.com/investors/news-events/news/news-details/2017/Thermo-Fisher-Scientific-Raises-the-Bar-in-Mass-Spectrometry-Innovation-at-ASMS-2017-2017-6-5/default.aspx",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:00+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2018/Thermo-Fisher-Scientific-Reports-First-Quarter-2018-Results-2018-4-25/default.aspx",
+    "httpStatus": 200,
+    "finalUrl": "https://ir.thermofisher.com/investors/news-events/news/news-details/2018/Thermo-Fisher-Scientific-Reports-First-Quarter-2018-Results-2018-4-25/default.aspx",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:00+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2018/Thermo-Fisher-Scientific-Shows-Newest-Mass-Spectrometry-Innovations-at-ASMS-2018-2018-6-4/default.aspx",
+    "httpStatus": 200,
+    "finalUrl": "https://ir.thermofisher.com/investors/news-events/news/news-details/2018/Thermo-Fisher-Scientific-Shows-Newest-Mass-Spectrometry-Innovations-at-ASMS-2018-2018-6-4/default.aspx",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:00+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2019/Thermo-Fisher-Scientific-Extends-Industry-leading-Mass-Spectrometry-Portfolio-with-a-New-Generation-of-Intelligence-Driven-Instruments-and-Software-2019-6-3/default.aspx",
+    "httpStatus": 200,
+    "finalUrl": "https://ir.thermofisher.com/investors/news-events/news/news-details/2019/Thermo-Fisher-Scientific-Extends-Industry-leading-Mass-Spectrometry-Portfolio-with-a-New-Generation-of-Intelligence-Driven-Instruments-and-Software-2019-6-3/default.aspx",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:00+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2020/Thermo-Fisher-Scientific-to-Showcase-New-Mass-Spectrometry-Systems-and-Software-During-Virtual-ASMS-Event-2020-5-27/default.aspx",
+    "httpStatus": 200,
+    "finalUrl": "https://ir.thermofisher.com/investors/news-events/news/news-details/2020/Thermo-Fisher-Scientific-to-Showcase-New-Mass-Spectrometry-Systems-and-Software-During-Virtual-ASMS-Event-2020-5-27/default.aspx",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:02+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2021/Thermo-Fisher-Scientific-Reports-Third-Quarter-2021-Results/",
+    "httpStatus": 200,
+    "finalUrl": "https://ir.thermofisher.com/investors/news-events/news/news-details/2021/Thermo-Fisher-Scientific-Reports-Third-Quarter-2021-Results/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:02+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2022/Thermo-Fisher-Scientific-Reports-Fourth-Quarter-and-Full-Year-2021-Results/default.aspx",
+    "httpStatus": 200,
+    "finalUrl": "https://ir.thermofisher.com/investors/news-events/news/news-details/2022/Thermo-Fisher-Scientific-Reports-Fourth-Quarter-and-Full-Year-2021-Results/default.aspx",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:02+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2022/Thermo-Fisher-Scientific-Reports-Third-Quarter-2022-Results/default.aspx",
+    "httpStatus": 200,
+    "finalUrl": "https://ir.thermofisher.com/investors/news-events/news/news-details/2022/Thermo-Fisher-Scientific-Reports-Third-Quarter-2022-Results/default.aspx",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:02+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2023/Thermo-Fisher-Scientific-Introduces-Groundbreaking-Mass-Spectrometer-to-Revolutionize-Biological-Discovery/default.aspx",
+    "httpStatus": 200,
+    "finalUrl": "https://ir.thermofisher.com/investors/news-events/news/news-details/2023/Thermo-Fisher-Scientific-Introduces-Groundbreaking-Mass-Spectrometer-to-Revolutionize-Biological-Discovery/default.aspx",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:02+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2024/Thermo-Fisher-Scientific-Introduces-Innovative-Mass-Spectrometer-to-Advance-Clinical-Research/default.aspx",
+    "httpStatus": 200,
+    "finalUrl": "https://ir.thermofisher.com/investors/news-events/news/news-details/2024/Thermo-Fisher-Scientific-Introduces-Innovative-Mass-Spectrometer-to-Advance-Clinical-Research/default.aspx",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:02+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2026/Thermo-Fisher-Scientific-Announces-Quarterly-Dividend-3dcda308b/default.aspx",
+    "httpStatus": 200,
+    "finalUrl": "https://ir.thermofisher.com/investors/news-events/news/news-details/2026/Thermo-Fisher-Scientific-Announces-Quarterly-Dividend-3dcda308b/default.aspx",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:03+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2026/Thermo-Fisher-Scientific-Reports-Second-Quarter-2026-Results/default.aspx",
+    "httpStatus": 200,
+    "finalUrl": "https://ir.thermofisher.com/investors/news-events/news/news-details/2026/Thermo-Fisher-Scientific-Reports-Second-Quarter-2026-Results/default.aspx",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:03+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2026/Thermo-Fisher-Scientific-Unveils-Next-generation-Innovations-at-ASMS-2026-to-Accelerate-the-Path-from-Drug-Discovery-to-New-Therapies/default.aspx",
+    "httpStatus": 200,
+    "finalUrl": "https://ir.thermofisher.com/investors/news-events/news/news-details/2026/Thermo-Fisher-Scientific-Unveils-Next-generation-Innovations-at-ASMS-2026-to-Accelerate-the-Path-from-Drug-Discovery-to-New-Therapies/default.aspx",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:03+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2026/Thermo-Fisher-Scientific-to-Hold-Earnings-Conference-Call-on-Thursday-July-23-2026/default.aspx",
+    "httpStatus": 200,
+    "finalUrl": "https://ir.thermofisher.com/investors/news-events/news/news-details/2026/Thermo-Fisher-Scientific-to-Hold-Earnings-Conference-Call-on-Thursday-July-23-2026/default.aspx",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:03+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://ir.waters.com/News--Events/newsroom/news-details/2015/Waters-Introduces-the-New-ACQUITY-Arc-System-Designed-as-a-Bridge-between-HPLC-and-UPLC-Methods/default.aspx",
+    "httpStatus": 200,
+    "finalUrl": "https://ir.waters.com/News--Events/newsroom/news-details/2015/Waters-Introduces-the-New-ACQUITY-Arc-System-Designed-as-a-Bridge-between-HPLC-and-UPLC-Methods/default.aspx",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:03+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://ir.waters.com/News--Events/newsroom/news-details/2021/Waters-Arc-Premier-System-Delivers-Increased-Precision-and-Certainty-in-Chromatographic-Results/default.aspx",
+    "httpStatus": 200,
+    "finalUrl": "https://ir.waters.com/News--Events/newsroom/news-details/2021/Waters-Arc-Premier-System-Delivers-Increased-Precision-and-Certainty-in-Chromatographic-Results/default.aspx",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:03+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://ir.waters.com/News--Events/newsroom/news-details/2021/Waters-BioAccord-System-with-ACQUITY-Premier-Brings-Greater-Simplicity-Accuracy-and-Reproducibility-to-Multi-Attribute-Monitoring-of-Biopharmaceuticals/default.aspx",
+    "httpStatus": 200,
+    "finalUrl": "https://ir.waters.com/News--Events/newsroom/news-details/2021/Waters-BioAccord-System-with-ACQUITY-Premier-Brings-Greater-Simplicity-Accuracy-and-Reproducibility-to-Multi-Attribute-Monitoring-of-Biopharmaceuticals/default.aspx",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:03+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://ir.waters.com/News--Events/newsroom/news-details/2022/Waters-Introduces-Xevo-TQ-Absolute--The-Most-Sensitive-and-Compact-Benchtop-Tandem-Quadrupole-Mass-Spectrometer/default.aspx",
+    "httpStatus": 200,
+    "finalUrl": "https://ir.waters.com/News--Events/newsroom/news-details/2022/Waters-Introduces-Xevo-TQ-Absolute--The-Most-Sensitive-and-Compact-Benchtop-Tandem-Quadrupole-Mass-Spectrometer/default.aspx",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:03+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://ir.waters.com/News--Events/newsroom/news-details/2024/Waters-ACQUITY-QDa-II-Mass-Detector-Delivers-Wider-Range-of-Chemical-Analysis-within-Cost-Effective-Lower-Energy-Instrument/default.aspx",
+    "httpStatus": 200,
+    "finalUrl": "https://ir.waters.com/News--Events/newsroom/news-details/2024/Waters-ACQUITY-QDa-II-Mass-Detector-Delivers-Wider-Range-of-Chemical-Analysis-within-Cost-Effective-Lower-Energy-Instrument/default.aspx",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:03+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://ir.waters.com/News--Events/newsroom/news-details/2024/Waters-Launches-Alliance-iS-Bio-HPLC-System-to-Help-Biopharma-QC-Labs-Increase-Efficiency-and-Reduce-Errors/default.aspx",
+    "httpStatus": 200,
+    "finalUrl": "https://ir.waters.com/News--Events/newsroom/news-details/2024/Waters-Launches-Alliance-iS-Bio-HPLC-System-to-Help-Biopharma-QC-Labs-Increase-Efficiency-and-Reduce-Errors/default.aspx",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:03+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://ir.waters.com/News--Events/newsroom/news-details/2024/Waters-Sets-New-Standards-for-High-Resolution-Performance-and-Speed-with-Xevo-MRT-Mass-Spectrometer/default.aspx",
+    "httpStatus": 200,
+    "finalUrl": "https://ir.waters.com/News--Events/newsroom/news-details/2024/Waters-Sets-New-Standards-for-High-Resolution-Performance-and-Speed-with-Xevo-MRT-Mass-Spectrometer/default.aspx",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:03+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://ir.waters.com/News--Events/newsroom/news-details/2025/Waters-Sets-a-New-Benchmark-for-Robustness-and-Sensitivity-for-High-Throughput-Labs-with-the-Xevo-TQ-Absolute-XR-Mass-Spectrometer/default.aspx",
+    "httpStatus": 200,
+    "finalUrl": "https://ir.waters.com/News--Events/newsroom/news-details/2025/Waters-Sets-a-New-Benchmark-for-Robustness-and-Sensitivity-for-High-Throughput-Labs-with-the-Xevo-TQ-Absolute-XR-Mass-Spectrometer/default.aspx",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:03+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://pubmed.ncbi.nlm.nih.gov/",
+    "httpStatus": 403,
+    "finalUrl": "https://pubmed.ncbi.nlm.nih.gov/",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:03+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://pubmed.ncbi.nlm.nih.gov/40203020/",
+    "httpStatus": 403,
+    "finalUrl": "https://pubmed.ncbi.nlm.nih.gov/40203020/",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:03+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://pubmed.ncbi.nlm.nih.gov/40841006/",
+    "httpStatus": 403,
+    "finalUrl": "https://pubmed.ncbi.nlm.nih.gov/40841006/",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:03+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://pubmed.ncbi.nlm.nih.gov/40927611/",
+    "httpStatus": 403,
+    "finalUrl": "https://pubmed.ncbi.nlm.nih.gov/40927611/",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:03+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://pubmed.ncbi.nlm.nih.gov/41111413/",
+    "httpStatus": 403,
+    "finalUrl": "https://pubmed.ncbi.nlm.nih.gov/41111413/",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:03+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://pubmed.ncbi.nlm.nih.gov/41355705/",
+    "httpStatus": 403,
+    "finalUrl": "https://pubmed.ncbi.nlm.nih.gov/41355705/",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:03+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://pubmed.ncbi.nlm.nih.gov/41878958/",
+    "httpStatus": 403,
+    "finalUrl": "https://pubmed.ncbi.nlm.nih.gov/41878958/",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:03+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://pubmed.ncbi.nlm.nih.gov/41886903/",
+    "httpStatus": 403,
+    "finalUrl": "https://pubmed.ncbi.nlm.nih.gov/41886903/",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:03+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://pubmed.ncbi.nlm.nih.gov/42232243/",
+    "httpStatus": 403,
+    "finalUrl": "https://pubmed.ncbi.nlm.nih.gov/42232243/",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:04+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://pubmed.ncbi.nlm.nih.gov/42312152/",
+    "httpStatus": 403,
+    "finalUrl": "https://pubmed.ncbi.nlm.nih.gov/42312152/",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:04+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://pubmed.ncbi.nlm.nih.gov/42398371/",
+    "httpStatus": 403,
+    "finalUrl": "https://pubmed.ncbi.nlm.nih.gov/42398371/",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:04+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://pubmed.ncbi.nlm.nih.gov/42449855/",
+    "httpStatus": 403,
+    "finalUrl": "https://pubmed.ncbi.nlm.nih.gov/42449855/",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:04+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://pubmed.ncbi.nlm.nih.gov/42452901/",
+    "httpStatus": 403,
+    "finalUrl": "https://pubmed.ncbi.nlm.nih.gov/42452901/",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:04+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://pubmed.ncbi.nlm.nih.gov/42470478/",
+    "httpStatus": 403,
+    "finalUrl": "https://pubmed.ncbi.nlm.nih.gov/42470478/",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:04+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://pubmed.ncbi.nlm.nih.gov/42508890/",
+    "httpStatus": 403,
+    "finalUrl": "https://pubmed.ncbi.nlm.nih.gov/42508890/",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:05+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://pubmed.ncbi.nlm.nih.gov/42508896/",
+    "httpStatus": 403,
+    "finalUrl": "https://pubmed.ncbi.nlm.nih.gov/42508896/",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:05+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://pubmed.ncbi.nlm.nih.gov/42519486/",
+    "httpStatus": 403,
+    "finalUrl": "https://pubmed.ncbi.nlm.nih.gov/42519486/",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:05+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://pubmed.ncbi.nlm.nih.gov/42520172/",
+    "httpStatus": 403,
+    "finalUrl": "https://pubmed.ncbi.nlm.nih.gov/42520172/",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:05+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/about-us/press-releases",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/about-us/press-releases",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:05+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/about-us/press-releases/2010",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/about-us/press-releases/2010",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:05+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/about-us/press-releases/2014",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/about-us/press-releases/2014",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:05+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/about-us/press-releases/2015/sciex-launches-brand-new-high-resolution-mass-spec-system-designed-exclusively-for-routine-testing-use",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/about-us/press-releases/2015/sciex-launches-brand-new-high-resolution-mass-spec-system-designed-exclusively-for-routine-testing-use",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:05+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/about-us/press-releases/2019",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/about-us/press-releases/2019",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:05+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/about-us/press-releases/2020",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/about-us/press-releases/2020",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:05+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/about-us/press-releases/2026/sciex-launches-its-5th-generation-of-nominal-mass-novus-v55-system-with-sciexos-5-0-software",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/about-us/press-releases/2026/sciex-launches-its-5th-generation-of-nominal-mass-novus-v55-system-with-sciexos-5-0-software",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:05+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/about-us/press-releases/2026/the-echor-ms-system-integration-with-the-zenotof-8600-system-delivers-enhanced-sensitivity-for-high-throughput-screening",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/about-us/press-releases/2026/the-echor-ms-system-integration-with-the-zenotof-8600-system-delivers-enhanced-sensitivity-for-high-throughput-screening",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:05+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/about-us/press-releases/2026/zenotof-unlock",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/about-us/press-releases/2026/zenotof-unlock",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:05+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/br/about-us/press-releases/2012/6500-series",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/br/about-us/press-releases/2012/6500-series",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:05+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/content/dam/SCIEX/pdf/flyers/cn/sciex-ms-product-roadmap-zh.pdf",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/content/dam/SCIEX/pdf/flyers/cn/sciex-ms-product-roadmap-zh.pdf",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:06+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/hplc-products/exionlc-2",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/hplc-products/exionlc-2",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:06+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/hplc-products/exionlc-ae",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/hplc-products/exionlc-ae",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:06+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/hplc-products/microlc-products",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/hplc-products/microlc-products",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:06+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/hplc-products/microlc-products/m5-microlc",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/hplc-products/microlc-products/m5-microlc",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:06+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/hplc-products/microlc-products/micro-hplc-columns",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/hplc-products/microlc-products/micro-hplc-columns",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:06+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/hplc-products/nanolc-products",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/hplc-products/nanolc-products",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:06+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/hplc-products/nanolc-products/chiplc-system",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/hplc-products/nanolc-products/chiplc-system",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:06+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/hplc-products/nanolc-products/micro-chiplc-columns",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/hplc-products/nanolc-products/micro-chiplc-columns",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:07+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/hplc-products/nanolc-products/nano-chiplc-columns",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/hplc-products/nanolc-products/nano-chiplc-columns",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:07+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/hplc-products/nanolc-products/nanolc-400",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/hplc-products/nanolc-products/nanolc-400",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:07+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/mass-spectrometers",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/mass-spectrometers",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:07+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/mass-spectrometers/novus-v55-roi-calculator",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/mass-spectrometers/novus-v55-roi-calculator",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:07+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/mass-spectrometers/qtof-systems",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/mass-spectrometers/qtof-systems",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:07+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/mass-spectrometers/qtof-systems/7600-plus-system",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/mass-spectrometers/qtof-systems/7600-plus-system",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:07+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/mass-spectrometers/qtof-systems/8600-system",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/mass-spectrometers/qtof-systems/8600-system",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:07+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/mass-spectrometers/qtof-systems/tripletof-systems",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/mass-spectrometers/qtof-systems",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:07+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/mass-spectrometers/qtof-systems/tripletof-systems/tripletof-6600-system",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/mass-spectrometers/qtof-systems/zenotof-7600-system",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:07+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/mass-spectrometers/qtof-systems/tripletof-systems/tripletof-6600plus-system",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/mass-spectrometers/qtof-systems",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:07+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/mass-spectrometers/qtof-systems/x-series-qtof-systems",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/mass-spectrometers/qtof-systems/x-series-qtof-systems",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:07+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/mass-spectrometers/qtof-systems/x-series-qtof-systems/x500b-qtof-system",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/mass-spectrometers/qtof-systems/x-series-qtof-systems/x500b-qtof-system",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:08+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/mass-spectrometers/qtof-systems/x-series-qtof-systems/x500r-qtof-system",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/mass-spectrometers/qtof-systems/x-series-qtof-systems/x500r-qtof-system",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:08+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/mass-spectrometers/qtof-systems/zenotof-7600-system",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/mass-spectrometers/qtof-systems/zenotof-7600-system",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:08+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/mass-spectrometers/qtrap-systems",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/mass-spectrometers/qtrap-systems",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:08+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/mass-spectrometers/qtrap-systems/qtrap-3200-system",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/mass-spectrometers/qtrap-systems/qtrap-3200-system",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:08+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/mass-spectrometers/qtrap-systems/qtrap-4000-system",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/mass-spectrometers/qtrap-systems/qtrap-4000-system",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:08+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/mass-spectrometers/qtrap-systems/qtrap-4500-system",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/mass-spectrometers/qtrap-systems/qtrap-4500-system",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:08+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/mass-spectrometers/qtrap-systems/qtrap-5500-system",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/mass-spectrometers/qtrap-systems/qtrap-5500-system",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:08+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/mass-spectrometers/qtrap-systems/qtrap-6500-system",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/mass-spectrometers/qtrap-systems/qtrap-6500-system",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:08+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/mass-spectrometers/qtrap-systems/qtrap-6500plus-system",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/mass-spectrometers/qtrap-systems/qtrap-6500plus-system",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:08+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/mass-spectrometers/tof-tof-systems",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/mass-spectrometers/tof-tof-systems",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:09+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/mass-spectrometers/tof-tof-systems/tof-tof-5800-system",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/mass-spectrometers/tof-tof-systems/tof-tof-5800-system",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:09+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/mass-spectrometers/triple-quad-systems",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/mass-spectrometers/triple-quad-systems",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:09+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/mass-spectrometers/triple-quad-systems/api-3200-system",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/mass-spectrometers/triple-quad-systems/api-3200-system",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:09+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/mass-spectrometers/triple-quad-systems/api-4000-system",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/mass-spectrometers/triple-quad-systems/api-4000-system",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:09+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/mass-spectrometers/triple-quad-systems/novus-v55-system",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/mass-spectrometers/triple-quad-systems/novus-v55-system",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:09+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/mass-spectrometers/triple-quad-systems/triple-quad-3500-system",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/mass-spectrometers/triple-quad-systems/triple-quad-3500-system",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:09+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/mass-spectrometers/triple-quad-systems/triple-quad-4500-system",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/mass-spectrometers/triple-quad-systems/triple-quad-4500-system",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:09+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/mass-spectrometers/triple-quad-systems/triple-quad-5500-plus-system",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/mass-spectrometers/triple-quad-systems/triple-quad-5500-plus-system",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:09+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/mass-spectrometers/triple-quad-systems/triple-quad-5500-system",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/mass-spectrometers/triple-quad-systems/triple-quad-5500-system",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:09+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/mass-spectrometers/triple-quad-systems/triple-quad-6500-system",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/mass-spectrometers/triple-quad-systems/triple-quad-6500-system",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:10+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/mass-spectrometers/triple-quad-systems/triple-quad-6500plus-system",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/mass-spectrometers/triple-quad-systems/triple-quad-6500plus-system",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:10+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/mass-spectrometers/triple-quad-systems/triple-quad-7500-plus-system",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/mass-spectrometers/triple-quad-systems/triple-quad-7500-plus-system",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:10+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/mass-spectrometers/triple-quad-systems/triple-quad-7500-system",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/mass-spectrometers/triple-quad-systems/triple-quad-7500-plus-system",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:10+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/software/analyst-software",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/software/analyst-software",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:10+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/software/analyst-tf-software",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/software/analyst-tf-software",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:10+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/software/artificial-intelligence-quant",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/software/artificial-intelligence-quant",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:10+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/software/bio-tool-kit-software",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/software/bio-tool-kit-software",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:10+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/software/biologics-explorer-software",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/software/biologics-explorer-software",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:10+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/software/biopharmaview-software",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/software/biologics-explorer-software",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:10+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/software/chemoview-software",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/software/chemoview-software",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:10+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/software/cliquid-software",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/software/cliquid-software",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:10+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/software/discoveryquant-software",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/software/discoveryquant-software",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:10+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/software/lightsight-software",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/software/lightsight-software",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:10+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/software/lipidview-software",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/software/lipidview-software",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:11+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/software/markerview-software",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/software/markerview-software",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:11+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/software/mass-spectrometry-software-solutions",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/software",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:11+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/software/metabolitepilot-software",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/software/molecule-profiler-software",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:11+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/software/molecule-profiler-software",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/software/molecule-profiler-software",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:11+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/software/mpx-software",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/software/mpx-software",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:11+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/software/multiquant-software",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/software/multiquant-software",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:12+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/software/oneomics",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/software/oneomics",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:12+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/software/os-software-roi-calculator",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/software/os-software-roi-calculator",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:12+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/software/partner-software",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/software/partner-software",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:13+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/software/peakview-software",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/software/peakview-software",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:13+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/software/proteinpilot-software",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/software/proteinpilot-software",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:13+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/software/sciex-os-software",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/software/sciex-os-software",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:13+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/products/software/sciex-os-software/sciex-os-tips-and-tricks",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/products/software/sciex-os-software/sciex-os-tips-and-tricks",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:13+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/tech-notes/environmental-industrial/water-and-soil/fast-and-ultra-sensitive-method-for-analysis-of-tfa",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/tech-notes/environmental-industrial/water-and-soil/fast-and-ultra-sensitive-method-for-analysis-of-tfa",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:13+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/tech-notes/environmental-industrial/water-and-soil/routine-application-of-epa-method-environmental-samples-using-the-novusv55",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/tech-notes/environmental-industrial/water-and-soil/routine-application-of-epa-method-environmental-samples-using-the-novusv55",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:13+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/tech-notes/food-beverage/food-and-beverage/maximizing-throughput-with-accelerated-mrm-aemrm-novus-v55",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/tech-notes/food-beverage/food-and-beverage/maximizing-throughput-with-accelerated-mrm-aemrm-novus-v55",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:13+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/tech-notes/life-science-research/metabolomics/zt-scan-dia-3-0-metabolomics-analysis-reduces-chimeric-spectral-overlap-to-improve-metabolic-coverage-and-quantitative-analysis",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/tech-notes/life-science-research/metabolomics/zt-scan-dia-3-0-metabolomics-analysis-reduces-chimeric-spectral-overlap-to-improve-metabolic-coverage-and-quantitative-analysis",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:13+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://sciex.com/tech-notes/life-science-research/proteomics/narrow-window-scanning-dia-for-unbiased-label-free-quantitation",
+    "httpStatus": 200,
+    "finalUrl": "https://sciex.com/tech-notes/life-science-research/proteomics/narrow-window-scanning-dia-for-unbiased-label-free-quantitation",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:13+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://support.waters.com/KB_Inst/Chromatography/WKB97891_Are_there_any_differences_in_the_specifications_of_ACQUITY_UPLC_I-Class_and_I-Class_PLUS",
+    "httpStatus": 200,
+    "finalUrl": "https://support.waters.com/KB_Inst/Chromatography/WKB97891_Are_there_any_differences_in_the_specifications_of_ACQUITY_UPLC_I-Class_and_I-Class_PLUS",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:13+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://virtual.oxfordabstracts.com/event/76939/program",
+    "httpStatus": 200,
+    "finalUrl": "https://virtual.oxfordabstracts.com/event/76939/program",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:13+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.acs.org/events/all-events/acs-fall-2026.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.acs.org/events/all-events/acs-fall-2026.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:13+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.acs.org/events/fall/exhibit.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.acs.org/events/fall/exhibit.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:13+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.agilent.com/about/companyinfo/history/Agilent-history-timeline.pdf",
+    "httpStatus": 403,
+    "finalUrl": "https://www.agilent.com/about/companyinfo/history/Agilent-history-timeline.pdf",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:13+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.agilent.com/about/newsroom/presrel.html",
+    "httpStatus": 403,
+    "finalUrl": "https://www.agilent.com/about/newsroom/presrel.html",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:13+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.agilent.com/about/newsroom/presrel/2007/05apr-ca07020.html",
+    "httpStatus": 403,
+    "finalUrl": "https://www.agilent.com/about/newsroom/presrel/2007/05apr-ca07020.html",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:14+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.agilent.com/about/newsroom/presrel/2008/07apr-ca08025.html",
+    "httpStatus": 403,
+    "finalUrl": "https://www.agilent.com/about/newsroom/presrel/2008/07apr-ca08025.html",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:14+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.agilent.com/about/newsroom/presrel/2019/03jun-ca19014.html",
+    "httpStatus": 403,
+    "finalUrl": "https://www.agilent.com/about/newsroom/presrel/2019/03jun-ca19014.html",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:14+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.agilent.com/about/newsroom/presrel/2019/15apr-ca19010.html",
+    "httpStatus": 403,
+    "finalUrl": "https://www.agilent.com/about/newsroom/presrel/2019/15apr-ca19010.html",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:14+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.agilent.com/about/newsroom/presrel/2020/01jun-ca20017.html",
+    "httpStatus": 403,
+    "finalUrl": "https://www.agilent.com/about/newsroom/presrel/2020/01jun-ca20017.html",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:15+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.agilent.com/about/newsroom/presrel/2022/06jun-ca22017.html",
+    "httpStatus": 403,
+    "finalUrl": "https://www.agilent.com/about/newsroom/presrel/2022/06jun-ca22017.html",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:15+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.agilent.com/about/newsroom/presrel/2023/05jun-ca23023.html",
+    "httpStatus": 403,
+    "finalUrl": "https://www.agilent.com/about/newsroom/presrel/2023/05jun-ca23023.html",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:15+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.agilent.com/about/newsroom/presrel/2024/21oct-ca24026.html",
+    "httpStatus": 403,
+    "finalUrl": "https://www.agilent.com/about/newsroom/presrel/2024/21oct-ca24026.html",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:15+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.agilent.com/about/newsroom/presrel/2026/01jun-ca26022.html",
+    "httpStatus": 403,
+    "finalUrl": "https://www.agilent.com/about/newsroom/presrel/2026/01jun-ca26022.html",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:15+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.agilent.com/about/newsroom/presrel/2026/02apr-ca26011.html",
+    "httpStatus": 403,
+    "finalUrl": "https://www.agilent.com/about/newsroom/presrel/2026/02apr-ca26011.html",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:15+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.agilent.com/about/newsroom/presrel/2026/03jun-gp26013.html",
+    "httpStatus": 403,
+    "finalUrl": "https://www.agilent.com/about/newsroom/presrel/2026/03jun-gp26013.html",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:15+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.agilent.com/about/newsroom/presrel/2026/14apr-ca26012.html",
+    "httpStatus": 403,
+    "finalUrl": "https://www.agilent.com/about/newsroom/presrel/2026/14apr-ca26012.html",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:15+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.agilent.com/about/newsroom/presrel/2026/20may-ca26014.html",
+    "httpStatus": 403,
+    "finalUrl": "https://www.agilent.com/about/newsroom/presrel/2026/20may-ca26014.html",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:15+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.agilent.com/about/newsroom/presrel/2026/20may-ca26015.html",
+    "httpStatus": 403,
+    "finalUrl": "https://www.agilent.com/about/newsroom/presrel/2026/20may-ca26015.html",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:15+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.agilent.com/about/newsroom/presrel/2026/21may-ca26016.html",
+    "httpStatus": 403,
+    "finalUrl": "https://www.agilent.com/about/newsroom/presrel/2026/21may-ca26016.html",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:15+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.agilent.com/about/newsroom/presrel/2026/23jul-ca26027.html",
+    "httpStatus": 403,
+    "finalUrl": "https://www.agilent.com/about/newsroom/presrel/2026/23jul-ca26027.html",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:15+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.agilent.com/about/newsroom/presrel/2026/28jul-gp26015.html",
+    "httpStatus": 403,
+    "finalUrl": "https://www.agilent.com/about/newsroom/presrel/2026/28jul-gp26015.html",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:15+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.agilent.com/about/newsroom/presrel/2026/28may-ca26020.html",
+    "httpStatus": 403,
+    "finalUrl": "https://www.agilent.com/about/newsroom/presrel/2026/28may-ca26020.html",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:16+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.agilent.com/about/newsroom/presrel/2026/29may-ca26021.html",
+    "httpStatus": 403,
+    "finalUrl": "https://www.agilent.com/about/newsroom/presrel/2026/29may-ca26021.html",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:16+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.agilent.com/cn/about/newsroom/presrel/2017/0308.html",
+    "httpStatus": 403,
+    "finalUrl": "https://www.agilent.com/cn/about/newsroom/presrel/2017/0308.html",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:16+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.agilent.com/cs/library/applications/an-infinitylab-quick-change-nitrosamines-analysis-lc-ms-ms-5994-9264en-agilent.pdf",
+    "httpStatus": 403,
+    "finalUrl": "https://www.agilent.com/cs/library/applications/an-infinitylab-quick-change-nitrosamines-analysis-lc-ms-ms-5994-9264en-agilent.pdf",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:16+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.agilent.com/cs/library/applications/an-pesticide-screening-revident-lc-qtof-5994-8751en-agilent.pdf",
+    "httpStatus": 403,
+    "finalUrl": "https://www.agilent.com/cs/library/applications/an-pesticide-screening-revident-lc-qtof-5994-8751en-agilent.pdf",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:16+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.agilent.com/cs/library/slidepresentation/public/Discover_the_Efficiency_Advantage_in_your_LC_Phoenix07012017.pdf",
+    "httpStatus": 403,
+    "finalUrl": "https://www.agilent.com/cs/library/slidepresentation/public/Discover_the_Efficiency_Advantage_in_your_LC_Phoenix07012017.pdf",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:16+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.agilent.com/cs/library/usermanuals/public/G7123-Fluorescence-Detector-UseMa-en-D0129488.pdf",
+    "httpStatus": 403,
+    "finalUrl": "https://www.agilent.com/cs/library/usermanuals/public/G7123-Fluorescence-Detector-UseMa-en-D0129488.pdf",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:16+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.agilent.com/cs/library/usermanuals/public/InfinityLab-Hybrid-Multisamplers-UseMa-en-D0029905.pdf",
+    "httpStatus": 403,
+    "finalUrl": "https://www.agilent.com/cs/library/usermanuals/public/InfinityLab-Hybrid-Multisamplers-UseMa-en-D0029905.pdf",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:16+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/quadrupole-time-of-flight-lc-ms/revident-lc-q-tof",
+    "httpStatus": 403,
+    "finalUrl": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/quadrupole-time-of-flight-lc-ms/revident-lc-q-tof",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:17+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/time-of-flight-lc-ms/6230-time-of-flight-tof-lc-ms",
+    "httpStatus": 403,
+    "finalUrl": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/time-of-flight-lc-ms/6230-time-of-flight-tof-lc-ms",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:17+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.agilent.com/en/product/liquid-chromatography/hplc-components-accessories/hplc-detectors/1290-fluorescence-detector",
+    "httpStatus": 403,
+    "finalUrl": "https://www.agilent.com/en/product/liquid-chromatography/hplc-components-accessories/hplc-detectors/1290-fluorescence-detector",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:17+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.agilent.com/en/product/liquid-chromatography/hplc-components-accessories/hplc-pumps/1290-high-speed-pump",
+    "httpStatus": 403,
+    "finalUrl": "https://www.agilent.com/en/product/liquid-chromatography/hplc-components-accessories/hplc-pumps/1290-high-speed-pump",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:17+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.agilent.com/en/product/liquid-chromatography/hplc-systems/analytical-hplc-systems/1290-lc-system",
+    "httpStatus": 403,
+    "finalUrl": "https://www.agilent.com/en/product/liquid-chromatography/hplc-systems/analytical-hplc-systems/1290-lc-system",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:17+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.agilent.com/en/product/small-molecule-columns/reversed-phase-hplc-columns/infinitylab-poroshell-120",
+    "httpStatus": 403,
+    "finalUrl": "https://www.agilent.com/en/product/small-molecule-columns/reversed-phase-hplc-columns/infinitylab-poroshell-120",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:17+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.agilent.com/en/product/software-informatics/chromatography-software/chromatography-add-on/oligo-analysis-accelerator-for-openlab-cds",
+    "httpStatus": 403,
+    "finalUrl": "https://www.agilent.com/en/product/software-informatics/chromatography-software/chromatography-add-on/oligo-analysis-accelerator-for-openlab-cds",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:17+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.agilent.com/en/products/liquid-chromatography/infinitylab-lc-series-modules/lc-injection-systems/1290-infinity-ii-multisampler",
+    "httpStatus": 403,
+    "finalUrl": "https://www.agilent.com/en/products/liquid-chromatography/infinitylab-lc-series-modules/lc-injection-systems/1290-infinity-ii-multisampler",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:17+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.agilent.com/newsjp/presrel/fy2016/ca05_1260infinity.shtml",
+    "httpStatus": 403,
+    "finalUrl": "https://www.agilent.com/newsjp/presrel/fy2016/ca05_1260infinity.shtml",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:17+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.agilent.com/products0.xml",
+    "httpStatus": 200,
+    "finalUrl": "https://www.agilent.com/products0.xml",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:17+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.agilent.com/store/en_US/Prod-959758-902/959758-902",
+    "httpStatus": 403,
+    "finalUrl": "https://www.agilent.com/store/en_US/Prod-959758-902/959758-902",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:17+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.bioprocessingsummit.com/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.bioprocessingsummit.com/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:17+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.bioprocessingsummit.com/sponsors",
+    "httpStatus": 200,
+    "finalUrl": "https://www.bioprocessingsummit.com/sponsors",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:18+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.bruker.com/en/landingpages/bdal/imsc.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.bruker.com/en/landingpages/bdal/imsc.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:18+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.casss.org/mass-spectrometry/attend",
+    "httpStatus": 200,
+    "finalUrl": "https://www.casss.org/mass-spectrometry/attend",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:18+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.chromforum.org/viewtopic.php?t=122481",
+    "httpStatus": 200,
+    "finalUrl": "https://www.chromforum.org/viewtopic.php?t=122481",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:18+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/compliance-actions-and-activities/warning-letters/datatables-data?_format=xlsx&page=0",
+    "httpStatus": 200,
+    "finalUrl": "https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/compliance-actions-and-activities/warning-letters/datatables-data?_format=xlsx&page=0",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:18+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.fda.gov/media/190190/download?attachment=",
+    "httpStatus": 200,
+    "finalUrl": "https://www.fda.gov/media/190190/download?attachment=",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:18+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.imss.nl/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.imss.nl/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:18+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.lab-of-the-future.com/europe/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.lab-of-the-future.com/europe/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:18+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.lab-of-the-future.com/europe/agenda/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.lab-of-the-future.com/europe/agenda/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:18+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.lab-of-the-future.com/europe/congress-themes/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.lab-of-the-future.com/europe/congress-themes/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:18+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.lab-of-the-future.com/europe/speakers/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.lab-of-the-future.com/europe/speakers/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:20+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.perkinelmer.com/corporate-and-newsroom/project-farma-expands-pmis-offering-oracle-primavera-cloud",
+    "httpStatus": 200,
+    "finalUrl": "https://www.perkinelmer.com/corporate-and-newsroom/project-farma-expands-pmis-offering-oracle-primavera-cloud",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:20+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.perkinelmer.com/corporate-and-newsroom/project-farma-partners-valkitai",
+    "httpStatus": 200,
+    "finalUrl": "https://www.perkinelmer.com/corporate-and-newsroom/project-farma-partners-valkitai",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:20+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.perkinelmer.com/corporate-and-newsroom/strategic-partnership-between-covaris-and-hamilton-empowers-labs-with-sonication-star",
+    "httpStatus": 200,
+    "finalUrl": "https://www.perkinelmer.com/corporate-and-newsroom/strategic-partnership-between-covaris-and-hamilton-empowers-labs-with-sonication-star",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:20+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/17v4dij/shimadzu_nexera_xs_inert_vs_agilent_1290_bio/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/17v4dij/shimadzu_nexera_xs_inert_vs_agilent_1290_bio/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:20+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1cdniok/agilent_1260_repair_pm/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1cdniok/agilent_1260_repair_pm/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:20+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1h6lnr0/agilent_1260_hplc_vs_thermo_vanquish_flex/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1h6lnr0/agilent_1260_hplc_vs_thermo_vanquish_flex/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:20+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1i7ixun/lab_solutions_frustration/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1i7ixun/lab_solutions_frustration/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:20+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1onikdf/looking_for_a_hplc_machine/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1onikdf/looking_for_a_hplc_machine/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:20+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1peddhs/who_consistently_gives_the_best_highest_quality/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1peddhs/who_consistently_gives_the_best_highest_quality/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:20+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1q24noh/reccomendations_for_new_hplc_system_for_routine/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1q24noh/reccomendations_for_new_hplc_system_for_routine/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:20+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1sbtsdx/comparing_vendors_and_systems_thoughts/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1sbtsdx/comparing_vendors_and_systems_thoughts/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:20+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1somxpf/waters_acquity_arc_lcms_214_nm_uv_baseline/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1somxpf/waters_acquity_arc_lcms_214_nm_uv_baseline/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:20+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1tk17h8/how_to_solve_the_problem_of_compatibility_between/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1tk17h8/how_to_solve_the_problem_of_compatibility_between/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:20+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1uk333s/update_uplc_waters_high_pressure_problem/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1uk333s/update_uplc_waters_high_pressure_problem/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:20+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1uu27p8/which_lc_ms_brand_is_reliable_and_affordable/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1uu27p8/which_lc_ms_brand_is_reliable_and_affordable/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:20+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/massspectrometry/comments/1mzna4c/a_record_of_fixing_a_secondhand_agilent_ms/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.reddit.com/r/massspectrometry/comments/1mzna4c/a_record_of_fixing_a_secondhand_agilent_ms/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:21+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/massspectrometry/comments/1nlcb3p/new_lab_ms_option_help/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.reddit.com/r/massspectrometry/comments/1nlcb3p/new_lab_ms_option_help/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:21+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/massspectrometry/comments/1p15xrz/which_company_ranked_1_for_lcms/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.reddit.com/r/massspectrometry/comments/1p15xrz/which_company_ranked_1_for_lcms/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:21+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/massspectrometry/comments/1pw3739/sciex_or_thermo_for_proteomics/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.reddit.com/r/massspectrometry/comments/1pw3739/sciex_or_thermo_for_proteomics/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:21+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/massspectrometry/comments/1rembme/imms_options/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.reddit.com/r/massspectrometry/comments/1rembme/imms_options/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:22+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/massspectrometry/comments/1sognqt/what_is_the_fastest_way_to_convert_raw_files_to/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.reddit.com/r/massspectrometry/comments/1sognqt/what_is_the_fastest_way_to_convert_raw_files_to/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:22+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/massspectrometry/comments/1tausv5/ms_is_half_the_equation/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.reddit.com/r/massspectrometry/comments/1tausv5/ms_is_half_the_equation/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:22+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/massspectrometry/comments/1u1dpq6/synapt_nonresponsive_fluidics_purge_issue/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.reddit.com/r/massspectrometry/comments/1u1dpq6/synapt_nonresponsive_fluidics_purge_issue/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:22+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/massspectrometry/comments/1up1dlw/best_software_to_use_agilent_g3540a_gc_with/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.reddit.com/r/massspectrometry/comments/1up1dlw/best_software_to_use_agilent_g3540a_gc_with/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:22+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/massspectrometry/comments/1ux1imr/most_frustrating_thing_about_mass_spectrometry/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.reddit.com/r/massspectrometry/comments/1ux1imr/most_frustrating_thing_about_mass_spectrometry/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:22+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/massspectrometry/comments/1uxyipd/efficient_quant_workflow_for_targetlynx/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.reddit.com/r/massspectrometry/comments/1uxyipd/efficient_quant_workflow_for_targetlynx/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:22+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/1000697/000095013504001254/b48994wce10vk.htm",
+    "httpStatus": 403,
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/1000697/000095013504001254/b48994wce10vk.htm",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:22+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/1000697/000095013505001421/b53305wce10vk.htm",
+    "httpStatus": 403,
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/1000697/000095013505001421/b53305wce10vk.htm",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:22+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/1000697/000095013507001300/b63656wce10vk.htm",
+    "httpStatus": 403,
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/1000697/000095013507001300/b63656wce10vk.htm",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:22+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/1000697/000095013509001331/b72903wce10vk.htm",
+    "httpStatus": 403,
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/1000697/000095013509001331/b72903wce10vk.htm",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:22+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/1000697/000119312512077126/d274872d10k.htm",
+    "httpStatus": 403,
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/1000697/000119312512077126/d274872d10k.htm",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:22+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/1000697/000119312514072515/d644127d10k.htm",
+    "httpStatus": 403,
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/1000697/000119312514072515/d644127d10k.htm",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:22+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/1000697/000119312515067900/d849246d10k.htm",
+    "httpStatus": 403,
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/1000697/000119312515067900/d849246d10k.htm",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:22+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/1000697/000119312516480594/d108530d10k.htm",
+    "httpStatus": 403,
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/1000697/000119312516480594/d108530d10k.htm",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:22+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/1000697/000119312517056239/d268303d10k.htm",
+    "httpStatus": 403,
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/1000697/000119312517056239/d268303d10k.htm",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:23+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/1000697/000119312524094009/d691142dars.pdf",
+    "httpStatus": 403,
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/1000697/000119312524094009/d691142dars.pdf",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:23+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/1000697/000119312526062604/d778470d10k.htm",
+    "httpStatus": 403,
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/1000697/000119312526062604/d778470d10k.htm",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:23+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/1090872/000109087225000036/a-20250731.htm",
+    "httpStatus": 403,
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/1090872/000109087225000036/a-20250731.htm",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:23+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/1090872/000109087225000087/a-20251031.htm",
+    "httpStatus": 403,
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/1090872/000109087225000087/a-20251031.htm",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:23+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/1090872/000109087226000023/a-20260131.htm",
+    "httpStatus": 403,
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/1090872/000109087226000023/a-20260131.htm",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:23+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/1090872/000109087226000052/a-20260520.htm",
+    "httpStatus": 403,
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/1090872/000109087226000052/a-20260520.htm",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:24+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/1090872/000109087226000055/a-20260430.htm",
+    "httpStatus": 403,
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/1090872/000109087226000055/a-20260430.htm",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:24+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/1090872/000119312526142101/a-20260331.htm",
+    "httpStatus": 403,
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/1090872/000119312526142101/a-20260331.htm",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:24+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/1090872/000119312526202636/a-20260504.htm",
+    "httpStatus": 403,
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/1090872/000119312526202636/a-20260504.htm",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:24+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/1090872/000119312526282845/d75293d8k.htm",
+    "httpStatus": 403,
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/1090872/000119312526282845/d75293d8k.htm",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:24+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/313616/000031361625000182/dhr-20250926.htm",
+    "httpStatus": 403,
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/313616/000031361625000182/dhr-20250926.htm",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:24+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/313616/000031361626000062/dhr-20251231.htm",
+    "httpStatus": 403,
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/313616/000031361626000062/dhr-20251231.htm",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:24+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/313616/000031361626000107/dhr-20260327.htm",
+    "httpStatus": 403,
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/313616/000031361626000107/dhr-20260327.htm",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:24+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/313616/000031361626000127/dhr-20260505.htm",
+    "httpStatus": 403,
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/313616/000031361626000127/dhr-20260505.htm",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:24+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/313616/000031361626000161/dhr-20260626.htm",
+    "httpStatus": 403,
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/313616/000031361626000161/dhr-20260626.htm",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:24+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/313616/000031361626000163/dhr-20260721.htm",
+    "httpStatus": 403,
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/313616/000031361626000163/dhr-20260721.htm",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:24+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/313616/000119312526191608/d107133d8k.htm",
+    "httpStatus": 403,
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/313616/000119312526191608/d107133d8k.htm",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:24+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/313616/000119312526255555/d63873d8k.htm",
+    "httpStatus": 403,
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/313616/000119312526255555/d63873d8k.htm",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:24+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/31791/000003179125000026/revv-20250629.htm",
+    "httpStatus": 403,
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/31791/000003179125000026/revv-20250629.htm",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:24+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/31791/000003179125000037/revv-20250928.htm",
+    "httpStatus": 403,
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/31791/000003179125000037/revv-20250928.htm",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:24+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/31791/000003179126000003/pki-20260112.htm",
+    "httpStatus": 403,
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/31791/000003179126000003/pki-20260112.htm",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:24+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/31791/000003179126000007/pki-20260202.htm",
+    "httpStatus": 403,
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/31791/000003179126000007/pki-20260202.htm",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:24+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/31791/000003179126000012/revv-20251228.htm",
+    "httpStatus": 403,
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/31791/000003179126000012/revv-20251228.htm",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:24+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/31791/000003179126000016/pki-20260505.htm",
+    "httpStatus": 403,
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/31791/000003179126000016/pki-20260505.htm",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:24+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/31791/000003179126000019/revv-20260405.htm",
+    "httpStatus": 403,
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/31791/000003179126000019/revv-20260405.htm",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:25+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/31791/000119312526201401/d146870d8k.htm",
+    "httpStatus": 403,
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/31791/000119312526201401/d146870d8k.htm",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:25+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/97745/000009774525000101/tmo-20250628.htm",
+    "httpStatus": 403,
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/97745/000009774525000101/tmo-20250628.htm",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:25+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/97745/000009774525000159/tmo-20250927.htm",
+    "httpStatus": 403,
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/97745/000009774525000159/tmo-20250927.htm",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:25+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/97745/000009774526000018/tmo-20251231.htm",
+    "httpStatus": 403,
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/97745/000009774526000018/tmo-20251231.htm",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:25+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/97745/000009774526000066/tmo-20260324.htm",
+    "httpStatus": 403,
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/97745/000009774526000066/tmo-20260324.htm",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:25+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/97745/000009774526000086/tmo-20260423.htm",
+    "httpStatus": 403,
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/97745/000009774526000086/tmo-20260423.htm",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:25+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/97745/000009774526000092/tmo-20260328.htm",
+    "httpStatus": 403,
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/97745/000009774526000092/tmo-20260328.htm",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:25+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/97745/000009774526000117/tmo-20260520.htm",
+    "httpStatus": 403,
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/97745/000009774526000117/tmo-20260520.htm",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:25+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/97745/000009774526000138/tmo-20260723.htm",
+    "httpStatus": 403,
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/97745/000009774526000138/tmo-20260723.htm",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:25+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.setac.org/discover-events/global-meetings/setac-north-america-47th-annual-meeting.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.setac.org/discover-events/global-meetings/setac-north-america-47th-annual-meeting.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:25+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.setac.org/discover-events/global-meetings/setac-north-america-47th-annual-meeting/exhibits-supporters/exhibitor-listing-and-floor-plan.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.setac.org/discover-events/global-meetings/setac-north-america-47th-annual-meeting/exhibits-supporters/exhibitor-listing-and-floor-plan.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:26+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.setac.org/discover-events/global-meetings/setac-north-america-47th-annual-meeting/program/daily-schedule.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.setac.org/discover-events/global-meetings/setac-north-america-47th-annual-meeting/program/daily-schedule.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:26+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/automated-lc-msms/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/automated-lc-msms/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:26+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:26+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-consumables/stable-labeled-standards/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-consumables/stable-labeled-standards/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:26+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-option/clam-2040/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-option/clam-2040/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:26+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-option/dpims-8060/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-option/dpims-8060/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:26+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-option/dpims-qt/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-option/dpims-qt/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:26+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-option/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-option/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:26+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-software/high-resolution-accurate-mass-library-for-forensic-toxicology/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-software/high-resolution-accurate-mass-library-for-forensic-toxicology/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:26+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-software/iflagger/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-software/iflagger/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:27+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-software/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-software/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:27+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-software/labsolutions-insight-biologics/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-software/labsolutions-insight-biologics/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:27+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-software/labsolutions-insight/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-software/labsolutions-insight/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:27+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-software/lcmsms-method-package-for-lipid-mediators/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-software/lcmsms-method-package-for-lipid-mediators/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:27+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-software/lcmsms-method-package-for-primary-metabolites/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-software/lcmsms-method-package-for-primary-metabolites/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:27+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-software/lcmsms-mrm-library-for-metabolic-enzymes-in-yeast/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-software/lcmsms-mrm-library-for-metabolic-enzymes-in-yeast/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:27+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-software/lcmsms-mrm-library-for-phospholipid-profiling/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-software/lcmsms-mrm-library-for-phospholipid-profiling/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:27+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-software/multi-charged-ion-analysis-software/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-software/multi-charged-ion-analysis-software/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:27+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-software/multi-omics-analysis-package/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-software/multi-omics-analysis-package/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:27+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-software/peakintelligence/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-software/peakintelligence/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:27+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-software/traverse-ms/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-software/traverse-ms/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:27+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/cell-culture-profiling-method-package-for-the-lcms-2050/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/cell-culture-profiling-method-package-for-the-lcms-2050/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:27+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/erexim-application-suite/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/erexim-application-suite/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:28+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/exact-mass-database-for-endogenous-metabolites/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/exact-mass-database-for-endogenous-metabolites/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:28+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:28+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-forensic-toxicology-database/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-forensic-toxicology-database/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:28+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-aminoglycoside-antibiotics/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-aminoglycoside-antibiotics/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:28+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-bile-acids/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-bile-acids/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:28+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-cell-culture-profiling/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-cell-culture-profiling/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:29+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-dl-amino-acids/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-dl-amino-acids/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:29+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-glycosaminoglycans/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-glycosaminoglycans/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:29+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-modified-nucleosides/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-modified-nucleosides/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:29+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-mycotoxins/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-mycotoxins/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:29+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-pfas/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-pfas/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:29+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-reactive-sulfur-profiling/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-reactive-sulfur-profiling/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:29+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-residual-pesticide-ver-3/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-residual-pesticide-ver-3/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:29+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-restricted-chemicals-in-textiles/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-restricted-chemicals-in-textiles/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:29+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-short-chain-fatty-acids/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-short-chain-fatty-acids/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:29+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-sugars-and-sugar-nucleotides/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-sugars-and-sugar-nucleotides/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:29+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-veterinary-drugs-ver-2/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-veterinary-drugs-ver-2/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:29+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-water-quality-analysis/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-water-quality-analysis/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:29+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-rapid-toxicology-screening-system-ver3/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-rapid-toxicology-screening-system-ver3/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:29+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/metabolites-method-package-suite/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/metabolites-method-package-suite/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:30+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/method-package-guidebook/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/method-package-guidebook/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:30+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/micro-volume-quechers-kit/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/micro-volume-quechers-kit/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:30+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/mrm-library-for-triglycerides/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/mrm-library-for-triglycerides/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:30+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/nsmol-antibody-ba-kit/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/nsmol-antibody-ba-kit/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:30+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/oad-tof/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/oad-tof/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:30+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/open-solution-analytical/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/open-solution-analytical/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:30+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/rapid-toxicology-screening-ver2/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/rapid-toxicology-screening-ver2/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:30+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/trap-free-2d-lcms-system-for-quadrupole-lcms/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/trap-free-2d-lcms-system-for-quadrupole-lcms/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:30+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/quadrupole-time-of-flight-lc-msms/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/quadrupole-time-of-flight-lc-msms/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:30+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/quadrupole-time-of-flight-lc-msms/lcms-9030/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/quadrupole-time-of-flight-lc-msms/lcms-9030/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:31+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/quadrupole-time-of-flight-lc-msms/lcms-9050/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/quadrupole-time-of-flight-lc-msms/lcms-9050/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:31+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/single-quadrupole-lc-ms/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/single-quadrupole-lc-ms/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:31+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/single-quadrupole-lc-ms/lcms-2050/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/single-quadrupole-lc-ms/lcms-2050/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:31+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/stories/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/stories/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:31+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/triple-quadrupole-lc-msms/comparison/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/triple-quadrupole-lc-msms/comparison/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:31+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/triple-quadrupole-lc-msms/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/triple-quadrupole-lc-msms/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:31+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/triple-quadrupole-lc-msms/lcms-8065xe/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/triple-quadrupole-lc-msms/lcms-8065xe/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:31+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/triple-quadrupole-lc-msms/lcms-tq-rx-series/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/triple-quadrupole-lc-msms/lcms-tq-rx-series/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:31+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/triple-quadrupole-lc-msms/nexera-mikros/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/triple-quadrupole-lc-msms/nexera-mikros/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:31+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatography/hplc-consumables/velox/shim-pack-velox-c18/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatography/hplc-consumables/velox/shim-pack-velox-c18/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:31+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatography/hplc-consumables/velox/shim-pack-velox-lc-columns/features.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatography/hplc-consumables/velox/shim-pack-velox-lc-columns/features.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:31+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatography/hplc-system/nexera-fv/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatography/hplc-system/nexera-fv/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:32+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatography/hplc-system/nexera-prep/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatography/hplc-system/nexera-prep/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:32+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatography/hplcuhplc/i-series/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatography/hplcuhplc/i-series/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:32+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatography/hplcuhplc/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatography/hplcuhplc/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:32+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatography/hplcuhplc/lc-2030c-nt/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatography/hplcuhplc/lc-2030c-nt/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:32+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatography/hplcuhplc/nexera-series/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatography/hplcuhplc/nexera-series/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:32+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatography/hplcuhplc/nexera-x4/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatography/hplcuhplc/nexera-x4/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:32+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatography/ion-chromatograph/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatography/ion-chromatograph/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:32+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/liquid-chromatography/ion-chromatograph/nexera-ic/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/liquid-chromatography/ion-chromatograph/nexera-ic/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:32+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/software-informatics/labsolutions-series/improving-the-data-integrity-of-spectrometers/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/software-informatics/labsolutions-series/improving-the-data-integrity-of-spectrometers/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:32+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/software-informatics/labsolutions-series/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/software-informatics/labsolutions-series/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:32+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/software-informatics/labsolutions-series/labsolutions-cs-powered-by-i-qlinks/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/software-informatics/labsolutions-series/labsolutions-cs-powered-by-i-qlinks/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:32+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/software-informatics/labsolutions-series/labsolutions-dbcs/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/software-informatics/labsolutions-series/labsolutions-dbcs/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:32+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/software-informatics/labsolutions-series/labsolutions-detect/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/software-informatics/labsolutions-series/labsolutions-detect/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:32+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/software-informatics/labsolutions-series/labsolutions-insight-profiler/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/software-informatics/labsolutions-series/labsolutions-insight-profiler/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:33+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/software-informatics/labsolutions-series/labsolutions-lcgc/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/software-informatics/labsolutions-series/labsolutions-lcgc/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:33+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/software-informatics/labsolutions-series/labsolutions-ta/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/software-informatics/labsolutions-series/labsolutions-ta/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:33+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/software-informatics/labsolutions-series/labsolutionsgcms/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/software-informatics/labsolutions-series/labsolutionsgcms/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:33+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/products/software-informatics/labsolutions-series/system-linkage-option/index.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/products/software-informatics/labsolutions-series/system-linkage-option/index.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:33+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/sites/shimadzu.com.an/files/pim/pim_document_file/applications/application_note/26293/an_01-01023-en.pdf",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/sites/shimadzu.com.an/files/pim/pim_document_file/applications/application_note/26293/an_01-01023-en.pdf",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:33+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/sites/shimadzu.com.an/files/pim/pim_document_file/applications/application_note/26436/an_02-ssi-lcms-157-en.pdf",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/sites/shimadzu.com.an/files/pim/pim_document_file/applications/application_note/26436/an_02-ssi-lcms-157-en.pdf",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:34+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/sites/shimadzu.com.an/files/pim/pim_document_file/applications/application_note/26462/an_05-sca-210-097-en.pdf",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/sites/shimadzu.com.an/files/pim/pim_document_file/applications/application_note/26462/an_05-sca-210-097-en.pdf",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:34+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/an/sites/shimadzu.com.an/files/pim/pim_document_file/brochures/10609/c190-e219.pdf",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/an/sites/shimadzu.com.an/files/pim/pim_document_file/brochures/10609/c190-e219.pdf",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:34+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/news/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/news/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:34+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/news/2022.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/news/2022.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:34+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/news/2025/6n31zbu4tkmozoh2.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/news/2025/6n31zbu4tkmozoh2.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:34+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/news/2025/mpnglqbij34_zscf.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/news/2025/mpnglqbij34_zscf.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:34+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/news/2025/n8e9desqymj7oa4x.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/news/2025/n8e9desqymj7oa4x.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:34+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/news/2025/w40jo6pvrivu5s7v.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/news/2025/w40jo6pvrivu5s7v.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:34+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/news/2026/h8vx9je-kascz6do.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/news/2026/h8vx9je-kascz6do.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:34+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/news/2026/k8iri3_20_z4uvwt.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/news/2026/k8iri3_20_z4uvwt.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:34+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/news/2026/kl7r0r4uj64q9kpv.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/news/2026/kl7r0r4uj64q9kpv.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:34+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/news/2026/rqlmu84w5ry4eew_.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/news/2026/rqlmu84w5ry4eew_.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:34+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/news/2026/t0best6lrz8y0uk9.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/news/2026/t0best6lrz8y0uk9.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:34+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/news/xsysh4059sd7e93d.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/news/xsysh4059sd7e93d.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:35+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.com/sites/shimadzu.com/files/ir/8quj/r6kpfhyxuu985pje.pdf",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.com/sites/shimadzu.com/files/ir/8quj/r6kpfhyxuu985pje.pdf",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:35+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.shimadzu.eu/news-events/2026/IMSC.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.shimadzu.eu/news-events/2026/IMSC.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:35+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.ssi.shimadzu.com/news/2020/new-LCMS-8060NX-high-performance-tandem-liquid-chromatograph-mass-spectrometer-improves-workflow-efficiency-and-maximizes-laboratory-output.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.ssi.shimadzu.com/news/2020/new-LCMS-8060NX-high-performance-tandem-liquid-chromatograph-mass-spectrometer-improves-workflow-efficiency-and-maximizes-laboratory-output.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:35+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.ssi.shimadzu.com/news/2020/shimadzu-launches-new-Ultra-Fast-Nexera-QX-Multiplex-LC-MS/MS-System.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.ssi.shimadzu.com/news/2020/shimadzu-launches-new-Ultra-Fast-Nexera-QX-Multiplex-LC-MS/MS-System.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:35+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.ssi.shimadzu.com/news/2022-12-05-new-q-tof-lcms-9050.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.ssi.shimadzu.com/news/2022-12-05-new-q-tof-lcms-9050.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:35+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.ssi.shimadzu.com/products/liquid-chromatography/hplcuhplc/nexera-x4/spec.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.ssi.shimadzu.com/products/liquid-chromatography/hplcuhplc/nexera-x4/spec.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:36+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.thermofisher.com/blog/analyteguru/1000-publications-and-counting-what-researchers-are-unlocking-with-the-orbitrap-astral-mass-spectrometer/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.thermofisher.com/blog/analyteguru/1000-publications-and-counting-what-researchers-are-unlocking-with-the-orbitrap-astral-mass-spectrometer/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:36+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.thermofisher.com/blog/analyteguru/advancing-clinical-research-at-asms-2026-from-robust-workflows-to-real-world-impact/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.thermofisher.com/blog/analyteguru/advancing-clinical-research-at-asms-2026-from-robust-workflows-to-real-world-impact/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:36+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.thermofisher.com/blog/analyteguru/electrospray-101-what-to-know-about-lc-ms-sources-and-a-first-look-at-optispray/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.thermofisher.com/blog/analyteguru/electrospray-101-what-to-know-about-lc-ms-sources-and-a-first-look-at-optispray/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:36+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.thermofisher.com/blog/analyteguru/how-to-cut-hplc-sample-preparation-time-for-derivatizing-amino-acids/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.thermofisher.com/blog/analyteguru/how-to-cut-hplc-sample-preparation-time-for-derivatizing-amino-acids/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:36+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.thermofisher.com/blog/analyteguru/liquid-chromatography/feed/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.thermofisher.com/blog/analyteguru/liquid-chromatography/feed/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:36+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.thermofisher.com/blog/analyteguru/mass-spectrometry/feed/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.thermofisher.com/blog/analyteguru/mass-spectrometry/feed/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:36+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.thermofisher.com/blog/analyteguru/modern-technologies-for-high-performance-lc-ms-data-transfers/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.thermofisher.com/blog/analyteguru/modern-technologies-for-high-performance-lc-ms-data-transfers/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:36+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.thermofisher.com/blog/analyteguru/moving-to-mainstream-is-the-world-finally-ready-for-low-flow-lc/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.thermofisher.com/blog/analyteguru/moving-to-mainstream-is-the-world-finally-ready-for-low-flow-lc/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:36+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.thermofisher.com/blog/analyteguru/neuroscience-takes-flight-how-collaboration-spaceflight-and-orbitrap-astral-ms-are-opening-a-new-window-into-brain-aging/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.thermofisher.com/blog/analyteguru/neuroscience-takes-flight-how-collaboration-spaceflight-and-orbitrap-astral-ms-are-opening-a-new-window-into-brain-aging/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:36+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.thermofisher.com/blog/analyteguru/new-technical-note-robust-high-throughput-peptide-quantitation-on-the-tsq-certis-triple-quadrupole-ms-with-optispray-technology/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.thermofisher.com/blog/analyteguru/new-technical-note-robust-high-throughput-peptide-quantitation-on-the-tsq-certis-triple-quadrupole-ms-with-optispray-technology/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:36+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.thermofisher.com/blog/analyteguru/phosphorylation-adma-and-o-glcnac-analysis-on-the-orbitrap-excedion-pro-mass-spectrometer/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.thermofisher.com/blog/analyteguru/phosphorylation-adma-and-o-glcnac-analysis-on-the-orbitrap-excedion-pro-mass-spectrometer/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:36+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.thermofisher.com/blog/analyteguru/proteomics/feed/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.thermofisher.com/blog/analyteguru/proteomics/feed/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:36+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.thermofisher.com/blog/analyteguru/radical-based-ion-activation-and-dissociation/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.thermofisher.com/blog/analyteguru/radical-based-ion-activation-and-dissociation/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:36+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.thermofisher.com/blog/analyteguru/rethinking-whats-possible-in-biological-research-with-the-orbitrap-astral-zoom-mass-spectrometer/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.thermofisher.com/blog/analyteguru/rethinking-whats-possible-in-biological-research-with-the-orbitrap-astral-zoom-mass-spectrometer/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:36+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.thermofisher.com/blog/analyteguru/turning-science-into-safer-water-for-nearly-1-8-million-people/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.thermofisher.com/blog/analyteguru/turning-science-into-safer-water-for-nearly-1-8-million-people/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:36+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.thermofisher.com/blog/analyteguru/unlock-high-performance-lc-ms-with-factory-certified-systems-from-thermo-fisher-scientific/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.thermofisher.com/blog/analyteguru/unlock-high-performance-lc-ms-with-factory-certified-systems-from-thermo-fisher-scientific/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:36+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.thermofisher.com/blog/analyteguru/unlocking-high-throughput-potential-in-liquid-chromatography-with-vanquish-systems/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.thermofisher.com/blog/analyteguru/unlocking-high-throughput-potential-in-liquid-chromatography-with-vanquish-systems/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:36+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.thermofisher.com/blog/analyteguru/upgrade-smarter-trade-in-your-current-lc-ms-system-and-boost-lab-performance-without-breaking-budget/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.thermofisher.com/blog/analyteguru/upgrade-smarter-trade-in-your-current-lc-ms-system-and-boost-lab-performance-without-breaking-budget/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:36+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.thermofisher.com/blog/analyteguru/what-happens-when-glycoproteomics-meets-real-time-lc-ms-decision-making/",
+    "httpStatus": 200,
+    "finalUrl": "https://www.thermofisher.com/blog/analyteguru/what-happens-when-glycoproteomics-meets-real-time-lc-ms-decision-making/",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:36+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.thermofisher.com/sitemap-us-en.xml",
+    "httpStatus": 200,
+    "finalUrl": "https://www.thermofisher.com/sitemap-us-en.xml",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:37+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-amplify-uhplc-system.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-amplify-uhplc-system.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:38+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:39+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:39+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/orbitrap-excedion-pro-mass-spectrometer.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/orbitrap-excedion-pro-mass-spectrometer.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:39+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/orbitrap-excedion-pro-mass-spectrometer/orbitrap-excedion-pro-biopharma-ms.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/orbitrap-excedion-pro-mass-spectrometer/orbitrap-excedion-pro-biopharma-ms.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:39+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/orbitrap-excedion-pro-mass-spectrometer/orbitrap-excedion-pro-ms.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/orbitrap-excedion-pro-mass-spectrometer/orbitrap-excedion-pro-ms.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:39+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/orbitrap-exploris-mass-spectrometers.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/orbitrap-exploris-mass-spectrometers.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:39+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/orbitrap-exploris-mass-spectrometers/orbitrap-exploris-120-mass-spectrometers.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/orbitrap-exploris-mass-spectrometers/orbitrap-exploris-120-mass-spectrometers.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:39+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/orbitrap-exploris-mass-spectrometers/orbitrap-exploris-240-mass-spectrometers.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/orbitrap-exploris-mass-spectrometers/orbitrap-exploris-240-mass-spectrometers.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:39+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/orbitrap-exploris-mass-spectrometers/orbitrap-exploris-480-mass-spectrometers.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/orbitrap-exploris-mass-spectrometers/orbitrap-exploris-480-mass-spectrometers.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:39+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/orbitrap-tribrid-mass-spectrometers/orbitrap-eclipse-tribrid-mass-spectrometer.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/orbitrap-tribrid-mass-spectrometers/orbitrap-eclipse-tribrid-mass-spectrometer.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:39+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/orbitrap-tribrid-mass-spectrometers/orbitrap-tribrid-apex-mass-spectrometer.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/orbitrap-tribrid-mass-spectrometers/orbitrap-tribrid-apex-mass-spectrometer.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:39+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/q-exactive-orbitrap-mass-spectrometers.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/q-exactive-orbitrap-mass-spectrometers.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:39+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/triple-quadrupole-lc-ms/tsq-certis-triple-quadripole-ms.html",
+    "httpStatus": 200,
+    "finalUrl": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/triple-quadrupole-lc-ms/tsq-certis-triple-quadripole-ms.html",
+    "classification": "reachable",
+    "checkedAt": "2026-07-30T03:08:40+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.waters.com/content/dam/waters/en/app-notes/2022/720007766/720007766-en.pdf",
+    "httpStatus": 403,
+    "finalUrl": "https://www.waters.com/content/dam/waters/en/app-notes/2022/720007766/720007766-en.pdf",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:40+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.waters.com/content/dam/waters/en/library/specifications/2020/waters-specification-ACQUITYUPLCFLRDetectorspecifications-720001985.pdf",
+    "httpStatus": 403,
+    "finalUrl": "https://www.waters.com/content/dam/waters/en/library/specifications/2020/waters-specification-ACQUITYUPLCFLRDetectorspecifications-720001985.pdf",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:40+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.waters.com/nextgen/ee/en/library/application-notes/2025/enhanced-reliability-for-long-term-pfas-analysis-with-the-xevo-tq-absolute-xr-mass-spectrometer.html",
+    "httpStatus": 403,
+    "finalUrl": "https://www.waters.com/nextgen/ee/en/library/application-notes/2025/enhanced-reliability-for-long-term-pfas-analysis-with-the-xevo-tq-absolute-xr-mass-spectrometer.html",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:40+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.waters.com/nextgen/en/products/chromatography/chromatography-systems/acquity-premier-system.html",
+    "httpStatus": 403,
+    "finalUrl": "https://www.waters.com/nextgen/en/products/chromatography/chromatography-systems/acquity-premier-system.html",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:40+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.waters.com/nextgen/en/products/chromatography/chromatography-systems/alliance-is-hplc-system.html",
+    "httpStatus": 403,
+    "finalUrl": "https://www.waters.com/nextgen/en/products/chromatography/chromatography-systems/alliance-is-hplc-system.html",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:40+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.waters.com/nextgen/en/products/mass-spectrometry-systems/xevo-tq-absolute.html",
+    "httpStatus": 403,
+    "finalUrl": "https://www.waters.com/nextgen/en/products/mass-spectrometry-systems/xevo-tq-absolute.html",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:40+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.waters.com/nextgen/is/en/about-waters.html",
+    "httpStatus": 403,
+    "finalUrl": "https://www.waters.com/nextgen/is/en/about-waters.html",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:40+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.waters.com/nextgen/tw/zh/library/application-notes/2021/the-bioaccord-system-with-acquity-premier-for-improved-peptide-cqa-monitoring.html",
+    "httpStatus": 403,
+    "finalUrl": "https://www.waters.com/nextgen/tw/zh/library/application-notes/2021/the-bioaccord-system-with-acquity-premier-for-improved-peptide-cqa-monitoring.html",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:40+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.waters.com/nextgen/us/en/products/chromatography.html",
+    "httpStatus": 403,
+    "finalUrl": "https://www.waters.com/nextgen/us/en/products/chromatography.html",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:40+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.waters.com/nextgen/us/en/products/chromatography/chromatography-systems/acquity-premier-system-with-multi-dimensional-technology.html",
+    "httpStatus": 403,
+    "finalUrl": "https://www.waters.com/nextgen/us/en/products/chromatography/chromatography-systems/acquity-premier-system-with-multi-dimensional-technology.html",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:40+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.waters.com/nextgen/us/en/products/chromatography/chromatography-systems/acquity-uplc-i-class-plus-system.html",
+    "httpStatus": 403,
+    "finalUrl": "https://www.waters.com/nextgen/us/en/products/chromatography/chromatography-systems/acquity-uplc-i-class-plus-system.html",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:40+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.waters.com/nextgen/us/en/products/columns/acquity-uplc-columns.html",
+    "httpStatus": 403,
+    "finalUrl": "https://www.waters.com/nextgen/us/en/products/columns/acquity-uplc-columns.html",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:40+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.waters.com/nextgen/us/en/products/in-vitro-diagnostics-solutions/lc-ms-ms-ivd-systems-portfolio/masstrak-acquity-uplc-i-class-plus-xevo-tq-absolute-ivd-system.html",
+    "httpStatus": 403,
+    "finalUrl": "https://www.waters.com/nextgen/us/en/products/in-vitro-diagnostics-solutions/lc-ms-ms-ivd-systems-portfolio/masstrak-acquity-uplc-i-class-plus-xevo-tq-absolute-ivd-system.html",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:40+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.waters.com/nextgen/us/en/products/informatics-and-software/chromatography-software/empower-software-solutions/empower-cds.html",
+    "httpStatus": 403,
+    "finalUrl": "https://www.waters.com/nextgen/us/en/products/informatics-and-software/chromatography-software/empower-software-solutions/empower-cds.html",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:41+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.waters.com/nextgen/us/en/products/mass-spectrometry/mass-spectrometry-systems/bioaccord-lc-ms-system.html",
+    "httpStatus": 403,
+    "finalUrl": "https://www.waters.com/nextgen/us/en/products/mass-spectrometry/mass-spectrometry-systems/bioaccord-lc-ms-system.html",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:41+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.waters.com/nextgen/us/en/products/mass-spectrometry/mass-spectrometry-systems/xevo-mrt.html",
+    "httpStatus": 403,
+    "finalUrl": "https://www.waters.com/nextgen/us/en/products/mass-spectrometry/mass-spectrometry-systems/xevo-mrt.html",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:41+00:00",
+    "error": ""
+  },
+  {
+    "url": "https://www.waters.com/nextgen/us/en/shop/columns/176000864-acquity-uplc-beh-c18-column-130a-17--m-21-mm-x-100-mm-3-pk.html",
+    "httpStatus": 403,
+    "finalUrl": "https://www.waters.com/nextgen/us/en/shop/columns/176000864-acquity-uplc-beh-c18-column-130a-17--m-21-mm-x-100-mm-3-pk.html",
+    "classification": "blocked-or-unverified",
+    "checkedAt": "2026-07-30T03:08:41+00:00",
+    "error": ""
+  }
+]

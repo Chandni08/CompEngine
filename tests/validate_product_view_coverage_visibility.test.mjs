@@ -10,10 +10,16 @@ const [app, deployedApp, css, deployedCss] = await Promise.all([
   readFile(new URL("deploy-site/styles.css", root), "utf8"),
 ]);
 
-test("Product Management view hides Competitor Coverage Health", () => {
+test("Product Management view hides coverage and the Public Evidence Library", () => {
   assert.match(app, /const hiddenForProductManagement = state\.view === "Product";/);
+  assert.match(app, /refreshBlock\.hidden = hiddenForProductManagement;/);
+  assert.match(app, /refreshBlock\.setAttribute\("aria-hidden", String\(hiddenForProductManagement\)\);/);
   assert.match(app, /competitorCoveragePanel\.hidden = hiddenForProductManagement;/);
   assert.match(app, /competitorCoveragePanel\.setAttribute\("aria-hidden", String\(hiddenForProductManagement\)\);/);
+  assert.match(app, /publicEvidencePanel\.hidden = hiddenForProductManagement;/);
+  assert.match(app, /publicEvidencePanel\.setAttribute\("aria-hidden", String\(hiddenForProductManagement\)\);/);
+  assert.match(app, /publicEvidenceNav\.hidden = hiddenForProductManagement;/);
+  assert.match(app, /const publicEvidenceSourcePill = state\.view === "Product"\s*\? ""/);
   assert.match(app, /state\.view = filters\.role\.value;\s+updateRolePanelVisibility\(\);/);
   assert.match(css, /\.competitor-coverage-panel\[hidden\]\s*\{\s*display: none;/);
 });

@@ -8,7 +8,7 @@ const app = readFileSync(new URL("../app.js", import.meta.url), "utf8");
 const deployApp = readFileSync(new URL("../deploy-site/app.js", import.meta.url), "utf8");
 
 test("score drivers use compact visual signal cards", () => {
-  assert.match(css, /\.score-driver-grid\s*\{[\s\S]*?grid-template-columns:\s*repeat\(3, minmax\(0, 1fr\)\)[\s\S]*?gap:\s*8px/);
+  assert.match(css, /\.score-driver-grid\s*\{[\s\S]*?grid-template-columns:\s*repeat\(2, minmax\(0, 1fr\)\)[\s\S]*?gap:\s*8px/);
   assert.match(css, /\.score-driver-card\s*\{[\s\S]*?display:\s*grid[\s\S]*?min-height:\s*54px[\s\S]*?linear-gradient/);
   assert.match(css, /\.score-driver-marker\s*\{[\s\S]*?background:\s*var\(--score-signal\)/);
   assert.doesNotMatch(css, /score-driver-meter/);
@@ -23,7 +23,7 @@ test("compact score-strip styles ship identically", () => {
   assert.equal(deployCss, css);
 });
 
-test("activity uses plain-language levels while source quality keeps its score", () => {
+test("score strip shows only the two activity signals", () => {
   assert.match(app, /function activityLevelFromTwenty\(score\)/);
   assert.match(app, /value >= 15\) return "High"/);
   assert.match(app, /value >= 8\) return "Medium"/);
@@ -31,7 +31,6 @@ test("activity uses plain-language levels while source quality keeps its score",
   assert.match(app, /label: "Competitor activity", value: activityLevelFromTwenty/);
   assert.doesNotMatch(app, /label: "Application trend", value: `\$\{breakdown\.trendAcceleration\}\/20`/);
   assert.doesNotMatch(app, /label: "Competitor activity", value: `\$\{breakdown\.competitorPressure\}\/20`/);
-  assert.doesNotMatch(app, /function sourceQualityLevelFromTen\(score\)/);
-  assert.match(app, /label: "Source quality", value: `\$\{sourceQualityScore\}\/10`/);
+  assert.doesNotMatch(app, /key: "evidenceQualityFreshness", label: "Source quality"/);
   assert.equal(deployApp, app);
 });

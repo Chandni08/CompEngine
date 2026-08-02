@@ -4,16 +4,17 @@
 from __future__ import annotations
 
 import json
+import html
 import os
 import re
 import shutil
 import subprocess
 import time
 import xml.etree.ElementTree as ET
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from html.parser import HTMLParser
 from pathlib import Path
-from urllib.parse import urljoin, urlparse
+from urllib.parse import urlencode, urljoin, urlparse
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -31,6 +32,8 @@ PRODUCT_SITEMAPS = (
 )
 PRESS_INDEX = "https://www.agilent.com/about/newsroom/presrel.html"
 INVESTOR_PAGE = "https://www.investor.agilent.com/overview/default.aspx"
+INVESTOR_NEWS_PAGE = "https://www.investor.agilent.com/news-and-events/news/default.aspx"
+INVESTOR_IR_FEED = "https://www.investor.agilent.com/feed/PressRelease.svc/GetPressReleaseList"
 HEADLESS_HELPER = ROOT / "scripts" / "agilent_browser_fetch.cjs"
 LCMS_PATH = "/en/product/liquid-chromatography-mass-spectrometry-lc-ms"
 
@@ -141,9 +144,9 @@ def source_status(url: str, method: str, status: int | None, detail: str = "") -
         "fetchMethod": method if not needs_browser else "headless_browser_required",
         "httpStatus": status,
         "status": "available" if successful else "collection_review_needed",
-        "sourceQuality": "reliable",
+        "sourceQuality": "blocked" if needs_browser else "reliable" if successful else "unverified",
         "reliabilityNote": (
-            "A 403 from a plain HTTP client is an Agilent WAF artifact and does not reduce source quality."
+            "HTTP 403 prevents extraction in this run; record as blocked, not healthy, until a permitted fetch succeeds."
             if needs_browser else detail
         ),
         "checkedAt": utc_now(),
@@ -210,6 +213,175 @@ def classify_release(title: str) -> str:
         "chromatography", "spectrometry", "detector", "workflow", "portfolio",
     )
     return "product" if any(term in title.lower() for term in product_terms) else "corporate"
+
+
+def clean_text(value: str) -> str:
+    return re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", value or ""))).strip()
+
+
+def parse_ir_date(value: str) -> str:
+    text = clean_text(value)
+    for fmt in ("%m/%d/%Y %H:%M:%S", "%m/%d/%Y", "%Y-%m-%d"):
+        try:
+            return datetime.strptime(text, fmt).date().isoformat()
+        except ValueError:
+            continue
+    return ""
+
+
+def completed_earnings_title(title: str) -> bool:
+    return bool(re.search(
+        r"\breports?\s+(?:first|second|third|fourth|q[1-4])[- ]quarter.*financial results\b",
+        clean_text(title),
+        re.I,
+    ))
+
+
+def earnings_enrichment(title: str) -> dict:
+    if "Second-Quarter Fiscal Year 2026" not in title:
+        return {
+            "theme": "Quarterly earnings and end-market demand",
+            "intent": "Corporate performance and investment capacity",
+            "summary": f"{title}. Review the official reported result for segment demand, margin, outlook, and investment-capacity signals.",
+            "evidenceBoundary": "The earnings release does not separately report LC or LC-MS revenue, units, pricing, or market share.",
+        }
+    return {
+        "theme": "Quarterly earnings and end-market demand",
+        "intent": "Corporate performance and investment capacity",
+        "summary": "Agilent paired broad-based revenue growth with higher Life Sciences and Diagnostics, CrossLab, and Applied Markets performance while raising fiscal 2026 revenue, margin, and EPS guidance.",
+        "earningsMetrics": [
+            {"label": "Life Sciences and Diagnostics revenue", "value": "$732M", "detail": "+12% reported / +9% core year over year"},
+            {"label": "CrossLab revenue", "value": "$759M", "detail": "+6% reported / +2% core; 32.0% operating margin"},
+            {"label": "Applied Markets revenue", "value": "$344M", "detail": "+14% reported / +11% core year over year"},
+        ],
+        "pmInsights": [
+            "All three operating groups grew; Life Sciences and Diagnostics and Applied Markets posted the strongest core growth.",
+            "CrossLab remained Agilent's largest reported group and carried a 32.0% operating margin, making lifecycle and service economics strategically material.",
+            "Agilent raised fiscal 2026 revenue, core-growth, operating-margin, and non-GAAP EPS guidance, increasing capacity to invest behind priority workflows.",
+        ],
+        "watersPmImplication": "Assess Agilent as an installed-base lifecycle and workflow competitor—not only an LC instrument competitor—and track where CrossLab, software, and applications are bundled into regulated customer outcomes.",
+        "evidenceBoundary": "Agilent does not separately report LC or LC-MS revenue, units, pricing, or share; segment growth is not direct evidence of LC market-share gain.",
+    }
+
+
+def release_enrichment(title: str, short_body: str = "") -> dict:
+    """Classify an official Agilent release without excluding non-earnings news."""
+    text = clean_text(f"{title} {short_body}")
+    lowered = text.lower()
+    if completed_earnings_title(title):
+        return {
+            "classification": "corporate",
+            "signalType": "Quarterly earnings result",
+            "marketSegment": "Corporate",
+            "technology": "Portfolio",
+            **earnings_enrichment(title),
+        }
+    if re.search(r"\bto announce\b.*\bfinancial results\b", lowered):
+        return {
+            "classification": "corporate",
+            "signalType": "Earnings event announcement",
+            "marketSegment": "Corporate",
+            "technology": "Portfolio",
+            "theme": "Upcoming earnings event",
+            "intent": "Investor communication",
+            "summary": clean_text(short_body) or title,
+        }
+    if any(term in lowered for term in ("acquisition", "acquires", "acquire ")):
+        return {
+            "classification": "corporate",
+            "signalType": "Acquisition",
+            "marketSegment": "Corporate",
+            "technology": "Portfolio",
+            "theme": "Portfolio expansion through acquisition",
+            "intent": "Capability and market expansion",
+            "summary": clean_text(short_body) or title,
+        }
+    if any(term in lowered for term in ("fda approval", "eu approval", "approved use")):
+        return {
+            "classification": "product",
+            "signalType": "Regulatory approval",
+            "marketSegment": "Clinical",
+            "technology": "Diagnostics",
+            "theme": "Regulatory expansion",
+            "intent": "Expand approved clinical use",
+            "summary": clean_text(short_body) or title,
+        }
+    classification = classify_release(text)
+    technology = "LC/UHPLC" if any(term in lowered for term in ("column", "chromatograph", "altura", "plrp", "size exclusion")) else "Software" if any(term in lowered for term in ("ai-driven", "analysis module", "software", "xcellence")) else "Portfolio"
+    return {
+        "classification": classification,
+        "signalType": "Product release" if classification == "product" else "Press release",
+        "marketSegment": "Biopharma" if any(term in lowered for term in ("biotherapeut", "biopharma", "protein", "oligonucleotide")) else "Corporate",
+        "technology": technology,
+        "theme": "Product and workflow expansion" if classification == "product" else "Corporate strategic activity",
+        "intent": "Product and portfolio expansion" if classification == "product" else "Corporate strategic activity",
+        "summary": clean_text(short_body) or title,
+    }
+
+
+def collect_investor_releases(statuses: list[dict]) -> dict[str, dict]:
+    query = urlencode({
+        "LanguageId": 1,
+        "bodyType": 3,
+        "pressReleaseDateFilter": 3,
+        "categoryId": "",
+        "pageSize": -1,
+        "pageNumber": 0,
+        "tagList": "",
+        "includeTags": "true",
+        "year": date.today().year,
+        "excludeSelection": 1,
+    })
+    feed_url = f"{INVESTOR_IR_FEED}?{query}"
+    status, body = fetch(feed_url)
+    statuses.append(source_status(
+        INVESTOR_NEWS_PAGE,
+        "official_ir_news_api",
+        status,
+        "Official Agilent investor-relations news feed; 10-second crawl delay applied.",
+    ))
+    if not status or not 200 <= status < 300 or not body:
+        return {}
+    try:
+        rows = json.loads(body.decode("utf-8", errors="replace")).get("GetPressReleaseListResult", [])
+    except (json.JSONDecodeError, AttributeError):
+        return {}
+    releases: dict[str, dict] = {}
+    for row in rows:
+        title = clean_text(str(row.get("Headline", "")))
+        if not title:
+            continue
+        path = row.get("LinkToDetailPage") or row.get("LinkToPage") or row.get("LinkToUrl") or ""
+        url = urljoin("https://www.investor.agilent.com", path)
+        if not url or not allowed(url):
+            continue
+        releases[url] = {
+            "date": parse_ir_date(str(row.get("PressReleaseDate", ""))),
+            "title": title,
+            "url": url,
+            "sourceId": "agilent-investor-news",
+            "sourceName": "Agilent investor relations news",
+            **release_enrichment(title, str(row.get("ShortBody", ""))),
+        }
+    return releases
+
+
+def dedupe_press_releases(releases: dict[str, dict]) -> dict[str, dict]:
+    """Keep one canonical record when the newsroom and IR feed syndicate a release."""
+    selected: dict[tuple[str, str], tuple[str, dict]] = {}
+    for url, release in releases.items():
+        title_key = re.sub(r"[^a-z0-9]+", " ", str(release.get("title", "")).lower()).strip()
+        key = (str(release.get("date", ""))[:10], title_key)
+        current = selected.get(key)
+        # Prefer the public newsroom URL because it is the editorial source page;
+        # the IR endpoint remains the completeness feed when no newsroom copy exists.
+        preference = 1 if "agilent.com/about/newsroom" in url or "news.agilent.com" in url else 0
+        current_preference = (
+            1 if current and ("agilent.com/about/newsroom" in current[0] or "news.agilent.com" in current[0]) else 0
+        )
+        if current is None or preference > current_preference:
+            selected[key] = (url, release)
+    return {url: release for url, release in selected.values()}
 
 
 def collect_products(statuses: list[dict]) -> dict[str, str]:
@@ -295,6 +467,11 @@ def enrich_changed_pages(items: list[dict], statuses: list[dict]) -> None:
 
 def enrich_new_releases(items: list[dict], statuses: list[dict]) -> None:
     for item in items:
+        # The official IR API already supplies the dated title and release body.
+        # Do not refetch every detail page merely to recreate metadata that the
+        # authoritative feed returned in the same response.
+        if item.get("sourceId") == "agilent-investor-news" and item.get("summary"):
+            continue
         url = item.get("url", "")
         status, body = fetch(url)
         browser_result = browser_fetch(url) if status == 403 else {}
@@ -313,7 +490,9 @@ def enrich_new_releases(items: list[dict], statuses: list[dict]) -> None:
 def monitor() -> dict:
     statuses: list[dict] = []
     products = collect_products(statuses)
-    press_releases = collect_press_releases(statuses)
+    newsroom_releases = collect_press_releases(statuses)
+    investor_releases = collect_investor_releases(statuses)
+    press_releases = dedupe_press_releases({**newsroom_releases, **investor_releases})
     investor_status, _ = fetch(INVESTOR_PAGE)
     investor_browser = browser_fetch(INVESTOR_PAGE) if investor_status == 403 else {}
     effective_investor_status = investor_browser.get("httpStatus") if investor_browser else investor_status
@@ -329,15 +508,24 @@ def monitor() -> dict:
         item.get("status") == "available" and item.get("fetchMethod") == "product_sitemap_xml"
         for item in statuses
     ) and bool(products)
-    press_success = any(
+    newsroom_success = any(
         item.get("status") == "available" and item.get("url") == PRESS_INDEX
         for item in statuses
-    ) and bool(press_releases)
+    ) and bool(newsroom_releases)
+    investor_success = any(
+        item.get("status") == "available" and item.get("fetchMethod") == "official_ir_news_api"
+        for item in statuses
+    ) and bool(investor_releases)
+    press_success = (newsroom_success or investor_success) and bool(press_releases)
 
     if not product_success:
         products = previous_products
     if not press_success:
         press_releases = previous_releases
+    elif not newsroom_success or not investor_success:
+        # A partial source outage must not remove records collected successfully
+        # by the other official Agilent source in a prior run.
+        press_releases = dedupe_press_releases({**previous_releases, **press_releases})
     product_baseline_created = product_success and not previous_product_initialized
     press_baseline_created = press_success and not previous_press_initialized
 
@@ -345,6 +533,7 @@ def monitor() -> dict:
     discontinued_products = []
     updated_products = []
     new_press_releases = []
+    recent_press_releases = []
     if previous_product_initialized and product_success:
         new_products = [
             {"url": url, "lastmod": lastmod, "category": "LC/MS"}
@@ -361,20 +550,46 @@ def monitor() -> dict:
         ]
         enrich_changed_pages(new_products + updated_products, statuses)
     if previous_press_initialized and press_success:
-        new_press_releases = [release for url, release in press_releases.items() if url not in previous_releases]
+        replay_cutoff = date.today() - timedelta(days=120)
+        new_press_releases = [
+            release for url, release in press_releases.items()
+            if url not in previous_releases
+            or release.get("date", "") >= replay_cutoff.isoformat()
+        ]
         enrich_new_releases(new_press_releases, statuses)
+    if press_success:
+        replay_cutoff = date.today() - timedelta(days=120)
+        recent_press_releases = [
+            release for release in press_releases.values()
+            if release.get("date", "") >= replay_cutoff.isoformat()
+        ]
+
+    unverified_inventory_changes = {
+        "new": new_products,
+        "updated": updated_products,
+        "missing": discontinued_products,
+    }
+    # Sitemap observations alone cannot substantiate "added", "updated", or
+    # "removed" page-content claims.  A future page-diff collector may promote an
+    # observation by attaching a complete changeEvidence object.
+    new_products = [item for item in new_products if item.get("changeEvidence")]
+    updated_products = [item for item in updated_products if item.get("changeEvidence")]
+    discontinued_products = [item for item in discontinued_products if item.get("changeEvidence")]
 
     authoritative_success = any(
-        item["status"] == "available" and item["fetchMethod"] in {"sitemap_index", "product_sitemap_xml", "press_release_index"}
+        item["status"] == "available" and item["fetchMethod"] in {"sitemap_index", "product_sitemap_xml", "press_release_index", "official_ir_news_api"}
         for item in statuses
     )
     if authoritative_success:
         write_json(SNAPSHOT_FILE, {
+            "snapshotSchemaVersion": 2,
+            "observationType": "sitemap_inventory",
             "capturedAt": utc_now(),
             "productInventoryInitialized": previous_product_initialized or product_success,
             "pressIndexInitialized": previous_press_initialized or press_success,
             "products": products,
             "pressReleases": press_releases,
+            "unverifiedInventoryChanges": unverified_inventory_changes,
         })
 
     return {
@@ -387,7 +602,9 @@ def monitor() -> dict:
         "new_products": new_products,
         "discontinued_products": discontinued_products,
         "updated_products": updated_products,
+        "unverified_inventory_changes": unverified_inventory_changes,
         "new_press_releases": sorted(new_press_releases, key=lambda item: item.get("date", ""), reverse=True),
+        "recent_press_releases": sorted(recent_press_releases, key=lambda item: item.get("date", ""), reverse=True),
         "source_status": statuses,
         "monitoringNote": "Agilent WAF responses do not affect source quality. Authoritative sitemap and press indexes are monitored with an honest crawler identity.",
     }
@@ -405,6 +622,18 @@ def main() -> int:
             "extractionReason": f"Official dated press-release index parsed; {result['inventoryCounts']['pressReleases']} releases tracked.",
             "extractedRecords": result["inventoryCounts"]["pressReleases"],
             "fetchMethod": "dated_press_index",
+            "lastExtractionCheck": checked_at,
+        })
+    if "agilent-investor-news" in sources:
+        earnings_count = sum(
+            1 for item in result.get("new_press_releases", [])
+            if completed_earnings_title(item.get("title", ""))
+        )
+        sources["agilent-investor-news"].update({
+            "extractionStatus": "extracted",
+            "extractionReason": f"Official investor-relations feed parsed; {earnings_count} recent completed earnings results retained for replay.",
+            "extractedRecords": earnings_count,
+            "fetchMethod": "official_ir_news_api",
             "lastExtractionCheck": checked_at,
         })
     if "agilent-lcms" in sources:
