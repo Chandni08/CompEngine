@@ -27,26 +27,21 @@ test("the PMM workspace follows one eight-section narrative spine", () => {
   assert.match(index, /id="pmm-evidence-appendix"[^>]*data-default-collapsed="true"/);
 });
 
-test("Start Here exposes the senior-PMM claim gates and commercial actions", () => {
+test("Start Here is a compact readiness strip without generated command-brief prose", () => {
   const renderer = app.match(/function renderMarketingStartHere[\s\S]*?\n}\n/)?.[0] || "";
   for (const label of [
-    "Chosen segment",
-    "Governing position status",
-    "Swing attribute",
-    "Competitor / inertia threat",
-    "Next required decision",
-    "Nearest activation deadline",
-    "Approved claim to use now",
-    "Best evidence-backed direction",
-    "Do not say",
-    "Build this proof next",
+    "Current Field Status",
+    "Field-ready claims",
+    "Supported, not approved",
+    "Proof gaps",
+    "Traceability gaps",
+    "Next proof decision",
   ]) assert.match(renderer, new RegExp(label));
-  assert.match(renderer, /None loaded — do not copy a superiority claim/);
-  assert.match(renderer, /href="#pmm-head-to-head"/);
   assert.match(renderer, /href="#pmm-claims-risk"/);
   assert.match(renderer, /href="#pmm-positioning-decisions"/);
-  assert.match(app, /pmmHighestRiskClaim/);
-  assert.match(app, /pmmNearestActivationDeadline/);
+  assert.match(renderer, /href="#pmm-evidence-appendix"/);
+  assert.doesNotMatch(renderer, /Do not say|Owner needed|Deadline needed|Success measure needed|Swing attribute|Competitor \/ inertia threat/);
+  assert.doesNotMatch(app, /function pmmHighestRiskClaim|function pmmNearestActivationDeadline/);
 });
 
 test("repeated proof is represented by canonical evidence objects with expandable caveats", () => {
@@ -61,10 +56,10 @@ test("repeated proof is represented by canonical evidence objects with expandabl
 });
 
 test("the narrative spine remains responsive and keyboard accessible", () => {
-  assert.match(styles, /\.pmm-start-primary-action:focus-visible/);
+  assert.match(styles, /\.pmm-readiness-strip a:focus-visible/);
   assert.match(styles, /\.pmm-evidence-reference:focus-visible/);
   assert.match(styles, /\.pmm-caveat-details > summary:focus-visible/);
   assert.match(styles, /@media \(max-width: 960px\)[\s\S]*?\.pmm-start-here > header/);
-  assert.match(styles, /@media \(max-width: 720px\)[\s\S]*?\.pmm-start-summary/);
+  assert.match(styles, /@media \(max-width: 720px\)[\s\S]*?\.pmm-readiness-strip/);
   assert.match(app, /record\.focus\(\{ preventScroll: true \}\)/);
 });

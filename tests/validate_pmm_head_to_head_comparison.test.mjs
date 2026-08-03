@@ -108,17 +108,17 @@ test("the selected battlecard produces a concise tailored seller pitch", () => {
   assert.match(app, /Do not assert that \$\{context\.waters\.product\} is superior/);
 });
 
-test("the senior-PMM command brief separates usable, directional, and blocked claims", () => {
+test("the PMM readiness strip reports governed counts without narrative filler", () => {
   for (const label of [
-    "What Waters Can Credibly Use to Win",
-    "Approved claim to use now",
-    "Best evidence-backed direction",
-    "Do not say",
-    "Build this proof next",
+    "Current Field Status",
+    "Field-ready claims",
+    "Supported, not approved",
+    "Proof gaps",
+    "Traceability gaps",
   ]) assert.match(app, new RegExp(label));
-  assert.match(app, /approvalEstablished === true/);
+  assert.match(app, /model\.sellerAssets\?\.approvedClaims\?\.length/);
   assert.match(app, /proof\.compatibility\.status === "Applicable"/);
-  assert.match(app, /None loaded — do not copy a superiority claim/);
+  assert.doesNotMatch(app.match(/function renderMarketingStartHere[\s\S]*?\n}\n/)?.[0] || "", /Do not say|Owner needed|Deadline needed|Success measure needed/);
   assert.match(index, /Evidence-Backed Product Battlecards/);
   assert.match(index, /id="pmm-governing-position"[^>]*data-default-collapsed="true"/);
   assert.match(index, /id="pmm-segment-cascade"[^>]*data-default-collapsed="true"/);

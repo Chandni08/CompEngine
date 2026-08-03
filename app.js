@@ -5380,69 +5380,48 @@ function pmmClaimRiskScore(row) {
   return substantiation + approval + inapplicable + guardrailConflict;
 }
 
-function pmmHighestRiskClaim(rows) {
-  return [...rows].sort((left, right) => pmmClaimRiskScore(right) - pmmClaimRiskScore(left)
-    || String(left.proposedClaimWording).localeCompare(String(right.proposedClaimWording)))[0] || null;
-}
-
-function pmmNearestActivationDeadline(artifactProduction) {
-  const dated = (artifactProduction?.artifacts || []).map((artifact) => ({ artifact, time: Date.parse(artifact.workflow.dueDate) }))
-    .filter((item) => Number.isFinite(item.time)).sort((left, right) => left.time - right.time);
-  if (!dated.length) return { label: "Deadline needed", artifact: null };
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  const nearest = dated.find((item) => item.time >= today.getTime()) || dated[0];
-  return { label: `${formatDate(nearest.artifact.workflow.dueDate)} · ${nearest.artifact.title}`, artifact: nearest.artifact };
-}
-
 function pmmStartHereModel(model) {
   const selectedSegment = model.artifactProduction?.selectedSegment || model.buyingCommittee.segments[0] || null;
   const claimPool = model.visibleClaimRows.length ? model.visibleClaimRows : model.claimRows;
-  const highestRiskClaim = pmmHighestRiskClaim(claimPool);
-  const approvedClaims = claimPool.filter((claim) => claim.approvalEstablished === true && claim.approvedWording);
-  const defensibleDirections = claimPool
+  const supportedRegistryClaims = claimPool
     .filter((claim) => claim.substantiationStatus !== "Unsupported"
       && claim.evidenceRecords.some((proof) => proof.compatibility.status === "Applicable"))
-    .sort((left, right) => Number(right.substantiationStatus === "Proven") - Number(left.substantiationStatus === "Proven")
-      || right.independentSourceCount - left.independentSourceCount
-      || right.confidence - left.confidence);
-  const inertia = model.marketChoice.levels.find((level) => level.name === "Inertia")?.alternatives?.[0];
-  const primaryCompetitor = model.contexts[0]?.competitor || "Competitor unresolved";
+    .filter((claim) => claim.approvalState !== "approved");
+  const supportedComparatorClaims = (model.productComparatorSupportedClaims || [])
+    .filter((claim) => claim.approvalState !== "approved" && claim.supportingEvidence?.length);
+  const supportedAwaitingApproval = [...supportedRegistryClaims, ...supportedComparatorClaims];
+  const supportedAwaitingApprovalCount = new Set(supportedAwaitingApproval
+    .map((claim) => claim.claimText || claim.proposedClaimWording)
+    .filter(Boolean)).size;
+  const proofGaps = [...(model.proofPriorities.top || []), ...(model.proofPriorities.backlog || [])];
+  const traceabilityGaps = [
+    ...(model.appendix.validation?.missingApprovedClaims || []),
+    ...(model.appendix.validation?.missingPillars || []),
+  ];
+  const primaryCompetitor = model.sellerAssets?.competitor || model.contexts[0]?.competitor || "Competitor unresolved";
   return {
     chosenSegment: selectedSegment ? `${selectedSegment.segment}${selectedSegment.application !== "All" ? ` · ${selectedSegment.application}` : ""}` : pmmTargetingDisplayValue(model.governingPosition.targeting.market, "Segment unresolved"),
     watersProduct: pmmTargetingDisplayValue(model.governingPosition.targeting.watersProduct, "All Waters products"),
-    governingStatus: pmmApprovalStateLabel(model.governingPosition.approvalState),
-    swingAttribute: model.governingPosition.selectedSwingAttribute,
-    highestRiskClaim,
-    approvedClaim: approvedClaims[0] || null,
-    approvedClaimCount: approvedClaims.length,
-    defensibleDirection: defensibleDirections[0] || null,
-    defensibleDirectionCount: defensibleDirections.length,
-    battlecardCount: headToHeadAvailableCompetitors().length,
-    threat: `${primaryCompetitor} · ${inertia?.name || "Inertia threat unresolved"}`,
-    nextDecision: model.proofPriorities.top[0] || model.positioningDecisions[0] || null,
-    nearestDeadline: pmmNearestActivationDeadline(model.artifactProduction),
+    competitor: primaryCompetitor,
+    fieldReadyClaimCount: model.sellerAssets?.approvedClaims?.length || 0,
+    supportedAwaitingApprovalCount,
+    proofGapCount: proofGaps.length,
+    traceabilityGapCount: traceabilityGaps.length,
+    nextProof: model.proofPriorities.top[0] || null,
   };
 }
 
 function renderMarketingStartHere(summary) {
   const target = byId("pmmStartHere");
-  const blockedClaim = summary.highestRiskClaim;
-  const approvedClaim = summary.approvedClaim;
-  const direction = summary.defensibleDirection;
-  const decision = summary.nextDecision;
-  const directionSources = direction?.evidenceRecords
-    .filter((proof) => proof.compatibility.status === "Applicable")
-    .slice(0, 2) || [];
-  target.innerHTML = `<header class="pmm-command-header"><div><div class="pmm-eyebrow">Senior PMM Command Brief</div><h2 id="pmmStartHereTitle">What Waters Can Credibly Use to Win</h2><p>Customer-facing claims are separated from message hypotheses. Every usable direction has exact proof; every unsupported statement is visibly blocked.</p></div><div class="pmm-command-score"><strong>${summary.approvedClaimCount}</strong><span>approved claims available</span><small>${summary.defensibleDirectionCount} evidence-backed direction${summary.defensibleDirectionCount === 1 ? "" : "s"} still require approval</small></div></header>
-    <div class="pmm-command-grid">
-      <article class="pmm-command-card pmm-command-approved"><span>Approved claim to use now</span>${approvedClaim ? `<strong>${escapeHtml(approvedClaim.approvedWording)}</strong><small>${escapeHtml(approvedClaim.referenceBaseline)} · approval established</small>` : `<strong>None loaded — do not copy a superiority claim.</strong><small>Legal/claims approval is not established for any filtered statement.</small>`}</article>
-      <article class="pmm-command-card pmm-command-direction"><span>Best evidence-backed direction</span>${direction ? `<strong>${escapeHtml(direction.proposedClaimWording)}</strong><small>${escapeHtml(direction.substantiationStatus)} · ${escapeHtml(pmmApprovalStateLabel(direction.approvalState))} · ${direction.independentSourceCount} established independent source organization${direction.independentSourceCount === 1 ? "" : "s"}</small><div class="pmm-command-sources">${directionSources.map((source) => pmmCanonicalEvidenceReferenceMarkup(source, "Applicable claim proof")).join("")}</div>` : `<strong>No applicable claim proof matches these filters.</strong><small>Use the battlecard discovery path and commission the required comparison.</small>`}</article>
-      <article class="pmm-command-card pmm-command-blocked"><span>Do not say</span>${blockedClaim ? `<strong>${escapeHtml(blockedClaim.proposedClaimWording)}</strong><small>${escapeHtml(blockedClaim.substantiationStatus)} · ${escapeHtml(blockedClaim.comparabilityStatus)} · ${escapeHtml(pmmApprovalStateLabel(blockedClaim.approvalState))}</small>` : `<strong>No governed claim row matches this target.</strong><small>Unrelated evidence was not substituted.</small>`}</article>
-      <article class="pmm-command-card pmm-command-build"><span>Build this proof next</span><strong>${escapeHtml(direction?.nextRequiredAction || blockedClaim?.nextRequiredAction || decision?.missingStudyEvidence || decision?.missingProof || "Proof requirement unresolved")}</strong><small>Owner needed · Deadline needed · Success measure needed</small></article>
+  const nextProof = summary.nextProof;
+  target.innerHTML = `<header><div><div class="pmm-eyebrow">PMM Readiness</div><h2 id="pmmStartHereTitle">Current Field Status</h2></div><p>${escapeHtml(summary.watersProduct)} · ${escapeHtml(summary.chosenSegment)} · ${escapeHtml(summary.competitor)}</p></header>
+    <div class="pmm-readiness-strip" aria-label="Current Product Marketing readiness counts">
+      <a href="#pmm-claims-risk" data-section-nav="pmm-claims-risk"><span>Field-ready claims</span><strong>${summary.fieldReadyClaimCount}</strong><small>${summary.fieldReadyClaimCount ? "Approved and citable" : "None cleared"}</small></a>
+      <a href="#pmm-claims-risk" data-section-nav="pmm-claims-risk"><span>Supported, not approved</span><strong>${summary.supportedAwaitingApprovalCount}</strong><small>Claim Control</small></a>
+      <a href="#pmm-positioning-decisions" data-section-nav="pmm-positioning-decisions"><span>Proof gaps</span><strong>${summary.proofGapCount}</strong><small>Top 3 + backlog</small></a>
+      <a href="#pmm-evidence-appendix" data-section-nav="pmm-evidence-appendix" class="${summary.traceabilityGapCount ? "has-gap" : "is-clear"}"><span>Traceability gaps</span><strong>${summary.traceabilityGapCount}</strong><small>${summary.traceabilityGapCount ? "Needs attention" : "Required links resolved"}</small></a>
     </div>
-    <div class="pmm-command-actions" aria-label="Product Marketing priority actions"><a href="#pmm-head-to-head" data-section-nav="pmm-head-to-head"><span>1</span><strong>Open ${summary.battlecardCount} product battlecard${summary.battlecardCount === 1 ? "" : "s"}</strong><small>${escapeHtml(summary.watersProduct)}</small></a><a href="#pmm-claims-risk" data-section-nav="pmm-claims-risk"><span>2</span><strong>Govern claims</strong><small>Proof compatibility and approval</small></a><a href="#pmm-positioning-decisions" data-section-nav="pmm-positioning-decisions"><span>3</span><strong>Fund the proof gap</strong><small>${decision ? escapeHtml(decision.sellerAsset || decision.activation || "Seller asset unresolved") : "Decision unresolved"}</small></a><a href="#pmm-activation-artifacts" data-section-nav="pmm-activation-artifacts"><span>4</span><strong>Ship the asset</strong><small>${escapeHtml(summary.nearestDeadline.label)}</small></a></div>
-    <dl class="pmm-command-context"><div><dt>Chosen segment</dt><dd>${escapeHtml(summary.chosenSegment)}</dd></div><div><dt>Waters product</dt><dd>${escapeHtml(summary.watersProduct)}</dd></div><div><dt>Governing position status</dt><dd>${escapeHtml(summary.governingStatus)}</dd></div><div><dt>Swing attribute</dt><dd>${escapeHtml(summary.swingAttribute)}</dd></div><div><dt>Competitor / inertia threat</dt><dd>${escapeHtml(summary.threat)}</dd></div><div><dt>Next required decision</dt><dd>${decision ? escapeHtml(decision.missingStudyEvidence || decision.missingProof || "Decision unavailable") : "Decision unavailable"}</dd></div><div><dt>Nearest activation deadline</dt><dd>${escapeHtml(summary.nearestDeadline.label)}</dd></div></dl>`;
+    ${nextProof ? `<article class="pmm-next-proof"><div><span>Next proof decision</span><strong>${escapeHtml(nextProof.claimText)}</strong><p>${escapeHtml(nextProof.missingStudyEvidence)}</p><small>Unblocks: ${escapeHtml(nextProof.sellerAsset)}</small></div><a href="#pmm-positioning-decisions" data-section-nav="pmm-positioning-decisions">Open priority →</a></article>` : ""}`;
 }
 
 function normalizeMarketingClaimFilters(rows) {
