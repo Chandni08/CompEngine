@@ -46,48 +46,38 @@ test("Product Marketing uses dedicated navigation and a dedicated render path", 
   assert.match(app, /visualDashboard\.insertAdjacentElement\("afterbegin", comparatorPanel\)/);
 });
 
-test("competitive narratives synthesize evidence into one canonical PMM decision card", async () => {
+test("competitor plays render one governed selling motion per Competitor Intent record", async () => {
   const app = await readFile(new URL("app.js", root), "utf8");
-  const renderer = app.match(/function renderMarketingCompetitiveNarrative[\s\S]*?\n}\n\nfunction renderMarketingActivationBacklog/)?.[0] || "";
+  const renderer = app.match(/function pmmSellingMotionObservedSourceMarkup[\s\S]*?\n}\n\nconst pmmActivationAssetTypes/)?.[0] || "";
 
   assert.match(app, /marketingBattlecardCompetitors = \["Agilent", "Thermo Fisher", "Shimadzu", "SCIEX"\]/);
-  assert.match(app, /function pmmCompetitiveNarrative/);
-  assert.match(app, /function pmmNarrativeApplicationRead/);
-  assert.match(app, /function pmmNarrativeConferenceEvidence/);
-  assert.match(app, /function pmmNarrativeActivation/);
+  assert.match(app, /function pmmCompetitorIntentSellingMotions/);
+  assert.match(app, /competitorSellingMotionTransformer\.transformCompetitorIntentProfiles/);
   for (const field of [
-    "What Changed",
-    "Observed Competitor Claim or Workflow Emphasis",
-    "Likely Positioning",
-    "Workflow Ownership Signal",
-    "Target Audience or Buying Situation",
-    "Waters Counter-Position",
-    "PMM Decision",
-    "Evidence Caveats",
-    "Canonical Evidence References",
+    "Observed move",
+    "Inferred intent",
+    "Buying situation targeted",
+    "Deal type",
+    "Committee role",
+    "Waters response",
+    "Three Proof Priorities",
   ]) assert.match(renderer, new RegExp(field));
-  assert.match(renderer, /One canonical narrative per competitor/);
-  assert.match(renderer, /Observed competitor evidence/);
-  assert.match(renderer, /Analyst\/rule-based inference/);
-  assert.match(renderer, /Proposed Waters position — not approved/);
-  assert.match(renderer, /Approval not established/);
-  assert.match(renderer, /Evidence details and source caveats live once in the collapsed appendix/);
-  assert.equal((renderer.match(/Observed Competitor Claim or Workflow Emphasis/g) || []).length, 1);
+  assert.match(renderer, /One selling motion per Competitor Intent record/);
+  assert.match(renderer, /Only field-citable, non-blocked evidence can support a Waters response/);
+  assert.match(renderer, /No customer-facing counter is emitted/);
+  assert.match(renderer, /data-response-status="needs-proof" data-field-usable="false"/);
+  assert.doesNotMatch(renderer, /Waters Counter-Position|Proposed Waters position — not approved/);
 });
 
-test("competitive narrative logic treats application notes, launches, and conferences as synthesis inputs", async () => {
+test("selling-motion inputs keep observed move text separate from PM interpretation", async () => {
   const app = await readFile(new URL("app.js", root), "utf8");
-  const logic = app.match(/function pmmNarrativeApplicationNotes[\s\S]*?\n}\n\nfunction pmmNarrativeSourceMarkup/)?.[0] || "";
+  const intentInputs = app.match(/function competitorIntentProfile[\s\S]*?\n}\n\nfunction competitorDirectionStatement/)?.[0] || "";
 
-  assert.match(logic, /official notes repeatedly emphasize/);
-  assert.match(logic, /early workflow-ownership signal, not a sustained competitor narrative/);
-  assert.match(app, /Publication volume is not used/);
-  assert.match(logic, /comparable prior PMM narrative snapshot is not loaded/);
-  assert.match(logic, /notes\.slice\(0, 1\)/);
-  assert.match(logic, /do not treat unconfirmed session content as an observed competitor claim/);
-  assert.match(logic, /do not reproduce the raw launch feed in primary PMM content/);
-  assert.match(logic, /most represented matching audience[\s\S]*not a measure of commercial attractiveness/);
-  assert.match(logic, /Low source diversity — fewer than 3 distinct source domains/);
+  assert.match(intentInputs, /type: "Launch"[\s\S]*?observedDetail: launch\.summary \|\| launch\.signalType/);
+  assert.match(intentInputs, /type: "Strategic move"[\s\S]*?observedDetail: signal\.summary \|\| signal\.signalType/);
+  assert.match(intentInputs, /type: "Earnings result"[\s\S]*?observedDetail: signal\.summary \|\| signal\.signalType/);
+  assert.match(intentInputs, /type: "Filing insight"[\s\S]*?observedDetail: insight\.evidence/);
+  assert.match(intentInputs, /\.\.\.pmmGovernanceFields\((?:launch|signal|insight)\)/);
 });
 
 test("Marketing copy states the decision-and-activation purpose", async () => {

@@ -60,7 +60,7 @@ test("downstream positioning objects and competitor narratives retain governing-
   assert.match(app, /Local adaptation/);
   assert.match(app, /positioningDecisions\.map\(\(decision\) => \(\{ \.\.\.decision\.governingTrace/);
   assert.match(app, /pmmApplyClaimsRegistryToDecisions\(positioningDecisionCandidates, claimRows\)/);
-  assert.match(app, /pmmGoverningTraceMarkup\(governing, narrative\.governingTrace\)/);
+  assert.match(app, /governingTrace: counterPosition\.trace/);
 });
 
 test("contradictions and unsupported deviations are visibly flagged", () => {

@@ -8985,6 +8985,195 @@ body.modal-open {
   font-weight: 800;
 }
 
+.pmm-selling-motion-intro {
+  border-left-color: #3a7080;
+}
+
+.pmm-selling-motion-list {
+  display: grid;
+  gap: 12px;
+}
+
+.pmm-selling-motion-list-header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 14px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #103f4a 0%, #155f66 72%, #1e7579 100%);
+  color: #fff;
+  padding: 15px 17px;
+}
+
+.pmm-selling-motion-list-header div {
+  display: grid;
+  gap: 3px;
+}
+
+.pmm-selling-motion-list-header span,
+.pmm-selling-motion-list-header small {
+  color: #d8eeee;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.pmm-selling-motion-list-header h4 {
+  font-size: 20px;
+}
+
+.pmm-selling-motion-card {
+  display: grid;
+  gap: 0;
+  overflow: hidden;
+  border: 1px solid #cbdadd;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(20, 55, 63, 0.07);
+}
+
+.pmm-selling-motion-card > header {
+  display: grid;
+  gap: 4px;
+  border-bottom: 1px solid #d7e3e5;
+  background: #f3f8f8;
+  padding: 13px 15px;
+}
+
+.pmm-selling-motion-card > header > span,
+.pmm-selling-motion-label > span:first-child {
+  color: #55707a;
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+}
+
+.pmm-selling-motion-card > header > strong {
+  color: #173d47;
+  font-size: 16px;
+  line-height: 1.35;
+}
+
+.pmm-selling-motion-card > header > small,
+.pmm-selling-motion-grid section > small {
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.pmm-selling-motion-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.pmm-selling-motion-grid > section {
+  display: grid;
+  align-content: start;
+  gap: 9px;
+  min-width: 0;
+  padding: 14px 15px;
+}
+
+.pmm-selling-motion-grid > section:nth-child(even) {
+  border-left: 1px solid #d7e3e5;
+}
+
+.pmm-selling-motion-grid > section:nth-child(n + 3) {
+  border-top: 1px solid #d7e3e5;
+}
+
+.pmm-selling-motion-label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.pmm-selling-motion-grid p,
+.pmm-selling-motion-grid dd {
+  color: #2f4552;
+  line-height: 1.48;
+}
+
+.pmm-selling-motion-grid dl {
+  display: grid;
+  gap: 7px;
+  margin: 0;
+}
+
+.pmm-selling-motion-grid dl div {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: 8px;
+}
+
+.pmm-selling-motion-grid dt {
+  color: #55707a;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.pmm-selling-motion-grid dd {
+  margin: 0;
+  font-weight: 700;
+}
+
+.pmm-selling-motion-observed {
+  border-left: 4px solid var(--teal);
+  background: #f5fbfa;
+}
+
+.pmm-selling-motion-response.is-defensible {
+  border-left: 4px solid #3f8871 !important;
+  background: #f1faf5;
+}
+
+.pmm-selling-motion-response.needs-proof {
+  border-left: 4px solid #b85a42 !important;
+  background: #fff7f3;
+}
+
+.pmm-selling-motion-response > p {
+  font-weight: 750;
+}
+
+.pmm-selling-motion-evidence {
+  display: grid;
+  gap: 7px;
+}
+
+.pmm-selling-motion-proof-link {
+  display: grid;
+  gap: 3px;
+  border: 1px solid #dfad9f;
+  border-radius: 7px;
+  background: #fff;
+  color: #713827;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.pmm-selling-motion-proof-link:hover,
+.pmm-selling-motion-proof-link:focus-visible {
+  border-color: #a9442e;
+  box-shadow: 0 0 0 2px rgba(169, 68, 46, 0.12);
+}
+
+.pmm-selling-motion-proof-link span,
+.pmm-selling-motion-proof-link small {
+  color: #8a5a4d;
+  font-size: 10px;
+}
+
+.pmm-proof-priority-card:target,
+.pmm-proof-priority-card:focus {
+  border-color: #b85a42;
+  box-shadow: 0 0 0 3px rgba(184, 90, 66, 0.15);
+  outline: none;
+}
+
 .battlecard-header,
 .battlecard-opening-grid,
 .battlecard-field-grid {
@@ -9758,6 +9947,7 @@ td a {
   .pmm-three-cs,
   .pmm-market-alternative-grid,
   .pmm-narrative-core-grid,
+  .pmm-selling-motion-grid,
   .pmm-narrative-decision,
   .pmm-backlog-intro,
   .pmm-backlog-details,
@@ -9919,6 +10109,7 @@ td a {
   .pmm-three-cs,
   .pmm-market-alternative-grid,
   .pmm-narrative-intro,
+  .pmm-selling-motion-grid,
   .pmm-narrative-status-grid,
   .pmm-decision-header,
   .pmm-activation-fields,
@@ -9928,6 +10119,14 @@ td a {
   .pmm-backlog-sources > div,
   .pmm-appendix-record {
     grid-template-columns: 1fr;
+  }
+
+  .pmm-selling-motion-grid > section:nth-child(even) {
+    border-left: 0;
+  }
+
+  .pmm-selling-motion-grid > section + section {
+    border-top: 1px solid #d7e3e5;
   }
 
   .pmm-start-here > header,

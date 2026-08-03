@@ -73,6 +73,12 @@
       missingStudyEvidence: text(item.studyRequiredBeforeFieldUse) || "Gap — the required study or evidence is not recorded.",
       sellerAsset: text(item.sellerAsset) || "One-Page Competitive Battlecard",
       customerVoiceTerms: item.customerVoiceTerms || [item.claimText, item.dimension, item.watersProduct],
+      competitor: item.competitor || "",
+      competitorProduct: item.competitorProduct || "",
+      watersProduct: item.watersProduct || "",
+      competitors: item.competitor ? [item.competitor] : [],
+      competitorProducts: item.competitorProduct ? [item.competitorProduct] : [],
+      watersProducts: item.watersProduct ? [item.watersProduct] : [],
       dimension: item.dimension || "",
       buyingCriterion: item.buyingCriterion || "",
       affectedCapability: item.affectedCapability || "",
@@ -118,6 +124,9 @@
       const current = merged.get(key);
       current.sourceIds = [...new Set([...current.sourceIds, ...item.sourceIds])];
       current.sources = [...new Set([...current.sources, item.source])];
+      current.competitors = [...new Set([...(current.competitors || []), ...(item.competitors || [])])];
+      current.competitorProducts = [...new Set([...(current.competitorProducts || []), ...(item.competitorProducts || [])])];
+      current.watersProducts = [...new Set([...(current.watersProducts || []), ...(item.watersProducts || [])])];
       const missing = [current.missingStudyEvidence, item.missingStudyEvidence].filter(Boolean);
       current.missingStudyEvidence = [...new Set(missing)].join("; ");
       if (current.dealImpact === null && item.dealImpact !== null) current.dealImpact = item.dealImpact;

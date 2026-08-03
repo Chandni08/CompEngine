@@ -8,6 +8,7 @@ const headToHeadProductMatchModel = globalThis.HeadToHeadProductMatchModel;
 const pmmEvidenceGovernance = globalThis.PmmEvidenceGovernance;
 const productComparatorClaimTransformer = globalThis.ProductComparatorClaimTransformer;
 const proofPriorityTransformer = globalThis.ProofPriorityTransformer;
+const competitorSellingMotionTransformer = globalThis.CompetitorSellingMotionTransformer;
 const gapQueue = [];
 
 const state = {
@@ -2835,7 +2836,8 @@ function pmmProofPriorityRankMarkup(priority) {
 }
 
 function pmmProofPriorityCardMarkup(priority, index, { backlog = false } = {}) {
-  return `<article class="pmm-proof-priority-card${backlog ? " is-backlog" : ""}" data-proof-priority-rank="${index + 1}" data-claim-status="gap" data-field-usable="false">
+  const anchorId = `pmm-proof-priority-${String(priority.id || `priority-${index + 1}`).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`;
+  return `<article id="${escapeHtml(anchorId)}" class="pmm-proof-priority-card${backlog ? " is-backlog" : ""}" data-proof-priority-rank="${index + 1}" data-claim-status="gap" data-field-usable="false" tabindex="-1">
     <header><div class="pmm-decision-rank" aria-label="Priority ${index + 1}">${index + 1}</div><div><span>${escapeHtml(priority.sources.join(" + "))} · cannot yet make</span><h4>${escapeHtml(priority.claimText)}</h4></div>${pmmProofPriorityRankMarkup(priority)}</header>
     <div class="pmm-proof-priority-fields">
       <section><span>Commercial claim we want to make</span><p>${escapeHtml(priority.claimText)}</p></section>
@@ -2856,6 +2858,23 @@ function renderMarketingPositioningDecisions(proofPriorities) {
     <p class="pmm-priority-method" role="note"><strong>Ranking formula:</strong> deal impact × exact claim frequency in field-citable Customer Voice records. Items without a recorded deal-impact value remain unscored, follow any measured items, and use Customer Voice frequency only as a transparent tie-break. Supported, non-blocked claims are excluded before ranking.</p>
     <div class="pmm-proof-priority-list">${proofPriorities.top.map((priority, index) => pmmProofPriorityCardMarkup(priority, index)).join("")}</div>
     ${proofPriorities.backlog.length ? `<details class="pmm-proof-priority-backlog"><summary><span>Backlog</span><strong>${proofPriorities.backlog.length} additional unsupported claim${proofPriorities.backlog.length === 1 ? "" : "s"}</strong><small>Collapsed by default</small></summary><div>${proofPriorities.backlog.map((priority, index) => pmmProofPriorityCardMarkup(priority, proofPriorities.top.length + index, { backlog: true })).join("")}</div></details>` : ""}`;
+}
+
+function pmmCompetitorIntentSellingMotions(signals, supportedClaims, proofPriorities) {
+  if (!competitorSellingMotionTransformer) throw new Error("Competitor selling-motion transformer failed to load");
+  const competitorOrder = ["Thermo Fisher", "Agilent", "Shimadzu", "SCIEX", "PerkinElmer"];
+  const competitors = filters.competitor.value === "All"
+    ? competitorOrder
+    : competitorOrder.filter((competitor) => competitor === filters.competitor.value);
+  const profiles = competitors.map((competitor) => competitorIntentProfile(competitor, signals)).map((profile) => ({
+    ...profile,
+    evidenceItems: pmmGovernedRecords(profile.evidenceItems || []),
+  }));
+  return competitorSellingMotionTransformer.transformCompetitorIntentProfiles({
+    profiles,
+    supportedClaims,
+    proofPriorities,
+  });
 }
 
 const pmmClaimEvidenceClassifications = {
@@ -4378,62 +4397,79 @@ function pmmMarketChoiceMarkup(marketChoice) {
   </section>`;
 }
 
-function renderMarketingCompetitiveNarrative(signals = pmmGovernedRecords(currentSignals()), governingPosition, marketChoice, modelContexts) {
+function pmmSellingMotionObservedSourceMarkup(move) {
+  if (!move.observedMove.url) return `<p class="pmm-unresolved">Observed source link unavailable.</p>`;
+  return pmmCanonicalEvidenceReferenceMarkup({
+    url: move.observedMove.url,
+    label: move.observedMove.text,
+    sourceName: move.observedMove.sourceName,
+    fieldCitable: move.observedMove.fieldCitable,
+    approvalState: move.observedMove.approvalState,
+  }, "Observed move source");
+}
+
+function pmmSellingMotionResponseMarkup(move) {
+  const response = move.watersResponse;
+  if (response.status === "defensible") {
+    const citableEvidence = response.supportingEvidence.filter((record) => record.fieldCitable === true && record.approvalState !== "blocked");
+    return `<section class="pmm-selling-motion-response is-defensible" data-response-status="defensible" data-field-usable="true">
+      <div class="pmm-selling-motion-label"><span>Waters response</span>${pmmEvidenceTypeMarkup("observed", "Citable proof attached")}</div>
+      <p>${escapeHtml(response.responseText)}</p>
+      <small>Claim approval: ${escapeHtml(pmmApprovalStateLabel(response.approvalState))}. Exact wording inherited from Claim Control.</small>
+      <div class="pmm-selling-motion-evidence">${citableEvidence.map((source) => pmmCanonicalEvidenceReferenceMarkup(source, "Field-citable counter proof")).join("")}</div>
+    </section>`;
+  }
+  const priority = response.proofPriority;
+  return `<section class="pmm-selling-motion-response needs-proof" data-response-status="needs-proof" data-field-usable="false">
+    <div class="pmm-selling-motion-label"><span>Waters response</span>${pmmEvidenceTypeMarkup("unresolved", "Needs proof")}</div>
+    <p>${escapeHtml(response.responseText)}</p>
+    <small>No customer-facing counter is emitted. This move is not field-usable.</small>
+    <a class="pmm-selling-motion-proof-link" href="${escapeHtml(priority.href)}" data-proof-priority-link="${escapeHtml(priority.id)}"><span>Three Proof Priorities</span><strong>${escapeHtml(priority.claimText)}</strong><small>${escapeHtml(priority.missingStudyEvidence)} →</small></a>
+  </section>`;
+}
+
+function pmmSellingMotionCardMarkup(move, index) {
+  const observed = move.observedMove;
+  const date = observed.date ? formatDate(observed.date) : "Date unresolved";
+  return `<article class="pmm-selling-motion-card" data-selling-motion-id="${escapeHtml(move.id)}" data-response-status="${escapeHtml(move.watersResponse.status)}">
+    <header><span>Move ${index + 1} · ${escapeHtml(observed.type)}</span><strong>${escapeHtml(observed.text)}</strong><small>${escapeHtml(observed.sourceName)} · ${escapeHtml(date)} · ${observed.fieldCitable ? "Field-citable observation" : "Observation not field-citable"} · ${escapeHtml(pmmApprovalStateLabel(observed.approvalState))}</small></header>
+    <div class="pmm-selling-motion-grid">
+      <section class="pmm-selling-motion-observed"><div class="pmm-selling-motion-label"><span>Observed move</span>${pmmEvidenceTypeMarkup("observed", "Source-backed record")}</div><p>${escapeHtml(observed.detail || observed.text)}</p>${pmmSellingMotionObservedSourceMarkup(move)}</section>
+      <section><div class="pmm-selling-motion-label"><span>Inferred intent</span>${pmmEvidenceTypeMarkup("inference", "Analyst inference")}</div><p>${escapeHtml(move.inferredIntent)}</p><small>Intent is an inference from the Competitor Intent profile, not an observed customer claim.</small></section>
+      <section><div class="pmm-selling-motion-label"><span>Buying situation targeted</span>${pmmEvidenceTypeMarkup("inference", "Validate with deal evidence")}</div><dl><div><dt>Deal type</dt><dd>${escapeHtml(move.buyingSituation.dealType)}</dd></div><div><dt>Committee role</dt><dd>${escapeHtml(move.buyingSituation.committeeRole)}</dd></div></dl><small>${escapeHtml(move.buyingSituation.basis)} ${escapeHtml(move.namedCustomer)}.</small></section>
+      ${pmmSellingMotionResponseMarkup(move)}
+    </div>
+  </article>`;
+}
+
+function renderMarketingCompetitiveNarrative(signals = pmmGovernedRecords(currentSignals()), governingPosition, marketChoice, modelContexts, modelSellingMotions) {
   const target = byId("pmmCompetitiveNarrative");
   const contexts = modelContexts || state.marketingWorkspaceModel?.contexts || marketingPrioritizedCompetitorContexts(signals);
-  const competitors = contexts.map((context) => context.competitor);
-  const governing = governingPosition || state.marketingGoverningPosition || pmmGoverningPosition(
-    contexts,
-  );
-  const choice = marketChoice || state.marketingMarketChoice || pmmMarketChoice(
-    contexts,
-    governing,
+  const governing = governingPosition || state.marketingGoverningPosition || pmmGoverningPosition(contexts);
+  const choice = marketChoice || state.marketingMarketChoice || pmmMarketChoice(contexts, governing, signals);
+  const sellingMotions = modelSellingMotions || state.marketingWorkspaceModel?.competitorPlays || pmmCompetitorIntentSellingMotions(
     signals,
+    state.marketingWorkspaceModel?.productComparatorSupportedClaims || [],
+    state.marketingWorkspaceModel?.proofPriorities || { top: [], backlog: [] },
   );
-  if (!competitors.length) {
-    target.innerHTML = `${pmmMarketChoiceMarkup(choice)}${pmmEmptyState("Prioritized competitor narratives are available for Agilent, Thermo, Shimadzu, and SCIEX; none matches the active competitor filter.")}`;
+  if (!sellingMotions.groups.length) {
+    target.innerHTML = `${pmmMarketChoiceMarkup(choice)}${pmmEmptyState("No governed Competitor Intent move matches the active filters. No selling motion was fabricated.")}`;
     return;
   }
-  const narratives = contexts
-    .map((context) => pmmCompetitiveNarrative(context, governing))
-    .sort((a, b) => b.score - a.score || b.confidence - a.confidence || a.competitor.localeCompare(b.competitor));
-  if (!narratives.some((item) => item.competitor === state.activeBattlecardCompetitor)) {
-    state.activeBattlecardCompetitor = narratives[0].competitor;
+  if (!sellingMotions.groups.some((group) => group.competitor === state.activeBattlecardCompetitor)) {
+    state.activeBattlecardCompetitor = sellingMotions.groups[0].competitor;
   }
-  const narrative = narratives.find((item) => item.competitor === state.activeBattlecardCompetitor) || narratives[0];
+  const activeGroup = sellingMotions.groups.find((group) => group.competitor === state.activeBattlecardCompetitor) || sellingMotions.groups[0];
   target.innerHTML = `
     ${pmmMarketChoiceMarkup(choice)}
-    <div class="pmm-narrative-intro"><div><strong>One canonical narrative per competitor.</strong><p>Claims, intent, application-note patterns, comparator guidance, launches, conferences, and short-horizon defense inherit the Governing Position and are synthesized here. Raw feeds remain supporting evidence.</p></div><div class="pmm-decision-legend">${pmmEvidenceTypeMarkup("observed", "Observed competitor evidence")}${pmmEvidenceTypeMarkup("inference", "Analyst/rule-based inference")}${pmmEvidenceTypeMarkup("unresolved", "Proposed Waters position — not approved")}</div></div>
-    <div class="battlecard-tabs pmm-narrative-tabs" role="tablist" aria-label="Prioritized competitor narratives">
-      ${narratives.map((item, index) => `<button type="button" role="tab" data-battlecard-competitor="${escapeHtml(item.competitor)}" aria-selected="${item.competitor === narrative.competitor}" class="${item.competitor === narrative.competitor ? "active" : ""}"><strong>${escapeHtml(item.competitor === "Thermo Fisher" ? "Thermo" : item.competitor)}</strong><span>Evidence-fit priority ${index + 1} · ${item.context.targetPriority.label}</span></button>`).join("")}
+    <div class="pmm-narrative-intro pmm-selling-motion-intro"><div><strong>One selling motion per Competitor Intent record.</strong><p>${sellingMotions.moves.length} observed move${sellingMotions.moves.length === 1 ? "" : "s"} stay separate from intent inference and customer-facing response. ${sellingMotions.defensibleCount} have an exact citable counter; ${sellingMotions.needsProofCount} route to Three Proof Priorities.</p></div><div class="pmm-decision-legend">${pmmEvidenceTypeMarkup("observed", "Observed move")}${pmmEvidenceTypeMarkup("inference", "Inferred target")}${pmmEvidenceTypeMarkup("unresolved", "Needs proof — not field-usable")}</div></div>
+    <div class="battlecard-tabs pmm-narrative-tabs" role="tablist" aria-label="Competitor selling motions">
+      ${sellingMotions.groups.map((group) => `<button type="button" role="tab" data-battlecard-competitor="${escapeHtml(group.competitor)}" aria-selected="${group.competitor === activeGroup.competitor}" class="${group.competitor === activeGroup.competitor ? "active" : ""}"><strong>${escapeHtml(group.competitor === "Thermo Fisher" ? "Thermo" : group.competitor)}</strong><span>${group.moves.length} move${group.moves.length === 1 ? "" : "s"} · ${group.moves.filter((move) => move.watersResponse.status === "needs proof").length} need proof</span></button>`).join("")}
     </div>
-    <article class="competitive-battlecard competitive-narrative-card" role="tabpanel" aria-label="${escapeHtml(narrative.competitor)} canonical competitive narrative">
-      <header class="battlecard-header pmm-narrative-header">
-        <div><span>Prioritized Competitive Narrative · ${escapeHtml(horizonLabel())}</span><h4>${escapeHtml(narrative.competitor)}</h4><p>Canonical PMM synthesis; each intelligence input appears once and links to its underlying evidence.</p></div>
-        <div class="battlecard-evidence-status"><strong>${narrative.sourceDiversity}</strong><span>source domain${narrative.sourceDiversity === 1 ? "" : "s"}</span><small>${narrative.confidence ? `${escapeHtml(confidenceLabel(narrative.confidence))} · ${narrative.confidence}/100` : "Confidence unresolved"}</small></div>
-      </header>
-      <div class="pmm-narrative-core-grid">
-        <section><div class="pmm-narrative-label"><span>What Changed</span>${pmmEvidenceTypeMarkup("inference", "Analyst synthesis")}</div><p>${escapeHtml(narrative.whatChanged)}</p></section>
-        <section class="pmm-narrative-observed"><div class="pmm-narrative-label"><span>Observed Competitor Claim or Workflow Emphasis</span>${pmmEvidenceTypeMarkup("observed", "Observed competitor evidence")}</div><p>${escapeHtml(narrative.observedClaim.text)}</p><small>${escapeHtml(narrative.observedClaim.caveat)}</small></section>
-        <section><div class="pmm-narrative-label"><span>Likely Positioning</span>${pmmEvidenceTypeMarkup("inference", "Analyst/rule-based inference")}</div><p>${escapeHtml(narrative.likelyPositioning)}</p></section>
-        <section><div class="pmm-narrative-label"><span>Workflow Ownership Signal</span>${pmmEvidenceTypeMarkup("inference", "Application-note pattern inference")}</div><p>${escapeHtml(narrative.workflowRead.text)}</p><small>Application-note counts are shown only to distinguish a repeated cluster from an early single-note signal. Publication volume is not used.</small></section>
-        <section><div class="pmm-narrative-label"><span>Target Audience or Buying Situation</span>${pmmEvidenceTypeMarkup("inference", "Evidence-based audience inference")}</div><p>${escapeHtml(narrative.audienceRead.text)}</p><small>${escapeHtml(narrative.audienceRead.caveat)}</small></section>
-        <section class="pmm-narrative-counter"><div class="pmm-narrative-label"><span>Waters Counter-Position</span>${pmmEvidenceTypeMarkup("inference", "Proposed — not approved")}</div><p>${escapeHtml(narrative.counterPosition)}</p><small>Approval not established.</small></section>
-      </div>
-      ${pmmGoverningTraceMarkup(governing, narrative.governingTrace)}
-      <section class="pmm-narrative-decision">
-        <div><span>PMM Decision</span><h5>${escapeHtml(narrative.activation.asset)}</h5></div>
-        <p><strong>${escapeHtml(narrative.activation.action)}</strong></p>
-        <p>${escapeHtml(narrative.activation.translation)}</p>
-      </section>
-      <div class="pmm-narrative-status-grid" aria-label="Narrative evidence status">
-        ${pmmStatusMarkup(narrative.confidence ? "observed" : "unresolved", "Confidence", narrative.confidence ? `${confidenceLabel(narrative.confidence)} · ${narrative.confidence}/100` : "Unresolved")}
-        ${pmmStatusMarkup(narrative.recency.date ? "observed" : "unresolved", "Recency", narrative.recency.label)}
-        ${pmmStatusMarkup(narrative.sourceDiversity >= 3 ? "observed" : "unresolved", "Source diversity", `${narrative.sourceDiversity} distinct domain${narrative.sourceDiversity === 1 ? "" : "s"}`)}
-      </div>
-      <section class="pmm-narrative-caveats"><div class="pmm-narrative-label"><span>Evidence Caveats</span></div>${pmmCaveatDetailsMarkup(`${narrative.limitations.length} caveat${narrative.limitations.length === 1 ? "" : "s"} · expand for detail`, narrative.limitations)}</section>
-      <section class="battlecard-sources pmm-narrative-sources"><div><span class="battlecard-kicker">Canonical Evidence References</span><small>Evidence details and source caveats live once in the collapsed appendix.</small></div><div class="battlecard-source-links">${narrative.sources.slice(0, 8).map(pmmNarrativeSourceMarkup).join("") || `<p class="pmm-unresolved">Exact evidence links unavailable.</p>`}</div></section>
-    </article>`;
+    <section class="pmm-selling-motion-list" role="tabpanel" aria-label="${escapeHtml(activeGroup.competitor)} competitor plays and Waters responses">
+      <header class="pmm-selling-motion-list-header"><div><span>Competitor plays · ${escapeHtml(horizonLabel())}</span><h4>${escapeHtml(activeGroup.competitor)}</h4></div><small>Only field-citable, non-blocked evidence can support a Waters response.</small></header>
+      ${activeGroup.moves.map(pmmSellingMotionCardMarkup).join("")}
+    </section>`;
 }
 
 const pmmActivationAssetTypes = [
@@ -5280,6 +5316,7 @@ function exportMarketingTargetingSnapshot() {
     productComparatorClaimCandidates: model.productComparatorClaimCandidates,
     gapQueue: model.gapQueue,
     proofPriorities: model.proofPriorities,
+    competitorPlays: model.competitorPlays,
     caveat: "Internal proposed PMM work product. Approval is not established unless an explicit approval record says otherwise.",
   };
   const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: "application/json" });
@@ -5309,6 +5346,11 @@ function buildMarketingWorkspaceModel(signals) {
   const claimRows = marketingClaimsProofRows(contexts, governingPosition);
   const comparatorClaimTransformation = pmmProductComparatorClaimTransformation();
   const proofPriorities = pmmProofPriorities(governedSignals, comparatorClaimTransformation);
+  const competitorPlays = pmmCompetitorIntentSellingMotions(
+    governedSignals,
+    comparatorClaimTransformation.claimControlClaims,
+    proofPriorities,
+  );
   const positioningDecisions = pmmApplyClaimsRegistryToDecisions(positioningDecisionCandidates, claimRows);
   const narratives = contexts.map((context) => pmmCompetitiveNarrative(context, governingPosition))
     .sort((left, right) => right.score - left.score || right.confidence - left.confidence || left.competitor.localeCompare(right.competitor));
@@ -5327,6 +5369,7 @@ function buildMarketingWorkspaceModel(signals) {
     adoptionValuePlans,
     artifactProduction,
     marketChoice,
+    competitorPlays,
   });
   const kpis = PmmDataContract.buildKpis({
     positioningDecisions,
@@ -5347,6 +5390,7 @@ function buildMarketingWorkspaceModel(signals) {
     productComparatorSupportedClaims: comparatorClaimTransformation.claimControlClaims,
     gapQueue: comparatorClaimTransformation.gapQueue,
     proofPriorities,
+    competitorPlays,
     narratives,
     activationActions,
     artifactProduction,
@@ -5612,6 +5656,23 @@ function setupMarketingWorkspaceControls() {
       window.addEventListener("afterprint", clearPrintMode, { once: true });
       window.print();
       window.setTimeout(clearPrintMode, 1000);
+      return;
+    }
+    const proofPriorityLink = event.target.closest("[data-proof-priority-link]");
+    if (proofPriorityLink && state.view === "Marketing") {
+      event.preventDefault();
+      const targetId = String(proofPriorityLink.getAttribute("href") || "").replace(/^#/, "");
+      const priorityPanel = byId("pmm-positioning-decisions");
+      if (priorityPanel?.classList.contains("is-collapsed")) setPanelCollapsed(priorityPanel, false);
+      const priorityCard = byId(targetId);
+      if (priorityCard) {
+        priorityCard.closest("details")?.setAttribute("open", "");
+        window.history.replaceState(null, "", `#${targetId}`);
+        priorityCard.scrollIntoView({ behavior: "smooth", block: "center" });
+        priorityCard.focus({ preventScroll: true });
+      } else {
+        navigateToDashboardSection("pmm-positioning-decisions");
+      }
       return;
     }
     const evidenceReference = event.target.closest("[data-pmm-evidence-ref]");
@@ -8421,6 +8482,7 @@ function competitorIntentProfile(competitor, signals) {
   const evidenceCount = launches.length + strategic.length + earnings.length + filings.length;
   const evidenceItems = [
     ...launches.map((launch) => ({
+      id: launch.id,
       type: "Launch",
       title: launch.product,
       date: launch.date,
@@ -8428,30 +8490,45 @@ function competitorIntentProfile(competitor, signals) {
       url: timelineUrlForLaunch(launch),
       sourceLinkLabel: "Open press release ↗",
       detail: launch.pmImplication || launch.roadmapQuestion || launch.signalType,
+      observedDetail: launch.summary || launch.signalType || "",
+      customerName: launch.customerName || launch.customer || launch.accountName || "",
+      ...pmmGovernanceFields(launch),
     })),
     ...strategic.map((signal) => ({
+      id: signal.id,
       type: "Strategic move",
       title: signal.title,
       date: signal.date,
       sourceName: signal.sourceName,
       url: signal.sourceUrl,
       detail: signal.summary || signal.pmImplication || signal.signalType,
+      observedDetail: signal.summary || signal.signalType || "",
+      customerName: signal.customerName || signal.customer || signal.accountName || "",
+      ...pmmGovernanceFields(signal),
     })),
     ...earnings.map((signal) => ({
+      id: signal.id,
       type: "Earnings result",
       title: signal.title,
       date: signal.date,
       sourceName: signal.sourceName,
       url: signal.sourceUrl,
       detail: signal.summary || signal.pmImplication || signal.signalType,
+      observedDetail: signal.summary || signal.signalType || "",
+      customerName: signal.customerName || signal.customer || signal.accountName || "",
+      ...pmmGovernanceFields(signal),
     })),
     ...filings.map((insight) => ({
+      id: insight.id,
       type: "Filing insight",
       title: insight.headline,
       date: insight.date,
       sourceName: insight.sourceName,
       url: insight.sourceUrl,
       detail: insight.evidence || insight.whyItMatters || insight.pmImplication,
+      observedDetail: insight.evidence || "",
+      customerName: insight.customerName || insight.customer || insight.accountName || "",
+      ...pmmGovernanceFields(insight),
     })),
   ].sort((a, b) => new Date(b.date) - new Date(a.date));
   const inference = competitiveMethodology.assessInference(evidenceItems, competitor);
