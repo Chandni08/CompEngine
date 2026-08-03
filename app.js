@@ -6,6 +6,8 @@ const competitiveMethodology = globalThis.CompetitiveMethodology || {
 };
 const headToHeadProductMatchModel = globalThis.HeadToHeadProductMatchModel;
 const pmmEvidenceGovernance = globalThis.PmmEvidenceGovernance;
+const productComparatorClaimTransformer = globalThis.ProductComparatorClaimTransformer;
+const gapQueue = [];
 
 const state = {
   data: null,
@@ -48,6 +50,7 @@ const state = {
   marketingArtifactSegmentId: "",
   marketingArtifactWorkflow: {},
   marketingWorkspaceModel: null,
+  gapQueue,
   headToHead: { activeCompetitor: "", competitorProductId: "", competitorProductOverrides: {}, matchModel: null, model: null, models: [], initialized: false },
   conferencePage: 1,
   conferencePageSize: 4,
@@ -1516,6 +1519,65 @@ function pmmGovernedRecords(records = []) {
   return pmmEvidenceGovernance.filterRecords(records, state.marketingGovernanceFilters);
 }
 
+function pmmComparatorClaimEvidencePool() {
+  const records = [];
+  const visited = new WeakSet();
+  const walk = (value) => {
+    if (!value || typeof value !== "object" || visited.has(value)) return;
+    visited.add(value);
+    if (Array.isArray(value)) {
+      value.forEach(walk);
+      return;
+    }
+    if (Object.prototype.hasOwnProperty.call(value, "fieldCitable")) records.push(value);
+    Object.values(value).forEach(walk);
+  };
+  [
+    state.data,
+    state.productData,
+    state.conferenceData,
+    state.conferencePrep,
+    state.journalSources,
+    state.competitorApplicationNotes,
+    state.marketApplicationSources,
+    state.productComparisons,
+    state.historicalProductCatalog,
+    state.historicalWatersCatalog,
+    state.technicalComparisons,
+    state.filingInsights,
+    state.customerVoice,
+  ].forEach(walk);
+  return records;
+}
+
+function pmmProductComparatorClaimTransformation() {
+  if (!productComparatorClaimTransformer) throw new Error("Product Comparator claim transformer failed to load");
+  const eligibleLaunchIds = new Set(comparisonLaunches().map((launch) => launch.id));
+  const selectedWatersProduct = pmmSelectedWatersProduct();
+  const linkHealthIndex = pmmEvidenceGovernance.buildLinkHealthIndex(state.linkHealth || []);
+  const transformation = productComparatorClaimTransformer.transformProductComparatorClaims({
+    productComparisons: state.productComparisons,
+    technicalComparisons: state.technicalComparisons,
+    productLaunches: [
+      ...(state.productData?.launches || []),
+      ...(state.historicalProductCatalog?.products || []),
+    ],
+    eligibleLaunchIds,
+    watersProductId: selectedWatersProduct?.id || "All",
+    evidencePool: pmmComparatorClaimEvidencePool(),
+    deriveFieldCitable: (record) => pmmEvidenceGovernance.deriveFieldCitable(record, {
+      datasetName: "product_comparator_claim_evidence",
+      linkHealthIndex,
+    }),
+  });
+  gapQueue.splice(0, gapQueue.length, ...transformation.gapQueue);
+  return {
+    ...transformation,
+    claimControlClaims: pmmGovernedRecords(transformation.claimControlClaims),
+    gapQueue: [...gapQueue],
+  };
+}
+
 function pmmRecordTargetingText(item) {
   if (!item) return "";
   if (typeof item === "string") return item;
@@ -1872,14 +1934,21 @@ function headToHeadTechnicalEvidence(context) {
 }
 
 function headToHeadWins(context, technical) {
-  const advantagePattern = /waters.{0,80}(?:smaller|greater|stronger|higher|lower|tighter|advantage|lead)|(?:smaller|greater|stronger|higher|lower|tighter).{0,80}waters/i;
-  return technical.rows.filter(({ row }) => row.evidenceType !== "requires-controlled-testing" && advantagePattern.test(row.interpretation || ""))
-    .map(({ row, watersSource, competitorSource }) => headToHeadClaim(
-      row.interpretation,
-      "Analyst/rule-based comparison of published values",
-      [watersSource, competitorSource],
-      "Published values may use different conditions. Preserve the comparison limitation and do not generalize beyond the cited dimension.",
-    ));
+  const supportedClaims = state.marketingWorkspaceModel?.productComparatorSupportedClaims || [];
+  return supportedClaims
+    .filter((candidate) => candidate.watersProduct === context.waters.product
+      && candidate.competitorProduct === context.competitorProduct.product
+      && candidate.fieldUsable === true)
+    .map((candidate) => ({
+      ...headToHeadClaim(
+        candidate.claimText,
+        "Field-citable Product Comparator advantage",
+        candidate.supportingEvidence,
+        "Use only the exact proposed wording and preserve the conditions in each cited proof record.",
+      ),
+      approvalState: candidate.approvalState,
+      fieldCitable: true,
+    }));
 }
 
 function headToHeadWeaknesses(context, competitorRecords) {
@@ -3090,7 +3159,32 @@ function marketingVisibleClaimRows(rows) {
   return PmmDataContract.filterClaimRows(rows, state.marketingClaimsFilters);
 }
 
-function renderMarketingClaimsProof(rows, visibleRows, governingPosition) {
+function pmmComparatorClaimEvidenceMarkup(records, { blocked = false } = {}) {
+  if (!records.length) return `<p class="pmm-matrix-empty-value">${blocked ? "No evidence was blocked." : "Applicable field-citable proof unavailable."}</p>`;
+  return `<ul class="pmm-comparator-claim-evidence">${records.map((record) => `<li>
+    <strong>${escapeHtml(record.label || record.title || "Evidence record")}</strong>
+    <span>${escapeHtml(record.sourceName || "Source unresolved")} · ${record.fieldCitable === true ? "Field-citable" : "Not field-citable"}</span>
+    ${blocked && record.blockedReason ? `<small>${escapeHtml(record.blockedReason)}</small>` : ""}
+    ${isHttpUrl(record.url) ? `<a href="${escapeHtml(record.url)}" target="_blank" rel="noreferrer">Open exact source ↗</a>` : `<small>Exact source link unavailable.</small>`}
+  </li>`).join("")}</ul>`;
+}
+
+function pmmComparatorClaimControlMarkup(supportedClaims = [], queuedGaps = []) {
+  return `<section class="pmm-comparator-claim-control" aria-labelledby="pmmComparatorClaimControlTitle">
+    <header><div><span>Product Comparator Transformer</span><h4 id="pmmComparatorClaimControlTitle">Field-Usable Comparator Claim Candidates</h4><p>Only exact comparator wording with at least one field-citable backing record and a non-blocked approval state appears below.</p></div><div><strong>${supportedClaims.length}</strong><span>supported</span><small>${queuedGaps.length} routed to gapQueue for Prompt 3</small></div></header>
+    <div class="pmm-claims-table-wrap"><table class="pmm-comparator-claims-table"><caption class="sr-only">Supported Product Comparator claim candidates</caption><thead><tr><th>Exact wording</th><th>Applicable proof</th><th>Blocked evidence</th><th>Approval state</th><th>Study required before field use</th></tr></thead><tbody>${supportedClaims.length
+      ? supportedClaims.map((claim) => `<tr data-comparator-claim-id="${escapeHtml(claim.id)}" data-claim-status="supported" data-field-usable="true">
+        <td><strong>${escapeHtml(claim.claimText)}</strong><small>${escapeHtml(claim.watersProduct)} vs ${escapeHtml(claim.competitorProduct)} · ${escapeHtml(claim.dimension)}</small></td>
+        <td>${pmmComparatorClaimEvidenceMarkup(claim.supportingEvidence)}</td>
+        <td>${pmmComparatorClaimEvidenceMarkup(claim.blockedEvidence, { blocked: true })}</td>
+        <td>${pmmStatusMarkup(claim.approvalState === "approved" ? "observed" : "unresolved", "Approval state", pmmApprovalStateLabel(claim.approvalState))}</td>
+        <td><strong>${escapeHtml(claim.studyRequiredBeforeFieldUse)}</strong><small>Field-use gate: citable proof present and approval state is not blocked.</small></td>
+      </tr>`).join("")
+      : `<tr class="pmm-comparator-claims-empty"><td colspan="5"><strong>No Product Comparator claim is field-usable under the active filters.</strong><span>Gap wording is withheld from this table and remains only in the shared gapQueue.</span></td></tr>`}</tbody></table></div>
+  </section>`;
+}
+
+function renderMarketingClaimsProof(rows, visibleRows, governingPosition, supportedComparatorClaims = [], queuedComparatorGaps = []) {
   const target = byId("pmmClaimsProof");
   const riskRows = [...visibleRows].sort((left, right) => pmmClaimRiskScore(right) - pmmClaimRiskScore(left));
   const highestRiskClaim = riskRows[0];
@@ -3106,6 +3200,7 @@ function renderMarketingClaimsProof(rows, visibleRows, governingPosition) {
     state.marketingClaimsFilters.readiness = "All";
   }
   target.innerHTML = `
+    ${pmmComparatorClaimControlMarkup(supportedComparatorClaims, queuedComparatorGaps)}
     <aside class="pmm-claim-risk-summary" aria-label="Highest-risk governed claim"><span>Highest Risk Under Current Filters</span><strong>${highestRiskClaim ? escapeHtml(highestRiskClaim.proposedClaimWording) : "No matching claim"}</strong><p>${highestRiskClaim ? `${escapeHtml(highestRiskClaim.substantiationStatus)} substantiation · ${escapeHtml(pmmApprovalStateLabel(highestRiskClaim.approvalState))} · ${pmmClaimRiskScore(highestRiskClaim)} governed risk points` : "No unrelated claim was substituted."}</p></aside>
     <div class="pmm-claims-matrix-intro">
       <div><strong>Governed claims registry for regulated-lab commercialization.</strong><p>Every proposed wording is compatibility-checked across product/workflow, attribute, segment/application, comparator, test conditions, and date/relevance. Inapplicable evidence is blocked from substantiation. No approval records are loaded, so no claim can be Ready.</p></div>
@@ -5153,6 +5248,8 @@ function exportMarketingTargetingSnapshot() {
     activationActions: model.activationActions,
     artifactProduction: model.artifactProduction,
     adoptionValuePlans: model.adoptionValuePlans,
+    productComparatorClaimCandidates: model.productComparatorClaimCandidates,
+    gapQueue: model.gapQueue,
     caveat: "Internal proposed PMM work product. Approval is not established unless an explicit approval record says otherwise.",
   };
   const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: "application/json" });
@@ -5180,6 +5277,7 @@ function buildMarketingWorkspaceModel(signals) {
   const adoptionValuePlans = pmmAdoptionValuePlans(buyingCommittee, contexts, marketChoice);
   const positioningDecisionCandidates = marketingPositioningDecisionCandidates(contexts, governingPosition);
   const claimRows = marketingClaimsProofRows(contexts, governingPosition);
+  const comparatorClaimTransformation = pmmProductComparatorClaimTransformation();
   const positioningDecisions = pmmApplyClaimsRegistryToDecisions(positioningDecisionCandidates, claimRows);
   const narratives = contexts.map((context) => pmmCompetitiveNarrative(context, governingPosition))
     .sort((left, right) => right.score - left.score || right.confidence - left.confidence || left.competitor.localeCompare(right.competitor));
@@ -5205,7 +5303,26 @@ function buildMarketingWorkspaceModel(signals) {
     customerLanguageRecords: appendix.customerLanguageRecords,
     appendix,
   });
-  const baseModel = { contexts, governingPosition, marketChoice, buyingCommittee, adoptionValuePlans, positioningDecisions, claimRows, visibleClaimRows, narratives, activationActions, artifactProduction, breakReport, appendix, kpis, governanceFilters: { ...state.marketingGovernanceFilters } };
+  const baseModel = {
+    contexts,
+    governingPosition,
+    marketChoice,
+    buyingCommittee,
+    adoptionValuePlans,
+    positioningDecisions,
+    claimRows,
+    visibleClaimRows,
+    productComparatorClaimCandidates: comparatorClaimTransformation.candidates,
+    productComparatorSupportedClaims: comparatorClaimTransformation.claimControlClaims,
+    gapQueue: comparatorClaimTransformation.gapQueue,
+    narratives,
+    activationActions,
+    artifactProduction,
+    breakReport,
+    appendix,
+    kpis,
+    governanceFilters: { ...state.marketingGovernanceFilters },
+  };
   return { ...baseModel, startHere: pmmStartHereModel(baseModel) };
 }
 
@@ -5217,7 +5334,13 @@ function renderMarketingWorkspace(signals) {
   renderHeadToHeadComparison();
   renderMarketingGoverningPosition(model.governingPosition);
   renderMarketingPositioningDecisions(model.positioningDecisions, model.governingPosition);
-  renderMarketingClaimsProof(model.claimRows, model.visibleClaimRows, model.governingPosition);
+  renderMarketingClaimsProof(
+    model.claimRows,
+    model.visibleClaimRows,
+    model.governingPosition,
+    model.productComparatorSupportedClaims,
+    model.gapQueue,
+  );
   renderMarketingAudienceCriteria(model.appendix.customerLanguageRecords, model.buyingCommittee);
   renderMarketingCompetitiveNarrative(signals, model.governingPosition, model.marketChoice, model.contexts);
   renderMarketingAdoptionValuePlans(model.adoptionValuePlans);

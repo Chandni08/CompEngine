@@ -6087,6 +6087,145 @@ body.modal-open {
   font-weight: 800;
 }
 
+.pmm-comparator-claim-control {
+  display: grid;
+  gap: 12px;
+  border: 1px solid #b9d8d5;
+  border-radius: 10px;
+  background: #f4fbfa;
+  padding: 14px;
+}
+
+.pmm-comparator-claim-control > header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.pmm-comparator-claim-control > header > div {
+  display: grid;
+  gap: 4px;
+}
+
+.pmm-comparator-claim-control > header span,
+.pmm-comparator-claim-control > header small {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.pmm-comparator-claim-control > header h4 {
+  margin: 0;
+}
+
+.pmm-comparator-claim-control > header p {
+  color: #405965;
+  line-height: 1.45;
+}
+
+.pmm-comparator-claim-control > header > div:last-child {
+  min-width: 128px;
+  justify-items: end;
+  text-align: right;
+}
+
+.pmm-comparator-claim-control > header > div:last-child strong {
+  color: var(--teal);
+  font-size: 26px;
+}
+
+.pmm-comparator-claims-table {
+  width: 100%;
+  min-width: 1220px;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.pmm-comparator-claims-table th,
+.pmm-comparator-claims-table td {
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 11px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.pmm-comparator-claims-table th {
+  background: #e5f2f0;
+  color: #29414d;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+}
+
+.pmm-comparator-claims-table th:nth-child(1) { width: 265px; }
+.pmm-comparator-claims-table th:nth-child(2) { width: 250px; }
+.pmm-comparator-claims-table th:nth-child(3) { width: 250px; }
+.pmm-comparator-claims-table th:nth-child(4) { width: 170px; }
+.pmm-comparator-claims-table th:nth-child(5) { width: 285px; }
+
+.pmm-comparator-claims-table th:last-child,
+.pmm-comparator-claims-table td:last-child {
+  border-right: 0;
+}
+
+.pmm-comparator-claims-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.pmm-comparator-claims-table td > strong,
+.pmm-comparator-claims-table td > span,
+.pmm-comparator-claims-table td > small {
+  display: block;
+  line-height: 1.42;
+}
+
+.pmm-comparator-claims-table td > small {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.pmm-comparator-claim-evidence {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pmm-comparator-claim-evidence li {
+  display: grid;
+  gap: 3px;
+  border-left: 3px solid #9ab8c3;
+  background: #f7fafb;
+  padding: 7px 8px;
+}
+
+.pmm-comparator-claim-evidence span,
+.pmm-comparator-claim-evidence small {
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.pmm-comparator-claim-evidence a {
+  color: var(--blue);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.pmm-comparator-claims-empty td {
+  padding: 20px;
+  text-align: center;
+}
+
+.pmm-comparator-claims-empty span {
+  margin-top: 5px;
+  color: var(--muted);
+}
+
 .pmm-claims-table-wrap {
   max-width: 100%;
   overflow-x: auto;
