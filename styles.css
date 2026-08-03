@@ -4105,6 +4105,255 @@ select {
   line-height: 1.4;
 }
 
+.pmm-customer-barriers {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 14px;
+  border: 1px solid #b9d3d1;
+  border-radius: 10px;
+  background: #f5faf9;
+  padding: 14px;
+}
+
+.pmm-customer-barriers > header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.pmm-customer-barriers > header > div:first-child {
+  display: grid;
+  gap: 4px;
+}
+
+.pmm-customer-barriers > header span,
+.pmm-customer-barrier-language > span,
+.pmm-customer-barrier-tactic > span,
+.pmm-customer-value-state > span {
+  color: #557078;
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+}
+
+.pmm-customer-barriers > header p {
+  max-width: 780px;
+  color: #40565e;
+  line-height: 1.45;
+}
+
+.pmm-customer-barrier-count {
+  display: grid;
+  flex: 0 0 auto;
+  justify-items: end;
+  color: #245d61;
+  text-align: right;
+}
+
+.pmm-customer-barrier-count strong {
+  font-size: 24px;
+}
+
+.pmm-customer-barrier-count small {
+  color: #668087;
+  font-size: 9px;
+}
+
+.pmm-customer-barriers > aside {
+  display: flex;
+  gap: 7px;
+  border-left: 4px solid #758b91;
+  border-radius: 6px;
+  background: #edf3f4;
+  color: #475e66;
+  font-size: 10px;
+  line-height: 1.4;
+  padding: 8px 10px;
+}
+
+.pmm-customer-barrier-groups {
+  display: grid;
+  gap: 9px;
+}
+
+.pmm-customer-barrier-group {
+  overflow: hidden;
+  border: 1px solid #c9d9da;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.pmm-customer-barrier-group > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  cursor: pointer;
+  background: #eef6f5;
+  padding: 10px 12px;
+}
+
+.pmm-customer-barrier-group > summary span {
+  display: grid;
+  gap: 2px;
+}
+
+.pmm-customer-barrier-group > summary small,
+.pmm-customer-barrier-group > summary b {
+  color: #60777d;
+  font-size: 10px;
+}
+
+.pmm-customer-barrier-group > div {
+  display: grid;
+  gap: 10px;
+  border-top: 1px solid #d6e1e2;
+  padding: 10px;
+}
+
+.pmm-customer-barrier-card {
+  display: grid;
+  gap: 10px;
+  border: 1px solid #d1dcde;
+  border-left: 5px solid #387b75;
+  border-radius: 8px;
+  background: #fff;
+  padding: 12px;
+}
+
+.pmm-customer-barrier-card > header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.pmm-customer-barrier-card > header > div {
+  display: grid;
+  gap: 3px;
+}
+
+.pmm-customer-barrier-card > header > div > span {
+  color: #39726d;
+  font-size: 10px;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.pmm-customer-barrier-card > header small,
+.pmm-customer-barrier-language > small,
+.pmm-customer-barrier-tactic > small {
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.pmm-customer-barrier-language,
+.pmm-customer-barrier-tactic {
+  display: grid;
+  gap: 5px;
+  border-radius: 7px;
+  padding: 10px;
+}
+
+.pmm-customer-barrier-language {
+  background: #eef8f6;
+}
+
+.pmm-customer-barrier-language blockquote {
+  margin: 0;
+  border-left: 3px solid #39857c;
+  color: #204f4a;
+  padding-left: 10px;
+}
+
+.pmm-customer-barrier-language blockquote p,
+.pmm-customer-barrier-paraphrase {
+  color: #294b4e;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.pmm-customer-barrier-tactic {
+  background: #f4f1f8;
+  color: #514364;
+}
+
+.pmm-customer-barrier-tactic strong {
+  line-height: 1.45;
+}
+
+.pmm-customer-value-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.pmm-customer-value-state {
+  display: grid;
+  align-content: start;
+  gap: 5px;
+  border-radius: 7px;
+  padding: 10px;
+}
+
+.pmm-customer-value-state.is-proven,
+.pmm-customer-value-state.is-cleared {
+  border: 1px solid #9bc9b5;
+  background: #edf9f2;
+  color: #255d45;
+}
+
+.pmm-customer-value-state.is-unproven,
+.pmm-customer-value-state.is-assumed {
+  border: 1px solid #e0b6a9;
+  background: #fff5f1;
+  color: #713d30;
+}
+
+.pmm-customer-value-state > strong,
+.pmm-customer-value-state > small {
+  line-height: 1.4;
+}
+
+.pmm-customer-value-state > small {
+  color: #8a5a4d;
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.pmm-customer-value-state.is-assumed > a {
+  display: grid;
+  gap: 3px;
+  margin-top: 4px;
+  border: 1px solid #d79f8f;
+  border-radius: 6px;
+  background: #fff;
+  color: #713827;
+  padding: 8px;
+  text-decoration: none;
+}
+
+.pmm-customer-value-state.is-assumed > a span,
+.pmm-customer-value-state.is-assumed > a small {
+  color: #87584b;
+  font-size: 9px;
+}
+
+.pmm-customer-value-state.is-assumed > a:focus-visible,
+.pmm-customer-barrier-group > summary:focus-visible {
+  outline: 3px solid #4aa8b8;
+  outline-offset: 2px;
+}
+
+.pmm-customer-barrier-sources {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+}
+
 .pmm-adoption-value-plans {
   display: grid;
   gap: 10px;
@@ -10111,6 +10360,8 @@ td a {
   .pmm-narrative-intro,
   .pmm-selling-motion-grid,
   .pmm-narrative-status-grid,
+  .pmm-customer-value-grid,
+  .pmm-customer-barrier-sources,
   .pmm-decision-header,
   .pmm-activation-fields,
   .pmm-decision-sources,
@@ -10119,6 +10370,16 @@ td a {
   .pmm-backlog-sources > div,
   .pmm-appendix-record {
     grid-template-columns: 1fr;
+  }
+
+  .pmm-customer-barriers > header,
+  .pmm-customer-barrier-card > header {
+    flex-direction: column;
+  }
+
+  .pmm-customer-barrier-count {
+    justify-items: start;
+    text-align: left;
   }
 
   .pmm-selling-motion-grid > section:nth-child(even) {

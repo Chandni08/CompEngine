@@ -67,7 +67,7 @@
   function normalizeGap(item = {}, index = 0) {
     return {
       id: item.id || `gap-${index + 1}`,
-      source: "gapQueue",
+      source: item.source || "gapQueue",
       sourceIds: [item.id || `gap-${index + 1}`],
       claimText: text(item.claimText) || "Gap — proposed commercial claim wording is not recorded.",
       missingStudyEvidence: text(item.studyRequiredBeforeFieldUse) || "Gap — the required study or evidence is not recorded.",

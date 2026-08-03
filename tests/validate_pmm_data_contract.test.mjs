@@ -110,7 +110,7 @@ test("governing-position alignment blocks contradictions and identifies unsuppor
 
 test("PMM rendering consumes one canonical workspace model", () => {
   assert.match(appSource, /function buildMarketingWorkspaceModel\(signals\)/);
-  assert.match(appSource, /renderMarketingClaimsProof\([\s\S]*?model\.claimRows,[\s\S]*?model\.visibleClaimRows,[\s\S]*?model\.governingPosition,[\s\S]*?model\.productComparatorSupportedClaims,[\s\S]*?model\.gapQueue,[\s\S]*?\);/);
+  assert.match(appSource, /renderMarketingClaimsProof\([\s\S]*?model\.claimRows,[\s\S]*?model\.visibleClaimRows,[\s\S]*?model\.governingPosition,[\s\S]*?model\.productComparatorSupportedClaims,[\s\S]*?model\.comparatorGapQueue,[\s\S]*?\);/);
   assert.match(appSource, /renderMarketingEvidenceAppendix\(model\.appendix\)/);
   assert.match(appSource, /renderMarketingSourceCounts\(model\)/);
   assert.doesNotMatch(appSource, /Claims awaiting approval<\/span><strong>\$\{contexts\.length\}/);

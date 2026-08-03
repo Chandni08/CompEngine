@@ -93,7 +93,7 @@ test("modeled value cannot enter the claims registry without Proven substantiati
 test("the plan has a dedicated position in the eight-section spine and remains accessible and responsive", () => {
   assert.equal((index.match(/class="panel pmm-primary-section"/g) || []).length, 8);
   assert.match(index, /id="pmm-adoption-value"/);
-  assert.match(app, /renderMarketingAdoptionValuePlans\(model\.adoptionValuePlans\)/);
+  assert.match(app, /renderMarketingAdoptionValuePlans\(model\.adoptionValuePlans, model\.customerVoiceBarriers\)/);
   assert.match(app, /aria-label="\$\{escapeHtml\(`\$\{plan\.segment}/);
   assert.match(styles, /\.pmm-evc-table input:focus-visible/);
   assert.match(styles, /@media \(max-width: 720px\)[\s\S]*?\.pmm-accord-grid/);

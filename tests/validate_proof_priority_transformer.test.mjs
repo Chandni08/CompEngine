@@ -112,7 +112,8 @@ test("the PMM proof-priority renderer exposes exactly the requested fields and a
   const renderer = app.match(/function pmmProofPriorityRankMarkup[\s\S]*?\n}\n\nconst pmmClaimEvidenceClassifications/)?.[0] || "";
 
   assert.match(index, /proof-priority-transformer\.js/);
-  assert.match(app, /gapQueue: comparatorClaimTransformation\.gapQueue/);
+  assert.match(app, /\.\.\.comparatorClaimTransformation\.gapQueue/);
+  assert.match(app, /\.\.\.\(customerVoiceBarrierTransformation\?\.valueAssumptionGapQueue \|\| \[\]\)/);
   assert.match(app, /decisionItems: pmmProofDecisionInputs\(signals\)/);
   assert.match(app, /supportedClaims: comparatorClaimTransformation\.allClaimControlClaims/);
   assert.match(app, /allClaimControlClaims: \[\.\.\.transformation\.claimControlClaims\]/);

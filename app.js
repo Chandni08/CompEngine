@@ -9,6 +9,7 @@ const pmmEvidenceGovernance = globalThis.PmmEvidenceGovernance;
 const productComparatorClaimTransformer = globalThis.ProductComparatorClaimTransformer;
 const proofPriorityTransformer = globalThis.ProofPriorityTransformer;
 const competitorSellingMotionTransformer = globalThis.CompetitorSellingMotionTransformer;
+const customerVoiceBarrierTransformer = globalThis.CustomerVoiceBarrierTransformer;
 const gapQueue = [];
 
 const state = {
@@ -2737,14 +2738,24 @@ function pmmProofDecisionInputs(signals) {
   }));
 }
 
-function pmmProofPriorities(signals, comparatorClaimTransformation) {
+function pmmCustomerVoiceBarrierTransformation() {
+  if (!customerVoiceBarrierTransformer) throw new Error("Customer Voice barrier transformer failed to load");
+  return customerVoiceBarrierTransformer.transformCustomerVoiceBarriers({
+    records: pmmGovernedRecords(currentCustomerVoiceItems()),
+  });
+}
+
+function pmmProofPriorities(signals, comparatorClaimTransformation, customerVoiceBarrierTransformation) {
   if (!proofPriorityTransformer) throw new Error("Proof priority transformer failed to load");
   const customerVoiceRecords = pmmGovernedRecords(currentCustomerVoiceItems()).filter((record) => record.fieldCitable === true);
   return proofPriorityTransformer.aggregateProofPriorities({
-    gapQueue: comparatorClaimTransformation.gapQueue.map((item) => ({
+    gapQueue: [
+      ...comparatorClaimTransformation.gapQueue,
+      ...(customerVoiceBarrierTransformation?.valueAssumptionGapQueue || []),
+    ].map((item) => ({
       ...item,
-      sellerAsset: "One-Page Competitive Battlecard",
-      customerVoiceTerms: [item.claimText, item.dimension, item.watersProduct],
+      sellerAsset: item.sellerAsset || "One-Page Competitive Battlecard",
+      customerVoiceTerms: item.customerVoiceTerms || [item.claimText, item.dimension, item.watersProduct],
     })),
     decisionItems: pmmProofDecisionInputs(signals),
     customerVoiceRecords,
@@ -3783,13 +3794,66 @@ function renderMarketingAudienceCriteria(customerLanguageRecords, buyingCommitte
     ${pmmWeightReplacementWorkflowMarkup()}`;
 }
 
-function renderMarketingAdoptionValuePlans(adoptionValuePlans) {
+function pmmCustomerBarrierSourceMarkup(barrier) {
+  if (!barrier.sources.length) return `<p class="pmm-adoption-unresolved">Exact Customer Voice source unavailable.</p>`;
+  return `<div class="pmm-customer-barrier-sources">${barrier.sources.slice(0, 4).map((source) => pmmCanonicalEvidenceReferenceMarkup(source, "Customer Voice barrier")).join("")}</div>`;
+}
+
+function pmmCustomerBarrierValueMarkup(barrier) {
+  const proven = barrier.provenValue;
+  const assumed = barrier.assumedValue;
+  const provenMarkup = proven.status === "proven"
+    ? `<section class="pmm-customer-value-state is-proven" data-value-state="proven"><span>Proven value</span><strong>${escapeHtml(proven.statement)}</strong><small>Customer-validated outcome with field-citable evidence.</small><div>${proven.supportingEvidence.map((source) => pmmCanonicalEvidenceReferenceMarkup(source, "Customer-validated value")).join("")}</div></section>`
+    : `<section class="pmm-customer-value-state is-unproven" data-value-state="not-established"><span>Proven value</span><strong>Not established</strong><small>${escapeHtml(proven.statement)}</small></section>`;
+  if (assumed.status !== "assumed") return `<div class="pmm-customer-value-grid">${provenMarkup}<section class="pmm-customer-value-state is-cleared" data-value-state="none"><span>Assumed value</span><strong>None outstanding</strong><small>The loaded customer-validation record leaves no unvalidated tactic-value assumption.</small></section></div>`;
+  const priority = assumed.proofPriority;
+  return `<div class="pmm-customer-value-grid">
+    ${provenMarkup}
+    <section class="pmm-customer-value-state is-assumed" data-value-state="assumed" data-customer-validated="false"><span>Assumed value</span><strong>${escapeHtml(assumed.statement)}</strong><small>UNVALIDATED ASSUMPTION · not customer-validated</small><a href="${escapeHtml(priority.href)}" data-proof-priority-link="${escapeHtml(priority.id)}"><span>Validation gap · Three Proof Priorities</span><strong>${escapeHtml(priority.claimText)}</strong><small>${escapeHtml(priority.missingStudyEvidence)} →</small></a></section>
+  </div>`;
+}
+
+function pmmCustomerBarrierCardMarkup(barrier) {
+  const languageMarkup = barrier.languageMode === "verbatim"
+    ? `<blockquote><p>“${escapeHtml(barrier.barrierText)}”</p></blockquote>`
+    : `<p class="pmm-customer-barrier-paraphrase">${escapeHtml(barrier.barrierText)}</p>`;
+  return `<article class="pmm-customer-barrier-card" data-customer-barrier-id="${escapeHtml(barrier.id)}" data-customer-language-mode="${escapeHtml(barrier.languageMode)}">
+    <header><div><span>${escapeHtml(barrier.barrierLabel)}</span><strong>${escapeHtml(barrier.company)} · ${escapeHtml(barrier.product)}</strong><small>${escapeHtml(barrier.segment)} · ${escapeHtml(barrier.buyerRole)} · ${escapeHtml(barrier.buyingPriority)}</small></div>${pmmEvidenceTypeMarkup(barrier.languageMode === "verbatim" ? "observed" : "inference", barrier.languageLabel)}</header>
+    <section class="pmm-customer-barrier-language"><span>Customer barrier</span>${languageMarkup}<small>${barrier.languageMode === "verbatim" ? "Exact phrasing retained from the Customer Voice record." : "The loaded record contains analyst-synthesized language; it is not rendered as a quotation."}</small></section>
+    <section class="pmm-customer-barrier-tactic"><span>Tactic to remove it</span><strong>${escapeHtml(barrier.tactic)}</strong><small>PMM adoption tactic — not a roadmap item.</small></section>
+    ${pmmCustomerBarrierValueMarkup(barrier)}
+    ${pmmCustomerBarrierSourceMarkup(barrier)}
+  </article>`;
+}
+
+function pmmCustomerBarrierGroups(barriers) {
+  const groups = new Map();
+  barriers.forEach((barrier) => {
+    if (!groups.has(barrier.segment)) groups.set(barrier.segment, []);
+    groups.get(barrier.segment).push(barrier);
+  });
+  return [...groups.entries()].map(([segment, items]) => ({ segment, items }));
+}
+
+function pmmCustomerVoiceBarriersMarkup(transformation) {
+  const barriers = transformation?.barriers || [];
+  if (!barriers.length) return pmmEmptyState("No Customer Voice record is classified as a switching or adoption barrier under the active filters. Feature requests were not substituted.");
+  const groups = pmmCustomerBarrierGroups(barriers);
+  return `<section class="pmm-customer-barriers" aria-labelledby="pmmCustomerBarrierTitle">
+    <header><div><span>Customer Voice transformation</span><h4 id="pmmCustomerBarrierTitle">Observed Switching and Adoption Barriers</h4><p>Customer phrasing is quoted only when the record is explicitly verbatim. Tactics remain PMM adoption actions, and value is separated into customer-validated outcomes versus assumptions that still require proof.</p></div><div class="pmm-customer-barrier-count"><strong>${barriers.length}</strong><span>barrier${barriers.length === 1 ? "" : "s"}</span><small>${transformation.quotedCount} verbatim · ${transformation.assumedValueCount} validation gap${transformation.assumedValueCount === 1 ? "" : "s"}</small></div></header>
+    <aside role="note"><strong>Feature requests excluded.</strong><span>${transformation.excludedFeatureRequestCount} explicit feature-request record${transformation.excludedFeatureRequestCount === 1 ? " was" : "s were"} excluded; no barrier is converted into a roadmap item.</span></aside>
+    <div class="pmm-customer-barrier-groups">${groups.map((group, index) => `<details class="pmm-customer-barrier-group" ${index === 0 ? "open" : ""}><summary><span><strong>${escapeHtml(group.segment)}</strong><small>${group.items.filter((item) => item.languageMode === "verbatim").length} verbatim customer barrier${group.items.filter((item) => item.languageMode === "verbatim").length === 1 ? "" : "s"}</small></span><b>${group.items.length}</b></summary><div>${group.items.map(pmmCustomerBarrierCardMarkup).join("")}</div></details>`).join("")}</div>
+  </section>`;
+}
+
+function renderMarketingAdoptionValuePlans(adoptionValuePlans, customerVoiceBarriers) {
   const target = byId("pmmAdoptionValuePlans");
+  const barrierMarkup = pmmCustomerVoiceBarriersMarkup(customerVoiceBarriers);
   if (!adoptionValuePlans.length) {
-    target.innerHTML = pmmEmptyState("No target-compatible segment is available for an adoption and value plan. Assumptions were not fabricated.");
+    target.innerHTML = `${barrierMarkup}${pmmEmptyState("No target-compatible segment is available for the ACCORD and EVC planning model. Assumptions were not fabricated.")}`;
     return;
   }
-  target.innerHTML = `<div class="pmm-adoption-value-intro"><strong>Adoption follows the same governing position and segment cascade.</strong><p>Barriers, launch tactics, and value assumptions are kept separate from approved commercial claims. Canonical evidence references open the collapsed appendix.</p></div><div class="pmm-adoption-value-plans">${adoptionValuePlans.map((plan, index) => `<details class="pmm-adoption-value-plan" ${index === 0 ? "open" : ""}><summary><span><strong>${escapeHtml(plan.segment)}${plan.application !== "All" ? ` · ${escapeHtml(plan.application)}` : ""}</strong><small>${escapeHtml(plan.selectedBaseline.name)} · ${plan.accord.length} ACCORD barriers</small></span><b>${escapeHtml(plan.evc.valueClaimGate.status)}</b></summary>${pmmAdoptionValuePlanMarkup(plan)}</details>`).join("")}</div>`;
+  target.innerHTML = `${barrierMarkup}<div class="pmm-adoption-value-intro"><strong>Planning model below: ACCORD and EVC.</strong><p>These modeled barriers, launch tactics, and value assumptions remain separate from the Customer Voice extraction above and from approved commercial claims.</p></div><div class="pmm-adoption-value-plans">${adoptionValuePlans.map((plan, index) => `<details class="pmm-adoption-value-plan" ${index === 0 ? "open" : ""}><summary><span><strong>${escapeHtml(plan.segment)}${plan.application !== "All" ? ` · ${escapeHtml(plan.application)}` : ""}</strong><small>${escapeHtml(plan.selectedBaseline.name)} · ${plan.accord.length} ACCORD barriers</small></span><b>${escapeHtml(plan.evc.valueClaimGate.status)}</b></summary>${pmmAdoptionValuePlanMarkup(plan)}</details>`).join("")}</div>`;
 }
 
 function pmmNarrativeApplicationNotes(context) {
@@ -5317,6 +5381,7 @@ function exportMarketingTargetingSnapshot() {
     gapQueue: model.gapQueue,
     proofPriorities: model.proofPriorities,
     competitorPlays: model.competitorPlays,
+    customerVoiceBarriers: model.customerVoiceBarriers,
     caveat: "Internal proposed PMM work product. Approval is not established unless an explicit approval record says otherwise.",
   };
   const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: "application/json" });
@@ -5345,7 +5410,11 @@ function buildMarketingWorkspaceModel(signals) {
   const positioningDecisionCandidates = marketingPositioningDecisionCandidates(contexts, governingPosition);
   const claimRows = marketingClaimsProofRows(contexts, governingPosition);
   const comparatorClaimTransformation = pmmProductComparatorClaimTransformation();
-  const proofPriorities = pmmProofPriorities(governedSignals, comparatorClaimTransformation);
+  const customerVoiceBarrierDraft = pmmCustomerVoiceBarrierTransformation();
+  const proofPriorities = pmmProofPriorities(governedSignals, comparatorClaimTransformation, customerVoiceBarrierDraft);
+  const customerVoiceBarriers = customerVoiceBarrierTransformer.linkBarriersToProofPriorities(customerVoiceBarrierDraft, proofPriorities);
+  const sharedGapQueue = [...comparatorClaimTransformation.gapQueue, ...customerVoiceBarrierDraft.valueAssumptionGapQueue];
+  gapQueue.splice(0, gapQueue.length, ...sharedGapQueue);
   const competitorPlays = pmmCompetitorIntentSellingMotions(
     governedSignals,
     comparatorClaimTransformation.claimControlClaims,
@@ -5370,6 +5439,7 @@ function buildMarketingWorkspaceModel(signals) {
     artifactProduction,
     marketChoice,
     competitorPlays,
+    customerVoiceBarriers,
   });
   const kpis = PmmDataContract.buildKpis({
     positioningDecisions,
@@ -5388,9 +5458,11 @@ function buildMarketingWorkspaceModel(signals) {
     visibleClaimRows,
     productComparatorClaimCandidates: comparatorClaimTransformation.candidates,
     productComparatorSupportedClaims: comparatorClaimTransformation.claimControlClaims,
-    gapQueue: comparatorClaimTransformation.gapQueue,
+    comparatorGapQueue: comparatorClaimTransformation.gapQueue,
+    gapQueue: sharedGapQueue,
     proofPriorities,
     competitorPlays,
+    customerVoiceBarriers,
     narratives,
     activationActions,
     artifactProduction,
@@ -5415,11 +5487,11 @@ function renderMarketingWorkspace(signals) {
     model.visibleClaimRows,
     model.governingPosition,
     model.productComparatorSupportedClaims,
-    model.gapQueue,
+    model.comparatorGapQueue,
   );
   renderMarketingAudienceCriteria(model.appendix.customerLanguageRecords, model.buyingCommittee);
   renderMarketingCompetitiveNarrative(signals, model.governingPosition, model.marketChoice, model.contexts);
-  renderMarketingAdoptionValuePlans(model.adoptionValuePlans);
+  renderMarketingAdoptionValuePlans(model.adoptionValuePlans, model.customerVoiceBarriers);
   renderMarketingActivationBacklog(model.positioningDecisions, model.governingPosition, model.breakReport, model.activationActions, model.artifactProduction);
   renderMarketingEvidenceAppendix(model.appendix);
   renderMarketingSourceCounts(model);
