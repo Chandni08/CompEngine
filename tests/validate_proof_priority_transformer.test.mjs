@@ -114,9 +114,11 @@ test("the PMM proof-priority renderer exposes exactly the requested fields and a
   assert.match(index, /proof-priority-transformer\.js/);
   assert.match(app, /\.\.\.comparatorClaimTransformation\.gapQueue/);
   assert.match(app, /\.\.\.\(customerVoiceBarrierTransformation\?\.valueAssumptionGapQueue \|\| \[\]\)/);
-  assert.match(app, /decisionItems: pmmProofDecisionInputs\(signals\)/);
+  assert.match(app, /const decisionCandidates = pmmProofDecisionInputs\(signals\)/);
   assert.match(app, /supportedClaims: comparatorClaimTransformation\.allClaimControlClaims/);
-  assert.match(app, /allClaimControlClaims: \[\.\.\.transformation\.claimControlClaims\]/);
+  assert.match(app, /const allClaimControlClaims = candidates\.filter/);
+  assert.match(app, /filter\(\(item\) => !\(item\.guardrailConflicts \|\| \[\]\)\.length\)/);
+  assert.match(app, /guardrailBlocked: \[\.\.\.gapCandidates, \.\.\.decisionCandidates\]/);
   assert.match(renderer, /Commercial claim we want to make/);
   assert.match(renderer, /Specific missing study \/ evidence/);
   assert.match(renderer, /One seller asset it unblocks/);

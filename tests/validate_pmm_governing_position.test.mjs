@@ -29,15 +29,19 @@ test("the governing model contains every required positioning field", () => {
     "primaryValueProposition",
     "pointOfParity",
     "pointOfDifference",
+    "narrativeSpine",
     "evidencePillars",
+    "framingOnlyTrends",
+    "pillarRequirement",
     "exclusions",
+    "exclusionRecords",
     "approvalState",
     "approver",
     "lastReviewedDate",
   ]) assert.match(app, new RegExp(`${field}:`));
-  assert.equal((app.match(/pillar\("/g) || []).length, 3);
-  assert.match(app, /reliable, transferable, compliant analytical workflows/i);
-  assert.match(app, /not merely compete on UHPLC hardware specifications/i);
+  assert.match(app, /positionGuardrailsTransformer\.transformOverallTrends/);
+  assert.match(app, /pmmOverallTrendGuardrailInputs/);
+  assert.match(app, /field-citable Overall Trend Analysis pillar/i);
 });
 
 test("unapproved governing language propagates to all downstream PMM objects", () => {
@@ -74,6 +78,7 @@ test("contradictions and unsupported deviations are visibly flagged", () => {
 
 test("the PMM data contract documents governing-position inheritance", () => {
   assert.match(contract, /\| Governing position \|/);
-  assert.match(contract, /exactly one canonical PMM object/i);
+  assert.match(contract, /exactly one canonical Position Guardrails object/i);
+  assert.match(contract, /three to five evidence pillars/i);
   assert.match(contract, /Every downstream Waters counter-position, claim response, and activation asset carries the governing-position identifier/);
 });

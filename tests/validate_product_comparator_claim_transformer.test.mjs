@@ -129,9 +129,10 @@ test("Claim Control renders only governed supported candidates in the requested 
     assert.match(app, new RegExp(`<th>${heading}<\\/th>`));
   }
   assert.match(app, /supportedClaims\.map\(\(claim\)/);
-  assert.match(app, /data-claim-status="supported" data-field-usable="true"/);
+  assert.match(app, /data-claim-status="supported" data-field-usable="\$\{claim\.fieldUsable === true\}"/);
+  assert.match(app, /pmmGuardrailConflictMarkup\(claim\)/);
   assert.match(app, /Gap wording is withheld from this table and remains only in the shared gapQueue/);
-  assert.match(app, /gapQueue\.splice\(0, gapQueue\.length, \.\.\.transformation\.gapQueue\)/);
+  assert.match(app, /gapQueue\.splice\(0, gapQueue\.length, \.\.\.transformedGaps\)/);
   assert.match(app, /gapQueue: model\.gapQueue/);
   const winsTransformer = app.match(/function headToHeadWins[\s\S]*?\n}/)?.[0] || "";
   assert.match(winsTransformer, /productComparatorSupportedClaims/);

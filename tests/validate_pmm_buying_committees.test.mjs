@@ -81,8 +81,8 @@ test("weights and scores cannot be presented as measured evidence", () => {
 test("the governing position references the calculated selected-segment swing attribute", () => {
   assert.match(app, /selectedSwingAttribute/);
   assert.match(app, /const buyingCommittee = pmmBuyingCommitteeModel/);
-  assert.match(app, /pmmGoverningPosition\(contexts, buyingCommittee\.selectedSwingAttribute\)/);
-  assert.match(app, /<dt>Selected swing attribute<\/dt>/);
+  assert.match(app, /pmmGoverningPosition\(contexts, buyingCommittee\.selectedSwingAttribute, signals\)/);
+  assert.match(app, /selectedSwingAttribute,/);
   assert.match(app, /weighted difference \$\{selectedSegment\.scorecard\.swingAttribute\.weightedDifference\.toFixed\(2\)\}/);
 });
 
