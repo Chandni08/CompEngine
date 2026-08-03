@@ -136,7 +136,9 @@ test("registry compatibility governs positioning proof and activation inputs", (
   assert.match(app, /function pmmApplyClaimsRegistryToDecisions/);
   assert.match(app, /proof\.compatibility\.status === "Applicable"/);
   assert.match(app, /proof\.compatibility\.status === "Inapplicable"/);
-  assert.match(app, /blocked as Inapplicable/);
+  assert.match(app, /const rejectedProof = governedClaim\.evidenceRecords\.filter/);
+  assert.match(app, /availableProof: acceptedProof/);
+  assert.match(app, /rejectedProof,/);
   assert.match(app, /Applicable proof/);
   assert.match(app, /const positioningDecisions = pmmApplyClaimsRegistryToDecisions\(positioningDecisionCandidates, claimRows\)/);
 });

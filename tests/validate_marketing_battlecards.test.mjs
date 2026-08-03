@@ -97,35 +97,29 @@ test("Marketing copy states the decision-and-activation purpose", async () => {
   assert.match(app, /Win product selections with evidence-backed claims, competitive battlecards, and proof priorities\./);
 });
 
-test("Positioning Decisions renders exactly three evidence-linked PMM decisions", async () => {
+test("Three Proof Priorities renders only unsupported claim gaps and keeps the remainder collapsed", async () => {
   const app = await readFile(new URL("app.js", root), "utf8");
-  const decisionRenderer = app.match(/function renderMarketingPositioningDecisions[\s\S]*?\n}\n\nfunction renderMarketingClaimsProof/)?.[0] || "";
+  const decisionRenderer = app.match(/function pmmProofPriorityRankMarkup[\s\S]*?\n}\n\nconst pmmClaimEvidenceClassifications/)?.[0] || "";
 
-  assert.match(app, /function marketingPositioningDecisionCandidates/);
-  assert.match(app, /\.slice\(0, 3\)/);
-  assert.match(decisionRenderer, /class="pmm-decision-card pmm-positioning-decision"/);
-  assert.match(decisionRenderer, /Audience and Buying Situation/);
-  assert.match(decisionRenderer, /Competitor Claim or Narrative/);
-  assert.match(decisionRenderer, /Suggested Waters Counter-position/);
-  assert.match(decisionRenderer, /Proof and Substantiation/);
-  assert.match(decisionRenderer, /Activation Required/);
-  assert.match(decisionRenderer, /Owner needed/);
-  assert.match(decisionRenderer, /Deadline needed/);
-  assert.match(decisionRenderer, /Measure needed/);
-  assert.match(decisionRenderer, /Exact Evidence Links/);
-  assert.match(decisionRenderer, /Approved Waters claim/);
+  assert.match(app, /function pmmProofPriorities/);
+  assert.match(app, /limit: 3/);
+  assert.match(decisionRenderer, /proofPriorities\.top/);
+  assert.match(decisionRenderer, /Commercial claim we want to make/);
+  assert.match(decisionRenderer, /Specific missing study \/ evidence/);
+  assert.match(decisionRenderer, /One seller asset it unblocks/);
+  assert.match(decisionRenderer, /GAP · NOT FIELD-USABLE/);
+  assert.match(decisionRenderer, /pmm-proof-priority-backlog/);
+  assert.doesNotMatch(decisionRenderer, /pmm-proof-priority-backlog" open/);
   assert.doesNotMatch(decisionRenderer, /product requirements?|roadmap (?:gate|change|decision)|product KPIs?|investment gate/i);
 });
 
-test("Positioning prioritization is explainable and refresh deltas are not invented", async () => {
+test("Proof prioritization exposes its formula and never invents missing deal impact", async () => {
   const app = await readFile(new URL("app.js", root), "utf8");
 
-  assert.match(app, /Priority combines recency, source diversity, repeated narrative evidence, customer buying-criterion evidence, confidence, and proof gaps/);
-  assert.match(app, /Raw record volume is not used as a standalone measure of commercial importance/);
-  assert.match(app, /What Changed Since the Last Refresh/);
-  assert.match(app, /Change detection unavailable/);
-  assert.match(app, /no comparable prior PMM positioning-decision snapshot is loaded/);
-  assert.match(app, /No delta is inferred/);
+  assert.match(app, /deal impact × exact claim frequency in field-citable Customer Voice records/);
+  assert.match(app, /Deal impact unquantified/);
+  assert.match(app, /internal deal data required/);
+  assert.match(app, /Supported, non-blocked claims are excluded before ranking/);
 });
 
 test("Activation Backlog produces governed, filter-specific PMM artifacts", async () => {

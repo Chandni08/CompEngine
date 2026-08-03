@@ -119,14 +119,14 @@ test("PMM rendering consumes one canonical workspace model", () => {
 
 test("every PMM KPI exposes an accessible calculation tooltip", () => {
   for (const id of [
-    "positioning-decisions",
+    "proof-priorities",
     "claims-awaiting-approval",
     "exact-customer-sources",
     "direct-evidence-sources",
   ]) assert.match(appSource, new RegExp(`id: "${id}"`));
   assert.match(appSource, /aria-describedby="\$\{tooltipId\}"/);
   assert.match(appSource, /class="pmm-metric-tooltip" role="tooltip"/);
-  assert.match(appSource, /Unit: displayed cards/);
+  assert.match(appSource, /Unit: displayed gap cards/);
   assert.match(appSource, /Unit: displayed rows/);
   assert.match(appSource, /Unit: unique URLs/);
   assert.match(appSource, /Global and claims-registry filters apply/);

@@ -51,14 +51,15 @@ test("unapproved governing language propagates to all downstream PMM objects", (
   assert.doesNotMatch(app, /pmmEvidenceTypeMarkup\("approval", "Proposed/);
 });
 
-test("positioning decisions and competitor narratives display inherited fields and local adaptation", () => {
+test("downstream positioning objects and competitor narratives retain governing-position inheritance", () => {
   assert.match(app, /Inherited customer \/ segment/);
   assert.match(app, /Inherited job \/ category/);
   assert.match(app, /Inherited value proposition/);
   assert.match(app, /Inherited point of parity/);
   assert.match(app, /Inherited point of difference/);
   assert.match(app, /Local adaptation/);
-  assert.match(app, /pmmGoverningTraceMarkup\(governingPosition, decision\.governingTrace\)/);
+  assert.match(app, /positioningDecisions\.map\(\(decision\) => \(\{ \.\.\.decision\.governingTrace/);
+  assert.match(app, /pmmApplyClaimsRegistryToDecisions\(positioningDecisionCandidates, claimRows\)/);
   assert.match(app, /pmmGoverningTraceMarkup\(governing, narrative\.governingTrace\)/);
 });
 
