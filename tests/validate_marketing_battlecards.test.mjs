@@ -145,29 +145,32 @@ test("Seller Assets assembles four governed, filter-specific shipment records", 
   assert.doesNotMatch(renderedMarkup, /defin(?:e|ing) product requirements?|roadmap prioritization|engineering validation plans?|product KPIs?/i);
 });
 
-test("Evidence Appendix consolidates secondary intelligence into closed, traceable groups", async () => {
+test("Evidence Appendix consolidates used evidence into closed source-type groups with backlinks", async () => {
   const app = await readFile(new URL("app.js", root), "utf8");
   const index = await readFile(new URL("index.html", root), "utf8");
   const styles = await readFile(new URL("styles.css", root), "utf8");
+  const transformer = await readFile(new URL("evidence-appendix-transformer.js", root), "utf8");
   const appendix = app.match(/function pmmAppendixRecord[\s\S]*?\n}\n\nfunction renderMarketingSourceCounts/)?.[0] || "";
 
   assert.match(index, /id="pmm-evidence-appendix"[^>]*data-default-collapsed="true"/);
-  assert.match(index, /Secondary, filtered evidence groups retained for traceability and collapsed by default/);
+  assert.match(index, /grouped by source type with claim and section backlinks; groups are collapsed by default/);
   for (const group of [
-    "Launches and Conferences",
-    "Application Notes and Publications",
-    "Filings and Partnerships",
-    "Customer-Language Records",
-    "Source Coverage and Confidence",
-    "Historical Product and Capability Records",
-  ]) assert.match(appendix, new RegExp(group));
+    "Customer language",
+    "Scientific publication",
+    "Corporate filing",
+    "Conference or event",
+    "Competitor official",
+    "Waters official",
+    "Other public source",
+    "Unresolved evidence",
+  ]) assert.match(transformer, new RegExp(group));
 
-  assert.match(appendix, /Other Public Evidence Records/);
   assert.match(appendix, /<details class="pmm-appendix-group">/);
   assert.doesNotMatch(appendix, /<details class="pmm-appendix-group" open/);
   assert.match(appendix, /tabindex="0" aria-label=/);
-  assert.match(appendix, /Leadership synthesis remains in the Leadership view/);
-  assert.match(appendix, /do not create PMM recommendations by themselves/);
+  assert.match(appendix, /Evidence Used by the Current PMM Transformation/);
+  assert.match(appendix, /data-pmm-appendix-backlink/);
+  assert.match(appendix, /data-appendix-validation-status/);
   for (const source of [
     "currentLaunches()",
     "currentConferenceSources()",

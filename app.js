@@ -13,6 +13,7 @@ const customerVoiceBarrierTransformer = globalThis.CustomerVoiceBarrierTransform
 const buyingCommitteeTransformer = globalThis.BuyingCommitteeTransformer;
 const positionGuardrailsTransformer = globalThis.PositionGuardrailsTransformer;
 const sellerAssetsTransformer = globalThis.SellerAssetsTransformer;
+const evidenceAppendixTransformer = globalThis.EvidenceAppendixTransformer;
 const gapQueue = [];
 
 const state = {
@@ -2824,6 +2825,30 @@ function pmmEvidenceObjectId(value) {
   return `EV-${(hash >>> 0).toString(16).toUpperCase().padStart(8, "0")}`;
 }
 
+function pmmPillarTraceKey(pillar = {}) {
+  return pillar.id || pillar.trendId || pillar.name || pillar.statement || "pillar-unresolved";
+}
+
+function pmmPillarTraceAnchorId(pillar = {}) {
+  return evidenceAppendixTransformer.referenceDomId("position-pillar", pmmPillarTraceKey(pillar));
+}
+
+function pmmComparatorClaimTraceKey(claim = {}) {
+  return claim.id || `${claim.competitor || "competitor-unresolved"}|${claim.claimText || "claim-unresolved"}`;
+}
+
+function pmmComparatorClaimTraceAnchorId(claim = {}) {
+  return evidenceAppendixTransformer.referenceDomId("claim-control", pmmComparatorClaimTraceKey(claim));
+}
+
+function pmmRegistryClaimTraceKey(row = {}) {
+  return row.id || `${row.competitor || "competitor-unresolved"}|${row.proposedClaimWording || "claim-unresolved"}`;
+}
+
+function pmmRegistryClaimTraceAnchorId(row = {}) {
+  return evidenceAppendixTransformer.referenceDomId("claim-control", pmmRegistryClaimTraceKey(row));
+}
+
 function pmmCanonicalEvidenceReferenceMarkup(source, context = "Canonical evidence") {
   const evidenceId = pmmEvidenceObjectId(source?.url);
   if (!evidenceId) return `<span class="pmm-evidence-reference pmm-evidence-reference-unresolved"><span>Evidence unresolved</span><strong>${escapeHtml(source?.label || source?.sourceName || "Source unavailable")}</strong></span>`;
@@ -2850,7 +2875,7 @@ function pmmGoverningPositionMarkup(position) {
       <header><div><span>Narrative spine</span><h4 id="pmmNarrativeSpineTitle">Why Now / Why Waters</h4></div><small>Exact framing from the filtered Overall Trend Analysis · draft synthesis</small></header>
       <div>${position.narrativeSpine.arc.length ? position.narrativeSpine.arc.map((arc, index) => `<article data-overall-trend-ref="${escapeHtml(arc.trendId)}"><header><span>Arc ${index + 1}</span><strong>${escapeHtml(arc.title)}</strong></header><dl><div><dt>Why now</dt><dd>${escapeHtml(arc.whyNow)}</dd></div><div><dt>Why Waters</dt><dd>${escapeHtml(arc.whyWaters)}</dd></div></dl><small>${arc.fieldCitableSourceCount} field-citable source${arc.fieldCitableSourceCount === 1 ? "" : "s"} · a zero-source arc may frame the narrative but cannot become a pillar</small></article>`).join("") : `<div class="pmm-unresolved">Gap — no Overall Trend Analysis narrative matches the active filters.</div>`}</div>
     </section>
-    <section class="pmm-governing-pillars" aria-labelledby="pmmEvidencePillarsTitle"><div><span>Evidence architecture</span><h4 id="pmmEvidencePillarsTitle">${position.evidencePillars.length} Citable Evidence Pillar${position.evidencePillars.length === 1 ? "" : "s"}</h4><small>Only fieldCitable:true, non-blocked records can enter a pillar.</small></div><div class="pmm-governing-pillar-grid">${position.evidencePillars.map((pillar, index) => `<article data-trend-pillar="${escapeHtml(pillar.trendId)}"><span>Pillar ${index + 1}</span><strong>${escapeHtml(pillar.name)}</strong><p>${escapeHtml(pillar.statement)}</p><small>${escapeHtml(pillar.supportState)}</small><div class="pmm-inline-links">${pillar.sources.map((source) => pmmCanonicalEvidenceReferenceMarkup(source, `Field-citable pillar ${index + 1}`)).join("")}</div></article>`).join("")}</div>${position.pillarRequirement.met ? "" : `<p class="pmm-pillar-requirement-gap"><strong>Evidence pillar gap</strong><span>${escapeHtml(position.pillarRequirement.gap)}</span></p>`}</section>
+    <section class="pmm-governing-pillars" aria-labelledby="pmmEvidencePillarsTitle"><div><span>Evidence architecture</span><h4 id="pmmEvidencePillarsTitle">${position.evidencePillars.length} Citable Evidence Pillar${position.evidencePillars.length === 1 ? "" : "s"}</h4><small>Only fieldCitable:true, non-blocked records can enter a pillar.</small></div><div class="pmm-governing-pillar-grid">${position.evidencePillars.map((pillar, index) => `<article id="${escapeHtml(pmmPillarTraceAnchorId(pillar))}" data-trend-pillar="${escapeHtml(pillar.trendId)}" tabindex="-1"><span>Pillar ${index + 1}</span><strong>${escapeHtml(pillar.name)}</strong><p>${escapeHtml(pillar.statement)}</p><small>${escapeHtml(pillar.supportState)}</small><div class="pmm-inline-links">${pillar.sources.map((source) => pmmCanonicalEvidenceReferenceMarkup(source, `Field-citable pillar ${index + 1}`)).join("")}</div></article>`).join("")}</div>${position.pillarRequirement.met ? "" : `<p class="pmm-pillar-requirement-gap"><strong>Evidence pillar gap</strong><span>${escapeHtml(position.pillarRequirement.gap)}</span></p>`}</section>
     ${position.framingOnlyTrends.length ? `<aside class="pmm-framing-only-trends"><strong>Framing only — excluded from evidence pillars</strong>${position.framingOnlyTrends.map((trend) => `<span>${escapeHtml(trend.title)} · ${escapeHtml(trend.reason)}</span>`).join("")}</aside>` : ""}
     <section class="pmm-governing-exclusions"><span>Explicit exclusions — claims we will not make</span><div>${position.exclusionRecords.map((exclusion) => `<article data-exclusion-id="${escapeHtml(exclusion.id)}"><strong>${escapeHtml(exclusion.claimText)}</strong><p><span>Why:</span> ${escapeHtml(exclusion.reason)}</p></article>`).join("")}</div></section>
     ${position.downstreamConflicts?.length ? `<section class="pmm-downstream-conflicts" role="alert"><header><span>Downstream contradiction flag</span><strong>${position.downstreamConflicts.length} claim${position.downstreamConflicts.length === 1 ? "" : "s"} conflict with an exclusion</strong></header>${position.downstreamConflicts.map((conflict) => `<article><strong>${escapeHtml(conflict.claimText)}</strong><span>${escapeHtml(conflict.source)}</span>${conflict.conflicts.map((item) => `<p>${escapeHtml(item.claimText)} <small>${escapeHtml(item.reason)}</small></p>`).join("")}</article>`).join("")}</section>` : `<p class="pmm-no-downstream-conflicts">No downstream exclusion conflict detected under the active filters.</p>`}
@@ -3287,7 +3312,7 @@ function pmmComparatorClaimControlMarkup(supportedClaims = [], queuedGaps = []) 
   return `<section class="pmm-comparator-claim-control" aria-labelledby="pmmComparatorClaimControlTitle">
     <header><div><span>Product Comparator Transformer</span><h4 id="pmmComparatorClaimControlTitle">Supported Comparator Claim Candidates</h4><p>Exact comparator wording requires field-citable proof and a non-blocked approval state. Position Guardrails are a final field-use gate: a conflicting supported claim remains visible but is blocked.</p></div><div><strong>${fieldUsableCount}</strong><span>field-usable</span><small>${supportedClaims.length - fieldUsableCount} guardrail-blocked · ${queuedGaps.length} routed to gapQueue</small></div></header>
     <div class="pmm-claims-table-wrap"><table class="pmm-comparator-claims-table"><caption class="sr-only">Supported Product Comparator claim candidates</caption><thead><tr><th>Exact wording</th><th>Applicable proof</th><th>Blocked evidence</th><th>Approval state</th><th>Study required before field use</th></tr></thead><tbody>${supportedClaims.length
-      ? supportedClaims.map((claim) => `<tr data-comparator-claim-id="${escapeHtml(claim.id)}" data-claim-status="supported" data-field-usable="${claim.fieldUsable === true}">
+      ? supportedClaims.map((claim) => `<tr id="${escapeHtml(pmmComparatorClaimTraceAnchorId(claim))}" data-comparator-claim-id="${escapeHtml(claim.id)}" data-claim-status="supported" data-field-usable="${claim.fieldUsable === true}" tabindex="-1">
         <td><strong>${escapeHtml(claim.claimText)}</strong><small>${escapeHtml(claim.watersProduct)} vs ${escapeHtml(claim.competitorProduct)} · ${escapeHtml(claim.dimension)}</small>${pmmGuardrailConflictMarkup(claim)}</td>
         <td>${pmmComparatorClaimEvidenceMarkup(claim.supportingEvidence)}</td>
         <td>${pmmComparatorClaimEvidenceMarkup(claim.blockedEvidence, { blocked: true })}</td>
@@ -3328,7 +3353,7 @@ function renderMarketingClaimsProof(rows, visibleRows, governingPosition, suppor
       <p>Competitor filtering uses the global Competitor filter above.</p>
     </form>
     <div class="pmm-claims-result-count" aria-live="polite">${visibleRows.length} of ${rows.length} claim${rows.length === 1 ? "" : "s"}</div>
-    ${riskRows.length ? `<div class="pmm-claims-table-wrap"><table class="pmm-claims-matrix pmm-claims-registry"><caption class="sr-only">Governed Product Marketing claims registry ordered by risk</caption><thead><tr><th>Exact proposed claim wording</th><th>Type</th><th>Segment / application</th><th>Buyer / channel</th><th>Reference competitor or baseline</th><th>Exact supporting evidence and compatibility</th><th>Source counts</th><th>Evidence comparability</th><th>Substantiation</th><th>Legal / claims approval</th><th>Governance and next action</th></tr></thead><tbody>${riskRows.map((row) => `<tr data-claim-context="${escapeHtml(`${row.buyingCriterion} for ${row.audience}`)}" data-claim-risk-score="${pmmClaimRiskScore(row)}" data-claim-readiness="${escapeHtml(row.readiness.value)}" data-substantiation-status="${escapeHtml(row.substantiationStatus)}" data-evidence-comparability="${escapeHtml(row.comparabilityStatus)}" data-claim-classification="${escapeHtml(pmmClaimEvidenceClassifications[row.evidenceClassification])}" data-guardrail-status="${escapeHtml(row.guardrailStatus)}">
+    ${riskRows.length ? `<div class="pmm-claims-table-wrap"><table class="pmm-claims-matrix pmm-claims-registry"><caption class="sr-only">Governed Product Marketing claims registry ordered by risk</caption><thead><tr><th>Exact proposed claim wording</th><th>Type</th><th>Segment / application</th><th>Buyer / channel</th><th>Reference competitor or baseline</th><th>Exact supporting evidence and compatibility</th><th>Source counts</th><th>Evidence comparability</th><th>Substantiation</th><th>Legal / claims approval</th><th>Governance and next action</th></tr></thead><tbody>${riskRows.map((row) => `<tr id="${escapeHtml(pmmRegistryClaimTraceAnchorId(row))}" data-claim-context="${escapeHtml(`${row.buyingCriterion} for ${row.audience}`)}" data-claim-risk-score="${pmmClaimRiskScore(row)}" data-claim-readiness="${escapeHtml(row.readiness.value)}" data-substantiation-status="${escapeHtml(row.substantiationStatus)}" data-evidence-comparability="${escapeHtml(row.comparabilityStatus)}" data-claim-classification="${escapeHtml(pmmClaimEvidenceClassifications[row.evidenceClassification])}" data-guardrail-status="${escapeHtml(row.guardrailStatus)}" tabindex="-1">
       <td><div class="pmm-registry-claim-wording"><span>Exact proposed wording</span><p>${escapeHtml(row.proposedClaimWording)}</p>${pmmEvidenceTypeMarkup("inference", "Proposed — not approved")}<small>Registry context: ${escapeHtml(row.buyingCriterion)} for ${escapeHtml(row.audience)} · Inherits ${escapeHtml(governingPosition.id)}</small>${pmmGuardrailConflictMarkup(row)}</div></td>
       <td><strong class="pmm-claim-type">${escapeHtml(row.claimType)}</strong></td>
       <td><strong>${escapeHtml(row.segmentApplication)}</strong><small>${escapeHtml(row.caveat)}</small></td>
@@ -5132,9 +5157,10 @@ function pmmAppendixRecordMarkup(record) {
     record.caveat,
     record.mergedRecordCount > 1 ? `${record.mergedRecordCount} evidence records share this canonical URL and are counted once.` : "",
   ];
+  const supportLinks = (record.supports || []).map((support) => `<a href="${escapeHtml(support.href)}" data-pmm-appendix-backlink data-pmm-section-id="${escapeHtml(support.sectionId)}"><span>${escapeHtml(support.sectionTitle)}</span><strong>${escapeHtml(support.label)}</strong></a>`).join("");
   return `<article class="pmm-appendix-record" data-field-citable="${record.fieldCitable === true}" data-approval-state="${escapeHtml(record.approvalState)}" ${evidenceId ? `id="pmm-evidence-object-${escapeHtml(evidenceId)}" data-canonical-evidence-id="${escapeHtml(evidenceId)}" tabindex="-1"` : ""}>
     <div><span>${evidenceId ? `${escapeHtml(evidenceId)} · ` : ""}${escapeHtml(record.type)}</span><strong>${escapeHtml(record.title)}</strong><small>${escapeHtml(record.sourceName)} · ${escapeHtml(date)} · ${escapeHtml(confidence)}${record.sourceDomain ? ` · ${escapeHtml(record.sourceDomain)}` : ""} · ${escapeHtml(citationState)} · ${escapeHtml(approvalLabel)}</small>${pmmCaveatDetailsMarkup("Evidence summary and caveats", detailItems)}</div>
-    ${sourceLink}
+    <div class="pmm-appendix-record-actions"><div class="pmm-appendix-support-links"><span>Supports</span>${supportLinks}</div>${sourceLink}</div>
   </article>`;
 }
 
@@ -5213,67 +5239,136 @@ function marketingEvidenceAppendixModel(signals) {
   return { ...appendix, customerLanguageRecords };
 }
 
-function pmmCollectCanonicalEvidenceSources(value, output = [], visited = new WeakSet()) {
-  if (!value || typeof value !== "object") return output;
-  if (visited.has(value)) return output;
-  visited.add(value);
-  if (isHttpUrl(value.url)) output.push(value);
-  if (Array.isArray(value)) value.forEach((item) => pmmCollectCanonicalEvidenceSources(item, output, visited));
-  else Object.values(value).forEach((item) => pmmCollectCanonicalEvidenceSources(item, output, visited));
-  return output;
+function pmmEvidenceAppendixSections(appendix, {
+  governingPosition,
+  proofPriorities,
+  claimRows,
+  comparatorClaims,
+  buyingCommittee,
+  competitorPlays,
+  customerVoiceBarriers,
+  adoptionValuePlans,
+  sellerAssets,
+}) {
+  const pillarReferences = (governingPosition.evidencePillars || []).map((pillar, index) => ({
+    referenceId: `position-pillar:${pmmPillarTraceKey(pillar)}`,
+    kind: "pillar",
+    label: `Position Guardrails · Pillar ${index + 1}: ${pillar.name}`,
+    href: `#${pmmPillarTraceAnchorId(pillar)}`,
+    records: pillar.sources || [],
+    backingRecords: pillar.sources || [],
+  }));
+  const comparatorClaimReferences = (comparatorClaims || []).map((claim) => ({
+    referenceId: `comparator-claim:${pmmComparatorClaimTraceKey(claim)}`,
+    kind: "claim",
+    approvalState: claim.approvalState,
+    label: `Claim Control · ${claim.claimText}`,
+    href: `#${pmmComparatorClaimTraceAnchorId(claim)}`,
+    records: [...(claim.supportingEvidence || []), ...(claim.blockedEvidence || [])],
+    backingRecords: claim.supportingEvidence || [],
+  }));
+  const registryClaimReferences = (claimRows || []).map((claim) => ({
+    referenceId: `registry-claim:${pmmRegistryClaimTraceKey(claim)}`,
+    kind: "claim",
+    approvalState: claim.approvalState,
+    label: `Claim Control · ${claim.proposedClaimWording}`,
+    href: `#${pmmRegistryClaimTraceAnchorId(claim)}`,
+    records: [...(claim.evidenceRecords || []), ...(claim.claimSources || []), ...(claim.sources || [])],
+    backingRecords: claim.evidenceRecords || [],
+  }));
+  return [
+    {
+      id: "position-guardrails",
+      title: "Position Guardrails",
+      href: "#pmm-governing-position",
+      references: pillarReferences,
+    },
+    {
+      id: "three-proof-priorities",
+      title: "Three Proof Priorities to Win",
+      href: "#pmm-positioning-decisions",
+      references: [{
+        referenceId: "section:three-proof-priorities",
+        kind: "section",
+        label: "Three Proof Priorities to Win",
+        records: [proofPriorities?.top || [], proofPriorities?.backlog || [], proofPriorities?.guardrailBlocked || []],
+      }],
+    },
+    {
+      id: "claim-control",
+      title: "Claim Control",
+      href: "#pmm-claims-risk",
+      references: [...comparatorClaimReferences, ...registryClaimReferences],
+    },
+    {
+      id: "buying-committee",
+      title: "Buying Committee and Decision Criteria",
+      href: "#pmm-segment-cascade",
+      references: [{
+        referenceId: "section:buying-committee",
+        kind: "section",
+        label: "Buying Committee and Decision Criteria",
+        records: [buyingCommittee, appendix.customerLanguageRecords || []],
+      }],
+    },
+    {
+      id: "competitor-plays",
+      title: "Competitor Plays and Waters Response",
+      href: "#pmm-competitive-narratives",
+      references: [{
+        referenceId: "section:competitor-plays",
+        kind: "section",
+        label: "Competitor Plays and Waters Response",
+        records: competitorPlays,
+      }],
+    },
+    {
+      id: "adoption-barriers",
+      title: "Adoption Barriers and Value Proof",
+      href: "#pmm-adoption-value",
+      references: [{
+        referenceId: "section:adoption-barriers",
+        kind: "section",
+        label: "Adoption Barriers and Value Proof",
+        records: [customerVoiceBarriers, adoptionValuePlans],
+      }],
+    },
+    {
+      id: "seller-assets",
+      title: "Seller Assets to Ship",
+      href: "#pmm-activation-artifacts",
+      references: [{
+        referenceId: "section:seller-assets",
+        kind: "section",
+        label: "Seller Assets to Ship",
+        records: sellerAssets,
+      }],
+    },
+  ];
 }
 
 function pmmCanonicalizeEvidenceAppendix(appendix, decisionObjects) {
-  const existingUrls = new Set(appendix.groups.flatMap((group) => group.records)
-    .map((record) => PmmDataContract.canonicalUrl(record.url)).filter(Boolean));
-  const missingRecords = [];
-  pmmCollectCanonicalEvidenceSources(decisionObjects).forEach((source) => {
-    const canonical = PmmDataContract.canonicalUrl(source.url);
-    if (!canonical || existingUrls.has(canonical)) return;
-    existingUrls.add(canonical);
-    missingRecords.push(pmmAppendixRecord({
-      ...pmmGovernanceFields(source),
-      title: source.label || source.title || source.sourceName || "Decision evidence",
-      type: source.evidenceType || source.evidenceRole || "Decision-support evidence",
-      sourceName: source.sourceName || PmmDataContract.sourceDomain(source.url) || "Public source",
-      date: source.date || source.eventDate || "",
-      confidence: source.confidence,
-      description: source.detail || source.description || source.summary || "Referenced by a governed PMM object.",
-      url: source.url,
-      caveat: source.caveat || "Use only for the governed context that references this evidence object.",
-    }));
+  if (!evidenceAppendixTransformer) throw new Error("Evidence appendix transformer failed to load");
+  return evidenceAppendixTransformer.buildTraceableAppendix({
+    baseAppendix: appendix,
+    sections: pmmEvidenceAppendixSections(appendix, decisionObjects),
   });
-  const groups = missingRecords.length ? [...appendix.groups, {
-    id: "decision-support-evidence",
-    title: "Decision-Support Evidence Objects",
-    description: "Canonical evidence referenced by a PMM decision but not otherwise represented in the appendix groups.",
-    caveat: "Presence in this group establishes traceability, not approval, comparability, or commercial importance.",
-    records: missingRecords,
-    emptyState: "Every decision evidence object is represented in another appendix group.",
-  }] : appendix.groups;
-  const decoratedGroups = groups.map((group) => ({
-    ...group,
-    records: group.records.map((record) => ({ ...record, canonicalEvidenceId: pmmEvidenceObjectId(record.url) })),
-  }));
-  const allRecords = decoratedGroups.flatMap((group) => group.records);
-  return {
-    ...appendix,
-    groups: decoratedGroups,
-    uniqueSourceCount: appendix.uniqueSourceCount + missingRecords.length,
-    sourceDomainCount: new Set(allRecords.map((record) => record.sourceDomain || PmmDataContract.sourceDomain(record.url)).filter(Boolean)).size,
-    sourceFamilyCount: new Set(allRecords.map((record) => record.sourceFamily || PmmDataContract.sourceFamily(record)).filter(Boolean)).size,
-    canonicalEvidenceObjectCount: allRecords.filter((record) => record.canonicalEvidenceId).length,
-  };
 }
 
 function renderMarketingEvidenceAppendix(appendix) {
   const target = byId("pmmEvidenceAppendix");
   const displayedRecords = appendix.groups.reduce((total, group) => total + group.records.length, 0);
+  const validation = appendix.validation || { passed: false, missingApprovedClaims: [], missingPillars: [], approvedClaimCount: 0, backedApprovedClaimCount: 0, pillarCount: 0, backedPillarCount: 0 };
+  const missingTraceability = [...validation.missingApprovedClaims, ...validation.missingPillars];
   target.innerHTML = `
     <div class="pmm-appendix-intro">
-      <div><div class="pmm-eyebrow">Secondary Intelligence · Collapsed by Default</div><h3>Evidence Without Decision-Flow Competition</h3><p>Leadership synthesis remains in the Leadership view. Raw feeds, catalogs, coverage diagnostics, and detailed records are consolidated here and do not create PMM recommendations by themselves.</p></div>
+      <div><div class="pmm-eyebrow">PMM Traceability Backstop · Source-Type Groups</div><h3>Evidence Used by the Current PMM Transformation</h3><p>Every row is a canonical secondary or filtered evidence record actually consumed by a PMM section. Use the support links to return to the exact claim or governing pillar where available.</p></div>
       <div class="pmm-appendix-summary" aria-label="Appendix evidence summary"><strong>${appendix.uniqueSourceCount}</strong><span>unique canonical source URLs</span><small>${displayedRecords} displayed entries · ${appendix.duplicateRecordCount} duplicate record${appendix.duplicateRecordCount === 1 ? "" : "s"} consolidated${appendix.unlinkedRecordCount ? ` · ${appendix.unlinkedRecordCount} unlinked record${appendix.unlinkedRecordCount === 1 ? "" : "s"}` : ""}</small></div>
     </div>
+    <aside class="pmm-appendix-validation ${validation.passed ? "is-valid" : "has-gaps"}" role="${validation.passed ? "status" : "alert"}" data-appendix-validation-status="${validation.passed ? "passed" : "failed"}">
+      <header><div><span>Traceability validation</span><strong>${validation.passed ? "Required backing resolved" : `${missingTraceability.length} required traceability gap${missingTraceability.length === 1 ? "" : "s"}`}</strong></div><small>${validation.backedApprovedClaimCount}/${validation.approvedClaimCount} approved Claim Control claims · ${validation.backedPillarCount}/${validation.pillarCount} Position Guardrails pillars resolve to appendix evidence.</small></header>
+      ${missingTraceability.length ? `<ul>${missingTraceability.map((item) => `<li><a href="${escapeHtml(item.href)}" data-pmm-appendix-backlink><strong>${escapeHtml(item.label)}</strong><span>${escapeHtml(item.reason)}</span></a></li>`).join("")}</ul>` : `<p>Every approved Claim Control claim and every Position Guardrails pillar has at least one backing Evidence Appendix record.</p>`}
+    </aside>
     <div class="pmm-appendix-groups">${appendix.groups.map(pmmAppendixGroupMarkup).join("")}</div>`;
 }
 
@@ -5371,7 +5466,7 @@ function renderMarketingSourceCounts(model) {
     ${pmmMetricPill({ id: "proof-priorities", label: "Proof priorities", value: model.proofPriorities.top.length, target: "pmm-positioning-decisions", definition: "Displayed unsupported commercial-claim priorities. Calculation: gapQueue plus commercial/proof-tagged Decisions Needed items, excluding supported non-blocked Claim Control claims, ranked by deal impact × exact field-citable Customer Voice frequency and limited to three. Unit: displayed gap cards." })}
     ${pmmMetricPill({ id: "claims-awaiting-approval", label: "Claims without approval", value: kpis.claimsAwaitingApproval, target: "pmm-claims-risk", definition: "Displayed registry rows with no established legal/claims approval record. Calculation: visible claim rows where approvalEstablished is false, regardless of substantiation status. Unit: displayed rows. Global and claims-registry filters apply." })}
     ${pmmMetricPill({ id: "exact-customer-sources", label: "Exact customer sources", value: kpis.customerLanguageSources, target: "pmm-segment-cascade", definition: "Unique canonical URLs in the filtered customer-language evidence set. Calculation: valid exact customer URLs after URL normalization and deduplication. Unit: unique URLs, not records or independent organizations. All global filters apply." })}
-    ${pmmMetricPill({ id: "direct-evidence-sources", label: "Direct evidence sources", value: kpis.directEvidenceSources, target: "pmm-evidence-appendix", definition: "Unique canonical URLs displayed in the Evidence appendix. Calculation: valid linked appendix records after global URL deduplication; unlinked records are excluded. Unit: unique URLs, not records or independent organizations. All applicable global filters apply; the historical group intentionally ignores horizon, geography, and market where those fields do not exist." })}`;
+    ${pmmMetricPill({ id: "direct-evidence-sources", label: "Direct evidence sources", value: kpis.directEvidenceSources, target: "pmm-evidence-appendix", definition: "Unique canonical URLs displayed in the Evidence appendix. Calculation: evidence records actually consumed by the filtered PMM sections, deduplicated by canonical URL and grouped by source family; unlinked records are excluded. Unit: unique URLs, not records or independent organizations." })}`;
 }
 
 function pmmTargetingBreakReportModel(claimRows, buyingCommittee, positioningDecisions, narratives, adoptionValuePlans = []) {
@@ -5515,8 +5610,10 @@ function buildMarketingWorkspaceModel(signals) {
   let appendix = marketingEvidenceAppendixModel(governedSignals);
   appendix = pmmCanonicalizeEvidenceAppendix(appendix, {
     governingPosition,
+    proofPriorities,
     positioningDecisions,
     claimRows,
+    comparatorClaims: comparatorClaimTransformation.claimControlClaims,
     buyingCommittee,
     narratives,
     adoptionValuePlans,
@@ -5845,6 +5942,20 @@ function setupMarketingWorkspaceControls() {
         record.focus({ preventScroll: true });
       } else {
         navigateToDashboardSection("pmm-evidence-appendix");
+      }
+      return;
+    }
+    const appendixBacklink = event.target.closest("[data-pmm-appendix-backlink]");
+    if (appendixBacklink && state.view === "Marketing") {
+      event.preventDefault();
+      const targetId = String(appendixBacklink.getAttribute("href") || "").replace(/^#/, "");
+      const traceTarget = byId(targetId);
+      if (traceTarget) {
+        window.history.replaceState(null, "", `#${targetId}`);
+        traceTarget.scrollIntoView({ behavior: "smooth", block: "center" });
+        if (typeof traceTarget.focus === "function") traceTarget.focus({ preventScroll: true });
+      } else {
+        navigateToDashboardSection(appendixBacklink.dataset.pmmSectionId || targetId);
       }
       return;
     }
