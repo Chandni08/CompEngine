@@ -51,7 +51,7 @@ test("unapproved governing language propagates to all downstream PMM objects", (
   assert.match(app, /marketingPositioningDecisionCandidates\(contexts, governingPosition\)/);
   assert.match(app, /marketingClaimsProofRows\(contexts, governingPosition\)/);
   assert.match(app, /renderMarketingCompetitiveNarrative\(signals, model\.governingPosition, model\.marketChoice, model\.contexts\)/);
-  assert.match(app, /renderMarketingActivationBacklog\(model\.positioningDecisions, model\.governingPosition, model\.breakReport, model\.activationActions, model\.artifactProduction\)/);
+  assert.match(app, /renderMarketingActivationBacklog\(model\.positioningDecisions, model\.governingPosition, model\.breakReport, model\.activationActions, model\.artifactProduction, model\.sellerAssets\)/);
   assert.doesNotMatch(app, /pmmEvidenceTypeMarkup\("approval", "Proposed/);
 });
 

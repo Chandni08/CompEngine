@@ -12,6 +12,7 @@ const competitorSellingMotionTransformer = globalThis.CompetitorSellingMotionTra
 const customerVoiceBarrierTransformer = globalThis.CustomerVoiceBarrierTransformer;
 const buyingCommitteeTransformer = globalThis.BuyingCommitteeTransformer;
 const positionGuardrailsTransformer = globalThis.PositionGuardrailsTransformer;
+const sellerAssetsTransformer = globalThis.SellerAssetsTransformer;
 const gapQueue = [];
 
 const state = {
@@ -2150,7 +2151,7 @@ function renderLegacyHeadToHeadComparison() {
   }
   const scoreRows = model.scorecard.rows.map((row) => `<tr><th scope="row">${escapeHtml(row.label)}</th><td>${row.weight}%<small>${row.sourceCount} dated buying-signal source${row.sourceCount === 1 ? "" : "s"}</small></td><td>${row.watersScore == null ? "Not established" : row.watersScore.toFixed(1)}</td><td>${row.competitorScore == null ? "Not established" : row.competitorScore.toFixed(1)}</td><td>${row.weightedDifference == null ? "Unavailable" : row.weightedDifference.toFixed(2)}</td><td>${row.sources.length ? row.sources.slice(0, 2).map(headToHeadSourceMarkup).join("") : "Evidence unavailable"}</td></tr>`).join("");
   const basis = model.match.similarityBasis;
-  target.innerHTML = `<div class="pmm-h2h-hero"><div><span>Governed matchup · ${escapeHtml(pmmApprovalStateLabel(model.approvalState))}</span><h3>${escapeHtml(model.waters.product)} <b>vs</b> ${escapeHtml(model.competitorProduct.product)}</h3><p>${escapeHtml(model.positioning)}</p></div><div class="pmm-h2h-actions"><button type="button" data-h2h-copy>Copy talk track</button><button type="button" data-h2h-export-pptx>Export battlecard PPTX</button><button type="button" data-h2h-print>Print / save PDF</button><span aria-live="polite"></span></div></div>
+  target.innerHTML = `<div class="pmm-h2h-hero"><div><span>Governed matchup · ${escapeHtml(pmmApprovalStateLabel(model.approvalState))}</span><h3>${escapeHtml(model.waters.product)} <b>vs</b> ${escapeHtml(model.competitorProduct.product)}</h3><p>${escapeHtml(model.positioning)}</p></div><div class="pmm-h2h-actions"><button type="button" disabled>Copy blocked pending approval</button><button type="button" disabled>Export blocked pending approval</button><button type="button" disabled>Print blocked pending approval</button><span>Use Seller Assets to Ship after clearance.</span></div></div>
     <section class="pmm-h2h-match-basis"><header><div><span>Closest-product suggestion</span><strong>${model.match.score}/100 deterministic similarity</strong></div><small>${basis.explicitClosestMapping ? "Existing closest-comparator mapping" : "Ranked catalog fit"} · override remains available above</small></header><dl><div><dt>Technique class</dt><dd>${escapeHtml(basis.techniqueClass.waters)} vs ${escapeHtml(basis.techniqueClass.competitor)} · ${escapeHtml(basis.techniqueClass.status)}</dd></div><div><dt>Pressure range</dt><dd>${escapeHtml(basis.pressureRange.waters)} vs ${escapeHtml(basis.pressureRange.competitor)} · ${escapeHtml(basis.pressureRange.status)}</dd></div><div><dt>Segment overlap</dt><dd>${escapeHtml(basis.segment.overlap.join(", ") || "None coded")}</dd></div><div><dt>Positioning tier</dt><dd>${escapeHtml(basis.positioningTier.waters)} vs ${escapeHtml(basis.positioningTier.competitor)} · ${escapeHtml(basis.positioningTier.classification)}</dd></div></dl><p>${escapeHtml(basis.method)}</p><div class="pmm-h2h-match-sources">${headToHeadSourceMarkup(headToHeadSource({ url: model.match.source.watersUrl, label: `${model.waters.product} catalog source`, date: model.match.source.watersDate, dateType: "Catalog date" }))}${headToHeadSourceMarkup(headToHeadSource({ url: model.match.source.competitorUrl, label: `${model.competitorProduct.product} catalog source`, date: model.match.source.competitorDate }))}</div></section>
     <section class="pmm-h2h-position"><div><span>Target</span><strong>${escapeHtml(model.waters.bestFor?.join(", ") || "Target unresolved")}</strong></div><div><span>Reference class / parity</span><strong>${escapeHtml(model.pointOfParity)}</strong></div><div><span>Point of difference</span><strong>${escapeHtml(model.pointOfDifference)}</strong><small>Proposed — not approved</small></div></section>
     ${headToHeadClaimsSection("Messaging / Talk Track", "Customer-ready statements are limited to dated, linked evidence. Copy/export excludes Unsupported items.", model.talkTrack, "No substantiated customer-ready talking point is available for this exact pair.")}
@@ -2245,7 +2246,7 @@ function renderHeadToHeadComparison() {
     : `<div><span>Likely competitor claim</span><strong>Not established for this exact matchup.</strong></div><div><span>Your response</span><strong>Ask the customer to rank the buying criteria before asserting a product advantage.</strong></div>`;
   target.innerHTML = `<section class="pmm-h2h-product-summary"><div><span>Selected Waters product</span><h4>${escapeHtml(waters.product)}</h4><p>${escapeHtml(waters.decisionRole || "Product positioning unresolved")}</p></div>${headToHeadContextChips(active)}</section>
     <section class="pmm-battlecard-selector"><header><div><span>Battlecard library</span><h4>Who Are You Competing Against?</h4></div><p>${models.length} closest catalog matchup${models.length === 1 ? "" : "s"}. Choose one to create the tailored pitch; override the matched product when needed.</p></header><div class="pmm-product-battlecards">${models.map((model) => headToHeadCardMarkup(model, model === active)).join("")}</div></section>
-    <section class="pmm-tailored-pitch" aria-labelledby="pmmTailoredPitchTitle"><header><div><span>Seller-ready draft · ${escapeHtml(pmmApprovalStateLabel(active.approvalState))}</span><h4 id="pmmTailoredPitchTitle">Tailored pitch: ${escapeHtml(active.waters.product)} vs ${escapeHtml(active.competitorProduct.product)}</h4></div><div class="pmm-h2h-actions"><button type="button" data-h2h-copy>Copy tailored pitch</button><button type="button" data-h2h-export-pptx>Export battlecard PPTX</button><button type="button" data-h2h-print>Print / save PDF</button><span aria-live="polite"></span></div></header>
+    <section class="pmm-tailored-pitch" aria-labelledby="pmmTailoredPitchTitle"><header><div><span>Internal draft · ${escapeHtml(pmmApprovalStateLabel(active.approvalState))}</span><h4 id="pmmTailoredPitchTitle">Tailored pitch: ${escapeHtml(active.waters.product)} vs ${escapeHtml(active.competitorProduct.product)}</h4></div><div class="pmm-h2h-actions"><button type="button" disabled>Copy blocked pending approval</button><button type="button" disabled>Export blocked pending approval</button><button type="button" disabled>Print blocked pending approval</button><span>Use Seller Assets to Ship after clearance.</span></div></header>
       <blockquote>${escapeHtml(active.tailoredPitch)}</blockquote>
       <section class="pmm-pitch-reasons"><header><span>Why Waters for this customer</span><p>Only dated comparative proof or observed product-specific customer language appears here. Catalog positioning hypotheses are excluded.</p></header><div>${active.watersReasons.length ? active.watersReasons.map(headToHeadPitchReasonMarkup).join("") : `<div class="empty"><strong>No defensible claim yet</strong><span>Do not make a superiority claim. Use the controlled evaluation and proof request below.</span></div>`}</div></section>
       <section class="pmm-pitch-play"><div><span>Lead with</span><strong>${active.watersReasons[0] ? escapeHtml(active.watersReasons[0].statement) : "No approved lead claim — use question-led discovery."}</strong><small>${active.watersReasons[0] ? `${escapeHtml(active.watersReasons[0].substantiation)} · Approval not established` : "Claim blocked"}</small></div>${objectionMarkup}<div><span>Close with</span><strong>${escapeHtml(active.nextStep)}</strong></div></section>
@@ -4740,6 +4741,52 @@ function pmmArtifactProductionModel(buyingCommittee, governingPosition, claimRow
   };
 }
 
+function pmmSellerAssetTrendInputs() {
+  const horizon = filters.horizon.value;
+  return currentTrends().map((trend, index) => ({
+    id: trend.id || `application-trend-${index + 1}`,
+    theme: trend.theme,
+    marketSegment: trend.marketSegment,
+    technology: trend.technology,
+    selectedPeriodCount: Number(trend.counts?.[horizon] || 0),
+    signal: applicationTrendSignal(trend, horizon),
+  }));
+}
+
+function pmmSellerAssetsModel(artifactProduction, comparatorClaimTransformation, claimRows, competitorPlays, proofPriorities) {
+  if (!sellerAssetsTransformer) throw new Error("Seller Assets transformer failed to load");
+  if (!artifactProduction?.selectedSegment) return {
+    segments: artifactProduction?.segments || [],
+    selectedSegment: null,
+    selectedSegmentId: "",
+    assets: [],
+    shippableCount: 0,
+    notYetClearedCount: 0,
+    internalOnlyCount: 0,
+  };
+  const selectedSegment = artifactProduction.selectedSegment;
+  const explicitMarketScope = filters.segment.value === "All" ? [] : [filters.segment.value];
+  const assembled = sellerAssetsTransformer.assembleSellerAssets({
+    competitor: selectedSegment.competitor,
+    targetSegment: selectedSegment.segment,
+    competitorPlays: competitorPlays.moves,
+    comparatorClaims: comparatorClaimTransformation.candidates.map((claim) => ({
+      ...claim,
+      targetSegments: claim.targetSegments?.length ? claim.targetSegments : explicitMarketScope,
+    })),
+    registryClaims: claimRows,
+    applicationTrends: pmmSellerAssetTrendInputs(),
+    proofPriorities,
+    horizon: horizonLabel(),
+  });
+  return {
+    ...assembled,
+    segments: artifactProduction.segments,
+    selectedSegment,
+    selectedSegmentId: artifactProduction.selectedSegmentId,
+  };
+}
+
 function pmmArtifactStatusOptions(selected) {
   return ["Draft", "Blocked", "Ready for review", "Complete"].map((status) => `<option value="${escapeHtml(status)}" ${status === selected ? "selected" : ""}>${escapeHtml(status)}</option>`).join("");
 }
@@ -4784,26 +4831,64 @@ function pmmArtifactCardMarkup(artifact, index) {
   </article>`;
 }
 
-function renderMarketingActivationBacklog(decisions, governingPosition, breakReport, activationActions = [], artifactProduction = null) {
+function pmmSellerAssetFieldContentMarkup(asset) {
+  if (!asset.fieldContent.length) return `<p class="pmm-artifact-unresolved">No approved + field-citable content cleared this asset. Field export is disabled.</p>`;
+  return `<ul class="pmm-seller-field-content">${asset.fieldContent.map((item) => `<li data-seller-content-kind="${escapeHtml(item.kind)}" data-approval-state="approved" data-field-citable="true">
+    <span>${escapeHtml(item.kind === "competitor-response" ? "Approved Waters response" : item.kind === "pitch-claim" ? "Approved pitch claim" : "Approved claim")}</span>
+    ${item.observedMove ? `<small>Approved field-citable observed move: ${escapeHtml(item.observedMove)}</small>` : ""}
+    <strong>${escapeHtml(item.text)}</strong>
+    <div class="pmm-seller-proof-links">${item.supportingEvidence.map((source) => pmmCanonicalEvidenceReferenceMarkup(source, "Approved field-citable asset proof")).join("")}</div>
+  </li>`).join("")}</ul>`;
+}
+
+function pmmSellerAssetInternalNotesMarkup(asset) {
+  if (!asset.internalNotes.length) return `<p class="pmm-seller-internal-empty">No uncleared input is attached to this asset.</p>`;
+  const noteMarkup = asset.internalNotes.map((note) => `<li data-internal-only="true" data-approval-state="${escapeHtml(note.approvalState)}" data-field-citable="false">
+    <span>${escapeHtml(note.queueLocation ? `${note.queueLocation} proof request` : note.source || "Uncleared input")}</span>
+    <strong>${escapeHtml(note.text)}</strong>
+    ${note.missingStudyEvidence ? `<p><b>Missing study / evidence:</b> ${escapeHtml(note.missingStudyEvidence)}</p>` : ""}
+    ${note.sellerAsset ? `<p><b>Asset unblocked:</b> ${escapeHtml(note.sellerAsset)}</p>` : ""}
+    <small>${escapeHtml(note.reason)} · ${escapeHtml(pmmApprovalStateLabel(note.approvalState))} · not exportable to the field</small>
+  </li>`).join("");
+  if (asset.id === "proof-request-list") {
+    const top = asset.internalNotes.filter((note) => note.queueLocation === "top-three");
+    const backlog = asset.internalNotes.filter((note) => note.queueLocation === "backlog");
+    return `${top.length ? `<ol class="pmm-seller-internal-list">${top.map((note) => `<li data-internal-only="true"><span>Top proof priority</span><strong>${escapeHtml(note.text)}</strong><p><b>Missing study / evidence:</b> ${escapeHtml(note.missingStudyEvidence)}</p><p><b>Asset unblocked:</b> ${escapeHtml(note.sellerAsset)}</p><small>Internal proof request · never field-exportable</small></li>`).join("")}</ol>` : `<p class="pmm-seller-internal-empty">No top-three proof priority matches the active scope.</p>`}${backlog.length ? `<details class="pmm-seller-proof-backlog"><summary>${backlog.length} additional proof request${backlog.length === 1 ? "" : "s"} in backlog</summary><ul>${backlog.map((note) => `<li data-internal-only="true"><strong>${escapeHtml(note.text)}</strong><span>${escapeHtml(note.missingStudyEvidence)}</span></li>`).join("")}</ul></details>` : ""}`;
+  }
+  return `<details class="pmm-seller-internal-note" ${asset.fieldExportable ? "" : "open"}><summary>Internal “not yet cleared” note · ${asset.internalNotes.length}</summary><ul>${noteMarkup}</ul></details>`;
+}
+
+function pmmSellerAssetCardMarkup(asset, index) {
+  const statusLabel = asset.shipStatus === "ready-to-ship" ? "READY TO SHIP" : asset.shipStatus === "internal-only" ? "INTERNAL ONLY" : "NOT YET CLEARED";
+  const leadContext = asset.context?.leadApplication ? `<aside class="pmm-seller-lead-vertical"><span>Lead vertical · internal targeting basis</span><strong>${escapeHtml(asset.context.leadVertical)} · ${escapeHtml(asset.context.leadApplication)}</strong><small>${escapeHtml(asset.context.selectionBasis)} · ${escapeHtml(asset.context.horizon)}. This ranking selects the pitch context; it is not exported as a customer claim.</small></aside>` : "";
+  return `<article class="pmm-artifact-card pmm-seller-asset ${asset.fieldExportable ? "pmm-artifact-approved" : "pmm-artifact-draft"}" data-seller-asset-id="${escapeHtml(asset.assetId)}" data-seller-asset-type="${escapeHtml(asset.id)}" data-field-exportable="${asset.fieldExportable}">
+    <header><div><span>Asset ${index + 1} · ${escapeHtml(asset.sourceLabel)}</span><h4>${escapeHtml(asset.title)}</h4><p>${escapeHtml(asset.competitor)} · ${escapeHtml(asset.targetSegment)}</p></div><strong>${statusLabel}</strong></header>
+    ${leadContext}
+    <section class="pmm-seller-field-zone"><header><span>Field-facing content</span><small>Only approvalState:approved + fieldCitable:true records enter this zone.</small></header>${pmmSellerAssetFieldContentMarkup(asset)}</section>
+    <div class="pmm-artifact-actions"><button type="button" data-pmm-seller-asset-export="${escapeHtml(asset.assetId)}" ${asset.fieldExportable ? "" : "disabled"}>${asset.fieldExportable ? "Export cleared TXT" : asset.shipStatus === "internal-only" ? "Internal only — no field export" : "Not yet cleared — export blocked"}</button><span aria-live="polite"></span></div>
+    <section class="pmm-seller-internal-zone" aria-label="Internal not yet cleared content"><header><span>Internal only</span><small>Excluded from every field export payload.</small></header>${pmmSellerAssetInternalNotesMarkup(asset)}</section>
+  </article>`;
+}
+
+function renderMarketingActivationBacklog(decisions, governingPosition, breakReport, activationActions = [], artifactProduction = null, sellerAssets = null) {
   const target = byId("pmmActivationBacklog");
   const breakMarkup = pmmBreakReportMarkup(breakReport, governingPosition.targeting);
-  if (!decisions.length || !artifactProduction?.selectedSegment) {
-    target.innerHTML = `${breakMarkup}${pmmEmptyState("No PMM artifact can be produced under the active hierarchical target. The export retains this unresolved state.")}`;
+  if (!artifactProduction?.selectedSegment || !sellerAssets?.assets?.length) {
+    target.innerHTML = `${breakMarkup}${pmmEmptyState("No competitor + target-segment package can be assembled under the active filters. No seller asset was fabricated.")}`;
     return;
   }
-  const approvedTextAvailable = Boolean(artifactProduction.approvedClipboardText);
   target.innerHTML = `
     ${breakMarkup}
     <div class="pmm-backlog-intro">
-      <div><div class="pmm-eyebrow">Artifact Production Workflow</div><h3>Governed PMM Artifacts for the Selected Segment</h3><p>Every output inherits the active hierarchy and Governing Position. Editable workflow fields persist in this browser; they are not formal assignments or claims approval records.</p></div>
-      <div class="pmm-artifact-governance"><strong>DRAFT — NOT APPROVED</strong><span>Applied whenever any included claim lacks explicit approval.</span></div>
+      <div><div class="pmm-eyebrow">Shipment Gate · Competitor + Target Segment</div><h3>${escapeHtml(sellerAssets.competitor)} · ${escapeHtml(sellerAssets.targetSegment)}</h3><p>Battlecard, claims sheet, lead-vertical pitch, and proof-request list are assembled from the governed PMM transformation layer. Draft, gap, blocked, and merely citable inputs stay in an internal “not yet cleared” note.</p></div>
+      <div class="pmm-artifact-governance ${sellerAssets.shippableCount ? "is-partially-cleared" : ""}"><strong>${sellerAssets.shippableCount} OF 3 FIELD ASSETS CLEARED</strong><span>${sellerAssets.notYetClearedCount} not yet cleared · ${sellerAssets.internalOnlyCount} proof worklist is internal only.</span></div>
     </div>
     <div class="pmm-artifact-toolbar">
-      <label>Artifact target segment<select data-pmm-artifact-segment>${artifactProduction.segments.map((segment) => `<option value="${escapeHtml(pmmArtifactSegmentId(segment))}" ${pmmArtifactSegmentId(segment) === artifactProduction.selectedSegmentId ? "selected" : ""}>${escapeHtml(segment.segment)} · ${escapeHtml(segment.competitor)}</option>`).join("")}</select></label>
-      <div><button type="button" data-pmm-claims-csv>Export claims registry CSV</button><button type="button" data-pmm-copy-approved ${approvedTextAvailable ? "" : "disabled"}>${approvedTextAvailable ? "Copy approved text only" : "No approved text to copy"}</button><span aria-live="polite"></span></div>
+      <label>Competitor + target segment<select data-pmm-artifact-segment>${sellerAssets.segments.map((segment) => `<option value="${escapeHtml(pmmArtifactSegmentId(segment))}" ${pmmArtifactSegmentId(segment) === sellerAssets.selectedSegmentId ? "selected" : ""}>${escapeHtml(segment.competitor)} · ${escapeHtml(segment.segment)}</option>`).join("")}</select></label>
+      <div><span>Current gate: ${sellerAssets.approvedClaims.length} approved claim${sellerAssets.approvedClaims.length === 1 ? "" : "s"} with approved field-citable proof.</span></div>
     </div>
-    <p class="pmm-action-scope" role="note"><strong>Export governance:</strong> PPTX for battlecards and sales decks · DOCX for briefs and claims sheets · CSV for the governed claims registry · clipboard output includes approved wording only.</p>
-    <div class="pmm-artifact-grid" role="list">${artifactProduction.artifacts.map((artifact, index) => pmmArtifactCardMarkup(artifact, index)).join("")}</div>`;
+    <p class="pmm-action-scope" role="note"><strong>Export governance:</strong> a field asset is downloadable only when every included claim and proof record is both approved and field-citable. Proof requests are always internal. Export payloads exclude every internal note by construction.</p>
+    <div class="pmm-artifact-grid pmm-seller-asset-grid" role="list">${sellerAssets.assets.map((asset, index) => pmmSellerAssetCardMarkup(asset, index)).join("")}</div>`;
 }
 
 function pmmAppendixRecord({ title, type, sourceName, date, confidence, description, url, caveat = "", linkAvailable = true, fieldCitable = false, approvalState = "draft" }) {
@@ -5424,6 +5509,7 @@ function buildMarketingWorkspaceModel(signals) {
   const activationActions = positioningDecisions.map((decision, index) => pmmActivationDeliverable(decision, index + 1, governingPosition));
   const breakReport = pmmTargetingBreakReportModel(claimRows, buyingCommittee, positioningDecisions, narratives, adoptionValuePlans);
   const artifactProduction = pmmArtifactProductionModel(buyingCommittee, governingPosition, claimRows, narratives);
+  const sellerAssets = pmmSellerAssetsModel(artifactProduction, comparatorClaimTransformation, claimRows, competitorPlays, proofPriorities);
   normalizeMarketingClaimFilters(claimRows);
   const visibleClaimRows = marketingVisibleClaimRows(claimRows);
   let appendix = marketingEvidenceAppendixModel(governedSignals);
@@ -5435,6 +5521,7 @@ function buildMarketingWorkspaceModel(signals) {
     narratives,
     adoptionValuePlans,
     artifactProduction,
+    sellerAssets,
     marketChoice,
     competitorPlays,
     customerVoiceBarriers,
@@ -5465,6 +5552,7 @@ function buildMarketingWorkspaceModel(signals) {
     narratives,
     activationActions,
     artifactProduction,
+    sellerAssets,
     breakReport,
     appendix,
     kpis,
@@ -5491,7 +5579,7 @@ function renderMarketingWorkspace(signals) {
   renderMarketingAudienceCriteria(model.appendix.customerLanguageRecords, model.buyingCommittee);
   renderMarketingCompetitiveNarrative(signals, model.governingPosition, model.marketChoice, model.contexts);
   renderMarketingAdoptionValuePlans(model.adoptionValuePlans, model.customerVoiceBarriers);
-  renderMarketingActivationBacklog(model.positioningDecisions, model.governingPosition, model.breakReport, model.activationActions, model.artifactProduction);
+  renderMarketingActivationBacklog(model.positioningDecisions, model.governingPosition, model.breakReport, model.activationActions, model.artifactProduction, model.sellerAssets);
   renderMarketingEvidenceAppendix(model.appendix);
   renderMarketingSourceCounts(model);
 }
@@ -5722,11 +5810,8 @@ function setupMarketingWorkspaceControls() {
     const headToHeadPrint = event.target.closest("[data-h2h-print]");
     if (headToHeadPrint && state.view === "Marketing") {
       event.preventDefault();
-      document.body.classList.add("pmm-h2h-printing");
-      const clearPrintMode = () => document.body.classList.remove("pmm-h2h-printing");
-      window.addEventListener("afterprint", clearPrintMode, { once: true });
-      window.print();
-      window.setTimeout(clearPrintMode, 1000);
+      const status = headToHeadPrint.parentElement?.querySelector("[aria-live]");
+      if (status) status.textContent = "Print blocked: use Seller Assets to Ship after approval and citation clearance.";
       return;
     }
     const proofPriorityLink = event.target.closest("[data-proof-priority-link]");
@@ -5760,6 +5845,30 @@ function setupMarketingWorkspaceControls() {
         record.focus({ preventScroll: true });
       } else {
         navigateToDashboardSection("pmm-evidence-appendix");
+      }
+      return;
+    }
+    const sellerAssetExportButton = event.target.closest("[data-pmm-seller-asset-export]");
+    if (sellerAssetExportButton && state.view === "Marketing") {
+      event.preventDefault();
+      const asset = state.marketingWorkspaceModel?.sellerAssets?.assets.find((item) => item.assetId === sellerAssetExportButton.dataset.pmmSellerAssetExport);
+      const status = sellerAssetExportButton.parentElement?.querySelector("span");
+      const fieldSafe = asset
+        && sellerAssetsTransformer?.assertFieldSafeAsset(asset)
+        && globalThis.PmmArtifactExports?.fieldSafeSellerAsset(asset);
+      if (!fieldSafe) {
+        if (status) status.textContent = "Export blocked: only approved + field-citable content may ship.";
+        return;
+      }
+      sellerAssetExportButton.disabled = true;
+      if (status) status.textContent = "Preparing cleared field export…";
+      try {
+        const filename = globalThis.PmmArtifactExports.exportSellerAsset(asset);
+        if (status) status.textContent = `${filename} downloaded.`;
+      } catch (error) {
+        if (status) status.textContent = `Export blocked: ${error.message}`;
+      } finally {
+        sellerAssetExportButton.disabled = false;
       }
       return;
     }

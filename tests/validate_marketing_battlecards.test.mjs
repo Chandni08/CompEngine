@@ -112,46 +112,36 @@ test("Proof prioritization exposes its formula and never invents missing deal im
   assert.match(app, /Supported, non-blocked claims are excluded before ranking/);
 });
 
-test("Activation Backlog produces governed, filter-specific PMM artifacts", async () => {
+test("Seller Assets assembles four governed, filter-specific shipment records", async () => {
   const app = await readFile(new URL("app.js", root), "utf8");
   const index = await readFile(new URL("index.html", root), "utf8");
-  const renderer = app.match(/const pmmArtifactDefinitions[\s\S]*?\n}\n\nfunction pmmAppendixRecord/)?.[0] || "";
+  const transformer = await readFile(new URL("seller-assets-transformer.js", root), "utf8");
+  const renderer = app.match(/function pmmSellerAssetFieldContentMarkup[\s\S]*?\n}\n\nfunction pmmAppendixRecord/)?.[0] || "";
   const renderedMarkup = app.match(/function renderMarketingActivationBacklog[\s\S]*?\n}\n\nfunction pmmAppendixRecord/)?.[0] || "";
 
   for (const artifact of [
-    "One-Page Competitive Battlecard",
-    "Positioning and Messaging Brief",
-    "Regulated Claims Sheet",
-    "Campaign and Message Plan",
-    "Sales-Deck Outline",
-    "Message-Test Brief",
-    "Customer-Proof Request Brief",
-  ]) assert.match(app, new RegExp(`"${artifact}"`));
+    "Battlecard",
+    "Claims Sheet",
+    "Lead-Vertical Pitch",
+    "Proof-Request List",
+  ]) assert.match(transformer, new RegExp(`title: "${artifact}"`));
 
   for (const field of [
-    "Target / buying situation",
-    "Governing Position",
-    "Role-Specific Messages",
-    "Competitor Response",
-    "Claims and Approval State",
-    "Proof and Caveats",
-    "Objection Handling",
-    "Unsupported-Content Warnings",
-    "Owner",
-    "Due date",
-    "Production status",
-    "Success measure",
-    "Evidence Footnotes",
+    "Competitor \\+ target segment",
+    "Field-facing content",
+    "Internal only",
+    "not yet cleared",
+    "Export governance",
   ]) assert.match(renderer, new RegExp(field));
 
-  assert.match(renderer, /Artifact Production Workflow/);
-  assert.match(index, /Battlecards, claims sheets, decks, tests, and proof requests generated from the selected product and target/);
+  assert.match(renderer, /Shipment Gate/);
+  assert.match(index, /battlecard, approved claims sheet, lead-vertical pitch, and internal proof-request list/i);
   assert.match(app, /const artifactProduction = pmmArtifactProductionModel\(buyingCommittee, governingPosition, claimRows, narratives\)/);
-  assert.match(app, /renderMarketingActivationBacklog\(model\.positioningDecisions, model\.governingPosition, model\.breakReport, model\.activationActions, model\.artifactProduction\)/);
-  assert.match(renderer, /DRAFT — NOT APPROVED/);
-  assert.match(renderer, /Export claims registry CSV/);
-  assert.match(renderer, /Copy approved text only/);
-  assert.match(renderer, /not formal assignments or claims approval records/);
+  assert.match(app, /const sellerAssets = pmmSellerAssetsModel\(artifactProduction, comparatorClaimTransformation, claimRows, competitorPlays, proofPriorities\)/);
+  assert.match(app, /renderMarketingActivationBacklog\(model\.positioningDecisions, model\.governingPosition, model\.breakReport, model\.activationActions, model\.artifactProduction, model\.sellerAssets\)/);
+  assert.match(renderer, /NOT YET CLEARED/);
+  assert.match(renderer, /approvalState:approved \+ fieldCitable:true/);
+  assert.match(renderer, /Proof requests are always internal/);
   assert.doesNotMatch(renderedMarkup, /defin(?:e|ing) product requirements?|roadmap prioritization|engineering validation plans?|product KPIs?/i);
 });
 

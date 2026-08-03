@@ -97,7 +97,8 @@ test("the selected battlecard produces a concise tailored seller pitch", () => {
   assert.match(app, /tailoredPitch/);
   assert.match(app, /Which Product Are You Selling\?/);
   assert.match(app, /Who Are You Competing Against\?/);
-  assert.match(app, /Copy tailored pitch/);
+  assert.match(app, /Copy blocked pending approval/);
+  assert.match(app, /Use Seller Assets to Ship after clearance/);
   assert.match(app, /No public evidence of a weakness on this dimension\./);
   assert.match(app, /No acquisition price or monetary conversion is inferred/);
   for (const valueDimension of ["Purchase price", "Implementation and training", "Workflow operating cost", "Reliability and downtime", "Serviceability and service burden", "Expected lifecycle"])
@@ -142,7 +143,7 @@ test("Fishbein-style weights are evidence-derived, sum to 100, and the swing is 
   assert.match(app, /scores are sentiment-coded evidence, not measured performance ratings/i);
 });
 
-test("copy and PPTX export exclude unsupported claims and preserve evidence gaps", () => {
+test("copy and PPTX export are blocked unless content clears the Seller Assets gate", async () => {
   const input = {
     waters: { product: "Waters A" },
     competitorProduct: { product: "Competitor B" },
@@ -150,22 +151,25 @@ test("copy and PPTX export exclude unsupported claims and preserve evidence gaps
     tailoredPitch: "Tailored market-specific pitch",
     nextStep: "Controlled evaluation",
     talkTrack: [
-      { statement: "Dated statement", substantiation: "Directional", sources: [{ url: "https://example.com/a", date: "2026-01-02" }] },
+      { statement: "Approved dated statement", substantiation: "Directional", approvalState: "approved", fieldCitable: true, sources: [
+        { url: "https://example.com/a", date: "2026-01-02", fieldCitable: true, approvalState: "approved" },
+        { url: "https://example.com/draft-source", date: "2026-01-02", fieldCitable: true, approvalState: "draft" },
+      ] },
       { statement: "Unsupported statement", substantiation: "Unsupported", sources: [] },
     ],
     evidenceGaps: ["Controlled comparison needed."],
   };
   const copy = exportApi.headToHeadTalkTrackText(input);
-  assert.match(copy, /Dated statement/);
-  assert.match(copy, /Tailored market-specific pitch/);
-  assert.match(copy, /Controlled evaluation/);
+  assert.match(copy, /Approved dated statement/);
   assert.doesNotMatch(copy, /Unsupported statement/);
-  assert.match(copy, /Controlled comparison needed/);
-  assert.match(copy, /DRAFT — NOT APPROVED/);
+  assert.doesNotMatch(copy, /draft-source/);
+  assert.doesNotMatch(copy, /Tailored market-specific pitch|Controlled evaluation|Controlled comparison needed/);
+  assert.match(copy, /APPROVED \+ FIELD-CITABLE CONTENT ONLY/);
   assert.equal(typeof exportApi.buildHeadToHeadDeck, "function");
   assert.equal(typeof exportApi.exportHeadToHeadPptx, "function");
+  await assert.rejects(exportApi.exportHeadToHeadPptx(input), /Field export blocked/);
   assert.match(styles, /data-substantiation="Unsupported"/);
-  assert.match(styles, /body\.pmm-h2h-printing/);
+  assert.match(app, /Print blocked pending approval/);
 });
 
 test("the feature remains scoped outside the eight canonical PMM primary sections", () => {

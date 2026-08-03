@@ -29,10 +29,36 @@
     });
   }
 
+  function approvalState(value) {
+    return ["draft", "in-review", "approved", "blocked"].includes(value) ? value : "draft";
+  }
+
+  function isApprovedCitableEvidence(item = {}) {
+    return item.fieldCitable === true
+      && approvalState(item.approvalState) === "approved"
+      && /^https?:\/\//i.test(String(item.url || item.sourceUrl || item.primarySourceUrl || "").trim());
+  }
+
+  function approvedCitableEvidence(evidence = []) {
+    return uniqueEvidence(evidence.filter(isApprovedCitableEvidence));
+  }
+
+  function isApprovedCitableClaim(claim = {}) {
+    const wording = clean(claim.approvedWording || claim.claimText || claim.wording, "");
+    const evidence = approvedCitableEvidence([...(claim.supportingEvidence || []), ...(claim.evidenceRecords || []), ...(claim.sources || [])]);
+    return Boolean(
+      wording
+      && approvalState(claim.approvalState) === "approved"
+      && claim.approvalEstablished !== false
+      && claim.fieldCitable !== false
+      && evidence.length > 0
+    );
+  }
+
   function normalizedArtifact(model = {}) {
     const claims = Array.isArray(model.claims) ? model.claims : [];
     const evidence = uniqueEvidence(model.evidenceFootnotes);
-    const allClaimsApproved = claims.length > 0 && claims.every((claim) => claim.approvalEstablished === true && claim.approvedWording);
+    const allClaimsApproved = claims.length > 0 && claims.every(isApprovedCitableClaim);
     return {
       ...model,
       title: clean(model.title, "PMM artifact"),
@@ -48,6 +74,7 @@
       warnings: Array.isArray(model.warnings) ? model.warnings : [],
       evidenceFootnotes: evidence,
       allClaimsApproved,
+      fieldExportable: model.fieldExportable === true && allClaimsApproved,
       draft: !allClaimsApproved,
       watermark: allClaimsApproved ? "APPROVAL ESTABLISHED FOR INCLUDED CLAIMS" : DRAFT_WATERMARK,
       workflow: {
@@ -232,10 +259,10 @@
   function claimsCsv(claims = [], targeting = {}) {
     const headers = ["Target", "Competitor", "Proposed claim", "Claim type", "Segment/application", "Buyer role", "Channel", "Baseline", "Substantiation", "Approval state", "Approved wording", "Readiness", "Owner", "Expiration date", "Next action", "Evidence URLs", "Output status"];
     const target = [targeting.market, targeting.watersProduct, targeting.application, targeting.buyingSituation, targeting.geography, targeting.buyerRole].filter(Boolean).join(" > ");
-    const rows = claims.map((claim) => [
+    const rows = claims.filter(isApprovedCitableClaim).map((claim) => [
       target,
       claim.competitor,
-      claim.proposedClaimWording,
+      claim.approvedWording || claim.claimText || claim.wording,
       claim.claimType,
       claim.segmentApplication,
       claim.buyerRole,
@@ -248,8 +275,8 @@
       claim.owner,
       claim.expirationDate,
       claim.nextRequiredAction,
-      uniqueEvidence([...(claim.sources || []), ...(claim.evidenceRecords || [])]).map((source) => source.url).join(" | "),
-      claim.approvalEstablished === true ? "APPROVAL ESTABLISHED" : DRAFT_WATERMARK,
+      approvedCitableEvidence([...(claim.sources || []), ...(claim.evidenceRecords || [])]).map((source) => source.url).join(" | "),
+      "APPROVED + FIELD-CITABLE",
     ]);
     return `\uFEFF${[headers, ...rows].map((row) => row.map(csvCell).join(",")).join("\r\n")}`;
   }
@@ -267,6 +294,7 @@
 
   async function exportArtifact(input) {
     const model = normalizedArtifact(input);
+    if (!model.fieldExportable) throw new Error("Field export blocked: every included claim and proof record must be approved and field-citable.");
     const base = safeFilename(`${model.target}-${model.artifactType}`);
     if (model.exportKind === "pptx-battlecard") {
       const pptx = buildBattlecardDeck(model);
@@ -285,19 +313,60 @@
   }
 
   function exportClaimsCsv(claims, targeting) {
-    const content = claimsCsv(claims, targeting);
+    const approvedClaims = (claims || []).filter(isApprovedCitableClaim);
+    if (!approvedClaims.length) throw new Error("Field export blocked: no approved claim with approved field-citable proof is available.");
+    const content = claimsCsv(approvedClaims, targeting);
     const filename = `${safeFilename(`${targeting.market || "all-markets"}-${targeting.watersProduct || "all-waters-products"}-${targeting.application || "all-applications"}-claims-registry`)}.csv`;
     downloadBlob(new Blob([content], { type: "text/csv;charset=utf-8" }), filename);
     return filename;
   }
 
   function approvedClipboardText(claims = []) {
-    return claims.filter((claim) => claim.approvalEstablished === true && claim.approvedWording)
-      .map((claim) => claim.approvedWording.trim()).filter(Boolean).join("\n\n");
+    return claims.filter(isApprovedCitableClaim)
+      .map((claim) => clean(claim.approvedWording || claim.claimText || claim.wording, "")).filter(Boolean).join("\n\n");
+  }
+
+  function fieldSafeSellerAsset(asset = {}) {
+    const content = Array.isArray(asset.fieldContent) ? asset.fieldContent : [];
+    return asset.fieldExportable === true
+      && approvalState(asset.approvalState) === "approved"
+      && asset.fieldCitable === true
+      && content.length > 0
+      && content.every((item) => item.fieldCitable === true
+        && approvalState(item.approvalState) === "approved"
+        && approvedCitableEvidence(item.supportingEvidence || []).length > 0);
+  }
+
+  function sellerAssetText(asset = {}) {
+    if (!fieldSafeSellerAsset(asset)) throw new Error("Field export blocked: this asset contains no fully approved, field-citable payload.");
+    const lines = [
+      clean(asset.title, "Seller asset"),
+      `${clean(asset.competitor, "Competitor unresolved")} · ${clean(asset.targetSegment, "Target segment unresolved")}`,
+      "APPROVED + FIELD-CITABLE CONTENT ONLY",
+      "",
+    ];
+    asset.fieldContent.forEach((item, index) => {
+      lines.push(`${index + 1}. ${clean(item.text)}`);
+      if (item.observedMove) lines.push(`   Approved observed move: ${clean(item.observedMove)}`);
+      approvedCitableEvidence(item.supportingEvidence || []).forEach((source) => lines.push(`   Source: ${source.url}`));
+    });
+    return lines.join("\n");
+  }
+
+  function exportSellerAsset(asset = {}) {
+    const content = sellerAssetText(asset);
+    const filename = `${safeFilename(`${asset.competitor}-${asset.targetSegment}-${asset.title}`)}.txt`;
+    downloadBlob(new Blob([content], { type: "text/plain;charset=utf-8" }), filename);
+    return filename;
   }
 
   function substantiatedHeadToHeadClaims(claims = []) {
-    return claims.filter((claim) => claim && claim.substantiation !== "Unsupported" && Array.isArray(claim.sources) && claim.sources.some((source) => /^https?:\/\//i.test(source?.url || "") && /^\d{4}-\d{2}-\d{2}$/.test(source?.date || "")));
+    return claims.filter((claim) => claim
+      && claim.substantiation !== "Unsupported"
+      && approvalState(claim.approvalState) === "approved"
+      && claim.fieldCitable === true
+      && Array.isArray(claim.sources)
+      && claim.sources.some((source) => isApprovedCitableEvidence(source) && /^\d{4}-\d{2}-\d{2}$/.test(source?.date || "")));
   }
 
   function headToHeadTalkTrackText(input = {}) {
@@ -305,21 +374,15 @@
     if (!claims.length) return "";
     const lines = [
       `${clean(input.waters?.product)} vs ${clean(input.competitorProduct?.product)}`,
-      "DRAFT — NOT APPROVED",
+      "APPROVED + FIELD-CITABLE CONTENT ONLY",
       [input.targeting?.marketLabel, input.targeting?.applicationLabel, input.targeting?.buyingSituationLabel, input.targeting?.buyerRoleLabel].filter(Boolean).join(" · "),
       "",
-      "TAILORED PITCH",
-      clean(input.tailoredPitch || input.positioning),
-      "",
-      "WHY WATERS",
+      "APPROVED CLAIMS",
     ];
     claims.forEach((claim, index) => {
       lines.push(`${index + 1}. ${clean(claim.statement)} [${clean(claim.substantiation)}]`);
-      claim.sources.filter((source) => /^https?:\/\//i.test(source?.url || "")).forEach((source) => lines.push(`   ${clean(source.date, "Date unresolved")} · ${source.url}`));
+      approvedCitableEvidence(claim.sources).forEach((source) => lines.push(`   ${clean(source.date, "Date unresolved")} · ${source.url}`));
     });
-    if (input.nextStep) lines.push("", "RECOMMENDED NEXT STEP", clean(input.nextStep));
-    lines.push("", "EVIDENCE GAPS — DO NOT USE AS CUSTOMER CLAIMS");
-    (input.evidenceGaps || ["No additional gap recorded."]).forEach((gap) => lines.push(`- ${clean(gap)}`));
     return lines.join("\n");
   }
 
@@ -426,12 +489,8 @@
     return pptx;
   }
 
-  async function exportHeadToHeadPptx(input) {
-    const model = normalizedHeadToHead(input);
-    const filename = `${safeFilename(`${model.watersName}-vs-${model.competitorName}-battlecard`)}.pptx`;
-    const pptx = buildHeadToHeadDeck(model);
-    await pptx.writeFile({ fileName: filename });
-    return filename;
+  async function exportHeadToHeadPptx() {
+    throw new Error("Field export blocked: use Seller Assets to Ship after claim approval and field-citation clearance.");
   }
 
   const api = {
@@ -439,6 +498,7 @@
     DOCX_MIME,
     PPTX_MIME,
     approvedClipboardText,
+    approvedCitableEvidence,
     artifactSections,
     buildBattlecardDeck,
     buildDocx,
@@ -448,9 +508,12 @@
     exportArtifact,
     exportClaimsCsv,
     exportHeadToHeadPptx,
+    exportSellerAsset,
+    fieldSafeSellerAsset,
     headToHeadTalkTrackText,
     normalizedArtifact,
     safeFilename,
+    sellerAssetText,
   };
 
   if (typeof module !== "undefined" && module.exports) module.exports = api;

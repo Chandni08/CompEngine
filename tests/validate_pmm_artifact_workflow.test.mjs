@@ -6,44 +6,33 @@ import test from "node:test";
 const require = createRequire(import.meta.url);
 const exportsApi = require("../artifact-export.js");
 const root = new URL("../", import.meta.url);
-const [app, index, styles, contract] = await Promise.all([
+const [app, index, styles, contract, sellerTransformerSource] = await Promise.all([
   readFile(new URL("app.js", root), "utf8"),
   readFile(new URL("index.html", root), "utf8"),
   readFile(new URL("styles.css", root), "utf8"),
   readFile(new URL("PMM_DATA_CONTRACT.md", root), "utf8"),
+  readFile(new URL("seller-assets-transformer.js", root), "utf8"),
 ]);
 
-test("the Activation Backlog renders seven governed artifact-production records", () => {
-  const definitions = app.match(/const pmmArtifactDefinitions = \[[\s\S]*?\n\];/)?.[0] || "";
-  for (const artifact of [
-    "One-Page Competitive Battlecard",
-    "Positioning and Messaging Brief",
-    "Regulated Claims Sheet",
-    "Campaign and Message Plan",
-    "Sales-Deck Outline",
-    "Message-Test Brief",
-    "Customer-Proof Request Brief",
-  ]) assert.match(definitions, new RegExp(artifact));
-  assert.equal((definitions.match(/exportKind:/g) || []).length, 7);
-  assert.match(app, /pmmArtifactDefinitions\.map\(\(definition\) => pmmArtifactModel/);
-  assert.match(app, /artifactProduction\.artifacts\.map\(\(artifact, index\) => pmmArtifactCardMarkup/);
+test("Seller Assets renders four governed package records", () => {
+  for (const artifact of ["Battlecard", "Claims Sheet", "Lead-Vertical Pitch", "Proof-Request List"])
+    assert.match(sellerTransformerSource, new RegExp(`title: "${artifact}"`));
+  assert.equal((sellerTransformerSource.match(/title: "/g) || []).length, 4);
+  assert.match(app, /sellerAssetsTransformer\.assembleSellerAssets/);
+  assert.match(app, /sellerAssets\.assets\.map\(\(asset, index\) => pmmSellerAssetCardMarkup/);
 });
 
-test("every artifact carries the required governed content fields and exact evidence footnotes", () => {
-  const renderer = app.match(/function pmmArtifactCardMarkup[\s\S]*?\n}\n\nfunction renderMarketingActivationBacklog/)?.[0] || "";
+test("every visible seller asset separates field content from internal uncleared inputs", () => {
+  const renderer = app.match(/function pmmSellerAssetFieldContentMarkup[\s\S]*?\n}\n\nfunction renderMarketingActivationBacklog/)?.[0] || "";
   for (const field of [
-    "Target / buying situation",
-    "Governing Position",
-    "Role-Specific Messages",
-    "Competitor Response",
-    "Claims and Approval State",
-    "Proof and Caveats",
-    "Objection Handling",
-    "Unsupported-Content Warnings",
-    "Evidence Footnotes",
+    "Field-facing content",
+    "Internal only",
+    "not yet cleared",
+    "Approved field-citable asset proof",
+    "not exportable to the field",
   ]) assert.match(renderer, new RegExp(field));
-  assert.match(app, /pmmDeduplicateSources\(\[/);
-  assert.match(exportsApi.artifactSections({}).map((section) => section.title).join(" | "), /Production workflow/);
+  assert.match(app, /data-field-exportable="\$\{asset\.fieldExportable\}"/);
+  assert.match(app, /fieldSafeSellerAsset\(asset\)/);
 });
 
 test("workflow owner, due date, status, and measurement are editable and persisted by target", () => {
@@ -55,32 +44,39 @@ test("workflow owner, due date, status, and measurement are editable and persist
   assert.match(app, /Production status <small>Not claims approval<\/small>/);
 });
 
-test("exports are filter-specific and preserve evidence links", () => {
-  assert.match(index, /vendor\/pptxgen\.bundle\.js/);
-  assert.match(index, /vendor\/docx\.iife\.js/);
+test("exports are filter-specific and contain approved field-citable content only", () => {
   assert.match(index, /artifact-export\.js/);
-  assert.match(app, /Export claims registry CSV/);
-  assert.match(app, /exportArtifact\(artifact\)/);
-  assert.match(app, /exportClaimsCsv\(state\.marketingWorkspaceModel\.claimRows, state\.marketingWorkspaceModel\.governingPosition\.targeting\)/);
-  const csv = exportsApi.claimsCsv([{ proposedClaimWording: "Claim", approvalEstablished: false, sources: [{ url: "https://example.com/evidence" }] }], { market: "Biopharma", application: "Oligo" });
+  assert.match(app, /exportSellerAsset\(asset\)/);
+  assert.match(app, /Export blocked: only approved \+ field-citable content may ship/);
+  const approved = {
+    approvedWording: "Approved claim",
+    approvalEstablished: true,
+    approvalState: "approved",
+    fieldCitable: true,
+    evidenceRecords: [{ url: "https://example.com/evidence", fieldCitable: true, approvalState: "approved" }],
+  };
+  const csv = exportsApi.claimsCsv([{ proposedClaimWording: "Draft claim", approvalEstablished: false }, approved], { market: "Biopharma", application: "Oligo" });
   assert.match(csv, /Biopharma > Oligo/);
   assert.match(csv, /https:\/\/example\.com\/evidence/);
-  assert.match(csv, /DRAFT — NOT APPROVED/);
+  assert.match(csv, /APPROVED \+ FIELD-CITABLE/);
+  assert.doesNotMatch(csv, /Draft claim/);
 });
 
 test("draft and approved content cannot be confused", () => {
   const draft = exportsApi.normalizedArtifact({ claims: [{ approvalEstablished: false, approvedWording: "" }] });
-  const approved = exportsApi.normalizedArtifact({ claims: [{ approvalEstablished: true, approvedWording: "Approved exact wording" }] });
+  const proof = { url: "https://example.com/approved", fieldCitable: true, approvalState: "approved" };
+  const approvedClaim = { approvalEstablished: true, approvalState: "approved", approvedWording: "Approved exact wording", fieldCitable: true, evidenceRecords: [proof] };
+  const approved = exportsApi.normalizedArtifact({ claims: [approvedClaim], fieldExportable: true });
   assert.equal(draft.draft, true);
   assert.equal(draft.watermark, "DRAFT — NOT APPROVED");
   assert.equal(approved.draft, false);
   assert.deepEqual(exportsApi.approvedClipboardText([
     { approvalEstablished: false, proposedClaimWording: "Never copy", approvedWording: "" },
-    { approvalEstablished: true, proposedClaimWording: "Proposed variant", approvedWording: "Approved exact wording" },
+    { ...approvedClaim, proposedClaimWording: "Proposed variant" },
   ]), "Approved exact wording");
-  assert.match(app, /No approved text to copy/);
+  assert.match(app, /Not yet cleared — export blocked/);
   assert.match(styles, /\.pmm-artifact-draft/);
-  assert.match(contract, /clipboard output includes approved wording only/i);
+  assert.match(contract, /approved wording only/i);
 });
 
 test("the artifact workflow remains inside the eight-section PMM narrative spine", () => {

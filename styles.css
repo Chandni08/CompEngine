@@ -8755,6 +8755,163 @@ body.modal-open {
   font-style: italic;
 }
 
+.pmm-artifact-governance.is-partially-cleared {
+  border-color: #9fc7b3;
+  background: #edf8f2;
+  color: #275f47;
+}
+
+.pmm-seller-asset {
+  grid-template-rows: auto auto auto auto;
+}
+
+.pmm-seller-lead-vertical {
+  display: grid;
+  gap: 4px;
+  border-bottom: 1px solid #c7d8df;
+  background: #edf5f8;
+  padding: 10px 13px;
+}
+
+.pmm-seller-lead-vertical span,
+.pmm-seller-field-zone > header span,
+.pmm-seller-internal-zone > header span,
+.pmm-seller-field-content > li > span,
+.pmm-seller-internal-list > li > span,
+.pmm-seller-internal-note li > span {
+  color: #42616b;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.pmm-seller-lead-vertical strong {
+  color: #214d5a;
+  font-size: 12px;
+}
+
+.pmm-seller-lead-vertical small {
+  color: #597078;
+  font-size: 9px;
+  line-height: 1.45;
+}
+
+.pmm-seller-field-zone,
+.pmm-seller-internal-zone {
+  display: grid;
+  gap: 9px;
+  padding: 12px 13px;
+}
+
+.pmm-seller-field-zone {
+  border-bottom: 1px solid #c7dfd2;
+  background: #f5fbf8;
+}
+
+.pmm-seller-internal-zone {
+  border-top: 1px solid #e2d3af;
+  background: #fffaf0;
+}
+
+.pmm-seller-field-zone > header,
+.pmm-seller-internal-zone > header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.pmm-seller-field-zone > header small,
+.pmm-seller-internal-zone > header small {
+  color: #63767c;
+  font-size: 9px;
+  text-align: right;
+}
+
+.pmm-seller-field-content,
+.pmm-seller-internal-list,
+.pmm-seller-internal-note ul,
+.pmm-seller-proof-backlog ul {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pmm-seller-field-content > li,
+.pmm-seller-internal-list > li,
+.pmm-seller-internal-note li,
+.pmm-seller-proof-backlog li {
+  display: grid;
+  gap: 5px;
+  border: 1px solid #cbdcdb;
+  border-radius: 7px;
+  background: #ffffff;
+  padding: 9px;
+}
+
+.pmm-seller-internal-list > li,
+.pmm-seller-internal-note li,
+.pmm-seller-proof-backlog li {
+  border-color: #dfc98f;
+  background: #fffdf8;
+}
+
+.pmm-seller-field-content strong,
+.pmm-seller-internal-list strong,
+.pmm-seller-internal-note strong,
+.pmm-seller-proof-backlog strong {
+  color: #294b55;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.pmm-seller-field-content small,
+.pmm-seller-internal-list small,
+.pmm-seller-internal-note small,
+.pmm-seller-internal-note p,
+.pmm-seller-proof-backlog span {
+  color: #675b3f;
+  font-size: 9px;
+  line-height: 1.45;
+}
+
+.pmm-seller-proof-links {
+  display: grid;
+  gap: 5px;
+}
+
+.pmm-seller-internal-note,
+.pmm-seller-proof-backlog {
+  border: 1px solid #dfc98f;
+  border-radius: 7px;
+  background: #fffdf8;
+  overflow: hidden;
+}
+
+.pmm-seller-internal-note > summary,
+.pmm-seller-proof-backlog > summary {
+  cursor: pointer;
+  color: #765b17;
+  font-size: 10px;
+  font-weight: 850;
+  padding: 9px;
+}
+
+.pmm-seller-internal-note > ul,
+.pmm-seller-proof-backlog > ul {
+  border-top: 1px solid #ead9aa;
+  padding: 9px;
+}
+
+.pmm-seller-internal-empty {
+  color: #6b634f;
+  font-size: 10px;
+  font-style: italic;
+}
+
 .pmm-artifact-toolbar select:focus-visible,
 .pmm-artifact-toolbar button:focus-visible,
 .pmm-artifact-actions button:focus-visible,
