@@ -12,37 +12,26 @@ const [app, styles, documentContract] = await Promise.all([
   readFile(new URL("PMM_DATA_CONTRACT.md", root), "utf8"),
 ]);
 
-test("every priority segment receives the complete governed buying committee", () => {
-  const model = app.match(/const pmmBuyingCommitteeRoleDefinitions[\s\S]*?\n];/)?.[0] || "";
-  for (const role of [
-    "Bench user / analyst",
-    "Method developer",
-    "QC/QA or validation veto",
-    "IT / data-integrity veto",
-    "Lab-manager decision maker",
-    "Procurement / economic buyer",
-    "Executive sponsor — where relevant",
-  ]) assert.match(model, new RegExp(role.replace(/[\/]/g, "\\$&")));
-  for (const power of ["user", "influencer", "veto", "decider", "buyer"]) assert.match(model, new RegExp(`decisionPower: "${power}"`));
-  assert.match(app, /pmmBuyingCommitteeRoleDefinitions\.map/);
+test("the committee model uses the five evidence-derived buying functions", () => {
+  assert.match(app, /const pmmBuyingCommitteeRoleDefinitions = buyingCommitteeTransformer\?\.committeeRoleDefinitions \|\| \[\]/);
+  assert.match(app, /buyingCommitteeTransformer\.transformBuyingCommittee/);
+  assert.match(app, /return \{ \.\.\.roleTransformation, segments, selectedSwingAttribute \}/);
 });
 
-test("committee roles expose every required decision field and explicit evidence state", () => {
-  const markup = app.match(/function pmmCommitteeRoleMarkup[\s\S]*?\n}\n\nfunction pmmFishbeinSourcesMarkup/)?.[0] || "";
+test("committee roles expose exact criteria, role-specific proof demands, and unresolved states", () => {
+  const markup = app.match(/function pmmRoleProofDemandMarkup[\s\S]*?\n}\n\nfunction pmmFishbeinSourcesMarkup/)?.[0] || "";
   for (const field of [
-    "Job",
-    "Concern",
-    "Decision power",
-    "Message",
-    "Required proof",
-    "Objection",
-    "Preferred asset / channel",
+    "Buying-committee function",
+    "Decision criterion",
+    "Specific proof this role demands",
+    "Demand pulled from exact evidence",
+    "Proof demand unresolved",
   ]) assert.match(markup, new RegExp(field));
   assert.match(markup, /data-role-classification/);
-  assert.match(app, /Role observed · decision model inferred/);
-  assert.match(app, /Inferred role · validation required/);
-  assert.match(app, /Hypothesis — validation required\. No exact role-specific evidence link is available/);
-  assert.match(styles, /\.pmm-committee-role-inference[\s\S]*?border-style: dashed/);
+  assert.match(app, /no committee assignment inferred/i);
+  assert.match(app, /Criteria and proof demands were not guessed/);
+  assert.doesNotMatch(markup, /Task-based workflow study|Segment-specific comparative TCO model|Validation dossier/);
+  assert.match(styles, /\.pmm-role-function-card\.is-unresolved[\s\S]*?border-style: dashed/);
 });
 
 test("Fishbein weights always normalize to exactly 100 percent", () => {
@@ -97,9 +86,10 @@ test("the governing position references the calculated selected-segment swing at
   assert.match(app, /weighted difference \$\{selectedSegment\.scorecard\.swingAttribute\.weightedDifference\.toFixed\(2\)\}/);
 });
 
-test("buying-committee layouts retain keyboard focus and responsive behavior", () => {
-  assert.match(styles, /\.pmm-committee-segment > summary:focus-visible/);
-  assert.match(styles, /@media \(max-width: 960px\)[\s\S]*?\.pmm-committee-grid/);
-  assert.match(styles, /@media \(max-width: 720px\)[\s\S]*?\.pmm-committee-role dl/);
-  assert.match(app, /<details class="pmm-committee-segment"/);
+test("role-segmented buying-committee layouts remain responsive", () => {
+  assert.match(styles, /\.pmm-role-function-grid/);
+  assert.match(styles, /@media \(max-width: 960px\)[\s\S]*?\.pmm-role-criteria/);
+  assert.match(styles, /@media \(max-width: 720px\)[\s\S]*?\.pmm-role-function-card/);
+  assert.match(app, /<details class="pmm-unresolved-role-groups"/);
+  assert.doesNotMatch(app.match(/function renderMarketingAudienceCriteria[\s\S]*?\n}/)?.[0] || "", /pmm-committee-segment|pmmFishbeinScorecardMarkup/);
 });

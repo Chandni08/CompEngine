@@ -342,7 +342,9 @@
     const inapplicableProof = claimRows.flatMap((row) => (row.evidenceRecords || [])
       .filter((record) => record.compatibility?.status === "Inapplicable")
       .map((record) => ({ claim: row.proposedClaimWording, record })));
-    const committeeRoles = (buyingCommittee.segments || []).flatMap((segment) => segment.roles || []);
+    const committeeRoles = (buyingCommittee.roles || []).length
+      ? buyingCommittee.roles
+      : (buyingCommittee.segments || []).flatMap((segment) => segment.roles || []);
     const observedRoleKeys = new Set(committeeRoles
       .filter((role) => role.classification === "observed")
       .map((role) => role.key));

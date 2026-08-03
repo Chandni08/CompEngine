@@ -248,22 +248,26 @@ test("Claims matrix filters do not duplicate the global competitor filter", asyn
   assert.match(app, /function setupMarketingWorkspaceControls/);
 });
 
-test("Audience and Buying Criteria uses governed buying committees and scorecards", async () => {
+test("Audience and Buying Criteria uses role-segmented evidence and exact proof demands", async () => {
   const app = await readFile(new URL("app.js", root), "utf8");
   const renderer = app.match(/function renderMarketingAudienceCriteria[\s\S]*?\n}\n\nfunction renderMarketingCompetitiveNarrative/)?.[0] || "";
 
   for (const field of [
     "Buying Committee",
-    "Decision Unit",
-    "priority-segment working set",
-    "Objection",
+    "who uses",
+    "who influences",
+    "who vetoes",
+    "who decides",
+    "who buys",
   ]) assert.match(renderer, new RegExp(field.replace("/", "\\/"), "i"));
+  assert.match(app, /Specific proof this role demands/);
   for (const workflowField of ["Weight and Score Validation Workflow", "win/loss", "survey", "conjoint"])
     assert.match(app, new RegExp(workflowField.replace("/", "\\/"), "i"));
-  assert.match(renderer, /Neither segment inclusion nor record frequency establishes commercial attractiveness/);
+  assert.match(renderer, /not by market or technology/i);
   assert.match(renderer, /complaint-biased and (?:is )?not representative market research/);
-  assert.match(renderer, /Inferred role · validation required/);
-  assert.match(renderer, /Weight or score hypothesis/);
+  assert.match(renderer, /no committee assignment inferred/i);
+  assert.match(renderer, /does not satisfy the requirement or provide field-usable proof/);
+  assert.doesNotMatch(renderer, /pmmFishbeinScorecardMarkup|priority-segment working set/);
 });
 
 test("vendor perception is separated from market-wide themes and has no negative fallback", async () => {

@@ -10,6 +10,7 @@ const productComparatorClaimTransformer = globalThis.ProductComparatorClaimTrans
 const proofPriorityTransformer = globalThis.ProofPriorityTransformer;
 const competitorSellingMotionTransformer = globalThis.CompetitorSellingMotionTransformer;
 const customerVoiceBarrierTransformer = globalThis.CustomerVoiceBarrierTransformer;
+const buyingCommitteeTransformer = globalThis.BuyingCommitteeTransformer;
 const gapQueue = [];
 
 const state = {
@@ -3288,85 +3289,7 @@ function renderMarketingClaimsProof(rows, visibleRows, governingPosition, suppor
     </tr>`).join("")}</tbody></table></div>` : pmmEmptyState(rows.length ? "No claims match the matrix filters. Clear a matrix filter or adjust the global filters." : "No supported claims match the active global filters. Unrelated evidence was not substituted.")}`;
 }
 
-const pmmBuyingCommitteeRoleDefinitions = [
-  {
-    key: "bench-user",
-    label: "Bench user / analyst",
-    match: /\banalyst\b|instrument specialist/i,
-    decisionPower: "user",
-    job: "Execute routine methods, recognize failures, recover quickly, and complete data review without avoidable rework.",
-    concern: "Daily usability, reliability, troubleshooting burden, training, and workflow handoffs.",
-    message: "Make reliable routine execution and faster issue isolation concrete in the user's actual method and software workflow.",
-    proof: "Task-based workflow study measuring setup steps, task completion, error recovery, repeat runs, and review effort.",
-    asset: "Workflow demo · application note · operator quick guide",
-  },
-  {
-    key: "method-developer",
-    label: "Method developer",
-    match: /method developer/i,
-    decisionPower: "influencer",
-    job: "Develop, transfer, optimize, and troubleshoot methods across instruments, sites, and applications.",
-    concern: "Method equivalency, transfer effort, robustness, flexibility, and the cost of redevelopment.",
-    message: "Position Next Gen LC around transferable methods with explicit equivalency boundaries and migration support.",
-    proof: "Controlled cross-platform method-transfer study with matched conditions, acceptance criteria, failures, and remediation effort.",
-    asset: "Method-transfer guide · comparative application note · technical workshop",
-  },
-  {
-    key: "quality-veto",
-    label: "QC/QA or validation veto",
-    match: /QA|QC|quality|compliance|validation/i,
-    decisionPower: "veto",
-    job: "Protect validated operation, audit readiness, data integrity, and controlled change.",
-    concern: "Validation burden, traceability, audit trails, procedural control, and unsupported compliance claims.",
-    message: "Show how the workflow supports controlled, traceable operation without promising regulatory outcomes.",
-    proof: "Validation package review, audit-trail and data-integrity assessment, change-control mapping, and regulated-user evidence.",
-    asset: "Validation dossier · compliance brief · QA review session",
-  },
-  {
-    key: "it-veto",
-    label: "IT / data-integrity veto",
-    match: /\bIT\b|informatics|data integrity|CDS administrator|system administrator/i,
-    decisionPower: "veto",
-    job: "Maintain secure, supportable data flows, system integration, access control, and lifecycle governance.",
-    concern: "Integration architecture, cybersecurity, identity and access, auditability, support model, and upgrade impact.",
-    message: "Package the instrument and informatics path as one governed data workflow with explicit integration and lifecycle boundaries.",
-    proof: "Architecture and security review, interface validation, access-control testing, audit-trail assessment, and lifecycle-support evidence.",
-    asset: "IT architecture brief · data-integrity checklist · technical review",
-  },
-  {
-    key: "lab-manager",
-    label: "Lab-manager decision maker",
-    match: /lab manager|laboratory manager|manager/i,
-    decisionPower: "decider",
-    job: "Deliver laboratory capacity, quality, uptime, staffing readiness, and service continuity.",
-    concern: "Operational risk, uptime, training, service response, utilization, and migration disruption.",
-    message: "Frame the decision around reliable throughput and lower workflow risk across implementation and routine use.",
-    proof: "Reference workflow, uptime and recovery study, implementation plan, training evidence, and service-level documentation.",
-    asset: "Decision brief · customer proof · sales deck",
-  },
-  {
-    key: "economic-buyer",
-    label: "Procurement / economic buyer",
-    match: /procurement|purchasing|economic buyer/i,
-    decisionPower: "buyer",
-    job: "Establish commercial comparability, contract terms, lifecycle cost, and purchase defensibility.",
-    concern: "Acquisition cost, consumables, service, labor, downtime, contract risk, and economic comparability.",
-    message: "Use a transparent lifecycle-value case; do not imply TCO advantage without a controlled economic model.",
-    proof: "Segment-specific comparative TCO model with price, service, consumables, labor, downtime, utilization, geography, and time horizon.",
-    asset: "Economic value brief · procurement worksheet · commercial proposal",
-  },
-  {
-    key: "executive-sponsor",
-    label: "Executive sponsor — where relevant",
-    match: /executive|director|vice president|\bVP\b|sponsor/i,
-    decisionPower: "decider",
-    job: "Sponsor material capital or transformation decisions and ensure alignment with quality, capacity, and business priorities.",
-    concern: "Business continuity, strategic fit, implementation exposure, organization-wide adoption, and measurable outcomes.",
-    message: "Connect the workflow position to a bounded business outcome and implementation risk; keep performance claims substantiated.",
-    proof: "Approved business case, executive reference, implementation-risk plan, and agreed outcome measurement.",
-    asset: "Executive brief · business case · sponsor review",
-  },
-];
+const pmmBuyingCommitteeRoleDefinitions = buyingCommitteeTransformer?.committeeRoleDefinitions || [];
 
 const pmmFishbeinAttributes = [
   { key: "reliability", label: "Reliable routine execution", pattern: /reliab|uptime|service|maintenance|diagnostic|reproduc/i },
@@ -3469,30 +3392,14 @@ function pmmFishbeinAttributeSources(segmentItems, context, attribute) {
   return pmmDeduplicateSources([...customerSources, ...competitorSources]).slice(0, 4);
 }
 
-function pmmCommitteeRoleModel(definition, segmentItems, swingAttribute) {
-  const matchedItems = segmentItems.filter((item) => definition.match.test(item.userRole || ""));
-  const sources = pmmCommitteeEvidenceSources(matchedItems, 4);
-  const objectionItem = matchedItems.find((item) => item.sentiment === "Negative")
-    || matchedItems.find((item) => item.sentiment === "Mixed");
-  const observed = sources.length > 0;
-  return {
-    ...definition,
-    classification: observed ? "observed" : "inference",
-    classificationLabel: observed ? "Role observed · decision model inferred" : "Inferred role · validation required",
-    message: `Proposed — not approved: ${definition.message} Current calculated swing attribute: ${swingAttribute.label}.`,
-    objection: objectionItem?.theme || "Hypothesis — validation required; no role-specific objection is observed in the filtered evidence.",
-    sources,
-    confidence: observed ? pmmEvidenceConfidence(sources) : 0,
-    fieldCitable: false,
-    approvalState: "draft",
-  };
-}
-
 function pmmBuyingCommitteeModel(positioningDecisions, contexts) {
+  if (!buyingCommitteeTransformer) throw new Error("Buying committee transformer failed to load");
   const prioritySegments = pmmCommitteePrioritySegments(positioningDecisions);
   const targeting = pmmTargetingSelection();
+  const committeeRecords = pmmGovernedRecords(currentCustomerVoiceItems());
+  const roleTransformation = buyingCommitteeTransformer.transformBuyingCommittee({ records: committeeRecords });
   const segments = prioritySegments.map((priority) => {
-    const segmentItems = pmmGovernedRecords(currentCustomerVoiceItems()).filter((item) => item.labType === priority.segment);
+    const segmentItems = committeeRecords.filter((item) => item.labType === priority.segment);
     const context = contexts.find((item) => item.competitor === priority.competitor);
     const weights = pmmFishbeinHypothesisWeights(priority.segment, targeting);
     const baselineWeights = pmmFishbeinHypothesisWeights(priority.segment, {
@@ -3524,7 +3431,7 @@ function pmmBuyingCommitteeModel(positioningDecisions, contexts) {
       sourceCount: uniqueCustomerVoiceLinks(segmentItems, 100).length,
       scorecard,
       baselineSwingAttribute: baselineScorecard.swingAttribute,
-      roles: pmmBuyingCommitteeRoleDefinitions.map((definition) => pmmCommitteeRoleModel(definition, segmentItems, scorecard.swingAttribute)),
+      roles: roleTransformation.roles,
     };
   });
   const selectedSegment = filters.segment.value === "All"
@@ -3533,7 +3440,7 @@ function pmmBuyingCommitteeModel(positioningDecisions, contexts) {
   const selectedSwingAttribute = selectedSegment
     ? `${selectedSegment.segment}: ${selectedSegment.scorecard.swingAttribute.label} (${selectedSegment.scorecard.swingAttribute.weight}% hypothesis weight; weighted difference ${selectedSegment.scorecard.swingAttribute.weightedDifference.toFixed(2)}). Hypothesis — replace with win/loss, survey, or conjoint evidence.`
     : "Swing attribute unresolved — no priority-segment scorecard is available";
-  return { segments, selectedSwingAttribute };
+  return { ...roleTransformation, segments, selectedSwingAttribute };
 }
 
 const pmmAccordDimensions = [
@@ -3689,24 +3596,41 @@ function pmmAdoptionValuePlans(buyingCommittee, contexts, marketChoice) {
 }
 
 function pmmCommitteeSourceLinksMarkup(sources) {
-  if (!sources.length) return `<p class="pmm-committee-unresolved">Hypothesis — validation required. No exact role-specific evidence link is available.</p>`;
+  if (!sources.length) return `<p class="pmm-committee-unresolved">Unresolved — no exact role-specific evidence link is available.</p>`;
   return `<div class="pmm-committee-links">${sources.map((source) => pmmCanonicalEvidenceReferenceMarkup(source, "Role evidence")).join("")}</div>`;
 }
 
-function pmmCommitteeRoleMarkup(role) {
-  return `<article class="pmm-committee-role pmm-committee-role-${escapeHtml(role.classification)}" data-committee-role="${escapeHtml(role.key)}" data-role-classification="${escapeHtml(role.classification)}">
-    <header><h5>${escapeHtml(role.label)}</h5>${pmmEvidenceTypeMarkup(role.classification, role.classificationLabel)}</header>
-    <dl>
-      <div><dt>Job</dt><dd>${escapeHtml(role.job)}</dd></div>
-      <div><dt>Concern</dt><dd>${escapeHtml(role.concern)}</dd></div>
-      <div><dt>Decision power</dt><dd><strong>${escapeHtml(role.decisionPower)}</strong><small>Rule-based committee model; authority is not confirmed.</small></dd></div>
-      <div><dt>Message</dt><dd>${escapeHtml(role.message)}</dd></div>
-      <div><dt>Required proof</dt><dd>${escapeHtml(role.proof)}</dd></div>
-      <div><dt>Objection</dt><dd>${escapeHtml(role.objection)}</dd></div>
-      <div><dt>Preferred asset / channel</dt><dd>${escapeHtml(role.asset)} <small>Hypothesis — validate with the role.</small></dd></div>
-    </dl>
-    <div class="pmm-committee-role-evidence"><strong>${role.sources.length ? `${role.sources.length} exact role source${role.sources.length === 1 ? "" : "s"}` : "Role evidence unresolved"}</strong><span>${role.confidence ? `${escapeHtml(confidenceLabel(role.confidence))} confidence · ${role.confidence}/100` : "Confidence unresolved"}</span>${pmmCommitteeSourceLinksMarkup(role.sources)}</div>
+function pmmRoleProofDemandMarkup(demand) {
+  const demandLanguage = demand.proofState === "evidence-backed-demand" && demand.languageMode === "verbatim"
+    ? `<blockquote><p>“${escapeHtml(demand.proofDemandText)}”</p></blockquote>`
+    : `<p>${escapeHtml(demand.proofDemandText)}</p>`;
+  return `<article class="pmm-role-proof-demand is-${escapeHtml(demand.proofState)}" data-proof-demand-state="${escapeHtml(demand.proofState)}" data-field-usable="false">
+    <header><span>Specific proof this role demands</span>${pmmEvidenceTypeMarkup(demand.proofState === "evidence-backed-demand" ? "observed" : "unresolved", demand.proofState === "evidence-backed-demand" ? "Demand pulled from exact evidence" : "Proof demand unresolved")}</header>
+    ${demandLanguage}
+    <small>${escapeHtml(demand.languageLabel)} · ${escapeHtml(demand.company)} · ${escapeHtml(demand.product)}</small>
+    <aside>${demand.proofState === "evidence-backed-demand" ? "This record establishes what the role needs resolved; it does not satisfy the requirement or provide field-usable proof." : "No study type or proof package was inferred from this record."}</aside>
+    ${pmmCommitteeSourceLinksMarkup(demand.sources)}
   </article>`;
+}
+
+function pmmRoleCriterionMarkup(criterion) {
+  return `<section class="pmm-role-criterion" data-decision-criterion="${escapeHtml(criterion.key)}">
+    <header><div><span>Decision criterion</span><strong>${escapeHtml(criterion.criterion)}</strong></div><small>${criterion.recordCount} exact role-tagged record${criterion.recordCount === 1 ? "" : "s"}</small></header>
+    <div class="pmm-role-proof-demands">${criterion.proofDemands.map(pmmRoleProofDemandMarkup).join("")}</div>
+  </section>`;
+}
+
+function pmmCommitteeRoleMarkup(role) {
+  const memberTags = role.memberTags.length ? role.memberTags.join(" · ") : "Unresolved";
+  return `<article class="pmm-role-function-card is-${escapeHtml(role.classification)}" data-committee-role="${escapeHtml(role.key)}" data-role-classification="${escapeHtml(role.classification)}">
+    <header><div><span>Buying-committee function</span><h4>${escapeHtml(role.label)}</h4><p>${escapeHtml(memberTags)}</p></div>${pmmEvidenceTypeMarkup(role.classification, role.classificationLabel)}</header>
+    <div class="pmm-role-function-summary"><strong>${role.recordCount}</strong><span>mapped Customer Voice record${role.recordCount === 1 ? "" : "s"}</span><small>Decision power: ${escapeHtml(role.decisionPower)}</small></div>
+    ${role.criteria.length ? `<div class="pmm-role-criteria">${role.criteria.map(pmmRoleCriterionMarkup).join("")}</div>` : `<div class="pmm-role-empty"><strong>Role unresolved</strong><p>No loaded Customer Voice record has a role tag that maps exactly to this committee function. Criteria and proof demands were not guessed.</p></div>`}
+  </article>`;
+}
+
+function pmmUnresolvedRoleGroupMarkup(group) {
+  return `<article><header><div><span>Unresolved role tag</span><strong>${escapeHtml(group.roleTag)}</strong></div><small>${group.recordCount} record${group.recordCount === 1 ? "" : "s"}</small></header><p>${escapeHtml(group.reason)}</p><div>${group.criteria.map((criterion) => `<span>${escapeHtml(criterion.criterion)} · ${criterion.recordCount}</span>`).join("")}</div>${pmmCommitteeSourceLinksMarkup(group.sources.slice(0, 6))}</article>`;
 }
 
 function pmmFishbeinSourcesMarkup(sources) {
@@ -3777,21 +3701,14 @@ function pmmAdoptionValuePlanMarkup(plan) {
 
 function renderMarketingAudienceCriteria(customerLanguageRecords, buyingCommittee) {
   const target = byId("pmmAudienceCriteria");
-  if (!buyingCommittee.segments.length) {
-    target.innerHTML = pmmEmptyState("No evidence-backed positioning decision identifies a priority-segment working set under the active filters. Buying committees and weights are not fabricated.");
-    return;
-  }
   target.innerHTML = `
     <div class="pmm-audience-intro pmm-committee-intro">
-      <div><div class="pmm-eyebrow">Buying committees · governed working hypotheses</div><h3>Segment Buying Committees and Decision Criteria</h3><p><strong>${buyingCommittee.segments.length} priority-segment working set${buyingCommittee.segments.length === 1 ? "" : "s"}</strong> inherit from the displayed positioning decisions. ${customerLanguageRecords.length} unique customer-language URLs match the global filters. Neither segment inclusion nor record frequency establishes commercial attractiveness.</p></div>
-      <div class="pmm-decision-legend">${pmmEvidenceTypeMarkup("observed", "Role observed in exact evidence")}${pmmEvidenceTypeMarkup("inference", "Inferred role · validation required")}${pmmEvidenceTypeMarkup("hypothesis", "Weight or score hypothesis")}</div>
+      <div><div class="pmm-eyebrow">Role-segmented Customer Voice</div><h3>Buying Committee and Decision Criteria</h3><p><strong>${buyingCommittee.mappedRecordCount} of ${buyingCommittee.recordCount} Customer Voice records</strong> map to an exact committee-role tag under the active filters. Evidence is grouped by who uses, who influences, who vetoes, who decides, and who buys—not by market or technology. Global filters scope the evidence but do not define the grouping.</p></div>
+      <div class="pmm-committee-coverage"><strong>${buyingCommittee.exactSourceCount}</strong><span>exact source URL${buyingCommittee.exactSourceCount === 1 ? "" : "s"}</span><small>${buyingCommittee.unresolvedRecordCount} unresolved role record${buyingCommittee.unresolvedRecordCount === 1 ? "" : "s"}</small></div>
     </div>
-    <p class="pmm-forum-caveat">Forum evidence can surface objections and customer language, but it is complaint-biased and is not representative market research. Committee authority, veto power, weights, and scores require primary research.</p>
-    <div class="pmm-committee-segments">${buyingCommittee.segments.map((segment, index) => `<details class="pmm-committee-segment" ${index === 0 ? "open" : ""}><summary><span><small>Priority-segment working set ${index + 1}</small><strong>${escapeHtml(segment.segment)}${segment.application !== "All" ? ` · ${escapeHtml(segment.application)}` : ""}</strong><em>Reference competitor: ${escapeHtml(segment.competitor)} · criterion: ${escapeHtml(segment.buyingCriterion)}</em></span><span><b>${segment.scorecard.weightTotal}%</b> hypothesis weights · swing: ${escapeHtml(segment.scorecard.swingAttribute.label)}</span></summary><div class="pmm-committee-segment-body">
-      <section class="pmm-buying-committee" aria-labelledby="pmmCommittee${index}Title"><header><div><span>Decision Unit</span><h4 id="pmmCommittee${index}Title">${escapeHtml(segment.segment)} Buying Committee</h4><p>Every required role remains visible; missing roles are explicitly inferred rather than treated as observed.</p></div><strong>${segment.sourceCount} unique segment source URL${segment.sourceCount === 1 ? "" : "s"}</strong></header><div class="pmm-committee-grid">${segment.roles.map(pmmCommitteeRoleMarkup).join("")}</div></section>
-      ${pmmFishbeinScorecardMarkup(segment)}
-    </div></details>`).join("")}</div>
-    ${pmmWeightReplacementWorkflowMarkup()}`;
+    <p class="pmm-forum-caveat">Proof demands below retain the loaded evidence language and source. Analyst synthesis is never quoted as customer wording, and a demand record does not satisfy the requirement or provide field-usable proof. Forum evidence remains complaint-biased and is not representative market research.</p>
+    <div class="pmm-role-function-grid">${buyingCommittee.roles.map(pmmCommitteeRoleMarkup).join("")}</div>
+    ${buyingCommittee.unresolvedRoleGroups.length ? `<details class="pmm-unresolved-role-groups"><summary><span>Unresolved role mapping</span><strong>${buyingCommittee.unresolvedRecordCount} record${buyingCommittee.unresolvedRecordCount === 1 ? "" : "s"}</strong><small>Collapsed · no committee assignment inferred</small></summary><div>${buyingCommittee.unresolvedRoleGroups.map(pmmUnresolvedRoleGroupMarkup).join("")}</div></details>` : ""}`;
 }
 
 function pmmCustomerBarrierSourceMarkup(barrier) {
