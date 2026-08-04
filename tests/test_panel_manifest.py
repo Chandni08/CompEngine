@@ -36,10 +36,7 @@ class PanelManifestTests(unittest.TestCase):
             body = (ROOT / page).read_text()
             ids = re.findall(r'<(?:section|article|dialog)[^>]*\bid="([^"]+)"[^>]*', body)
             for element_id in ids:
-                if element_id in {"pmmStartHere"}:
-                    expected = "#pmmStartHere"
-                else:
-                    expected = f"#{element_id}"
+                expected = f"#{element_id}"
                 self.assertIn(expected, selectors, f"{page}:{element_id}")
 
     def test_every_dashboard_data_load_has_a_manifest_consumer(self):
