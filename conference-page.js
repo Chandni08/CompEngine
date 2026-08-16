@@ -7,6 +7,7 @@ const conferenceState = {
 };
 
 const byId = (id) => document.getElementById(id);
+const conferenceDatePolicy = globalThis.ConferenceDatePolicy;
 
 function escapeHtml(value) {
   return String(value ?? "")
@@ -44,7 +45,9 @@ function populateSelect(id, values) {
 }
 
 function filteredEvents() {
+  const cutoffDate = conferenceDatePolicy.effectiveCurrentDate(conferenceState.data?.asOfDate);
   return [...(conferenceState.data?.events || [])]
+    .filter((event) => conferenceDatePolicy.isCurrentOrUpcoming(event, cutoffDate))
     .filter((event) => conferenceState.filters.market === "All" || event.marketSegments.includes(conferenceState.filters.market))
     .filter((event) => conferenceState.filters.technology === "All" || event.technologyFocus.includes(conferenceState.filters.technology))
     .filter((event) => conferenceState.filters.competitor === "All" || competitorNames(event).includes(conferenceState.filters.competitor))

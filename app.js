@@ -5,6 +5,7 @@ const competitiveMethodology = globalThis.CompetitiveMethodology || {
   snapshotMetadata: (data) => ({ asOfTimestamp: data?.generatedAt || data?.asOfDate || "unknown", snapshotId: data?.snapshotId || `waters-ci-${data?.asOfDate || "unknown"}` }),
 };
 const headToHeadProductMatchModel = globalThis.HeadToHeadProductMatchModel;
+const conferenceDatePolicy = globalThis.ConferenceDatePolicy;
 
 const state = {
   data: null,
@@ -1629,8 +1630,9 @@ function filteredLaunchesForHorizon(horizonValue) {
 function currentConferenceSources() {
   const events = state.conferencePrep?.events || [];
   const asOfValue = state.conferencePrep?.asOfDate || state.data?.asOfDate || new Date().toISOString().slice(0, 10);
+  const cutoffDate = conferenceDatePolicy.effectiveCurrentDate(asOfValue);
   return events
-    .filter((event) => (event.endDate || event.startDate) >= asOfValue)
+    .filter((event) => conferenceDatePolicy.isCurrentOrUpcoming(event, cutoffDate))
     .filter((event) => filters.segment.value === "All" || event.marketSegments.includes(filters.segment.value))
     .filter((event) => filters.technology.value === "All" || event.technologyFocus.some((technology) => technologyMatchesFilter(technology, filters.technology.value, event.eventName)))
     .filter((event) => filters.competitor.value === "All" || event.competitorWatch.some((competitor) => competitor.name === filters.competitor.value))
