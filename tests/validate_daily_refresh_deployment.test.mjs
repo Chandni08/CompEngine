@@ -32,12 +32,14 @@ test("daily publication validates, deploys, aliases, and verifies the Waters sit
   assert.match(deployRunner, /alias set "\$deployment_url" "\$WATERS_HOST"/);
   assert.match(deployRunner, /data\/refresh_status\.json/);
   assert.match(deployRunner, /'"status": "success"'/);
-  assert.match(deployRunner, /'"status": "partial"'/);
+  assert.doesNotMatch(deployRunner, /'"status": "partial"'/);
   assert.match(deployRunner, /live refresh status is not publishable/);
 });
 
 test("cloud refresh schedule validates before saving or deploying data", () => {
-  assert.match(workflow, /cron: "15 10 \* \* \*"/);
+  assert.match(workflow, /cron: "0 11 \* \* \*"/);
+  assert.match(workflow, /cron: "0 12 \* \* \*"/);
+  assert.match(workflow, /TZ=America\/New_York date \+%H/);
   assert.ok(workflow.indexOf("Validate the production package") < workflow.indexOf("Save the validated daily data"));
   assert.ok(workflow.indexOf("Run regression checks") < workflow.indexOf("Save the validated daily data"));
 });

@@ -226,6 +226,11 @@ def extract_conference_records(page_url: str, body: str, event_id: str) -> list[
             "canonicalUrl": target,
             "sourcePageUrl": page_url,
         })
+    # ASGCT currently exposes both the live Molecular Therapy abstract issue and
+    # a legacy download.asgct.org PDF that intermittently returns 404. Keep the
+    # live canonical issue and never publish the broken duplicate download.
+    if any("cell.com/molecular-therapy" in item["canonicalUrl"] for item in records):
+        records = [item for item in records if "download.asgct.org/2026ASGCTAbstractPublication.pdf" not in item["canonicalUrl"]]
     return records
 
 

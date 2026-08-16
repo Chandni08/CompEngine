@@ -51,7 +51,7 @@ The workflow:
 4. Checks every public URL in `data/`, follows redirects, and writes `data/link_health.json`.
 5. Validates every customer-voice source keyword against the exact linked page; Reddit records use Reddit's canonical oEmbed title so bot challenges cannot create a false pass.
 6. Fails the refresh and deployment when a displayed customer-voice keyword is absent, a source cannot be read, or any URL returns 404/410 or has a DNS failure or timeout.
-7. Restores the last good dataset if collection or validation fails.
+7. Restores every data artifact from the last good dataset if collection, high-water verification, or validation fails.
 8. Synchronizes `data/` with `deploy-site/data/`.
 9. Commits the validated data so a Git-connected Vercel project redeploys.
 
@@ -97,7 +97,7 @@ On this Mac, `com.waters.competition-engine.daily-refresh` wakes the Codex deskt
 
 `scripts/run_daily_refresh.sh` provides the equivalent wrapper for a manual local run.
 
-The Codex automation publishes only after the refresh and every deployment gate succeeds. Failed collection or validation leaves the last verified production build unchanged. The GitHub Actions workflow is the supported always-on scheduler once the repo is connected to GitHub and the required secrets are configured.
+The Codex automation publishes only after the refresh and every deployment gate succeeds. A partial refresh never deploys: every required source must prove complete traversal and exact newest-item presence. Failed collection, blocked pagination, stale high-water marks, or validation failures leave the last verified production build unchanged. The GitHub Actions workflow is the supported always-on scheduler once the repo is connected to GitHub and the required secrets are configured.
 
 The dashboard reads `data/refresh_status.json` and shows whether the daily refresh is current, overdue, or failed. A page left open checks hourly for a newly published dataset and reloads when one is available.
 

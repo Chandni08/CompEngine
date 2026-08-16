@@ -89,25 +89,34 @@ THROTTLE = HostThrottle()
 def fetch(url: str, timeout: int = 60) -> tuple[int | None, bytes]:
     if not allowed(url):
         return None, b""
-    THROTTLE.wait(url)
-    command = [
-        "curl", "-L", "-sS", "--compressed", "--max-time", str(timeout),
-        "-A", USER_AGENT,
-        "-H", "Accept: application/xml,text/xml,text/html;q=0.9,*/*;q=0.5",
-        "-w", "\n%{http_code}", url,
-    ]
-    try:
-        result = subprocess.run(command, check=False, capture_output=True, timeout=timeout + 5)
-    except Exception:
-        return None, b""
-    if not result.stdout:
-        return None, b""
-    body, _, status_text = result.stdout.rpartition(b"\n")
-    try:
-        status = int(status_text.decode("ascii", errors="ignore"))
-    except ValueError:
-        status = None
-    return status, body
+    last_status: int | None = None
+    last_body = b""
+    for attempt in range(3):
+        THROTTLE.wait(url)
+        command = [
+            "curl", "-L", "-sS", "--compressed", "--max-time", str(timeout),
+            "-A", USER_AGENT,
+            "-H", "Accept: application/xml,text/xml,text/html;q=0.9,*/*;q=0.5",
+            "-w", "\n%{http_code}", url,
+        ]
+        try:
+            result = subprocess.run(command, check=False, capture_output=True, timeout=timeout + 5)
+        except Exception:
+            result = None
+        if result and result.stdout:
+            body, _, status_text = result.stdout.rpartition(b"\n")
+            try:
+                last_status = int(status_text.decode("ascii", errors="ignore"))
+            except ValueError:
+                last_status = None
+            last_body = body
+        # Retry only transient transport, rate-limit, and server failures. A
+        # policy response or explicit not-found result is authoritative.
+        if last_status is not None and last_status not in {408, 425, 429} and last_status < 500:
+            break
+        if attempt < 2:
+            time.sleep(2 ** (attempt + 1))
+    return last_status, last_body
 
 
 def browser_fetch(url: str, timeout: int = 90) -> dict:
@@ -592,6 +601,17 @@ def monitor() -> dict:
             "unverifiedInventoryChanges": unverified_inventory_changes,
         })
 
+    newest_product = max(
+        ({"url": url, "date": lastmod} for url, lastmod in products.items()),
+        key=lambda item: (str(item.get("date", "")), str(item.get("url", ""))),
+        default={},
+    )
+    newest_release = max(
+        press_releases.values(),
+        key=lambda item: (str(item.get("date", "")), str(item.get("url", ""))),
+        default={},
+    )
+
     return {
         "generatedAt": utc_now(),
         "baselineCreated": {
@@ -599,6 +619,23 @@ def monitor() -> dict:
             "pressIndex": press_baseline_created,
         },
         "inventoryCounts": {"lcmsProductPages": len(products), "pressReleases": len(press_releases)},
+        "sourceCoverage": {
+            "productInventory": {
+                "complete": product_success,
+                "recordsSeen": len(products),
+                "newestDate": newest_product.get("date"),
+                "newestUrl": newest_product.get("url"),
+            },
+            "pressArchive": {
+                "complete": press_success,
+                "newsroomComplete": newsroom_success,
+                "investorFeedComplete": investor_success,
+                "recordsSeen": len(press_releases),
+                "newestDate": newest_release.get("date"),
+                "newestTitle": newest_release.get("title"),
+                "newestUrl": newest_release.get("url"),
+            },
+        },
         "new_products": new_products,
         "discontinued_products": discontinued_products,
         "updated_products": updated_products,

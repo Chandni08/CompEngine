@@ -38,6 +38,16 @@ class FakeClient:
 
 
 class SourceHealthContractTests(unittest.TestCase):
+    def test_newest_source_url_must_match_the_newest_ingested_url(self) -> None:
+        source = SourceHealth(
+            "press", "https://example.com/news", True, "archive", "collected", "2026-08-16T00:00:00Z",
+            engineNewestDate="2026-08-16", sourceNewestDate="2026-08-16",
+            engineNewestUrl="https://example.com/news/older", sourceNewestUrl="https://example.com/news/newest",
+            recordsSeen=2, recordsIngested=2, completeness="complete", coverage="complete",
+        )
+        self.assertFalse(source.newestItemPresent)
+        self.assertEqual(source.state, "PARTIAL")
+
     def test_required_stale_or_skipped_source_blocks_global_current(self) -> None:
         sources = [
             SourceHealth("current", "https://example.com/current", True, "api", "collected", "2026-07-30T00:00:00Z", engineNewestDate="2026-07-30", sourceNewestDate="2026-07-30", recordsSeen=1, recordsIngested=1, completeness="complete", coverage="complete"),
@@ -144,6 +154,16 @@ class CompletenessTests(unittest.TestCase):
 
 
 class CoverageIntegrityTests(unittest.TestCase):
+    def test_asgct_legacy_broken_download_is_omitted_when_live_issue_exists(self) -> None:
+        page = """
+        <a href="https://www.cell.com/molecular-therapy-family/molecular-therapy/fulltext/S1525-0016(26)00312-6">Download the 2026 Abstracts</a>
+        <a href="https://download.asgct.org/2026ASGCTAbstractPublication.pdf">Download the Abstracts</a>
+        """
+        records = collect_scientific_sources.extract_conference_records("https://annualmeeting.asgct.org/", page, "asgct-2026")
+        urls = {item["canonicalUrl"] for item in records}
+        self.assertIn("https://www.cell.com/molecular-therapy-family/molecular-therapy/fulltext/S1525-0016(26)00312-6", urls)
+        self.assertNotIn("https://download.asgct.org/2026ASGCTAbstractPublication.pdf", urls)
+
     def test_trade_feed_and_sitemap_parsers_preserve_exact_dated_records(self) -> None:
         rss = """<?xml version="1.0"?><rss><channel><item>
           <title>LC-MS method validation for regulated QC</title>
@@ -195,11 +215,17 @@ class CoverageIntegrityTests(unittest.TestCase):
             intelligence = data_dir / "intelligence.json"
             status = data_dir / "refresh_status.json"
             intelligence.write_text('{"validated": true}\n', encoding="utf-8")
+            secondary = data_dir / "secondary.json"
+            secondary.write_text('{"validated": true}\n', encoding="utf-8")
             status.write_text('{"lastSuccessfulRefreshAt":"2026-07-29T00:00:00Z"}\n', encoding="utf-8")
-            with patch.object(refresh_daily, "DATA_DIR", data_dir), patch.object(refresh_daily, "DEPLOY_DATA_DIR", deploy_dir), patch.object(refresh_daily, "INTELLIGENCE_FILE", intelligence), patch.object(refresh_daily, "STATUS_FILE", status), patch.object(refresh_daily.subprocess, "run", side_effect=RuntimeError("collector failed")):
+            def failed_collector(*_args, **_kwargs):
+                secondary.write_text('{"validated": false}\n', encoding="utf-8")
+                raise RuntimeError("collector failed")
+            with patch.object(refresh_daily, "DATA_DIR", data_dir), patch.object(refresh_daily, "DEPLOY_DATA_DIR", deploy_dir), patch.object(refresh_daily, "INTELLIGENCE_FILE", intelligence), patch.object(refresh_daily, "STATUS_FILE", status), patch.object(refresh_daily.subprocess, "run", side_effect=failed_collector):
                 result = refresh_daily.main()
             self.assertEqual(result, 1)
             self.assertEqual(json.loads(intelligence.read_text(encoding="utf-8")), {"validated": True})
+            self.assertEqual(json.loads(secondary.read_text(encoding="utf-8")), {"validated": True})
             self.assertEqual(json.loads(status.read_text(encoding="utf-8"))["status"], "failed")
 
 

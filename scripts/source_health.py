@@ -42,6 +42,10 @@ class SourceHealth:
     succeededAt: str | None = None
     engineNewestDate: str | None = None
     sourceNewestDate: str | None = None
+    engineNewestTitle: str | None = None
+    engineNewestUrl: str | None = None
+    sourceNewestTitle: str | None = None
+    sourceNewestUrl: str | None = None
     lagDays: int | None = None
     newestItemPresent: bool | None = None
     recordsSeen: int = 0
@@ -59,6 +63,8 @@ class SourceHealth:
         if source_newest and engine_newest:
             self.lagDays = max(0, (source_newest - engine_newest).days)
             self.newestItemPresent = engine_newest >= source_newest
+        if self.sourceNewestUrl and self.engineNewestUrl:
+            self.newestItemPresent = self.sourceNewestUrl.rstrip("/") == self.engineNewestUrl.rstrip("/")
         if self.collectionOutcome == "disabled":
             self.state = "DISABLED"
         elif self.collectionOutcome == "skipped_missing_credentials":
@@ -118,10 +124,6 @@ class SourceHealth:
             "baseUrl": self.url,
             "method": self.collectionMethod,
             "cadence": cadence,
-            "engineNewestTitle": None,
-            "engineNewestUrl": None,
-            "sourceNewestTitle": None,
-            "sourceNewestUrl": None,
             "sourceCount": self.recordsSeen,
             "engineCount": self.recordsIngested,
             "estimatedMissingCount": max(0, self.recordsSeen - self.recordsIngested),
@@ -188,6 +190,10 @@ def migrate_legacy_source(source: dict[str, Any], attempted_at: str | None = Non
         succeededAt=succeeded_at,
         engineNewestDate=source.get("engineNewestDate"),
         sourceNewestDate=source.get("sourceNewestDate"),
+        engineNewestTitle=source.get("engineNewestTitle"),
+        engineNewestUrl=source.get("engineNewestUrl"),
+        sourceNewestTitle=source.get("sourceNewestTitle"),
+        sourceNewestUrl=source.get("sourceNewestUrl"),
         recordsSeen=int(source.get("recordsSeen") or source.get("extractedRecords") or source.get("recordsCollected") or 0),
         recordsIngested=int(source.get("recordsIngested") or source.get("extractedRecords") or source.get("recordsCollected") or 0),
         completeness=str(source.get("completeness") or "unverified"),
