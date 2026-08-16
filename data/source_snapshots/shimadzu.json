@@ -1,10 +1,10 @@
 {
   "snapshotSchemaVersion": 2,
   "observationType": "sitemap_inventory",
-  "capturedAt": "2026-08-02T20:04:54+00:00",
+  "capturedAt": "2026-08-16T16:52:49+00:00",
   "initialized": true,
   "products": {
-    "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/index.html": "2026-07-09",
+    "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/index.html": "2026-08-05",
     "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-modified-nucleosides/index.html": "2026-07-09",
     "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-short-chain-fatty-acids/index.html": "2026-07-09",
     "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-veterinary-drugs-ver-2/index.html": "2026-07-09",
@@ -86,6 +86,12 @@
   "productMetadata": {},
   "monitoredFamilies": [],
   "pressReleases": {
+    "https://www.shimadzu.com/news/2026/5is0mfb00wsn8pnv.html": {
+      "date": "2026-08-04",
+      "title": "Release of the World\u2019s First Desktop Corona Discharge Ionizer Specialized for Dry Air Environments, STABLO-AP DRY AIR Eliminating Static Electricity Problems in Battery Research, Development, and Manufacturing",
+      "url": "https://www.shimadzu.com/news/2026/5is0mfb00wsn8pnv.html",
+      "classification": "product"
+    },
     "https://www.shimadzu.com/news/2026/xsmnp89535xpnhd1.html": {
       "date": "2026-07-31",
       "title": "Team Representing Japan Wins at the World Deaf Team Tennis Championships Komokata of the SHIMADZU Breakers Excels as Team Ace",

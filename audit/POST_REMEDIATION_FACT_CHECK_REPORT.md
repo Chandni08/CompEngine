@@ -1,27 +1,27 @@
 # Post-remediation fact-check report
 
-Generated: `2026-08-02T20:38:41+00:00`
+Generated: `2026-08-12T14:49:47+00:00`
 
 ## Executive result
 
-The audit evaluated **1048 canonical claims** and **1921 unique evidence URLs**. Counts below are observed outcomes; no failure category was hidden or converted to healthy for reporting.
+The audit evaluated **1062 canonical claims** and **3019 unique evidence URLs**. Counts below are observed outcomes; no failure category was hidden or converted to healthy for reporting.
 
 ### Claim verdicts
 
 | Verdict | Count |
 | --- | ---: |
-| Verified | 233 |
-| Partially supported | 192 |
-| UNREACHABLE | 450 |
+| Verified | 234 |
+| Partially supported | 197 |
+| UNREACHABLE | 457 |
 | Unsupported/Hallucinated | 160 |
-| Contradicted | 13 |
+| Contradicted | 14 |
 
 ### Link outcomes
 
 | Status | Count |
 | --- | ---: |
-| OK | 1071 |
-| Blocked | 850 |
+| OK | 1156 |
+| Blocked | 1863 |
 | Broken | 0 |
 | Mislink | 0 |
 
@@ -35,7 +35,7 @@ The audit evaluated **1048 canonical claims** and **1921 unique evidence URLs**.
 
 ## Remaining limitations
 
-**815 claims remain non-verified.** These are preserved in `per_claim_appendix.csv` with their exact caveat or link condition. This includes analyst synthesis that has a valid primary URL but not a <=15-word supporting excerpt, current automated retrieval blocks, and records whose source is unavailable.
+**828 claims remain non-verified.** These are preserved in `per_claim_appendix.csv` with their exact caveat or link condition. This includes analyst synthesis that has a valid primary URL but not a <=15-word supporting excerpt, current automated retrieval blocks, and records whose source is unavailable.
 
 ## Deliverables
 

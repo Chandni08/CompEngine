@@ -33,7 +33,15 @@ The dashboard must not expose a longer horizon unless the refresh pipeline conta
 
 ## Schedule
 
-`.github/workflows/daily-content-refresh.yml` runs every day at 10:15 UTC and can also be started manually from GitHub Actions.
+`.github/workflows/daily-content-refresh.yml` runs in GitHub Actions and can also be started manually from GitHub Actions.
+
+The scheduled job is pinned to `7:00 AM America/New_York` year-round by running twice in UTC and skipping the non-matching run.
+
+To run unattended, configure these GitHub repository secrets:
+
+- `REDDIT_CLIENT_ID`
+- `REDDIT_CLIENT_SECRET`
+- `VERCEL_DEPLOY_HOOK` if the Vercel project is not connected to this GitHub repo
 
 The workflow:
 
@@ -82,14 +90,14 @@ Scores of 75-100 are High, 50-74 are Medium, and 0-49 are Low. Each signal store
 
 ## Local Daily Schedule
 
-On this Mac, `com.waters.competition-engine.daily-refresh` wakes the Codex desktop app at 6:10 AM local time through `launchd` and also opens it after login. This is required because macOS privacy controls do not allow a standalone background shell process to read a project inside `Documents`. At 6:15 AM, the active Codex automation runs `scripts/run_daily_refresh.sh`, which refreshes and validates the data, deploys the successful build to Vercel, aliases the Waters URL, and verifies the live refresh status. The wrapper also has a process lock so a duplicate trigger exits safely. Logs are written to:
+On this Mac, `com.waters.competition-engine.daily-refresh` wakes the Codex desktop app at 6:10 AM local time through `launchd` and also opens it after login. This is still useful for manual local operation, but it is no longer the primary production scheduler. At 6:15 AM, the active Codex automation runs `scripts/run_daily_refresh.sh`, which refreshes and validates the data, deploys the successful build to Vercel, aliases the Waters URL, and verifies the live refresh status. The wrapper also has a process lock so a duplicate trigger exits safely. Logs are written to:
 
 - `logs/daily-refresh.log`
 - `logs/daily-refresh-error.log`
 
 `scripts/run_daily_refresh.sh` provides the equivalent wrapper for a manual local run.
 
-The Codex automation publishes only after the refresh and every deployment gate succeeds. Failed collection or validation leaves the last verified production build unchanged. This local automation requires the Mac to be powered on and logged in; a cloud runner still requires connecting the project to a Git host.
+The Codex automation publishes only after the refresh and every deployment gate succeeds. Failed collection or validation leaves the last verified production build unchanged. The GitHub Actions workflow is the supported always-on scheduler once the repo is connected to GitHub and the required secrets are configured.
 
 The dashboard reads `data/refresh_status.json` and shows whether the daily refresh is current, overdue, or failed. A page left open checks hourly for a newly published dataset and reloads when one is available.
 

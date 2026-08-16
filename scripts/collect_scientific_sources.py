@@ -207,7 +207,7 @@ def extract_conference_records(page_url: str, body: str, event_id: str) -> list[
     for href, raw_title in re.findall(r'<a[^>]+href=["\']([^"\']+)["\'][^>]*>(.*?)</a>', body, flags=re.I | re.S):
         lowered_href = href.lower()
         if any(marker in lowered_href for marker in (
-            "/cdn-cgi/", "/login", "oauth/authorize", "email-protection",
+            "/cdn-cgi/", "/login", "ssoexternallogin", "oauth/authorize", "email-protection",
             "certification-program",
         )):
             continue

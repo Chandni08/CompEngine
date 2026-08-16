@@ -41,9 +41,9 @@ echo "$(date -Iseconds) Pointing the Waters URL to the refreshed build"
 echo "$(date -Iseconds) Verifying refreshed data on the Waters URL"
 live_status=$(/usr/bin/curl --fail --silent --show-error --location --retry 10 --retry-delay 2 "https://$WATERS_HOST/data/refresh_status.json?verify=$(date +%s)")
 case "$live_status" in
-  *'"status": "success"'*) ;;
+  *'"status": "success"'*|*'"status": "partial"'*) ;;
   *)
-    echo "$(date -Iseconds) Daily deployment failed: live refresh status is not successful" >&2
+    echo "$(date -Iseconds) Daily deployment failed: live refresh status is not publishable" >&2
     exit 1
     ;;
 esac

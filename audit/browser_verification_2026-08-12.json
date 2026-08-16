@@ -1,0 +1,62 @@
+{
+  "verifiedAt": "2026-08-12T14:48:00+00:00",
+  "baseUrl": "https://waters-nextgen-competitive-engine.vercel.app/",
+  "result": "PASS_WITH_DISCLOSED_SOURCE_LIMITATIONS",
+  "pages": [
+    {
+      "path": "/",
+      "status": "PASS",
+      "checks": [
+        "Refreshed 2026-08-12 data and 12,751 publication-record total rendered",
+        "Role, market, competitor, and horizon filters updated together",
+        "30-day Biopharma Agilent Engineering view rendered an honest empty state",
+        "Competitor tabs changed the selected competitor panel",
+        "Evidence modal opened eight exact Shimadzu records and closed successfully",
+        "Leadership details collapsed and expanded with the correct aria-expanded state",
+        "Customer Evidence tab and local search rendered an honest no-match row"
+      ],
+      "consoleWarningsOrErrors": []
+    },
+    {
+      "path": "/publications",
+      "status": "PASS",
+      "checks": [
+        "Sixteen source streams and 2,136 records rendered in the default 90-day view",
+        "Peer-reviewed, Biopharma, LC/separation, 30-day filters recalculated to six sources and 546 publications",
+        "Reset restored All/All/All/90-day state",
+        "Publication source tab selection worked"
+      ],
+      "consoleWarningsOrErrors": []
+    },
+    {
+      "path": "/conference",
+      "status": "PASS",
+      "checks": [
+        "Seven upcoming conferences rendered",
+        "Biopharma, LC-MS, Thermo Fisher filters recalculated to four events and twelve appearances",
+        "IMSC 2026 timeline selection updated the detail workspace",
+        "Reset restored All/All/All state"
+      ],
+      "consoleWarningsOrErrors": []
+    }
+  ],
+  "responsive": {
+    "viewport": "390x844",
+    "status": "PASS",
+    "horizontalOverflowPixels": 0,
+    "navigationToggle": "PASS",
+    "consoleWarningsOrErrors": []
+  },
+  "dataIntegrity": {
+    "sourceDeployJsonFilesCompared": 27,
+    "allByteIdentical": true,
+    "deadLinks": 0,
+    "mislinks": 0,
+    "blockedOrPolicyRestrictedLinks": 1863
+  },
+  "limitations": [
+    "The published refresh status is PARTIAL, not CURRENT, because required source-health blockers remain explicit.",
+    "Reddit collection was skipped because OAuth credentials are not configured.",
+    "Blocked or policy-restricted external URLs were not classified as dead."
+  ]
+}

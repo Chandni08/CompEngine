@@ -1,236 +1,236 @@
-{"kind":"deck","id":"pr/sk71kw","name":"Deck"}
-{"kind":"layout","layoutId":"d1220b6f-4d1b-464c-99f0-adedd6e9a1f4","name":"Master","type":"master"}
-{"kind":"layout","layoutId":"a55f88d4-4d3b-4433-88ab-48672cafb949","name":"Title Slide","type":"title"}
-{"kind":"slide","id":"sl/gc2b2y","slide":1,"title":"WATERS · NEXT GEN LC","textShapes":10}
-{"kind":"shape","id":"sh/7e1cz6t4","slide":1,"bbox":[0,0,18,720]}
-{"kind":"textbox","id":"sh/8fatsbup","slide":1,"text":"WATERS · NEXT GEN LC","textPreview":"WATERS · NEXT GEN LC","textChars":20,"textLines":1,"bbox":[74,70,520,34]}
-{"kind":"textbox","id":"sh/90ju1gba","slide":1,"text":"Leadership brief","textPreview":"Leadership brief","textChars":16,"textLines":1,"bbox":[74,160,940,78]}
-{"kind":"textbox","id":"sh/u1sbulcv","slide":1,"text":"Five external signals. Three evidence-gated decisions.","textPreview":"Five external signals. Three evidence-gated decisions.","textChars":54,"textLines":1,"bbox":[74,254,890,54]}
-{"kind":"textbox","id":"sh/v21c3qtg","slide":1,"text":"A concise executive readout of scientific momentum, competitor moves, customer friction, corporate intent, and the next conference moment.","textPreview":"A concise executive readout of scientific momentum, competitor moves, customer friction, corporate intent, and the next conference moment.","textChars":138,"textLines":1,"bbox":[74,344,790,120]}
-{"kind":"shape","id":"sh/g3atwvu1","slide":1,"bbox":[922,156,252,278]}
-{"kind":"textbox","id":"sh/h4ju50bm","slide":1,"text":"DATA CURRENT","textPreview":"DATA CURRENT","textChars":12,"textLines":1,"bbox":[956,198,190,24]}
-{"kind":"textbox","id":"sh/a5obihcr","slide":1,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[956,236,150,82]}
-{"kind":"textbox","id":"sh/b6hcrmtc","slide":1,"text":"AUG 2026","textPreview":"AUG 2026","textChars":8,"textLines":1,"bbox":[958,320,160,34]}
-{"kind":"shape","id":"sh/bidwvip8","slide":1,"bbox":[956,380,156,3]}
-{"kind":"textbox","id":"sh/ah4v2do3","slide":1,"text":"PUBLIC EVIDENCE","textPreview":"PUBLIC EVIDENCE","textChars":15,"textLines":1,"bbox":[956,394,180,24]}
-{"kind":"textbox","id":"sh/xkvexs7e","slide":1,"text":"Prepared for roadmap review · waters-ci-20260802160152","textPreview":"Prepared for roadmap review · waters-ci-20260802160152","textChars":54,"textLines":1,"bbox":[74,646,680,28]}
-{"kind":"textbox","id":"sh/wjmd4n6t","slide":1,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[1174,646,52,28]}
-{"kind":"notes","id":"nt/gc2b2y","slide":1,"text":"[Sources]\n[/Sources]"}
-{"kind":"slide","id":"sl/bmsr71","slide":2,"title":"LEADERSHIP BRIEF · 2","textShapes":16}
-{"kind":"textbox","id":"sh/q98329on","slide":2,"text":"LEADERSHIP BRIEF · 2","textPreview":"LEADERSHIP BRIEF · 2","textChars":20,"textLines":1,"bbox":[54,34,520,26]}
-{"kind":"textbox","id":"sh/dcz2x4ne","slide":2,"text":"Leadership Brief","textPreview":"Leadership Brief","textChars":16,"textLines":1,"bbox":[54,68,1165,62]}
-{"kind":"textbox","id":"sh/sbql4z6t","slide":2,"text":"The strongest cross-page pattern is not a single specification—it is proof that the full workflow is easier to execute, transfer, and troubleshoot.","textPreview":"The strongest cross-page pattern is not a single specification—it is proof that the full workflow is easier to execute, transfer, and tro...","textChars":147,"textLines":1,"bbox":[54,134,1115,38]}
-{"kind":"shape","id":"sh/fy1kze54","slide":2,"bbox":[54,186,1172,3]}
-{"kind":"shape","id":"sh/ed8369oz","slide":2,"bbox":[54,214,1172,86]}
-{"kind":"textbox","id":"sh/10j21ona","slide":2,"text":"LEADERSHIP IMPLICATION","textPreview":"LEADERSHIP IMPLICATION","textChars":22,"textLines":1,"bbox":[78,233,230,22]}
-{"kind":"textbox","id":"sh/0zal8jmp","slide":2,"text":"Test new requirements against workflow proof, not feature parity alone.","textPreview":"Test new requirements against workflow proof, not feature parity alone.","textChars":71,"textLines":1,"bbox":[326,227,850,42]}
-{"kind":"shape","id":"sh/v2xknu50","slide":2,"bbox":[54,330,354,218]}
-{"kind":"shape","id":"sh/uhojupof","slide":2,"bbox":[54,330,354,8]}
-{"kind":"textbox","id":"sh/0jy5crit","slide":2,"text":"1,125","textPreview":"1,125","textChars":5,"textLines":1,"bbox":[78,360,306,70]}
-{"kind":"textbox","id":"sh/1k7m5wze","slide":2,"text":"Automation and software workflow publications","textPreview":"Automation and software workflow publications","textChars":45,"textLines":1,"bbox":[78,430,306,44]}
-{"kind":"textbox","id":"sh/ehgna10n","slide":2,"text":"Scientific activity in the last year","textPreview":"Scientific activity in the last year","textChars":36,"textLines":1,"bbox":[78,486,306,42]}
-{"kind":"shape","id":"sh/fip43mh8","slide":2,"bbox":[463,330,354,218]}
-{"kind":"shape","id":"sh/oni5gbi5","slide":2,"bbox":[463,330,354,8]}
-{"kind":"textbox","id":"sh/p8r69gza","slide":2,"text":"325","textPreview":"325","textChars":3,"textLines":1,"bbox":[487,360,306,70]}
-{"kind":"textbox","id":"sh/2lgne10z","slide":2,"text":"PFAS and contaminant-testing publications","textPreview":"PFAS and contaminant-testing publications","textChars":41,"textLines":1,"bbox":[487,430,306,44]}
-{"kind":"textbox","id":"sh/nm9o76hk","slide":2,"text":"Current regulated-testing activity","textPreview":"Current regulated-testing activity","textChars":34,"textLines":1,"bbox":[487,486,306,42]}
-{"kind":"shape","id":"sh/4re547il","slide":2,"bbox":[872,330,354,218]}
-{"kind":"shape","id":"sh/5snmxcz6","slide":2,"bbox":[872,330,354,8]}
-{"kind":"textbox","id":"sh/lwvul47y","slide":2,"text":"647","textPreview":"647","textChars":3,"textLines":1,"bbox":[896,360,306,70]}
-{"kind":"textbox","id":"sh/kvmtcz6d","slide":2,"text":"Oligonucleotide and nucleic-acid publications","textPreview":"Oligonucleotide and nucleic-acid publications","textChars":45,"textLines":1,"bbox":[896,430,306,44]}
-{"kind":"textbox","id":"sh/zadcjeps","slide":2,"text":"Substantial application evidence base","textPreview":"Substantial application evidence base","textChars":37,"textLines":1,"bbox":[896,486,306,42]}
-{"kind":"textbox","id":"sh/y94ba9o7","slide":2,"text":"WATERS NEXT GEN COMPETITIVE INTELLIGENCE · 02 AUG 2026 · waters-ci-20260802160152","textPreview":"WATERS NEXT GEN COMPETITIVE INTELLIGENCE · 02 AUG 2026 · waters-ci-20260802160152","textChars":81,"textLines":1,"bbox":[54,680,1030,20]}
-{"kind":"textbox","id":"sh/90fupo7u","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1174,676,52,24]}
-{"kind":"notes","id":"nt/bmsr71","slide":2,"text":"[Sources]\n- https://pubmed.ncbi.nlm.nih.gov/?term=%28%28%22laboratory+automation%22+OR+%22workflow+software%22+OR+%22AI%22%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222025%2F08%2F02%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F02%22%5BDate+-+Publication%5D%29\n- https://pubmed.ncbi.nlm.nih.gov/?term=%28%28PFAS+OR+%22per-+and+polyfluoroalkyl%22%29+AND+%28%22LC-MS%22+OR+%22LC-MS%2FMS%22+OR+chromatography%29%29+AND+%28%222025%2F08%2F02%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F02%22%5BDate+-+Publication%5D%29\n- https://pubmed.ncbi.nlm.nih.gov/?term=%28%28oligonucleotide+OR+%22nucleic+acid%22+OR+siRNA%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222025%2F08%2F02%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F02%22%5BDate+-+Publication%5D%29\n[/Sources]"}
-{"kind":"slide","id":"sl/c8y4u0","slide":3,"title":"LEADERSHIP BRIEF · 3","textShapes":25}
-{"kind":"textbox","id":"sh/zih8vmp4","slide":3,"text":"LEADERSHIP BRIEF · 3","textPreview":"LEADERSHIP BRIEF · 3","textChars":20,"textLines":1,"bbox":[54,34,520,26]}
-{"kind":"textbox","id":"sh/k3qp4rqp","slide":3,"text":"Five signals now shape the roadmap conversation","textPreview":"Five signals now shape the roadmap conversation","textChars":47,"textLines":1,"bbox":[54,68,1165,62]}
-{"kind":"textbox","id":"sh/l4zqxc7a","slide":3,"text":"Each signal comes from a different evidence class; together they show why leadership attention is warranted.","textPreview":"Each signal comes from a different evidence class; together they show why leadership attention is warranted.","textChars":108,"textLines":1,"bbox":[54,134,1115,38]}
-{"kind":"shape","id":"sh/qdo7yx8n","slide":3,"bbox":[54,186,1172,3]}
-{"kind":"shape","id":"sh/beh8r2p8","slide":3,"bbox":[54,216,558,146]}
-{"kind":"shape","id":"sh/cfqp07qd","slide":3,"bbox":[72,234,42,42]}
-{"kind":"textbox","id":"sh/dgzqtc7y","slide":3,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[72,242,42,24]}
-{"kind":"textbox","id":"sh/29o7ux8b","slide":3,"text":"SCIENTIFIC MARKET","textPreview":"SCIENTIFIC MARKET","textChars":17,"textLines":1,"bbox":[130,233,462,21]}
-{"kind":"textbox","id":"sh/3axon2pw","slide":3,"text":"PFAS activity remains substantial","textPreview":"PFAS activity remains substantial","textChars":33,"textLines":1,"bbox":[130,259,462,44]}
-{"kind":"textbox","id":"sh/fit83yto","slide":3,"text":"325 records from the canonical PubMed query.","textPreview":"325 records from the canonical PubMed query.","textChars":44,"textLines":1,"bbox":[130,308,462,38]}
-{"kind":"shape","id":"sh/ehkruts3","slide":3,"bbox":[668,216,558,146]}
-{"kind":"shape","id":"sh/1kbq58bu","slide":3,"bbox":[686,234,42,42]}
-{"kind":"textbox","id":"sh/0j29w3a9","slide":3,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[686,242,42,24]}
-{"kind":"textbox","id":"sh/n6d87itk","slide":3,"text":"COMPETITOR LAUNCH","textPreview":"COMPETITOR LAUNCH","textChars":17,"textLines":1,"bbox":[744,233,462,21]}
-{"kind":"textbox","id":"sh/25krydsz","slide":3,"text":"Agilent is packaging LC/TOF into MAM","textPreview":"Agilent is packaging LC/TOF into MAM","textChars":36,"textLines":1,"bbox":[744,259,462,44]}
-{"kind":"textbox","id":"sh/p8vq98bq","slide":3,"text":"Observed issuer evidence from Agilent's official release.","textPreview":"Observed issuer evidence from Agilent's official release.","textChars":57,"textLines":1,"bbox":[744,308,462,38]}
-{"kind":"shape","id":"sh/o7m903a5","slide":3,"bbox":[54,380,558,146]}
-{"kind":"shape","id":"sh/ja98vetg","slide":3,"bbox":[72,398,42,42]}
-{"kind":"textbox","id":"sh/ip07m9sv","slide":3,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[72,406,42,24]}
-{"kind":"textbox","id":"sh/m5obuhcj","slide":3,"text":"CUSTOMER EVIDENCE","textPreview":"CUSTOMER EVIDENCE","textChars":17,"textLines":1,"bbox":[130,397,462,21]}
-{"kind":"textbox","id":"sh/76hc3md4","slide":3,"text":"Troubleshooting requires internal validation","textPreview":"Troubleshooting requires internal validation","textChars":44,"textLines":1,"bbox":[130,423,462,44]}
-{"kind":"textbox","id":"sh/87qtwrup","slide":3,"text":"Public forum recurrence requires internal field validation.","textPreview":"Public forum recurrence requires internal field validation.","textChars":59,"textLines":1,"bbox":[130,472,462,38]}
-{"kind":"shape","id":"sh/98zu5wvu","slide":3,"bbox":[668,380,558,146]}
-{"kind":"shape","id":"sh/y1obqhc7","slide":3,"bbox":[686,398,42,42]}
-{"kind":"textbox","id":"sh/z2xcz2ds","slide":3,"text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[686,406,42,24]}
-{"kind":"textbox","id":"sh/k36ts7ud","slide":3,"text":"CORPORATE INTENT","textPreview":"CORPORATE INTENT","textChars":16,"textLines":1,"bbox":[744,397,462,21]}
-{"kind":"textbox","id":"sh/l4fu1cvy","slide":3,"text":"Agilent calls LC and LC-MS growth engines","textPreview":"Agilent calls LC and LC-MS growth engines","textChars":41,"textLines":1,"bbox":[744,423,462,44]}
-{"kind":"textbox","id":"sh/ad4bmxcb","slide":3,"text":"Direct issuer filing; no independent external corroboration.","textPreview":"Direct issuer filing; no independent external corroboration.","textChars":60,"textLines":1,"bbox":[744,472,462,38]}
-{"kind":"shape","id":"sh/bexsv2dw","slide":3,"bbox":[361,544,558,146]}
-{"kind":"shape","id":"sh/ts3e10fe","slide":3,"bbox":[379,562,42,42]}
-{"kind":"textbox","id":"sh/sruxsvet","slide":3,"text":"5","textPreview":"5","textChars":1,"textLines":1,"bbox":[379,570,42,24]}
-{"kind":"textbox","id":"sh/rqlwzqx8","slide":3,"text":"CONFERENCE MOMENT","textPreview":"CONFERENCE MOMENT","textChars":17,"textLines":1,"bbox":[437,561,462,21]}
-{"kind":"textbox","id":"sh/6pcfqlwn","slide":3,"text":"Bioprocessing Summit begins Aug 10","textPreview":"Bioprocessing Summit begins Aug 10","textChars":34,"textLines":1,"bbox":[437,587,462,44]}
-{"kind":"textbox","id":"sh/54jex0fi","slide":3,"text":"Observed agenda and sponsor facts from the event site.","textPreview":"Observed agenda and sponsor facts from the event site.","textChars":54,"textLines":1,"bbox":[437,636,462,38]}
-{"kind":"textbox","id":"sh/43axovex","slide":3,"text":"WATERS NEXT GEN COMPETITIVE INTELLIGENCE · 02 AUG 2026 · waters-ci-20260802160152","textPreview":"WATERS NEXT GEN COMPETITIVE INTELLIGENCE · 02 AUG 2026 · waters-ci-20260802160152","textChars":81,"textLines":1,"bbox":[54,680,1030,20]}
-{"kind":"textbox","id":"sh/j21wvqxc","slide":3,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1174,676,52,24]}
-{"kind":"notes","id":"nt/c8y4u0","slide":3,"text":"[Sources]\n- https://pubmed.ncbi.nlm.nih.gov/?term=%28%28PFAS+OR+%22per-+and+polyfluoroalkyl%22%29+AND+%28%22LC-MS%22+OR+%22LC-MS%2FMS%22+OR+chromatography%29%29+AND+%28%222025%2F08%2F02%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F02%22%5BDate+-+Publication%5D%29\n- https://www.agilent.com/about/newsroom/presrel/2026/29may-ca26021.html\n- https://www.sec.gov/Archives/edgar/data/1090872/000109087226000055/a-20260430.htm\n- https://www.bioprocessingsummit.com/\n- https://www.reddit.com/r/CHROMATOGRAPHY/comments/1uk333s/update_uplc_waters_high_pressure_problem/\n- https://www.reddit.com/r/CHROMATOGRAPHY/comments/1h1i93y/waters_acquity_uplc_beh_17_um_21_x_100_mm_column/\n- https://www.reddit.com/r/CHROMATOGRAPHY/comments/1e3y2sy/getting_started_with_empower_3/\n[/Sources]"}
-{"kind":"slide","id":"sl/h0ktpv","slide":4,"title":"LEADERSHIP BRIEF · 4","textShapes":21}
-{"kind":"textbox","id":"sh/98ryh0nu","slide":4,"text":"LEADERSHIP BRIEF · 4","textPreview":"LEADERSHIP BRIEF · 4","textChars":20,"textLines":1,"bbox":[54,34,520,26]}
-{"kind":"textbox","id":"sh/m50z6l43","slide":4,"text":"Observed competitor actions suggest workflow packaging","textPreview":"Observed competitor actions suggest workflow packaging","textChars":54,"textLines":1,"bbox":[54,68,1165,62]}
-{"kind":"textbox","id":"sh/n69gfq5o","slide":4,"text":"Inference confidence is Directional: each company view lacks two independently corroborating source families.","textPreview":"Inference confidence is Directional: each company view lacks two independently corroborating source families.","textChars":109,"textLines":1,"bbox":[54,134,1115,38]}
-{"kind":"shape","id":"sh/03yh4bmx","slide":4,"bbox":[54,186,1172,3]}
-{"kind":"shape","id":"sh/l4rydgni","slide":4,"bbox":[54,220,554,178]}
-{"kind":"shape","id":"sh/y1gf2147","slide":4,"bbox":[54,220,8,178]}
-{"kind":"textbox","id":"sh/z2pgb65s","slide":4,"text":"SHIMADZU","textPreview":"SHIMADZU","textChars":8,"textLines":1,"bbox":[80,239,310,22]}
-{"kind":"textbox","id":"sh/czyx0bm1","slide":4,"text":"03 Mar","textPreview":"03 Mar","textChars":6,"textLines":1,"bbox":[446,239,132,22]}
-{"kind":"textbox","id":"sh/d07y9gnm","slide":4,"text":"Observed: Nexera X4 launch","textPreview":"Observed: Nexera X4 launch","textChars":26,"textLines":1,"bbox":[80,269,500,48]}
-{"kind":"textbox","id":"sh/dgzmpofq","slide":4,"text":"Inference: productivity-led LC positioning. Alternative: normal platform refresh.","textPreview":"Inference: productivity-led LC positioning. Alternative: normal platform refresh.","textChars":81,"textLines":1,"bbox":[80,327,500,50]}
-{"kind":"shape","id":"sh/sfq5gje5","slide":4,"bbox":[672,220,554,178]}
-{"kind":"shape","id":"sh/reh4nexk","slide":4,"bbox":[672,220,8,178]}
-{"kind":"textbox","id":"sh/qd8ne9wz","slide":4,"text":"AGILENT","textPreview":"AGILENT","textChars":7,"textLines":1,"bbox":[698,239,310,22]}
-{"kind":"textbox","id":"sh/5czml4fe","slide":4,"text":"03 Jun","textPreview":"03 Jun","textChars":6,"textLines":1,"bbox":[1064,239,132,22]}
-{"kind":"textbox","id":"sh/4bqlczet","slide":4,"text":"Observed: 6230C LC/TOF in MAM","textPreview":"Observed: 6230C LC/TOF in MAM","textChars":29,"textLines":1,"bbox":[698,269,500,48]}
-{"kind":"textbox","id":"sh/jax4jex8","slide":4,"text":"Inference: application-specific workflow packaging. Alternative: campaign positioning.","textPreview":"Inference: application-specific workflow packaging. Alternative: campaign positioning.","textChars":86,"textLines":1,"bbox":[698,327,500,50]}
-{"kind":"shape","id":"sh/i9o3a9wn","slide":4,"bbox":[54,424,554,178]}
-{"kind":"shape","id":"sh/h8fmh4fi","slide":4,"bbox":[54,424,8,178]}
-{"kind":"textbox","id":"sh/wn6l8zex","slide":4,"text":"SCIEX","textPreview":"SCIEX","textChars":5,"textLines":1,"bbox":[80,443,310,22]}
-{"kind":"textbox","id":"sh/8ra5ozmt","slide":4,"text":"01 Jun","textPreview":"01 Jun","textChars":6,"textLines":1,"bbox":[446,443,132,22]}
-{"kind":"textbox","id":"sh/9sjmx4ne","slide":4,"text":"Observed: novus V55 + SCIEX OS 5.0","textPreview":"Observed: novus V55 + SCIEX OS 5.0","textChars":34,"textLines":1,"bbox":[80,473,500,48]}
-{"kind":"textbox","id":"sh/mpsnmp4n","slide":4,"text":"Inference: software-led nominal-mass offer; this does not verify broader HRMS depth.","textPreview":"Inference: software-led nominal-mass offer; this does not verify broader HRMS depth.","textChars":84,"textLines":1,"bbox":[80,531,500,50]}
-{"kind":"shape","id":"sh/nq14vu58","slide":4,"bbox":[672,424,554,178]}
-{"kind":"shape","id":"sh/03q5kzmh","slide":4,"bbox":[672,424,8,178]}
-{"kind":"textbox","id":"sh/lozmtkn2","slide":4,"text":"THERMO FISHER","textPreview":"THERMO FISHER","textChars":13,"textLines":1,"bbox":[698,443,310,22]}
-{"kind":"textbox","id":"sh/y183ip4b","slide":4,"text":"CURRENT","textPreview":"CURRENT","textChars":7,"textLines":1,"bbox":[1064,443,132,22]}
-{"kind":"textbox","id":"sh/z2h4ru5w","slide":4,"text":"Observed: Vanquish Amplify product page","textPreview":"Observed: Vanquish Amplify product page","textChars":39,"textLines":1,"bbox":[698,473,500,48]}
-{"kind":"textbox","id":"sh/kzu5wjm1","slide":4,"text":"Inference: inert biopharma workflow packaging. Alternative: portfolio positioning.","textPreview":"Inference: inert biopharma workflow packaging. Alternative: portfolio positioning.","textChars":82,"textLines":1,"bbox":[698,531,500,50]}
-{"kind":"textbox","id":"sh/5k3m5on6","slide":4,"text":"WATERS NEXT GEN COMPETITIVE INTELLIGENCE · 02 AUG 2026 · waters-ci-20260802160152","textPreview":"WATERS NEXT GEN COMPETITIVE INTELLIGENCE · 02 AUG 2026 · waters-ci-20260802160152","textChars":81,"textLines":1,"bbox":[54,680,1030,20]}
-{"kind":"textbox","id":"sh/fqpgbmtk","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1174,676,52,24]}
-{"kind":"notes","id":"nt/h0ktpv","slide":4,"text":"[Sources]\n- https://www.shimadzu.com/news/2026/k8iri3_20_z4uvwt.html\n- https://www.agilent.com/about/newsroom/presrel/2026/29may-ca26021.html\n- https://sciex.com/about-us/press-releases/2026/sciex-launches-its-5th-generation-of-nominal-mass-novus-v55-system-with-sciexos-5-0-software\n- https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-amplify-uhplc-system.html\n[/Sources]"}
-{"kind":"slide","id":"sl/ov2a24","slide":5,"title":"LEADERSHIP BRIEF · 5","textShapes":13}
-{"kind":"textbox","id":"sh/0zyxgz21","slide":5,"text":"LEADERSHIP BRIEF · 5","textPreview":"LEADERSHIP BRIEF · 5","textChars":20,"textLines":1,"bbox":[54,34,520,26]}
-{"kind":"textbox","id":"sh/zepg7e1g","slide":5,"text":"Customer evidence is a validation input—not a prevalence estimate","textPreview":"Customer evidence is a validation input—not a prevalence estimate","textChars":65,"textLines":1,"bbox":[54,68,1165,72]}
-{"kind":"textbox","id":"sh/ydgfe9kv","slide":5,"text":"Forum evidence is promoted to leadership only when at least three independent sources support the same theme.","textPreview":"Forum evidence is promoted to leadership only when at least three independent sources support the same theme.","textChars":109,"textLines":1,"bbox":[54,144,1115,38]}
-{"kind":"shape","id":"sh/94rydoji","slide":5,"bbox":[54,186,1172,3]}
-{"kind":"shape","id":"sh/83ixkj2x","slide":5,"bbox":[54,222,454,388]}
-{"kind":"textbox","id":"sh/n29gbe1s","slide":5,"text":"DIRECTIONAL","textPreview":"DIRECTIONAL","textChars":11,"textLines":1,"bbox":[84,260,350,70]}
-{"kind":"textbox","id":"sh/m10fi9k7","slide":5,"text":"PUBLIC CUSTOMER EVIDENCE","textPreview":"PUBLIC CUSTOMER EVIDENCE","textChars":24,"textLines":1,"bbox":[84,332,350,24]}
-{"kind":"textbox","id":"sh/p8ny1kje","slide":5,"text":"Leadership threshold","textPreview":"Leadership threshold","textChars":20,"textLines":1,"bbox":[84,390,350,30]}
-{"kind":"textbox","id":"sh/o7ex8f2t","slide":5,"text":"3+ independent sources\nplus internal field validation","textPreview":"3+ independent sources | plus internal field validation","textChars":53,"textLines":2,"bbox":[84,438,350,114]}
-{"kind":"shape","id":"sh/qlwja9or","slide":5,"bbox":[540,222,686,388]}
-{"kind":"textbox","id":"sh/rm50je5c","slide":5,"text":"WHAT LEADERS SHOULD TAKE FROM IT","textPreview":"WHAT LEADERS SHOULD TAKE FROM IT","textChars":32,"textLines":1,"bbox":[570,254,610,24]}
-{"kind":"textbox","id":"sh/cne1cj6x","slide":5,"text":"Do not infer product weakness from one complaint.","textPreview":"Do not infer product weakness from one complaint.","textChars":49,"textLines":1,"bbox":[570,292,600,60]}
-{"kind":"textbox","id":"sh/d8niloni","slide":5,"text":"Before adding requirements, validate:","textPreview":"Before adding requirements, validate:","textChars":37,"textLines":1,"bbox":[570,378,590,28]}
-{"kind":"textbox","id":"sh/e9wjeto3","slide":5,"text":"1. Which failure modes repeat across customer and field records\n2. How long users take to isolate and recover from them\n3. Whether guided diagnostics materially shorten that path","textPreview":"1. Which failure modes repeat across customer and field records | 2. How long users take to isolate and recover from them | 3. Whether gu...","textChars":178,"textLines":3,"bbox":[586,422,580,116]}
-{"kind":"textbox","id":"sh/za50ne5o","slide":5,"text":"WATERS NEXT GEN COMPETITIVE INTELLIGENCE · 02 AUG 2026 · waters-ci-20260802160152","textPreview":"WATERS NEXT GEN COMPETITIVE INTELLIGENCE · 02 AUG 2026 · waters-ci-20260802160152","textChars":81,"textLines":1,"bbox":[54,680,1030,20]}
-{"kind":"textbox","id":"sh/0by1gjmt","slide":5,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1174,676,52,24]}
-{"kind":"notes","id":"nt/ov2a24","slide":5,"text":"[Sources]\n- https://www.reddit.com/r/CHROMATOGRAPHY/comments/1uk333s/update_uplc_waters_high_pressure_problem/\n- https://www.reddit.com/r/CHROMATOGRAPHY/comments/1h1i93y/waters_acquity_uplc_beh_17_um_21_x_100_mm_column/\n- https://www.reddit.com/r/CHROMATOGRAPHY/comments/1e3y2sy/getting_started_with_empower_3/\n- https://www.labwrench.com/thread/135698/hplc-pump-and-autosampler-preventative-performance-maintenance\n- https://www.reddit.com/r/CHROMATOGRAPHY/comments/1somxpf/waters_acquity_arc_lcms_214_nm_uv_baseline/\n- https://www.reddit.com/r/CHROMATOGRAPHY/comments/xlr4pf/best_uhplc_on_the_market/\n- https://www.reddit.com/r/CHROMATOGRAPHY/comments/1q24noh/reccomendations_for_new_hplc_system_for_routine/\n- https://www.reddit.com/r/CHROMATOGRAPHY/comments/1h6lnr0/agilent_1260_hplc_vs_thermo_vanquish_flex/\n[/Sources]"}
-{"kind":"slide","id":"sl/ngyzsz","slide":6,"title":"LEADERSHIP BRIEF · 6","textShapes":26}
-{"kind":"textbox","id":"sh/18re10nq","slide":6,"text":"LEADERSHIP BRIEF · 6","textPreview":"LEADERSHIP BRIEF · 6","textChars":20,"textLines":1,"bbox":[54,34,520,26]}
-{"kind":"textbox","id":"sh/e50v6loz","slide":6,"text":"Three decisions are evidence-prioritized","textPreview":"Three decisions are evidence-prioritized","textChars":40,"textLines":1,"bbox":[54,68,1165,72]}
-{"kind":"textbox","id":"sh/f69wzq5k","slide":6,"text":"The evidence-priority score compares application activity, competitor activity, and source quality.","textPreview":"The evidence-priority score compares application activity, competitor activity, and source quality.","textChars":99,"textLines":1,"bbox":[54,144,1115,38]}
-{"kind":"shape","id":"sh/sjid4b6t","slide":6,"bbox":[54,186,1172,3]}
-{"kind":"shape","id":"sh/t4rexgne","slide":6,"bbox":[54,226,358,376]}
-{"kind":"shape","id":"sh/6hgv2lo3","slide":6,"bbox":[54,226,358,8]}
-{"kind":"textbox","id":"sh/ri9wvq58","slide":6,"text":"DECISION GATE · NEXT ROADMAP REVIEW","textPreview":"DECISION GATE · NEXT ROADMAP REVIEW","textChars":35,"textLines":1,"bbox":[76,250,314,24]}
-{"kind":"textbox","id":"sh/4fyd0b6x","slide":6,"text":"EVIDENCE-PRIORITY SCORE","textPreview":"EVIDENCE-PRIORITY SCORE","textChars":23,"textLines":1,"bbox":[76,283,314,18]}
-{"kind":"textbox","id":"sh/5g7utgni","slide":6,"text":"54/100","textPreview":"54/100","textChars":6,"textLines":1,"bbox":[76,304,314,36]}
-{"kind":"textbox","id":"sh/xsjups7a","slide":6,"text":"Decide whether to package a PFAS-ready regulated quantitation workflow","textPreview":"Decide whether to package a PFAS-ready regulated quantitation workflow","textChars":70,"textLines":1,"bbox":[76,348,314,62]}
-{"kind":"shape","id":"sh/wratwnqp","slide":6,"bbox":[76,426,314,1]}
-{"kind":"textbox","id":"sh/vq1cnip4","slide":6,"text":"OWNER · Product Management and Applications","textPreview":"OWNER · Product Management and Applications","textChars":43,"textLines":1,"bbox":[76,443,314,20]}
-{"kind":"textbox","id":"sh/apsbud8j","slide":6,"text":"FINAL GO / NO-GO OUTPUT","textPreview":"FINAL GO / NO-GO OUTPUT","textChars":23,"textLines":1,"bbox":[76,476,314,18]}
-{"kind":"textbox","id":"sh/9ojul87e","slide":6,"text":"One recommendation: package, build, partner, monitor, or stop","textPreview":"One recommendation: package, build, partner, monitor, or stop","textChars":61,"textLines":1,"bbox":[76,502,314,76]}
-{"kind":"shape","id":"sh/8nats3qt","slide":6,"bbox":[461,226,358,376]}
-{"kind":"shape","id":"sh/nm1cjyp8","slide":6,"bbox":[461,226,358,8]}
-{"kind":"textbox","id":"sh/ml8bqd8n","slide":6,"text":"DECISION GATE · NEXT ROADMAP REVIEW","textPreview":"DECISION GATE · NEXT ROADMAP REVIEW","textChars":35,"textLines":1,"bbox":[483,250,314,24]}
-{"kind":"textbox","id":"sh/l0zah872","slide":6,"text":"EVIDENCE-PRIORITY SCORE","textPreview":"EVIDENCE-PRIORITY SCORE","textChars":23,"textLines":1,"bbox":[483,283,314,18]}
-{"kind":"textbox","id":"sh/0zqto3qh","slide":6,"text":"63/100","textPreview":"63/100","textChars":6,"textLines":1,"bbox":[483,304,314,36]}
-{"kind":"textbox","id":"sh/s3ut43yd","slide":6,"text":"Decide whether Next Gen LC and Alliance iS need new end-to-end workflow requirements","textPreview":"Decide whether Next Gen LC and Alliance iS need new end-to-end workflow requirements","textChars":84,"textLines":1,"bbox":[483,348,314,62]}
-{"kind":"shape","id":"sh/d43ux8fy","slide":6,"bbox":[483,426,314,1]}
-{"kind":"textbox","id":"sh/q1cb2tg7","slide":6,"text":"OWNER · LC Platform PM and Software Lead","textPreview":"OWNER · LC Platform PM and Software Lead","textChars":40,"textLines":1,"bbox":[483,443,314,20]}
-{"kind":"textbox","id":"sh/r2lcvyhs","slide":6,"text":"FINAL GO / NO-GO OUTPUT","textPreview":"FINAL GO / NO-GO OUTPUT","textChars":23,"textLines":1,"bbox":[483,476,314,18]}
-{"kind":"textbox","id":"sh/4fat0jyh","slide":6,"text":"One recommendation: build, package existing capabilities, reposition, or stop","textPreview":"One recommendation: build, package existing capabilities, reposition, or stop","textChars":77,"textLines":1,"bbox":[483,502,314,76]}
-{"kind":"shape","id":"sh/503utoz2","slide":6,"bbox":[868,226,358,376]}
-{"kind":"shape","id":"sh/idsbytgb","slide":6,"bbox":[868,226,358,8]}
-{"kind":"textbox","id":"sh/3e1cryhw","slide":6,"text":"DECISION GATE · NEXT ROADMAP REVIEW","textPreview":"DECISION GATE · NEXT ROADMAP REVIEW","textChars":35,"textLines":1,"bbox":[890,250,314,24]}
-{"kind":"textbox","id":"sh/obedcnyl","slide":6,"text":"EVIDENCE-PRIORITY SCORE","textPreview":"EVIDENCE-PRIORITY SCORE","textChars":23,"textLines":1,"bbox":[890,283,314,18]}
-{"kind":"textbox","id":"sh/9wnu5sf6","slide":6,"text":"58/100","textPreview":"58/100","textChars":6,"textLines":1,"bbox":[890,304,314,36]}
-{"kind":"textbox","id":"sh/jqpwvmh8","slide":6,"text":"Decide whether Next Gen LC needs an oligonucleotide method-readiness package","textPreview":"Decide whether Next Gen LC needs an oligonucleotide method-readiness package","textChars":76,"textLines":1,"bbox":[890,348,314,62]}
-{"kind":"shape","id":"sh/y5gf2h0n","slide":6,"bbox":[890,426,314,1]}
-{"kind":"textbox","id":"sh/lsrexwze","slide":6,"text":"OWNER · Biopharma Applications and Next Gen LC PM","textPreview":"OWNER · Biopharma Applications and Next Gen LC PM","textChars":49,"textLines":1,"bbox":[890,443,314,20]}
-{"kind":"textbox","id":"sh/krix4rit","slide":6,"text":"FINAL GO / NO-GO OUTPUT","textPreview":"FINAL GO / NO-GO OUTPUT","textChars":23,"textLines":1,"bbox":[890,476,314,18]}
-{"kind":"textbox","id":"sh/7u9wz6hk","slide":6,"text":"One recommendation: package, build, partner, monitor, or stop","textPreview":"One recommendation: package, build, partner, monitor, or stop","textChars":61,"textLines":1,"bbox":[890,502,314,76]}
-{"kind":"textbox","id":"sh/6t0f610z","slide":6,"text":"WATERS NEXT GEN COMPETITIVE INTELLIGENCE · 02 AUG 2026 · waters-ci-20260802160152","textPreview":"WATERS NEXT GEN COMPETITIVE INTELLIGENCE · 02 AUG 2026 · waters-ci-20260802160152","textChars":81,"textLines":1,"bbox":[54,680,1030,20]}
-{"kind":"textbox","id":"sh/twre1wza","slide":6,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1174,676,52,24]}
-{"kind":"notes","id":"nt/ngyzsz","slide":6,"text":"[Sources]\n- https://pubmed.ncbi.nlm.nih.gov/42398371/\n- https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/triple-quadrupole-lc-msms/lcms-8065xe/index.html\n- https://pubmed.ncbi.nlm.nih.gov/?term=%28%28PFAS+OR+%22per-+and+polyfluoroalkyl%22%29+AND+%28%22LC-MS%22+OR+%22LC-MS%2FMS%22+OR+chromatography%29%29+AND+%28%222025%2F08%2F02%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F02%22%5BDate+-+Publication%5D%29\n- https://sciex.com/about-us/press-releases/2026/sciex-launches-its-5th-generation-of-nominal-mass-novus-v55-system-with-sciexos-5-0-software\n- https://www.shimadzu.com/news/2026/k8iri3_20_z4uvwt.html\n- https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-amplify-uhplc-system.html\n- https://pubmed.ncbi.nlm.nih.gov/?term=%28%28%22laboratory+automation%22+OR+%22workflow+software%22+OR+%22AI%22%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222025%2F08%2F02%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F02%22%5BDate+-+Publication%5D%29\n- https://www.agilent.com/about/newsroom/presrel/2026/20may-ca26015.html\n- https://www.thermofisher.com/order/catalog/product/VQ-AMPLIFY\n- https://pubmed.ncbi.nlm.nih.gov/?term=%28%28oligonucleotide+OR+%22nucleic+acid%22+OR+siRNA%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222025%2F08%2F02%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F02%22%5BDate+-+Publication%5D%29\n[/Sources]"}
-{"kind":"slide","id":"sl/desx4q","slide":7,"title":"LEADERSHIP BRIEF · 7","textShapes":18}
-{"kind":"textbox","id":"sh/b6lkfe14","slide":7,"text":"LEADERSHIP BRIEF · 7","textPreview":"LEADERSHIP BRIEF · 7","textChars":20,"textLines":1,"bbox":[54,34,520,26]}
-{"kind":"textbox","id":"sh/w7ulozi9","slide":7,"text":"Close the evidence gaps before adding roadmap scope","textPreview":"Close the evidence gaps before adding roadmap scope","textChars":51,"textLines":1,"bbox":[54,68,1165,62]}
-{"kind":"textbox","id":"sh/x832h4zu","slide":7,"text":"Sequence evidence gates around the next roadmap review without inventing calendar commitments.","textPreview":"Sequence evidence gates around the next roadmap review without inventing calendar commitments.","textChars":94,"textLines":1,"bbox":[54,134,1115,38]}
-{"kind":"shape","id":"sh/y9c3q90f","slide":7,"bbox":[54,186,1172,3]}
-{"kind":"shape","id":"sh/jal4jeh0","slide":7,"bbox":[160,322,960,4]}
-{"kind":"shape","id":"sh/kvulsjil","slide":7,"bbox":[165,300,50,50]}
-{"kind":"textbox","id":"sh/lw3mloz6","slide":7,"text":"GATE 1","textPreview":"GATE 1","textChars":6,"textLines":1,"bbox":[142,365,96,30]}
-{"kind":"textbox","id":"sh/6xc3ut0r","slide":7,"text":"PFAS decision","textPreview":"PFAS decision","textChars":13,"textLines":1,"bbox":[74,410,232,52]}
-{"kind":"textbox","id":"sh/7y54nyhw","slide":7,"text":"Complete claims matrix and make the package go/no-go.","textPreview":"Complete claims matrix and make the package go/no-go.","textChars":53,"textLines":1,"bbox":[74,474,232,70]}
-{"kind":"shape","id":"sh/jml07mhs","slide":7,"bbox":[465,300,50,50]}
-{"kind":"textbox","id":"sh/ilczeh07","slide":7,"text":"EVENT","textPreview":"EVENT","textChars":5,"textLines":1,"bbox":[442,365,96,30]}
-{"kind":"textbox","id":"sh/5o3i9czi","slide":7,"text":"Conference moment","textPreview":"Conference moment","textChars":17,"textLines":1,"bbox":[374,410,232,52]}
-{"kind":"textbox","id":"sh/4nu1g7id","slide":7,"text":"Lead with MAM, complex modalities and transfer proof.","textPreview":"Lead with MAM, complex modalities and transfer proof.","textChars":53,"textLines":1,"bbox":[374,474,232,70]}
-{"kind":"shape","id":"sh/vil0321g","slide":7,"bbox":[765,300,50,50]}
-{"kind":"textbox","id":"sh/uhszax0v","slide":7,"text":"GATE 2","textPreview":"GATE 2","textChars":6,"textLines":1,"bbox":[742,365,96,30]}
-{"kind":"textbox","id":"sh/hk3i5czm","slide":7,"text":"Workflow decision","textPreview":"Workflow decision","textChars":17,"textLines":1,"bbox":[674,410,232,52]}
-{"kind":"textbox","id":"sh/wjuhc7i1","slide":7,"text":"Choose build, package, reposition, or stop.","textPreview":"Choose build, package, reposition, or stop.","textChars":43,"textLines":1,"bbox":[674,474,232,70]}
-{"kind":"shape","id":"sh/fe50f6h0","slide":7,"bbox":[1065,300,50,50]}
-{"kind":"textbox","id":"sh/edwjm10f","slide":7,"text":"GATE 3","textPreview":"GATE 3","textChars":6,"textLines":1,"bbox":[1042,365,96,30]}
-{"kind":"textbox","id":"sh/q903e5kn","slide":7,"text":"Oligo decision","textPreview":"Oligo decision","textChars":14,"textLines":1,"bbox":[974,410,232,52]}
-{"kind":"textbox","id":"sh/ba947q18","slide":7,"text":"Choose package, build, partner, monitor, or stop.","textPreview":"Choose package, build, partner, monitor, or stop.","textChars":49,"textLines":1,"bbox":[974,474,232,70]}
-{"kind":"shape","id":"sh/cbilgv2d","slide":7,"bbox":[176,574,928,58]}
-{"kind":"textbox","id":"sh/dcrm90jy","slide":7,"text":"Gate roadmap capacity on repeated customer-visible evidence plus quantified benefit and engineering effort.","textPreview":"Gate roadmap capacity on repeated customer-visible evidence plus quantified benefit and engineering effort.","textChars":107,"textLines":1,"bbox":[206,588,870,28]}
-{"kind":"textbox","id":"sh/yd03i5kj","slide":7,"text":"WATERS NEXT GEN COMPETITIVE INTELLIGENCE · 02 AUG 2026 · waters-ci-20260802160152","textPreview":"WATERS NEXT GEN COMPETITIVE INTELLIGENCE · 02 AUG 2026 · waters-ci-20260802160152","textChars":81,"textLines":1,"bbox":[54,680,1030,20]}
-{"kind":"textbox","id":"sh/ze94ba14","slide":7,"text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1174,676,52,24]}
-{"kind":"notes","id":"nt/desx4q","slide":7,"text":"[Sources]\n- https://www.bioprocessingsummit.com/\n- https://pubmed.ncbi.nlm.nih.gov/42398371/\n- https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/triple-quadrupole-lc-msms/lcms-8065xe/index.html\n- https://pubmed.ncbi.nlm.nih.gov/?term=%28%28PFAS+OR+%22per-+and+polyfluoroalkyl%22%29+AND+%28%22LC-MS%22+OR+%22LC-MS%2FMS%22+OR+chromatography%29%29+AND+%28%222025%2F08%2F02%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F02%22%5BDate+-+Publication%5D%29\n- https://sciex.com/about-us/press-releases/2026/sciex-launches-its-5th-generation-of-nominal-mass-novus-v55-system-with-sciexos-5-0-software\n- https://www.shimadzu.com/news/2026/k8iri3_20_z4uvwt.html\n- https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-amplify-uhplc-system.html\n- https://pubmed.ncbi.nlm.nih.gov/?term=%28%28%22laboratory+automation%22+OR+%22workflow+software%22+OR+%22AI%22%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222025%2F08%2F02%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F02%22%5BDate+-+Publication%5D%29\n- https://www.agilent.com/about/newsroom/presrel/2026/20may-ca26015.html\n- https://www.thermofisher.com/order/catalog/product/VQ-AMPLIFY\n- https://pubmed.ncbi.nlm.nih.gov/?term=%28%28oligonucleotide+OR+%22nucleic+acid%22+OR+siRNA%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222025%2F08%2F02%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F02%22%5BDate+-+Publication%5D%29\n[/Sources]"}
-{"kind":"slide","id":"sl/rnall5","slide":8,"title":"LEADERSHIP BRIEF · 8","textShapes":30}
-{"kind":"textbox","id":"sh/sfalobyt","slide":8,"text":"LEADERSHIP BRIEF · 8","textPreview":"LEADERSHIP BRIEF · 8","textChars":20,"textLines":1,"bbox":[54,34,520,26]}
-{"kind":"textbox","id":"sh/7e1kf6x8","slide":8,"text":"Primary sources behind the leadership readout","textPreview":"Primary sources behind the leadership readout","textChars":45,"textLines":1,"bbox":[54,68,1165,62]}
-{"kind":"textbox","id":"sh/6ds3m1gn","slide":8,"text":"Direct public evidence is kept separate from inference; publication counts are contextual signals, not market-size claims.","textPreview":"Direct public evidence is kept separate from inference; publication counts are contextual signals, not market-size claims.","textChars":122,"textLines":1,"bbox":[54,134,1115,38]}
-{"kind":"shape","id":"sh/5cj2dwf2","slide":8,"bbox":[54,186,1172,3]}
-{"kind":"textbox","id":"sh/kba1kryx","slide":8,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[62,224,42,28]}
-{"kind":"textbox","id":"sh/ja1kbmxc","slide":8,"text":"SCIENTIFIC MARKET","textPreview":"SCIENTIFIC MARKET","textChars":17,"textLines":1,"bbox":[120,220,180,20]}
-{"kind":"textbox","id":"sh/ip8ji1gr","slide":8,"text":"PubMed · PFAS / LC-MS query","textPreview":"PubMed · PFAS / LC-MS query","textChars":27,"textLines":1,"bbox":[314,218,430,30]}
-{"kind":"textbox","id":"sh/p832p0fm","slide":8,"text":"https://pubmed.ncbi.nlm.nih.gov/?term=%28%28PFAS+OR+%22per-+and+polyfluoroalkyl%22%29+AND+%28%22LC-MS%22+OR+%22LC-MS%2FMS%22+OR+chromatography%29%29+AND+%28%222025%2F08%2F02%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F02%22%5BDate+-+Publication%5D%29","textPreview":"https://pubmed.ncbi.nlm.nih.gov/?term=%28%28PFAS+OR+%22per-+and+polyfluoroalkyl%22%29+AND+%28%22LC-MS%22+OR+%22LC-MS%2FMS%22+OR+chromatog...","textChars":252,"textLines":1,"bbox":[760,220,452,38]}
-{"kind":"shape","id":"sh/47ulwvy1","slide":8,"bbox":[120,268,1092,1]}
-{"kind":"textbox","id":"sh/ux4jap4z","slide":8,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[62,292,42,28]}
-{"kind":"textbox","id":"sh/vydkju5k","slide":8,"text":"AGILENT LAUNCH","textPreview":"AGILENT LAUNCH","textChars":14,"textLines":1,"bbox":[120,288,180,20]}
-{"kind":"textbox","id":"sh/gjm1czm5","slide":8,"text":"6230C LC/TOF in MAM workflow","textPreview":"6230C LC/TOF in MAM workflow","textChars":28,"textLines":1,"bbox":[314,286,430,30]}
-{"kind":"textbox","id":"sh/hkv2l4nq","slide":8,"text":"https://www.agilent.com/about/newsroom/presrel/2026/29may-ca26021.html","textPreview":"https://www.agilent.com/about/newsroom/presrel/2026/29may-ca26021.html","textChars":70,"textLines":1,"bbox":[760,288,452,38]}
-{"kind":"shape","id":"sh/6tkj6po3","slide":8,"bbox":[120,336,1092,1]}
-{"kind":"textbox","id":"sh/7utkfu5o","slide":8,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[62,360,42,28]}
-{"kind":"textbox","id":"sh/8v218z69","slide":8,"text":"AGILENT FILING","textPreview":"AGILENT FILING","textChars":14,"textLines":1,"bbox":[120,356,180,20]}
-{"kind":"textbox","id":"sh/twv2h4nu","slide":8,"text":"Issuer-reported LC / LC-MS growth","textPreview":"Issuer-reported LC / LC-MS growth","textChars":33,"textLines":1,"bbox":[314,354,430,30]}
-{"kind":"textbox","id":"sh/qpo3i947","slide":8,"text":"https://www.sec.gov/Archives/edgar/data/1090872/000109087226000055/a-20260430.htm","textPreview":"https://www.sec.gov/Archives/edgar/data/1090872/000109087226000055/a-20260430.htm","textChars":81,"textLines":1,"bbox":[760,356,452,38]}
-{"kind":"shape","id":"sh/rqxkre5s","slide":8,"bbox":[120,404,1092,1]}
-{"kind":"textbox","id":"sh/nupg36l4","slide":8,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[62,428,42,28]}
-{"kind":"textbox","id":"sh/mtgzal4j","slide":8,"text":"SHIMADZU LAUNCH","textPreview":"SHIMADZU LAUNCH","textChars":15,"textLines":1,"bbox":[120,424,180,20]}
-{"kind":"textbox","id":"sh/9w7y5g3a","slide":8,"text":"Nexera X4 UHPLC","textPreview":"Nexera X4 UHPLC","textChars":15,"textLines":1,"bbox":[314,422,430,30]}
-{"kind":"textbox","id":"sh/ovyhcbmp","slide":8,"text":"https://www.shimadzu.com/news/2026/k8iri3_20_z4uvwt.html","textPreview":"https://www.shimadzu.com/news/2026/k8iri3_20_z4uvwt.html","textChars":56,"textLines":1,"bbox":[760,424,452,38]}
-{"kind":"shape","id":"sh/by9g7qlg","slide":8,"bbox":[120,472,1092,1]}
-{"kind":"textbox","id":"sh/ax0zelkv","slide":8,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[62,496,42,28]}
-{"kind":"textbox","id":"sh/x0ri903m","slide":8,"text":"SCIEX LAUNCH","textPreview":"SCIEX LAUNCH","textChars":12,"textLines":1,"bbox":[120,492,180,20]}
-{"kind":"textbox","id":"sh/wzihgv21","slide":8,"text":"novus V55 with SCIEX OS 5.0","textPreview":"novus V55 with SCIEX OS 5.0","textChars":27,"textLines":1,"bbox":[314,490,430,30]}
-{"kind":"textbox","id":"sh/j290bqlc","slide":8,"text":"https://sciex.com/about-us/press-releases/2026/sciex-launches-its-5th-generation-of-nominal-mass-novus-v55-system-with-sciexos-5-0-software","textPreview":"https://sciex.com/about-us/press-releases/2026/sciex-launches-its-5th-generation-of-nominal-mass-novus-v55-system-with-sciexos-5-0-software","textChars":139,"textLines":1,"bbox":[760,492,452,38]}
-{"kind":"shape","id":"sh/y10zi5kr","slide":8,"bbox":[120,540,1092,1]}
-{"kind":"textbox","id":"sh/gr2x8vi5","slide":8,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[62,564,42,28]}
-{"kind":"textbox","id":"sh/hsby10jq","slide":8,"text":"CONFERENCE","textPreview":"CONFERENCE","textChars":10,"textLines":1,"bbox":[120,560,180,20]}
-{"kind":"textbox","id":"sh/u5kf650z","slide":8,"text":"Bioprocessing Summit US 2026","textPreview":"Bioprocessing Summit US 2026","textChars":28,"textLines":1,"bbox":[314,558,430,30]}
-{"kind":"textbox","id":"sh/v6tgza1k","slide":8,"text":"https://www.bioprocessingsummit.com/","textPreview":"https://www.bioprocessingsummit.com/","textChars":36,"textLines":1,"bbox":[760,560,452,38]}
-{"kind":"shape","id":"sh/83ix4vit","slide":8,"bbox":[54,632,1172,34]}
-{"kind":"textbox","id":"sh/t4byx0je","slide":8,"text":"Snapshot: waters-ci-20260802160152 · As of 2026-08-02T16:01:52 · Business magnitude requires Waters internal data.","textPreview":"Snapshot: waters-ci-20260802160152 · As of 2026-08-02T16:01:52 · Business magnitude requires Waters internal data.","textChars":114,"textLines":1,"bbox":[74,640,1132,20]}
-{"kind":"textbox","id":"sh/610f2l03","slide":8,"text":"WATERS NEXT GEN COMPETITIVE INTELLIGENCE · 02 AUG 2026 · waters-ci-20260802160152","textPreview":"WATERS NEXT GEN COMPETITIVE INTELLIGENCE · 02 AUG 2026 · waters-ci-20260802160152","textChars":81,"textLines":1,"bbox":[54,680,1030,20]}
-{"kind":"textbox","id":"sh/729gvq1o","slide":8,"text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[1174,676,52,24]}
-{"kind":"notes","id":"nt/rnall5","slide":8,"text":"[Sources]\n- https://pubmed.ncbi.nlm.nih.gov/?term=%28%28PFAS+OR+%22per-+and+polyfluoroalkyl%22%29+AND+%28%22LC-MS%22+OR+%22LC-MS%2FMS%22+OR+chromatography%29%29+AND+%28%222025%2F08%2F02%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F02%22%5BDate+-+Publication%5D%29\n- https://www.agilent.com/about/newsroom/presrel/2026/29may-ca26021.html\n- https://www.sec.gov/Archives/edgar/data/1090872/000109087226000055/a-20260430.htm\n- https://www.shimadzu.com/news/2026/k8iri3_20_z4uvwt.html\n- https://sciex.com/about-us/press-releases/2026/sciex-launches-its-5th-generation-of-nominal-mass-novus-v55-system-with-sciexos-5-0-software\n- https://www.bioprocessingsummit.com/\n[/Sources]"}
+{"kind":"deck","id":"pr/n3ua5p","name":"Deck"}
+{"kind":"layout","layoutId":"a981c1ef-470c-4e43-8939-7a0559f10f1d","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"d750ab8a-82e7-4686-a9e0-a169db9ec567","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/xpl3n7","slide":1,"title":"WATERS · NEXT GEN LC","textShapes":10}
+{"kind":"shape","id":"sh/4fih8zyh","slide":1,"bbox":[0,0,18,720]}
+{"kind":"textbox","id":"sh/ju90zehw","slide":1,"text":"WATERS · NEXT GEN LC","textPreview":"WATERS · NEXT GEN LC","textChars":20,"textLines":1,"bbox":[74,70,520,34]}
+{"kind":"textbox","id":"sh/it0z69gb","slide":1,"text":"Leadership brief","textPreview":"Leadership brief","textChars":16,"textLines":1,"bbox":[74,160,940,78]}
+{"kind":"textbox","id":"sh/hsrix4zq","slide":1,"text":"Five external signals. Three evidence-gated decisions.","textPreview":"Five external signals. Three evidence-gated decisions.","textChars":54,"textLines":1,"bbox":[74,254,890,54]}
+{"kind":"textbox","id":"sh/wryh4zy5","slide":1,"text":"A concise executive readout of scientific momentum, competitor moves, customer friction, corporate intent, and the next conference moment.","textPreview":"A concise executive readout of scientific momentum, competitor moves, customer friction, corporate intent, and the next conference moment.","textChars":138,"textLines":1,"bbox":[74,344,790,120]}
+{"kind":"shape","id":"sh/vqp0vuhk","slide":1,"bbox":[922,156,252,278]}
+{"kind":"textbox","id":"sh/upgz2pgz","slide":1,"text":"DATA CURRENT","textPreview":"DATA CURRENT","textChars":12,"textLines":1,"bbox":[956,198,190,24]}
+{"kind":"textbox","id":"sh/9o7itkze","slide":1,"text":"13","textPreview":"13","textChars":2,"textLines":1,"bbox":[956,236,150,82]}
+{"kind":"textbox","id":"sh/8nyh0fy9","slide":1,"text":"AUG 2026","textPreview":"AUG 2026","textChars":8,"textLines":1,"bbox":[958,320,160,34]}
+{"kind":"shape","id":"sh/mtwzy1cf","slide":1,"bbox":[956,380,156,3]}
+{"kind":"textbox","id":"sh/7u5gr6d0","slide":1,"text":"PUBLIC EVIDENCE","textPreview":"PUBLIC EVIDENCE","textChars":15,"textLines":1,"bbox":[956,394,180,24]}
+{"kind":"textbox","id":"sh/8vehkbul","slide":1,"text":"Prepared for roadmap review · waters-ci-20260813070817","textPreview":"Prepared for roadmap review · waters-ci-20260813070817","textChars":54,"textLines":1,"bbox":[74,646,680,28]}
+{"kind":"textbox","id":"sh/9wnytgv6","slide":1,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[1174,646,52,28]}
+{"kind":"notes","id":"nt/xpl3n7","slide":1,"text":"[Sources]\n[/Sources]"}
+{"kind":"slide","id":"sl/wz0vt8","slide":2,"title":"LEADERSHIP BRIEF · 2","textShapes":16}
+{"kind":"textbox","id":"sh/7ilgfitg","slide":2,"text":"LEADERSHIP BRIEF · 2","textPreview":"LEADERSHIP BRIEF · 2","textChars":20,"textLines":1,"bbox":[54,34,520,26]}
+{"kind":"textbox","id":"sh/8jex8na1","slide":2,"text":"Leadership Brief","textPreview":"Leadership Brief","textChars":16,"textLines":1,"bbox":[54,68,1165,62]}
+{"kind":"textbox","id":"sh/tknyh8bm","slide":2,"text":"The strongest cross-page pattern is not a single specification—it is proof that the full workflow is easier to execute, transfer, and troubleshoot.","textPreview":"The strongest cross-page pattern is not a single specification—it is proof that the full workflow is easier to execute, transfer, and tro...","textChars":147,"textLines":1,"bbox":[54,134,1115,38]}
+{"kind":"shape","id":"sh/ulwfadsr","slide":2,"bbox":[54,186,1172,3]}
+{"kind":"shape","id":"sh/vm5gjitc","slide":2,"bbox":[54,214,1172,86]}
+{"kind":"textbox","id":"sh/gnexcnax","slide":2,"text":"LEADERSHIP IMPLICATION","textPreview":"LEADERSHIP IMPLICATION","textChars":22,"textLines":1,"bbox":[78,233,230,22]}
+{"kind":"textbox","id":"sh/h8nylsbi","slide":2,"text":"Test new requirements against workflow proof, not feature parity alone.","textPreview":"Test new requirements against workflow proof, not feature parity alone.","textChars":71,"textLines":1,"bbox":[326,227,850,42]}
+{"kind":"shape","id":"sh/i9wzexs3","slide":2,"bbox":[54,330,354,218]}
+{"kind":"shape","id":"sh/3a5gn2to","slide":2,"bbox":[54,330,354,8]}
+{"kind":"textbox","id":"sh/j6doji5o","slide":2,"text":"1,135","textPreview":"1,135","textChars":5,"textLines":1,"bbox":[78,360,306,70]}
+{"kind":"textbox","id":"sh/i54nado3","slide":2,"text":"Automation and software workflow publications","textPreview":"Automation and software workflow publications","textChars":45,"textLines":1,"bbox":[78,430,306,44]}
+{"kind":"textbox","id":"sh/5sv6l8ne","slide":2,"text":"Scientific activity in the last year","textPreview":"Scientific activity in the last year","textChars":36,"textLines":1,"bbox":[78,486,306,42]}
+{"kind":"shape","id":"sh/4rm5cn69","slide":2,"bbox":[463,330,354,218]}
+{"kind":"shape","id":"sh/v2t4fy5c","slide":2,"bbox":[463,330,354,8]}
+{"kind":"textbox","id":"sh/u1kn6tor","slide":2,"text":"335","textPreview":"335","textChars":3,"textLines":1,"bbox":[487,360,306,70]}
+{"kind":"textbox","id":"sh/h4b6h8ni","slide":2,"text":"PFAS and contaminant-testing publications","textPreview":"PFAS and contaminant-testing publications","textChars":41,"textLines":1,"bbox":[487,430,306,44]}
+{"kind":"textbox","id":"sh/w325836x","slide":2,"text":"Current regulated-testing activity","textPreview":"Current regulated-testing activity","textChars":34,"textLines":1,"bbox":[487,486,306,42]}
+{"kind":"shape","id":"sh/fyxor25w","slide":2,"bbox":[872,330,354,218]}
+{"kind":"shape","id":"sh/exonixob","slide":2,"bbox":[872,330,354,8]}
+{"kind":"textbox","id":"sh/qt8ra18j","slide":2,"text":"656","textPreview":"656","textChars":3,"textLines":1,"bbox":[896,360,306,70]}
+{"kind":"textbox","id":"sh/buh8j6p4","slide":2,"text":"Oligonucleotide and nucleic-acid publications","textPreview":"Oligonucleotide and nucleic-acid publications","textChars":45,"textLines":1,"bbox":[896,430,306,44]}
+{"kind":"textbox","id":"sh/cvq9crq9","slide":2,"text":"Substantial application evidence base","textPreview":"Substantial application evidence base","textChars":37,"textLines":1,"bbox":[896,486,306,42]}
+{"kind":"textbox","id":"sh/dwjqlw7u","slide":2,"text":"WATERS NEXT GEN COMPETITIVE INTELLIGENCE · 13 AUG 2026 · waters-ci-20260813070817","textPreview":"WATERS NEXT GEN COMPETITIVE INTELLIGENCE · 13 AUG 2026 · waters-ci-20260813070817","textChars":81,"textLines":1,"bbox":[54,680,1030,20]}
+{"kind":"textbox","id":"sh/yhsre18f","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1174,676,52,24]}
+{"kind":"notes","id":"nt/wz0vt8","slide":2,"text":"[Sources]\n- https://pubmed.ncbi.nlm.nih.gov/?term=%28%28%22laboratory+automation%22+OR+%22workflow+software%22+OR+%22AI%22%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222025%2F08%2F13%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F13%22%5BDate+-+Publication%5D%29\n- https://pubmed.ncbi.nlm.nih.gov/?term=%28%28PFAS+OR+%22per-+and+polyfluoroalkyl%22%29+AND+%28%22LC-MS%22+OR+%22LC-MS%2FMS%22+OR+chromatography%29%29+AND+%28%222025%2F08%2F13%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F13%22%5BDate+-+Publication%5D%29\n- https://pubmed.ncbi.nlm.nih.gov/?term=%28%28oligonucleotide+OR+%22nucleic+acid%22+OR+siRNA%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222025%2F08%2F13%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F13%22%5BDate+-+Publication%5D%29\n[/Sources]"}
+{"kind":"slide","id":"sl/rwrdz5","slide":3,"title":"LEADERSHIP BRIEF · 3","textShapes":25}
+{"kind":"textbox","id":"sh/mdgbmd4r","slide":3,"text":"LEADERSHIP BRIEF · 3","textPreview":"LEADERSHIP BRIEF · 3","textChars":20,"textLines":1,"bbox":[54,34,520,26]}
+{"kind":"textbox","id":"sh/90ruh8n2","slide":3,"text":"Five signals now shape the roadmap conversation","textPreview":"Five signals now shape the roadmap conversation","textChars":47,"textLines":1,"bbox":[54,68,1165,62]}
+{"kind":"textbox","id":"sh/8fito3mh","slide":3,"text":"Each signal comes from a different evidence class; together they show why leadership attention is warranted.","textPreview":"Each signal comes from a different evidence class; together they show why leadership attention is warranted.","textChars":108,"textLines":1,"bbox":[54,134,1115,38]}
+{"kind":"shape","id":"sh/v29cji58","slide":3,"bbox":[54,186,1172,3]}
+{"kind":"shape","id":"sh/u10bqd4n","slide":3,"bbox":[54,216,558,146]}
+{"kind":"shape","id":"sh/h4rulsne","slide":3,"bbox":[72,234,42,42]}
+{"kind":"textbox","id":"sh/w3itsnmt","slide":3,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[72,242,42,24]}
+{"kind":"textbox","id":"sh/b65s7y54","slide":3,"text":"SCIENTIFIC MARKET","textPreview":"SCIENTIFIC MARKET","textChars":17,"textLines":1,"bbox":[130,233,462,21]}
+{"kind":"textbox","id":"sh/q5wbet4j","slide":3,"text":"PFAS activity remains substantial","textPreview":"PFAS activity remains substantial","textChars":33,"textLines":1,"bbox":[130,259,462,44]}
+{"kind":"textbox","id":"sh/0nyd4ve1","slide":3,"text":"335 records from the canonical PubMed query.","textPreview":"335 records from the canonical PubMed query.","textChars":44,"textLines":1,"bbox":[130,308,462,38]}
+{"kind":"shape","id":"sh/1ored0fm","slide":3,"bbox":[668,216,558,146]}
+{"kind":"shape","id":"sh/elgv2lwv","slide":3,"bbox":[686,234,42,42]}
+{"kind":"textbox","id":"sh/zmpwbqxg","slide":3,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[686,242,42,24]}
+{"kind":"textbox","id":"sh/orid8fex","slide":3,"text":"COMPETITOR LAUNCH","textPreview":"COMPETITOR LAUNCH","textChars":17,"textLines":1,"bbox":[744,233,462,21]}
+{"kind":"textbox","id":"sh/9crehkfi","slide":3,"text":"Agilent is packaging LC/TOF into MAM","textPreview":"Agilent is packaging LC/TOF into MAM","textChars":36,"textLines":1,"bbox":[744,259,462,44]}
+{"kind":"textbox","id":"sh/mp0v65w7","slide":3,"text":"Observed issuer evidence from Agilent's official release.","textPreview":"Observed issuer evidence from Agilent's official release.","textChars":57,"textLines":1,"bbox":[744,308,462,38]}
+{"kind":"shape","id":"sh/nq9wfaxs","slide":3,"bbox":[54,380,558,146]}
+{"kind":"shape","id":"sh/4vedwbet","slide":3,"bbox":[72,398,42,42]}
+{"kind":"textbox","id":"sh/pwnu5gfe","slide":3,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[72,406,42,24]}
+{"kind":"textbox","id":"sh/50f2d83q","slide":3,"text":"CUSTOMER EVIDENCE","textPreview":"CUSTOMER EVIDENCE","textChars":17,"textLines":1,"bbox":[130,397,462,21]}
+{"kind":"textbox","id":"sh/kzmlk3ml","slide":3,"text":"Troubleshooting requires internal validation","textPreview":"Troubleshooting requires internal validation","textChars":44,"textLines":1,"bbox":[130,423,462,44]}
+{"kind":"textbox","id":"sh/jydkbyl0","slide":3,"text":"Public forum recurrence requires internal field validation.","textPreview":"Public forum recurrence requires internal field validation.","textChars":59,"textLines":1,"bbox":[130,472,462,38]}
+{"kind":"shape","id":"sh/id4jid4f","slide":3,"bbox":[668,380,558,146]}
+{"kind":"shape","id":"sh/t4f2hs32","slide":3,"bbox":[686,398,42,42]}
+{"kind":"textbox","id":"sh/s36lonmh","slide":3,"text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[686,406,42,24]}
+{"kind":"textbox","id":"sh/72xkfilw","slide":3,"text":"CORPORATE INTENT","textPreview":"CORPORATE INTENT","textChars":16,"textLines":1,"bbox":[744,397,462,21]}
+{"kind":"textbox","id":"sh/61o3md4b","slide":3,"text":"Agilent calls LC and LC-MS growth engines","textPreview":"Agilent calls LC and LC-MS growth engines","textChars":41,"textLines":1,"bbox":[744,423,462,44]}
+{"kind":"textbox","id":"sh/h8z2ls3y","slide":3,"text":"Direct issuer filing; no independent external corroboration.","textPreview":"Direct issuer filing; no independent external corroboration.","textChars":60,"textLines":1,"bbox":[744,472,462,38]}
+{"kind":"shape","id":"sh/g7qlsn2d","slide":3,"bbox":[361,544,558,146]}
+{"kind":"shape","id":"sh/ed0zmpkv","slide":3,"bbox":[379,562,42,42]}
+{"kind":"textbox","id":"sh/ze90fu1g","slide":3,"text":"5","textPreview":"5","textChars":1,"textLines":1,"bbox":[379,570,42,24]}
+{"kind":"textbox","id":"sh/0fihoz21","slide":3,"text":"CONFERENCE MOMENT","textPreview":"CONFERENCE MOMENT","textChars":17,"textLines":1,"bbox":[437,561,462,21]}
+{"kind":"textbox","id":"sh/1grih4jm","slide":3,"text":"Bioprocessing Summit begins Aug 10","textPreview":"Bioprocessing Summit begins Aug 10","textChars":34,"textLines":1,"bbox":[437,587,462,44]}
+{"kind":"textbox","id":"sh/mhkzq9k7","slide":3,"text":"Observed agenda and sponsor facts from the event site.","textPreview":"Observed agenda and sponsor facts from the event site.","textChars":54,"textLines":1,"bbox":[437,636,462,38]}
+{"kind":"textbox","id":"sh/nit0je1s","slide":3,"text":"WATERS NEXT GEN COMPETITIVE INTELLIGENCE · 13 AUG 2026 · waters-ci-20260813070817","textPreview":"WATERS NEXT GEN COMPETITIVE INTELLIGENCE · 13 AUG 2026 · waters-ci-20260813070817","textChars":81,"textLines":1,"bbox":[54,680,1030,20]}
+{"kind":"textbox","id":"sh/oj2hsz2d","slide":3,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1174,676,52,24]}
+{"kind":"notes","id":"nt/rwrdz5","slide":3,"text":"[Sources]\n- https://pubmed.ncbi.nlm.nih.gov/?term=%28%28PFAS+OR+%22per-+and+polyfluoroalkyl%22%29+AND+%28%22LC-MS%22+OR+%22LC-MS%2FMS%22+OR+chromatography%29%29+AND+%28%222025%2F08%2F13%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F13%22%5BDate+-+Publication%5D%29\n- https://www.agilent.com/about/newsroom/presrel/2026/29may-ca26021.html\n- https://www.sec.gov/Archives/edgar/data/1090872/000109087226000055/a-20260430.htm\n- https://www.bioprocessingsummit.com/\n- https://www.reddit.com/r/CHROMATOGRAPHY/comments/1uk333s/update_uplc_waters_high_pressure_problem/\n- https://www.reddit.com/r/CHROMATOGRAPHY/comments/1h1i93y/waters_acquity_uplc_beh_17_um_21_x_100_mm_column/\n- https://www.reddit.com/r/CHROMATOGRAPHY/comments/1e3y2sy/getting_started_with_empower_3/\n[/Sources]"}
+{"kind":"slide","id":"sl/dzp4zz","slide":4,"title":"LEADERSHIP BRIEF · 4","textShapes":21}
+{"kind":"textbox","id":"sh/onqhwfm1","slide":4,"text":"LEADERSHIP BRIEF · 4","textPreview":"LEADERSHIP BRIEF · 4","textChars":20,"textLines":1,"bbox":[54,34,520,26]}
+{"kind":"textbox","id":"sh/nmhgnalg","slide":4,"text":"Observed competitor actions suggest workflow packaging","textPreview":"Observed competitor actions suggest workflow packaging","textChars":54,"textLines":1,"bbox":[54,68,1165,62]}
+{"kind":"textbox","id":"sh/ml8zup4b","slide":4,"text":"Inference confidence is Directional: each company view lacks two independently corroborating source families.","textPreview":"Inference confidence is Directional: each company view lacks two independently corroborating source families.","textChars":109,"textLines":1,"bbox":[54,134,1115,38]}
+{"kind":"shape","id":"sh/10zylk3q","slide":4,"bbox":[54,186,1172,3]}
+{"kind":"shape","id":"sh/0zqxsfm5","slide":4,"bbox":[54,220,554,178]}
+{"kind":"shape","id":"sh/zyhgjalk","slide":4,"bbox":[54,220,8,178]}
+{"kind":"textbox","id":"sh/ex8fq54z","slide":4,"text":"SHIMADZU","textPreview":"SHIMADZU","textChars":8,"textLines":1,"bbox":[80,239,310,22]}
+{"kind":"textbox","id":"sh/lg3yx43u","slide":4,"text":"03 Mar","textPreview":"03 Mar","textChars":6,"textLines":1,"bbox":[446,239,132,22]}
+{"kind":"textbox","id":"sh/kvuh4zm9","slide":4,"text":"Observed: Nexera X4 launch","textPreview":"Observed: Nexera X4 launch","textChars":26,"textLines":1,"bbox":[80,269,500,48]}
+{"kind":"textbox","id":"sh/qt0ni58b","slide":4,"text":"Inference: productivity-led LC positioning. Alternative: normal platform refresh.","textPreview":"Inference: productivity-led LC positioning. Alternative: normal platform refresh.","textChars":81,"textLines":1,"bbox":[80,327,500,50]}
+{"kind":"shape","id":"sh/bu94ra9w","slide":4,"bbox":[672,220,554,178]}
+{"kind":"shape","id":"sh/cvi5kfqh","slide":4,"bbox":[672,220,8,178]}
+{"kind":"textbox","id":"sh/dwbmt0r2","slide":4,"text":"AGILENT","textPreview":"AGILENT","textChars":7,"textLines":1,"bbox":[698,239,310,22]}
+{"kind":"textbox","id":"sh/2p0nel8z","slide":4,"text":"03 Jun","textPreview":"03 Jun","textChars":6,"textLines":1,"bbox":[1064,239,132,22]}
+{"kind":"textbox","id":"sh/3q94nq9k","slide":4,"text":"Observed: 6230C LC/TOF in MAM","textPreview":"Observed: 6230C LC/TOF in MAM","textChars":29,"textLines":1,"bbox":[698,269,500,48]}
+{"kind":"textbox","id":"sh/ori5gvq5","slide":4,"text":"Inference: application-specific workflow packaging. Alternative: campaign positioning.","textPreview":"Inference: application-specific workflow packaging. Alternative: campaign positioning.","textChars":86,"textLines":1,"bbox":[698,327,500,50]}
+{"kind":"shape","id":"sh/psrmp0rq","slide":4,"bbox":[54,424,554,178]}
+{"kind":"shape","id":"sh/mlknqp8j","slide":4,"bbox":[54,424,8,178]}
+{"kind":"textbox","id":"sh/7mt4zu94","slide":4,"text":"SCIEX","textPreview":"SCIEX","textChars":5,"textLines":1,"bbox":[80,443,310,22]}
+{"kind":"textbox","id":"sh/j65kbmpg","slide":4,"text":"01 Jun","textPreview":"01 Jun","textChars":6,"textLines":1,"bbox":[446,443,132,22]}
+{"kind":"textbox","id":"sh/i5cjihov","slide":4,"text":"Observed: novus V55 + SCIEX OS 5.0","textPreview":"Observed: novus V55 + SCIEX OS 5.0","textChars":34,"textLines":1,"bbox":[80,473,500,48]}
+{"kind":"textbox","id":"sh/58n2dw7m","slide":4,"text":"Inference: software-led nominal-mass offer; this does not verify broader HRMS depth.","textPreview":"Inference: software-led nominal-mass offer; this does not verify broader HRMS depth.","textChars":84,"textLines":1,"bbox":[80,531,500,50]}
+{"kind":"shape","id":"sh/47e1kr61","slide":4,"bbox":[672,424,554,178]}
+{"kind":"shape","id":"sh/ru5kfmpc","slide":4,"bbox":[672,424,8,178]}
+{"kind":"textbox","id":"sh/69wjmhor","slide":4,"text":"THERMO FISHER","textPreview":"THERMO FISHER","textChars":13,"textLines":1,"bbox":[698,443,310,22]}
+{"kind":"textbox","id":"sh/twn2hw7i","slide":4,"text":"CURRENT","textPreview":"CURRENT","textChars":7,"textLines":1,"bbox":[1064,443,132,22]}
+{"kind":"textbox","id":"sh/sve1or6x","slide":4,"text":"Observed: Vanquish Amplify product page","textPreview":"Observed: Vanquish Amplify product page","textChars":39,"textLines":1,"bbox":[698,473,500,48]}
+{"kind":"textbox","id":"sh/fypkj6po","slide":4,"text":"Inference: inert biopharma workflow packaging. Alternative: portfolio positioning.","textPreview":"Inference: inert biopharma workflow packaging. Alternative: portfolio positioning.","textChars":82,"textLines":1,"bbox":[698,531,500,50]}
+{"kind":"textbox","id":"sh/exgjq1o3","slide":4,"text":"WATERS NEXT GEN COMPETITIVE INTELLIGENCE · 13 AUG 2026 · waters-ci-20260813070817","textPreview":"WATERS NEXT GEN COMPETITIVE INTELLIGENCE · 13 AUG 2026 · waters-ci-20260813070817","textChars":81,"textLines":1,"bbox":[54,680,1030,20]}
+{"kind":"textbox","id":"sh/c3y1gbm1","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1174,676,52,24]}
+{"kind":"notes","id":"nt/dzp4zz","slide":4,"text":"[Sources]\n- https://www.shimadzu.com/news/2026/k8iri3_20_z4uvwt.html\n- https://www.agilent.com/about/newsroom/presrel/2026/29may-ca26021.html\n- https://sciex.com/about-us/press-releases/2026/sciex-launches-its-5th-generation-of-nominal-mass-novus-v55-system-with-sciexos-5-0-software\n- https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-amplify-uhplc-system.html\n[/Sources]"}
+{"kind":"slide","id":"sl/20mwrf","slide":5,"title":"LEADERSHIP BRIEF · 5","textShapes":13}
+{"kind":"textbox","id":"sh/wvepozip","slide":5,"text":"LEADERSHIP BRIEF · 5","textPreview":"LEADERSHIP BRIEF · 5","textChars":20,"textLines":1,"bbox":[54,34,520,26]}
+{"kind":"textbox","id":"sh/vu58fuh4","slide":5,"text":"Customer evidence is a validation input—not a prevalence estimate","textPreview":"Customer evidence is a validation input—not a prevalence estimate","textChars":65,"textLines":1,"bbox":[54,68,1165,72]}
+{"kind":"textbox","id":"sh/utw7mp0j","slide":5,"text":"Forum evidence is promoted to leadership only when at least three independent sources support the same theme.","textPreview":"Forum evidence is promoted to leadership only when at least three independent sources support the same theme.","textChars":109,"textLines":1,"bbox":[54,144,1115,38]}
+{"kind":"shape","id":"sh/507qloz6","slide":5,"bbox":[54,186,1172,3]}
+{"kind":"shape","id":"sh/4zy9sji1","slide":5,"bbox":[54,222,454,388]}
+{"kind":"textbox","id":"sh/jyp8jehg","slide":5,"text":"DIRECTIONAL","textPreview":"DIRECTIONAL","textChars":11,"textLines":1,"bbox":[84,260,350,70]}
+{"kind":"textbox","id":"sh/ixw7q90v","slide":5,"text":"PUBLIC CUSTOMER EVIDENCE","textPreview":"PUBLIC CUSTOMER EVIDENCE","textChars":24,"textLines":1,"bbox":[84,332,350,24]}
+{"kind":"textbox","id":"sh/to7qpozi","slide":5,"text":"Leadership threshold","textPreview":"Leadership threshold","textChars":20,"textLines":1,"bbox":[84,390,350,30]}
+{"kind":"textbox","id":"sh/s3y9wjix","slide":5,"text":"3+ independent sources\nplus internal field validation","textPreview":"3+ independent sources | plus internal field validation","textChars":53,"textLines":2,"bbox":[84,438,350,114]}
+{"kind":"shape","id":"sh/yx4nql07","slide":5,"bbox":[540,222,686,388]}
+{"kind":"textbox","id":"sh/zydozq1s","slide":5,"text":"WHAT LEADERS SHOULD TAKE FROM IT","textPreview":"WHAT LEADERS SHOULD TAKE FROM IT","textChars":32,"textLines":1,"bbox":[570,254,610,24]}
+{"kind":"textbox","id":"sh/kzm5sbid","slide":5,"text":"Do not infer product weakness from one complaint.","textPreview":"Do not infer product weakness from one complaint.","textChars":49,"textLines":1,"bbox":[570,292,600,60]}
+{"kind":"textbox","id":"sh/l0v61gjy","slide":5,"text":"Before adding requirements, validate:","textPreview":"Before adding requirements, validate:","textChars":37,"textLines":1,"bbox":[570,378,590,28]}
+{"kind":"textbox","id":"sh/m14nul0j","slide":5,"text":"1. Which failure modes repeat across customer and field records\n2. How long users take to isolate and recover from them\n3. Whether guided diagnostics materially shorten that path","textPreview":"1. Which failure modes repeat across customer and field records | 2. How long users take to isolate and recover from them | 3. Whether gu...","textChars":178,"textLines":3,"bbox":[586,422,580,116]}
+{"kind":"textbox","id":"sh/72do3q14","slide":5,"text":"WATERS NEXT GEN COMPETITIVE INTELLIGENCE · 13 AUG 2026 · waters-ci-20260813070817","textPreview":"WATERS NEXT GEN COMPETITIVE INTELLIGENCE · 13 AUG 2026 · waters-ci-20260813070817","textChars":81,"textLines":1,"bbox":[54,680,1030,20]}
+{"kind":"textbox","id":"sh/8365wvi9","slide":5,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1174,676,52,24]}
+{"kind":"notes","id":"nt/20mwrf","slide":5,"text":"[Sources]\n- https://www.reddit.com/r/CHROMATOGRAPHY/comments/1uk333s/update_uplc_waters_high_pressure_problem/\n- https://www.reddit.com/r/CHROMATOGRAPHY/comments/1h1i93y/waters_acquity_uplc_beh_17_um_21_x_100_mm_column/\n- https://www.reddit.com/r/CHROMATOGRAPHY/comments/1e3y2sy/getting_started_with_empower_3/\n- https://www.labwrench.com/thread/135698/hplc-pump-and-autosampler-preventative-performance-maintenance\n- https://www.reddit.com/r/CHROMATOGRAPHY/comments/1somxpf/waters_acquity_arc_lcms_214_nm_uv_baseline/\n- https://www.reddit.com/r/CHROMATOGRAPHY/comments/xlr4pf/best_uhplc_on_the_market/\n- https://www.reddit.com/r/CHROMATOGRAPHY/comments/1q24noh/reccomendations_for_new_hplc_system_for_routine/\n- https://www.reddit.com/r/CHROMATOGRAPHY/comments/1h6lnr0/agilent_1260_hplc_vs_thermo_vanquish_flex/\n[/Sources]"}
+{"kind":"slide","id":"sl/wun94j","slide":6,"title":"LEADERSHIP BRIEF · 6","textShapes":26}
+{"kind":"textbox","id":"sh/7ad07e5s","slide":6,"text":"LEADERSHIP BRIEF · 6","textPreview":"LEADERSHIP BRIEF · 6","textChars":20,"textLines":1,"bbox":[54,34,520,26]}
+{"kind":"textbox","id":"sh/8bm1gj6d","slide":6,"text":"Three decisions are evidence-prioritized","textPreview":"Three decisions are evidence-prioritized","textChars":40,"textLines":1,"bbox":[54,68,1165,72]}
+{"kind":"textbox","id":"sh/9wvi9ony","slide":6,"text":"The evidence-priority score compares application activity, competitor activity, and source quality.","textPreview":"The evidence-priority score compares application activity, competitor activity, and source quality.","textChars":99,"textLines":1,"bbox":[54,144,1115,38]}
+{"kind":"shape","id":"sh/ux4jitoj","slide":6,"bbox":[54,186,1172,3]}
+{"kind":"shape","id":"sh/vyd0be54","slide":6,"bbox":[54,226,358,376]}
+{"kind":"shape","id":"sh/wzm1kj69","slide":6,"bbox":[54,226,358,8]}
+{"kind":"textbox","id":"sh/h0vidonu","slide":6,"text":"DECISION GATE · NEXT ROADMAP REVIEW","textPreview":"DECISION GATE · NEXT ROADMAP REVIEW","textChars":35,"textLines":1,"bbox":[76,250,314,24]}
+{"kind":"textbox","id":"sh/a10z6poz","slide":6,"text":"EVIDENCE-PRIORITY SCORE","textPreview":"EVIDENCE-PRIORITY SCORE","textChars":23,"textLines":1,"bbox":[76,283,314,18]}
+{"kind":"textbox","id":"sh/b2t0zupk","slide":6,"text":"54/100","textPreview":"54/100","textChars":6,"textLines":1,"bbox":[76,304,314,36]}
+{"kind":"textbox","id":"sh/j69ov6d4","slide":6,"text":"Decide whether to package a PFAS-ready regulated quantitation workflow","textPreview":"Decide whether to package a PFAS-ready regulated quantitation workflow","textChars":70,"textLines":1,"bbox":[76,348,314,62]}
+{"kind":"shape","id":"sh/i50721wj","slide":6,"bbox":[76,426,314,1]}
+{"kind":"textbox","id":"sh/58r6xgva","slide":6,"text":"OWNER · Product Management and Applications","textPreview":"OWNER · Product Management and Applications","textChars":43,"textLines":1,"bbox":[76,443,314,20]}
+{"kind":"textbox","id":"sh/47ip4bep","slide":6,"text":"FINAL GO / NO-GO OUTPUT","textPreview":"FINAL GO / NO-GO OUTPUT","textChars":23,"textLines":1,"bbox":[76,476,314,18]}
+{"kind":"textbox","id":"sh/vipormd8","slide":6,"text":"One recommendation: package, build, partner, monitor, or stop","textPreview":"One recommendation: package, build, partner, monitor, or stop","textChars":61,"textLines":1,"bbox":[76,502,314,76]}
+{"kind":"shape","id":"sh/uhg7y1wn","slide":6,"bbox":[461,226,358,376]}
+{"kind":"shape","id":"sh/h476twvy","slide":6,"bbox":[461,226,358,8]}
+{"kind":"textbox","id":"sh/wjyp0red","slide":6,"text":"DECISION GATE · NEXT ROADMAP REVIEW","textPreview":"DECISION GATE · NEXT ROADMAP REVIEW","textChars":35,"textLines":1,"bbox":[483,250,314,24]}
+{"kind":"textbox","id":"sh/7eponmdw","slide":6,"text":"EVIDENCE-PRIORITY SCORE","textPreview":"EVIDENCE-PRIORITY SCORE","textChars":23,"textLines":1,"bbox":[483,283,314,18]}
+{"kind":"textbox","id":"sh/mdg7uhwb","slide":6,"text":"63/100","textPreview":"63/100","textChars":6,"textLines":1,"bbox":[483,304,314,36]}
+{"kind":"textbox","id":"sh/a9w76hgj","slide":6,"text":"Decide whether Next Gen LC and Alliance iS need new end-to-end workflow requirements","textPreview":"Decide whether Next Gen LC and Alliance iS need new end-to-end workflow requirements","textChars":84,"textLines":1,"bbox":[483,348,314,62]}
+{"kind":"shape","id":"sh/ba58zmho","slide":6,"bbox":[483,426,314,1]}
+{"kind":"textbox","id":"sh/cbep8ry9","slide":6,"text":"OWNER · LC Platform PM and Software Lead","textPreview":"OWNER · LC Platform PM and Software Lead","textChars":40,"textLines":1,"bbox":[483,443,314,20]}
+{"kind":"textbox","id":"sh/xcnq1wzu","slide":6,"text":"FINAL GO / NO-GO OUTPUT","textPreview":"FINAL GO / NO-GO OUTPUT","textChars":23,"textLines":1,"bbox":[483,476,314,18]}
+{"kind":"textbox","id":"sh/ydw7ahgf","slide":6,"text":"One recommendation: build, package existing capabilities, reposition, or stop","textPreview":"One recommendation: build, package existing capabilities, reposition, or stop","textChars":77,"textLines":1,"bbox":[483,502,314,76]}
+{"kind":"shape","id":"sh/zep83mx0","slide":6,"bbox":[868,226,358,376]}
+{"kind":"shape","id":"sh/kfypcryl","slide":6,"bbox":[868,226,358,8]}
+{"kind":"textbox","id":"sh/lg7q5wf6","slide":6,"text":"DECISION GATE · NEXT ROADMAP REVIEW","textPreview":"DECISION GATE · NEXT ROADMAP REVIEW","textChars":35,"textLines":1,"bbox":[890,250,314,24]}
+{"kind":"textbox","id":"sh/mhgre1gb","slide":6,"text":"EVIDENCE-PRIORITY SCORE","textPreview":"EVIDENCE-PRIORITY SCORE","textChars":23,"textLines":1,"bbox":[890,283,314,18]}
+{"kind":"textbox","id":"sh/7ip876xw","slide":6,"text":"58/100","textPreview":"58/100","textChars":6,"textLines":1,"bbox":[890,304,314,36]}
+{"kind":"textbox","id":"sh/hcrad0ze","slide":6,"text":"Decide whether Next Gen LC needs an oligonucleotide method-readiness package","textPreview":"Decide whether Next Gen LC needs an oligonucleotide method-readiness package","textChars":76,"textLines":1,"bbox":[890,348,314,62]}
+{"kind":"shape","id":"sh/wbit4vit","slide":6,"bbox":[890,426,314,1]}
+{"kind":"textbox","id":"sh/va9sbq18","slide":6,"text":"OWNER · Biopharma Applications and Next Gen LC PM","textPreview":"OWNER · Biopharma Applications and Next Gen LC PM","textChars":49,"textLines":1,"bbox":[890,443,314,20]}
+{"kind":"textbox","id":"sh/u90b2l0n","slide":6,"text":"FINAL GO / NO-GO OUTPUT","textPreview":"FINAL GO / NO-GO OUTPUT","textChars":23,"textLines":1,"bbox":[890,476,314,18]}
+{"kind":"textbox","id":"sh/50bahkza","slide":6,"text":"One recommendation: package, build, partner, monitor, or stop","textPreview":"One recommendation: package, build, partner, monitor, or stop","textChars":61,"textLines":1,"bbox":[890,502,314,76]}
+{"kind":"textbox","id":"sh/4z2t8fip","slide":6,"text":"WATERS NEXT GEN COMPETITIVE INTELLIGENCE · 13 AUG 2026 · waters-ci-20260813070817","textPreview":"WATERS NEXT GEN COMPETITIVE INTELLIGENCE · 13 AUG 2026 · waters-ci-20260813070817","textChars":81,"textLines":1,"bbox":[54,680,1030,20]}
+{"kind":"textbox","id":"sh/jytsfah4","slide":6,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1174,676,52,24]}
+{"kind":"notes","id":"nt/wun94j","slide":6,"text":"[Sources]\n- https://pubmed.ncbi.nlm.nih.gov/42398371/\n- https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/triple-quadrupole-lc-msms/lcms-8065xe/index.html\n- https://pubmed.ncbi.nlm.nih.gov/?term=%28%28PFAS+OR+%22per-+and+polyfluoroalkyl%22%29+AND+%28%22LC-MS%22+OR+%22LC-MS%2FMS%22+OR+chromatography%29%29+AND+%28%222025%2F08%2F13%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F13%22%5BDate+-+Publication%5D%29\n- https://sciex.com/about-us/press-releases/2026/sciex-launches-its-5th-generation-of-nominal-mass-novus-v55-system-with-sciexos-5-0-software\n- https://www.shimadzu.com/news/2026/k8iri3_20_z4uvwt.html\n- https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-amplify-uhplc-system.html\n- https://pubmed.ncbi.nlm.nih.gov/?term=%28%28%22laboratory+automation%22+OR+%22workflow+software%22+OR+%22AI%22%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222025%2F08%2F13%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F13%22%5BDate+-+Publication%5D%29\n- https://www.agilent.com/about/newsroom/presrel/2026/20may-ca26015.html\n- https://www.thermofisher.com/order/catalog/product/VQ-AMPLIFY\n- https://pubmed.ncbi.nlm.nih.gov/?term=%28%28oligonucleotide+OR+%22nucleic+acid%22+OR+siRNA%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222025%2F08%2F13%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F13%22%5BDate+-+Publication%5D%29\n[/Sources]"}
+{"kind":"slide","id":"sl/b9r5mm","slide":7,"title":"LEADERSHIP BRIEF · 7","textShapes":18}
+{"kind":"textbox","id":"sh/s3m50nmt","slide":7,"text":"LEADERSHIP BRIEF · 7","textPreview":"LEADERSHIP BRIEF · 7","textChars":20,"textLines":1,"bbox":[54,34,520,26]}
+{"kind":"textbox","id":"sh/r2do7il8","slide":7,"text":"Close the evidence gaps before adding roadmap scope","textPreview":"Close the evidence gaps before adding roadmap scope","textChars":51,"textLines":1,"bbox":[54,68,1165,62]}
+{"kind":"textbox","id":"sh/q14nyd43","slide":7,"text":"Sequence evidence gates around the next roadmap review without inventing calendar commitments.","textPreview":"Sequence evidence gates around the next roadmap review without inventing calendar commitments.","textChars":94,"textLines":1,"bbox":[54,134,1115,38]}
+{"kind":"shape","id":"sh/18f6ds3q","slide":7,"bbox":[54,186,1172,3]}
+{"kind":"shape","id":"sh/076547m5","slide":7,"bbox":[160,322,960,4]}
+{"kind":"shape","id":"sh/f6xob2lk","slide":7,"bbox":[165,300,50,50]}
+{"kind":"textbox","id":"sh/e5on2x4z","slide":7,"text":"GATE 1","textPreview":"GATE 1","textChars":6,"textLines":1,"bbox":[142,365,96,30]}
+{"kind":"textbox","id":"sh/pwz6hc3m","slide":7,"text":"PFAS decision","textPreview":"PFAS decision","textChars":13,"textLines":1,"bbox":[74,410,232,52]}
+{"kind":"textbox","id":"sh/ob6p87m1","slide":7,"text":"Complete claims matrix and make the package go/no-go.","textPreview":"Complete claims matrix and make the package go/no-go.","textChars":53,"textLines":1,"bbox":[74,474,232,70]}
+{"kind":"shape","id":"sh/2xcri10b","slide":7,"bbox":[465,300,50,50]}
+{"kind":"textbox","id":"sh/3yl8b6hw","slide":7,"text":"EVENT","textPreview":"EVENT","textChars":5,"textLines":1,"bbox":[442,365,96,30]}
+{"kind":"textbox","id":"sh/4zu9kbih","slide":7,"text":"Conference moment","textPreview":"Conference moment","textChars":17,"textLines":1,"bbox":[374,410,232,52]}
+{"kind":"textbox","id":"sh/p03adgzm","slide":7,"text":"Lead with MAM, complex modalities and transfer proof.","textPreview":"Lead with MAM, complex modalities and transfer proof.","textChars":53,"textLines":1,"bbox":[374,474,232,70]}
+{"kind":"shape","id":"sh/q1crml07","slide":7,"bbox":[765,300,50,50]}
+{"kind":"textbox","id":"sh/rmlsf6hs","slide":7,"text":"GATE 2","textPreview":"GATE 2","textChars":6,"textLines":1,"bbox":[742,365,96,30]}
+{"kind":"textbox","id":"sh/cnu9obid","slide":7,"text":"Workflow decision","textPreview":"Workflow decision","textChars":17,"textLines":1,"bbox":[674,410,232,52]}
+{"kind":"textbox","id":"sh/do3ahgzy","slide":7,"text":"Choose build, package, reposition, or stop.","textPreview":"Choose build, package, reposition, or stop.","textChars":43,"textLines":1,"bbox":[674,474,232,70]}
+{"kind":"shape","id":"sh/658rah03","slide":7,"bbox":[1065,300,50,50]}
+{"kind":"textbox","id":"sh/7q183m1o","slide":7,"text":"GATE 3","textPreview":"GATE 3","textChars":6,"textLines":1,"bbox":[1042,365,96,30]}
+{"kind":"textbox","id":"sh/baxobixg","slide":7,"text":"Oligo decision","textPreview":"Oligo decision","textChars":14,"textLines":1,"bbox":[974,410,232,52]}
+{"kind":"textbox","id":"sh/a9on2dgv","slide":7,"text":"Choose package, build, partner, monitor, or stop.","textPreview":"Choose package, build, partner, monitor, or stop.","textChars":49,"textLines":1,"bbox":[974,474,232,70]}
+{"kind":"shape","id":"sh/xwf6dsf6","slide":7,"bbox":[176,574,928,58]}
+{"kind":"textbox","id":"sh/wb654ny1","slide":7,"text":"Gate roadmap capacity on repeated customer-visible evidence plus quantified benefit and engineering effort.","textPreview":"Gate roadmap capacity on repeated customer-visible evidence plus quantified benefit and engineering effort.","textChars":107,"textLines":1,"bbox":[206,588,870,28]}
+{"kind":"textbox","id":"sh/n6xo7yh4","slide":7,"text":"WATERS NEXT GEN COMPETITIVE INTELLIGENCE · 13 AUG 2026 · waters-ci-20260813070817","textPreview":"WATERS NEXT GEN COMPETITIVE INTELLIGENCE · 13 AUG 2026 · waters-ci-20260813070817","textChars":81,"textLines":1,"bbox":[54,680,1030,20]}
+{"kind":"textbox","id":"sh/m54nydgj","slide":7,"text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1174,676,52,24]}
+{"kind":"notes","id":"nt/b9r5mm","slide":7,"text":"[Sources]\n- https://www.bioprocessingsummit.com/\n- https://pubmed.ncbi.nlm.nih.gov/42398371/\n- https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/triple-quadrupole-lc-msms/lcms-8065xe/index.html\n- https://pubmed.ncbi.nlm.nih.gov/?term=%28%28PFAS+OR+%22per-+and+polyfluoroalkyl%22%29+AND+%28%22LC-MS%22+OR+%22LC-MS%2FMS%22+OR+chromatography%29%29+AND+%28%222025%2F08%2F13%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F13%22%5BDate+-+Publication%5D%29\n- https://sciex.com/about-us/press-releases/2026/sciex-launches-its-5th-generation-of-nominal-mass-novus-v55-system-with-sciexos-5-0-software\n- https://www.shimadzu.com/news/2026/k8iri3_20_z4uvwt.html\n- https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-amplify-uhplc-system.html\n- https://pubmed.ncbi.nlm.nih.gov/?term=%28%28%22laboratory+automation%22+OR+%22workflow+software%22+OR+%22AI%22%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222025%2F08%2F13%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F13%22%5BDate+-+Publication%5D%29\n- https://www.agilent.com/about/newsroom/presrel/2026/20may-ca26015.html\n- https://www.thermofisher.com/order/catalog/product/VQ-AMPLIFY\n- https://pubmed.ncbi.nlm.nih.gov/?term=%28%28oligonucleotide+OR+%22nucleic+acid%22+OR+siRNA%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222025%2F08%2F13%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F13%22%5BDate+-+Publication%5D%29\n[/Sources]"}
+{"kind":"slide","id":"sl/k2zes1","slide":8,"title":"LEADERSHIP BRIEF · 8","textShapes":30}
+{"kind":"textbox","id":"sh/qxcvqtsf","slide":8,"text":"LEADERSHIP BRIEF · 8","textPreview":"LEADERSHIP BRIEF · 8","textChars":20,"textLines":1,"bbox":[54,34,520,26]}
+{"kind":"textbox","id":"sh/d03e1obq","slide":8,"text":"Primary sources behind the leadership readout","textPreview":"Primary sources behind the leadership readout","textChars":45,"textLines":1,"bbox":[54,68,1165,62]}
+{"kind":"textbox","id":"sh/czudsja5","slide":8,"text":"Direct public evidence is kept separate from inference; publication counts are contextual signals, not market-size claims.","textPreview":"Direct public evidence is kept separate from inference; publication counts are contextual signals, not market-size claims.","textChars":122,"textLines":1,"bbox":[54,134,1115,38]}
+{"kind":"shape","id":"sh/3a1cveto","slide":8,"bbox":[54,186,1172,3]}
+{"kind":"textbox","id":"sh/29svm9s3","slide":8,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[62,224,42,28]}
+{"kind":"textbox","id":"sh/pw3uxobu","slide":8,"text":"SCIENTIFIC MARKET","textPreview":"SCIENTIFIC MARKET","textChars":17,"textLines":1,"bbox":[120,220,180,20]}
+{"kind":"textbox","id":"sh/obudoja9","slide":8,"text":"PubMed · PFAS / LC-MS query","textPreview":"PubMed · PFAS / LC-MS query","textChars":27,"textLines":1,"bbox":[314,218,430,30]}
+{"kind":"textbox","id":"sh/n65w7i9s","slide":8,"text":"https://pubmed.ncbi.nlm.nih.gov/?term=%28%28PFAS+OR+%22per-+and+polyfluoroalkyl%22%29+AND+%28%22LC-MS%22+OR+%22LC-MS%2FMS%22+OR+chromatography%29%29+AND+%28%222025%2F08%2F13%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F13%22%5BDate+-+Publication%5D%29","textPreview":"https://pubmed.ncbi.nlm.nih.gov/?term=%28%28PFAS+OR+%22per-+and+polyfluoroalkyl%22%29+AND+%28%22LC-MS%22+OR+%22LC-MS%2FMS%22+OR+chromatog...","textChars":252,"textLines":1,"bbox":[760,220,452,38]}
+{"kind":"shape","id":"sh/m5wvyds7","slide":8,"bbox":[120,268,1092,1]}
+{"kind":"textbox","id":"sh/sfitsry5","slide":8,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[62,292,42,28]}
+{"kind":"textbox","id":"sh/dgru1wza","slide":8,"text":"AGILENT LAUNCH","textPreview":"AGILENT LAUNCH","textChars":14,"textLines":1,"bbox":[120,288,180,20]}
+{"kind":"textbox","id":"sh/qd0bq1gz","slide":8,"text":"6230C LC/TOF in MAM workflow","textPreview":"6230C LC/TOF in MAM workflow","textChars":28,"textLines":1,"bbox":[314,286,430,30]}
+{"kind":"textbox","id":"sh/re9cz6hk","slide":8,"text":"https://www.agilent.com/about/newsroom/presrel/2026/29may-ca26021.html","textPreview":"https://www.agilent.com/about/newsroom/presrel/2026/29may-ca26021.html","textChars":70,"textLines":1,"bbox":[760,288,452,38]}
+{"kind":"shape","id":"sh/4bytorit","slide":8,"bbox":[120,336,1092,1]}
+{"kind":"textbox","id":"sh/5c7uxwze","slide":8,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[62,360,42,28]}
+{"kind":"textbox","id":"sh/ipgbmh0n","slide":8,"text":"AGILENT FILING","textPreview":"AGILENT FILING","textChars":14,"textLines":1,"bbox":[120,356,180,20]}
+{"kind":"textbox","id":"sh/3qpcvmh8","slide":8,"text":"Issuer-reported LC / LC-MS growth","textPreview":"Issuer-reported LC / LC-MS growth","textChars":33,"textLines":1,"bbox":[314,354,430,30]}
+{"kind":"textbox","id":"sh/wnytk7ix","slide":8,"text":"https://www.sec.gov/Archives/edgar/data/1090872/000109087226000055/a-20260430.htm","textPreview":"https://www.sec.gov/Archives/edgar/data/1090872/000109087226000055/a-20260430.htm","textChars":81,"textLines":1,"bbox":[760,356,452,38]}
+{"kind":"shape","id":"sh/ho7utcz2","slide":8,"bbox":[120,404,1092,1]}
+{"kind":"textbox","id":"sh/x8fi1onu","slide":8,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[62,428,42,28]}
+{"kind":"textbox","id":"sh/c7618j69","slide":8,"text":"SHIMADZU LAUNCH","textPreview":"SHIMADZU LAUNCH","textChars":15,"textLines":1,"bbox":[120,424,180,20]}
+{"kind":"textbox","id":"sh/b6x0ze5o","slide":8,"text":"Nexera X4 UHPLC","textPreview":"Nexera X4 UHPLC","textChars":15,"textLines":1,"bbox":[314,422,430,30]}
+{"kind":"textbox","id":"sh/a5oj69o3","slide":8,"text":"https://www.shimadzu.com/news/2026/k8iri3_20_z4uvwt.html","textPreview":"https://www.shimadzu.com/news/2026/k8iri3_20_z4uvwt.html","textChars":56,"textLines":1,"bbox":[760,424,452,38]}
+{"kind":"shape","id":"sh/p4fix4ny","slide":8,"bbox":[120,472,1092,1]}
+{"kind":"textbox","id":"sh/o3m14z6d","slide":8,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[62,496,42,28]}
+{"kind":"textbox","id":"sh/n2d0vu5s","slide":8,"text":"SCIEX LAUNCH","textPreview":"SCIEX LAUNCH","textChars":12,"textLines":1,"bbox":[120,492,180,20]}
+{"kind":"textbox","id":"sh/214j2po7","slide":8,"text":"novus V55 with SCIEX OS 5.0","textPreview":"novus V55 with SCIEX OS 5.0","textChars":27,"textLines":1,"bbox":[314,490,430,30]}
+{"kind":"textbox","id":"sh/90z298n2","slide":8,"text":"https://sciex.com/about-us/press-releases/2026/sciex-launches-its-5th-generation-of-nominal-mass-novus-v55-system-with-sciexos-5-0-software","textPreview":"https://sciex.com/about-us/press-releases/2026/sciex-launches-its-5th-generation-of-nominal-mass-novus-v55-system-with-sciexos-5-0-software","textChars":139,"textLines":1,"bbox":[760,492,452,38]}
+{"kind":"shape","id":"sh/8zq1g36h","slide":8,"bbox":[120,540,1092,1]}
+{"kind":"textbox","id":"sh/q5kfal4z","slide":8,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[62,564,42,28]}
+{"kind":"textbox","id":"sh/r6tg3qlk","slide":8,"text":"CONFERENCE","textPreview":"CONFERENCE","textChars":10,"textLines":1,"bbox":[120,560,180,20]}
+{"kind":"textbox","id":"sh/s72xcvm5","slide":8,"text":"Bioprocessing Summit US 2026","textPreview":"Bioprocessing Summit US 2026","textChars":28,"textLines":1,"bbox":[314,558,430,30]}
+{"kind":"textbox","id":"sh/d8by503q","slide":8,"text":"https://www.bioprocessingsummit.com/","textPreview":"https://www.bioprocessingsummit.com/","textChars":36,"textLines":1,"bbox":[760,560,452,38]}
+{"kind":"shape","id":"sh/ih0f6l43","slide":8,"bbox":[54,632,1172,34]}
+{"kind":"textbox","id":"sh/3i9gzql8","slide":8,"text":"Snapshot: waters-ci-20260813070817 · As of 2026-08-13T07:08:17 · Business magnitude requires Waters internal data.","textPreview":"Snapshot: waters-ci-20260813070817 · As of 2026-08-13T07:08:17 · Business magnitude requires Waters internal data.","textChars":114,"textLines":1,"bbox":[74,640,1132,20]}
+{"kind":"textbox","id":"sh/43ix8vmt","slide":8,"text":"WATERS NEXT GEN COMPETITIVE INTELLIGENCE · 13 AUG 2026 · waters-ci-20260813070817","textPreview":"WATERS NEXT GEN COMPETITIVE INTELLIGENCE · 13 AUG 2026 · waters-ci-20260813070817","textChars":81,"textLines":1,"bbox":[54,680,1030,20]}
+{"kind":"textbox","id":"sh/54ry103e","slide":8,"text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[1174,676,52,24]}
+{"kind":"notes","id":"nt/k2zes1","slide":8,"text":"[Sources]\n- https://pubmed.ncbi.nlm.nih.gov/?term=%28%28PFAS+OR+%22per-+and+polyfluoroalkyl%22%29+AND+%28%22LC-MS%22+OR+%22LC-MS%2FMS%22+OR+chromatography%29%29+AND+%28%222025%2F08%2F13%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F13%22%5BDate+-+Publication%5D%29\n- https://www.agilent.com/about/newsroom/presrel/2026/29may-ca26021.html\n- https://www.sec.gov/Archives/edgar/data/1090872/000109087226000055/a-20260430.htm\n- https://www.shimadzu.com/news/2026/k8iri3_20_z4uvwt.html\n- https://sciex.com/about-us/press-releases/2026/sciex-launches-its-5th-generation-of-nominal-mass-novus-v55-system-with-sciexos-5-0-software\n- https://www.bioprocessingsummit.com/\n[/Sources]"}

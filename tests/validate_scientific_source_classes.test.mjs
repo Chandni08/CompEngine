@@ -28,3 +28,17 @@ test("invalid publisher URLs and missing market tags are rejected", async () => 
   assert.ok(errors.some((error) => /official HTTPS host/.test(error)));
   assert.ok(errors.some((error) => /has no marketSegments/.test(error)));
 });
+
+test("conference content records cannot expose login redirects as public evidence", async () => {
+  const journals = await readJson("data/journal_sources.json");
+  const conferences = await readJson("data/conference_sources.json");
+  const catalog = await readJson("data/source_catalog.json");
+  const broken = structuredClone(conferences);
+  const event = broken.events.find((item) => item.id === "asms-2026");
+  event.contentRecords = [{
+    title: "Online planner",
+    canonicalUrl: "https://www.asms.org/SsoExternalLogin.ashx?ReturnUrl=%2Fconference-program",
+  }];
+  const errors = scientificSourceClassErrors(journals, broken, catalog);
+  assert.ok(errors.some((error) => /access-control URL/.test(error)));
+});

@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-08-02T20:04:55+00:00",
+  "generatedAt": "2026-08-16T16:52:50+00:00",
   "competitors": {
     "Thermo Fisher": {
-      "generatedAt": "2026-08-02T20:04:54+00:00",
+      "generatedAt": "2026-08-16T16:52:49+00:00",
       "baselineCreated": false,
       "inventoryCounts": {
         "lcmsProductPages": 43,
-        "pressReleases": 18,
-        "technicalInsights": 16,
+        "pressReleases": 19,
+        "technicalInsights": 18,
         "thermo-dionex-ion-chromatographyPages": 2,
         "thermo-vanquish-neo-nano-lcPages": 1
       },
@@ -64,6 +64,19 @@
       },
       "new_press_releases": [
         {
+          "date": "2026-08-12",
+          "title": "Thermo Fisher Scientific Completes Sale of its Microbiology Business to Astorg",
+          "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2026/Thermo-Fisher-Scientific-Completes-Sale-of-its-Microbiology-Business-to-Astorg/default.aspx",
+          "classification": "corporate",
+          "theme": "Corporate strategy",
+          "intent": "Corporate strategic activity",
+          "technology": "LC/UHPLC",
+          "marketSegment": "Pharma",
+          "summary": "Thermo Fisher Scientific Inc. (NYSE: TMO), the world leader in serving science, today announced that it has completed the sale of its microbiology business to Astorg, a leading pan-European private equity firm, for consideration of approximately $1.075 billion, consisting of cash and a $50 million seller note.",
+          "sourceId": "thermo-news",
+          "sourceName": "Thermo Fisher investor relations news"
+        },
+        {
           "date": "2026-07-23",
           "title": "Thermo Fisher Scientific Reports Second Quarter 2026 Results",
           "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2026/Thermo-Fisher-Scientific-Reports-Second-Quarter-2026-Results/default.aspx",
@@ -201,25 +214,25 @@
           "technology": "Portfolio",
           "marketSegment": "Corporate",
           "summary": "Thermo Fisher Scientific Inc. (NYSE: TMO), the world leader in serving science, today reported its financial results for the first quarter ended March 28, 2026.",
-          "sourceId": "thermo-news",
-          "sourceName": "Thermo Fisher investor relations news"
-        },
-        {
-          "date": "2026-04-09",
-          "title": "Thermo Fisher Scientific Expands Global Biobank Leadership Through Strategic Collaboration with PRECISE-SG100K Singapore to Advance Population-Scale Proteomics",
-          "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2026/Thermo-Fisher-Scientific-Expands-Global-Biobank-Leadership-Through-Strategic-Collaboration-with-PRECISE-SG100K-Singapore-to-Advance-Population-Scale-Proteomics/default.aspx",
-          "classification": "corporate",
-          "theme": "Corporate strategy",
-          "intent": "Corporate strategic activity",
-          "technology": "LC/UHPLC",
-          "marketSegment": "Pharma",
-          "summary": "Thermo Fisher Scientific Inc. (NYSE: TMO), the world leader in serving science, today announced a strategic collaboration with Precision Health Research, Singapore (PRECISE) to advance the PRECISE-SG100K study, one of the region\u2019s most ambitious and diverse population-scale biobank initiatives.",
           "sourceId": "thermo-news",
           "sourceName": "Thermo Fisher investor relations news"
         }
       ],
       "recent_press_releases": [
         {
+          "date": "2026-08-12",
+          "title": "Thermo Fisher Scientific Completes Sale of its Microbiology Business to Astorg",
+          "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2026/Thermo-Fisher-Scientific-Completes-Sale-of-its-Microbiology-Business-to-Astorg/default.aspx",
+          "classification": "corporate",
+          "theme": "Corporate strategy",
+          "intent": "Corporate strategic activity",
+          "technology": "LC/UHPLC",
+          "marketSegment": "Pharma",
+          "summary": "Thermo Fisher Scientific Inc. (NYSE: TMO), the world leader in serving science, today announced that it has completed the sale of its microbiology business to Astorg, a leading pan-European private equity firm, for consideration of approximately $1.075 billion, consisting of cash and a $50 million seller note.",
+          "sourceId": "thermo-news",
+          "sourceName": "Thermo Fisher investor relations news"
+        },
+        {
           "date": "2026-07-23",
           "title": "Thermo Fisher Scientific Reports Second Quarter 2026 Results",
           "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2026/Thermo-Fisher-Scientific-Reports-Second-Quarter-2026-Results/default.aspx",
@@ -359,23 +372,40 @@
           "summary": "Thermo Fisher Scientific Inc. (NYSE: TMO), the world leader in serving science, today reported its financial results for the first quarter ended March 28, 2026.",
           "sourceId": "thermo-news",
           "sourceName": "Thermo Fisher investor relations news"
-        },
-        {
-          "date": "2026-04-09",
-          "title": "Thermo Fisher Scientific Expands Global Biobank Leadership Through Strategic Collaboration with PRECISE-SG100K Singapore to Advance Population-Scale Proteomics",
-          "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2026/Thermo-Fisher-Scientific-Expands-Global-Biobank-Leadership-Through-Strategic-Collaboration-with-PRECISE-SG100K-Singapore-to-Advance-Population-Scale-Proteomics/default.aspx",
-          "classification": "corporate",
-          "theme": "Corporate strategy",
-          "intent": "Corporate strategic activity",
-          "technology": "LC/UHPLC",
-          "marketSegment": "Pharma",
-          "summary": "Thermo Fisher Scientific Inc. (NYSE: TMO), the world leader in serving science, today announced a strategic collaboration with Precision Health Research, Singapore (PRECISE) to advance the PRECISE-SG100K study, one of the region\u2019s most ambitious and diverse population-scale biobank initiatives.",
-          "sourceId": "thermo-news",
-          "sourceName": "Thermo Fisher investor relations news"
         }
       ],
       "new_technical_insights": [],
       "technical_insights": [
+        {
+          "date": "2026-08-12",
+          "title": "Why Are Metabolites Missing From Your LC-MS Data? How Enhanced Dynamic Range (eDR) Helps Reveal What Conventional Workflows Miss",
+          "url": "https://www.thermofisher.com/blog/analyteguru/why-are-metabolites-missing-from-your-lc-ms-data-how-enhanced-dynamic-range-edr-helps-reveal-what-conventional-workflows-miss/",
+          "classification": "technical",
+          "sourceId": "thermo-ms-insights",
+          "sourceName": "Thermo Fisher mass spectrometry insights",
+          "technology": "LC-MS",
+          "marketSegment": "Pharma"
+        },
+        {
+          "date": "2026-08-11",
+          "title": "Quantifying Glutathione Bioavailability Using LC-HRMS for Nutraceutical Applications",
+          "url": "https://www.thermofisher.com/blog/analyteguru/quantifying-glutathione-bioavailability-using-lc-hrms-for-nutraceutical-applications/",
+          "classification": "technical",
+          "sourceId": "thermo-ms-insights",
+          "sourceName": "Thermo Fisher mass spectrometry insights",
+          "technology": "LC-MS",
+          "marketSegment": "Pharma"
+        },
+        {
+          "date": "2026-08-11",
+          "title": "Identifying Hemoglobin Variants with Top-Down High-Resolution Mass Spectrometry",
+          "url": "https://www.thermofisher.com/blog/analyteguru/identifying-hemoglobin-variants-with-top-down-high-resolution-mass-spectrometry/",
+          "classification": "technical",
+          "sourceId": "thermo-ms-insights",
+          "sourceName": "Thermo Fisher mass spectrometry insights",
+          "technology": "LC/UHPLC",
+          "marketSegment": "Clinical"
+        },
         {
           "date": "2026-07-11",
           "title": "Moving to Mainstream: Is the World Finally Ready for Low-Flow LC?",
@@ -547,7 +577,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official sitemap index parsed.",
           "extractedRecords": 0,
-          "checkedAt": "2026-08-02T20:04:51+00:00"
+          "checkedAt": "2026-08-16T16:52:47+00:00"
         },
         {
           "sourceId": "thermo-ms-products",
@@ -558,7 +588,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official US sitemap parsed; 43 LC/LC-MS product pages tracked.",
           "extractedRecords": 43,
-          "checkedAt": "2026-08-02T20:04:53+00:00"
+          "checkedAt": "2026-08-16T16:52:48+00:00"
         },
         {
           "sourceId": "thermo-dionex-ion-chromatography-products",
@@ -569,7 +599,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official Thermo sitemap parsed; 2 registered Thermo Scientific Dionex ion chromatography product pages tracked.",
           "extractedRecords": 2,
-          "checkedAt": "2026-08-02T20:04:53+00:00"
+          "checkedAt": "2026-08-16T16:52:48+00:00"
         },
         {
           "sourceId": "thermo-vanquish-neo-nano-lc-products",
@@ -580,7 +610,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official Thermo sitemap parsed; 1 registered Thermo Scientific Vanquish Neo nano-LC product pages tracked.",
           "extractedRecords": 1,
-          "checkedAt": "2026-08-02T20:04:53+00:00"
+          "checkedAt": "2026-08-16T16:52:48+00:00"
         },
         {
           "sourceId": "thermo-news",
@@ -589,9 +619,9 @@
           "httpStatus": 200,
           "status": "available",
           "extractionStatus": "extracted",
-          "extractionReason": "Official Thermo Fisher investor-relations feed parsed; 18 dated 2026 corporate releases extracted.",
-          "extractedRecords": 18,
-          "checkedAt": "2026-08-02T20:04:53+00:00"
+          "extractionReason": "Official Thermo Fisher investor-relations feed parsed; 19 dated 2026 corporate releases extracted.",
+          "extractedRecords": 19,
+          "checkedAt": "2026-08-16T16:52:48+00:00"
         },
         {
           "sourceId": "thermo-lc-insights",
@@ -600,9 +630,9 @@
           "httpStatus": 200,
           "status": "available",
           "extractionStatus": "extracted",
-          "extractionReason": "Official dated RSS feed parsed; 7 relevant LC/MS records extracted.",
-          "extractedRecords": 7,
-          "checkedAt": "2026-08-02T20:04:53+00:00"
+          "extractionReason": "Official dated RSS feed parsed; 6 relevant LC/MS records extracted.",
+          "extractedRecords": 6,
+          "checkedAt": "2026-08-16T16:52:49+00:00"
         },
         {
           "sourceId": "thermo-ms-insights",
@@ -611,9 +641,9 @@
           "httpStatus": 200,
           "status": "available",
           "extractionStatus": "extracted",
-          "extractionReason": "Official dated RSS feed parsed; 5 relevant LC/MS records extracted.",
-          "extractedRecords": 5,
-          "checkedAt": "2026-08-02T20:04:54+00:00"
+          "extractionReason": "Official dated RSS feed parsed; 7 relevant LC/MS records extracted.",
+          "extractedRecords": 7,
+          "checkedAt": "2026-08-16T16:52:49+00:00"
         },
         {
           "sourceId": "thermo-proteomics-insights",
@@ -624,16 +654,16 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official dated RSS feed parsed; 7 relevant LC/MS records extracted.",
           "extractedRecords": 7,
-          "checkedAt": "2026-08-02T20:04:54+00:00"
+          "checkedAt": "2026-08-16T16:52:49+00:00"
         }
       ]
     },
     "Shimadzu": {
-      "generatedAt": "2026-08-02T20:04:54+00:00",
+      "generatedAt": "2026-08-16T16:52:49+00:00",
       "baselineCreated": false,
       "inventoryCounts": {
         "lcmsProductPages": 78,
-        "pressReleases": 37,
+        "pressReleases": 38,
         "technicalInsights": 0
       },
       "monitoredFamilies": [],
@@ -647,6 +677,12 @@
       },
       "new_press_releases": [
         {
+          "date": "2026-08-04",
+          "title": "Release of the World\u2019s First Desktop Corona Discharge Ionizer Specialized for Dry Air Environments, STABLO-AP DRY AIR Eliminating Static Electricity Problems in Battery Research, Development, and Manufacturing",
+          "url": "https://www.shimadzu.com/news/2026/5is0mfb00wsn8pnv.html",
+          "classification": "product"
+        },
+        {
           "date": "2026-07-31",
           "title": "Team Representing Japan Wins at the World Deaf Team Tennis Championships Komokata of the SHIMADZU Breakers Excels as Team Ace",
           "url": "https://www.shimadzu.com/news/2026/xsmnp89535xpnhd1.html",
@@ -722,35 +758,17 @@
           "date": "2026-04-20",
           "title": "Study Reveals How the Viability of Lactic Acid Bacteria Shapes Their Function in the Gut Results of Collaborative Research with Tohoku University and ITO EN Published in the Cell Press journal iScience",
           "url": "https://www.shimadzu.com/news/2026/iy0elwnih0c159yp.html",
-          "classification": "corporate"
-        },
-        {
-          "date": "2026-04-16",
-          "title": "Shimadzu Receives an International iF Design Award 2026 in Three Disciplines\u2014Product Design, Architecture, and Interior Architecture",
-          "url": "https://www.shimadzu.com/news/2026/us_ij0twdr--z1bk.html",
-          "classification": "corporate"
-        },
-        {
-          "date": "2026-04-15",
-          "title": "SHIMADZU Breakers\u2019 Rina Komokata Receives Mie Prefecture Citizen\u2019s Honor Award",
-          "url": "https://www.shimadzu.com/news/2026/es_ffmlcxz0isd6y.html",
-          "classification": "corporate"
-        },
-        {
-          "date": "2026-04-10",
-          "title": "Launched Industry\u2019s First Micro Compression Testing Machine Capable of Multi-Point Successive Measurement in Conformance Order Contributing to R&D for Carbon Neutrality and Related Fields through Micron-Level material evaluation",
-          "url": "https://www.shimadzu.com/news/2026/u7zsp_9ptac8y-ri.html",
-          "classification": "corporate"
-        },
-        {
-          "date": "2026-04-08",
-          "title": "Shimadzu Signs Professional Player Contracts with Tennis Players Hikaru Sato and Hiromi Abe",
-          "url": "https://www.shimadzu.com/news/2026/vz_a4k39l-19nqcp.html",
           "classification": "corporate"
         }
       ],
       "recent_press_releases": [
         {
+          "date": "2026-08-04",
+          "title": "Release of the World\u2019s First Desktop Corona Discharge Ionizer Specialized for Dry Air Environments, STABLO-AP DRY AIR Eliminating Static Electricity Problems in Battery Research, Development, and Manufacturing",
+          "url": "https://www.shimadzu.com/news/2026/5is0mfb00wsn8pnv.html",
+          "classification": "product"
+        },
+        {
           "date": "2026-07-31",
           "title": "Team Representing Japan Wins at the World Deaf Team Tennis Championships Komokata of the SHIMADZU Breakers Excels as Team Ace",
           "url": "https://www.shimadzu.com/news/2026/xsmnp89535xpnhd1.html",
@@ -826,30 +844,6 @@
           "date": "2026-04-20",
           "title": "Study Reveals How the Viability of Lactic Acid Bacteria Shapes Their Function in the Gut Results of Collaborative Research with Tohoku University and ITO EN Published in the Cell Press journal iScience",
           "url": "https://www.shimadzu.com/news/2026/iy0elwnih0c159yp.html",
-          "classification": "corporate"
-        },
-        {
-          "date": "2026-04-16",
-          "title": "Shimadzu Receives an International iF Design Award 2026 in Three Disciplines\u2014Product Design, Architecture, and Interior Architecture",
-          "url": "https://www.shimadzu.com/news/2026/us_ij0twdr--z1bk.html",
-          "classification": "corporate"
-        },
-        {
-          "date": "2026-04-15",
-          "title": "SHIMADZU Breakers\u2019 Rina Komokata Receives Mie Prefecture Citizen\u2019s Honor Award",
-          "url": "https://www.shimadzu.com/news/2026/es_ffmlcxz0isd6y.html",
-          "classification": "corporate"
-        },
-        {
-          "date": "2026-04-10",
-          "title": "Launched Industry\u2019s First Micro Compression Testing Machine Capable of Multi-Point Successive Measurement in Conformance Order Contributing to R&D for Carbon Neutrality and Related Fields through Micron-Level material evaluation",
-          "url": "https://www.shimadzu.com/news/2026/u7zsp_9ptac8y-ri.html",
-          "classification": "corporate"
-        },
-        {
-          "date": "2026-04-08",
-          "title": "Shimadzu Signs Professional Player Contracts with Tennis Players Hikaru Sato and Hiromi Abe",
-          "url": "https://www.shimadzu.com/news/2026/vz_a4k39l-19nqcp.html",
           "classification": "corporate"
         }
       ],
@@ -865,7 +859,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official analytical sitemap parsed; 78 LC/LC-MS/software product pages tracked.",
           "extractedRecords": 78,
-          "checkedAt": "2026-08-02T20:04:54+00:00"
+          "checkedAt": "2026-08-16T16:52:49+00:00"
         },
         {
           "sourceId": "shimadzu-news",
@@ -874,14 +868,14 @@
           "httpStatus": 200,
           "status": "available",
           "extractionStatus": "extracted",
-          "extractionReason": "Official dated news index parsed; 37 relevant releases extracted.",
-          "extractedRecords": 37,
-          "checkedAt": "2026-08-02T20:04:54+00:00"
+          "extractionReason": "Official dated news index parsed; 38 relevant releases extracted.",
+          "extractedRecords": 38,
+          "checkedAt": "2026-08-16T16:52:49+00:00"
         }
       ]
     },
     "SCIEX": {
-      "generatedAt": "2026-08-02T20:04:55+00:00",
+      "generatedAt": "2026-08-16T16:52:50+00:00",
       "baselineCreated": false,
       "inventoryCounts": {
         "lcmsProductPages": 66,
@@ -949,7 +943,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official sitemap parsed; 66 MS/LC/software product pages tracked.",
           "extractedRecords": 66,
-          "checkedAt": "2026-08-02T20:04:54+00:00"
+          "checkedAt": "2026-08-16T16:52:50+00:00"
         },
         {
           "sourceId": "sciex-news",
@@ -960,7 +954,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official dated press index parsed; 4 relevant releases extracted.",
           "extractedRecords": 4,
-          "checkedAt": "2026-08-02T20:04:55+00:00"
+          "checkedAt": "2026-08-16T16:52:50+00:00"
         }
       ]
     }

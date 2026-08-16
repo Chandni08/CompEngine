@@ -2,7 +2,8 @@ name: Daily competitive-intelligence refresh
 
 on:
   schedule:
-    - cron: "15 10 * * *"
+    - cron: "0 11 * * *"
+    - cron: "0 12 * * *"
   workflow_dispatch:
 
 permissions:
@@ -17,6 +18,14 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
+      - name: Gate the scheduled run to 7 AM New York time
+        if: github.event_name == 'schedule'
+        run: |
+          if [ "$(TZ=America/New_York date +%H)" != "07" ]; then
+            echo "Skipping because this schedule trigger is outside 7 AM America/New_York"
+            exit 0
+          fi
+
       - name: Check out the website
         uses: actions/checkout@v4
 

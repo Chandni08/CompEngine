@@ -23,6 +23,8 @@ PRODUCTS = "https://www.perkinelmer.com/category/liquid-chromatography"
 WINDOW_START = date.today() - timedelta(days=365 * 3)
 RECENT_RELEASE_REPLAY_DAYS = 120
 TERMS = ("lc-ms", "lc/ms", "liquid chromat", "hplc", "mass spect", "analytical", "laboratory", "workflow", "software", "partnership", "collaboration")
+LEGACY_DOMAIN = "https://perkinelmer.prod.acquia-sites.com"
+CURRENT_DOMAIN = "https://www.perkinelmer.com"
 
 
 def now() -> str:
@@ -31,6 +33,10 @@ def now() -> str:
 
 def in_scope(url: str) -> bool:
     return url.startswith("https://www.perkinelmer.com/") and not any(part in url for part in ("/user/", "/search", "?sid="))
+
+
+def normalize_url(url: str) -> str:
+    return url.replace(LEGACY_DOMAIN, CURRENT_DOMAIN)
 
 
 def page_title_date(client: RobotsAwareClient, url: str, fallback: str) -> tuple[str, str]:
@@ -88,10 +94,10 @@ def main() -> int:
         title, published = page_title_date(client, url, modified)
         if not title:
             continue
-        item = {"url": url, "title": unescape(title), "date": published, "lastmod": modified}
+        item = {"url": normalize_url(url), "title": unescape(title), "date": published, "lastmod": modified}
         item.update(release_metadata(title))
         news.append(item)
-    products = [{"url": url, "lastmod": modified} for url, modified in sorted(product_candidates, key=lambda row: row[1], reverse=True)]
+    products = [{"url": normalize_url(url), "lastmod": modified} for url, modified in sorted(product_candidates, key=lambda row: row[1], reverse=True)]
     value = {
         "generatedAt": checked,
         "competitor": "PerkinElmer",

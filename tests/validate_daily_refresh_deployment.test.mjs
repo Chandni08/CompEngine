@@ -32,6 +32,8 @@ test("daily publication validates, deploys, aliases, and verifies the Waters sit
   assert.match(deployRunner, /alias set "\$deployment_url" "\$WATERS_HOST"/);
   assert.match(deployRunner, /data\/refresh_status\.json/);
   assert.match(deployRunner, /'"status": "success"'/);
+  assert.match(deployRunner, /'"status": "partial"'/);
+  assert.match(deployRunner, /live refresh status is not publishable/);
 });
 
 test("cloud refresh schedule validates before saving or deploying data", () => {

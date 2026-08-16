@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-02T20:43:07+00:00",
-  "panelCount": 41,
-  "subpanelCount": 8,
+  "generatedAt": "2026-08-13T13:15:03+00:00",
+  "panelCount": 31,
+  "subpanelCount": 7,
   "panels": [
     {
       "pageId": "index.html",
@@ -43,11 +43,7 @@
         "market",
         "technology",
         "competitor",
-        "timeFrame",
-        "application",
-        "buyingSituation",
-        "buyerRole",
-        "competitorProduct"
+        "timeFrame"
       ],
       "availableTimeFrames": [
         "30d",
@@ -69,7 +65,7 @@
         "#global-filters"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
+      "currentAsOfDate": "2026-08-13",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "interactive"
@@ -123,678 +119,7 @@
         "#refresh-status"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
-      "refreshCollector": "scripts/refresh_daily.py",
-      "validationFunction": "tests/test_panel_manifest.py",
-      "dataMode": "derived"
-    },
-    {
-      "pageId": "index.html",
-      "parentPanelId": null,
-      "panelId": "pmm-start-here",
-      "subpanelId": null,
-      "visibleTitle": "Product Marketing Start Here",
-      "navigationRoute": "index.html#pmm-start-here",
-      "htmlContainer": "#pmmStartHere",
-      "renderFunction": "renderMarketingWorkspace",
-      "sourceDataFiles": [
-        "data/intelligence.json",
-        "data/product_comparisons.json"
-      ],
-      "sourceFields": [
-        "id",
-        "date",
-        "title",
-        "sourceUrl"
-      ],
-      "derivedFields": [
-        "filteredCount",
-        "asOfDate"
-      ],
-      "competitorsRepresented": [
-        "Waters",
-        "Agilent",
-        "Thermo Fisher",
-        "Shimadzu",
-        "SCIEX / Danaher",
-        "PerkinElmer / Revvity"
-      ],
-      "sourceFamiliesRepresented": [
-        "competitive_intelligence",
-        "product"
-      ],
-      "availableFilters": [
-        "role",
-        "geography",
-        "market",
-        "technology",
-        "competitor",
-        "timeFrame"
-      ],
-      "availableTimeFrames": [
-        "30d",
-        "60d",
-        "90d",
-        "1y",
-        "3y"
-      ],
-      "defaultState": "marketing-role-only",
-      "hiddenExpandedStates": [
-        "marketing-role-only"
-      ],
-      "externalLinks": [
-        "dynamic:sourceUrl",
-        "dynamic:url"
-      ],
-      "internalLinks": [
-        "#pmm-start-here"
-      ],
-      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
-      "refreshCollector": "scripts/refresh_daily.py",
-      "validationFunction": "tests/test_panel_manifest.py",
-      "dataMode": "derived"
-    },
-    {
-      "pageId": "index.html",
-      "parentPanelId": null,
-      "panelId": "pmm-head-to-head",
-      "subpanelId": null,
-      "visibleTitle": "Head-to-Head Comparison",
-      "navigationRoute": "index.html#pmm-head-to-head",
-      "htmlContainer": "#pmm-head-to-head",
-      "renderFunction": "renderPmmHeadToHeadComparison",
-      "sourceDataFiles": [
-        "data/product_comparisons.json",
-        "data/technical_comparisons.json",
-        "data/historical_waters_catalog.json",
-        "data/historical_product_catalog.json"
-      ],
-      "sourceFields": [
-        "id",
-        "date",
-        "title",
-        "sourceUrl"
-      ],
-      "derivedFields": [
-        "filteredCount",
-        "asOfDate"
-      ],
-      "competitorsRepresented": [
-        "Waters",
-        "Agilent",
-        "Thermo Fisher",
-        "Shimadzu",
-        "SCIEX / Danaher",
-        "PerkinElmer / Revvity"
-      ],
-      "sourceFamiliesRepresented": [
-        "product"
-      ],
-      "availableFilters": [
-        "role",
-        "geography",
-        "market",
-        "technology",
-        "competitor",
-        "timeFrame"
-      ],
-      "availableTimeFrames": [
-        "30d",
-        "60d",
-        "90d",
-        "1y",
-        "3y"
-      ],
-      "defaultState": "marketing-role-only",
-      "hiddenExpandedStates": [
-        "marketing-role-only"
-      ],
-      "externalLinks": [
-        "dynamic:sourceUrl",
-        "dynamic:url"
-      ],
-      "internalLinks": [
-        "#pmm-head-to-head"
-      ],
-      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
-      "refreshCollector": "scripts/refresh_daily.py",
-      "validationFunction": "tests/test_panel_manifest.py",
-      "dataMode": "derived"
-    },
-    {
-      "pageId": "index.html",
-      "parentPanelId": null,
-      "panelId": "pmm-governing-position",
-      "subpanelId": null,
-      "visibleTitle": "Governing Position",
-      "navigationRoute": "index.html#pmm-governing-position",
-      "htmlContainer": "#pmm-governing-position",
-      "renderFunction": "renderPmmGoverningPosition",
-      "sourceDataFiles": [
-        "data/intelligence.json"
-      ],
-      "sourceFields": [
-        "id",
-        "date",
-        "title",
-        "sourceUrl"
-      ],
-      "derivedFields": [
-        "filteredCount",
-        "asOfDate"
-      ],
-      "competitorsRepresented": [
-        "Waters",
-        "Agilent",
-        "Thermo Fisher",
-        "Shimadzu",
-        "SCIEX / Danaher",
-        "PerkinElmer / Revvity"
-      ],
-      "sourceFamiliesRepresented": [
-        "competitive_intelligence"
-      ],
-      "availableFilters": [
-        "role",
-        "geography",
-        "market",
-        "technology",
-        "competitor",
-        "timeFrame"
-      ],
-      "availableTimeFrames": [
-        "30d",
-        "60d",
-        "90d",
-        "1y",
-        "3y"
-      ],
-      "defaultState": "marketing-role-only",
-      "hiddenExpandedStates": [
-        "marketing-role-only"
-      ],
-      "externalLinks": [
-        "dynamic:sourceUrl",
-        "dynamic:url"
-      ],
-      "internalLinks": [
-        "#pmm-governing-position"
-      ],
-      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
-      "refreshCollector": "manual-curation:PMM_DATA_CONTRACT.md",
-      "validationFunction": "tests/test_panel_manifest.py",
-      "dataMode": "curated"
-    },
-    {
-      "pageId": "index.html",
-      "parentPanelId": null,
-      "panelId": "pmm-positioning-decisions",
-      "subpanelId": null,
-      "visibleTitle": "Positioning Decisions",
-      "navigationRoute": "index.html#pmm-positioning-decisions",
-      "htmlContainer": "#pmm-positioning-decisions",
-      "renderFunction": "renderPmmPositioningDecisions",
-      "sourceDataFiles": [
-        "data/intelligence.json",
-        "data/product_comparisons.json"
-      ],
-      "sourceFields": [
-        "id",
-        "date",
-        "title",
-        "sourceUrl"
-      ],
-      "derivedFields": [
-        "filteredCount",
-        "asOfDate"
-      ],
-      "competitorsRepresented": [
-        "Waters",
-        "Agilent",
-        "Thermo Fisher",
-        "Shimadzu",
-        "SCIEX / Danaher",
-        "PerkinElmer / Revvity"
-      ],
-      "sourceFamiliesRepresented": [
-        "competitive_intelligence",
-        "product"
-      ],
-      "availableFilters": [
-        "role",
-        "geography",
-        "market",
-        "technology",
-        "competitor",
-        "timeFrame"
-      ],
-      "availableTimeFrames": [
-        "30d",
-        "60d",
-        "90d",
-        "1y",
-        "3y"
-      ],
-      "defaultState": "marketing-role-only",
-      "hiddenExpandedStates": [
-        "marketing-role-only"
-      ],
-      "externalLinks": [
-        "dynamic:sourceUrl",
-        "dynamic:url"
-      ],
-      "internalLinks": [
-        "#pmm-positioning-decisions"
-      ],
-      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
-      "refreshCollector": "scripts/refresh_daily.py",
-      "validationFunction": "tests/test_panel_manifest.py",
-      "dataMode": "derived"
-    },
-    {
-      "pageId": "index.html",
-      "parentPanelId": null,
-      "panelId": "pmm-claims-risk",
-      "subpanelId": null,
-      "visibleTitle": "Claims and Risk",
-      "navigationRoute": "index.html#pmm-claims-risk",
-      "htmlContainer": "#pmm-claims-risk",
-      "renderFunction": "renderPmmClaimsRisk",
-      "sourceDataFiles": [
-        "data/intelligence.json",
-        "data/technical_comparisons.json"
-      ],
-      "sourceFields": [
-        "id",
-        "date",
-        "title",
-        "sourceUrl"
-      ],
-      "derivedFields": [
-        "filteredCount",
-        "asOfDate"
-      ],
-      "competitorsRepresented": [
-        "Waters",
-        "Agilent",
-        "Thermo Fisher",
-        "Shimadzu",
-        "SCIEX / Danaher",
-        "PerkinElmer / Revvity"
-      ],
-      "sourceFamiliesRepresented": [
-        "competitive_intelligence",
-        "product"
-      ],
-      "availableFilters": [
-        "role",
-        "geography",
-        "market",
-        "technology",
-        "competitor",
-        "timeFrame"
-      ],
-      "availableTimeFrames": [
-        "30d",
-        "60d",
-        "90d",
-        "1y",
-        "3y"
-      ],
-      "defaultState": "marketing-role-only",
-      "hiddenExpandedStates": [
-        "marketing-role-only"
-      ],
-      "externalLinks": [
-        "dynamic:sourceUrl",
-        "dynamic:url"
-      ],
-      "internalLinks": [
-        "#pmm-claims-risk"
-      ],
-      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
-      "refreshCollector": "scripts/refresh_daily.py",
-      "validationFunction": "tests/test_panel_manifest.py",
-      "dataMode": "derived"
-    },
-    {
-      "pageId": "index.html",
-      "parentPanelId": null,
-      "panelId": "pmm-segment-cascade",
-      "subpanelId": null,
-      "visibleTitle": "Segment Cascade",
-      "navigationRoute": "index.html#pmm-segment-cascade",
-      "htmlContainer": "#pmm-segment-cascade",
-      "renderFunction": "renderPmmSegmentCascade",
-      "sourceDataFiles": [
-        "data/intelligence.json",
-        "data/market_application_sources.json"
-      ],
-      "sourceFields": [
-        "id",
-        "date",
-        "title",
-        "sourceUrl"
-      ],
-      "derivedFields": [
-        "filteredCount",
-        "asOfDate"
-      ],
-      "competitorsRepresented": [
-        "Waters",
-        "Agilent",
-        "Thermo Fisher",
-        "Shimadzu",
-        "SCIEX / Danaher",
-        "PerkinElmer / Revvity"
-      ],
-      "sourceFamiliesRepresented": [
-        "competitive_intelligence"
-      ],
-      "availableFilters": [
-        "role",
-        "geography",
-        "market",
-        "technology",
-        "competitor",
-        "timeFrame"
-      ],
-      "availableTimeFrames": [
-        "30d",
-        "60d",
-        "90d",
-        "1y",
-        "3y"
-      ],
-      "defaultState": "marketing-role-only",
-      "hiddenExpandedStates": [
-        "marketing-role-only"
-      ],
-      "externalLinks": [
-        "dynamic:sourceUrl",
-        "dynamic:url"
-      ],
-      "internalLinks": [
-        "#pmm-segment-cascade"
-      ],
-      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
-      "refreshCollector": "scripts/refresh_daily.py",
-      "validationFunction": "tests/test_panel_manifest.py",
-      "dataMode": "derived"
-    },
-    {
-      "pageId": "index.html",
-      "parentPanelId": null,
-      "panelId": "pmm-competitive-narratives",
-      "subpanelId": null,
-      "visibleTitle": "Competitive Narratives",
-      "navigationRoute": "index.html#pmm-competitive-narratives",
-      "htmlContainer": "#pmm-competitive-narratives",
-      "renderFunction": "renderMarketingBattlecards",
-      "sourceDataFiles": [
-        "data/intelligence.json",
-        "data/product_comparisons.json",
-        "data/customer_voice.json",
-        "data/competitor_application_notes.json"
-      ],
-      "sourceFields": [
-        "id",
-        "date",
-        "title",
-        "sourceUrl"
-      ],
-      "derivedFields": [
-        "filteredCount",
-        "asOfDate"
-      ],
-      "competitorsRepresented": [
-        "Waters",
-        "Agilent",
-        "Thermo Fisher",
-        "Shimadzu",
-        "SCIEX / Danaher",
-        "PerkinElmer / Revvity"
-      ],
-      "sourceFamiliesRepresented": [
-        "competitive_intelligence",
-        "customer_voice",
-        "product"
-      ],
-      "availableFilters": [
-        "role",
-        "geography",
-        "market",
-        "technology",
-        "competitor",
-        "timeFrame"
-      ],
-      "availableTimeFrames": [
-        "30d",
-        "60d",
-        "90d",
-        "1y",
-        "3y"
-      ],
-      "defaultState": "marketing-role-only",
-      "hiddenExpandedStates": [
-        "marketing-role-only"
-      ],
-      "externalLinks": [
-        "dynamic:sourceUrl",
-        "dynamic:url"
-      ],
-      "internalLinks": [
-        "#pmm-competitive-narratives"
-      ],
-      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
-      "refreshCollector": "scripts/refresh_daily.py",
-      "validationFunction": "tests/test_panel_manifest.py",
-      "dataMode": "derived"
-    },
-    {
-      "pageId": "index.html",
-      "parentPanelId": null,
-      "panelId": "pmm-adoption-value",
-      "subpanelId": null,
-      "visibleTitle": "Adoption and Value",
-      "navigationRoute": "index.html#pmm-adoption-value",
-      "htmlContainer": "#pmm-adoption-value",
-      "renderFunction": "renderPmmAdoptionValue",
-      "sourceDataFiles": [
-        "data/intelligence.json",
-        "data/customer_voice.json"
-      ],
-      "sourceFields": [
-        "id",
-        "date",
-        "title",
-        "sourceUrl"
-      ],
-      "derivedFields": [
-        "filteredCount",
-        "asOfDate"
-      ],
-      "competitorsRepresented": [
-        "Waters",
-        "Agilent",
-        "Thermo Fisher",
-        "Shimadzu",
-        "SCIEX / Danaher",
-        "PerkinElmer / Revvity"
-      ],
-      "sourceFamiliesRepresented": [
-        "competitive_intelligence",
-        "customer_voice"
-      ],
-      "availableFilters": [
-        "role",
-        "geography",
-        "market",
-        "technology",
-        "competitor",
-        "timeFrame"
-      ],
-      "availableTimeFrames": [
-        "30d",
-        "60d",
-        "90d",
-        "1y",
-        "3y"
-      ],
-      "defaultState": "marketing-role-only",
-      "hiddenExpandedStates": [
-        "marketing-role-only"
-      ],
-      "externalLinks": [
-        "dynamic:sourceUrl",
-        "dynamic:url"
-      ],
-      "internalLinks": [
-        "#pmm-adoption-value"
-      ],
-      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
-      "refreshCollector": "scripts/refresh_daily.py",
-      "validationFunction": "tests/test_panel_manifest.py",
-      "dataMode": "derived"
-    },
-    {
-      "pageId": "index.html",
-      "parentPanelId": null,
-      "panelId": "pmm-activation-artifacts",
-      "subpanelId": null,
-      "visibleTitle": "Activation Artifacts",
-      "navigationRoute": "index.html#pmm-activation-artifacts",
-      "htmlContainer": "#pmm-activation-artifacts",
-      "renderFunction": "renderPmmActivationArtifacts",
-      "sourceDataFiles": [
-        "data/intelligence.json"
-      ],
-      "sourceFields": [
-        "id",
-        "date",
-        "title",
-        "sourceUrl"
-      ],
-      "derivedFields": [
-        "filteredCount",
-        "asOfDate"
-      ],
-      "competitorsRepresented": [
-        "Waters",
-        "Agilent",
-        "Thermo Fisher",
-        "Shimadzu",
-        "SCIEX / Danaher",
-        "PerkinElmer / Revvity"
-      ],
-      "sourceFamiliesRepresented": [
-        "competitive_intelligence"
-      ],
-      "availableFilters": [
-        "role",
-        "geography",
-        "market",
-        "technology",
-        "competitor",
-        "timeFrame"
-      ],
-      "availableTimeFrames": [
-        "30d",
-        "60d",
-        "90d",
-        "1y",
-        "3y"
-      ],
-      "defaultState": "marketing-role-only",
-      "hiddenExpandedStates": [
-        "marketing-role-only"
-      ],
-      "externalLinks": [
-        "dynamic:sourceUrl",
-        "dynamic:url"
-      ],
-      "internalLinks": [
-        "#pmm-activation-artifacts"
-      ],
-      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
-      "refreshCollector": "manual-curation:PMM_DATA_CONTRACT.md",
-      "validationFunction": "tests/test_panel_manifest.py",
-      "dataMode": "curated"
-    },
-    {
-      "pageId": "index.html",
-      "parentPanelId": null,
-      "panelId": "pmm-evidence-appendix",
-      "subpanelId": null,
-      "visibleTitle": "Evidence Appendix",
-      "navigationRoute": "index.html#pmm-evidence-appendix",
-      "htmlContainer": "#pmm-evidence-appendix",
-      "renderFunction": "renderPmmEvidenceAppendix",
-      "sourceDataFiles": [
-        "data/intelligence.json",
-        "data/customer_voice.json",
-        "data/filing_insights.json"
-      ],
-      "sourceFields": [
-        "id",
-        "date",
-        "title",
-        "sourceUrl"
-      ],
-      "derivedFields": [
-        "filteredCount",
-        "asOfDate"
-      ],
-      "competitorsRepresented": [
-        "Waters",
-        "Agilent",
-        "Thermo Fisher",
-        "Shimadzu",
-        "SCIEX / Danaher",
-        "PerkinElmer / Revvity"
-      ],
-      "sourceFamiliesRepresented": [
-        "competitive_intelligence",
-        "customer_voice",
-        "filing"
-      ],
-      "availableFilters": [
-        "role",
-        "geography",
-        "market",
-        "technology",
-        "competitor",
-        "timeFrame"
-      ],
-      "availableTimeFrames": [
-        "30d",
-        "60d",
-        "90d",
-        "1y",
-        "3y"
-      ],
-      "defaultState": "marketing-role-only",
-      "hiddenExpandedStates": [
-        "marketing-role-only"
-      ],
-      "externalLinks": [
-        "dynamic:sourceUrl",
-        "dynamic:url"
-      ],
-      "internalLinks": [
-        "#pmm-evidence-appendix"
-      ],
-      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
+      "currentAsOfDate": "2026-08-13",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -866,7 +191,7 @@
         "#leadership-brief"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
+      "currentAsOfDate": "2026-08-13",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -936,7 +261,7 @@
         "#overall-trend-analysis"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
+      "currentAsOfDate": "2026-08-13",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -1006,7 +331,7 @@
         "#competitor-intent-section"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
+      "currentAsOfDate": "2026-08-13",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -1076,7 +401,7 @@
         "#decisions-needed"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
+      "currentAsOfDate": "2026-08-13",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -1144,7 +469,7 @@
         "#customer-voice"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
+      "currentAsOfDate": "2026-08-13",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -1209,7 +534,7 @@
         "#customer-summary"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
+      "currentAsOfDate": "2026-08-13",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -1275,7 +600,7 @@
         "#customer-company"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
+      "currentAsOfDate": "2026-08-13",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -1341,7 +666,7 @@
         "#customer-evidence-classification"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
+      "currentAsOfDate": "2026-08-13",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -1409,7 +734,7 @@
         "#customer-roadmap-inputs"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
+      "currentAsOfDate": "2026-08-13",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -1474,72 +799,7 @@
         "#customer-needs"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
-      "refreshCollector": "scripts/refresh_daily.py",
-      "validationFunction": "tests/test_panel_manifest.py",
-      "dataMode": "derived"
-    },
-    {
-      "pageId": "index.html",
-      "parentPanelId": "customer-voice",
-      "panelId": "customer-positioning",
-      "subpanelId": "customer-positioning",
-      "visibleTitle": "Positioning",
-      "navigationRoute": "index.html#customer-positioning",
-      "htmlContainer": "[data-customer-voice-panel=\"positioning\"]",
-      "renderFunction": "renderMarketPositioning;renderCustomerSegments;renderCompetitiveCustomerSignals;renderCustomerPmInsights",
-      "sourceDataFiles": [
-        "data/customer_voice.json"
-      ],
-      "sourceFields": [
-        "id",
-        "date",
-        "title",
-        "sourceUrl"
-      ],
-      "derivedFields": [
-        "filteredCount",
-        "asOfDate"
-      ],
-      "competitorsRepresented": [
-        "Waters",
-        "Agilent",
-        "Thermo Fisher",
-        "Shimadzu",
-        "SCIEX / Danaher",
-        "PerkinElmer / Revvity"
-      ],
-      "sourceFamiliesRepresented": [
-        "customer_voice"
-      ],
-      "availableFilters": [
-        "role",
-        "geography",
-        "market",
-        "technology",
-        "competitor",
-        "timeFrame"
-      ],
-      "availableTimeFrames": [
-        "30d",
-        "60d",
-        "90d",
-        "1y",
-        "3y"
-      ],
-      "defaultState": "marketing-role-tab",
-      "hiddenExpandedStates": [
-        "marketing-role-tab"
-      ],
-      "externalLinks": [
-        "dynamic:sourceUrl",
-        "dynamic:url"
-      ],
-      "internalLinks": [
-        "#customer-positioning"
-      ],
-      "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
+      "currentAsOfDate": "2026-08-13",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -1606,7 +866,7 @@
         "#customer-evidence"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
+      "currentAsOfDate": "2026-08-13",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -1675,7 +935,7 @@
         "#product-comparator"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
+      "currentAsOfDate": "2026-08-13",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -1742,7 +1002,7 @@
         "#competitive-timeline-section"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
+      "currentAsOfDate": "2026-08-13",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -1813,7 +1073,7 @@
         "#competitive-capability-evidence"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
+      "currentAsOfDate": "2026-08-13",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -1879,7 +1139,7 @@
         "#metric-grid"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
+      "currentAsOfDate": "2026-08-13",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -1947,7 +1207,7 @@
         "#filing-evidence"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
+      "currentAsOfDate": "2026-08-13",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -2012,7 +1272,7 @@
         "#strategic-signals"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
+      "currentAsOfDate": "2026-08-13",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -2079,7 +1339,7 @@
         "#conference-intelligence"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
+      "currentAsOfDate": "2026-08-13",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -2145,7 +1405,7 @@
         "#journal-forum-sources"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
+      "currentAsOfDate": "2026-08-13",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -2211,7 +1471,7 @@
         "#shortHorizonDefensePanel"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
+      "currentAsOfDate": "2026-08-13",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -2280,7 +1540,7 @@
         "#application-trends"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
+      "currentAsOfDate": "2026-08-13",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -2347,7 +1607,7 @@
         "#evidence-signal-feed"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
+      "currentAsOfDate": "2026-08-13",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -2413,7 +1673,7 @@
         "#competitor-coverage"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
+      "currentAsOfDate": "2026-08-13",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -2484,7 +1744,7 @@
         "#decision-evidence-modal"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
+      "currentAsOfDate": "2026-08-13",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -2542,7 +1802,7 @@
       ],
       "internalLinks": [],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
+      "currentAsOfDate": "2026-08-13",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "interactive"
@@ -2606,7 +1866,7 @@
       ],
       "internalLinks": [],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
+      "currentAsOfDate": "2026-08-13",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -2670,7 +1930,7 @@
       ],
       "internalLinks": [],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
+      "currentAsOfDate": "2026-08-13",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -2733,7 +1993,7 @@
       ],
       "internalLinks": [],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
+      "currentAsOfDate": "2026-08-13",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -2797,7 +2057,7 @@
       ],
       "internalLinks": [],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
+      "currentAsOfDate": "2026-08-13",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -2860,7 +2120,7 @@
       ],
       "internalLinks": [],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
+      "currentAsOfDate": "2026-08-13",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -2918,7 +2178,7 @@
       ],
       "internalLinks": [],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
+      "currentAsOfDate": "2026-08-13",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "interactive"
@@ -2982,7 +2242,7 @@
       ],
       "internalLinks": [],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
+      "currentAsOfDate": "2026-08-13",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -3046,7 +2306,7 @@
       ],
       "internalLinks": [],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
+      "currentAsOfDate": "2026-08-13",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -3110,7 +2370,7 @@
       ],
       "internalLinks": [],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
+      "currentAsOfDate": "2026-08-13",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -3173,7 +2433,7 @@
       ],
       "internalLinks": [],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
+      "currentAsOfDate": "2026-08-13",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -3237,7 +2497,7 @@
       ],
       "internalLinks": [],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-02",
+      "currentAsOfDate": "2026-08-13",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"

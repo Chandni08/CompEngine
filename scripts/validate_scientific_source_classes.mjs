@@ -61,6 +61,19 @@ function officialHost(urlValue, expectedHost, prefix, errors) {
   }
 }
 
+function validatePublicConferenceRecords(event, prefix, errors) {
+  for (const record of event.contentRecords || []) {
+    const url = String(record.canonicalUrl || "");
+    if (!url) {
+      errors.push(`${prefix} has a content record without a canonical URL`);
+      continue;
+    }
+    if (/\b(?:login|signin|sign-in|oauth)\b/i.test(url) || /ssoexternallogin/i.test(url)) {
+      errors.push(`${prefix} exposes an access-control URL as public conference content`);
+    }
+  }
+}
+
 export function scientificSourceClassErrors(journalData, conferenceData, sourceCatalog) {
   const errors = [];
   const journals = new Map((journalData.sources || []).map((source) => [source.id, source]));
@@ -92,6 +105,7 @@ export function scientificSourceClassErrors(journalData, conferenceData, sourceC
     if (!Array.isArray(event.monitoringUrls) || event.monitoringUrls.length === 0) errors.push(`${id} has no monitoringUrls`);
     validateSegments(event, id, errors);
     validateSurfaces(event, id, errors);
+    validatePublicConferenceRecords(event, id, errors);
     officialHost(event.website, host, id, errors);
     const catalogEntry = catalog.get(`conference-${id}`);
     if (!catalogEntry || catalogEntry.sourceClass !== "Conference/poster") errors.push(`${id} is missing from source_catalog.json`);
