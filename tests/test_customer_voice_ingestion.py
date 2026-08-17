@@ -7,7 +7,13 @@ from unittest.mock import Mock
 
 import requests
 
-from scripts.collect_customer_voice import ADAPTERS, prune_out_of_scope_labwrench_feedback
+from datetime import datetime, timezone
+
+from scripts.collect_customer_voice import (
+    ADAPTERS,
+    prune_expired_unverifiable_reddit_feedback,
+    prune_out_of_scope_labwrench_feedback,
+)
 from scripts.customer_voice_ingestion import SOURCE_CREDIBILITY, EvidenceRecord
 from scripts.customer_voice_ingestion import chromforum, fda_bulk, labwrench, selectscience
 from scripts.customer_voice_ingestion.common import DEFAULT_CRAWL_DELAY_SECONDS, RobotsAwareClient, deduplicate_records, extract_page_date, parse_page
@@ -54,6 +60,45 @@ class CustomerVoiceScopeTests(unittest.TestCase):
 
 
 class CustomerVoiceSchemaTests(unittest.TestCase):
+    def test_expired_unverifiable_reddit_evidence_fails_closed(self) -> None:
+        expired_url = "https://www.reddit.com/r/CHROMATOGRAPHY/comments/expired/example/"
+        current_url = "https://www.reddit.com/r/CHROMATOGRAPHY/comments/current/example/"
+        forum_url = "https://www.chromforum.org/viewtopic.php?t=1"
+        data = {"feedback": [
+            {
+                "id": "expired-only",
+                "evidenceRecords": [{"url": expired_url, "sourceType": "reddit"}],
+            },
+            {
+                "id": "mixed",
+                "evidenceRecords": [
+                    {"url": expired_url, "sourceType": "reddit"},
+                    {"url": forum_url, "sourceType": "community_forum"},
+                ],
+            },
+            {
+                "id": "current-reddit",
+                "evidenceRecords": [{"url": current_url, "sourceType": "reddit"}],
+            },
+        ]}
+        cache = {
+            "maxAgeDays": 30,
+            "sources": [
+                {"url": expired_url, "validatedAt": "2026-07-01", "validationMethod": "full_source_text"},
+                {"url": current_url, "validatedAt": "2026-07-20", "validationMethod": "full_source_text"},
+            ],
+        }
+
+        removed_records, removed_feedback = prune_expired_unverifiable_reddit_feedback(
+            data,
+            cache,
+            now=datetime(2026, 8, 16, 20, 0, tzinfo=timezone.utc),
+        )
+
+        self.assertEqual((removed_records, removed_feedback), (2, 1))
+        self.assertEqual([item["id"] for item in data["feedback"]], ["mixed", "current-reddit"])
+        self.assertEqual(data["feedback"][0]["evidenceRecords"], [{"url": forum_url, "sourceType": "community_forum"}])
+
     def test_legacy_labwrench_navigation_noise_is_pruned(self) -> None:
         data = {"feedback": [
             {

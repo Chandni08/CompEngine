@@ -34,6 +34,17 @@ function newestDate(notes) {
   return notes.map((note) => String(note.date || "").slice(0, 10)).filter(Boolean).sort().at(-1) || null;
 }
 
+export function dateInTimeZone(value, timeZone = "America/New_York") {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(value);
+  const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+  return `${values.year}-${values.month}-${values.day}`;
+}
+
 export function validateCompetitorApplicationNotes(
   catalog,
   { now = new Date(), maxCatalogAgeHours = 36, maxCompetitorRecordAgeDays = 400 } = {},
@@ -47,8 +58,8 @@ export function validateCompetitorApplicationNotes(
   if (hoursOld(catalog?.generatedAt, now) > maxCatalogAgeHours) {
     errors.push(`catalog generatedAt is missing or older than ${maxCatalogAgeHours} hours`);
   }
-  const currentUtcDate = now.toISOString().slice(0, 10);
-  if (catalog?.asOfDate !== currentUtcDate) errors.push(`catalog asOfDate must be ${currentUtcDate}`);
+  const currentBusinessDate = dateInTimeZone(now);
+  if (catalog?.asOfDate !== currentBusinessDate) errors.push(`catalog asOfDate must be ${currentBusinessDate}`);
 
   notes.forEach((note, index) => {
     const prefix = `notes[${index}]`;
