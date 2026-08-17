@@ -23,6 +23,11 @@ PUBMED_OBSERVATIONS = Path(__file__).resolve().parents[1] / "data" / "pubmed_que
 USER_AGENT = "WatersCompetitiveIntelligenceEngine/0.2 (+https://www.waters.com/)"
 AUTOMATED_PUBMED_PREFIXES = ("pubmed-", "trend-")
 AUTOMATED_SEC_PREFIXES = ("sec-",)
+REVVITY_Q2_2026_ACCESSION = "0000031791-26-000022"
+REVVITY_Q2_2026_EXHIBIT_URL = (
+    "https://www.sec.gov/Archives/edgar/data/31791/000003179126000022/"
+    "q22026pressrelease.htm"
+)
 
 HORIZONS = {
     "30d": 30,
@@ -591,6 +596,63 @@ def collect_pubmed_signals() -> tuple[list[dict], dict]:
     return signals, trends
 
 
+def revvity_q2_2026_earnings_enrichment() -> dict:
+    """Return the official Q2 result without attributing Revvity to PerkinElmer."""
+    return {
+        "competitor": "Revvity, Inc.",
+        "registrant": "Revvity, Inc.",
+        "relatedOperatingBusiness": None,
+        "attributionBoundary": (
+            "Revvity is the former public PerkinElmer Life Sciences and Diagnostics company. "
+            "These are not financial results for the separately operated, privately held PerkinElmer business."
+        ),
+        "category": "Corporate intelligence",
+        "signalType": "Quarterly earnings result",
+        "title": "Revvity Announces Financial Results for the Second Quarter of 2026",
+        "summary": (
+            "Revvity reported $730 million of Q2 revenue and $1.41 of adjusted EPS. "
+            "For Waters PMs, the relevant segment split was Life Sciences revenue of $359 million "
+            "with pro forma organic revenue down 3%, versus Diagnostics revenue of $371 million "
+            "with pro forma organic revenue up 11%."
+        ),
+        "earningsMetrics": [
+            {"label": "Revenue", "value": "$730M", "change": "vs $720M one year ago"},
+            {"label": "Adjusted EPS", "value": "$1.41", "change": "vs $1.18 one year ago"},
+            {"label": "Life Sciences revenue", "value": "$359M", "change": "-3% pro forma organic"},
+            {"label": "Diagnostics revenue", "value": "$371M", "change": "+11% pro forma organic"},
+            {"label": "2026 revenue guidance", "value": "$2.83–$2.86B", "change": "raised; 4–5% pro forma organic"},
+        ],
+        "pmInsights": [
+            "Demand diverged sharply by segment: Diagnostics grew 11% on a pro forma organic basis while Life Sciences declined 3%.",
+            "Adjusted operating margin increased to 28.9%; the quarter included $16 million of tariff-related refunds, and management said it would reinvest a portion in growth opportunities.",
+            "Revvity raised full-year guidance and agreed to divest China Immunodiagnostics for up to $200 million, sharpening the portfolio around its remaining growth priorities.",
+        ],
+        "watersPmImplication": (
+            "Track whether Revvity's increased investment reaches life-science workflows, informatics, or customer programs, "
+            "but do not use Revvity's results as evidence of current PerkinElmer financial capacity or LC share movement."
+        ),
+        "evidenceBoundary": (
+            "Revvity does not separately report LC or chromatography revenue, units, pricing, or market share. "
+            "Revvity and the current PerkinElmer business have operated separately since the March 2023 divestiture."
+        ),
+        "sourceName": "SEC EDGAR Exhibit 99.1",
+        "sourceUrl": REVVITY_Q2_2026_EXHIBIT_URL,
+        "marketSegment": "Corporate",
+        "technology": "Portfolio",
+        "theme": "Quarterly earnings and end-market demand",
+        "intent": "Corporate performance and investment capacity",
+        "recommendation": (
+            "Use the segment divergence, raised guidance, and reinvestment language as Revvity context only; "
+            "keep current PerkinElmer conclusions grounded in PerkinElmer-owned sources."
+        ),
+        "supportingExcerpt": (
+            "Revenue of $730 million; pro forma revenue of $711 million; "
+            "4% pro forma revenue growth; 3% pro forma organic revenue growth"
+        ),
+        "sourceLocation": "SEC Exhibit 99.1 release headline and opening highlights",
+    }
+
+
 def collect_sec_signals() -> list[dict]:
     signals: list[dict] = []
     earliest_supported = TODAY - timedelta(days=HORIZONS["3y"])
@@ -630,8 +692,7 @@ def collect_sec_signals() -> list[dict]:
             accession_path = accession.replace("-", "")
             cik_path = str(int(cik))
             filing_url = f"https://www.sec.gov/Archives/edgar/data/{cik_path}/{accession_path}/{document}"
-            signals.append(
-                {
+            signal = {
                     "id": f"sec-{competitor['id']}-{accession}",
                     "date": filing_date,
                     "competitor": registrant,
@@ -655,7 +716,9 @@ def collect_sec_signals() -> list[dict]:
                     "intent": "Strategic disclosure or corporate event",
                     "recommendation": "Review filing language for capital-allocation priorities, segment focus, risk factors, and acquisition signals.",
                 }
-            )
+            if accession == REVVITY_Q2_2026_ACCESSION:
+                signal.update(revvity_q2_2026_earnings_enrichment())
+            signals.append(signal)
             added_by_form[form] += 1
             if all(added_by_form[key] >= limits[key] for key in limits):
                 break

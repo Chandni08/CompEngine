@@ -4,6 +4,49 @@ import test from "node:test";
 
 const read = (path) => readFile(new URL(path, import.meta.url), "utf8");
 
+function assertBalancedCssBlocks(source, label) {
+  const withoutComments = source.replace(/\/\*[\s\S]*?\*\//g, "");
+  let quote = "";
+  let escaped = false;
+  let depth = 0;
+
+  for (const character of withoutComments) {
+    if (quote) {
+      if (escaped) escaped = false;
+      else if (character === "\\") escaped = true;
+      else if (character === quote) quote = "";
+      continue;
+    }
+    if (character === '"' || character === "'") {
+      quote = character;
+      continue;
+    }
+    if (character === "{") depth += 1;
+    if (character === "}") depth -= 1;
+    assert.ok(depth >= 0, `${label} closes a CSS block that was never opened`);
+  }
+
+  assert.equal(quote, "", `${label} contains an unterminated string`);
+  assert.equal(depth, 0, `${label} contains an unclosed CSS block`);
+}
+
+test("production stylesheets contain balanced CSS blocks", async () => {
+  const paths = [
+    "../styles.css",
+    "../product-ui.css",
+    "../conference-page.css",
+    "../publication-page.css",
+    "../deploy-site/styles.css",
+    "../deploy-site/product-ui.css",
+    "../deploy-site/conference-page.css",
+    "../deploy-site/publication-page.css",
+  ];
+
+  for (const path of paths) {
+    assertBalancedCssBlocks(await read(path), path);
+  }
+});
+
 test("dashboard panels contain mobile-safe headers, actions, and wide data regions", async () => {
   const [html, app, styles, productStyles] = await Promise.all([
     read("../index.html"),

@@ -94,18 +94,20 @@ def repair_intelligence() -> dict[str, int]:
             sec_fixed += 1
 
         elif "/edgar/data/31791/" in url:
-            form_label = signal.get("title", "").split(" filed ")[-1] or "SEC filing"
             signal["registrant"] = "Revvity, Inc."
             signal["relatedOperatingBusiness"] = None
             signal["competitor"] = "Revvity, Inc."
-            signal["title"] = f"Revvity, Inc. filed {form_label}"
-            signal["summary"] = (
-                "Revvity, Inc. is the SEC registrant for CIK 31791. This filing must not be presented "
-                "as a filing by the separately operated PerkinElmer business."
-            )
-            signal["attributionBoundary"] = (
-                "Do not attribute this filing to PerkinElmer; use Revvity as the registrant."
-            )
+            is_q2_2026_earnings = signal.get("id") == "sec-perkinelmer-0000031791-26-000022"
+            if not is_q2_2026_earnings:
+                form_label = signal.get("title", "").split(" filed ")[-1] or "SEC filing"
+                signal["title"] = f"Revvity, Inc. filed {form_label}"
+                signal["summary"] = (
+                    "Revvity, Inc. is the SEC registrant for CIK 31791. This filing must not be presented "
+                    "as a filing by the separately operated PerkinElmer business."
+                )
+                signal["attributionBoundary"] = (
+                    "Do not attribute this filing to PerkinElmer; use Revvity as the registrant."
+                )
             signal["caveat"] = signal["attributionBoundary"]
             signal["evidenceStatus"] = "verified"
             sec_fixed += 1

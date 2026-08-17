@@ -9,6 +9,7 @@ from datetime import date, datetime, timedelta, timezone
 from html import unescape
 from pathlib import Path
 from xml.etree import ElementTree as ET
+from urllib.parse import unquote, urlsplit
 
 import requests
 
@@ -25,6 +26,12 @@ RECENT_RELEASE_REPLAY_DAYS = 120
 TERMS = ("lc-ms", "lc/ms", "liquid chromat", "hplc", "mass spect", "analytical", "laboratory", "workflow", "software", "partnership", "collaboration")
 LEGACY_DOMAIN = "https://perkinelmer.prod.acquia-sites.com"
 CURRENT_DOMAIN = "https://www.perkinelmer.com"
+TITLE_STOP_WORDS = {
+    "a", "an", "and", "are", "as", "at", "be", "been", "by", "for", "from",
+    "in", "into", "is", "it", "its", "more", "of", "on", "or", "our", "the",
+    "their", "this", "to", "with",
+}
+INCOMPLETE_TITLE_ENDINGS = {"a", "an", "and", "or", "the", "to", "for", "with", "of", "from", "in", "on", "at", "by", "its", "their", "our"}
 
 
 def now() -> str:
@@ -39,13 +46,68 @@ def normalize_url(url: str) -> str:
     return url.replace(LEGACY_DOMAIN, CURRENT_DOMAIN)
 
 
+def title_tokens(value: str) -> list[str]:
+    return [
+        token for token in re.findall(r"[a-z0-9]+", unquote(value).lower())
+        if len(token) >= 3 and token not in TITLE_STOP_WORDS and not token.isdigit()
+    ]
+
+
+def title_matches_url(title: str, url: str) -> bool:
+    slug = urlsplit(url).path.rstrip("/").rsplit("/", 1)[-1]
+    slug_tokens = set(title_tokens(slug))
+    page_tokens = set(title_tokens(title))
+    if not slug_tokens or not page_tokens:
+        return False
+    overlap = len(slug_tokens & page_tokens)
+    return overlap >= 2 and (
+        overlap / len(slug_tokens) >= 0.34
+        or overlap / len(page_tokens) >= 0.34
+    )
+
+
+def extract_release_title(html: str, url: str) -> str:
+    """Choose the longest page-specific heading corroborated by the permalink.
+
+    PerkinElmer's shared HTML title metadata can be stale, copied from a different
+    newsroom item, or cut off mid-sentence. The visible release heading and active
+    breadcrumb are page-specific, so they take part in candidate selection and the
+    permalink prevents an unrelated global title from being accepted.
+    """
+    parser = parse_page(url, html)
+    candidates: list[str] = []
+    patterns = (
+        r'<div[^>]+class=["\'][^"\']*without_image_desc[^"\']*["\'][^>]*>\s*<h2[^>]*>(.*?)</h2>',
+        r'<li[^>]+class=["\'][^"\']*breadcrumb-item[^"\']*active[^"\']*["\'][^>]*>(.*?)</li>',
+    )
+    for pattern in patterns:
+        for raw in re.findall(pattern, html, re.I | re.S):
+            candidate = clean_text(re.sub(r"<[^>]+>", " ", raw))
+            if candidate:
+                candidates.append(candidate)
+    metadata_title = clean_text(parser.meta.get("og:title") or parser.title).split("|", 1)[0].strip()
+    if metadata_title:
+        candidates.append(metadata_title)
+    matching = [
+        unescape(candidate) for candidate in dict.fromkeys(candidates)
+        if title_matches_url(candidate, url)
+    ]
+    # The explicit test below avoids accepting any common incomplete terminal
+    # word while retaining the list comprehension's stable candidate ordering.
+    matching = [
+        candidate for candidate in matching
+        if (re.findall(r"[a-z0-9]+", candidate.lower())[-1:] or [""])[0] not in INCOMPLETE_TITLE_ENDINGS
+    ]
+    return max(matching, key=len, default="")
+
+
 def page_title_date(client: RobotsAwareClient, url: str, fallback: str) -> tuple[str, str]:
     response = client.get(url, in_scope)
     html = public_html(response)
     if not html or response is None:
         return "", fallback
     parser = parse_page(response.url, html)
-    title = clean_text(parser.meta.get("og:title") or parser.title).split("|", 1)[0].strip()
+    title = extract_release_title(html, response.url)
     published = parser.meta.get("article:published_time") or parser.meta.get("date") or ""
     match = re.search(r"20\d{2}-\d{2}-\d{2}", published)
     return title, match.group(0) if match else fallback
@@ -94,7 +156,14 @@ def main() -> int:
         title, published = page_title_date(client, url, modified)
         if not title:
             continue
-        item = {"url": normalize_url(url), "title": unescape(title), "date": published, "lastmod": modified}
+        item = {
+            "url": normalize_url(url),
+            "title": unescape(title),
+            "date": published,
+            "lastmod": modified,
+            "sourceTitleVerified": True,
+            "titleSource": "page_content_url_match",
+        }
         item.update(release_metadata(title))
         news.append(item)
     products = [{"url": normalize_url(url), "lastmod": modified} for url, modified in sorted(product_candidates, key=lambda row: row[1], reverse=True)]

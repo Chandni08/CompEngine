@@ -1,0 +1,80 @@
+{
+  "verifiedAt": "2026-08-17T15:20:26Z",
+  "baseUrl": "https://waters-nextgen-competitive-engine.vercel.app/",
+  "result": "PASS_WITH_DISCLOSED_OPTIONAL_SOURCE_LIMITATIONS",
+  "pages": [
+    {
+      "path": "/",
+      "status": "PASS",
+      "checks": [
+        "2026-08-17 build and source-verification dates rendered",
+        "30-day view rendered one evidence-supported decision",
+        "Coming Next rendered IMSC 2026 starting August 22",
+        "Bioprocessing Summit US was absent from upcoming dashboard content",
+        "All 49 registered panel containers resolved across their applicable static, filtered, and dynamic states",
+        "One-year All-markets state rendered the dynamic Roadmap Decision Inputs panel",
+        "No document-level horizontal overflow or loading error was observed"
+      ]
+    },
+    {
+      "path": "/conference",
+      "status": "PASS",
+      "checks": [
+        "Six upcoming events and nineteen competitor appearances rendered",
+        "IMSC 2026 was selected as the next conference",
+        "Bioprocessing Summit US was absent from the upcoming event list",
+        "No document-level horizontal overflow or loading error was observed"
+      ]
+    },
+    {
+      "path": "/publications",
+      "status": "PASS",
+      "checks": [
+        "Sixteen source streams and 2,120 records rendered in the default period",
+        "The top workflow and newest-source highlights rendered from the refreshed data",
+        "No document-level horizontal overflow or loading error was observed"
+      ]
+    }
+  ],
+  "responsive": {
+    "status": "PASS",
+    "verification": "Automated responsive and balanced-CSS regression suite",
+    "tests": [
+      "dashboard panels retain mobile-safe headers, actions, and wide-data regions",
+      "conference and publication subpages retain responsive breakpoints",
+      "decision cards step from three columns to responsive layouts",
+      "source and deployment responsive assets are identical"
+    ]
+  },
+  "dataIntegrity": {
+    "asOfDate": "2026-08-17",
+    "signals": 448,
+    "signalsInLast30Days": 92,
+    "recommendations": 3,
+    "registeredPanels": 49,
+    "sourceDeployJsonFilesCompared": 33,
+    "allByteIdentical": true,
+    "productionFilesCompared": 11,
+    "productionFilesIdenticalToDeployBundle": true,
+    "deadLinks": 0,
+    "mislinks": 0,
+    "blockedOrPolicyRestrictedLinks": 2513,
+    "allRequiredSourcesCurrent": true,
+    "requiredSourceBlockers": []
+  },
+  "sourceStates": {
+    "CURRENT": 64,
+    "PARTIAL": 15,
+    "BLOCKED": 11,
+    "ERROR": 2,
+    "UNVERIFIED": 1,
+    "STALE": 0,
+    "MISSING": 0,
+    "DISABLED": 0
+  },
+  "limitations": [
+    "Reddit collection remains unverified because OAuth credentials are not configured.",
+    "Optional sources with access, preview, or policy restrictions remain labeled PARTIAL, BLOCKED, ERROR, or UNVERIFIED; they are not promoted to current.",
+    "Blocked or policy-restricted external URLs are not classified as dead."
+  ]
+}

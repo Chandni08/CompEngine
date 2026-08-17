@@ -6,6 +6,7 @@ import json
 import os
 import tempfile
 import unittest
+from datetime import date, datetime, timezone
 from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import patch
@@ -17,7 +18,7 @@ for candidate in (str(ROOT), str(SCRIPTS)):
     if candidate not in sys.path:
         sys.path.insert(0, candidate)
 
-from scripts import collect_customer_voice, collect_real_data, collect_scientific_sources, refresh_daily
+from scripts import collect_agilent, collect_competitors, collect_customer_voice, collect_real_data, collect_scientific_sources, refresh_daily
 from scripts.customer_voice_ingestion import chromforum, labwrench, selectscience
 from scripts.source_health import SourceHealth, migrate_legacy_source, write_ledger
 
@@ -38,6 +39,71 @@ class FakeClient:
 
 
 class SourceHealthContractTests(unittest.TestCase):
+    def test_agilent_detail_enrichment_rejects_access_denied_bodies(self) -> None:
+        self.assertFalse(collect_agilent.valid_detail_page_content(
+            "Access Denied",
+            "You don't have permission to access this URL. errors.edgesuite.net",
+        ))
+        self.assertTrue(collect_agilent.valid_detail_page_content(
+            "Agilent launches an LC workflow",
+            "The official release describes the new chromatography workflow.",
+        ))
+
+    def test_thermo_browser_cache_requires_exact_archive_count_and_high_water(self) -> None:
+        newest_url = "https://example.com/new"
+        releases = {
+            newest_url: {"date": "2026-08-12", "title": "Newest official release", "url": newest_url},
+            "https://example.com/old": {"date": "2026-07-23", "title": "Older official release", "url": "https://example.com/old"},
+        }
+        cache = {
+            "validationMethod": "full_official_archive_dom",
+            "verifiedAt": "2026-08-17T12:00:00Z",
+            "maxAgeHours": 24,
+            "asOfYear": 2026,
+            "sourceCount": 2,
+            "newestDate": "2026-08-12",
+            "newestTitle": "Newest official release",
+            "newestUrl": newest_url,
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            cache_path = Path(directory) / "cache.json"
+            snapshot_dir = Path(directory) / "snapshots"
+            snapshot_dir.mkdir()
+            cache_path.write_text(json.dumps(cache), encoding="utf-8")
+            (snapshot_dir / "thermo.json").write_text(json.dumps({"pressReleases": releases}), encoding="utf-8")
+            with patch.object(collect_competitors, "THERMO_PRESS_BROWSER_CACHE_FILE", cache_path), patch.object(collect_competitors, "SNAPSHOT_DIR", snapshot_dir), patch.object(collect_competitors, "date") as mocked_date:
+                mocked_date.today.return_value = date(2026, 8, 17)
+                result = collect_competitors.cached_thermo_browser_verified_releases(
+                    datetime(2026, 8, 17, 14, tzinfo=timezone.utc)
+                )
+        self.assertEqual(result, releases)
+
+    def test_agilent_browser_cache_requires_recent_full_archive_and_matching_high_water(self) -> None:
+        releases = {
+            "https://example.com/new": {"date": "2026-07-29", "title": "Newest official release"},
+            "https://example.com/old": {"date": "2026-07-28", "title": "Older official release"},
+        }
+        cache = {
+            "validationMethod": "full_official_archive_dom",
+            "verifiedAt": "2026-08-17T12:00:00Z",
+            "maxAgeHours": 24,
+            "asOfYear": 2026,
+            "sourceCount": 2,
+            "newestDate": "2026-07-29",
+            "newestTitle": "Newest official release",
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            cache_path = Path(directory) / "cache.json"
+            snapshot_path = Path(directory) / "snapshot.json"
+            cache_path.write_text(json.dumps(cache), encoding="utf-8")
+            snapshot_path.write_text(json.dumps({"pressReleases": releases}), encoding="utf-8")
+            with patch.object(collect_agilent, "PRESS_BROWSER_CACHE_FILE", cache_path), patch.object(collect_agilent, "SNAPSHOT_FILE", snapshot_path), patch.object(collect_agilent, "date") as mocked_date:
+                mocked_date.today.return_value = date(2026, 8, 17)
+                result = collect_agilent.cached_browser_verified_releases(
+                    datetime(2026, 8, 17, 14, tzinfo=timezone.utc)
+                )
+        self.assertEqual(result, releases)
+
     def test_newest_source_url_must_match_the_newest_ingested_url(self) -> None:
         source = SourceHealth(
             "press", "https://example.com/news", True, "archive", "collected", "2026-08-16T00:00:00Z",

@@ -8,6 +8,7 @@ import html
 import json
 import re
 import sys
+import time
 from datetime import date, datetime, timedelta, timezone
 from email.utils import parsedate_to_datetime
 from pathlib import Path
@@ -252,11 +253,18 @@ def fetch(url: str, *, accept_json: bool = False) -> tuple[int, str, str]:
     headers = dict(HEADERS)
     if accept_json:
         headers["Accept"] = "application/json"
-    try:
-        response = requests.get(url, headers=headers, timeout=TIMEOUT, verify=certifi.where(), allow_redirects=True)
-        return response.status_code, response.url, response.text
-    except requests.RequestException as error:
-        return 0, url, str(error)
+    last_status, last_url, last_body = 0, url, ""
+    for attempt in range(3):
+        try:
+            response = requests.get(url, headers=headers, timeout=TIMEOUT, verify=certifi.where(), allow_redirects=True)
+            last_status, last_url, last_body = response.status_code, response.url, response.text
+            if response.status_code not in {408, 425, 429, 500, 502, 503, 504}:
+                return last_status, last_url, last_body
+        except requests.RequestException as error:
+            last_status, last_url, last_body = 0, url, str(error)
+        if attempt < 2:
+            time.sleep(attempt + 1)
+    return last_status, last_url, last_body
 
 
 def fetch_public_metadata(url: str) -> tuple[int, str, str]:

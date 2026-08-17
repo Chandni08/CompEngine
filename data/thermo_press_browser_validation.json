@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "validationMethod": "full_official_archive_dom",
+  "verifiedAt": "2026-08-17T14:41:45Z",
+  "maxAgeHours": 24,
+  "asOfYear": 2026,
+  "sourceUrl": "https://ir.thermofisher.com/investors/news-events/news/default.aspx",
+  "sourceCount": 19,
+  "newestDate": "2026-08-12",
+  "newestTitle": "Thermo Fisher Scientific Completes Sale of its Microbiology Business to Astorg",
+  "newestUrl": "https://ir.thermofisher.com/investors/news-events/news/news-details/2026/Thermo-Fisher-Scientific-Completes-Sale-of-its-Microbiology-Business-to-Astorg/default.aspx",
+  "verificationNote": "A signed-in-capable real browser loaded the complete official 2026 investor-relations archive DOM. The count and newest record matched the retained official API snapshot exactly while the API endpoint was temporarily rate-limited."
+}

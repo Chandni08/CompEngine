@@ -1,22 +1,26 @@
 {
-  "generatedAt": "2026-08-16T20:25:32+00:00",
+  "generatedAt": "2026-08-17T18:02:33+00:00",
   "competitor": "PerkinElmer",
-  "windowStart": "2023-08-17",
+  "windowStart": "2023-08-18",
   "newsroom": [
     {
       "url": "https://www.perkinelmer.com/be/corporate-and-newsroom/project-farma-acquires-simotech",
-      "title": "PerkinElmer Publishes 2025 Sustainability Report, Advancing its Commitment to Cleaner Science and a",
+      "title": "Project Farma Acquires SimoTech, Bringing End-to-End GMP Automation and Digital Manufacturing Capabilities to Life Sciences Customers Worldwide",
       "date": "2026-08-11",
       "lastmod": "2026-08-11",
+      "sourceTitleVerified": true,
+      "titleSource": "page_content_url_match",
       "classification": "corporate",
-      "signalType": "Press release",
-      "theme": "Corporate activity"
+      "signalType": "Corporate move",
+      "theme": "Portfolio expansion and corporate development"
     },
     {
       "url": "https://www.perkinelmer.com/be/corporate-and-newsroom/perkinelmer-publishes-2025-sustainability-report-advancing-its-commitment-cleaner-science-and-more-sustainable-future",
-      "title": "PerkinElmer Publishes 2025 Sustainability Report, Advancing its Commitment to Cleaner Science and a",
+      "title": "PerkinElmer Publishes 2025 Sustainability Report, Advancing its Commitment to Cleaner Science and a More Sustainable Future",
       "date": "2026-07-15",
       "lastmod": "2026-07-15",
+      "sourceTitleVerified": true,
+      "titleSource": "page_content_url_match",
       "classification": "corporate",
       "signalType": "Press release",
       "theme": "Corporate activity"
@@ -26,15 +30,19 @@
       "title": "PerkinElmer Partners with eXXpedition to Advance Ocean Science and a More Sustainable Future",
       "date": "2026-07-13",
       "lastmod": "2026-07-13",
+      "sourceTitleVerified": true,
+      "titleSource": "page_content_url_match",
       "classification": "corporate",
       "signalType": "Press release",
       "theme": "Corporate activity"
     },
     {
       "url": "https://www.perkinelmer.com/be/corporate-and-newsroom/perkinelmer-and-covalent-announce-strategic-collaboration",
-      "title": "PerkinElmer and Covalent Announce Strategic Collaboration to Advance Failure Analysis and Materials",
+      "title": "PerkinElmer and Covalent Announce Strategic Collaboration to Advance Failure Analysis and Materials Characterization for Semiconductor, Electronics, and Battery Industries",
       "date": "2026-07-09",
       "lastmod": "2026-07-09",
+      "sourceTitleVerified": true,
+      "titleSource": "page_content_url_match",
       "classification": "corporate",
       "signalType": "Press release",
       "theme": "Corporate activity"
@@ -44,33 +52,41 @@
       "title": "PerkinElmer CEO Michael Stubblefield Joins US-China Business Council Board of Directors",
       "date": "2026-06-17",
       "lastmod": "2026-06-17",
+      "sourceTitleVerified": true,
+      "titleSource": "page_content_url_match",
       "classification": "corporate",
       "signalType": "Press release",
       "theme": "Corporate activity"
     },
     {
       "url": "https://www.perkinelmer.com/be/corporate-and-newsroom/project-farma-expands-pmis-offering-oracle-primavera-cloud",
-      "title": "Project Farma Partners with Valkit.ai - Modernizing Digital Validation with AI",
+      "title": "Project Farma Expands PMIS Offering with Oracle Primavera Cloud to Address Growing Pharma Capital Project Complexity",
       "date": "2026-06-08",
       "lastmod": "2026-06-08",
-      "classification": "corporate",
+      "sourceTitleVerified": true,
+      "titleSource": "page_content_url_match",
+      "classification": "product",
       "signalType": "Press release",
-      "theme": "Corporate activity"
+      "theme": "Product and workflow expansion"
     },
     {
       "url": "https://www.perkinelmer.com/be/corporate-and-newsroom/project-farma-partners-valkitai",
       "title": "Project Farma Partners with Valkit.ai - Modernizing Digital Validation with AI",
       "date": "2026-05-28",
       "lastmod": "2026-05-28",
+      "sourceTitleVerified": true,
+      "titleSource": "page_content_url_match",
       "classification": "corporate",
       "signalType": "Press release",
       "theme": "Corporate activity"
     },
     {
       "url": "https://www.perkinelmer.com/be/corporate-and-newsroom/lactoscope-500-delivers-next-level-dairy-analysis-greater-accuracy-stability-and-operational",
-      "title": "LactoScope 500 Delivers Next-Level Dairy Analysis, for Greater Accuracy, Stability, and Operational",
+      "title": "LactoScope 500 Delivers Next-Level Dairy Analysis, for Greater Accuracy, Stability, and Operational Control",
       "date": "2026-05-13",
       "lastmod": "2026-05-13",
+      "sourceTitleVerified": true,
+      "titleSource": "page_content_url_match",
       "classification": "corporate",
       "signalType": "Press release",
       "theme": "Corporate activity"
@@ -80,6 +96,8 @@
       "title": "PacBio and Covaris Announce Joint Workflow Enabling HiFi Sequencing of FFPE Tumor Samples",
       "date": "2026-04-15",
       "lastmod": "2026-04-15",
+      "sourceTitleVerified": true,
+      "titleSource": "page_content_url_match",
       "classification": "corporate",
       "signalType": "Press release",
       "theme": "Corporate activity"
@@ -89,6 +107,8 @@
       "title": "Strategic Partnership between Covaris and Hamilton Empowers Labs with Sonication STAR",
       "date": "2025-07-29",
       "lastmod": "2025-07-29",
+      "sourceTitleVerified": true,
+      "titleSource": "page_content_url_match",
       "classification": "corporate",
       "signalType": "Press release",
       "theme": "Corporate activity"
@@ -97,18 +117,22 @@
   "recent_press_releases": [
     {
       "url": "https://www.perkinelmer.com/be/corporate-and-newsroom/project-farma-acquires-simotech",
-      "title": "PerkinElmer Publishes 2025 Sustainability Report, Advancing its Commitment to Cleaner Science and a",
+      "title": "Project Farma Acquires SimoTech, Bringing End-to-End GMP Automation and Digital Manufacturing Capabilities to Life Sciences Customers Worldwide",
       "date": "2026-08-11",
       "lastmod": "2026-08-11",
+      "sourceTitleVerified": true,
+      "titleSource": "page_content_url_match",
       "classification": "corporate",
-      "signalType": "Press release",
-      "theme": "Corporate activity"
+      "signalType": "Corporate move",
+      "theme": "Portfolio expansion and corporate development"
     },
     {
       "url": "https://www.perkinelmer.com/be/corporate-and-newsroom/perkinelmer-publishes-2025-sustainability-report-advancing-its-commitment-cleaner-science-and-more-sustainable-future",
-      "title": "PerkinElmer Publishes 2025 Sustainability Report, Advancing its Commitment to Cleaner Science and a",
+      "title": "PerkinElmer Publishes 2025 Sustainability Report, Advancing its Commitment to Cleaner Science and a More Sustainable Future",
       "date": "2026-07-15",
       "lastmod": "2026-07-15",
+      "sourceTitleVerified": true,
+      "titleSource": "page_content_url_match",
       "classification": "corporate",
       "signalType": "Press release",
       "theme": "Corporate activity"
@@ -118,15 +142,19 @@
       "title": "PerkinElmer Partners with eXXpedition to Advance Ocean Science and a More Sustainable Future",
       "date": "2026-07-13",
       "lastmod": "2026-07-13",
+      "sourceTitleVerified": true,
+      "titleSource": "page_content_url_match",
       "classification": "corporate",
       "signalType": "Press release",
       "theme": "Corporate activity"
     },
     {
       "url": "https://www.perkinelmer.com/be/corporate-and-newsroom/perkinelmer-and-covalent-announce-strategic-collaboration",
-      "title": "PerkinElmer and Covalent Announce Strategic Collaboration to Advance Failure Analysis and Materials",
+      "title": "PerkinElmer and Covalent Announce Strategic Collaboration to Advance Failure Analysis and Materials Characterization for Semiconductor, Electronics, and Battery Industries",
       "date": "2026-07-09",
       "lastmod": "2026-07-09",
+      "sourceTitleVerified": true,
+      "titleSource": "page_content_url_match",
       "classification": "corporate",
       "signalType": "Press release",
       "theme": "Corporate activity"
@@ -136,33 +164,41 @@
       "title": "PerkinElmer CEO Michael Stubblefield Joins US-China Business Council Board of Directors",
       "date": "2026-06-17",
       "lastmod": "2026-06-17",
+      "sourceTitleVerified": true,
+      "titleSource": "page_content_url_match",
       "classification": "corporate",
       "signalType": "Press release",
       "theme": "Corporate activity"
     },
     {
       "url": "https://www.perkinelmer.com/be/corporate-and-newsroom/project-farma-expands-pmis-offering-oracle-primavera-cloud",
-      "title": "Project Farma Partners with Valkit.ai - Modernizing Digital Validation with AI",
+      "title": "Project Farma Expands PMIS Offering with Oracle Primavera Cloud to Address Growing Pharma Capital Project Complexity",
       "date": "2026-06-08",
       "lastmod": "2026-06-08",
-      "classification": "corporate",
+      "sourceTitleVerified": true,
+      "titleSource": "page_content_url_match",
+      "classification": "product",
       "signalType": "Press release",
-      "theme": "Corporate activity"
+      "theme": "Product and workflow expansion"
     },
     {
       "url": "https://www.perkinelmer.com/be/corporate-and-newsroom/project-farma-partners-valkitai",
       "title": "Project Farma Partners with Valkit.ai - Modernizing Digital Validation with AI",
       "date": "2026-05-28",
       "lastmod": "2026-05-28",
+      "sourceTitleVerified": true,
+      "titleSource": "page_content_url_match",
       "classification": "corporate",
       "signalType": "Press release",
       "theme": "Corporate activity"
     },
     {
       "url": "https://www.perkinelmer.com/be/corporate-and-newsroom/lactoscope-500-delivers-next-level-dairy-analysis-greater-accuracy-stability-and-operational",
-      "title": "LactoScope 500 Delivers Next-Level Dairy Analysis, for Greater Accuracy, Stability, and Operational",
+      "title": "LactoScope 500 Delivers Next-Level Dairy Analysis, for Greater Accuracy, Stability, and Operational Control",
       "date": "2026-05-13",
       "lastmod": "2026-05-13",
+      "sourceTitleVerified": true,
+      "titleSource": "page_content_url_match",
       "classification": "corporate",
       "signalType": "Press release",
       "theme": "Corporate activity"
@@ -495,8 +531,8 @@
       "sourceId": "perkinelmer-news",
       "url": "https://www.perkinelmer.com/corporate-and-newsroom",
       "method": "official_sitemap_and_public_pages",
-      "attemptedAt": "2026-08-16T20:25:32+00:00",
-      "succeededAt": "2026-08-16T20:25:32+00:00",
+      "attemptedAt": "2026-08-17T18:02:33+00:00",
+      "succeededAt": "2026-08-17T18:02:33+00:00",
       "recordsSeen": 10,
       "recordsIngested": 10,
       "engineNewestDate": "2026-08-11",
@@ -510,8 +546,8 @@
       "sourceId": "perkinelmer-lc-products",
       "url": "https://www.perkinelmer.com/category/liquid-chromatography",
       "method": "official_sitemap",
-      "attemptedAt": "2026-08-16T20:25:32+00:00",
-      "succeededAt": "2026-08-16T20:25:32+00:00",
+      "attemptedAt": "2026-08-17T18:02:33+00:00",
+      "succeededAt": "2026-08-17T18:02:33+00:00",
       "recordsSeen": 80,
       "recordsIngested": 80,
       "engineNewestDate": "2026-04-24",

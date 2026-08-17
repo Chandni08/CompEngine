@@ -1,0 +1,461 @@
+{
+  "asOfDate": "2026-08-17",
+  "methodology": "Person profiles synthesize official biographies, role histories, company announcements, and actions publicly associated with the leader's remit. 'Operating pattern' means a repeated public career or decision pattern, not personality. 'Likely focus' is an analyst hypothesis and is never presented as a private intention or confirmed plan.",
+  "people": [
+    {
+      "id": "agilent-padraig-mcdonnell",
+      "competitor": "Agilent",
+      "name": "Padraig McDonnell",
+      "careerArc": [
+        "Started as an HP/Agilent customer engineer in 1998, then moved through account, sales, regional, and business-unit leadership.",
+        "Led Chemistries and Supplies before becoming President of CrossLab in 2020 and Chief Commercial Officer in 2021.",
+        "Became Agilent President and CEO in May 2024."
+      ],
+      "operatingPattern": {
+        "label": "Customer-lifecycle operator",
+        "summary": "His public career repeatedly connects field service, sales, consumables, commercial operations, and whole-product delivery. Agilent describes his approach through customer lifetime value, digitally enabled delivery, customer journey improvement, and removing obstacles for teams.",
+        "evidenceStrength": "High"
+      },
+      "companyChanges": [
+        {
+          "date": "2024-02-21",
+          "title": "CrossLab growth and customer-experience transformation",
+          "detail": "Agilent credited his CrossLab tenure with service growth, profitability improvement, customer satisfaction improvement, and transformation of the end-to-end customer journey.",
+          "attribution": "Directly attributed by Agilent",
+          "sourceName": "Agilent · CEO succession announcement",
+          "sourceUrl": "https://www.agilent.com/about/newsroom/presrel/2024/21feb-gp24006.html"
+        },
+        {
+          "date": "2024-11-25",
+          "title": "Market-focused organizational structure",
+          "detail": "As CEO, he announced an end-market structure intended to make Agilent nimbler, improve cross-division collaboration, and accelerate customer-first solutions.",
+          "attribution": "Announced and sponsored as CEO",
+          "sourceName": "Agilent · Market-focused structure",
+          "sourceUrl": "https://www.agilent.com/about/newsroom/presrel/2024/25nov-gp24027.html"
+        }
+      ],
+      "likelyFocus": {
+        "statement": "Speeding market-oriented execution while using CrossLab services, software, automation, consumables, and instrument installed base as one customer-lifecycle system.",
+        "basis": "Derived from his service/commercial career, customer-journey work, and the structure he announced—not from private intent.",
+        "confidence": "Directional"
+      },
+      "sources": [
+        {"name":"Agilent · Executive biography","url":"https://www.agilent.com/about/companyinfo/leadership/agilent-executive-mcdonnell.html"},
+        {"name":"Agilent · Meet the CEO","url":"https://www.agilent.com/about/features/ceo/?sf4692610=1"}
+      ]
+    },
+    {
+      "id": "agilent-simon-may",
+      "competitor": "Agilent",
+      "name": "Simon May",
+      "careerArc": [
+        "Began in laboratory research before moving into sales, product management, commercial operations, and business leadership.",
+        "Held Thermo Fisher roles, then led Global Commercial Operations, Digital Biology, and the Life Science Group at Bio-Rad.",
+        "Joined Agilent in 2024 and now leads the Life Sciences and Diagnostics Markets Group."
+      ],
+      "operatingPattern": {
+        "label": "Science-to-commercial portfolio builder",
+        "summary": "His public path alternates between product, commercial, digital-biology, and general-management responsibility. The repeated pattern is translating scientific-market context into portfolio and commercial execution across a broad life-science group.",
+        "evidenceStrength": "Medium"
+      },
+      "companyChanges": [
+        {
+          "date": "2024-11-25",
+          "title": "Assigned leadership of the new LDG market group",
+          "detail": "Agilent named him to lead the Life Sciences and Diagnostics group created in its customer- and market-focused reorganization.",
+          "attribution": "Role assignment; completed outcomes are not yet publicly attributed",
+          "sourceName": "Agilent · Market-focused structure",
+          "sourceUrl": "https://www.agilent.com/about/newsroom/presrel/2024/25nov-gp24027.html"
+        }
+      ],
+      "likelyFocus": {
+        "statement": "Aligning LC-MS, diagnostics, genomics, and life-science product lines to end-market growth priorities with stronger commercial and workflow pull-through.",
+        "basis": "Derived from his laboratory-to-product-to-commercial career and current group remit; Agilent has not publicly assigned specific results to him yet.",
+        "confidence": "Directional"
+      },
+      "sources": [
+        {"name":"Agilent · Executive biography","url":"https://www.agilent.com/about/companyinfo/leadership/agilent-executive-may.html"}
+      ]
+    },
+    {
+      "id": "thermo-marc-casper",
+      "competitor": "Thermo Fisher",
+      "name": "Marc N. Casper",
+      "careerArc": [
+        "Has led Thermo Fisher as CEO since 2009 and became Chairman in 2020.",
+        "Built a long-running operating model around high-impact innovation, the PPI Business System, commercial scale, and disciplined capital deployment.",
+        "Continues as Chairman and CEO after the 2026 separation of President and COO responsibilities."
+      ],
+      "operatingPattern": {
+        "label": "Scale, process, and capital discipline",
+        "summary": "Across investor communications, he repeatedly uses the same system: PPI continuous improvement, high-impact innovation, trusted-partner customer depth, global commercial reach, and selective M&A followed by integration.",
+        "evidenceStrength": "High"
+      },
+      "companyChanges": [
+        {
+          "date": "2024-07-24",
+          "title": "Expanded proteomics capability through Olink",
+          "detail": "Thermo Fisher completed the Olink acquisition to extend its protein-research and precision-medicine capabilities alongside its existing analytical platforms.",
+          "attribution": "Enterprise capital-deployment decision under CEO tenure",
+          "sourceName": "Thermo Fisher · Q2 2024 results",
+          "sourceUrl": "https://ir.thermofisher.com/investors/news-events/news/news-details/2024/Thermo-Fisher-Scientific-Reports-Second-Quarter-2024-Results/default.aspx"
+        },
+        {
+          "date": "2026-05-20",
+          "title": "Made AI and PPI central to the next growth cycle",
+          "detail": "The 2026 Investor Day positioned AI as an accelerator across scientific discovery, customer productivity, and PPI-enabled internal execution.",
+          "attribution": "Strategy presented by CEO and senior leadership",
+          "sourceName": "Thermo Fisher · 2026 Investor Day",
+          "sourceUrl": "https://ir.thermofisher.com/investors/news-events/news/news-details/2026/Thermo-Fisher-Scientific-Highlights-Industry-Leadership-Growth-Outlook-and-Long-Term-Value-Creation-at-2026-Investor-Day/default.aspx"
+        }
+      ],
+      "likelyFocus": {
+        "statement": "Using AI, automation, PPI, and acquisitions to deepen Thermo Fisher's end-to-end customer platform and sustain share gain across the drug-development value chain.",
+        "basis": "Directly grounded in the company's 2026 Investor Day framework; the LC-MS consequence remains an analyst inference.",
+        "confidence": "Directional"
+      },
+      "sources": [
+        {"name":"Thermo Fisher · Leadership","url":"https://ir.thermofisher.com/investors/corporate-governance/leadership/default.aspx?print=1"}
+      ]
+    },
+    {
+      "id": "thermo-gianluca-pettiti",
+      "competitor": "Thermo Fisher",
+      "name": "Gianluca Pettiti",
+      "careerArc": [
+        "Joined the company in 2006 through Life Technologies finance leadership, then ran Latin America, Greater China, and China businesses.",
+        "Progressed through Biosciences, Specialty Diagnostics, Clinical NGS, and Life Sciences, Diagnostics and Applied leadership.",
+        "Became President and COO and President, Products & Technologies in March 2026."
+      ],
+      "operatingPattern": {
+        "label": "Cross-region, cross-portfolio integrator",
+        "summary": "His repeated assignments broaden from finance and regional P&L roles into biosciences, diagnostics, sequencing, applied markets, and now enterprise operations. The public pattern is integration across geographies and technology businesses rather than specialization in one instrument line.",
+        "evidenceStrength": "High"
+      },
+      "companyChanges": [
+        {
+          "date": "2021-01-01",
+          "title": "Added Clinical NGS to Specialty Diagnostics remit",
+          "detail": "Thermo Fisher's biography records an expansion from Specialty Diagnostics into Clinical Next-Generation Sequencing responsibility.",
+          "attribution": "Documented responsibility expansion",
+          "sourceName": "Thermo Fisher · Gianluca Pettiti biography",
+          "sourceUrl": "https://ir.thermofisher.com/investors/corporate-governance/board-of-directors/person-details/default.aspx?ItemId=c4b41518-608f-459e-bae0-7deef5c6f66a"
+        },
+        {
+          "date": "2026-03-01",
+          "title": "Consolidated products, technologies, regions, and scientific office oversight",
+          "detail": "His 2026 appointment created a broad operating span across Products & Technologies, Regions, and the Chief Scientific Office.",
+          "attribution": "Documented organizational change",
+          "sourceName": "Thermo Fisher · Gianluca Pettiti biography",
+          "sourceUrl": "https://ir.thermofisher.com/investors/corporate-governance/board-of-directors/person-details/default.aspx?ItemId=c4b41518-608f-459e-bae0-7deef5c6f66a"
+        }
+      ],
+      "likelyFocus": {
+        "statement": "Connecting product-roadmap choices to regional execution, scientific-office priorities, and cross-business operating leverage.",
+        "basis": "The focus follows directly from his new scope; no individual LC-MS product decision is yet publicly attributable.",
+        "confidence": "Directional"
+      },
+      "sources": [
+        {"name":"Thermo Fisher · Gianluca Pettiti biography","url":"https://ir.thermofisher.com/investors/corporate-governance/board-of-directors/person-details/default.aspx?ItemId=c4b41518-608f-459e-bae0-7deef5c6f66a"}
+      ]
+    },
+    {
+      "id": "thermo-daniel-shine",
+      "competitor": "Thermo Fisher",
+      "name": "Daniel P. Shine",
+      "careerArc": [
+        "Previously served as President of Chromatography and Mass Spectrometry from 2012 to 2016.",
+        "Later held customer-channel and service responsibility before returning to lead Analytical Instruments.",
+        "Now serves as Senior Vice President and President, Analytical Instruments."
+      ],
+      "operatingPattern": {
+        "label": "Domain continuity with service exposure",
+        "summary": "His public role history combines direct chromatography and mass-spectrometry leadership with broader customer-channel, service, and analytical-instrument responsibility. That pattern supports lifecycle execution across products rather than a launch-only view.",
+        "evidenceStrength": "Medium"
+      },
+      "companyChanges": [
+        {
+          "date": "2026-08-17",
+          "title": "Broadened from chromatography/MS to all Analytical Instruments",
+          "detail": "The current leadership structure places the full Analytical Instruments business under a leader with prior direct Chromatography and Mass Spectrometry responsibility.",
+          "attribution": "Documented remit progression; no specific launch is personally attributed",
+          "sourceName": "Thermo Fisher · Leadership",
+          "sourceUrl": "https://ir.thermofisher.com/investors/corporate-governance/leadership/default.aspx?print=1"
+        }
+      ],
+      "likelyFocus": {
+        "statement": "Coordinating LC-MS innovation with instrument-platform economics, service attachment, channel execution, and installed-base productivity.",
+        "basis": "Inferred from role progression and current scope; public sources do not isolate his individual decisions.",
+        "confidence": "Low–Directional"
+      },
+      "sources": [
+        {"name":"Thermo Fisher · Leadership","url":"https://ir.thermofisher.com/investors/corporate-governance/leadership/default.aspx?print=1"}
+      ]
+    },
+    {
+      "id": "shimadzu-yasunori-yamamoto",
+      "competitor": "Shimadzu",
+      "name": "Yasunori Yamamoto",
+      "careerArc": [
+        "Joined Shimadzu in 1983 with an engineering and physics background and led the Testing Machine Business Unit.",
+        "Served as President of Shimadzu Europa and later led manufacturing, information systems, customer service, and corporate strategy responsibilities.",
+        "Became President and CEO in 2022."
+      ],
+      "operatingPattern": {
+        "label": "Engineering-led customer co-development",
+        "summary": "His public messages repeatedly connect science and technology, direct listening to global customers, collaboration with partners, and solving societal challenges. His career also combines product engineering, overseas operations, manufacturing, and strategy.",
+        "evidenceStrength": "High"
+      },
+      "companyChanges": [
+        {
+          "date": "2024-04-10",
+          "title": "Opened three North American R&D centers",
+          "detail": "Shimadzu established customer-collaboration forums intended to improve understanding of needs and develop next-generation analytical instruments.",
+          "attribution": "Enterprise initiative publicly supported by CEO",
+          "sourceName": "Shimadzu · U.S. R&D centers",
+          "sourceUrl": "https://www.shimadzu.com/today/20240603-1.html"
+        },
+        {
+          "date": "2026-08-17",
+          "title": "Embedded AI, robotics, and global partnership in growth strategy",
+          "detail": "The current top-management message frames new value creation through AI and robotics while emphasizing timely regional customer response and partner collaboration.",
+          "attribution": "CEO-stated strategic direction",
+          "sourceName": "Shimadzu · Top management message",
+          "sourceUrl": "https://www.shimadzu.com/ir/strategy/message.html"
+        }
+      ],
+      "likelyFocus": {
+        "statement": "Accelerating customer co-development outside Japan, applying AI and robotics to analytical workflows, and tying growth to health, sustainability, and industrial challenges.",
+        "basis": "Derived from his published strategy and R&D-center expansion; not a forecast of a specific LC-MS launch.",
+        "confidence": "Directional"
+      },
+      "sources": [
+        {"name":"Shimadzu · CEO profile","url":"https://www.shimadzu.com/150th_anniversary/special_dialogue_03/"}
+      ]
+    },
+    {
+      "id": "shimadzu-masami-tomita",
+      "competitor": "Shimadzu",
+      "name": "Masami Tomita",
+      "careerArc": [
+        "Led Shimadzu's LC Business Unit from 2012 to 2020.",
+        "From 2020 to 2023, oversaw development and manufacturing for Analytical & Measuring Instruments.",
+        "Now serves as Managing Executive Officer and General Manager of the full division."
+      ],
+      "operatingPattern": {
+        "label": "Customer-workflow and build-quality operator",
+        "summary": "His public record consistently links customer perspective, technology and product development, manufacturing capability, supply quality, and external partnerships. The pattern expands LC expertise into an end-to-end analytical-instrument system.",
+        "evidenceStrength": "High"
+      },
+      "companyChanges": [
+        {
+          "date": "2024-10-01",
+          "title": "Added multi-vendor LC/LC-MS service through Zef Scientific",
+          "detail": "Shimadzu acquired Zef to broaden North American after-sales coverage and provide one-stop maintenance across manufacturers.",
+          "attribution": "Division initiative; Tomita was the named division leader",
+          "sourceName": "Shimadzu · Zef Scientific acquisition",
+          "sourceUrl": "https://www.shimadzu.com/news/2024/tth0-a77bl20c23j.html"
+        },
+        {
+          "date": "2024-09-30",
+          "title": "Expanded university co-development",
+          "detail": "Shimadzu and Waseda broadened collaboration on analytical instruments, next-generation pharmaceuticals, sustainability, and specialist talent after prior LC-Raman commercialization.",
+          "attribution": "Partnership signed with Tomita as named division leader",
+          "sourceName": "Shimadzu · Waseda collaboration",
+          "sourceUrl": "https://www.shimadzu.com/news/2024/rfiniq0bs3d65eu1.html"
+        }
+      ],
+      "likelyFocus": {
+        "statement": "Building LC-MS total solutions that combine instruments, application co-development, reliable supply, and stronger North American multi-vendor service.",
+        "basis": "Grounded in his LC/development/manufacturing history plus the Zef and Waseda actions; this remains a directional inference, not a confirmed plan.",
+        "confidence": "Directional"
+      },
+      "sources": [
+        {"name":"Shimadzu Journal · Masami Tomita","url":"https://www.shimadzu.com/an/shimadzu-journal/10-2/01.html"}
+      ]
+    },
+    {
+      "id": "danaher-rainer-blair",
+      "competitor": "SCIEX",
+      "name": "Rainer M. Blair",
+      "careerArc": [
+        "Held leadership roles at BASF and served as President and CEO of MAPEI Americas before joining Danaher in 2010.",
+        "Led Danaher's Life Sciences platform from 2017 before becoming President and CEO in 2020.",
+        "Danaher states that life-sciences and biotechnology revenue grew more than fivefold to over $14 billion under his platform leadership."
+      ],
+      "operatingPattern": {
+        "label": "DBS-led portfolio and execution discipline",
+        "summary": "His public operating language repeatedly emphasizes the Danaher Business System, continuous improvement, strategic investment, productivity, and portfolio differentiation. The pattern is enterprise operating-system leverage rather than direct SCIEX product management.",
+        "evidenceStrength": "High"
+      },
+      "companyChanges": [
+        {
+          "date": "2020-09-01",
+          "title": "Moved from Life Sciences platform leadership to Danaher CEO",
+          "detail": "The succession placed a leader with a scaled life-sciences growth record over the full Danaher portfolio.",
+          "attribution": "Documented leadership transition",
+          "sourceName": "Danaher · CEO appointment",
+          "sourceUrl": "https://investors.danaher.com/2020-09-01-Danaher-Appoints-Rainer-Blair-As-President-and-CEO"
+        },
+        {
+          "date": "2026-04-21",
+          "title": "Reinforced innovation and productivity execution",
+          "detail": "Danaher's first-quarter update tied execution to accelerated innovation, productivity gains, and earnings growth.",
+          "attribution": "CEO-stated enterprise priority",
+          "sourceName": "Danaher · Q1 2026 results",
+          "sourceUrl": "https://investors.danaher.com/2026-04-21-Danaher-Reports-First-Quarter-2026-Results"
+        }
+      ],
+      "likelyFocus": {
+        "statement": "Applying DBS to accelerate innovation, productivity, and portfolio returns while preserving SCIEX's operating-company accountability.",
+        "basis": "Parent-level inference from Danaher strategy; it does not establish a specific instruction to SCIEX.",
+        "confidence": "Directional"
+      },
+      "sources": [
+        {"name":"Danaher · Rainer Blair biography","url":"https://www.danaher.com/rainer-m-blair"}
+      ]
+    },
+    {
+      "id": "sciex-chris-hagen",
+      "competitor": "SCIEX",
+      "name": "Chris Hagen",
+      "careerArc": [
+        "Built more than 20 years of healthcare leadership across infusion devices, pharmaceuticals, biosimilars, and in-vitro diagnostics.",
+        "Held Pfizer Hospira EMEA and Beckman Coulter Diagnostics general-management, North America, and global-marketing roles.",
+        "Now leads SCIEX global operations as President."
+      ],
+      "operatingPattern": {
+        "label": "Commercial general manager around customer outcomes",
+        "summary": "His public record combines regional P&L, global marketing, specialty-product management, and company-wide operations. SCIEX describes his remit through shared vision, engaged teams, growth, innovation, and customer problems in quantitation and characterization.",
+        "evidenceStrength": "Medium"
+      },
+      "companyChanges": [
+        {
+          "date": "2025-06-18",
+          "title": "Extended university and industry ecosystem activity",
+          "detail": "During his tenure, SCIEX announced a Chungnam National University alliance spanning research, education, talent, and industry applications.",
+          "attribution": "Activity during tenure; not claimed as an individual decision",
+          "sourceName": "SCIEX · University alliance",
+          "sourceUrl": "https://sciex.com/about-us/press-releases/2025/chungnam-national-university-and-sciex-accelerate-the-realization-of-industry-on-campus-with-global-headquarters-alliance-strategic-mou-signed-with-global-mass-spectrometry-leader-sciex"
+        }
+      ],
+      "likelyFocus": {
+        "statement": "Converting SCIEX's quantitation and characterization strengths into broader customer outcomes through portfolio execution, ecosystem alliances, and engaged global teams.",
+        "basis": "Derived from his published remit and early public activity; his SCIEX tenure is still comparatively short.",
+        "confidence": "Low–Directional"
+      },
+      "sources": [
+        {"name":"SCIEX · Executive management","url":"https://sciex.com/about-us/executive-management"}
+      ]
+    },
+    {
+      "id": "sciex-jose-castro-perez",
+      "competitor": "SCIEX",
+      "name": "Jose Castro-Perez",
+      "careerArc": [
+        "Spent 25 years as a Pharma, CRO, and Biotech customer and held Waters marketing and business-development roles.",
+        "Joined SCIEX in 2019 to lead Accurate Mass Product Management from strategy and ideation through end-of-life.",
+        "Now owns the global CE, LC/MS, software ecosystem, accessories, roadmap, new-product, revenue, and margin portfolio."
+      ],
+      "operatingPattern": {
+        "label": "Customer-scientist turned end-to-end portfolio owner",
+        "summary": "His public career combines direct laboratory-customer experience, marketing and business development, lifecycle product management, and commercial economics. Recent actions repeatedly pair hardware with software and external workflow partners.",
+        "evidenceStrength": "High"
+      },
+      "companyChanges": [
+        {
+          "date": "2024-09-24",
+          "title": "Launched ZenoTOF 7600+ with three workflow collaborations",
+          "detail": "SCIEX combined a new accurate-mass system with PEAKS, Evosep, and IonOpticks to extend proteomics workflows.",
+          "attribution": "Portfolio action with Castro-Perez as named product-management spokesperson",
+          "sourceName": "SCIEX · ZenoTOF 7600+ launch",
+          "sourceUrl": "https://sciex.com/about-us/press-releases/2024/sciex-launches-the-zenotof-7600-system-at-hupo-world-congress-2024-alongside-three-collaborations-to-further-proteomics-capabilities"
+        },
+        {
+          "date": "2026-05-01",
+          "title": "Expanded software workflow environment through six collaborations",
+          "detail": "SCIEX announced six software integrations spanning AI-driven proteomics, automated analysis, usability, and compliance-ready data integrity.",
+          "attribution": "Portfolio action with Castro-Perez as named product-management spokesperson",
+          "sourceName": "SCIEX · Software collaborations",
+          "sourceUrl": "https://sciex.com/about-us/press-releases/2026/sciex-software-solutions-advance-workflow-efficiency-with-six-industry-collaborations"
+        }
+      ],
+      "likelyFocus": {
+        "statement": "Extending accurate-mass differentiation through acquisition modes, software integration, AI-enabled interpretation, front-end partners, and customer-ready workflow packages.",
+        "basis": "Supported by his stated portfolio ownership and repeated hardware-plus-ecosystem launches; this remains a directional inference, not a confirmed plan.",
+        "confidence": "Directional"
+      },
+      "sources": [
+        {"name":"SCIEX · Executive management","url":"https://sciex.com/about-us/executive-management"}
+      ]
+    },
+    {
+      "id": "perkinelmer-michael-stubblefield",
+      "competitor": "PerkinElmer",
+      "name": "Michael Stubblefield",
+      "careerArc": [
+        "Brings more than 30 years across life sciences and specialty materials, including McKinsey and Celanese.",
+        "Served as Avantor President and CEO from 2014 to 2025 and as a Senior Advisor to New Mountain Capital.",
+        "Joined PerkinElmer as CEO in March 2026."
+      ],
+      "operatingPattern": {
+        "label": "Transformation and scaling executive",
+        "summary": "PerkinElmer's appointment announcement emphasizes scaling businesses, performance improvement, growth, close customer and partner work, high-performing teams, and leading through transformation. This is company-described experience, not yet a long PerkinElmer activity record.",
+        "evidenceStrength": "Medium"
+      },
+      "companyChanges": [
+        {
+          "date": "2026-03-23",
+          "title": "PerkinElmer Appoints Michael Stubblefield as Chief Executive Officer",
+          "detail": "His appointment began a new CEO-led growth and transformation phase following PerkinElmer's 2023 standalone transition; he stated an immediate listening phase followed by focused, clear execution.",
+          "attribution": "Directly stated at appointment",
+          "sourceName": "PerkinElmer · CEO appointment",
+          "sourceUrl": "https://www.perkinelmer.com/nl/corporate-and-newsroom/perkinelmer-appoints-michael-stubblefield-as-chief-executive-officer",
+          "sourceTitleVerified": true,
+          "titleSource": "page_content_url_match"
+        }
+      ],
+      "likelyFocus": {
+        "statement": "Clarifying portfolio priorities, strengthening customer value through innovation and service, and raising execution discipline during the standalone-company transformation.",
+        "basis": "Closely follows his stated immediate focus, but completed PerkinElmer changes are not yet public.",
+        "confidence": "Low–Directional"
+      },
+      "sources": [
+        {"name":"PerkinElmer · CEO appointment","url":"https://www.perkinelmer.com/nl/corporate-and-newsroom/perkinelmer-appoints-michael-stubblefield-as-chief-executive-officer"}
+      ]
+    },
+    {
+      "id": "perkinelmer-mark-copeland",
+      "competitor": "PerkinElmer",
+      "name": "Mark Copeland",
+      "careerArc": [
+        "Has global experience across commercial, product, and digital innovation roles.",
+        "Held leadership positions at Diversey, Osmose, Restaurant Technologies, Ecolab, Metro AG, and SC Johnson.",
+        "Now serves as Senior Vice President, Analytical Solutions at PerkinElmer."
+      ],
+      "operatingPattern": {
+        "label": "Commercial-product-digital portfolio operator",
+        "summary": "The official biography shows a repeated cross-functional pattern spanning commercial, product, and digital innovation across multiple operating companies. Public PerkinElmer sources provide limited individual decision attribution so far.",
+        "evidenceStrength": "Medium"
+      },
+      "companyChanges": [
+        {
+          "date": "2026-08-17",
+          "title": "LC/LC-MS roadmap leadership is being recruited",
+          "detail": "PerkinElmer is recruiting a Product Director to own LC and LCMS strategy, roadmap, new products, revenue growth, and a Lab of the Future transformation.",
+          "attribution": "Organizational activity within Analytical Solutions; not personally attributed",
+          "sourceName": "PerkinElmer Careers · Product Director, LC/LCMS",
+          "sourceUrl": "https://jobs.perkinelmer.com/job/woodbridge/product-director-lc-lcms/43930/94486435280"
+        }
+      ],
+      "likelyFocus": {
+        "statement": "Rebuilding LC/LC-MS product ownership and connecting analytical instruments to digital, automated, and AI-enabled laboratory workflows.",
+        "basis": "Derived from his cross-functional background and the open portfolio role; public evidence does not confirm his personal roadmap decisions.",
+        "confidence": "Low–Directional"
+      },
+      "sources": [
+        {"name":"PerkinElmer · Executive leadership","url":"https://www.perkinelmer.com/fr-ca/executive-leadership"}
+      ]
+    }
+  ]
+}

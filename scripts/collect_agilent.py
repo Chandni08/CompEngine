@@ -22,6 +22,7 @@ DATA_DIR = ROOT / "data"
 SNAPSHOT_FILE = DATA_DIR / "source_snapshots" / "agilent.json"
 OUTPUT_FILE = DATA_DIR / "agilent_monitor.json"
 SOURCE_CATALOG_FILE = DATA_DIR / "source_catalog.json"
+PRESS_BROWSER_CACHE_FILE = DATA_DIR / "agilent_press_browser_validation.json"
 
 USER_AGENT = "WatersCompetitiveIntelligenceEngine/0.2 (+https://www.waters.com/)"
 SITEMAP_INDEX = "https://www.agilent.com/sitemap.xml"
@@ -228,6 +229,19 @@ def clean_text(value: str) -> str:
     return re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", value or ""))).strip()
 
 
+def valid_detail_page_content(title: str, text: str) -> bool:
+    """Reject CDN/challenge bodies even when a browser wrapper reports HTTP 200."""
+    combined = clean_text(f"{title} {text}").lower()
+    blocked_markers = (
+        "access denied",
+        "you don't have permission to access",
+        "errors.edgesuite.net",
+        "request rejected",
+        "verify you are human",
+    )
+    return bool(combined) and not any(marker in combined for marker in blocked_markers)
+
+
 def parse_ir_date(value: str) -> str:
     text = clean_text(value)
     for fmt in ("%m/%d/%Y %H:%M:%S", "%m/%d/%Y", "%Y-%m-%d"):
@@ -244,6 +258,37 @@ def completed_earnings_title(title: str) -> bool:
         clean_text(title),
         re.I,
     ))
+
+
+def cached_browser_verified_releases(now: datetime | None = None) -> dict[str, dict]:
+    """Reuse the prior archive only when a recent full official-page audit proves it current."""
+    cache = read_json(PRESS_BROWSER_CACHE_FILE)
+    if cache.get("validationMethod") != "full_official_archive_dom":
+        return {}
+    try:
+        verified_at = datetime.fromisoformat(str(cache.get("verifiedAt") or "").replace("Z", "+00:00"))
+    except ValueError:
+        return {}
+    current = now or datetime.now(timezone.utc)
+    max_age_hours = float(cache.get("maxAgeHours", 24))
+    if (current - verified_at).total_seconds() / 3600 > max_age_hours:
+        return {}
+    if int(cache.get("asOfYear") or 0) != date.today().year:
+        return {}
+
+    releases = read_json(SNAPSHOT_FILE).get("pressReleases", {})
+    if len(releases) < int(cache.get("sourceCount") or 0):
+        return {}
+    newest = max(
+        releases.values(),
+        key=lambda item: (str(item.get("date", "")), str(item.get("title", ""))),
+        default={},
+    )
+    if str(newest.get("date") or "") != str(cache.get("newestDate") or ""):
+        return {}
+    if clean_text(str(newest.get("title") or "")) != clean_text(str(cache.get("newestTitle") or "")):
+        return {}
+    return releases
 
 
 def earnings_enrichment(title: str) -> dict:
@@ -273,6 +318,14 @@ def earnings_enrichment(title: str) -> dict:
     }
 
 
+def concise_release_summary(title: str, short_body: str = "") -> str:
+    """Keep navigation/page chrome out of dashboard evidence cards."""
+    body = clean_text(short_body)
+    if not body or len(body) > 700 or body.lower().startswith("skip to main"):
+        return title
+    return body
+
+
 def release_enrichment(title: str, short_body: str = "") -> dict:
     """Classify an official Agilent release without excluding non-earnings news."""
     text = clean_text(f"{title} {short_body}")
@@ -293,7 +346,7 @@ def release_enrichment(title: str, short_body: str = "") -> dict:
             "technology": "Portfolio",
             "theme": "Upcoming earnings event",
             "intent": "Investor communication",
-            "summary": clean_text(short_body) or title,
+            "summary": concise_release_summary(title, short_body),
         }
     if any(term in lowered for term in ("acquisition", "acquires", "acquire ")):
         return {
@@ -303,7 +356,7 @@ def release_enrichment(title: str, short_body: str = "") -> dict:
             "technology": "Portfolio",
             "theme": "Portfolio expansion through acquisition",
             "intent": "Capability and market expansion",
-            "summary": clean_text(short_body) or title,
+            "summary": concise_release_summary(title, short_body),
         }
     if any(term in lowered for term in ("fda approval", "eu approval", "approved use")):
         return {
@@ -313,7 +366,7 @@ def release_enrichment(title: str, short_body: str = "") -> dict:
             "technology": "Diagnostics",
             "theme": "Regulatory expansion",
             "intent": "Expand approved clinical use",
-            "summary": clean_text(short_body) or title,
+            "summary": concise_release_summary(title, short_body),
         }
     classification = classify_release(text)
     technology = "LC/UHPLC" if any(term in lowered for term in ("column", "chromatograph", "altura", "plrp", "size exclusion")) else "Software" if any(term in lowered for term in ("ai-driven", "analysis module", "software", "xcellence")) else "Portfolio"
@@ -324,7 +377,7 @@ def release_enrichment(title: str, short_body: str = "") -> dict:
         "technology": technology,
         "theme": "Product and workflow expansion" if classification == "product" else "Corporate strategic activity",
         "intent": "Product and portfolio expansion" if classification == "product" else "Corporate strategic activity",
-        "summary": clean_text(short_body) or title,
+        "summary": concise_release_summary(title, short_body),
     }
 
 
@@ -350,6 +403,16 @@ def collect_investor_releases(statuses: list[dict]) -> dict[str, dict]:
         "Official Agilent investor-relations news feed; 10-second crawl delay applied.",
     ))
     if not status or not 200 <= status < 300 or not body:
+        cached_releases = cached_browser_verified_releases()
+        if cached_releases:
+            cache = read_json(PRESS_BROWSER_CACHE_FILE)
+            statuses.append(source_status(
+                INVESTOR_NEWS_PAGE,
+                "browser_verified_archive_cache",
+                200,
+                f"Full official archive DOM verified in a real browser at {cache.get('verifiedAt')}; cache is limited to {cache.get('maxAgeHours', 24)} hours.",
+            ))
+            return cached_releases
         return {}
     try:
         rows = json.loads(body.decode("utf-8", errors="replace")).get("GetPressReleaseListResult", [])
@@ -388,8 +451,25 @@ def dedupe_press_releases(releases: dict[str, dict]) -> dict[str, dict]:
         current_preference = (
             1 if current and ("agilent.com/about/newsroom" in current[0] or "news.agilent.com" in current[0]) else 0
         )
-        if current is None or preference > current_preference:
-            selected[key] = (url, release)
+        if current is None:
+            selected[key] = (url, dict(release))
+            continue
+
+        # Preserve the richer IR payload even when the public newsroom URL is
+        # selected as canonical.  Previously the URL preference silently threw
+        # away earnings classification, metrics, and PM readouts.
+        current_url, current_release = current
+        richer = max(
+            (current_release, release),
+            key=lambda item: sum(bool(item.get(field)) for field in (
+                "summary", "signalType", "theme", "earningsMetrics",
+                "pmInsights", "watersPmImplication", "evidenceBoundary",
+            )),
+        )
+        merged = {**current_release, **release, **richer}
+        canonical_url = url if preference > current_preference else current_url
+        merged["url"] = canonical_url
+        selected[key] = (canonical_url, merged)
     return {url: release for url, release in selected.values()}
 
 
@@ -487,12 +567,17 @@ def enrich_new_releases(items: list[dict], statuses: list[dict]) -> None:
         effective_status = browser_result.get("httpStatus") if browser_result else status
         method = "real_browser" if browser_result else "new_press_release"
         statuses.append(source_status(url, method, effective_status, "New release fetched for classification and detail."))
-        if browser_result:
+        if browser_result and valid_detail_page_content(
+            str(browser_result.get("title", "")),
+            str(browser_result.get("text", "")),
+        ):
             item["pageTitle"] = browser_result.get("title", "")
             item["excerpt"] = browser_result.get("text", "")[:2400]
         elif status and 200 <= status < 300 and body:
             text = re.sub(rb"<[^>]+>", b" ", body[:500000])
-            item["excerpt"] = re.sub(r"\s+", " ", text.decode("utf-8", errors="replace")).strip()[:2400]
+            excerpt = re.sub(r"\s+", " ", text.decode("utf-8", errors="replace")).strip()[:2400]
+            if valid_detail_page_content("", excerpt):
+                item["excerpt"] = excerpt
         item["classification"] = classify_release(f"{item.get('title', '')} {item.get('excerpt', '')}")
 
 
@@ -522,7 +607,8 @@ def monitor() -> dict:
         for item in statuses
     ) and bool(newsroom_releases)
     investor_success = any(
-        item.get("status") == "available" and item.get("fetchMethod") == "official_ir_news_api"
+        item.get("status") == "available"
+        and item.get("fetchMethod") in {"official_ir_news_api", "browser_verified_archive_cache"}
         for item in statuses
     ) and bool(investor_releases)
     press_success = (newsroom_success or investor_success) and bool(press_releases)
@@ -572,6 +658,20 @@ def monitor() -> dict:
             release for release in press_releases.values()
             if release.get("date", "") >= replay_cutoff.isoformat()
         ]
+
+    # Reclassify the complete official archive on every run.  This prevents a
+    # newsroom URL winning canonicalization from degrading an IR earnings event
+    # into a generic press release, and it upgrades older snapshot records when
+    # the enrichment rules improve.
+    for url, release in press_releases.items():
+        enrichment = release_enrichment(
+            str(release.get("title", "")),
+            str(release.get("summary") or release.get("excerpt") or ""),
+        )
+        release.update(enrichment)
+        release["url"] = url
+        release.setdefault("sourceId", "agilent-newsroom")
+        release.setdefault("sourceName", "Agilent official newsroom")
 
     unverified_inventory_changes = {
         "new": new_products,
@@ -642,6 +742,7 @@ def monitor() -> dict:
         "unverified_inventory_changes": unverified_inventory_changes,
         "new_press_releases": sorted(new_press_releases, key=lambda item: item.get("date", ""), reverse=True),
         "recent_press_releases": sorted(recent_press_releases, key=lambda item: item.get("date", ""), reverse=True),
+        "all_press_releases": sorted(press_releases.values(), key=lambda item: item.get("date", ""), reverse=True),
         "source_status": statuses,
         "monitoringNote": "Agilent WAF responses do not affect source quality. Authoritative sitemap and press indexes are monitored with an honest crawler identity.",
     }

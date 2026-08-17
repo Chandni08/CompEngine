@@ -11,7 +11,7 @@ const [app, deployedApp, css, deployedCss] = await Promise.all([
 ]);
 
 test("Product Management view hides coverage and the Public Evidence Library", () => {
-  assert.match(app, /const hiddenForProductManagement = state\.view === "Product";/);
+  assert.match(app, /const hiddenForProductManagement = state\.view === "Product" \|\| state\.view === "Marketing";/);
   assert.match(app, /refreshBlock\.hidden = hiddenForProductManagement;/);
   assert.match(app, /refreshBlock\.setAttribute\("aria-hidden", String\(hiddenForProductManagement\)\);/);
   assert.match(app, /competitorCoveragePanel\.hidden = hiddenForProductManagement;/);

@@ -71,6 +71,7 @@ THERMO_TECHNICAL_FEEDS = (
 
 THERMO_IR_NEWS_PAGE = "https://ir.thermofisher.com/investors/news-events/news/default.aspx"
 THERMO_IR_FEED = "https://ir.thermofisher.com/feed/PressRelease.svc/GetPressReleaseList"
+THERMO_PRESS_BROWSER_CACHE_FILE = DATA_DIR / "thermo_press_browser_validation.json"
 
 
 def utc_now() -> str:
@@ -290,6 +291,39 @@ def parse_thermo_ir_releases(body: str) -> dict[str, dict[str, object]]:
             "sourceId": "thermo-news",
             "sourceName": "Thermo Fisher investor relations news",
         }
+    return releases
+
+
+def cached_thermo_browser_verified_releases(now: datetime | None = None) -> dict[str, dict[str, object]]:
+    """Reuse the prior IR archive only after a recent full-page browser audit."""
+    cache = read_json(THERMO_PRESS_BROWSER_CACHE_FILE)
+    if cache.get("validationMethod") != "full_official_archive_dom":
+        return {}
+    try:
+        verified_at = datetime.fromisoformat(str(cache.get("verifiedAt") or "").replace("Z", "+00:00"))
+    except ValueError:
+        return {}
+    current = now or datetime.now(timezone.utc)
+    max_age_hours = float(cache.get("maxAgeHours", 24))
+    if (current - verified_at).total_seconds() / 3600 > max_age_hours:
+        return {}
+    if int(cache.get("asOfYear") or 0) != date.today().year:
+        return {}
+
+    releases = read_json(SNAPSHOT_DIR / "thermo.json").get("pressReleases", {})
+    if len(releases) != int(cache.get("sourceCount") or 0):
+        return {}
+    newest = max(
+        releases.values(),
+        key=lambda item: (str(item.get("date", "")), str(item.get("title", ""))),
+        default={},
+    )
+    if str(newest.get("date") or "") != str(cache.get("newestDate") or ""):
+        return {}
+    if clean_text(str(newest.get("title") or "")) != clean_text(str(cache.get("newestTitle") or "")):
+        return {}
+    if str(newest.get("url") or "") != str(cache.get("newestUrl") or ""):
+        return {}
     return releases
 
 
@@ -733,13 +767,21 @@ def collect_thermo() -> dict[str, object]:
 
     press_status, press_body, press_detail = fetch(press_url)
     releases = parse_thermo_ir_releases(press_body) if press_status == 200 else {}
+    press_method = "official_ir_news_api"
+    if not releases:
+        releases = cached_thermo_browser_verified_releases()
+        if releases:
+            press_method = "browser_verified_archive_cache"
+            press_status = 200
     press_extraction = "extracted" if releases else "blocked"
     press_reason = (
-        f"Official Thermo Fisher investor-relations feed parsed; {len(releases)} dated {CURRENT_YEAR} corporate releases extracted."
+        f"Full official Thermo Fisher archive DOM verified in a real browser at {read_json(THERMO_PRESS_BROWSER_CACHE_FILE).get('verifiedAt')}; retained {len(releases)} matching dated {CURRENT_YEAR} releases for no more than {read_json(THERMO_PRESS_BROWSER_CACHE_FILE).get('maxAgeHours', 24)} hours."
+        if releases and press_method == "browser_verified_archive_cache"
+        else f"Official Thermo Fisher investor-relations feed parsed; {len(releases)} dated {CURRENT_YEAR} corporate releases extracted."
         if releases
         else f"Investor-relations feed unavailable or contained no dated records: {press_detail or press_status}."
     )
-    statuses.append(source_status("thermo-news", THERMO_IR_NEWS_PAGE, "official_ir_news_api", press_status, press_extraction, press_reason, len(releases)))
+    statuses.append(source_status("thermo-news", THERMO_IR_NEWS_PAGE, press_method, press_status, press_extraction, press_reason, len(releases)))
 
     technical_insights: dict[str, dict[str, str]] = {}
     for feed in THERMO_TECHNICAL_FEEDS:

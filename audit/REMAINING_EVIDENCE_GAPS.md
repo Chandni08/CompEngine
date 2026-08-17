@@ -1,36 +1,36 @@
 # Remaining evidence gaps
 
-Generated: `2026-08-12T14:49:47+00:00`
+Generated: `2026-08-17T15:13:35+00:00`
 
 This is the concise roll-up of every non-verified claim retained in the current audit denominator. The claim-level reason, source URL, and disposition remain in `per_claim_appendix.csv`.
 
-## Partially supported — 197
+## Partially supported — 187
 
 | Claim family | Count |
 | --- | ---: |
-| Signal card | 66 |
+| Signal card | 56 |
 | Customer voice | 45 |
 | Publication count | 32 |
-| Market/application source | 30 |
+| Market/application source | 29 |
 | Historical product catalog | 7 |
-| Journal source | 6 |
+| Journal source | 7 |
 | Conference intelligence | 5 |
 | Competitor launch | 3 |
 | Application note | 2 |
 | Decision | 1 |
 
-## UNREACHABLE — 457
+## UNREACHABLE — 469
 
 | Claim family | Count |
 | --- | ---: |
-| SEC filing | 176 |
+| SEC filing | 174 |
 | Historical product catalog | 113 |
-| Signal card | 48 |
+| Signal card | 57 |
 | Technical comparison | 32 |
 | Customer voice | 27 |
-| Scientific publication | 19 |
+| Scientific publication | 24 |
 | Launch comparison | 10 |
-| Journal source | 10 |
+| Journal source | 9 |
 | Application trend | 5 |
 | Application note | 4 |
 | Corporate move | 4 |
@@ -39,6 +39,7 @@ This is the concise roll-up of every non-verified claim retained in the current 
 | Decision | 2 |
 | Product evidence | 1 |
 | Conference intelligence | 1 |
+| Market/application source | 1 |
 
 ## Unsupported/Hallucinated — 160
 
@@ -57,8 +58,8 @@ This is the concise roll-up of every non-verified claim retained in the current 
 
 ## Link access limitations
 
-- 1156 URLs were reachable and semantically valid.
-- 1863 URLs were blocked by access controls, rate limits, or bot challenges.
+- 1136 URLs were reachable and semantically valid.
+- 2513 URLs were blocked by access controls, rate limits, or bot challenges.
 - 0 URLs were broken.
 - 0 URLs were semantic mislinks.
 

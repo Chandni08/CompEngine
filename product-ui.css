@@ -5194,20 +5194,28 @@ th {
   }
 
   .sidebar-navigation-panel {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
     grid-column: 1 / -1;
     max-height: 0;
     margin-top: 0;
+    padding: 0 16px;
     gap: 16px;
     overflow: hidden;
+    border-radius: 0 0 16px 16px;
+    background: #0f2630;
+    box-shadow: 0 18px 30px rgba(4, 35, 43, 0.2);
     opacity: 0;
     pointer-events: none;
     visibility: hidden;
-    transition: max-height 180ms ease, margin-top 180ms ease, opacity 140ms ease;
+    transition: max-height 180ms ease, padding 180ms ease, opacity 140ms ease;
   }
 
   .sidebar.is-navigation-open .sidebar-navigation-panel {
     max-height: calc(100dvh - 96px);
-    margin-top: 12px;
+    padding: 12px 16px 16px;
     overflow-y: auto;
     overscroll-behavior: contain;
     opacity: 1;
@@ -5589,6 +5597,1266 @@ th {
   color: #17363f;
   font-size: 20px;
   line-height: 1.2;
+}
+
+/* Product Management patent intelligence: directional signal, not launch evidence. */
+.patent-insights-panel {
+  border-top-color: #7657a6;
+}
+
+.patent-section-eyebrow {
+  margin: 0 0 4px;
+  color: #71539e;
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.patent-insights,
+.patent-selected-detail,
+.patent-card,
+.patent-card-heading > div,
+.patent-readout-grid section,
+.patent-watch-row,
+.patent-empty-state {
+  display: grid;
+}
+
+.patent-selected-detail {
+  min-width: 0;
+  gap: 14px;
+  border: 1px solid color-mix(in srgb, var(--patent-accent) 24%, #d9e5e7);
+  border-left: 5px solid var(--patent-accent);
+  border-radius: 13px;
+  padding: 17px;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--patent-accent) 5%, #ffffff), #ffffff 68%);
+}
+
+.patent-detail-header,
+.patent-card-heading,
+.patent-portfolio-readout {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.patent-detail-header > div:first-child {
+  display: grid;
+  gap: 3px;
+}
+
+.patent-detail-header > div:first-child > span,
+.patent-portfolio-readout span,
+.patent-card-heading > div > span,
+.patent-readout-grid span,
+.patent-watch-row > span {
+  color: #685184;
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.patent-detail-header h4,
+.patent-card-heading h5,
+.patent-detail-header p,
+.patent-portfolio-readout p,
+.patent-readout-grid p,
+.patent-watch-row p {
+  margin: 0;
+}
+
+.patent-detail-header h4 {
+  color: #17363f;
+  font-size: 22px;
+}
+
+.patent-detail-header p {
+  color: #64777e;
+  font-size: 12px;
+}
+
+.patent-theme-stack {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.patent-theme-stack span,
+.patent-status {
+  border: 1px solid #d9cbed;
+  border-radius: 999px;
+  padding: 5px 8px;
+  background: #f7f2fc;
+  color: #684596;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.patent-portfolio-readout {
+  align-items: stretch;
+}
+
+.patent-portfolio-readout > div {
+  display: grid;
+  flex: 1 1 0;
+  gap: 5px;
+  border: 1px solid #dfd7e9;
+  border-radius: 11px;
+  padding: 13px 14px;
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.patent-portfolio-readout strong,
+.patent-portfolio-readout p {
+  color: #283e49;
+  line-height: 1.4;
+}
+
+.patent-card-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.patent-card {
+  gap: 13px;
+  border: 1px solid #d8e2e5;
+  border-radius: 12px;
+  padding: 15px;
+  background: #ffffff;
+  box-shadow: 0 4px 14px rgba(29, 55, 63, 0.045);
+}
+
+.patent-card-heading > div {
+  min-width: 0;
+  gap: 4px;
+}
+
+.patent-card-heading h5 {
+  color: #183842;
+  font-size: 17px;
+  line-height: 1.35;
+}
+
+.patent-status {
+  flex: 0 0 auto;
+}
+
+.patent-metadata {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
+}
+
+.patent-metadata > div {
+  display: grid;
+  gap: 3px;
+  border: 1px solid #dce5e7;
+  border-radius: 9px;
+  padding: 9px 10px;
+  background: #f8fafb;
+}
+
+.patent-metadata dt {
+  color: #72838a;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.patent-metadata dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: #29434d;
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.patent-readout-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.patent-readout-grid section {
+  gap: 6px;
+  border: 1px solid #d7e3e5;
+  border-radius: 10px;
+  padding: 12px;
+  background: #f8fbfc;
+}
+
+.patent-readout-grid section.patent-pm-action {
+  border-color: #c5dcdf;
+  border-left: 4px solid #168596;
+  background: #f1f9fa;
+}
+
+.patent-readout-grid p,
+.patent-watch-row p {
+  color: #334b55;
+  line-height: 1.5;
+}
+
+.patent-watch-row {
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+  border-top: 1px solid #e1e7e9;
+  padding-top: 11px;
+}
+
+.patent-watch-row > span {
+  padding-top: 3px;
+}
+
+.patent-evidence-boundary,
+.patent-method-note {
+  margin: 0;
+  color: #61747b;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.patent-evidence-boundary {
+  border-radius: 9px;
+  padding: 10px 11px;
+  background: #f4f5f7;
+}
+
+.patent-card > a {
+  justify-self: start;
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.patent-card > a:hover {
+  text-decoration: underline;
+}
+
+.patent-method-note {
+  border: 1px solid #ded6e7;
+  border-radius: 10px;
+  padding: 11px 12px;
+  background: #fbf8fd;
+}
+
+.patent-empty-state {
+  gap: 5px;
+  border: 1px dashed #cfc1df;
+  border-radius: 12px;
+  padding: 20px;
+  background: #fbf8fd;
+}
+
+.patent-empty-state strong {
+  color: #3e3150;
+}
+
+.patent-empty-state p {
+  margin: 0;
+  color: #65767d;
+}
+
+@media (max-width: 780px) {
+  .patent-detail-header,
+  .patent-card-heading,
+  .patent-portfolio-readout {
+    display: grid;
+  }
+
+  .patent-theme-stack {
+    justify-content: flex-start;
+  }
+
+  .patent-metadata,
+  .patent-readout-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .patent-status {
+    justify-self: start;
+  }
+
+  .patent-watch-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+
+
+/* Product Management leadership intelligence: observable remit and decisions, not personality. */
+.leadership-behavior-panel {
+  border-top-color: #1f6f78;
+}
+
+.leadership-profile-eyebrow {
+  margin: 0 0 4px;
+  color: #1f6f78;
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.leadership-profiles,
+.leadership-selected-detail,
+.leadership-behavior-readout,
+.leadership-person-card,
+.leadership-signals,
+.leadership-signal-card,
+.leadership-watchlist,
+.leadership-profile-empty {
+  display: grid;
+}
+
+.leadership-selected-detail {
+  min-width: 0;
+  gap: 15px;
+  border: 1px solid color-mix(in srgb, var(--leadership-accent) 24%, #d7e2e4);
+  border-left: 5px solid var(--leadership-accent);
+  border-radius: 13px;
+  padding: 17px;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--leadership-accent) 5%, #ffffff), #ffffff 68%);
+}
+
+.leadership-detail-header,
+.leadership-person-card > div,
+.leadership-subhead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.leadership-detail-header > div:first-child {
+  display: grid;
+  gap: 3px;
+}
+
+.leadership-detail-header > div:first-child > span,
+.leadership-behavior-readout > span,
+.leadership-person-card > div > span,
+.leadership-signal-card > span,
+.leadership-subhead > span {
+  color: #326a71;
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.leadership-detail-header h4,
+.leadership-detail-header p,
+.leadership-behavior-readout h5,
+.leadership-behavior-readout p,
+.leadership-person-card h5,
+.leadership-person-card p,
+.leadership-signal-card p,
+.leadership-subhead h5,
+.leadership-profile-empty p {
+  margin: 0;
+}
+
+.leadership-detail-header h4 {
+  color: #17363f;
+  font-size: 22px;
+}
+
+.leadership-detail-header p {
+  color: #64777e;
+  font-size: 12px;
+}
+
+.leadership-confidence {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.leadership-confidence span {
+  border: 1px solid #c9dadd;
+  border-radius: 999px;
+  padding: 5px 8px;
+  background: #f1f7f8;
+  color: #365b62;
+  font-size: 10px;
+  font-weight: 750;
+}
+
+.leadership-confidence b {
+  color: #185c66;
+}
+
+.leadership-behavior-readout {
+  gap: 6px;
+  border: 1px solid #c9dcde;
+  border-left: 4px solid var(--leadership-accent);
+  border-radius: 11px;
+  padding: 14px;
+  background: rgba(244, 249, 250, 0.88);
+}
+
+.leadership-behavior-readout h5 {
+  color: #173c45;
+  font-size: 18px;
+  line-height: 1.35;
+}
+
+.leadership-behavior-readout p,
+.leadership-person-card p,
+.leadership-signal-card p {
+  color: #3b515a;
+  line-height: 1.5;
+}
+
+.leadership-chain {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 10px;
+}
+
+.leadership-person-card {
+  align-content: start;
+  gap: 7px;
+  border: 1px solid #d8e3e5;
+  border-radius: 11px;
+  padding: 13px;
+  background: #ffffff;
+}
+
+.leadership-person-card.is-open-role {
+  border-style: dashed;
+  background: #fff9f2;
+}
+
+.leadership-person-card > div em {
+  border-radius: 999px;
+  padding: 3px 7px;
+  background: #edf5f6;
+  color: #35626a;
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.leadership-person-card.is-open-role > div em {
+  background: #fff0d9;
+  color: #9a5508;
+}
+
+.leadership-person-card > strong {
+  color: #153944;
+  font-size: 17px;
+}
+
+.leadership-person-card h5 {
+  color: #42606a;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.leadership-person-card p {
+  font-size: 12px;
+}
+
+
+.leadership-person-slider {
+  display: grid;
+  min-width: 0;
+  gap: 12px;
+  border: 1px solid #bfd5d8;
+  border-radius: 13px;
+  padding: 15px;
+  background: #f7fafb;
+  outline: none;
+}
+
+.leadership-person-slider:focus-visible {
+  box-shadow: 0 0 0 3px rgba(31, 111, 120, 0.2);
+}
+
+.leadership-person-slider-header,
+.leadership-person-profile-header,
+.leadership-person-sources {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.leadership-person-slider-header > div:first-child {
+  display: grid;
+  gap: 3px;
+}
+
+.leadership-person-slider-header > div:first-child > span,
+.leadership-person-profile-header > div > span,
+.leadership-career-arc > span,
+.leadership-past-pattern > div > span,
+.leadership-likely-focus > div > span,
+.leadership-person-sources > span {
+  color: #2d6c74;
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.leadership-person-slider-header h5,
+.leadership-person-slider-header p,
+.leadership-person-profile-header h5,
+.leadership-person-profile-header p,
+.leadership-career-arc h6,
+.leadership-past-pattern h6,
+.leadership-past-pattern p,
+.leadership-likely-focus h6,
+.leadership-likely-focus p,
+.leadership-company-activity h6,
+.leadership-company-change-list h6,
+.leadership-company-change-list p {
+  margin: 0;
+}
+
+.leadership-person-slider-header h5 {
+  color: #173944;
+  font-size: 17px;
+}
+
+.leadership-person-slider-header p {
+  color: #667a81;
+  font-size: 11px;
+}
+
+.leadership-person-slider-controls {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 7px;
+}
+
+.leadership-person-slider-controls button {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 1px solid #bdd2d5;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #1f6670;
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: 850;
+}
+
+.leadership-person-slider-controls button:hover,
+.leadership-person-slider-controls button:focus-visible {
+  border-color: var(--leadership-accent);
+  background: color-mix(in srgb, var(--leadership-accent) 8%, #ffffff);
+}
+
+.leadership-person-slider-controls > span {
+  min-width: 38px;
+  color: #46636a;
+  font-size: 11px;
+  font-weight: 850;
+  text-align: center;
+}
+
+.leadership-person-stage {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.leadership-person-profile {
+  display: grid;
+  gap: 13px;
+  animation: leadership-person-arrival 180ms ease-out;
+}
+
+@keyframes leadership-person-arrival {
+  from {
+    opacity: 0.45;
+    transform: translateX(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.leadership-person-profile-header {
+  border: 1px solid #d5e1e3;
+  border-left: 4px solid var(--leadership-accent);
+  border-radius: 11px;
+  padding: 14px;
+  background: #ffffff;
+}
+
+.leadership-person-profile-header > div {
+  display: grid;
+  gap: 5px;
+}
+
+.leadership-person-profile-header h5 {
+  color: #153944;
+  font-size: 22px;
+}
+
+.leadership-person-profile-header > div > strong {
+  color: #36545d;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.leadership-person-profile-header p {
+  max-width: 850px;
+  color: #5a7078;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.leadership-person-status {
+  border-radius: 999px;
+  padding: 4px 8px;
+  background: #eaf3f4;
+  color: #32616a;
+  font-size: 9px;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.leadership-person-insight-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr 1fr;
+  gap: 10px;
+}
+
+.leadership-person-insight-grid > section {
+  display: grid;
+  align-content: start;
+  gap: 7px;
+  border: 1px solid #d5e1e3;
+  border-radius: 11px;
+  padding: 13px;
+  background: #ffffff;
+}
+
+.leadership-past-pattern > div,
+.leadership-likely-focus > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.leadership-past-pattern em,
+.leadership-likely-focus em {
+  border-radius: 999px;
+  padding: 3px 7px;
+  background: #eef5f6;
+  color: #41636a;
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 850;
+}
+
+.leadership-career-arc h6,
+.leadership-past-pattern h6,
+.leadership-likely-focus h6,
+.leadership-company-activity h6,
+.leadership-company-change-list h6 {
+  color: #23444d;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.leadership-career-arc ol {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding-left: 18px;
+  color: #405962;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.leadership-past-pattern p,
+.leadership-likely-focus p,
+.leadership-company-change-list p {
+  color: #405962;
+  font-size: 11px;
+  line-height: 1.48;
+}
+
+.leadership-likely-focus {
+  border-color: color-mix(in srgb, var(--leadership-accent) 28%, #d5e1e3) !important;
+  background: color-mix(in srgb, var(--leadership-accent) 5%, #ffffff) !important;
+}
+
+.leadership-likely-focus small {
+  border-top: 1px solid #d7e2e4;
+  padding-top: 7px;
+  color: #62767d;
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.leadership-company-activity {
+  display: grid;
+  gap: 9px;
+}
+
+.leadership-company-activity .leadership-subhead h6 {
+  font-size: 14px;
+}
+
+.leadership-company-change-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 9px;
+}
+
+.leadership-company-change-list article {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  border: 1px solid #d8e3e5;
+  border-radius: 10px;
+  padding: 12px;
+  background: #ffffff;
+}
+
+.leadership-company-change-list time {
+  color: #2d6c74;
+  font-size: 9px;
+  font-weight: 850;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.leadership-company-change-list small {
+  color: #75858a;
+  font-size: 9px;
+  font-weight: 750;
+}
+
+.leadership-company-change-list a,
+.leadership-person-sources a {
+  color: var(--blue);
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1.35;
+  text-decoration: none;
+}
+
+.leadership-company-change-list a:hover,
+.leadership-person-sources a:hover {
+  text-decoration: underline;
+}
+
+.leadership-person-sources {
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  border-top: 1px solid #d7e2e4;
+  padding-top: 9px;
+}
+
+.leadership-person-dots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  border-top: 1px solid #d7e2e4;
+  padding-top: 10px;
+}
+
+.leadership-person-dots button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #cbdadd;
+  border-radius: 999px;
+  padding: 5px 9px 5px 5px;
+  background: #ffffff;
+  color: #4c666d;
+  cursor: pointer;
+  font-size: 10px;
+}
+
+.leadership-person-dots button > span {
+  display: grid;
+  width: 20px;
+  height: 20px;
+  place-items: center;
+  border-radius: 50%;
+  background: #eaf2f3;
+  color: #32646c;
+  font-size: 9px;
+  font-weight: 850;
+}
+
+.leadership-person-dots button > strong {
+  font-size: 10px;
+}
+
+.leadership-person-dots button[aria-selected="true"] {
+  border-color: var(--leadership-accent);
+  background: color-mix(in srgb, var(--leadership-accent) 8%, #ffffff);
+  color: #173f48;
+}
+
+.leadership-person-dots button[aria-selected="true"] > span {
+  background: var(--leadership-accent);
+  color: #ffffff;
+}
+
+
+.leadership-signals,
+.leadership-watchlist {
+  gap: 10px;
+}
+
+.leadership-subhead {
+  align-items: end;
+  justify-content: flex-start;
+}
+
+.leadership-subhead > span {
+  flex: 0 0 auto;
+}
+
+.leadership-subhead h5 {
+  color: #203f48;
+  font-size: 14px;
+}
+
+.leadership-signal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 10px;
+}
+
+.leadership-signal-card {
+  align-content: start;
+  gap: 8px;
+  border: 1px solid #d9e3e5;
+  border-radius: 11px;
+  padding: 13px;
+  background: #ffffff;
+}
+
+.leadership-signal-card p {
+  font-size: 12px;
+}
+
+.leadership-planning-implication {
+  border-radius: 8px;
+  padding: 9px;
+  background: #eef7f8;
+}
+
+.leadership-signal-card a {
+  align-self: end;
+  color: var(--blue);
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.35;
+  text-decoration: none;
+}
+
+.leadership-signal-card a:hover {
+  text-decoration: underline;
+}
+
+.leadership-watchlist {
+  border: 1px solid #d6e1e3;
+  border-radius: 11px;
+  padding: 13px 14px;
+  background: #f8fafb;
+}
+
+.leadership-watchlist ul {
+  display: grid;
+  gap: 7px;
+  margin: 0;
+  padding-left: 18px;
+  color: #34505a;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.leadership-evidence-boundary {
+  border-radius: 9px;
+  padding: 11px 12px;
+  background: #f1f3f4;
+  color: #5a6f76;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.leadership-profile-empty {
+  gap: 5px;
+  border: 1px dashed #b9ced1;
+  border-radius: 12px;
+  padding: 20px;
+  background: #f5fafb;
+}
+
+.leadership-profile-empty strong {
+  color: #214952;
+}
+
+.leadership-profile-empty p {
+  color: #61757c;
+}
+
+/* Product Management hiring intelligence: visible skill demand without unsupported headcount claims. */
+.hiring-patterns-panel {
+  border-top-color: #6c4ea3;
+}
+
+.hiring-patterns-eyebrow {
+  margin: 0 0 4px;
+  color: #6c4ea3;
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hiring-patterns,
+.hiring-selected-detail,
+.hiring-pattern-readout,
+.hiring-skill-section,
+.hiring-observations-section,
+.hiring-skill-card,
+.hiring-observation-card,
+.hiring-forward-grid > section,
+.hiring-monitor-next,
+.hiring-pattern-empty {
+  display: grid;
+}
+
+.hiring-selected-detail {
+  min-width: 0;
+  gap: 15px;
+  border: 1px solid color-mix(in srgb, var(--hiring-accent) 24%, #dcd9e5);
+  border-left: 5px solid var(--hiring-accent);
+  border-radius: 13px;
+  padding: 17px;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--hiring-accent) 5%, #ffffff), #ffffff 68%);
+}
+
+.hiring-detail-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.hiring-detail-header > div {
+  display: grid;
+  gap: 3px;
+}
+
+.hiring-detail-header > div > span,
+.hiring-pattern-readout > span,
+.hiring-section-heading > span,
+.hiring-forward-grid > section > span {
+  color: #5c477f;
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.hiring-detail-header h4,
+.hiring-detail-header p,
+.hiring-pattern-readout p,
+.hiring-section-heading h5,
+.hiring-skill-card h6,
+.hiring-skill-card p,
+.hiring-observation-card h6,
+.hiring-observation-card p,
+.hiring-forward-grid p,
+.hiring-pattern-empty p {
+  margin: 0;
+}
+
+.hiring-detail-header h4 {
+  color: #25313e;
+  font-size: 22px;
+}
+
+.hiring-detail-header p {
+  color: #66757d;
+  font-size: 12px;
+}
+
+.hiring-ai-signal {
+  border: 1px solid color-mix(in srgb, var(--hiring-accent) 30%, #d9dce4);
+  border-radius: 999px;
+  padding: 6px 9px;
+  background: color-mix(in srgb, var(--hiring-accent) 7%, #ffffff);
+  color: #5d6370;
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.hiring-ai-signal b {
+  color: var(--hiring-accent);
+}
+
+.hiring-pattern-readout {
+  gap: 6px;
+  border: 1px solid #d9dce5;
+  border-left: 4px solid var(--hiring-accent);
+  border-radius: 11px;
+  padding: 14px;
+  background: #f8f8fb;
+}
+
+.hiring-pattern-readout p {
+  color: #3f505a;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.hiring-skill-section,
+.hiring-observations-section,
+.hiring-monitor-next {
+  gap: 9px;
+}
+
+.hiring-section-heading {
+  display: flex;
+  align-items: end;
+  gap: 14px;
+}
+
+.hiring-section-heading h5 {
+  color: #2d3f49;
+  font-size: 14px;
+}
+
+.hiring-skill-grid,
+.hiring-observation-grid,
+.hiring-forward-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.hiring-skill-grid,
+.hiring-observation-grid {
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+
+.hiring-skill-card,
+.hiring-observation-card {
+  align-content: start;
+  gap: 8px;
+  border: 1px solid #d9dfe3;
+  border-radius: 11px;
+  padding: 13px;
+  background: #ffffff;
+}
+
+.hiring-skill-card > div:first-child,
+.hiring-observation-meta {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 9px;
+}
+
+.hiring-skill-card h6,
+.hiring-observation-card h6 {
+  color: #263f49;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.hiring-skill-card > div:first-child > span,
+.hiring-observation-meta > span {
+  border-radius: 999px;
+  padding: 3px 7px;
+  background: #f0edf6;
+  color: #674d8f;
+  font-size: 9px;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.hiring-strength-meter {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+}
+
+.hiring-strength-meter i {
+  height: 5px;
+  border-radius: 999px;
+  background: #e2e6e9;
+}
+
+.hiring-strength-limited .hiring-strength-meter i:first-child,
+.hiring-strength-moderate .hiring-strength-meter i:nth-child(-n + 2),
+.hiring-strength-strong .hiring-strength-meter i {
+  background: var(--hiring-accent);
+}
+
+.hiring-skill-card p,
+.hiring-observation-card p,
+.hiring-forward-grid p {
+  color: #455a64;
+  font-size: 11px;
+  line-height: 1.48;
+}
+
+.hiring-observation-meta time {
+  color: #738087;
+  font-size: 9px;
+  font-weight: 750;
+}
+
+.hiring-observation-card > small {
+  border-top: 1px solid #e1e5e8;
+  padding-top: 7px;
+  color: #65777e;
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.hiring-observation-card a {
+  align-self: end;
+  color: var(--blue);
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1.35;
+  text-decoration: none;
+}
+
+.hiring-observation-card a:hover {
+  text-decoration: underline;
+}
+
+.hiring-forward-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.hiring-forward-grid > section {
+  align-content: start;
+  gap: 6px;
+  border: 1px solid #d9dfe3;
+  border-radius: 11px;
+  padding: 13px;
+  background: #ffffff;
+}
+
+.hiring-forward-grid > .hiring-planning-implication {
+  border-color: color-mix(in srgb, var(--hiring-accent) 28%, #d9dfe3);
+  background: color-mix(in srgb, var(--hiring-accent) 6%, #ffffff);
+}
+
+.hiring-monitor-next {
+  border: 1px solid #d9dfe3;
+  border-radius: 11px;
+  padding: 13px 14px;
+  background: #f8fafb;
+}
+
+.hiring-monitor-next ul {
+  display: grid;
+  gap: 7px;
+  margin: 0;
+  padding-left: 18px;
+  color: #3f5660;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.hiring-evidence-boundary {
+  border-radius: 9px;
+  padding: 11px 12px;
+  background: #f1f3f4;
+  color: #5d7077;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.hiring-pattern-empty {
+  gap: 5px;
+  border: 1px dashed #c9c1d8;
+  border-radius: 12px;
+  padding: 20px;
+  background: #faf9fc;
+}
+
+.hiring-pattern-empty strong {
+  color: #46375f;
+}
+
+.hiring-pattern-empty p {
+  color: #68767d;
+}
+
+@media (max-width: 780px) {
+  .leadership-detail-header,
+  .leadership-subhead {
+    display: grid;
+  }
+
+  .leadership-confidence {
+    justify-content: flex-start;
+  }
+
+  .leadership-chain,
+  .leadership-signal-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .leadership-person-slider-header,
+  .leadership-person-profile-header {
+    display: grid;
+  }
+
+  .leadership-person-slider-controls {
+    justify-content: flex-start;
+  }
+
+  .leadership-person-insight-grid,
+  .leadership-company-change-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .leadership-person-status {
+    justify-self: start;
+  }
+
+  .hiring-detail-header,
+  .hiring-section-heading {
+    display: grid;
+  }
+
+  .hiring-ai-signal {
+    justify-self: start;
+    white-space: normal;
+  }
+
+  .hiring-skill-grid,
+  .hiring-observation-grid,
+  .hiring-forward-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 /* The long-form conference preparation now lives on a dedicated page. */

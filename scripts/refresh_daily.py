@@ -37,6 +37,7 @@ PPTX_BUILDER = ROOT / "scripts" / "build_leadership_pptx.mjs"
 CUSTOMER_VOICE_VALIDATOR = ROOT / "scripts" / "validate_customer_voice_sources.mjs"
 APPLICATION_NOTE_VALIDATOR = ROOT / "scripts" / "validate_competitor_application_notes.mjs"
 PRODUCT_LAUNCH_VALIDATOR = ROOT / "scripts" / "validate_product_launch_press_releases.mjs"
+SOURCE_TITLE_LINK_VALIDATOR = ROOT / "scripts" / "validate_source_title_links.mjs"
 PRESS_RELEASE_COMPLETENESS_VALIDATOR = ROOT / "scripts" / "validate_press_release_completeness.py"
 INTEGRITY_ARTIFACT_BUILDER = ROOT / "scripts" / "build_integrity_artifacts.py"
 THERMO_MONITOR_VALIDATOR = ROOT / "scripts" / "validate_thermo_monitoring.mjs"
@@ -116,7 +117,7 @@ def validate_intelligence(data: dict) -> None:
 def validate_agilent_monitor(data: dict) -> None:
     required = {
         "new_products", "discontinued_products", "updated_products",
-        "new_press_releases", "recent_press_releases", "source_status",
+        "new_press_releases", "recent_press_releases", "all_press_releases", "source_status",
     }
     missing = sorted(required.difference(data))
     if missing:
@@ -463,7 +464,14 @@ def merge_agilent_changes(intelligence: dict, monitor: dict) -> None:
             "recommendation": "Confirm the lifecycle status through an official Agilent announcement before inferring whitespace.",
         })
 
-    for item in monitor.get("recent_press_releases") or monitor.get("new_press_releases", []):
+    # Reconcile the complete official Agilent archive, not only the rolling
+    # replay window.  The former 120-day merge could leave valid current-year
+    # newsroom and earnings records stranded in the monitor snapshot.
+    for item in (
+        monitor.get("all_press_releases")
+        or monitor.get("recent_press_releases")
+        or monitor.get("new_press_releases", [])
+    ):
         url = item.get("url", "")
         classification = item.get("classification", "corporate")
         signal = {
@@ -501,7 +509,7 @@ def merge_agilent_changes(intelligence: dict, monitor: dict) -> None:
     press_available = any(
         item.get("status") == "available" and (
             item.get("url") == "https://www.agilent.com/about/newsroom/presrel.html"
-            or item.get("fetchMethod") == "official_ir_news_api"
+            or item.get("fetchMethod") in {"official_ir_news_api", "browser_verified_archive_cache"}
         )
         for item in source_statuses
     )
@@ -521,7 +529,10 @@ def merge_agilent_changes(intelligence: dict, monitor: dict) -> None:
 def merge_perkinelmer_changes(intelligence: dict, monitor: dict) -> None:
     additions: list[dict] = []
     today = date.today().isoformat()
-    for item in monitor.get("recent_press_releases", []):
+    # Reconcile the complete collected newsroom inventory. Limiting this merge
+    # to the rolling replay window leaves older, still-visible cards stranded
+    # with stale titles when a publisher corrects broken page metadata.
+    for item in monitor.get("newsroom") or monitor.get("recent_press_releases", []):
         url = item.get("url", "")
         classification = item.get("classification", "corporate")
         additions.append({
@@ -534,6 +545,8 @@ def merge_perkinelmer_changes(intelligence: dict, monitor: dict) -> None:
             "summary": "Official dated release extracted from PerkinElmer's newsroom.",
             "sourceName": "PerkinElmer official newsroom",
             "sourceUrl": url,
+            "sourceTitleVerified": item.get("sourceTitleVerified") is True,
+            "titleSource": item.get("titleSource") or "",
             "geography": "Global",
             "marketSegment": "Pharma",
             "technology": technology_for_url(f"{url} {item.get('title', '')}"),
@@ -556,8 +569,10 @@ def merge_perkinelmer_changes(intelligence: dict, monitor: dict) -> None:
 
 def sync_deploy_data() -> None:
     DEPLOY_DATA_DIR.mkdir(parents=True, exist_ok=True)
-    for source in DATA_DIR.glob("*.json"):
-        shutil.copy2(source, DEPLOY_DATA_DIR / source.name)
+    for source in DATA_DIR.rglob("*.json"):
+        destination = DEPLOY_DATA_DIR / source.relative_to(DATA_DIR)
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(source, destination)
 
 
 def restore_data_snapshot(snapshot_dir: Path) -> None:
@@ -854,6 +869,7 @@ def main() -> int:
             dedupe_official_releases(refreshed.get("signals", []))
         )
         write_json(INTELLIGENCE_FILE, refreshed)
+        subprocess.run(["node", str(SOURCE_TITLE_LINK_VALIDATOR)], cwd=ROOT, check=True)
         subprocess.run([sys.executable, str(RECOMMENDATION_CURATOR)], cwd=ROOT, check=True)
         subprocess.run([sys.executable, str(SCORER)], cwd=ROOT, check=True)
         subprocess.run([sys.executable, str(LINK_CHECKER)], cwd=ROOT, check=True)
@@ -866,14 +882,17 @@ def main() -> int:
         subprocess.run([sys.executable, str(PRESS_RELEASE_COMPLETENESS_VALIDATOR)], cwd=ROOT, check=True)
         subprocess.run(["node", str(HISTORICAL_COMPETITOR_VALIDATOR)], cwd=ROOT, check=True)
         subprocess.run(["node", str(HISTORICAL_WATERS_VALIDATOR)], cwd=ROOT, check=True)
-        subprocess.run(["node", str(PPTX_BUILDER)], cwd=ROOT, check=True)
         ledger = write_ledger(SOURCE_HEALTH_FILE, _source_health_from_artifacts(refreshed, utc_now()), build_published_at=utc_now())
-        subprocess.run([sys.executable, str(INTEGRITY_ARTIFACT_BUILDER)], cwd=ROOT, check=True)
         if not ledger["allRequiredSourcesCurrent"]:
             raise RuntimeError(
                 "Required source high-water verification failed: "
                 + ", ".join(ledger["requiredSourceBlockers"])
             )
+        # Publishable exports and audit manifests must be derived only after the
+        # final source gate passes. A failed refresh then leaves the entire last
+        # validated build intact, not just the data directory.
+        subprocess.run(["node", str(PPTX_BUILDER)], cwd=ROOT, check=True)
+        subprocess.run([sys.executable, str(INTEGRITY_ARTIFACT_BUILDER)], cwd=ROOT, check=True)
         refresh_state = refreshed.get("refresh", {})
         domain_result = ", ".join(
             f"{label}: {refresh_state.get(key, 'unknown')}"
@@ -892,6 +911,19 @@ def main() -> int:
         backup_context.cleanup()
         return 0
     except Exception as error:  # Keep the last validated dataset available.
+        # Preserve the failing gate artifact before restoring the last good data;
+        # otherwise the exact dead/mislinked URL is overwritten by the previous
+        # successful link-health report and the next run cannot remediate it.
+        failed_link_path = DATA_DIR / "link_health.json"
+        if failed_link_path.exists():
+            failed_link_copy = ROOT / "audit" / "failed_link_health.json"
+            failed_link_copy.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(failed_link_path, failed_link_copy)
+        failed_source_health_path = DATA_DIR / "source_health.json"
+        if failed_source_health_path.exists():
+            failed_source_health_copy = ROOT / "audit" / "failed_source_health.json"
+            failed_source_health_copy.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(failed_source_health_path, failed_source_health_copy)
         restore_data_snapshot(backup_dir)
         write_status(
             "failed",

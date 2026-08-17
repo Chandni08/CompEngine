@@ -1,0 +1,300 @@
+{
+  "asOfDate": "2026-08-17",
+  "generatedAt": "2026-08-17T15:30:00-04:00",
+  "scope": "Current executive and LC-MS portfolio leadership for the five competitors tracked in the Product Management view",
+  "methodology": "Profiles use official company leadership pages, biographies, role descriptions, and disclosed portfolio actions. The behavioral read is limited to observable public decisions and role remit. It is not a personality, psychology, intent, or performance assessment.",
+  "profiles": [
+    {
+      "id": "agilent-leadership-lcms-2026",
+      "competitor": "Agilent",
+      "accent": "#d97706",
+      "identityConfidence": "High",
+      "behaviorReadConfidence": "Directional",
+      "behaviorHeadline": "Connects instrument strategy with lifecycle service and commercial execution",
+      "behaviorSummary": "The current leadership chain combines a CEO with CrossLab and commercial leadership experience and a Life Sciences and Diagnostics leader with product-management and commercial-operations depth. That public remit supports a planning hypothesis that Agilent will evaluate LC-MS moves as integrated instrument, service, and customer-lifecycle propositions.",
+      "leaders": [
+        {
+          "roleLabel": "Chief executive",
+          "name": "Padraig McDonnell",
+          "title": "President and Chief Executive Officer",
+          "scope": "Enterprise strategy and execution; previously led Agilent CrossLab and served as Chief Commercial Officer.",
+          "status": "Current"
+        },
+        {
+          "roleLabel": "LC-MS portfolio oversight",
+          "name": "Simon May",
+          "title": "Senior Vice President and President, Life Sciences and Diagnostics Markets Group",
+          "scope": "Leads the group containing Agilent's life-science instrument and diagnostics businesses; background includes product management, commercial operations, and business leadership.",
+          "status": "Current"
+        }
+      ],
+      "observableSignals": [
+        {
+          "label": "Leadership path",
+          "observedAction": "Agilent elevated a leader whose prior remit included CrossLab services and enterprise commercial execution to President and CEO.",
+          "planningImplication": "Watch for LC-MS differentiation to be packaged with service coverage, uptime, installed-base conversion, and commercial execution—not only instrument specifications.",
+          "sourceName": "Agilent · Padraig McDonnell biography",
+          "sourceUrl": "https://www.agilent.com/about/companyinfo/leadership/agilent-executive-mcdonnell.html",
+          "sourceDate": "2026-08-17"
+        },
+        {
+          "label": "Portfolio operating model",
+          "observedAction": "Simon May's public remit spans the Life Sciences and Diagnostics Markets Group, supported by prior product-management and commercial-operations experience.",
+          "planningImplication": "Expect roadmap reviews to connect segment choice, product-line economics, application pull-through, and go-to-market readiness.",
+          "sourceName": "Agilent · Simon May executive biography",
+          "sourceUrl": "https://www.agilent.com/about/companyinfo/leadership/agilent-executive-may.pdf",
+          "sourceDate": "2026-08-17"
+        }
+      ],
+      "watchItems": [
+        "LC-MS launches bundled with CrossLab service, support, or digital lifecycle offers",
+        "Portfolio moves that improve installed-base conversion or service attachment",
+        "Application-led packages where the commercial workflow is as prominent as the analyzer"
+      ],
+      "evidenceBoundary": "Leadership experience and reporting structure can shape priorities, but they do not prove a future launch, budget decision, or individual management style.",
+      "fieldCitable": false,
+      "approvalState": "draft"
+    },
+    {
+      "id": "thermo-fisher-leadership-lcms-2026",
+      "competitor": "Thermo Fisher",
+      "accent": "#2563a9",
+      "identityConfidence": "High",
+      "behaviorReadConfidence": "Directional",
+      "behaviorHeadline": "Operates LC-MS through a scaled analytical-instruments and products-and-technologies system",
+      "behaviorSummary": "Thermo Fisher's current structure places Analytical Instruments under a long-tenured president while enterprise products and technologies report through the President and COO. The observable model favors platform scale, cross-business execution, and integration of instruments with services and adjacent technologies.",
+      "leaders": [
+        {
+          "roleLabel": "Chief executive",
+          "name": "Marc N. Casper",
+          "title": "Chairman and Chief Executive Officer",
+          "scope": "Enterprise strategy and operating performance across Thermo Fisher Scientific.",
+          "status": "Current"
+        },
+        {
+          "roleLabel": "Enterprise portfolio oversight",
+          "name": "Gianluca Pettiti",
+          "title": "President and Chief Operating Officer; President, Products & Technologies",
+          "scope": "Oversees company operations and the Products & Technologies businesses that include analytical instrument platforms.",
+          "status": "Current"
+        },
+        {
+          "roleLabel": "LC-MS portfolio leadership",
+          "name": "Daniel P. Shine",
+          "title": "Senior Vice President and President, Analytical Instruments",
+          "scope": "Leads Analytical Instruments; previously served as President, Chromatography and Mass Spectrometry.",
+          "status": "Current"
+        }
+      ],
+      "observableSignals": [
+        {
+          "label": "Scaled operating structure",
+          "observedAction": "Thermo Fisher separated Chairman and CEO from President and COO responsibilities in 2026 while retaining Products & Technologies under the President and COO.",
+          "planningImplication": "Track whether LC-MS releases are coordinated with broader instrument, consumables, service, and technology-platform priorities.",
+          "sourceName": "Thermo Fisher · Corporate governance leadership",
+          "sourceUrl": "https://ir.thermofisher.com/investors/corporate-governance/leadership/default.aspx?print=1",
+          "sourceDate": "2026-08-17"
+        },
+        {
+          "label": "Domain continuity",
+          "observedAction": "Daniel Shine leads Analytical Instruments after earlier responsibility for Chromatography and Mass Spectrometry and later customer-channel and service operations.",
+          "planningImplication": "Assume strong continuity between LC-MS product roadmaps, service economics, and commercial-channel execution until contrary evidence appears.",
+          "sourceName": "Thermo Fisher · Corporate governance leadership",
+          "sourceUrl": "https://ir.thermofisher.com/investors/corporate-governance/leadership/default.aspx?print=1",
+          "sourceDate": "2026-08-17"
+        }
+      ],
+      "watchItems": [
+        "Coordinated instrument, consumables, software, and service releases",
+        "Cross-business bundles that use Thermo Fisher scale to reduce workflow fragmentation",
+        "Portfolio integration decisions following acquisitions or platform consolidation"
+      ],
+      "evidenceBoundary": "The reporting model and prior roles indicate operating context, not a guaranteed decision cadence or a forecast of specific LC-MS products.",
+      "fieldCitable": false,
+      "approvalState": "draft"
+    },
+    {
+      "id": "shimadzu-leadership-lcms-2026",
+      "competitor": "Shimadzu",
+      "accent": "#0f766e",
+      "identityConfidence": "High",
+      "behaviorReadConfidence": "Directional",
+      "behaviorHeadline": "Combines engineering-led portfolio control with customer-workflow and service expansion",
+      "behaviorSummary": "Shimadzu's Analytical & Measuring Instruments leadership includes direct LC business-unit experience, while recent disclosed actions expand multi-vendor LC and LC-MS support. The observable pattern supports a planning hypothesis centered on end-to-end customer workflow, product quality, partnerships, and regional service reach.",
+      "leaders": [
+        {
+          "roleLabel": "Chief executive",
+          "name": "Yasunori Yamamoto",
+          "title": "President and Chief Executive Officer",
+          "scope": "Enterprise leadership for Shimadzu Corporation.",
+          "status": "Current"
+        },
+        {
+          "roleLabel": "LC-MS portfolio leadership",
+          "name": "Masami Tomita",
+          "title": "Managing Executive Officer and General Manager, Analytical & Measuring Instruments Division",
+          "scope": "Leads the analytical-instruments division after serving as head of the LC Business Unit from 2012 to 2020.",
+          "status": "Current"
+        }
+      ],
+      "observableSignals": [
+        {
+          "label": "Customer-workflow orientation",
+          "observedAction": "Masami Tomita publicly describes portfolio leadership through customer perspective, partnerships, product development, technological capability, and stable high-quality supply.",
+          "planningImplication": "Compare Waters plans against complete workflow experience, reliability, and partner-enabled solutions—not only core LC or MS specifications.",
+          "sourceName": "Shimadzu Journal · Masami Tomita profile",
+          "sourceUrl": "https://www.shimadzu.com/an/shimadzu-journal/10-2/01.html",
+          "sourceDate": "2026-08-17"
+        },
+        {
+          "label": "Service footprint expansion",
+          "observedAction": "Shimadzu acquired Zef Scientific to expand multi-vendor LC and LC-MS maintenance and one-stop service in North America.",
+          "planningImplication": "Treat service availability and multi-vendor support as active competitive levers in North American replacement and consolidation decisions.",
+          "sourceName": "Shimadzu · Zef Scientific acquisition",
+          "sourceUrl": "https://www.shimadzu.com/news/2024/tth0-a77bl20c23j.html",
+          "sourceDate": "2024-10-01"
+        }
+      ],
+      "watchItems": [
+        "North American service-capacity expansion and multi-vendor support offers",
+        "LC-MS solution bundles built around specific customer workflows",
+        "Partnerships that close software, service, or application gaps"
+      ],
+      "evidenceBoundary": "Public statements and one acquisition show observable priorities, but they do not establish the weight of those priorities in every future portfolio decision.",
+      "fieldCitable": false,
+      "approvalState": "draft"
+    },
+    {
+      "id": "sciex-danaher-leadership-lcms-2026",
+      "competitor": "SCIEX",
+      "accent": "#7c3aed",
+      "identityConfidence": "High",
+      "behaviorReadConfidence": "Directional",
+      "behaviorHeadline": "Uses explicit product-roadmap accountability with ecosystem partnerships and Danaher operating discipline",
+      "behaviorSummary": "SCIEX publicly identifies a company President rather than a standalone CEO, with the Danaher CEO providing parent-company oversight. Its product-management leader owns the global LC/MS and software roadmap, new-product development, revenue, and margin—an unusually explicit portfolio accountability chain.",
+      "leaders": [
+        {
+          "roleLabel": "Parent chief executive",
+          "name": "Rainer M. Blair",
+          "title": "President and Chief Executive Officer, Danaher",
+          "scope": "Leads SCIEX's parent company and the Danaher Business System operating context.",
+          "status": "Current"
+        },
+        {
+          "roleLabel": "SCIEX operating leader",
+          "name": "Chris Hagen",
+          "title": "President, SCIEX",
+          "scope": "Top operating executive listed by SCIEX; no separate SCIEX CEO is listed on its executive-management page.",
+          "status": "Current"
+        },
+        {
+          "roleLabel": "LC-MS portfolio leadership",
+          "name": "Jose Castro-Perez",
+          "title": "Vice President, Product Management",
+          "scope": "Owns global CE, LC/MS, software ecosystems and accessories, technology roadmap, new-product development, revenue, and margin.",
+          "status": "Current"
+        }
+      ],
+      "observableSignals": [
+        {
+          "label": "End-to-end portfolio accountability",
+          "observedAction": "SCIEX assigns one product-management executive responsibility for LC/MS, software ecosystems, accessories, the technology roadmap, new products, revenue, and margin.",
+          "planningImplication": "Expect roadmap choices to be tested simultaneously for technical differentiation, ecosystem fit, commercial scale, and portfolio economics.",
+          "sourceName": "SCIEX · Executive management",
+          "sourceUrl": "https://sciex.com/about-us/executive-management",
+          "sourceDate": "2026-08-17"
+        },
+        {
+          "label": "Research ecosystem building",
+          "observedAction": "Under President Chris Hagen, SCIEX disclosed a strategic university alliance intended to connect research, education, talent, and industry applications around mass spectrometry.",
+          "planningImplication": "Monitor academic alliances as early adoption and workflow-development channels, especially for high-end MS applications and talent ecosystems.",
+          "sourceName": "SCIEX · Chungnam National University alliance",
+          "sourceUrl": "https://sciex.com/about-us/press-releases/2025/chungnam-national-university-and-sciex-accelerate-the-realization-of-industry-on-campus-with-global-headquarters-alliance-strategic-mou-signed-with-global-mass-spectrometry-leader-sciex",
+          "sourceDate": "2025-06-18"
+        },
+        {
+          "label": "Parent operating context",
+          "observedAction": "Danaher identifies Rainer Blair as CEO and explicitly frames its operating culture around continuous improvement and strategic investment.",
+          "planningImplication": "Use disciplined execution, recurring improvement, and portfolio returns as baseline assumptions when evaluating SCIEX response speed—but validate with product evidence.",
+          "sourceName": "Danaher · Rainer M. Blair biography",
+          "sourceUrl": "https://www.danaher.com/rainer-m-blair",
+          "sourceDate": "2026-08-17"
+        }
+      ],
+      "watchItems": [
+        "LC/MS roadmap changes accompanied by SCIEX OS or ecosystem updates",
+        "University and research partnerships that seed new high-value workflows",
+        "Portfolio choices that connect analyzer performance with margin and attachable software"
+      ],
+      "evidenceBoundary": "The Danaher operating context and the stated product-management remit do not prove how individual tradeoffs are made or predict a specific release.",
+      "fieldCitable": false,
+      "approvalState": "draft"
+    },
+    {
+      "id": "perkinelmer-leadership-lcms-2026",
+      "competitor": "PerkinElmer",
+      "accent": "#c2410c",
+      "identityConfidence": "High",
+      "behaviorReadConfidence": "Directional",
+      "behaviorHeadline": "Signals portfolio transformation, with LC/LC-MS roadmap ownership currently being rebuilt",
+      "behaviorSummary": "PerkinElmer appointed a new CEO in March 2026 and publicly describes a growth-and-transformation mandate. Analytical Solutions has named executive oversight, while the exact LC/LC-MS Product Director position is currently advertised—an observable succession and capability-building signal rather than evidence of a completed roadmap shift.",
+      "leaders": [
+        {
+          "roleLabel": "Chief executive",
+          "name": "Michael Stubblefield",
+          "title": "Chief Executive Officer",
+          "scope": "Appointed in March 2026 to lead the next phase of growth and transformation.",
+          "status": "Current"
+        },
+        {
+          "roleLabel": "Analytical portfolio oversight",
+          "name": "Mark Copeland",
+          "title": "Senior Vice President, Analytical Solutions",
+          "scope": "Executive oversight for the Analytical Solutions portfolio.",
+          "status": "Current"
+        },
+        {
+          "roleLabel": "LC-MS product leadership",
+          "name": "Open role",
+          "title": "Product Director, LC/LCMS",
+          "scope": "Advertised responsibility includes the LC and LCMS roadmap, business strategy, new-product development, revenue growth, and portfolio transformation.",
+          "status": "Recruiting"
+        }
+      ],
+      "observableSignals": [
+        {
+          "label": "Leadership transition",
+          "observedAction": "PerkinElmer appointed Michael Stubblefield as CEO in March 2026 with an explicit growth-and-transformation mandate.",
+          "planningImplication": "Treat portfolio allocation, operating-model changes, and sharper growth thresholds as active uncertainties until post-transition decisions become visible.",
+          "sourceName": "PerkinElmer · CEO appointment",
+          "sourceUrl": "https://www.perkinelmer.com/nl/corporate-and-newsroom/perkinelmer-appoints-michael-stubblefield-as-chief-executive-officer",
+          "sourceDate": "2026-03-23"
+        },
+        {
+          "label": "LC-MS capability build",
+          "observedAction": "PerkinElmer is recruiting a Product Director to own LC and LCMS strategy, roadmap, new-product development, and a 2026 Lab of the Future transformation emphasizing AI and automated workflows.",
+          "planningImplication": "The hire and its first roadmap choices are leading indicators; watch for changes to QSight, LC integration, automation, and workflow software.",
+          "sourceName": "PerkinElmer Careers · Product Director, LC/LCMS",
+          "sourceUrl": "https://jobs.perkinelmer.com/job/woodbridge/product-director-lc-lcms/43930/94486435280",
+          "sourceDate": "2026-08-17"
+        },
+        {
+          "label": "Named analytical oversight",
+          "observedAction": "PerkinElmer lists Mark Copeland as Senior Vice President, Analytical Solutions while the LC/LC-MS product-leadership role remains open.",
+          "planningImplication": "Separate executive portfolio direction from day-to-day LC-MS roadmap ownership when interpreting near-term signals.",
+          "sourceName": "PerkinElmer · Executive leadership",
+          "sourceUrl": "https://www.perkinelmer.com/fr-ca/executive-leadership",
+          "sourceDate": "2026-08-17"
+        }
+      ],
+      "watchItems": [
+        "Appointment of the LC/LC-MS Product Director and the person's prior portfolio pattern",
+        "QSight and LC roadmap changes linked to AI, automation, or Lab of the Future",
+        "Capital and partnership choices under the new CEO's transformation mandate"
+      ],
+      "evidenceBoundary": "An open role and a new CEO indicate organizational change, not weakness, execution failure, or certainty about the future LC-MS roadmap.",
+      "fieldCitable": false,
+      "approvalState": "draft"
+    }
+  ]
+}

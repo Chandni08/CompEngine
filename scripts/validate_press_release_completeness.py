@@ -28,11 +28,14 @@ def key(competitor: str, item: dict) -> tuple[str, str, str]:
     return competitor.lower(), str(item.get("date", ""))[:10], normalized(str(item.get("title", "")))
 
 
-def recent_monitor_records() -> tuple[list[tuple[str, dict]], dict[str, str]]:
+def monitored_release_records() -> tuple[list[tuple[str, dict]], dict[str, str]]:
     agilent = read("agilent_monitor.json")
     competitors = read("competitor_monitors.json")
     perkinelmer = read("perkinelmer_monitor.json")
-    records: list[tuple[str, dict]] = [("Agilent", item) for item in agilent.get("recent_press_releases", [])]
+    # Agilent exposes a bounded current-year archive, so validate the complete
+    # official set. Other monitors can be much larger and retain the rolling
+    # recent-window contract.
+    records: list[tuple[str, dict]] = [("Agilent", item) for item in agilent.get("all_press_releases", [])]
     for competitor, monitor in competitors.get("competitors", {}).items():
         records.extend((competitor, item) for item in monitor.get("recent_press_releases", []))
     records.extend(("PerkinElmer", item) for item in perkinelmer.get("recent_press_releases", []))
@@ -53,14 +56,17 @@ def parse_time(value: str) -> datetime | None:
 
 def main() -> int:
     intelligence = read("intelligence.json")
-    official, generated = recent_monitor_records()
+    official, generated = monitored_release_records()
     cutoff = (date.today() - timedelta(days=RECENT_DAYS)).isoformat()
-    official = [(competitor, item) for competitor, item in official if str(item.get("date", ""))[:10] >= cutoff]
+    official = [
+        (competitor, item) for competitor, item in official
+        if competitor == "Agilent" or str(item.get("date", ""))[:10] >= cutoff
+    ]
     official_keys = {key(competitor, item) for competitor, item in official}
 
     published = [
         item for item in intelligence.get("signals", [])
-        if str(item.get("date", ""))[:10] >= cutoff
+        if (str(item.get("competitor", "")) == "Agilent" or str(item.get("date", ""))[:10] >= cutoff)
         and str(item.get("competitor", "")) in {"Agilent", "Thermo Fisher", "Shimadzu", "SCIEX", "PerkinElmer"}
     ]
     published_keys = {key(str(item.get("competitor", "")), item) for item in published}
@@ -98,6 +104,7 @@ def main() -> int:
     report = {
         "generatedAt": now.isoformat(timespec="seconds"),
         "recentWindowDays": RECENT_DAYS,
+        "agilentScope": "complete official archive",
         "officialRecords": len(official_keys),
         "publishedRecords": len(official_keys & published_keys),
         "missing": [{"competitor": value[0], "date": value[1], "normalizedTitle": value[2]} for value in missing],

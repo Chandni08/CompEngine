@@ -1,10 +1,10 @@
 {
   "snapshotSchemaVersion": 2,
   "observationType": "sitemap_inventory",
-  "capturedAt": "2026-07-30T14:48:12+00:00",
+  "capturedAt": "2026-08-17T16:46:20+00:00",
   "initialized": true,
   "products": {
-    "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/index.html": "2026-07-09",
+    "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/index.html": "2026-08-05",
     "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-modified-nucleosides/index.html": "2026-07-09",
     "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-short-chain-fatty-acids/index.html": "2026-07-09",
     "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-veterinary-drugs-ver-2/index.html": "2026-07-09",
@@ -86,11 +86,131 @@
   "productMetadata": {},
   "monitoredFamilies": [],
   "pressReleases": {
+    "https://www.shimadzu.com/news/2026/5is0mfb00wsn8pnv.html": {
+      "date": "2026-08-04",
+      "title": "Release of the World\u2019s First Desktop Corona Discharge Ionizer Specialized for Dry Air Environments, STABLO-AP DRY AIR Eliminating Static Electricity Problems in Battery Research, Development, and Manufacturing",
+      "url": "https://www.shimadzu.com/news/2026/5is0mfb00wsn8pnv.html",
+      "classification": "product"
+    },
+    "https://www.shimadzu.com/news/2026/xsmnp89535xpnhd1.html": {
+      "date": "2026-07-31",
+      "title": "Team Representing Japan Wins at the World Deaf Team Tennis Championships Komokata of the SHIMADZU Breakers Excels as Team Ace",
+      "url": "https://www.shimadzu.com/news/2026/xsmnp89535xpnhd1.html",
+      "classification": "corporate"
+    },
     "https://www.shimadzu.com/news/2026/rqlmu84w5ry4eew_.html": {
       "date": "2026-07-14",
       "title": "Industry-Leading Detection Performance and Flexibility for Diverse Analytical Needs Shimadzu Releases the GCMS-TQ RX Series Gas Chromatograph-Mass Spectrometer",
       "url": "https://www.shimadzu.com/news/2026/rqlmu84w5ry4eew_.html",
       "classification": "corporate"
+    },
+    "https://www.shimadzu.com/news/2026/j97cvpy4m18o8cm3.html": {
+      "date": "2026-07-10",
+      "title": "Shimadzu Acquires Czech-Based TESCAN as a Wholly Owned Subsidiary Acquisition of Electron Microscopy Business Strengthens End-to-End Solutions in Analytical and Measuring Technologies",
+      "url": "https://www.shimadzu.com/news/2026/j97cvpy4m18o8cm3.html",
+      "classification": "corporate"
+    },
+    "https://www.shimadzu.com/news/2026/ao0x3yts-fwk-ev6.html": {
+      "date": "2026-07-03",
+      "title": "Launch of a Pilot Refurbishment Program for Analytical and Measuring Instruments with Ryukoku University Toward a Circular Society through Industry-Academia Collaboration",
+      "url": "https://www.shimadzu.com/news/2026/ao0x3yts-fwk-ev6.html",
+      "classification": "product"
+    },
+    "https://www.shimadzu.com/news/2026/fqazhvc2bwk9trb6.html": {
+      "date": "2026-07-02",
+      "title": "Two Shimadzu Products Win Red Dot Design Award 2026 \u2013 Precision Universal Testing Machine and High-Speed Video Camera \u2013",
+      "url": "https://www.shimadzu.com/news/2026/fqazhvc2bwk9trb6.html",
+      "classification": "corporate"
+    },
+    "https://www.shimadzu.com/news/2026/8vla5_ja28yrj6y-.html": {
+      "date": "2026-06-19",
+      "title": "Assistance for Quality Control of Antibody Drugs, Peptide Drugs, Etc. Release of PPSQ-51A/53A SPD-40 Model Protein Sequencers in Japan and Overseas for Protein Analysis",
+      "url": "https://www.shimadzu.com/news/2026/8vla5_ja28yrj6y-.html",
+      "classification": "product"
+    },
+    "https://www.shimadzu.com/news/2026/hwvic1k630v3uz8g.html": {
+      "date": "2026-06-11",
+      "title": "New Medium-Term Management Plan for FY 2026 to 2028 Prepared Become an Innovative Company That Solves Social Challenges Together with Global Partners \u2014Sustainably Improve Profitability by Strengthening End-to-End Solutions Capabilities\u2014",
+      "url": "https://www.shimadzu.com/news/2026/hwvic1k630v3uz8g.html",
+      "classification": "corporate"
+    },
+    "https://www.shimadzu.com/news/2026/gcz8mxw0lcb05i76.html": {
+      "date": "2026-05-28",
+      "title": "Shimadzu Corporation Joins NIIMBL to Advance Biopharmaceutical Manufacturing Innovation",
+      "url": "https://www.shimadzu.com/news/2026/gcz8mxw0lcb05i76.html",
+      "classification": "corporate"
+    },
+    "https://www.shimadzu.com/news/2026/2vzbn3pq9_pryrrm.html": {
+      "date": "2026-05-14",
+      "title": "Recognized as a 2026 Outstanding Corporate Entity for Shokuiku (Food and Nutrition Education) by the Ministry of Agriculture, Forestry and Fisheries",
+      "url": "https://www.shimadzu.com/news/2026/2vzbn3pq9_pryrrm.html",
+      "classification": "corporate"
+    },
+    "https://www.shimadzu.com/news/2026/mp345hgpek6lm85j.html": {
+      "date": "2026-05-12",
+      "title": "BIPM, RIKEN and Shimadzu launch collaboration to explore the role of transportable optical frequency standards",
+      "url": "https://www.shimadzu.com/news/2026/mp345hgpek6lm85j.html",
+      "classification": "product"
+    },
+    "https://www.shimadzu.com/news/2026/3wqzblb912kax0m9.html": {
+      "date": "2026-04-27",
+      "title": "Supporting Diverse Surgical and Diagnostic Applications with High-Definition Imaging and Positioning Freedom Expansion of the product lineup with SC15 and OPESCOPE ACTENO FD15, new mobile C-arm systems",
+      "url": "https://www.shimadzu.com/news/2026/3wqzblb912kax0m9.html",
+      "classification": "corporate"
+    },
+    "https://www.shimadzu.com/news/2026/qmv_7cupefrinwt6.html": {
+      "date": "2026-04-27",
+      "title": "Shimadzu Corporation Acquires German Startup Plasmion GmbH Secures SICRIT Ion Source Technology for Mass Spectrometers",
+      "url": "https://www.shimadzu.com/news/2026/qmv_7cupefrinwt6.html",
+      "classification": "corporate"
+    },
+    "https://www.shimadzu.com/news/2026/iy0elwnih0c159yp.html": {
+      "date": "2026-04-20",
+      "title": "Study Reveals How the Viability of Lactic Acid Bacteria Shapes Their Function in the Gut Results of Collaborative Research with Tohoku University and ITO EN Published in the Cell Press journal iScience",
+      "url": "https://www.shimadzu.com/news/2026/iy0elwnih0c159yp.html",
+      "classification": "corporate"
+    },
+    "https://www.shimadzu.com/news/2026/us_ij0twdr--z1bk.html": {
+      "date": "2026-04-16",
+      "title": "Shimadzu Receives an International iF Design Award 2026 in Three Disciplines\u2014Product Design, Architecture, and Interior Architecture",
+      "url": "https://www.shimadzu.com/news/2026/us_ij0twdr--z1bk.html",
+      "classification": "corporate"
+    },
+    "https://www.shimadzu.com/news/2026/es_ffmlcxz0isd6y.html": {
+      "date": "2026-04-15",
+      "title": "SHIMADZU Breakers\u2019 Rina Komokata Receives Mie Prefecture Citizen\u2019s Honor Award",
+      "url": "https://www.shimadzu.com/news/2026/es_ffmlcxz0isd6y.html",
+      "classification": "corporate"
+    },
+    "https://www.shimadzu.com/news/2026/u7zsp_9ptac8y-ri.html": {
+      "date": "2026-04-10",
+      "title": "Launched Industry\u2019s First Micro Compression Testing Machine Capable of Multi-Point Successive Measurement in Conformance Order Contributing to R&D for Carbon Neutrality and Related Fields through Micron-Level material evaluation",
+      "url": "https://www.shimadzu.com/news/2026/u7zsp_9ptac8y-ri.html",
+      "classification": "corporate"
+    },
+    "https://www.shimadzu.com/news/2026/vz_a4k39l-19nqcp.html": {
+      "date": "2026-04-08",
+      "title": "Shimadzu Signs Professional Player Contracts with Tennis Players Hikaru Sato and Hiromi Abe",
+      "url": "https://www.shimadzu.com/news/2026/vz_a4k39l-19nqcp.html",
+      "classification": "corporate"
+    },
+    "https://www.shimadzu.com/news/2026/y8w8v6gusy376etw.html": {
+      "date": "2026-03-30",
+      "title": "Shimadzu Scientific Instruments Inc. Opens New Laboratory in the San Francisco Bay Area \u2014 Accelerating New Product and Business Development for the Pharmaceutical and Life Science Fields \u2014",
+      "url": "https://www.shimadzu.com/news/2026/y8w8v6gusy376etw.html",
+      "classification": "corporate"
+    },
+    "https://www.shimadzu.com/news/2026/yaxf8b8772q0i8ld.html": {
+      "date": "2026-03-30",
+      "title": "Improved X-ray examination efficiency through Auto-Tracking Release of the New Floor-Mounted Radiography System, RADspeed Pro XF type",
+      "url": "https://www.shimadzu.com/news/2026/yaxf8b8772q0i8ld.html",
+      "classification": "product"
+    },
+    "https://www.shimadzu.com/news/2026/2a91yoe8irw-b8-w.html": {
+      "date": "2026-03-30",
+      "title": "Shimadzu Corporation to Launch Laser Spectrum Analyzer SPG-V500 (InGaAs type)",
+      "url": "https://www.shimadzu.com/news/2026/2a91yoe8irw-b8-w.html",
+      "classification": "product"
     },
     "https://www.shimadzu.com/news/2026/kl7r0r4uj64q9kpv.html": {
       "date": "2026-03-23",
@@ -98,10 +218,40 @@
       "url": "https://www.shimadzu.com/news/2026/kl7r0r4uj64q9kpv.html",
       "classification": "corporate"
     },
+    "https://www.shimadzu.com/news/2026/1ibndzuqv5hxtc-d.html": {
+      "date": "2026-03-23",
+      "title": "The Culmination of 70 Years of GC Development, Featuring Detectors with World-Class Sensitivity Release of the Nexis GC-2060 Gas Chromatograph",
+      "url": "https://www.shimadzu.com/news/2026/1ibndzuqv5hxtc-d.html",
+      "classification": "product"
+    },
     "https://www.shimadzu.com/news/2026/h8vx9je-kascz6do.html": {
       "date": "2026-03-23",
       "title": "DOSIMMUNE\u2122 LC-MS/MS Immunosuppressant Analysis Kit Obtains European IVDR Class C Certification Contributing to Therapeutic Drug Monitoring",
       "url": "https://www.shimadzu.com/news/2026/h8vx9je-kascz6do.html",
+      "classification": "corporate"
+    },
+    "https://www.shimadzu.com/news/2026/vwksl8hp0z81kda4.html": {
+      "date": "2026-03-19",
+      "title": "Selected as a \u201cNext Nadeshiko: Companies Supporting Dual Careers and Co-parenting\u201d",
+      "url": "https://www.shimadzu.com/news/2026/vwksl8hp0z81kda4.html",
+      "classification": "corporate"
+    },
+    "https://www.shimadzu.com/news/2026/bosov3c4eky004vc.html": {
+      "date": "2026-03-18",
+      "title": "Selected as a \u201c2026 KENKO Investment for Health Stock Selection\u201d for the 4th Time Certified as a \u201cWhite 500\u201d KENKO Investment for Health Outstanding Organization for the 10th Consecutive Year",
+      "url": "https://www.shimadzu.com/news/2026/bosov3c4eky004vc.html",
+      "classification": "corporate"
+    },
+    "https://www.shimadzu.com/news/2026/qy2x4yb6dldx0cnk.html": {
+      "date": "2026-03-18",
+      "title": "Shimadzu to exhibit a science-art installation that lets visitors experience the essence of analytical measurement technologies through design Exhibiting at \u201cMilan Design Week 2026,\u201d the world\u2019s largest design festival",
+      "url": "https://www.shimadzu.com/news/2026/qy2x4yb6dldx0cnk.html",
+      "classification": "corporate"
+    },
+    "https://www.shimadzu.com/news/2026/c6crvapmjgep338f.html": {
+      "date": "2026-03-16",
+      "title": "Shimadzu has invested JPY 1 billion in Kyoto University Innovation Capital\u2019s Fund III to support the growth and societal implementation of university-originated startups.",
+      "url": "https://www.shimadzu.com/news/2026/c6crvapmjgep338f.html",
       "classification": "corporate"
     },
     "https://www.shimadzu.com/news/2026/k8iri3_20_z4uvwt.html": {
@@ -110,11 +260,59 @@
       "url": "https://www.shimadzu.com/news/2026/k8iri3_20_z4uvwt.html",
       "classification": "product"
     },
+    "https://www.shimadzu.com/news/2026/cg6gvgcdt6lhmd9e.html": {
+      "date": "2026-02-18",
+      "title": "Supporting Underwater Power Cable Inspections with Accurate Burial Depth Measurement Development Agreement Signed with the University of Edinburgh for a \"Magnetic Noise Compensation Algorithm\"",
+      "url": "https://www.shimadzu.com/news/2026/cg6gvgcdt6lhmd9e.html",
+      "classification": "corporate"
+    },
+    "https://www.shimadzu.com/news/2026/7temze6qs0wfggpx.html": {
+      "date": "2026-02-17",
+      "title": "Shimadzu Future Innovation Fund Invests in A-wave, a Startup Developing a System to Reduce Hospital Readmissions for Heart Failure Patients",
+      "url": "https://www.shimadzu.com/news/2026/7temze6qs0wfggpx.html",
+      "classification": "product"
+    },
     "https://www.shimadzu.com/news/2026/t0best6lrz8y0uk9.html": {
       "date": "2026-02-10",
       "title": "Enables Reliable Water Quality Analysis for All Users and Reduces Workload through Smooth Operation Release of Nexera IC Ion Chromatograph",
       "url": "https://www.shimadzu.com/news/2026/t0best6lrz8y0uk9.html",
       "classification": "product"
+    },
+    "https://www.shimadzu.com/news/2026/xbp_4fr33vtqp8nl.html": {
+      "date": "2026-02-10",
+      "title": "Selected for CDP\u2019s Climate Change \u201cA List,\u201d the Highest Possible Rating",
+      "url": "https://www.shimadzu.com/news/2026/xbp_4fr33vtqp8nl.html",
+      "classification": "corporate"
+    },
+    "https://www.shimadzu.com/news/2026/giy7r58i1glsx3lm.html": {
+      "date": "2026-02-09",
+      "title": "Komokata Sweeps Singles and Doubles Titles at the 2026 AO Deaf & Hard of Hearing (DHoH) Championships",
+      "url": "https://www.shimadzu.com/news/2026/giy7r58i1glsx3lm.html",
+      "classification": "corporate"
+    },
+    "https://www.shimadzu.com/news/2026/jfqbf4rreauc6j4q.html": {
+      "date": "2026-01-13",
+      "title": "Shimadzu\u2019s Eco-First Company Certification Renewed by the Minister of the Environment",
+      "url": "https://www.shimadzu.com/news/2026/jfqbf4rreauc6j4q.html",
+      "classification": "corporate"
+    },
+    "https://www.shimadzu.com/news/2026/hugchf3y9g3o6735.html": {
+      "date": "2026-01-07",
+      "title": "World\u2019s First Anti-Static Solution for Battery Research and Development Release of the STABLO-AP-N 2 desktop Corona Discharge Ionizer for Nitrogen Gas Environments",
+      "url": "https://www.shimadzu.com/news/2026/hugchf3y9g3o6735.html",
+      "classification": "product"
+    },
+    "https://www.shimadzu.com/news/2026/0c7okia72w_ij4kn.html": {
+      "date": "2026-01-05",
+      "title": "Aetherclock OC020 Strontium Optical Lattice Clock Wins the Award for Excellence in 2025 Nikkei Excellent Products and Services Awards",
+      "url": "https://www.shimadzu.com/news/2026/0c7okia72w_ij4kn.html",
+      "classification": "corporate"
+    },
+    "https://www.shimadzu.com/news/2026/index.html": {
+      "date": "2026-02-05",
+      "title": "DATABOOK",
+      "url": "https://www.shimadzu.com/news/2026/index.html",
+      "classification": "corporate"
     }
   },
   "technicalInsights": {},

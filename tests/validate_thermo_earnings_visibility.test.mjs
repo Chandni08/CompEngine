@@ -36,11 +36,11 @@ test("Thermo July earnings are included in the visible competitor-intent profile
   assert.match(app, /Product-management signal:/);
   assert.match(app, /What Waters PM should know/);
   assert.match(app, /Evidence boundary:/);
-  assert.match(app, /earnings\.length \? `\$\{earnings\.length\} earnings result/);
-  assert.match(app, /type: "Earnings result"/);
+  assert.match(app, /earnings\.length \? `\$\{earnings\.length\} earnings update/);
+  assert.match(app, /type: \/quarterly earnings result\/i\.test\(signal\.signalType \|\| ""\) \? "Earnings result" : "Earnings announcement"/);
   assert.match(app, /const earnings = currentEarningsSignals\(competitorIntentSignals\(\[\]\)\)/);
   assert.match(app, /Official earnings result/);
-  assert.match(app, /Open official earnings release ↗/);
+  assert.match(app, /Open official earnings update ↗/);
   assert.match(app, /\[\.\.\.companyInsights, \.\.\.companyEarnings\]/);
 });
 

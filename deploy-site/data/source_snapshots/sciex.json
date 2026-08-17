@@ -1,7 +1,7 @@
 {
   "snapshotSchemaVersion": 2,
   "observationType": "sitemap_inventory",
-  "capturedAt": "2026-07-30T14:48:13+00:00",
+  "capturedAt": "2026-08-17T16:46:20+00:00",
   "initialized": true,
   "products": {
     "https://sciex.com/products/mass-spectrometers/qtof-systems": "",
@@ -84,6 +84,12 @@
       "date": "2026-06-01",
       "title": "SCIEX advances the ZenoTOF line with platform-wide expansions in software, integrations, and key collaborations",
       "url": "https://sciex.com/about-us/press-releases/2026/zenotof-unlock",
+      "classification": "product"
+    },
+    "https://sciex.com/about-us/press-releases/2026/sciex-software-solutions-advance-workflow-efficiency-with-six-industry-collaborations": {
+      "date": "2026-05-06",
+      "title": "SCIEX software solutions advance workflow efficiency with six industry collaborations",
+      "url": "https://sciex.com/about-us/press-releases/2026/sciex-software-solutions-advance-workflow-efficiency-with-six-industry-collaborations",
       "classification": "product"
     },
     "https://sciex.com/about-us/press-releases/2026/the-echor-ms-system-integration-with-the-zenotof-8600-system-delivers-enhanced-sensitivity-for-high-throughput-screening": {

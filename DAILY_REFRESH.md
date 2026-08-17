@@ -11,7 +11,7 @@ The website includes a fail-safe daily refresh pipeline.
 - SEC filing discovery
 - Availability checks for registered competitor sources
 - Agilent LC/MS product additions, removals, and page updates from authoritative sitemaps
-- Agilent product and corporate announcements from its dated press-release index
+- Agilent product, corporate, regulatory, and earnings updates from the complete current-year newsroom and investor-relations archive
 - Thermo Fisher LC/LC-MS product pages from its official US sitemap
 - Thermo Dionex Integrion and ICS-series ion chromatography pages, tagged to Environmental and Food & Beverage
 - Thermo Vanquish Neo nano-LC pages, tagged to Biopharma and Academic
@@ -51,9 +51,10 @@ The workflow:
 4. Checks every public URL in `data/`, follows redirects, and writes `data/link_health.json`.
 5. Validates every customer-voice source keyword against the exact linked page; Reddit records use Reddit's canonical oEmbed title so bot challenges cannot create a false pass.
 6. Fails the refresh and deployment when a displayed customer-voice keyword is absent, a source cannot be read, or any URL returns 404/410 or has a DNS failure or timeout.
-7. Restores every data artifact from the last good dataset if collection, high-water verification, or validation fails.
-8. Synchronizes `data/` with `deploy-site/data/`.
-9. Commits the validated data so a Git-connected Vercel project redeploys.
+7. Reconciles every Agilent current-year newsroom/IR archive record—not only the recent replay window—against the published intelligence dataset, and fails on missing or duplicate releases.
+8. Restores every data artifact from the last good dataset if collection, high-water verification, or validation fails.
+9. Synchronizes `data/` with `deploy-site/data/`.
+10. Commits the validated data so a Git-connected Vercel project redeploys.
 
 For a Vercel project that is not connected to Git, add a repository secret named `VERCEL_DEPLOY_HOOK` containing a Vercel Deploy Hook URL.
 
@@ -103,7 +104,7 @@ The dashboard reads `data/refresh_status.json` and shows whether the daily refre
 
 ## Agilent Monitoring
 
-The Agilent connector uses `sitemap.xml`, the product sitemap files, the dated press-release index, and investor relations. It stores a baseline in `data/source_snapshots/agilent.json` and reports differences in `data/agilent_monitor.json`.
+The Agilent connector uses `sitemap.xml`, the product sitemap files, the dated press-release index, and investor relations. It stores a baseline in `data/source_snapshots/agilent.json` and reports differences in `data/agilent_monitor.json`. Every refresh emits `all_press_releases` for the complete official current-year archive and merges that set into `data/intelligence.json`; `recent_press_releases` remains available for rolling-window analysis but is never used as the completeness boundary. When newsroom and IR pages syndicate the same release, the canonical record preserves the richer IR classification and earnings metadata.
 
 An HTTP 403 caused by Agilent's WAF is treated as a collection-method issue, not a reliability penalty. The collector identifies itself honestly, avoids disallowed paths, spaces requests, applies the investor site's 10-second crawl delay, and never impersonates a whitelisted crawler.
 

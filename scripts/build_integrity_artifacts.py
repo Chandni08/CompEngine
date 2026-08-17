@@ -66,6 +66,8 @@ def panel(
             "customer_voice" if "customer_voice" in name else
             "conference" if "conference" in name else
             "publication" if "journal" in name else
+            "patent" if "patent" in name else
+            "leadership" if "leadership" in name else
             "filing" if "filing" in name else
             "product" if any(token in name for token in ("product", "historical", "technical")) else
             "competitive_intelligence"
@@ -88,8 +90,18 @@ def panel(
 def panel_specs() -> list[dict]:
     i = "index.html"
     rows = [
-        panel(i, "global-filters", "Global Filters", ".filters", "render", ["data/intelligence.json"], filters=GLOBAL_FILTERS, mode="interactive"),
+        panel(i, "global-filters", "Global Filters", ".filters", "render", ["data/intelligence.json"], filters=GLOBAL_FILTERS + ["application", "buyingSituation", "buyerRole", "competitorProduct"], mode="interactive"),
         panel(i, "refresh-status", "Build and Source Verification Status", ".refresh-block", "renderRefreshStatus", ["data/refresh_status.json", "data/source_health.json"], filters=[], horizons=[], mode="derived"),
+        panel(i, "pmm-start-here", "Product Marketing Start Here", "#pmmStartHere", "renderMarketingWorkspace", ["data/intelligence.json", "data/product_comparisons.json"], hidden=["marketing-role-only"], mode="derived"),
+        panel(i, "pmm-head-to-head", "Head-to-Head Comparison", "#pmm-head-to-head", "renderPmmHeadToHeadComparison", ["data/product_comparisons.json", "data/technical_comparisons.json", "data/historical_waters_catalog.json", "data/historical_product_catalog.json"], hidden=["marketing-role-only"]),
+        panel(i, "pmm-governing-position", "Governing Position", "#pmm-governing-position", "renderPmmGoverningPosition", ["data/intelligence.json"], hidden=["marketing-role-only"], mode="curated", refresh="manual-curation:PMM_DATA_CONTRACT.md"),
+        panel(i, "pmm-positioning-decisions", "Positioning Decisions", "#pmm-positioning-decisions", "renderPmmPositioningDecisions", ["data/intelligence.json", "data/product_comparisons.json"], hidden=["marketing-role-only"]),
+        panel(i, "pmm-claims-risk", "Claims and Risk", "#pmm-claims-risk", "renderPmmClaimsRisk", ["data/intelligence.json", "data/technical_comparisons.json"], hidden=["marketing-role-only"]),
+        panel(i, "pmm-segment-cascade", "Segment Cascade", "#pmm-segment-cascade", "renderPmmSegmentCascade", ["data/intelligence.json", "data/market_application_sources.json"], hidden=["marketing-role-only"]),
+        panel(i, "pmm-competitive-narratives", "Competitive Narratives", "#pmm-competitive-narratives", "renderMarketingBattlecards", ["data/intelligence.json", "data/product_comparisons.json", "data/customer_voice.json", "data/competitor_application_notes.json"], hidden=["marketing-role-only"]),
+        panel(i, "pmm-adoption-value", "Adoption and Value", "#pmm-adoption-value", "renderPmmAdoptionValue", ["data/intelligence.json", "data/customer_voice.json"], hidden=["marketing-role-only"]),
+        panel(i, "pmm-activation-artifacts", "Activation Artifacts", "#pmm-activation-artifacts", "renderPmmActivationArtifacts", ["data/intelligence.json"], hidden=["marketing-role-only"], mode="curated", refresh="manual-curation:PMM_DATA_CONTRACT.md"),
+        panel(i, "pmm-evidence-appendix", "Evidence Appendix", "#pmm-evidence-appendix", "renderPmmEvidenceAppendix", ["data/intelligence.json", "data/customer_voice.json", "data/filing_insights.json"], hidden=["marketing-role-only"]),
         panel(i, "leadership-brief", "Leadership Brief", "#leadership-brief", "renderDecisionPacket", ["data/intelligence.json", "data/product_launches.json", "data/filing_insights.json", "data/customer_voice.json"]),
         panel(i, "overall-trend-analysis", "Overall Trend Analysis", "#overall-trend-analysis", "renderOverallTrendAnalysis", ["data/intelligence.json", "data/customer_voice.json", "data/filing_insights.json"]),
         panel(i, "competitor-intent-section", "Competitor Intent", "#competitor-intent-section", "renderCompetitorIntentCards", ["data/intelligence.json", "data/product_launches.json", "data/filing_insights.json"]),
@@ -100,13 +112,17 @@ def panel_specs() -> list[dict]:
         panel(i, "customer-evidence-classification", "Evidence Classification", "#sentimentTrendChart", "renderSentimentTrendChart", ["data/customer_voice.json"], parent="customer-voice"),
         panel(i, "customer-roadmap-inputs", "Roadmap Decision Inputs", ".customer-roadmap-inputs", "customerRoadmapInputsMarkup", ["data/customer_voice.json", "data/intelligence.json"], parent="customer-voice"),
         panel(i, "customer-needs", "Pain and Needs", '[data-customer-voice-panel="needs"]', "renderPainPointTracker;renderUnmetNeeds", ["data/customer_voice.json"], parent="customer-voice", hidden=["tab-hidden-default"]),
+        panel(i, "customer-positioning", "Positioning", '[data-customer-voice-panel="positioning"]', "renderMarketPositioning;renderCustomerSegments;renderCompetitiveCustomerSignals;renderCustomerPmInsights", ["data/customer_voice.json"], parent="customer-voice", hidden=["marketing-role-tab"]),
         panel(i, "customer-evidence", "Evidence and Source Links", '[data-customer-voice-panel="evidence"]', "renderCustomerEvidenceTable", ["data/customer_voice.json", "data/link_health.json"], parent="customer-voice", hidden=["tab-hidden-default"]),
         panel(i, "product-comparator", "Product Comparator", "#product-comparator", "renderProductComparator", ["data/product_comparisons.json", "data/technical_comparisons.json", "data/historical_waters_catalog.json", "data/historical_product_catalog.json"]),
         panel(i, "competitive-timeline-section", "Competitive Product Timeline", "#competitive-timeline-section", "renderCompetitiveTimeline", ["data/product_launches.json", "data/historical_product_catalog.json"]),
         panel(i, "competitive-capability-evidence", "Competitive Capability Evidence", "#competitive-capability-evidence", "renderFeatureGapMatrix", ["data/product_comparisons.json", "data/technical_comparisons.json", "data/customer_voice.json", "data/intelligence.json"]),
         panel(i, "metric-grid", "Executive Product Metrics", "#metricGrid", "renderMetrics", ["data/product_launches.json"], parent="competitive-timeline-section"),
+        panel(i, "patent-filing-insights", "Competitor Patent Filing Insights", "#patent-filing-insights", "renderPatentInsights", ["data/patent_insights.json"], hidden=["engineering-role-only"], mode="curated", refresh="manual-curation:data/patent_insights.json"),
+        panel(i, "leadership-behavior-profiles", "Competitor Leadership Behavior Profiles", "#leadership-behavior-profiles", "renderLeadershipBehaviorProfiles", ["data/leadership_profiles.json", "data/leadership_people.json"], hidden=["engineering-role-only"], mode="curated", refresh="manual-curation:data/leadership_profiles.json+data/leadership_people.json", source_fields=["competitor", "leaders", "people", "companyChanges", "sourceUrl"], derived_fields=["operatingPattern", "likelyFocus", "behaviorHeadline", "behaviorSummary", "watchItems", "asOfDate"]),
+        panel(i, "competitor-hiring-patterns", "Competitor Hiring Patterns", "#competitor-hiring-patterns", "renderHiringPatterns", ["data/hiring_patterns.json"], hidden=["engineering-role-only"], mode="curated", refresh="manual-curation:data/hiring_patterns.json", source_fields=["competitor", "observations", "checkedDate", "status", "sourceUrl"], derived_fields=["skillClusters", "aiTalentSignal", "likelyCapabilityBuild", "planningImplication", "monitorNext", "asOfDate"]),
         panel(i, "filing-evidence", "SEC Filing Evidence", "#filing-evidence", "renderFilingInsights", ["data/filing_insights.json", "data/intelligence.json"]),
-        panel(i, "strategic-signals", "Strategic Signals", "#strategicSignals", "renderStrategicSignals", ["data/intelligence.json"], hidden=["paginated"]),
+        panel(i, "strategic-signals", "Official Newsroom, Strategic Partnerships and Corporate Moves", "#official-newsroom-corporate-moves", "renderStrategicSignals", ["data/intelligence.json"], route="index.html#official-newsroom-corporate-moves", hidden=["paginated"]),
         panel(i, "conference-intelligence", "Conference Intelligence", "#conference-intelligence", "renderConferenceSources", ["data/conference_sources.json", "data/conference_preparation.json"]),
         panel(i, "journal-forum-sources", "Journal and Forum Sources", "#journal-forum-sources", "renderJournalForumSources", ["data/journal_sources.json"]),
         panel(i, "shortHorizonDefensePanel", "Short-Horizon Defense", "#shortHorizonDefensePanel", "renderShortHorizonDefense", ["data/product_comparisons.json", "data/technical_comparisons.json"], hidden=["conditionally-hidden"]),

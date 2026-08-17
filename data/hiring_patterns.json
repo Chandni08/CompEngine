@@ -1,0 +1,117 @@
+{
+  "asOfDate": "2026-08-17",
+  "scope": "Public competitor hiring and talent-development signals relevant to LC-MS, laboratory software, AI, data, automation, service, and portfolio execution",
+  "methodology": "This snapshot uses official career pages, individual job postings, and company talent disclosures. It compares visible role and skill clusters, not total hiring volume. A role family or isolated posting is directional evidence and does not establish headcount growth, budget, or a confirmed product roadmap.",
+  "profiles": [
+    {
+      "id": "agilent-hiring-2026",
+      "competitor": "Agilent",
+      "accent": "#d97706",
+      "signalLabel": "Targeted AI and decision-intelligence build",
+      "aiTalentSignal": "Strong · targeted",
+      "patternSummary": "Agilent's visible hiring signals connect AI and machine learning to manufacturing decision intelligence, cloud software, and customer-facing digital experiences. The company is also building enterprise AI capability with external partners, which suggests a combined hire-and-upskill model rather than proof of a broad AI hiring surge.",
+      "skillClusters": [
+        {"name":"AI, ML, and analytics","strength":"Strong","evidence":"A current manufacturing data-scientist role explicitly combines machine learning, AI, forecasting, scenario modeling, and decision intelligence."},
+        {"name":"Cloud and digital software","strength":"Moderate","evidence":"Current software roles emphasize AWS, scalable cloud architecture, automation, and customer-facing digital services."},
+        {"name":"Instrument and service workflow","strength":"Moderate","evidence":"Agilent's careers model continues to span scientists, engineers, field service, customer support, and applications roles."}
+      ],
+      "observations": [
+        {"title":"Data Scientist — Global Manufacturing Analytics","status":"Current posting","checkedDate":"2026-08-17","detail":"The role applies AI, machine learning, Python, SQL, forecasting, and decision intelligence to productivity, quality, throughput, and customer satisfaction across manufacturing.","relevance":"Enterprise capability with instrument-operations adjacency","sourceName":"Agilent Careers · Manufacturing data scientist","sourceUrl":"https://agilent.wd5.myworkdayjobs.com/en-US/Agilent_Careers/job/Malaysia-Penang/Global-Manufacturing-Data-Scientist_4037920?jobFamilyGroup=c5498d7615fa01300e591a9b4407fc48&jobFamilyGroup=c5498d7615fa01fdb75e1b9b44070049"},
+        {"title":"Software Engineer — Cloud Development","status":"Current posting","checkedDate":"2026-08-17","detail":"The role seeks AWS cloud architecture, Python or JavaScript automation, and scalable software delivery for revenue-relevant digital experiences.","relevance":"Adjacent digital and commercial platform capability","sourceName":"Agilent Careers · Cloud software engineer","sourceUrl":"https://agilent.wd5.myworkdayjobs.com/en-US/Agilent_Careers/job/Software-Engineer-Cloud-Development_4034912"},
+        {"title":"Enterprise applied-AI capability program","status":"Active program","checkedDate":"2026-08-17","detail":"Agilent says its OpenAI and BCG collaboration will build internal capability and scale applied AI across products, operations, and customer workflows over the following six to twelve months.","relevance":"Enterprise corroboration; not a vacancy count","sourceName":"Agilent · AI capability announcement","sourceUrl":"https://www.agilent.com/about/newsroom/presrel/2026/03jun-gp26013.html"}
+      ],
+      "likelyCapabilityBuild": "Decision intelligence for operations, scalable cloud delivery, and AI-enabled product, service, and customer-workflow layers.",
+      "planningImplication": "Watch for LC-MS differentiation to appear through smarter workflows, predictive service, guided decisions, and faster development execution—not only through analyzer hardware.",
+      "monitorNext": ["Scientific-software or LC-MS informatics roles that explicitly require AI/ML","AI product-management roles tied to instruments or OpenLab","Whether temporary capability partners translate into permanent internal teams"],
+      "evidenceBoundary": "Two visible specialist postings plus an enterprise capability program are not enough to claim that Agilent is hiring AI talent at high volume."
+    },
+    {
+      "id": "thermo-fisher-hiring-2026",
+      "competitor": "Thermo Fisher",
+      "accent": "#2563a9",
+      "signalLabel": "Scaled digital, data-science, and AI talent system",
+      "aiTalentSignal": "Strong · enterprise-wide",
+      "patternSummary": "Thermo Fisher operates dedicated talent surfaces for AI, data science, engineering, digital product management, and automation. A separate digital-services recruiting program connects these skills to predictive service and laboratory productivity, although much of the clearest public AI evidence sits in PPD and enterprise services rather than the Analytical Instruments unit specifically.",
+      "skillClusters": [
+        {"name":"AI and data science","strength":"Strong","evidence":"The careers site names AI engineers, AI integration architects, AI/ML Ops, clinical data science, data products, and data governance as active talent families."},
+        {"name":"Digital platforms and automation","strength":"Strong","evidence":"Recruiting materials emphasize software engineering, cloud ecosystems, intelligent workflows, RPA, Python, SQL, Azure, and AWS."},
+        {"name":"Predictive service","strength":"Strong","evidence":"The digital-services talent program explicitly links connectivity and data science to predictive, proactive service and lab-productivity insights."}
+      ],
+      "observations": [
+        {"title":"Digital, Data Science, and AI talent program","status":"Active talent program","checkedDate":"2026-08-17","detail":"Thermo Fisher's PPD careers page recruits across AI engineering, AI integration, ML Ops, data science, software engineering, product management, digital platforms, and workflow automation.","relevance":"Strong enterprise signal; indirect LC-MS attribution","sourceName":"Thermo Fisher Careers · Digital, Data Science & AI","sourceUrl":"https://jobs.thermofisher.com/global/en/clinical-research-Digital-DataScience-AI"},
+        {"title":"Digital Innovation Services recruiting","status":"Active talent program","checkedDate":"2026-08-17","detail":"The services program names Data Scientists, Connectivity Engineers, New Product Development Engineers, and Release Coordinators with Python, SQL, cloud, AI, and computer-science expertise.","relevance":"Adjacent to instrument lifecycle and service","sourceName":"Thermo Fisher Careers · Digital Services","sourceUrl":"https://jobs.thermofisher.com/global/en/digital-services"},
+        {"title":"Director of R&D, Artificial Intelligence","status":"Recently filled","checkedDate":"2026-08-17","detail":"The official job page confirms a leadership-level AI R&D search occurred, but it is now filled and should not be counted as a current opening.","relevance":"Enterprise AI leadership signal; business-unit scope not established","sourceName":"Thermo Fisher Careers · Director of R&D, AI","sourceUrl":"https://jobs.thermofisher.com/global/en/job/R-01350453/Director-of-R-D-Artificial-Intelligence"}
+      ],
+      "likelyCapabilityBuild": "A broad digital operating layer spanning AI models, data platforms, product management, automated workflows, connectivity, and predictive service.",
+      "planningImplication": "Expect Thermo Fisher to use talent scale to connect instruments with cloud, service, data, and automation; verify Analytical Instruments-specific roles before translating this into an LC-MS roadmap forecast.",
+      "monitorNext": ["AI or data roles explicitly assigned to Analytical Instruments","Orbitrap, chromatography, or instrument-software vacancies requiring ML or cloud skills","Growth in connectivity and predictive-service roles around Unity Lab Services"],
+      "evidenceBoundary": "The public signal is strong at enterprise, PPD, and service levels, but it does not prove the same hiring concentration inside the LC-MS organization."
+    },
+    {
+      "id": "shimadzu-hiring-2026",
+      "competitor": "Shimadzu",
+      "accent": "#0f766e",
+      "signalLabel": "Specialist acquisition plus internal AI/DX development",
+      "aiTalentSignal": "Moderate · build and develop",
+      "patternSummary": "Shimadzu's public talent pattern is less vacancy-led and more programmatic: recruit highly specialized and diverse talent, deepen university pipelines, certify advanced experts, and train existing employees for AI and digital transformation. Its 2026–2028 plan explicitly frames human-capital management around the AI Transformation era.",
+      "skillClusters": [
+        {"name":"AI and digital transformation","strength":"Moderate","evidence":"The current plan calls for digitally skilled personnel and AI/data-enabled talent management, while internal DX experts receive formal recognition."},
+        {"name":"Advanced scientific expertise","strength":"Strong","evidence":"University partnerships, employee doctoral programs, and advanced-expert pathways target highly specialized scientific and technical talent."},
+        {"name":"Global and cross-disciplinary talent","strength":"Moderate","evidence":"The talent strategy emphasizes diverse recruitment, international capability, personnel exchanges, and university-to-doctoral pathways."}
+      ],
+      "observations": [
+        {"title":"Human capital for the AI Transformation era","status":"Current strategy","checkedDate":"2026-08-17","detail":"Shimadzu's FY2026–2028 plan calls for diverse talent acquisition, expertise-centered development, AI-supported career systems, and AI/data foundations for strategic workforce deployment.","relevance":"Enterprise strategy with product-development implications","sourceName":"Shimadzu · FY2026–2028 management plan","sourceUrl":"https://www.shimadzu.com/sites/shimadzu.com/files/ir/og1l/q2wen94gzr6b11ow.pdf"},
+        {"title":"University pipelines for highly specialized talent","status":"Active talent model","checkedDate":"2026-08-17","detail":"Shimadzu reports strengthened university partnerships, specialized hiring, expanded internships, and a pathway that hires master's graduates before dispatching them into doctoral programs.","relevance":"Direct scientific-talent pipeline","sourceName":"Shimadzu · 2025 Integrated Report","sourceUrl":"https://www.shimadzu.com/sites/shimadzu.com/files/ir/pdf/shimadzu_integrated_report_2025.pdf"},
+        {"title":"Formal recognition for internal DX experts","status":"Active development program","checkedDate":"2026-08-17","detail":"Open Badge credentials make advanced qualifications and internally recognized digital-transformation expertise visible as part of employee development.","relevance":"Upskilling and retention rather than external hiring","sourceName":"Shimadzu · Advanced expert certification","sourceUrl":"https://www.shimadzu.com/news/2024/20ft5pn6ptuovh5a.html"}
+      ],
+      "likelyCapabilityBuild": "A long-horizon bench of scientific specialists, AI/DX practitioners, globally deployable leaders, and university-connected co-development talent.",
+      "planningImplication": "Monitor Shimadzu as a patient capability builder: AI-enabled analytical workflows may emerge from internal development and university collaboration even without a conspicuous wave of public AI vacancies.",
+      "monitorNext": ["External mid-career hiring for AI, robotics, or analytical software","University programs tied directly to LC-MS or data interpretation","Movement of certified DX experts into product divisions"],
+      "evidenceBoundary": "The available evidence describes talent strategy and development programs, not a complete current job-posting inventory or external AI hiring volume."
+    },
+    {
+      "id": "sciex-hiring-2026",
+      "competitor": "SCIEX",
+      "accent": "#7c3aed",
+      "signalLabel": "Software depth with shared Danaher digital leverage",
+      "aiTalentSignal": "Limited · shared-platform evidence",
+      "patternSummary": "SCIEX's current careers surface visibly emphasizes engineering, sales, technical service, and support. Recent Concord software-development searches show instrument-software depth, while Danaher's shared India Development Center supplies AI, machine learning, data science, and software capability across operating companies. Public evidence does not establish how much of that shared AI capacity is allocated to SCIEX.",
+      "skillClusters": [
+        {"name":"Instrument software","strength":"Moderate","evidence":"Recent SCIEX searches included staff software development and software-development management in Concord, although the observed postings are now filled."},
+        {"name":"Sales and technical service","strength":"Strong","evidence":"The current SCIEX careers page prominently surfaces mass-spectrometry sales and service roles alongside engineering and support categories."},
+        {"name":"AI, ML, and data science","strength":"Limited","evidence":"Danaher's shared development center has these capabilities, but the public source does not allocate them to SCIEX specifically."}
+      ],
+      "observations": [
+        {"title":"SCIEX engineering, sales, and service recruiting","status":"Current careers surface","checkedDate":"2026-08-17","detail":"SCIEX highlights engineering, sales, technical service, and support; currently surfaced examples include mass-spectrometry territory sales and service-sales roles.","relevance":"Direct SCIEX workforce signal","sourceName":"Danaher Careers · SCIEX","sourceUrl":"https://jobs.danaher.com/global/en/sciex"},
+        {"title":"Concord software-development leadership searches","status":"Recently filled","checkedDate":"2026-08-17","detail":"Official pages show recent SCIEX-location searches for staff software developers and software-development management, but those pages now report the positions as filled.","relevance":"Direct recent SCIEX software signal","sourceName":"Danaher Careers · SCIEX software manager","sourceUrl":"https://jobs.danaher.com/global/en/job/DANAGLOBALR1300841EXTERNALENGLOBAL/Software-Development-Manager-Onsite"},
+        {"title":"Danaher India Development Center","status":"Shared active capability","checkedDate":"2026-08-17","detail":"The center supports fourteen Danaher operating companies across software delivery, product development, AI, machine learning, and data science.","relevance":"Parent-platform capability; SCIEX allocation not disclosed","sourceName":"Danaher Careers · India Development Center","sourceUrl":"https://jobs.danaher.com/global/en/danaher-idc"}
+      ],
+      "likelyCapabilityBuild": "Continued instrument-software and workflow integration supported by direct SCIEX developers plus selective access to Danaher-wide digital engineering resources.",
+      "planningImplication": "Do not infer an SCIEX AI hiring wave yet. Watch for SCIEX-branded AI/data roles or LC-MS software vacancies before raising the confidence of an AI-led portfolio forecast.",
+      "monitorNext": ["SCIEX-branded AI, data-science, or ML roles","New Concord software and verification openings","Evidence that Danaher IDC teams are assigned to SCIEX products"],
+      "evidenceBoundary": "Parent-company digital capacity and recently filled software vacancies are not equivalent to current SCIEX AI headcount growth."
+    },
+    {
+      "id": "perkinelmer-hiring-2026",
+      "competitor": "PerkinElmer",
+      "accent": "#5f8f2f",
+      "signalLabel": "Direct LC-MS, AI-product, and embedded-systems build",
+      "aiTalentSignal": "Strong · LC-MS direct",
+      "patternSummary": "PerkinElmer has the clearest directly observed LC-MS hiring pattern in the monitored set: an AI Product Owner for analytical instruments, a Product Director for LC/LC-MS transformation, and a Woodbridge cluster spanning embedded systems, electronics, and portfolio leadership. The roles connect AI, edge or cloud inference, instrument data, automated workflows, and full portfolio economics.",
+      "skillClusters": [
+        {"name":"AI product management","strength":"Strong","evidence":"A current AI Product Owner role translates spectra, chromatograms, images, and sensor data into edge- or cloud-deployed AI features."},
+        {"name":"LC and LC-MS portfolio leadership","strength":"Strong","evidence":"The Product Director role owns roadmap, new products, revenue, margin, services, consumables, applications, and a stated AI/automation transformation."},
+        {"name":"Embedded instrument engineering","strength":"Strong","evidence":"Current Woodbridge openings include embedded systems, electronics, and systems engineering for chromatography and mass-spectrometry platforms."}
+      ],
+      "observations": [
+        {"title":"Software Product Owner, AI","status":"Current posting","checkedDate":"2026-08-17","detail":"The role owns AI/ML capabilities for analytical instruments, including scientific-data requirements, edge or cloud inference, MLOps considerations, model validation, and responsible AI.","relevance":"Direct analytical-instrument AI capability","sourceName":"PerkinElmer Careers · AI Product Owner","sourceUrl":"https://jobs.perkinelmer.com/job/woodbridge/software-product-owner-ai-woodbridge-on/43930/80659880304"},
+        {"title":"Product Director — LC, LCMS","status":"Current posting","checkedDate":"2026-08-17","detail":"The role owns the LC and LC-MS strategy, roadmap, launches, commercial plan, resources, and product lifecycle while framing 2026 around AI and automated Lab of the Future workflows.","relevance":"Direct LC-MS portfolio signal","sourceName":"PerkinElmer Careers · Product Director, LC/LCMS","sourceUrl":"https://jobs.perkinelmer.com/job/woodbridge/product-director-lc-lcms/43930/94486435280"},
+        {"title":"Woodbridge instrument-platform hiring cluster","status":"Current role cluster","checkedDate":"2026-08-17","detail":"The location page shows embedded-systems, electronics, systems-engineering, LC/LC-MS product, and product-portfolio leadership roles around the analytical-instrument hub.","relevance":"Direct platform and organization-build signal","sourceName":"PerkinElmer Careers · Woodbridge openings","sourceUrl":"https://jobs.perkinelmer.com/location/woodbridge-ontario-canada-jobs/20539/6251999-6093943-6184009/4"}
+      ],
+      "likelyCapabilityBuild": "An integrated LC-MS organization combining product ownership, embedded instrument engineering, AI-enabled interpretation, automation, and portfolio transformation.",
+      "planningImplication": "Treat PerkinElmer's hiring as an early roadmap signal: watch for QSight and LC workflow changes that combine instrument refresh, AI-assisted interpretation, automation, and a rebuilt go-to-market model.",
+      "monitorNext": ["Whether the LC/LC-MS Product Director role is filled and by whom","Additional ML engineering or scientific-data roles in Woodbridge","Launches that connect the AI Product Owner remit to QSight, LC, or Lab of the Future workflows"],
+      "evidenceBoundary": "This is the strongest direct pattern in the snapshot, but a handful of postings still cannot establish total hiring volume, final budgets, or delivery dates."
+    }
+  ]
+}

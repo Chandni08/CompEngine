@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "validationMethod": "full_official_archive_dom",
+  "verifiedAt": "2026-08-17T14:12:30Z",
+  "maxAgeHours": 24,
+  "asOfYear": 2026,
+  "sourceUrl": "https://www.investor.agilent.com/news-and-events/news/default.aspx",
+  "sourcePageTitle": "Agilent Technologies, Inc. - News & Events - News",
+  "sourceCount": 33,
+  "newestDate": "2026-07-29",
+  "newestTitle": "Agilent Research Catalyst Award Presented to Eastern Institute of Technology, Ningbo",
+  "newestUrl": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Research-Catalyst-Award-Presented-to-Eastern-Institute-of-Technology-Ningbo/default.aspx",
+  "verificationNote": "The official 2026 archive DOM exposed 33 unique dated news records; the newest record and archive count were verified directly in a real browser after the official JSON feed returned HTTP 429."
+}
