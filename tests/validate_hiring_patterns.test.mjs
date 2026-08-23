@@ -20,6 +20,8 @@ test("Engineering exposes source-bounded competitor hiring patterns", () => {
   assert.match(app, /const engineeringEvidenceVisible = state\.view === "Engineering"/);
   assert.match(css, /\.hiring-selected-detail/);
   assert.match(css, /\.hiring-strength-meter/);
+  assert.doesNotMatch(app, /hiring-monitor-next|Signals That Would Strengthen or Change This Read/);
+  assert.doesNotMatch(css, /hiring-monitor-next/);
 });
 
 test("all five competitors have hiring, AI-skill, and LC-MS planning reads", () => {
@@ -53,11 +55,22 @@ test("AI hiring intensity stays qualified by scope and direct attribution", () =
   const perkinElmer = dataset.profiles.find((profile) => profile.competitor === "PerkinElmer");
   const sciex = dataset.profiles.find((profile) => profile.competitor === "SCIEX");
   const thermo = dataset.profiles.find((profile) => profile.competitor === "Thermo Fisher");
-  assert.equal(perkinElmer.aiTalentSignal, "Strong · LC-MS direct");
-  assert.match(perkinElmer.patternSummary, /clearest directly observed LC-MS hiring pattern/i);
+  assert.match(perkinElmer.aiTalentSignal, /Limited.*historical.*no current AI opening/i);
+  assert.match(perkinElmer.patternSummary, /previously observed AI Product Owner.*no longer listed/i);
+  assert.ok(perkinElmer.observations.some((item) => item.status === "No longer listed"));
   assert.match(sciex.aiTalentSignal, /Limited/);
   assert.match(sciex.evidenceBoundary, /not equivalent to current SCIEX AI headcount growth/i);
   assert.match(thermo.evidenceBoundary, /does not prove.*LC-MS organization/i);
+});
+
+test("expired individual job links are removed and current Agilent postings are API-verified", () => {
+  const serialized = JSON.stringify(dataset);
+  assert.doesNotMatch(serialized, /4037920|4034912|R1300841/);
+  const agilent = dataset.profiles.find((profile) => profile.competitor === "Agilent");
+  const currentPostings = agilent.observations.filter((item) => item.status === "Current posting");
+  assert.equal(currentPostings.length, 2);
+  assert.ok(currentPostings.every((item) => item.checkedDate === "2026-08-22"));
+  assert.ok(currentPostings.every((item) => /4039078|4039321/.test(item.sourceUrl)));
 });
 
 test("patent, leadership, and hiring surfaces are gated only to Engineering", () => {

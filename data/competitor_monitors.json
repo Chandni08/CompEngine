@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-08-17T16:46:20+00:00",
+  "generatedAt": "2026-08-20T14:48:33+00:00",
   "competitors": {
     "Thermo Fisher": {
-      "generatedAt": "2026-08-17T16:46:19+00:00",
+      "generatedAt": "2026-08-20T14:48:32+00:00",
       "baselineCreated": false,
       "inventoryCounts": {
         "lcmsProductPages": 43,
         "pressReleases": 19,
-        "technicalInsights": 18,
+        "technicalInsights": 19,
         "thermo-dionex-ion-chromatographyPages": 2,
         "thermo-vanquish-neo-nano-lcPages": 1
       },
@@ -374,8 +374,49 @@
           "sourceName": "Thermo Fisher investor relations news"
         }
       ],
-      "new_technical_insights": [],
+      "new_technical_insights": [
+        {
+          "date": "2026-08-18",
+          "title": "Join Thermo Fisher Scientific at MSACL 2026",
+          "url": "https://www.thermofisher.com/blog/analyteguru/join-thermo-fisher-scientific-at-msacl-2026/",
+          "classification": "technical",
+          "sourceId": "thermo-ms-insights",
+          "sourceName": "Thermo Fisher mass spectrometry insights",
+          "technology": "LC-MS",
+          "marketSegment": "Clinical"
+        },
+        {
+          "date": "2026-08-18",
+          "title": "Understanding Membrane Protein-Lipid Interactions in Nanodiscs with Advanced Mass Spectrometry",
+          "url": "https://www.thermofisher.com/blog/analyteguru/understanding-membrane-protein-lipid-interactions-in-nanodiscs-with-advanced-mass-spectrometry/",
+          "classification": "technical",
+          "sourceId": "thermo-ms-insights",
+          "sourceName": "Thermo Fisher mass spectrometry insights",
+          "technology": "LC/UHPLC",
+          "marketSegment": "Biopharma"
+        }
+      ],
       "technical_insights": [
+        {
+          "date": "2026-08-18",
+          "title": "Join Thermo Fisher Scientific at MSACL 2026",
+          "url": "https://www.thermofisher.com/blog/analyteguru/join-thermo-fisher-scientific-at-msacl-2026/",
+          "classification": "technical",
+          "sourceId": "thermo-ms-insights",
+          "sourceName": "Thermo Fisher mass spectrometry insights",
+          "technology": "LC-MS",
+          "marketSegment": "Clinical"
+        },
+        {
+          "date": "2026-08-18",
+          "title": "Understanding Membrane Protein-Lipid Interactions in Nanodiscs with Advanced Mass Spectrometry",
+          "url": "https://www.thermofisher.com/blog/analyteguru/understanding-membrane-protein-lipid-interactions-in-nanodiscs-with-advanced-mass-spectrometry/",
+          "classification": "technical",
+          "sourceId": "thermo-ms-insights",
+          "sourceName": "Thermo Fisher mass spectrometry insights",
+          "technology": "LC/UHPLC",
+          "marketSegment": "Biopharma"
+        },
         {
           "date": "2026-08-12",
           "title": "Why Are Metabolites Missing From Your LC-MS Data? How Enhanced Dynamic Range (eDR) Helps Reveal What Conventional Workflows Miss",
@@ -577,7 +618,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official sitemap index parsed.",
           "extractedRecords": 0,
-          "checkedAt": "2026-08-17T16:46:17+00:00"
+          "checkedAt": "2026-08-20T14:48:30+00:00"
         },
         {
           "sourceId": "thermo-ms-products",
@@ -588,7 +629,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official US sitemap parsed; 43 LC/LC-MS product pages tracked.",
           "extractedRecords": 43,
-          "checkedAt": "2026-08-17T16:46:18+00:00"
+          "checkedAt": "2026-08-20T14:48:31+00:00"
         },
         {
           "sourceId": "thermo-dionex-ion-chromatography-products",
@@ -599,7 +640,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official Thermo sitemap parsed; 2 registered Thermo Scientific Dionex ion chromatography product pages tracked.",
           "extractedRecords": 2,
-          "checkedAt": "2026-08-17T16:46:18+00:00"
+          "checkedAt": "2026-08-20T14:48:31+00:00"
         },
         {
           "sourceId": "thermo-vanquish-neo-nano-lc-products",
@@ -610,7 +651,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official Thermo sitemap parsed; 1 registered Thermo Scientific Vanquish Neo nano-LC product pages tracked.",
           "extractedRecords": 1,
-          "checkedAt": "2026-08-17T16:46:18+00:00"
+          "checkedAt": "2026-08-20T14:48:31+00:00"
         },
         {
           "sourceId": "thermo-news",
@@ -621,7 +662,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official Thermo Fisher investor-relations feed parsed; 19 dated 2026 corporate releases extracted.",
           "extractedRecords": 19,
-          "checkedAt": "2026-08-17T16:46:19+00:00"
+          "checkedAt": "2026-08-20T14:48:31+00:00"
         },
         {
           "sourceId": "thermo-lc-insights",
@@ -632,7 +673,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official dated RSS feed parsed; 6 relevant LC/MS records extracted.",
           "extractedRecords": 6,
-          "checkedAt": "2026-08-17T16:46:19+00:00"
+          "checkedAt": "2026-08-20T14:48:32+00:00"
         },
         {
           "sourceId": "thermo-ms-insights",
@@ -641,9 +682,9 @@
           "httpStatus": 200,
           "status": "available",
           "extractionStatus": "extracted",
-          "extractionReason": "Official dated RSS feed parsed; 7 relevant LC/MS records extracted.",
-          "extractedRecords": 7,
-          "checkedAt": "2026-08-17T16:46:19+00:00"
+          "extractionReason": "Official dated RSS feed parsed; 8 relevant LC/MS records extracted.",
+          "extractedRecords": 8,
+          "checkedAt": "2026-08-20T14:48:32+00:00"
         },
         {
           "sourceId": "thermo-proteomics-insights",
@@ -654,16 +695,16 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official dated RSS feed parsed; 7 relevant LC/MS records extracted.",
           "extractedRecords": 7,
-          "checkedAt": "2026-08-17T16:46:19+00:00"
+          "checkedAt": "2026-08-20T14:48:32+00:00"
         }
       ]
     },
     "Shimadzu": {
-      "generatedAt": "2026-08-17T16:46:20+00:00",
+      "generatedAt": "2026-08-20T14:48:33+00:00",
       "baselineCreated": false,
       "inventoryCounts": {
         "lcmsProductPages": 78,
-        "pressReleases": 38,
+        "pressReleases": 39,
         "technicalInsights": 0
       },
       "monitoredFamilies": [],
@@ -672,10 +713,371 @@
       "updated_products": [],
       "unverified_inventory_changes": {
         "new": [],
-        "updated": [],
+        "updated": [
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-08-05",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-modified-nucleosides/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-short-chain-fatty-acids/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-veterinary-drugs-ver-2/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/rapid-toxicology-screening-ver2/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/metabolites-method-package-suite/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-mycotoxins/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-restricted-chemicals-in-textiles/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-pfas/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-aminoglycoside-antibiotics/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-forensic-toxicology-database/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-water-quality-analysis/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/erexim-application-suite/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/micro-volume-quechers-kit/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/open-solution-analytical/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/mrm-library-for-triglycerides/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/trap-free-2d-lcms-system-for-quadrupole-lcms/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-dl-amino-acids/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/nsmol-antibody-ba-kit/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/exact-mass-database-for-endogenous-metabolites/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-glycosaminoglycans/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-rapid-toxicology-screening-system-ver3/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-residual-pesticide-ver-3/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-bile-acids/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/method-package-guidebook/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-reactive-sulfur-profiling/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-cell-culture-profiling/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-sugars-and-sugar-nucleotides/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/oad-tof/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/cell-culture-profiling-method-package-for-the-lcms-2050/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/quadrupole-time-of-flight-lc-msms/lcms-9030/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/quadrupole-time-of-flight-lc-msms/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/quadrupole-time-of-flight-lc-msms/lcms-9050/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/single-quadrupole-lc-ms/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/single-quadrupole-lc-ms/lcms-2050/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-option/dpims-8060/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-option/dpims-qt/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-option/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-option/clam-2040/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/triple-quadrupole-lc-msms/comparison/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/triple-quadrupole-lc-msms/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/triple-quadrupole-lc-msms/nexera-mikros/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/triple-quadrupole-lc-msms/lcms-tq-rx-series/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/triple-quadrupole-lc-msms/lcms-8065xe/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-software/multi-charged-ion-analysis-software/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-software/lcmsms-mrm-library-for-phospholipid-profiling/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-software/iflagger/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-software/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-software/lcmsms-mrm-library-for-metabolic-enzymes-in-yeast/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-software/lcmsms-method-package-for-primary-metabolites/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-software/lcmsms-method-package-for-lipid-mediators/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-software/multi-omics-analysis-package/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-software/peakintelligence/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-software/traverse-ms/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-software/high-resolution-accurate-mass-library-for-forensic-toxicology/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-software/labsolutions-insight-biologics/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/automated-lc-msms/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-consumables/stable-labeled-standards/index.html",
+            "lastmod": "2026-08-18",
+            "previousLastmod": "2026-07-09",
+            "category": "LC/MS"
+          }
+        ],
         "missing": []
       },
       "new_press_releases": [
+        {
+          "date": "2026-08-18",
+          "title": "Donation for Relief Efforts Following the 2026 Kumamoto Earthquake",
+          "url": "https://www.shimadzu.com/news/2026/zgdqilyigahzfzfi.html",
+          "classification": "corporate"
+        },
         {
           "date": "2026-08-04",
           "title": "Release of the World\u2019s First Desktop Corona Discharge Ionizer Specialized for Dry Air Environments, STABLO-AP DRY AIR Eliminating Static Electricity Problems in Battery Research, Development, and Manufacturing",
@@ -752,17 +1154,17 @@
           "date": "2026-04-27",
           "title": "Shimadzu Corporation Acquires German Startup Plasmion GmbH Secures SICRIT Ion Source Technology for Mass Spectrometers",
           "url": "https://www.shimadzu.com/news/2026/qmv_7cupefrinwt6.html",
-          "classification": "corporate"
-        },
-        {
-          "date": "2026-04-20",
-          "title": "Study Reveals How the Viability of Lactic Acid Bacteria Shapes Their Function in the Gut Results of Collaborative Research with Tohoku University and ITO EN Published in the Cell Press journal iScience",
-          "url": "https://www.shimadzu.com/news/2026/iy0elwnih0c159yp.html",
           "classification": "corporate"
         }
       ],
       "recent_press_releases": [
         {
+          "date": "2026-08-18",
+          "title": "Donation for Relief Efforts Following the 2026 Kumamoto Earthquake",
+          "url": "https://www.shimadzu.com/news/2026/zgdqilyigahzfzfi.html",
+          "classification": "corporate"
+        },
+        {
           "date": "2026-08-04",
           "title": "Release of the World\u2019s First Desktop Corona Discharge Ionizer Specialized for Dry Air Environments, STABLO-AP DRY AIR Eliminating Static Electricity Problems in Battery Research, Development, and Manufacturing",
           "url": "https://www.shimadzu.com/news/2026/5is0mfb00wsn8pnv.html",
@@ -838,12 +1240,6 @@
           "date": "2026-04-27",
           "title": "Shimadzu Corporation Acquires German Startup Plasmion GmbH Secures SICRIT Ion Source Technology for Mass Spectrometers",
           "url": "https://www.shimadzu.com/news/2026/qmv_7cupefrinwt6.html",
-          "classification": "corporate"
-        },
-        {
-          "date": "2026-04-20",
-          "title": "Study Reveals How the Viability of Lactic Acid Bacteria Shapes Their Function in the Gut Results of Collaborative Research with Tohoku University and ITO EN Published in the Cell Press journal iScience",
-          "url": "https://www.shimadzu.com/news/2026/iy0elwnih0c159yp.html",
           "classification": "corporate"
         }
       ],
@@ -859,7 +1255,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official analytical sitemap parsed; 78 LC/LC-MS/software product pages tracked.",
           "extractedRecords": 78,
-          "checkedAt": "2026-08-17T16:46:19+00:00"
+          "checkedAt": "2026-08-20T14:48:33+00:00"
         },
         {
           "sourceId": "shimadzu-news",
@@ -868,17 +1264,17 @@
           "httpStatus": 200,
           "status": "available",
           "extractionStatus": "extracted",
-          "extractionReason": "Official dated news index parsed; 38 relevant releases extracted.",
-          "extractedRecords": 38,
-          "checkedAt": "2026-08-17T16:46:20+00:00"
+          "extractionReason": "Official dated news index parsed; 39 relevant releases extracted.",
+          "extractedRecords": 39,
+          "checkedAt": "2026-08-20T14:48:33+00:00"
         }
       ]
     },
     "SCIEX": {
-      "generatedAt": "2026-08-17T16:46:20+00:00",
+      "generatedAt": "2026-08-20T14:48:33+00:00",
       "baselineCreated": false,
       "inventoryCounts": {
-        "lcmsProductPages": 66,
+        "lcmsProductPages": 65,
         "pressReleases": 4,
         "technicalInsights": 0
       },
@@ -889,7 +1285,14 @@
       "unverified_inventory_changes": {
         "new": [],
         "updated": [],
-        "missing": []
+        "missing": [
+          {
+            "url": "https://sciex.com/applications/biomedical-and-omics-research/oneomics",
+            "lastmod": "",
+            "category": "LC/MS",
+            "verification": "manual confirmation required"
+          }
+        ]
       },
       "new_press_releases": [
         {
@@ -941,9 +1344,9 @@
           "httpStatus": 200,
           "status": "available",
           "extractionStatus": "extracted",
-          "extractionReason": "Official sitemap parsed; 66 MS/LC/software product pages tracked.",
-          "extractedRecords": 66,
-          "checkedAt": "2026-08-17T16:46:20+00:00"
+          "extractionReason": "Official sitemap parsed; 65 MS/LC/software product pages tracked.",
+          "extractedRecords": 65,
+          "checkedAt": "2026-08-20T14:48:33+00:00"
         },
         {
           "sourceId": "sciex-news",
@@ -954,7 +1357,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official dated press index parsed; 4 relevant releases extracted.",
           "extractedRecords": 4,
-          "checkedAt": "2026-08-17T16:46:20+00:00"
+          "checkedAt": "2026-08-20T14:48:33+00:00"
         }
       ]
     }

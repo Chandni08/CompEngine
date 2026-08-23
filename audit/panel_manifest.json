@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-17T22:57:42+00:00",
+  "generatedAt": "2026-08-20T14:53:56+00:00",
   "panelCount": 44,
   "subpanelCount": 8,
   "panels": [
@@ -69,7 +69,7 @@
         "#global-filters"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "interactive"
@@ -123,7 +123,7 @@
         "#refresh-status"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -190,7 +190,7 @@
         "#pmm-start-here"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -258,7 +258,7 @@
         "#pmm-head-to-head"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -323,7 +323,7 @@
         "#pmm-governing-position"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "manual-curation:PMM_DATA_CONTRACT.md",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "curated"
@@ -390,7 +390,7 @@
         "#pmm-positioning-decisions"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -457,7 +457,7 @@
         "#pmm-claims-risk"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -523,7 +523,7 @@
         "#pmm-segment-cascade"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -593,7 +593,7 @@
         "#pmm-competitive-narratives"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -660,7 +660,7 @@
         "#pmm-adoption-value"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -725,7 +725,7 @@
         "#pmm-activation-artifacts"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "manual-curation:PMM_DATA_CONTRACT.md",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "curated"
@@ -794,7 +794,7 @@
         "#pmm-evidence-appendix"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -866,7 +866,7 @@
         "#leadership-brief"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -936,7 +936,7 @@
         "#overall-trend-analysis"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -1006,7 +1006,7 @@
         "#competitor-intent-section"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -1076,7 +1076,7 @@
         "#decisions-needed"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -1144,7 +1144,7 @@
         "#customer-voice"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -1209,7 +1209,7 @@
         "#customer-summary"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -1275,7 +1275,7 @@
         "#customer-company"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -1341,7 +1341,7 @@
         "#customer-evidence-classification"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -1409,7 +1409,7 @@
         "#customer-roadmap-inputs"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -1474,7 +1474,7 @@
         "#customer-needs"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -1539,7 +1539,7 @@
         "#customer-positioning"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -1606,7 +1606,7 @@
         "#customer-evidence"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -1675,7 +1675,7 @@
         "#product-comparator"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -1742,7 +1742,7 @@
         "#competitive-timeline-section"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -1813,7 +1813,7 @@
         "#competitive-capability-evidence"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -1879,7 +1879,7 @@
         "#metric-grid"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -1944,7 +1944,7 @@
         "#patent-filing-insights"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-22",
       "refreshCollector": "manual-curation:data/patent_insights.json",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "curated"
@@ -2015,7 +2015,7 @@
         "#leadership-behavior-profiles"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "manual-curation:data/leadership_profiles.json+data/leadership_people.json",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "curated"
@@ -2085,7 +2085,7 @@
         "#competitor-hiring-patterns"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "manual-curation:data/hiring_patterns.json",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "curated"
@@ -2153,7 +2153,7 @@
         "#filing-evidence"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -2218,7 +2218,7 @@
         "#strategic-signals"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -2285,7 +2285,7 @@
         "#conference-intelligence"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -2351,7 +2351,7 @@
         "#journal-forum-sources"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -2417,7 +2417,7 @@
         "#shortHorizonDefensePanel"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -2486,7 +2486,7 @@
         "#application-trends"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -2553,7 +2553,7 @@
         "#evidence-signal-feed"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -2619,7 +2619,7 @@
         "#competitor-coverage"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -2690,7 +2690,7 @@
         "#decision-evidence-modal"
       ],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -2748,7 +2748,7 @@
       ],
       "internalLinks": [],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "interactive"
@@ -2812,7 +2812,7 @@
       ],
       "internalLinks": [],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -2876,7 +2876,7 @@
       ],
       "internalLinks": [],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -2939,7 +2939,7 @@
       ],
       "internalLinks": [],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -3003,7 +3003,7 @@
       ],
       "internalLinks": [],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -3066,7 +3066,7 @@
       ],
       "internalLinks": [],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -3124,7 +3124,7 @@
       ],
       "internalLinks": [],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "interactive"
@@ -3188,7 +3188,7 @@
       ],
       "internalLinks": [],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -3252,7 +3252,7 @@
       ],
       "internalLinks": [],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -3316,7 +3316,7 @@
       ],
       "internalLinks": [],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -3379,7 +3379,7 @@
       ],
       "internalLinks": [],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"
@@ -3443,7 +3443,7 @@
       ],
       "internalLinks": [],
       "emptyStateBehavior": "Render an explicit no-matching-records or unavailable-evidence message.",
-      "currentAsOfDate": "2026-08-17",
+      "currentAsOfDate": "2026-08-20",
       "refreshCollector": "scripts/refresh_daily.py",
       "validationFunction": "tests/test_panel_manifest.py",
       "dataMode": "derived"

@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Conference Admin · Next Gen Competitive Intelligence</title>
+    <link rel="stylesheet" href="conference-page.css?v=20260723-responsive-width-7" />
+    <link rel="stylesheet" href="conference-admin.css?v=20260823-sidebar-tiles-1" />
+  </head>
+  <body class="admin-auth-locked">
+    <section id="adminAuthGate" class="admin-auth-gate" aria-labelledby="adminAuthHeading">
+      <div class="admin-auth-card">
+        <div class="admin-auth-brand" aria-hidden="true">W</div>
+        <div class="admin-auth-heading">
+          <span>Waters Next Gen</span>
+          <h1 id="adminAuthHeading">Conference Admin Sign In</h1>
+          <p>Enter your administrator credentials to manage monitored conference sources.</p>
+        </div>
+        <form id="adminAuthForm" class="admin-auth-form">
+          <label for="adminUserId">
+            User ID
+            <input id="adminUserId" name="username" type="text" autocomplete="username" required autofocus />
+          </label>
+          <label for="adminPassword">
+            Password
+            <input id="adminPassword" name="password" type="password" autocomplete="current-password" required />
+          </label>
+          <div id="adminAuthError" class="admin-auth-error" role="alert" hidden>Incorrect user ID or password.</div>
+          <button type="submit">Sign In</button>
+        </form>
+        <a href="conference.html">← Return to Conference Intelligence</a>
+      </div>
+    </section>
+
+    <aside class="conference-sidebar admin-sidebar">
+      <div class="conference-brand">
+        <div class="conference-brand-mark">W</div>
+        <div>
+          <span>Waters Next Gen</span>
+          <strong>Competitive Intelligence</strong>
+        </div>
+      </div>
+      <nav aria-label="Conference admin navigation">
+        <a href="index.html">← Dashboard Overview</a>
+        <a href="conference.html">Upcoming Conferences</a>
+        <a href="publications.html">Publication Intelligence</a>
+        <a class="active" href="conference-admin.html" aria-current="page">Conference Admin</a>
+      </nav>
+      <div class="conference-sidebar-note">
+        <span>Admin workspace</span>
+        <p>Maintain official conference sources and monitoring priority. Updates appear immediately in Conference Intelligence.</p>
+      </div>
+    </aside>
+
+    <main class="conference-page-shell admin-page-shell">
+      <header class="conference-page-header admin-page-header">
+        <div>
+          <p class="conference-breadcrumb"><a href="index.html">Dashboard</a><span>/</span><a href="conference.html">Conference Intelligence</a><span>/</span>Admin</p>
+          <span class="admin-kicker">Conference Source Catalog</span>
+          <h1>Conference Admin</h1>
+          <p>Add, prioritize, and maintain every conference monitored by the intelligence team.</p>
+        </div>
+        <div class="conference-header-actions admin-header-actions">
+          <button id="exportConferenceCatalog" class="admin-secondary-button" type="button">Export JSON</button>
+          <a href="conference.html">View conference intelligence</a>
+          <button id="adminSignOut" class="admin-sign-out-button" type="button">Sign Out</button>
+        </div>
+      </header>
+
+      <section id="adminStats" class="admin-stat-grid" aria-label="Conference catalog summary"></section>
+
+      <section class="admin-workspace" aria-label="Conference administration workspace">
+        <section class="admin-form-card">
+          <div class="admin-card-heading">
+            <span id="adminFormMode">New Entry</span>
+            <h2 id="adminFormHeading">Add a Conference</h2>
+            <p>Enter the official conference information used for monitoring.</p>
+          </div>
+
+          <form id="conferenceAdminForm" novalidate>
+            <input id="conferenceRecordId" type="hidden" />
+            <label for="conferenceTitle">
+              Conference title
+              <input id="conferenceTitle" name="title" type="text" placeholder="e.g. Pittcon 2027" autocomplete="off" required />
+              <span class="field-hint">Use the official event name and year.</span>
+            </label>
+            <label for="conferenceLink">
+              Official conference link
+              <input id="conferenceLink" name="link" type="url" placeholder="https://conference.org/event" inputmode="url" autocomplete="url" required />
+              <span class="field-hint">Link to the event or program page.</span>
+            </label>
+            <label for="conferenceTier">
+              Monitoring tier
+              <select id="conferenceTier" name="tier" required>
+                <option value="">Select a tier</option>
+                <option value="Tier 1">Tier 1 · Highest priority</option>
+                <option value="Tier 2">Tier 2 · Targeted monitoring</option>
+                <option value="Tier 3">Tier 3 · Watch list</option>
+              </select>
+              <span class="field-hint">Tier 1 conferences receive the most frequent review.</span>
+            </label>
+            <div id="conferenceFormError" class="admin-form-error" role="alert" hidden></div>
+            <div class="admin-form-actions">
+              <button id="saveConference" class="admin-primary-button" type="submit">Add Conference</button>
+              <button id="cancelConferenceEdit" class="admin-text-button" type="button" hidden>Cancel edit</button>
+            </div>
+          </form>
+
+          <div class="admin-storage-note">
+            <span aria-hidden="true">✓</span>
+            <p><strong>Live browser catalog</strong>Changes appear immediately in Conference Intelligence. Export the catalog when it is ready for the data pipeline.</p>
+          </div>
+        </section>
+
+        <section class="admin-catalog-card" aria-labelledby="conferenceCatalogHeading">
+          <header class="admin-catalog-header">
+            <div>
+              <span>Monitoring Catalog</span>
+              <h2 id="conferenceCatalogHeading">Conferences</h2>
+              <p id="conferenceCatalogSummary">Loading conference sources…</p>
+            </div>
+            <button id="resetConferenceCatalog" class="admin-reset-button" type="button">Reset to published</button>
+          </header>
+
+          <div class="admin-list-tools">
+            <label class="admin-search-field" for="conferenceAdminSearch">
+              <span aria-hidden="true">⌕</span>
+              <input id="conferenceAdminSearch" type="search" placeholder="Search conferences" autocomplete="off" />
+            </label>
+            <label class="admin-tier-filter" for="conferenceAdminTierFilter">
+              <span>Tier</span>
+              <select id="conferenceAdminTierFilter">
+                <option value="All">All tiers</option>
+                <option value="Tier 1">Tier 1</option>
+                <option value="Tier 2">Tier 2</option>
+                <option value="Tier 3">Tier 3</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="admin-catalog-list-wrap">
+            <div id="conferenceAdminList" class="admin-catalog-grid" role="list"></div>
+          </div>
+          <div id="conferenceAdminEmpty" class="admin-empty-state" hidden>
+            <span aria-hidden="true">⌕</span>
+            <strong>No conferences found</strong>
+            <p>Try a different search or add a new conference.</p>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <div id="adminToast" class="admin-toast" role="status" aria-live="polite" hidden></div>
+    <script src="conference-admin.js?v=20260823-sidebar-tiles-1"></script>
+  </body>
+</html>

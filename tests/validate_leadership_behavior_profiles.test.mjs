@@ -13,15 +13,26 @@ test("Engineering exposes evidence-based competitor leadership profiles", () => 
   assert.match(html, /id="leadership-behavior-profiles"/);
   assert.match(html, /Competitor Leadership Behavior Profiles/);
   assert.match(html, /id="leadershipBehaviorNav"/);
-  assert.match(html, /not a personality or psychology assessment/i);
+  assert.doesNotMatch(html, /not a personality or psychology assessment/i);
   assert.match(html, /Engineering · LC-MS portfolio intelligence/);
   assert.match(app, /function renderLeadershipBehaviorProfiles\(\)/);
+  assert.match(app, /function firstLeadershipSentence\(value\)/);
+  assert.match(app, /const leadershipPersonPriority =/);
+  assert.match(app, /const conciseCareerArc =/);
+  assert.match(app, /\.slice\(0, 1\)/);
+  assert.match(app, /profile\.watchItems\.slice\(0, 2\)/);
   assert.match(app, /function moveLeadershipPersonSlider\(competitor, direction\)/);
   assert.match(app, /data-leadership-person-action="previous"/);
   assert.match(app, /data-leadership-person-select/);
+  assert.ok(
+    app.indexOf('<div class="leadership-person-dots"') < app.indexOf('<header class="leadership-person-slider-header"'),
+    "leader selector should render above the relevant-leaders profile header",
+  );
   assert.match(app, /const engineeringEvidenceVisible = state\.view === "Engineering"/);
   assert.match(css, /\.leadership-selected-detail/);
   assert.match(css, /\.leadership-person-slider/);
+  assert.doesNotMatch(app, /leadership-evidence-boundary/);
+  assert.doesNotMatch(css, /leadership-evidence-boundary/);
 });
 
 test("all five competitor profiles map current executive and LC-MS portfolio ownership", () => {
@@ -48,14 +59,14 @@ test("all five competitor profiles map current executive and LC-MS portfolio own
 });
 
 test("each named leader has a source-bounded person profile for the slider", () => {
-  assert.equal(peopleDataset.people.length, 12);
-  const namedLeaders = dataset.profiles.flatMap((profile) => profile.leaders.filter((leader) => leader.name !== "Open role"));
+  const nonPersonLabels = new Set(["Open role", "Status unverified"]);
+  const namedLeaders = dataset.profiles.flatMap((profile) => profile.leaders.filter((leader) => !nonPersonLabels.has(leader.name)));
   assert.equal(namedLeaders.length, peopleDataset.people.length);
   namedLeaders.forEach((leader) => {
     const person = peopleDataset.people.find((item) => item.name === leader.name);
     assert.ok(person, `missing profile for ${leader.name}`);
     assert.equal(person.careerArc.length, 3);
-    assert.ok(person.operatingPattern.summary.length > 120);
+    assert.ok(person.operatingPattern.summary.length > 60);
     assert.ok(person.companyChanges.length >= 1);
     assert.match(person.likelyFocus.confidence, /Directional/);
     assert.ok(/not|inference|derived|public|does not/i.test(person.likelyFocus.basis));
@@ -67,12 +78,22 @@ test("each named leader has a source-bounded person profile for the slider", () 
   });
 });
 
-test("SCIEX parent oversight and PerkinElmer open portfolio role are explicit", () => {
+test("direct LC-MS and technology owners are included and prioritized", () => {
+  const addedLeaders = ["Iris Mangelschots", "August Specht", "Dieter Hofmann", "Hiroto Itoi", "Chris Lock"];
+  addedLeaders.forEach((name) => {
+    assert.ok(peopleDataset.people.some((person) => person.name === name), `missing relevant leader ${name}`);
+    assert.match(app, new RegExp(name));
+  });
+  assert.equal(peopleDataset.asOfDate, "2026-08-22");
+});
+
+test("SCIEX parent oversight and the changed PerkinElmer portfolio-role status are explicit", () => {
   const sciex = dataset.profiles.find((profile) => profile.competitor === "SCIEX");
   const perkinElmer = dataset.profiles.find((profile) => profile.competitor === "PerkinElmer");
   assert.ok(sciex.leaders.some((leader) => leader.name === "Rainer M. Blair"));
   assert.ok(sciex.leaders.some((leader) => leader.name === "Chris Hagen"));
-  assert.ok(perkinElmer.leaders.some((leader) => leader.status === "Recruiting"));
+  assert.ok(perkinElmer.leaders.some((leader) => leader.status === "No longer listed"));
+  assert.match(perkinElmer.observableSignals.map((signal) => signal.observedAction).join(" "), /now returns 404.*absent from.*current.*Woodbridge index/i);
 });
 
 test("deployment mirror contains matching leadership code, UI, and data", () => {

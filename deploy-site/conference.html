@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Upcoming Conferences · Next Gen Competitive Intelligence</title>
-    <link rel="stylesheet" href="conference-page.css?v=20260723-responsive-width-7" />
+    <link rel="stylesheet" href="conference-page.css?v=20260823-admin-live-1" />
   </head>
   <body>
     <aside class="conference-sidebar">
@@ -19,6 +19,7 @@
         <a href="index.html">← Dashboard Overview</a>
         <a class="active" href="conference.html" aria-current="page">Upcoming Conferences</a>
         <a href="publications.html">Publication Intelligence</a>
+        <a href="conference-admin.html">Conference Admin</a>
       </nav>
       <div class="conference-sidebar-note">
         <span>Page purpose</span>
@@ -35,6 +36,7 @@
         </div>
         <div class="conference-header-actions">
           <button id="copyConferenceBrief" type="button">Copy selected brief</button>
+          <a href="conference-admin.html">Manage conferences</a>
           <a href="index.html">Back to dashboard</a>
         </div>
       </header>
@@ -53,6 +55,21 @@
       </section>
 
       <section id="conferenceStats" class="conference-stat-grid" aria-label="Conference summary"></section>
+
+      <section class="conference-source-catalog-panel" aria-labelledby="conferenceSourceCatalogHeading">
+        <div class="conference-section-header conference-source-catalog-header">
+          <div>
+            <span>Live Admin Catalog</span>
+            <h2 id="conferenceSourceCatalogHeading">Monitored Conference Sources</h2>
+            <p>Admin entries appear here immediately. Timeline and preparation details become available after an event is enriched with dates and intelligence content.</p>
+          </div>
+          <div class="conference-source-catalog-actions">
+            <strong id="conferenceSourceCatalogCount">Loading sources</strong>
+            <button id="toggleConferenceSourceCatalog" type="button" aria-expanded="false">Show all</button>
+          </div>
+        </div>
+        <div id="conferenceSourceCatalog" class="conference-source-catalog" aria-live="polite"></div>
+      </section>
 
       <section class="conference-timeline-panel" aria-labelledby="timelineHeading">
         <div class="conference-section-header">
@@ -93,6 +110,6 @@
     </dialog>
 
     <script src="conference-date-policy.js?v=20260816-1"></script>
-    <script src="conference-page.js?v=20260816-conference-date-1"></script>
+    <script src="conference-page.js?v=20260823-admin-live-1"></script>
   </body>
 </html>

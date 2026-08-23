@@ -360,7 +360,7 @@ async function main() {
       if (idx < sources.length - 1) addRule(s, 120, y + 52, 1092, 1, C.line);
     });
     addBox(s, 54, 632, 1172, 34, C.amberPale, C.amberPale);
-    addText(s, `Snapshot: ${snapshot.snapshotId} · As of ${snapshot.asOfTimestamp} · Business magnitude requires Waters internal data.`, 74, 640, 1132, 20, { fontSize: 13, bold: true, color: "#7C5600", align: "center" });
+    addText(s, `Snapshot: ${snapshot.snapshotId} · As of ${intelligence.asOfDate} · Business magnitude requires Waters internal data.`, 74, 640, 1132, 20, { fontSize: 13, bold: true, color: "#7C5600", align: "center" });
     addFooter(s, 8);
     addSources(s, sources.map((row) => row[2]));
   }

@@ -1,7 +1,7 @@
 {
   "snapshotSchemaVersion": 2,
   "observationType": "sitemap_inventory",
-  "capturedAt": "2026-08-17T16:46:20+00:00",
+  "capturedAt": "2026-08-20T14:48:33+00:00",
   "initialized": true,
   "products": {
     "https://sciex.com/products/mass-spectrometers/qtof-systems": "",
@@ -62,7 +62,6 @@
     "https://sciex.com/products/software/peakview-software": "",
     "https://sciex.com/products/software/proteinpilot-software": "",
     "https://sciex.com/products/software/mass-spectrometry-software-solutions": "",
-    "https://sciex.com/products/software/oneomics": "",
     "https://sciex.com/products/software/molecule-profiler-software": "",
     "https://sciex.com/products/software/biologics-explorer-software": "",
     "https://sciex.com/products/software/os-software-roi-calculator": "",
@@ -104,6 +103,13 @@
   "unverifiedInventoryChanges": {
     "new": [],
     "updated": [],
-    "missing": []
+    "missing": [
+      {
+        "url": "https://sciex.com/applications/biomedical-and-omics-research/oneomics",
+        "lastmod": "",
+        "category": "LC/MS",
+        "verification": "manual confirmation required"
+      }
+    ]
   }
 }

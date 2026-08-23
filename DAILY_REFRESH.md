@@ -37,15 +37,17 @@ The dashboard must not expose a longer horizon unless the refresh pipeline conta
 
 The scheduled job is pinned to `7:00 AM America/New_York` year-round by running twice in UTC and skipping the non-matching run.
 
-To run unattended, configure these GitHub repository secrets:
+The scheduler runs entirely on GitHub-hosted infrastructure. It does not require Codex, a ChatGPT session, or a powered-on laptop. Configure these GitHub repository secrets:
 
 - `REDDIT_CLIENT_ID`
 - `REDDIT_CLIENT_SECRET`
-- `VERCEL_DEPLOY_HOOK` if the Vercel project is not connected to this GitHub repo
+- `VERCEL_TOKEN`
+- `VERCEL_ORG_ID`
+- `VERCEL_PROJECT_ID`
 
-The workflow:
+The workflow and the local scheduler use the same portable batch entry point, `scripts/run_daily_refresh.sh`. GitHub passes `--refresh-only` because commit and deployment are handled by later workflow steps. The batch job:
 
-1. Runs `scripts/refresh_daily.py`.
+1. Runs `scripts/refresh_daily.py` through the available Python 3 executable.
 2. Collects the automated public-source data.
 3. Validates signal volume, recommendations, publication themes, dates, and cumulative horizon counts.
 4. Checks every public URL in `data/`, follows redirects, and writes `data/link_health.json`.
@@ -54,9 +56,8 @@ The workflow:
 7. Reconciles every Agilent current-year newsroom/IR archive record—not only the recent replay window—against the published intelligence dataset, and fails on missing or duplicate releases.
 8. Restores every data artifact from the last good dataset if collection, high-water verification, or validation fails.
 9. Synchronizes `data/` with `deploy-site/data/`.
-10. Commits the validated data so a Git-connected Vercel project redeploys.
-
-For a Vercel project that is not connected to Git, add a repository secret named `VERCEL_DEPLOY_HOOK` containing a Vercel Deploy Hook URL.
+10. Commits the validated data to the repository.
+11. Deploys `deploy-site/` directly to Vercel with the repository secrets, assigns `waters-nextgen-competitive-engine.vercel.app`, and verifies that the live `refresh_status.json` reports success, complete required-source coverage, and today's New York dataset date.
 
 ## Local Manual Run
 
@@ -91,14 +92,22 @@ Scores of 75-100 are High, 50-74 are Medium, and 0-49 are Low. Each signal store
 
 ## Local Daily Schedule
 
-On this Mac, `com.waters.competition-engine.daily-refresh` wakes the Codex desktop app at 6:10 AM local time through `launchd` and also opens it after login. This is still useful for manual local operation, but it is no longer the primary production scheduler. At 6:15 AM, the active Codex automation runs `scripts/run_daily_refresh.sh`, which refreshes and validates the data, deploys the successful build to Vercel, aliases the Waters URL, and verifies the live refresh status. The wrapper also has a process lock so a duplicate trigger exits safely. Logs are written to:
+On this Mac, `com.waters.competition-engine.daily-refresh` may wake the Codex desktop app for manual local operation, but it is not part of production scheduling or deployment. GitHub Actions is the independent production scheduler. The local wrapper has a process lock so a duplicate trigger exits safely. Logs are written to:
 
 - `logs/daily-refresh.log`
 - `logs/daily-refresh-error.log`
 
 `scripts/run_daily_refresh.sh` provides the equivalent wrapper for a manual local run.
 
-The Codex automation publishes only after the refresh and every deployment gate succeeds. A partial refresh never deploys: every required source must prove complete traversal and exact newest-item presence. Failed collection, blocked pagination, stale high-water marks, or validation failures leave the last verified production build unchanged. The GitHub Actions workflow is the supported always-on scheduler once the repo is connected to GitHub and the required secrets are configured.
+To run the complete refresh and validation batch without deploying, use:
+
+```bash
+scripts/run_daily_refresh.sh --refresh-only
+```
+
+The script derives the repository root from its own location. `COMPETITION_ENGINE_ROOT` and `COMPETITION_ENGINE_PYTHON` are optional overrides for non-standard installations.
+
+GitHub Actions publishes only after the refresh and every deployment gate succeeds. A partial refresh never deploys: every required source must prove complete traversal and exact newest-item presence. Failed collection, blocked pagination, stale high-water marks, or validation failures leave the last verified production build unchanged.
 
 The dashboard reads `data/refresh_status.json` and shows whether the daily refresh is current, overdue, or failed. A page left open checks hourly for a newly published dataset and reloads when one is available.
 

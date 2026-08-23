@@ -1,5 +1,5 @@
 {
-  "asOfDate": "2026-08-17",
+  "asOfDate": "2026-08-22",
   "methodology": "Person profiles synthesize official biographies, role histories, company announcements, and actions publicly associated with the leader's remit. 'Operating pattern' means a repeated public career or decision pattern, not personality. 'Likely focus' is an analyst hypothesis and is never presented as a private intention or confirmed plan.",
   "people": [
     {
@@ -295,7 +295,7 @@
           "detail": "The succession placed a leader with a scaled life-sciences growth record over the full Danaher portfolio.",
           "attribution": "Documented leadership transition",
           "sourceName": "Danaher · CEO appointment",
-          "sourceUrl": "https://investors.danaher.com/2020-09-01-Danaher-Appoints-Rainer-Blair-As-President-and-CEO"
+          "sourceUrl": "https://investors.danaher.com/2020-05-06-Danaher-Corporation-Announces-CEO-Transition"
         },
         {
           "date": "2026-04-21",
@@ -440,21 +440,188 @@
       },
       "companyChanges": [
         {
-          "date": "2026-08-17",
-          "title": "LC/LC-MS roadmap leadership is being recruited",
-          "detail": "PerkinElmer is recruiting a Product Director to own LC and LCMS strategy, roadmap, new products, revenue growth, and a Lab of the Future transformation.",
+          "date": "2026-08-20",
+          "title": "Earlier LC/LC-MS leadership posting is no longer listed",
+          "detail": "PerkinElmer's current Woodbridge index lists four engineering and patent roles but no longer lists the previously observed Product Director, LC/LCMS role. This shows the posting closed or was withdrawn, not whether it was filled.",
           "attribution": "Organizational activity within Analytical Solutions; not personally attributed",
-          "sourceName": "PerkinElmer Careers · Product Director, LC/LCMS",
-          "sourceUrl": "https://jobs.perkinelmer.com/job/woodbridge/product-director-lc-lcms/43930/94486435280"
+          "sourceName": "PerkinElmer Careers · current Woodbridge index",
+          "sourceUrl": "https://jobs.perkinelmer.com/location/woodbridge-ontario-canada-jobs/20539/6251999-6093943-6184009/4"
         }
       ],
       "likelyFocus": {
-        "statement": "Rebuilding LC/LC-MS product ownership and connecting analytical instruments to digital, automated, and AI-enabled laboratory workflows.",
-        "basis": "Derived from his cross-functional background and the open portfolio role; public evidence does not confirm his personal roadmap decisions.",
+        "statement": "Strengthening analytical-platform engineering and IP coverage while the outcome of the earlier LC/LC-MS product-leadership search remains unverified.",
+        "basis": "Derived from his cross-functional background and the current Woodbridge engineering/patent openings; public evidence does not confirm his personal roadmap decisions or whether the closed product role was filled.",
         "confidence": "Low–Directional"
       },
       "sources": [
         {"name":"PerkinElmer · Executive leadership","url":"https://www.perkinelmer.com/fr-ca/executive-leadership"}
+      ]
+    },
+    {
+      "id": "agilent-iris-mangelschots",
+      "competitor": "Agilent",
+      "name": "Iris Mangelschots",
+      "careerArc": [
+        "Built leadership experience inside Agilent's liquid-phase organization.",
+        "By 2025, served as Vice President and General Manager of the Liquid Phase Division.",
+        "In 2026, represented Agilent on integrated LC/MS workflows and new UHPLC products."
+      ],
+      "operatingPattern": {
+        "label": "Workflow-focused liquid-phase operator",
+        "summary": "Her visible activity pairs LC hardware with mass spectrometry, software, and external workflow partners. The repeated public pattern is practical integration around customer adoption and analytical performance.",
+        "evidenceStrength": "High"
+      },
+      "companyChanges": [
+        {
+          "date": "2026-06-01",
+          "title": "Integrated DMPK LC/MS workflow with Sound Analytics",
+          "detail": "Agilent paired its 1290 Infinity III LC and 6495D triple quadrupole with LeadScape software for DMPK laboratories.",
+          "attribution": "Named business leader in Agilent's official release",
+          "sourceName": "Agilent · DMPK LC/MS collaboration",
+          "sourceUrl": "https://www.agilent.com/about/newsroom/presrel/2026/01jun-ca26022.html"
+        }
+      ],
+      "likelyFocus": {
+        "statement": "Packaging LC, MS, software, and partner capabilities into adoption-ready workflows.",
+        "basis": "Derived from her public title and named 2026 LC/MS actions; it is not a confirmed private roadmap.",
+        "confidence": "Directional"
+      },
+      "sources": [
+        {"name":"Agilent · DMPK LC/MS collaboration","url":"https://www.agilent.com/about/newsroom/presrel/2026/01jun-ca26022.html"},
+        {"name":"Agilent · 1290 Infinity III FLD launch","url":"https://www.agilent.com/about/newsroom/presrel/2026/21may-ca26016.html"}
+      ]
+    },
+    {
+      "id": "agilent-august-specht",
+      "competitor": "Agilent",
+      "name": "August Specht",
+      "careerArc": [
+        "Built more than 20 years across analytical instruments, software, and consumables.",
+        "Led global R&D for Thermo Fisher's Chromatography and Mass Spectrometry Division.",
+        "Joined Agilent as Chief Technology Officer in June 2025."
+      ],
+      "operatingPattern": {
+        "label": "Cross-platform technology integrator",
+        "summary": "His public path combines analytical-instrument R&D, product management, strategy, and business development. The recurring pattern links core technology choices to product and portfolio execution.",
+        "evidenceStrength": "High"
+      },
+      "companyChanges": [
+        {
+          "date": "2025-06-09",
+          "title": "Joined Agilent as enterprise CTO",
+          "detail": "Agilent appointed him to lead enterprise technology, development, and innovation after direct chromatography and MS R&D leadership.",
+          "attribution": "Official Agilent appointment and executive biography",
+          "sourceName": "Agilent · CTO appointment",
+          "sourceUrl": "https://www.agilent.com/about/newsroom/presrel/2025/28may-gp25012.html"
+        }
+      ],
+      "likelyFocus": {
+        "statement": "Accelerating instrument, software, and consumables innovation across product groups.",
+        "basis": "Derived from his public career and current remit, not a confirmed individual product decision.",
+        "confidence": "Directional"
+      },
+      "sources": [
+        {"name":"Agilent · August Specht biography","url":"https://www.agilent.com/about/companyinfo/leadership/agilent-executive-specht.html"},
+        {"name":"Agilent · CTO appointment","url":"https://www.agilent.com/about/newsroom/presrel/2025/28may-gp25012.html"}
+      ]
+    },
+    {
+      "id": "thermo-dieter-hofmann",
+      "competitor": "Thermo Fisher",
+      "name": "Dieter Hofmann",
+      "careerArc": [
+        "Built more than 20 years in scientific instrumentation and advanced technology.",
+        "Led global expansion, partnerships, and digital-transformation programs.",
+        "Now leads Thermo Fisher's Chromatography and Mass Spectrometry business."
+      ],
+      "operatingPattern": {
+        "label": "Direct C&M business operator",
+        "summary": "His current remit combines product strategy, R&D, commercial operations, and P&L accountability. The visible pattern is end-to-end ownership from technology investment through market execution.",
+        "evidenceStrength": "High"
+      },
+      "companyChanges": [
+        {
+          "date": "2025-07-03",
+          "title": "Direct chromatography and MS business ownership documented",
+          "detail": "Thermo Fisher identifies Hofmann as the leader for product strategy, R&D, commercial operations, and P&L across Applied Analytical Technologies.",
+          "attribution": "Current role described in Thermo Fisher's official expert profile",
+          "sourceName": "Thermo Fisher · Dieter Hofmann profile",
+          "sourceUrl": "https://www.thermofisher.com/blog/expertise/chromatography/"
+        }
+      ],
+      "likelyFocus": {
+        "statement": "Coordinating next-generation chromatography and MS platforms with digital workflows and commercial scale.",
+        "basis": "Derived from his public role description, not a confirmed launch plan.",
+        "confidence": "Directional"
+      },
+      "sources": [
+        {"name":"Thermo Fisher · Dieter Hofmann profile","url":"https://www.thermofisher.com/blog/expertise/chromatography/"}
+      ]
+    },
+    {
+      "id": "shimadzu-hiroto-itoi",
+      "competitor": "Shimadzu",
+      "name": "Hiroto Itoi",
+      "careerArc": [
+        "Started in Shimadzu analytical-instrument R&D.",
+        "Led MS/GC and MS business units before broader Life Science and Analytical division roles.",
+        "Moved to the Technology Research Laboratory and now serves as CTO."
+      ],
+      "operatingPattern": {
+        "label": "Mass-spectrometry technologist turned enterprise CTO",
+        "summary": "His public career moves from MS product leadership into enterprise technology strategy. The repeated pattern applies core analytical science, AI, and automation to instrument performance and operating efficiency.",
+        "evidenceStrength": "High"
+      },
+      "companyChanges": [
+        {
+          "date": "2024-01-01",
+          "title": "Connected analytical R&D with AI and automation",
+          "detail": "As CTO, Itoi highlighted AI and automation as routes to higher analytical operating efficiency.",
+          "attribution": "Strategy stated in Shimadzu's official integrated report",
+          "sourceName": "Shimadzu · Integrated Report 2024",
+          "sourceUrl": "https://www.shimadzu.com/sites/shimadzu.com/files/ir/pdf/shimadzu_integrated_report_2024.pdf"
+        }
+      ],
+      "likelyFocus": {
+        "statement": "Applying AI, automation, and core measurement technology to analytical-platform development.",
+        "basis": "Derived from his public CTO message and career history, not a private product forecast.",
+        "confidence": "Directional"
+      },
+      "sources": [
+        {"name":"Shimadzu · Integrated Report 2024","url":"https://www.shimadzu.com/sites/shimadzu.com/files/ir/pdf/shimadzu_integrated_report_2024.pdf"}
+      ]
+    },
+    {
+      "id": "sciex-chris-lock",
+      "competitor": "SCIEX",
+      "name": "Chris Lock",
+      "careerArc": [
+        "Joined SCIEX more than 25 years ago after research at Canada's National Research Council.",
+        "Held technical and leadership roles, most recently Vice President, LCMS R&D.",
+        "Now serves as Vice President, Global R&D and Chief Technology Officer."
+      ],
+      "operatingPattern": {
+        "label": "Long-cycle LCMS technology steward",
+        "summary": "His public remit spans LCMS and CE hardware, software, and Open Innovation partnerships. The repeated pattern is long-horizon platform development tied to product and market decisions.",
+        "evidenceStrength": "High"
+      },
+      "companyChanges": [
+        {
+          "date": "2026-08-22",
+          "title": "Global R&D and CTO remit verified",
+          "detail": "SCIEX's current executive page assigns him all LCMS and CE system R&D plus Open Innovation oversight.",
+          "attribution": "Current role verified on SCIEX's executive-management page",
+          "sourceName": "SCIEX · Executive management",
+          "sourceUrl": "https://sciex.com/about-us/executive-management"
+        }
+      ],
+      "likelyFocus": {
+        "statement": "Advancing LCMS platform technology, software integration, and external innovation.",
+        "basis": "Derived from his public current remit, not a private roadmap.",
+        "confidence": "Directional"
+      },
+      "sources": [
+        {"name":"SCIEX · Executive management","url":"https://sciex.com/about-us/executive-management"}
       ]
     }
   ]

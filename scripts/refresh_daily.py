@@ -49,6 +49,19 @@ COMPETITOR_MONITOR_FILE = DATA_DIR / "competitor_monitors.json"
 PERKINELMER_MONITOR_FILE = DATA_DIR / "perkinelmer_monitor.json"
 SOURCE_HEALTH_FILE = DATA_DIR / "source_health.json"
 
+KNOWN_SOURCE_URL_MIGRATIONS = {
+    "https://jobs.perkinelmer.com/job/woodbridge/product-director-lc-lcms/43930/94486435280":
+        "https://jobs.perkinelmer.com/location/woodbridge-ontario-canada-jobs/20539/6251999-6093943-6184009/4",
+    "https://jobs.perkinelmer.com/job/woodbridge/software-product-owner-ai-woodbridge-on/43930/80659880304":
+        "https://jobs.perkinelmer.com/location/woodbridge-ontario-canada-jobs/20539/6251999-6093943-6184009/4",
+    "https://investors.danaher.com/2020-09-01-Danaher-Appoints-Rainer-Blair-As-President-and-CEO":
+        "https://www.danaher.com/rainer-m-blair",
+    "https://sciex.com/products/software/oneomics":
+        "https://sciex.com/applications/biomedical-and-omics-research/oneomics",
+    "https://www.acs.org/events/all-events/acs-spring-2026.html":
+        "https://www.acs.org/events/spring.html",
+}
+
 AUTOMATED_DOMAINS = [
     "PubMed publication trends and competitor-linked publications",
     "SEC filing discovery",
@@ -86,6 +99,29 @@ def write_json(path: Path, value: dict) -> None:
     temporary = path.with_suffix(f"{path.suffix}.tmp")
     temporary.write_text(json.dumps(value, indent=2) + "\n", encoding="utf-8")
     temporary.replace(path)
+
+
+def migrate_known_source_urls() -> int:
+    """Replace retired official URLs before collectors and link gates run."""
+    replacements = 0
+    for path in DATA_DIR.rglob("*.json"):
+        if path.name == "link_health.json":
+            continue
+        try:
+            original = path.read_text(encoding="utf-8")
+        except OSError:
+            continue
+        updated = original
+        for retired_url, current_url in KNOWN_SOURCE_URL_MIGRATIONS.items():
+            occurrences = updated.count(retired_url)
+            if occurrences:
+                updated = updated.replace(retired_url, current_url)
+                replacements += occurrences
+        if updated != original:
+            temporary = path.with_suffix(f"{path.suffix}.tmp")
+            temporary.write_text(updated, encoding="utf-8")
+            temporary.replace(path)
+    return replacements
 
 
 def validate_intelligence(data: dict) -> None:
@@ -815,9 +851,11 @@ def _source_health_from_artifacts(intelligence: dict, checked_at: str) -> list[S
 
 def write_status(status: str, started_at: str, message: str, last_success: str | None, ledger: dict | None = None, last_build_published: str | None = None) -> None:
     finished_at = utc_now()
+    dataset_as_of_date = read_json(INTELLIGENCE_FILE).get("asOfDate")
     value = {
         "cadence": "daily",
         "status": status,
+        "datasetAsOfDate": dataset_as_of_date,
         "lastAttemptAt": finished_at,
         "lastSuccessfulRefreshAt": finished_at if status == "success" else last_success,
         "startedAt": started_at,
@@ -846,6 +884,9 @@ def main() -> int:
     ledger: dict | None = None
 
     try:
+        migrated_urls = migrate_known_source_urls()
+        if migrated_urls:
+            print(f"Migrated {migrated_urls} retired official source URL references.")
         subprocess.run([sys.executable, str(SCIENTIFIC_SOURCE_COLLECTOR)], cwd=ROOT, check=True)
         subprocess.run([sys.executable, str(CUSTOMER_VOICE_COLLECTOR)], cwd=ROOT, check=True)
         subprocess.run([sys.executable, str(COLLECTOR)], cwd=ROOT, check=True)

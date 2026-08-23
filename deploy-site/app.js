@@ -6581,8 +6581,23 @@ function currentLeadershipProfiles() {
   return profiles.filter((profile) => filters.competitor.value === "All" || profile.competitor === filters.competitor.value);
 }
 
+const leadershipPersonPriority = {
+  Agilent: ["Iris Mangelschots", "August Specht", "Simon May", "Padraig McDonnell"],
+  "Thermo Fisher": ["Dieter Hofmann", "Daniel P. Shine", "Gianluca Pettiti", "Marc N. Casper"],
+  Shimadzu: ["Hiroto Itoi", "Masami Tomita", "Yasunori Yamamoto"],
+  SCIEX: ["Jose Castro-Perez", "Chris Lock", "Chris Hagen", "Rainer M. Blair"],
+  PerkinElmer: ["Mark Copeland", "Michael Stubblefield"],
+};
+
 function leadershipPeopleForCompetitor(competitor) {
-  return (state.leadershipPeople?.people || []).filter((person) => person.competitor === competitor);
+  const priority = leadershipPersonPriority[competitor] || [];
+  return (state.leadershipPeople?.people || [])
+    .filter((person) => person.competitor === competitor)
+    .sort((left, right) => {
+      const leftIndex = priority.indexOf(left.name);
+      const rightIndex = priority.indexOf(right.name);
+      return (leftIndex === -1 ? priority.length : leftIndex) - (rightIndex === -1 ? priority.length : rightIndex);
+    });
 }
 
 function currentHiringPatterns() {
@@ -12079,12 +12094,20 @@ function renderFilingInsights() {
     : `<div class="empty">No earnings results or investor filing insights match the current filters.</div>`;
 }
 
+function patentStatusTone(legalStatus) {
+  const value = String(legalStatus || "").toLowerCase();
+  if (value.includes("grant")) return " is-granted";
+  if (value.includes("withdraw") || value.includes("abandon") || value.includes("lapsed")) return " is-closed";
+  return " is-pending";
+}
+
 function renderPatentInsights() {
   const target = byId("patentInsights");
   const counter = byId("patentInsightCount");
   if (!target || !counter) return;
   const insights = currentPatentInsights();
-  counter.textContent = `${insights.length} published application${insights.length === 1 ? "" : "s"} · ${new Set(insights.map((item) => item.competitor)).size} competitor${new Set(insights.map((item) => item.competitor)).size === 1 ? "" : "s"}`;
+  const competitorCount = new Set(insights.map((item) => item.competitor)).size;
+  counter.textContent = `${insights.length} published application${insights.length === 1 ? "" : "s"} · ${competitorCount} competitor${competitorCount === 1 ? "" : "s"}`;
   const competitorOrder = ["Agilent", "Thermo Fisher", "Shimadzu", "SCIEX", "PerkinElmer"];
   const grouped = new Map();
   insights.forEach((insight) => {
@@ -12112,7 +12135,6 @@ function renderPatentInsights() {
     return;
   }
   const [competitor, companyInsights] = activeGroup;
-  const latest = companyInsights[0];
   const themes = [...new Set(companyInsights.map((item) => item.theme))];
   target.innerHTML = `
     <div class="intent-master-detail patent-master-detail">
@@ -12140,26 +12162,26 @@ function renderPatentInsights() {
             <h4>${escapeHtml(competitor)}</h4>
             <p>${companyInsights.length} published application${companyInsights.length === 1 ? "" : "s"} in ${escapeHtml(horizonLabel().toLowerCase())}</p>
           </div>
-          <div class="patent-theme-stack" aria-label="Observed patent themes">
-            ${themes.map((theme) => `<span>${escapeHtml(theme)}</span>`).join("")}
-          </div>
+          ${themes.length > 1 ? `
+            <div class="patent-theme-stack" aria-label="Observed patent themes">
+              ${themes.map((theme) => `<span>${escapeHtml(theme)}</span>`).join("")}
+            </div>
+          ` : ""}
         </header>
-        <div class="patent-portfolio-readout">
-          <div><span>Newest signal</span><strong>${escapeHtml(latest.title)}</strong></div>
-          <div><span>PM interpretation</span><p>${escapeHtml(latest.roadmapImplication)}</p></div>
-        </div>
         <div class="patent-card-grid">
           ${companyInsights.map((insight) => `
             <article class="patent-card">
               <div class="patent-card-heading">
                 <div>
-                  <span>${escapeHtml(insight.theme)}</span>
+                  <span class="patent-card-theme">${escapeHtml(insight.theme)}</span>
                   <h5>${escapeHtml(insight.title)}</h5>
+                  ${insight.officialTitle ? `<p class="patent-registered-title"><span>Registered title</span> “${escapeHtml(insight.officialTitle)}”${insight.assignee ? ` · ${escapeHtml(insight.assignee)}` : ""}</p>` : ""}
                 </div>
-                <span class="patent-status">${escapeHtml(insight.legalStatus)}</span>
+                <span class="patent-status${patentStatusTone(insight.legalStatus)}">${escapeHtml(insight.legalStatus)}</span>
               </div>
               <dl class="patent-metadata">
                 <div><dt>Publication</dt><dd>${escapeHtml(insight.publicationNumber)}</dd></div>
+                <div><dt>Earliest priority</dt><dd>${formatDate(insight.priorityDate)}</dd></div>
                 <div><dt>Filed</dt><dd>${formatDate(insight.filingDate)}</dd></div>
                 <div><dt>Published</dt><dd>${formatDate(insight.publicationDate || insight.date)}</dd></div>
                 <div><dt>Technology</dt><dd>${escapeHtml(insight.technology)}</dd></div>
@@ -12174,10 +12196,17 @@ function renderPatentInsights() {
             </article>
           `).join("")}
         </div>
-        <aside class="patent-method-note"><strong>How to use this:</strong> Compare filing themes with launches, hiring, application notes, and customer evidence before changing roadmap priority. Filing and publication dates are shown separately because patent applications often become public well after the original filing.</aside>
+        <aside class="patent-method-note"><strong>How to use this:</strong> Compare filing themes with launches, hiring, application notes, and customer evidence before changing roadmap priority. Card headlines are analyst summaries, so the registered office title and assignee are shown beneath each headline. Priority, filing, and publication dates are listed separately because an application usually becomes public well after its earliest priority date.</aside>
       </section>
     </div>
   `;
+}
+
+function firstLeadershipSentence(value) {
+  return String(value || "")
+    .trim()
+    .split(/(?<=[.!?])\s+/)
+    .filter(Boolean)[0] || "";
 }
 
 function renderLeadershipBehaviorProfiles() {
@@ -12188,7 +12217,8 @@ function renderLeadershipBehaviorProfiles() {
   const profiles = currentLeadershipProfiles().sort((left, right) => (
     competitorOrder.indexOf(left.competitor) - competitorOrder.indexOf(right.competitor)
   ));
-  counter.textContent = `${profiles.length} competitor profile${profiles.length === 1 ? "" : "s"} · verified ${formatDate(state.leadershipProfiles?.asOfDate)}`;
+  const namedLeaderCount = profiles.reduce((total, item) => total + leadershipPeopleForCompetitor(item.competitor).length, 0);
+  counter.textContent = `${profiles.length} competitors · ${namedLeaderCount} relevant leaders · verified ${formatDate(state.leadershipProfiles?.asOfDate)}`;
   const activeCompetitor = profiles.some((profile) => profile.competitor === state.activeLeadershipCompetitor)
     ? state.activeLeadershipCompetitor
     : profiles[0]?.competitor || "";
@@ -12211,6 +12241,12 @@ function renderLeadershipBehaviorProfiles() {
   const activePerson = people.find((person) => person.id === activePersonId);
   const activePersonIndex = Math.max(0, people.findIndex((person) => person.id === activePersonId));
   const activeLeader = profile.leaders.find((leader) => leader.name === activePerson?.name);
+  const conciseCareerArc = activePerson?.careerArc?.length > 1
+    ? [activePerson.careerArc[0], activePerson.careerArc.at(-1)]
+    : activePerson?.careerArc || [];
+  const latestCompanyChanges = [...(activePerson?.companyChanges || [])]
+    .sort((left, right) => new Date(right.date) - new Date(left.date))
+    .slice(0, 1);
   target.innerHTML = `
     <div class="intent-master-detail leadership-master-detail">
       <nav class="intent-competitor-rail leadership-company-rail" role="tablist" aria-label="Competitor leadership profiles">
@@ -12222,7 +12258,7 @@ function renderLeadershipBehaviorProfiles() {
             <button type="button" class="intent-competitor-option${selected ? " is-selected" : ""}" data-leadership-select="${escapeHtml(item.competitor)}" role="tab" aria-selected="${selected}" aria-controls="leadership-selected-detail">
               <span class="intent-option-copy">
                 <strong>${escapeHtml(item.competitor)}</strong>
-                <span>${item.leaders.length} mapped leader${item.leaders.length === 1 ? "" : "s"}</span>
+                <span>${leadershipPeopleForCompetitor(item.competitor).length} relevant people</span>
                 <small>${escapeHtml(portfolioLeader?.name || "Portfolio ownership unverified")}</small>
               </span>
               <span class="intent-option-arrow" aria-hidden="true">›</span>
@@ -12245,15 +12281,20 @@ function renderLeadershipBehaviorProfiles() {
         <section class="leadership-behavior-readout">
           <span>Observed operating pattern</span>
           <h5>${escapeHtml(profile.behaviorHeadline)}</h5>
-          <p>${escapeHtml(profile.behaviorSummary)}</p>
+          <p>${escapeHtml(firstLeadershipSentence(profile.behaviorSummary))}</p>
         </section>
         ${activePerson && activeLeader ? `
           <section class="leadership-person-slider" data-leadership-person-slider data-competitor="${escapeHtml(profile.competitor)}" tabindex="0" aria-label="${escapeHtml(profile.competitor)} leader profiles. Use left and right arrow keys to change person.">
+            <div class="leadership-person-dots" role="tablist" aria-label="Select a ${escapeHtml(profile.competitor)} leader">
+              ${people.map((person, index) => {
+                const selected = person.id === activePerson.id;
+                return `<button type="button" data-leadership-person-select="${escapeHtml(person.id)}" data-competitor="${escapeHtml(profile.competitor)}" role="tab" aria-selected="${selected}" aria-label="Show ${escapeHtml(person.name)}"><span>${index + 1}</span><strong>${escapeHtml(person.name)}</strong></button>`;
+              }).join("")}
+            </div>
             <header class="leadership-person-slider-header">
               <div>
-                <span>Person-by-person profile</span>
-                <h5>Past Pattern, Company Activity, and Likely Focus</h5>
-                <p>Public operating evidence—not a psychometric or private-intent assessment.</p>
+                <span>Relevant leaders</span>
+                <h5>Leader Profile</h5>
               </div>
               <div class="leadership-person-slider-controls" aria-label="Change selected leader">
                 <button type="button" data-leadership-person-action="previous" data-competitor="${escapeHtml(profile.competitor)}" aria-label="Show previous ${escapeHtml(profile.competitor)} leader">←</button>
@@ -12274,47 +12315,39 @@ function renderLeadershipBehaviorProfiles() {
                 </header>
                 <div class="leadership-person-insight-grid">
                   <section class="leadership-career-arc">
-                    <span>Career Arc</span>
-                    <h6>How Their Remit Developed</h6>
-                    <ol>${activePerson.careerArc.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ol>
+                    <span>Career path</span>
+                    <h6>Remit Progression</h6>
+                    <ol>${conciseCareerArc.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ol>
                   </section>
                   <section class="leadership-past-pattern">
-                    <div><span>Past Operating Pattern</span><em>${escapeHtml(activePerson.operatingPattern.evidenceStrength)} evidence</em></div>
+                    <div><span>Working style</span><em>${escapeHtml(activePerson.operatingPattern.evidenceStrength)} evidence</em></div>
                     <h6>${escapeHtml(activePerson.operatingPattern.label)}</h6>
-                    <p>${escapeHtml(activePerson.operatingPattern.summary)}</p>
+                    <p>${escapeHtml(firstLeadershipSentence(activePerson.operatingPattern.summary))}</p>
                   </section>
                   <section class="leadership-likely-focus">
                     <div><span>Likely Focus</span><em>${escapeHtml(activePerson.likelyFocus.confidence)}</em></div>
-                    <h6>Directional Analyst Hypothesis</h6>
                     <p>${escapeHtml(activePerson.likelyFocus.statement)}</p>
-                    <small><strong>Basis:</strong> ${escapeHtml(activePerson.likelyFocus.basis)}</small>
+                    <small><strong>Evidence:</strong> Public role history and official company activity.</small>
                   </section>
                 </div>
                 <section class="leadership-company-activity">
-                  <div class="leadership-subhead"><span>Inside the Current Company</span><h6>Observed Activity and Changes</h6></div>
+                  <div class="leadership-subhead"><h6>Company Activity</h6></div>
                   <div class="leadership-company-change-list">
-                    ${activePerson.companyChanges.map((change) => `
+                    ${latestCompanyChanges.map((change) => `
                       <article>
                         <time datetime="${escapeHtml(change.date)}">${formatDate(change.date)}</time>
                         <h6>${escapeHtml(change.title)}</h6>
-                        <p>${escapeHtml(change.detail)}</p>
-                        <small>${escapeHtml(change.attribution)}</small>
+                        <p>${escapeHtml(firstLeadershipSentence(change.detail))}</p>
                         <a href="${escapeHtml(change.sourceUrl)}" target="_blank" rel="noreferrer">${escapeHtml(change.sourceName)} ↗</a>
                       </article>
                     `).join("")}
                   </div>
                 </section>
                 <footer class="leadership-person-sources">
-                  <span>Profile Sources</span>
-                  ${activePerson.sources.map((source) => `<a href="${escapeHtml(source.url)}" target="_blank" rel="noreferrer">${escapeHtml(source.name)} ↗</a>`).join("")}
+                  <span>Sources</span>
+                  ${activePerson.sources.slice(0, 2).map((source) => `<a href="${escapeHtml(source.url)}" target="_blank" rel="noreferrer">${escapeHtml(source.name)} ↗</a>`).join("")}
                 </footer>
               </article>
-            </div>
-            <div class="leadership-person-dots" role="tablist" aria-label="Select a ${escapeHtml(profile.competitor)} leader">
-              ${people.map((person, index) => {
-                const selected = person.id === activePerson.id;
-                return `<button type="button" data-leadership-person-select="${escapeHtml(person.id)}" data-competitor="${escapeHtml(profile.competitor)}" role="tab" aria-selected="${selected}" aria-label="Show ${escapeHtml(person.name)}"><span>${index + 1}</span><strong>${escapeHtml(person.name)}</strong></button>`;
-              }).join("")}
             </div>
           </section>
         ` : `<div class="leadership-profile-empty"><strong>No person-level evidence profile is available.</strong><p>The reporting line remains visible in the company profile, but no working-pattern inference is shown without a named individual and official sources.</p></div>`}
@@ -12324,7 +12357,7 @@ function renderLeadershipBehaviorProfiles() {
             <h5 id="leadershipSignalsTitle">Observable Decisions and Planning Implications</h5>
           </div>
           <div class="leadership-signal-grid">
-            ${profile.observableSignals.map((signal) => `
+            ${profile.observableSignals.slice(0, 1).map((signal) => `
               <article class="leadership-signal-card">
                 <span>${escapeHtml(signal.label)}</span>
                 <p><strong>Observed:</strong> ${escapeHtml(signal.observedAction)}</p>
@@ -12336,9 +12369,8 @@ function renderLeadershipBehaviorProfiles() {
         </section>
         <section class="leadership-watchlist">
           <div class="leadership-subhead"><span>Monitor next</span><h5>Signals That Could Confirm or Change This Read</h5></div>
-          <ul>${profile.watchItems.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+          <ul>${profile.watchItems.slice(0, 2).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
         </section>
-        <aside class="leadership-evidence-boundary"><strong>Evidence boundary:</strong> ${escapeHtml(profile.evidenceBoundary)} ${escapeHtml(state.leadershipProfiles?.methodology || "")}</aside>
       </section>
     </div>
   `;
@@ -12429,10 +12461,6 @@ function renderHiringPatterns() {
             <p>${escapeHtml(profile.planningImplication)}</p>
           </section>
         </div>
-        <section class="hiring-monitor-next">
-          <div class="hiring-section-heading"><span>Monitor next</span><h5>Signals That Would Strengthen or Change This Read</h5></div>
-          <ul>${profile.monitorNext.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
-        </section>
         <aside class="hiring-evidence-boundary"><strong>Evidence boundary:</strong> ${escapeHtml(profile.evidenceBoundary)} ${escapeHtml(state.hiringPatterns?.methodology || "")}</aside>
       </section>
     </div>
@@ -12634,12 +12662,13 @@ function currentCompetitorApplicationNotes() {
 
 function competitorApplicationTheme(note) {
   const text = `${note.applicationArea} ${note.title}`.toLowerCase();
-  if (/pfas|tfa|environmental/.test(text)) return "PFAS and environmental testing";
-  if (/oligonucleotide|anti-sense|aso/.test(text)) return "Oligonucleotide workflows";
-  if (/proteomics|peptide|intact protein|biopharmaceutical/.test(text)) return "Biopharma characterization";
-  if (/food|pesticide|milk|seafood/.test(text)) return "Food safety testing";
-  if (/metabol|drug/.test(text)) return "Small-molecule discovery";
-  if (/nitrosamine|impurity/.test(text)) return "Pharma quality control";
+  if (/oligonucleotide|anti-sense|antisense|\baso\b|sirna|rna therapeutics|intact protein|biopharmaceutical|peptide quant/.test(text)) {
+    return "Biopharma and advanced therapeutics";
+  }
+  if (/proteomics|metabolomics|drug metabolite|drug metabolism/.test(text)) return "Omics and discovery workflows";
+  if (/pfas|\btfa\b|epa method 1633|environmental/.test(text)) return "Environmental contaminants and regulated water";
+  if (/food|pesticide|milk|seafood|\bqacs?\b|residue/.test(text)) return "Food safety and residue testing";
+  if (/nitrosamine|impurity|quality control/.test(text)) return "Pharma quality and impurity testing";
   return note.applicationArea;
 }
 
@@ -12676,27 +12705,22 @@ function competitorNoteThemeGroups(notes) {
       competitors: [...new Set(themeNotes.map((note) => note.competitor))].sort(),
       latestDate: themeNotes.map((note) => note.date).sort().at(-1),
     }))
-    .sort((a, b) => b.notes.length - a.notes.length
-      || new Date(b.latestDate) - new Date(a.latestDate)
+    .sort((a, b) => b.competitors.length - a.competitors.length
       || a.theme.localeCompare(b.theme));
 }
 
 function competitorNoteThemeStatus(group) {
-  if (group.notes.length >= 3) return "Repeated theme";
-  if (group.notes.length >= 2) return "Repeated cluster";
+  if (group.competitors.length >= 2) return "Cross-vendor observation";
   const ageDays = Math.max(0, Math.floor((Date.now() - new Date(`${group.latestDate}T00:00:00`)) / 86400000));
-  return ageDays <= 120 ? "Recent single note" : "Single note";
+  return ageDays <= 120 ? "Recent single-vendor observation" : "Single-vendor observation";
 }
 
 function competitorNoteThemeRead(group) {
   const count = group.notes.length;
-  const competitorText = group.competitors.length === 1
-    ? group.competitors[0]
-    : `${group.competitors.length} competitors (${group.competitors.join(", ")})`;
-  if (count >= 2) {
-    return `${count} official notes from ${competitorText} make this a repeated competitor-publishing cluster in the selected evidence.`;
+  if (group.competitors.length >= 2) {
+    return `${count} sampled official notes span ${group.competitors.length} vendors (${group.competitors.join(", ")}). This is corroborated within the catalog, but incomplete vendor inventories prevent a publication-volume or market-priority conclusion.`;
   }
-  return `One official note from ${competitorText} makes this an early competitor signal, not yet a repeated trend.`;
+  return `${count} sampled official ${count === 1 ? "note" : "notes"} from ${group.competitors[0]} show an observed workflow emphasis. Treat it as directional evidence, not a competitor trend.`;
 }
 
 function currentMarketApplicationSources() {
@@ -13012,41 +13036,36 @@ function marketApplicationTrendMarkup(trends, horizon, label) {
 function competitorApplicationNoteMarkup(notes, label) {
   if (!notes.length) return `<div class="empty">No official competitor application notes match the active filters and ${escapeHtml(label.toLowerCase())} horizon. This is a competitor-source coverage gap, not a market-trend conclusion.</div>`;
   const themes = competitorNoteThemeGroups(notes);
-  const competitorGroups = new Map();
-  notes.forEach((note) => {
-    if (!competitorGroups.has(note.competitor)) competitorGroups.set(note.competitor, []);
-    competitorGroups.get(note.competitor).push(note);
-  });
-  const competitors = [...competitorGroups.entries()].sort((a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0]));
-  const leadingCompetitor = competitors[0];
-  const leadingTheme = themes[0];
+  const competitors = [...new Set(notes.map((note) => note.competitor))].sort();
+  const crossVendorThemes = themes.filter((group) => group.competitors.length >= 2);
   const latestNote = [...notes].sort((a, b) => new Date(b.date) - new Date(a.date))[0];
   return `
     <div class="competitor-application-summary">
       <div>
-        <span>Most repeated competitor-note theme</span>
-        <strong>${escapeHtml(leadingTheme.theme)} · ${leadingTheme.notes.length} ${leadingTheme.notes.length === 1 ? "note" : "notes"}</strong>
+        <span>Official notes in scope</span>
+        <strong>${notes.length} sampled ${notes.length === 1 ? "record" : "records"}</strong>
       </div>
       <div>
-        <span>${competitors.length === 1 ? "Selected competitor" : "Most active note publisher"}</span>
-        <strong>${escapeHtml(leadingCompetitor[0])} · ${leadingCompetitor[1].length} ${leadingCompetitor[1].length === 1 ? "note" : "notes"}</strong>
+        <span>Vendor coverage</span>
+        <strong>${competitors.length} ${competitors.length === 1 ? "vendor" : "vendors"} represented</strong>
       </div>
       <div>
-        <span>Latest official note activity</span>
+        <span>Latest sampled note</span>
         <strong>${escapeHtml(formatDate(latestNote.date))} · ${escapeHtml(competitorApplicationTheme(latestNote))}</strong>
       </div>
+      <p><strong>Coverage boundary:</strong> ${crossVendorThemes.length} themes appear across multiple vendors in this catalog. The source set is curated and incomplete for vendor libraries, so note counts are not used to rank themes, compare publisher activity, or infer market demand.</p>
     </div>
     <div class="competitor-note-theme-grid">
-      ${themes.map((group, index) => `
+      ${themes.map((group) => `
           <article class="competitor-note-theme-card">
             <div class="competitor-note-theme-header">
               <div>
-                <span>#${index + 1} · ${escapeHtml(competitorNoteThemeStatus(group))}</span>
+                <span>${escapeHtml(competitorNoteThemeStatus(group))}</span>
                 <h5>${escapeHtml(group.theme)}</h5>
               </div>
               <strong>${group.notes.length} ${group.notes.length === 1 ? "note" : "notes"}</strong>
             </div>
-            <p class="competitor-note-theme-read"><strong>Observed note pattern:</strong> ${escapeHtml(competitorNoteThemeRead(group))}</p>
+            <p class="competitor-note-theme-read"><strong>Evidence read:</strong> ${escapeHtml(competitorNoteThemeRead(group))}</p>
             <div class="competitor-note-theme-meta">
               <span>Competitors: ${escapeHtml(group.competitors.join(", "))}</span>
               <span>Latest: ${escapeHtml(formatDate(group.latestDate))}</span>
@@ -13066,7 +13085,6 @@ function competitorApplicationNoteMarkup(notes, label) {
             </div>
           </article>
       `).join("")}
-    </div>
     </div>
   `;
 }
@@ -13098,7 +13116,7 @@ function renderTrends() {
       <div class="application-trend-section-header">
         <span>2</span>
         <div>
-          <h4 id="competitorApplicationTrendTitle">Competitor Application-Note Trends</h4>
+          <h4 id="competitorApplicationTrendTitle">Competitor Application-Note Evidence</h4>
         </div>
       </div>
       ${competitorApplicationNoteMarkup(competitorNotes, label)}

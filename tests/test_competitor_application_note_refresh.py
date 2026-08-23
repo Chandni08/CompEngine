@@ -56,9 +56,10 @@ class CompetitorApplicationNoteRefreshTests(unittest.TestCase):
 
             self.assertTrue(any(note.get("sourceUrl") == new_url for note in result["notes"]))
             thermo = next(row for row in result["sourceStatus"] if row["competitor"] == "Thermo Fisher")
-            self.assertEqual(thermo["inventoryMode"], "official_full_feed")
+            self.assertEqual(thermo["inventoryMode"], "registered_official_records")
             self.assertEqual(thermo["inventoryRecordsSeen"], 1)
-            self.assertEqual(thermo["completenessStatus"], "complete")
+            self.assertEqual(thermo["completenessStatus"], "registered_only")
+            self.assertFalse(result["analysisBoundary"]["trendEligible"])
 
 
 if __name__ == "__main__":

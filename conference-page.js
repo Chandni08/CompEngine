@@ -1,10 +1,15 @@
 const conferenceState = {
   data: null,
+  sourceCatalog: [],
+  publishedSourceCatalog: [],
+  sourceCatalogExpanded: false,
   selectedEventId: "",
   eventPage: 1,
   eventPageSize: 4,
   filters: { market: "All", technology: "All", competitor: "All" },
 };
+
+const CONFERENCE_ADMIN_STORAGE_KEY = "waters-conference-admin-catalog-v1";
 
 const byId = (id) => document.getElementById(id);
 const conferenceDatePolicy = globalThis.ConferenceDatePolicy;
@@ -25,6 +30,78 @@ function formatDate(value, options = { month: "short", day: "numeric", year: "nu
 
 function uniqueSorted(values) {
   return [...new Set(values.filter(Boolean))].sort((a, b) => a.localeCompare(b));
+}
+
+function readConferenceAdminCatalog() {
+  try {
+    const catalog = JSON.parse(localStorage.getItem(CONFERENCE_ADMIN_STORAGE_KEY));
+    return Array.isArray(catalog) ? catalog : null;
+  } catch {
+    return null;
+  }
+}
+
+function publishedConferenceCatalog(catalog) {
+  return (catalog?.events || []).map((event) => ({
+    id: event.id,
+    title: event.eventName,
+    link: event.website,
+    tier: event.tier || "Tier 3",
+    source: "Published catalog",
+  }));
+}
+
+function conferenceTierClass(tier) {
+  return String(tier || "Tier 3").toLowerCase().replace(" ", "-");
+}
+
+function preparationEventForSource(source) {
+  const normalizedTitle = String(source.title || "").toLowerCase();
+  const normalizedLink = String(source.link || "").replace(/\/$/, "");
+  return (conferenceState.data?.events || []).find((event) =>
+    event.id === source.id
+    || event.eventName.toLowerCase() === normalizedTitle
+    || String(event.website || "").replace(/\/$/, "") === normalizedLink
+  );
+}
+
+function renderConferenceSourceCatalog() {
+  const catalog = byId("conferenceSourceCatalog");
+  if (!catalog) return;
+  const sorted = [...conferenceState.sourceCatalog].sort((a, b) => {
+    const aDraft = a.source === "Published catalog" ? 1 : 0;
+    const bDraft = b.source === "Published catalog" ? 1 : 0;
+    return aDraft - bDraft || a.tier.localeCompare(b.tier) || a.title.localeCompare(b.title);
+  });
+  const visible = conferenceState.sourceCatalogExpanded ? sorted : sorted.slice(0, 8);
+  byId("conferenceSourceCatalogCount").textContent = `${sorted.length} monitored source${sorted.length === 1 ? "" : "s"}`;
+  const toggle = byId("toggleConferenceSourceCatalog");
+  toggle.hidden = sorted.length <= 8;
+  toggle.textContent = conferenceState.sourceCatalogExpanded ? "Show less" : `Show all ${sorted.length}`;
+  toggle.setAttribute("aria-expanded", String(conferenceState.sourceCatalogExpanded));
+  catalog.innerHTML = visible.map((source) => {
+    const event = preparationEventForSource(source);
+    const isAdminUpdate = source.source !== "Published catalog";
+    return `
+      <article class="conference-source-card${isAdminUpdate ? " admin-update" : ""}">
+        <div class="conference-source-card-topline">
+          <span class="conference-tier-badge ${conferenceTierClass(source.tier)}">${escapeHtml(source.tier || "Tier 3")}</span>
+          <small>${isAdminUpdate ? "Admin update" : event ? "Brief available" : "Monitoring only"}</small>
+        </div>
+        <strong>${escapeHtml(source.title)}</strong>
+        <p>${event ? `${escapeHtml(event.dateRange)} · Preparation brief available` : "Awaiting dates and intelligence enrichment"}</p>
+        <div class="conference-source-card-actions">
+          <a href="${escapeHtml(source.link)}" target="_blank" rel="noreferrer">Official source ↗</a>
+          ${event ? `<button type="button" data-conference-event="${escapeHtml(event.id)}">Open brief →</button>` : `<a href="conference-admin.html">Edit source →</a>`}
+        </div>
+      </article>
+    `;
+  }).join("") || `<p class="conference-empty-note">No conference sources are currently monitored.</p>`;
+}
+
+function refreshConferenceSourceCatalog() {
+  conferenceState.sourceCatalog = readConferenceAdminCatalog() || [...conferenceState.publishedSourceCatalog];
+  renderConferenceSourceCatalog();
 }
 
 function competitorNames(event) {
@@ -275,6 +352,7 @@ function renderConferencePage() {
     </div>
   ` : "";
   renderStats(events);
+  renderConferenceSourceCatalog();
   renderEventDetail(selected);
 }
 
@@ -332,6 +410,15 @@ function setupInteractions() {
       byId("conferenceEventList").scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
   });
+  byId("toggleConferenceSourceCatalog").addEventListener("click", () => {
+    conferenceState.sourceCatalogExpanded = !conferenceState.sourceCatalogExpanded;
+    renderConferenceSourceCatalog();
+  });
+  window.addEventListener("storage", (event) => {
+    if (event.key === CONFERENCE_ADMIN_STORAGE_KEY) refreshConferenceSourceCatalog();
+  });
+  window.addEventListener("pageshow", refreshConferenceSourceCatalog);
+  window.addEventListener("focus", refreshConferenceSourceCatalog);
   byId("competitorAppearancesModal").addEventListener("click", (event) => {
     if (event.target === event.currentTarget) closeCompetitorAppearancesModal();
   });
@@ -354,9 +441,15 @@ function setupInteractions() {
 }
 
 async function initConferencePage() {
-  const response = await fetch("data/conference_preparation.json", { cache: "no-store" });
-  if (!response.ok) throw new Error(`Conference preparation data load failed: ${response.status}`);
-  conferenceState.data = await response.json();
+  const [preparationResponse, sourceResponse] = await Promise.all([
+    fetch("data/conference_preparation.json", { cache: "no-store" }),
+    fetch("data/conference_sources.json", { cache: "no-store" }),
+  ]);
+  if (!preparationResponse.ok) throw new Error(`Conference preparation data load failed: ${preparationResponse.status}`);
+  if (!sourceResponse.ok) throw new Error(`Conference source catalog load failed: ${sourceResponse.status}`);
+  conferenceState.data = await preparationResponse.json();
+  conferenceState.publishedSourceCatalog = publishedConferenceCatalog(await sourceResponse.json());
+  conferenceState.sourceCatalog = readConferenceAdminCatalog() || [...conferenceState.publishedSourceCatalog];
   const events = conferenceState.data.events || [];
   conferenceState.selectedEventId = events.find((event) => event.id === decodeURIComponent(location.hash.slice(1)))?.id || [...events].sort((a, b) => a.startDate.localeCompare(b.startDate))[0]?.id || "";
   populateSelect("conferenceMarketFilter", uniqueSorted(events.flatMap((event) => event.marketSegments)));

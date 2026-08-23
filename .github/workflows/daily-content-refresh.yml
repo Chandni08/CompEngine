@@ -35,7 +35,7 @@ jobs:
     needs: schedule_gate
     if: needs.schedule_gate.outputs.should_run == 'true'
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 60
     steps:
       - name: Check out the website
         uses: actions/checkout@v7
@@ -59,7 +59,7 @@ jobs:
           AGILENT_HEADED: "1"
           REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
           REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
-        run: xvfb-run --auto-servernum python scripts/refresh_daily.py
+        run: xvfb-run --auto-servernum scripts/run_daily_refresh.sh --refresh-only
 
       - name: Preserve failed validation evidence
         if: failure() && steps.refresh.outcome == 'failure'
@@ -90,12 +90,37 @@ jobs:
           git diff --cached --quiet || git commit -m "data: daily competitive-intelligence refresh"
           git push
 
-      - name: Trigger Vercel deployment when a deploy hook is configured
+      - name: Deploy the validated build to Vercel
+        id: deploy
+        working-directory: deploy-site
         env:
-          VERCEL_DEPLOY_HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          WATERS_HOST: waters-nextgen-competitive-engine.vercel.app
         run: |
-          if [ -n "$VERCEL_DEPLOY_HOOK" ]; then
-            curl --fail --silent --show-error --request POST "$VERCEL_DEPLOY_HOOK"
-          else
-            echo "No deploy hook configured; relying on the Vercel Git integration."
-          fi
+          : "${VERCEL_TOKEN:?VERCEL_TOKEN is required for unattended deployment}"
+          : "${VERCEL_ORG_ID:?VERCEL_ORG_ID is required for unattended deployment}"
+          : "${VERCEL_PROJECT_ID:?VERCEL_PROJECT_ID is required for unattended deployment}"
+          deployment_output=$(npx --yes vercel@57.0.0 deploy --prod --yes --token "$VERCEL_TOKEN")
+          printf '%s\n' "$deployment_output"
+          deployment_url=$(printf '%s\n' "$deployment_output" | grep -Eo 'https://[^[:space:]]+\.vercel\.app' | tail -n 1)
+          test -n "$deployment_url"
+          npx --yes vercel@57.0.0 alias set "$deployment_url" "$WATERS_HOST" --token "$VERCEL_TOKEN"
+          echo "deployment_url=$deployment_url" >> "$GITHUB_OUTPUT"
+
+      - name: Verify the refreshed date on the live Vercel site
+        env:
+          WATERS_HOST: waters-nextgen-competitive-engine.vercel.app
+        run: |
+          expected_date=$(TZ=America/New_York date +%F)
+          for attempt in $(seq 1 20); do
+            live_status=$(curl --fail --silent --show-error --location "https://$WATERS_HOST/data/refresh_status.json?verify=$GITHUB_RUN_ID-$attempt" || true)
+            if LIVE_STATUS="$live_status" EXPECTED_DATE="$expected_date" python -c 'import json, os; value=json.loads(os.environ["LIVE_STATUS"]); assert value["status"] == "success"; assert value["allRequiredSourcesCurrent"] is True; assert value["datasetAsOfDate"] == os.environ["EXPECTED_DATE"]' 2>/dev/null; then
+              echo "Verified $WATERS_HOST at dataset date $expected_date"
+              exit 0
+            fi
+            sleep 10
+          done
+          echo "Vercel deployment did not expose today's validated dataset" >&2
+          exit 1

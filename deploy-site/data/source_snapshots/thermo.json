@@ -1,7 +1,7 @@
 {
   "snapshotSchemaVersion": 2,
   "observationType": "sitemap_inventory",
-  "capturedAt": "2026-08-17T16:46:19+00:00",
+  "capturedAt": "2026-08-20T14:48:32+00:00",
   "initialized": true,
   "products": {
     "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-horizon-uhplc-system.html": "2026-07-15",
@@ -586,6 +586,26 @@
       "sourceName": "Thermo Fisher mass spectrometry insights",
       "technology": "LC/UHPLC",
       "marketSegment": "Clinical"
+    },
+    "https://www.thermofisher.com/blog/analyteguru/join-thermo-fisher-scientific-at-msacl-2026/": {
+      "date": "2026-08-18",
+      "title": "Join Thermo Fisher Scientific at MSACL 2026",
+      "url": "https://www.thermofisher.com/blog/analyteguru/join-thermo-fisher-scientific-at-msacl-2026/",
+      "classification": "technical",
+      "sourceId": "thermo-ms-insights",
+      "sourceName": "Thermo Fisher mass spectrometry insights",
+      "technology": "LC-MS",
+      "marketSegment": "Clinical"
+    },
+    "https://www.thermofisher.com/blog/analyteguru/understanding-membrane-protein-lipid-interactions-in-nanodiscs-with-advanced-mass-spectrometry/": {
+      "date": "2026-08-18",
+      "title": "Understanding Membrane Protein-Lipid Interactions in Nanodiscs with Advanced Mass Spectrometry",
+      "url": "https://www.thermofisher.com/blog/analyteguru/understanding-membrane-protein-lipid-interactions-in-nanodiscs-with-advanced-mass-spectrometry/",
+      "classification": "technical",
+      "sourceId": "thermo-ms-insights",
+      "sourceName": "Thermo Fisher mass spectrometry insights",
+      "technology": "LC/UHPLC",
+      "marketSegment": "Biopharma"
     }
   },
   "technicalFeedVersion": 3,

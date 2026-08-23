@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-17T22:57:42+00:00",
+  "generatedAt": "2026-08-20T14:53:56+00:00",
   "sources": [
     {
       "sourceId": "pubmed-eutils",
@@ -3325,81 +3325,6 @@
     },
     {
       "sourceId": "agilent-attempt-7",
-      "collector": "browser_verified_archive_cache",
-      "dataFiles": [
-        "data/intelligence.json",
-        "data/source_catalog.json",
-        "data/source_health.json",
-        "data/product_launches.json",
-        "data/competitor_monitors.json"
-      ],
-      "affectedPanels": [
-        "application-trends",
-        "competitive-capability-evidence",
-        "competitive-timeline-section",
-        "competitor-coverage",
-        "competitor-intent-section",
-        "customer-roadmap-inputs",
-        "customer-voice",
-        "decision-evidence-modal",
-        "decisions-needed",
-        "evidence-signal-feed",
-        "filing-evidence",
-        "global-filters",
-        "leadership-brief",
-        "metric-grid",
-        "overall-trend-analysis",
-        "pmm-activation-artifacts",
-        "pmm-adoption-value",
-        "pmm-claims-risk",
-        "pmm-competitive-narratives",
-        "pmm-evidence-appendix",
-        "pmm-governing-position",
-        "pmm-positioning-decisions",
-        "pmm-segment-cascade",
-        "pmm-start-here",
-        "refresh-status",
-        "strategic-signals"
-      ],
-      "dependencyChain": [
-        "https://www.investor.agilent.com/news-and-events/news/default.aspx",
-        "browser_verified_archive_cache",
-        "normalized source record",
-        "data/intelligence.json",
-        "data/source_catalog.json",
-        "data/source_health.json",
-        "data/product_launches.json",
-        "data/competitor_monitors.json",
-        "application-trends",
-        "competitive-capability-evidence",
-        "competitive-timeline-section",
-        "competitor-coverage",
-        "competitor-intent-section",
-        "customer-roadmap-inputs",
-        "customer-voice",
-        "decision-evidence-modal",
-        "decisions-needed",
-        "evidence-signal-feed",
-        "filing-evidence",
-        "global-filters",
-        "leadership-brief",
-        "metric-grid",
-        "overall-trend-analysis",
-        "pmm-activation-artifacts",
-        "pmm-adoption-value",
-        "pmm-claims-risk",
-        "pmm-competitive-narratives",
-        "pmm-evidence-appendix",
-        "pmm-governing-position",
-        "pmm-positioning-decisions",
-        "pmm-segment-cascade",
-        "pmm-start-here",
-        "refresh-status",
-        "strategic-signals"
-      ]
-    },
-    {
-      "sourceId": "agilent-attempt-8",
       "collector": "investor_page",
       "dataFiles": [
         "data/intelligence.json",
@@ -3474,7 +3399,7 @@
       ]
     },
     {
-      "sourceId": "agilent-attempt-9",
+      "sourceId": "agilent-attempt-8",
       "collector": "headless_browser_required",
       "dataFiles": [
         "data/intelligence.json",
@@ -3549,7 +3474,7 @@
       ]
     },
     {
-      "sourceId": "agilent-attempt-10",
+      "sourceId": "agilent-attempt-9",
       "collector": "headless_browser_required",
       "dataFiles": [
         "data/intelligence.json",
@@ -3624,7 +3549,7 @@
       ]
     },
     {
-      "sourceId": "agilent-attempt-11",
+      "sourceId": "agilent-attempt-10",
       "collector": "headless_browser_required",
       "dataFiles": [
         "data/intelligence.json",
@@ -3699,7 +3624,7 @@
       ]
     },
     {
-      "sourceId": "agilent-attempt-12",
+      "sourceId": "agilent-attempt-11",
       "collector": "headless_browser_required",
       "dataFiles": [
         "data/intelligence.json",
@@ -3774,7 +3699,7 @@
       ]
     },
     {
-      "sourceId": "agilent-attempt-13",
+      "sourceId": "agilent-attempt-12",
       "collector": "headless_browser_required",
       "dataFiles": [
         "data/intelligence.json",
@@ -3849,7 +3774,7 @@
       ]
     },
     {
-      "sourceId": "agilent-attempt-14",
+      "sourceId": "agilent-attempt-13",
       "collector": "headless_browser_required",
       "dataFiles": [
         "data/intelligence.json",
@@ -3924,7 +3849,7 @@
       ]
     },
     {
-      "sourceId": "agilent-attempt-15",
+      "sourceId": "agilent-attempt-14",
       "collector": "headless_browser_required",
       "dataFiles": [
         "data/intelligence.json",
@@ -3999,7 +3924,7 @@
       ]
     },
     {
-      "sourceId": "agilent-attempt-16",
+      "sourceId": "agilent-attempt-15",
       "collector": "headless_browser_required",
       "dataFiles": [
         "data/intelligence.json",
@@ -4074,7 +3999,7 @@
       ]
     },
     {
-      "sourceId": "agilent-attempt-17",
+      "sourceId": "agilent-attempt-16",
       "collector": "headless_browser_required",
       "dataFiles": [
         "data/intelligence.json",
@@ -4149,7 +4074,7 @@
       ]
     },
     {
-      "sourceId": "agilent-attempt-18",
+      "sourceId": "agilent-attempt-17",
       "collector": "headless_browser_required",
       "dataFiles": [
         "data/intelligence.json",

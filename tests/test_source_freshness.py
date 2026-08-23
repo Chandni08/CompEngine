@@ -220,6 +220,17 @@ class CompletenessTests(unittest.TestCase):
 
 
 class CoverageIntegrityTests(unittest.TestCase):
+    def test_known_retired_source_urls_are_migrated_before_collection(self) -> None:
+        retired, current = next(iter(refresh_daily.KNOWN_SOURCE_URL_MIGRATIONS.items()))
+        with tempfile.TemporaryDirectory() as directory:
+            data_dir = Path(directory)
+            artifact = data_dir / "source.json"
+            artifact.write_text(json.dumps({"sourceUrl": retired}) + "\n", encoding="utf-8")
+            with patch.object(refresh_daily, "DATA_DIR", data_dir):
+                replacements = refresh_daily.migrate_known_source_urls()
+            self.assertEqual(replacements, 1)
+            self.assertEqual(json.loads(artifact.read_text(encoding="utf-8"))["sourceUrl"], current)
+
     def test_asgct_legacy_broken_download_is_omitted_when_live_issue_exists(self) -> None:
         page = """
         <a href="https://www.cell.com/molecular-therapy-family/molecular-therapy/fulltext/S1525-0016(26)00312-6">Download the 2026 Abstracts</a>

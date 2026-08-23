@@ -161,7 +161,10 @@ def collect() -> dict[str, object]:
     for competitor in COMPETITORS:
         competitor_notes = [note for note in notes if note.get("competitor") == competitor]
         inventory = dedupe_items(discovered[competitor])
-        inventory_mode = "official_full_feed" if competitor == "Thermo Fisher" else "registered_official_records"
+        # The current adapters surface registered records and keyword-matched items
+        # from broader vendor content feeds. None enumerates a vendor's complete
+        # application-note library, so the resulting counts are not comparable.
+        inventory_mode = "registered_official_records"
         discovered_urls = {canonical_url(str(item.get("url") or item.get("sourceUrl") or "")) for item in inventory}
         catalog_urls = {canonical_url(str(note.get("sourceUrl") or "")) for note in competitor_notes}
         missing = sorted(url for url in discovered_urls if url and url not in catalog_urls)
@@ -202,7 +205,13 @@ def collect() -> dict[str, object]:
         "refreshContract": {
             "catalogMaxAgeHours": 36,
             "competitorNewestRecordMaxAgeDays": 400,
-            "completenessDefinition": "All records discovered by configured full-feed adapters are present; registered official records are retained for sources without a complete public inventory endpoint.",
+            "completenessDefinition": "All registered or discovered official records are retained. No current adapter represents a complete vendor application-note inventory.",
+        },
+        "analysisBoundary": {
+            "coverage": "directional_sample",
+            "trendEligible": False,
+            "reason": "Vendor application-note libraries are not collected comprehensively or with equivalent discovery methods.",
+            "allowedUse": "Group and inspect observed workflows; do not rank themes, compare publisher volume, or infer market demand from record counts.",
         },
         "collectionSummary": {
             "addedRecords": added,

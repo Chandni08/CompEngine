@@ -55,6 +55,12 @@ export function validateCompetitorApplicationNotes(
   const urls = new Set();
   if (!notes.length) errors.push("catalog has no application notes");
   if (Number(catalog?.schemaVersion || 0) < 3) errors.push("catalog schemaVersion must be at least 3");
+  if (catalog?.analysisBoundary?.coverage !== "directional_sample") {
+    errors.push("catalog analysisBoundary must identify the collection as a directional_sample");
+  }
+  if (catalog?.analysisBoundary?.trendEligible !== false) {
+    errors.push("catalog analysisBoundary must block volume-based trend inference");
+  }
   if (hoursOld(catalog?.generatedAt, now) > maxCatalogAgeHours) {
     errors.push(`catalog generatedAt is missing or older than ${maxCatalogAgeHours} hours`);
   }

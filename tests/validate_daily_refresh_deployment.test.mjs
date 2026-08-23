@@ -12,6 +12,9 @@ const deployValidator = await readFile(new URL("deploy-site/scripts/validate_dep
 
 test("daily refresh publishes only after the collector succeeds", () => {
   assert.match(refreshRunner, /\.daily-refresh\.lock/);
+  assert.match(refreshRunner, /COMPETITION_ENGINE_ROOT/);
+  assert.match(refreshRunner, /COMPETITION_ENGINE_PYTHON/);
+  assert.match(refreshRunner, /--refresh-only/);
   assert.match(refreshRunner, /if \[\[ \$refresh_status -ne 0 \]\]/);
   assert.match(refreshRunner, /deploy_refreshed_site\.sh/);
   assert.ok(refreshRunner.indexOf("deploy_refreshed_site.sh") > refreshRunner.indexOf("refresh_daily.py"));
@@ -61,6 +64,12 @@ test("cloud refresh schedule validates before saving or deploying data", () => {
   assert.match(workflow, /outputs:\s+should_run:/);
   assert.match(workflow, /if: needs\.schedule_gate\.outputs\.should_run == 'true'/);
   assert.match(workflow, /actions\/upload-artifact@v7/);
+  assert.match(workflow, /scripts\/run_daily_refresh\.sh --refresh-only/);
+  assert.match(workflow, /VERCEL_TOKEN/);
+  assert.match(workflow, /vercel@57\.0\.0 deploy --prod --yes/);
+  assert.match(workflow, /datasetAsOfDate/);
+  assert.doesNotMatch(workflow, /relying on the Vercel Git integration/);
   assert.ok(workflow.indexOf("Validate the production package") < workflow.indexOf("Save the validated daily data"));
   assert.ok(workflow.indexOf("Run ingestion regression checks") < workflow.indexOf("Save the validated daily data"));
+  assert.ok(workflow.indexOf("Save the validated daily data") < workflow.indexOf("Deploy the validated build to Vercel"));
 });

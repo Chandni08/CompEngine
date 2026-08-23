@@ -47,21 +47,16 @@ test("a discovered source record missing from the catalog is rejected", async ()
   const catalog = JSON.parse(await readFile(new URL("../data/competitor_application_notes.json", import.meta.url), "utf8"));
   const broken = structuredClone(catalog);
   const thermo = broken.sourceStatus.find((row) => row.competitor === "Thermo Fisher");
-  thermo.completenessStatus = "incomplete";
   thermo.missingDiscoveredUrls = ["https://www.thermofisher.com/example-new-note"];
   assert.match(
     validateCompetitorApplicationNotes(broken, { now: new Date(broken.generatedAt) }).join("\n"),
-    /Thermo Fisher application-note collection is incomplete/,
+    /Thermo Fisher is missing 1 discovered application-note URL/,
   );
 });
 
-test("a full-feed collector cannot report completeness with zero inventory records", async () => {
+test("the catalog explicitly blocks volume-based trend inference", async () => {
   const catalog = JSON.parse(await readFile(new URL("../data/competitor_application_notes.json", import.meta.url), "utf8"));
-  const broken = structuredClone(catalog);
-  const thermo = broken.sourceStatus.find((row) => row.competitor === "Thermo Fisher");
-  thermo.inventoryRecordsSeen = 0;
-  assert.match(
-    validateCompetitorApplicationNotes(broken, { now: new Date(broken.generatedAt) }).join("\n"),
-    /full-feed collector returned zero application-note records/,
-  );
+  assert.equal(catalog.analysisBoundary.coverage, "directional_sample");
+  assert.equal(catalog.analysisBoundary.trendEligible, false);
+  assert.match(catalog.analysisBoundary.allowedUse, /do not rank themes/i);
 });
