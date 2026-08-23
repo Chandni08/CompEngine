@@ -27,6 +27,8 @@ test("publishable exports and panel manifests are built only after the final sou
   assert.ok(sourceGate >= 0);
   assert.ok(pptxBuild > sourceGate);
   assert.ok(manifestBuild > sourceGate);
+  assert.match(refreshPipeline, /SKIP_REFRESH_EXPORTS/);
+  assert.match(workflow, /SKIP_REFRESH_EXPORTS: "1"/);
 });
 
 test("deployment synchronization includes nested source snapshots", () => {

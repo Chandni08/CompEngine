@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import json
 import hashlib
+import os
 import re
 import shutil
 import subprocess
@@ -932,7 +933,10 @@ def main() -> int:
         # Publishable exports and audit manifests must be derived only after the
         # final source gate passes. A failed refresh then leaves the entire last
         # validated build intact, not just the data directory.
-        subprocess.run(["node", str(PPTX_BUILDER)], cwd=ROOT, check=True)
+        if os.environ.get("SKIP_REFRESH_EXPORTS") == "1":
+            print("Skipping local-only leadership PPTX rebuild; the cloud job publishes refreshed JSON data only.")
+        else:
+            subprocess.run(["node", str(PPTX_BUILDER)], cwd=ROOT, check=True)
         subprocess.run([sys.executable, str(INTEGRITY_ARTIFACT_BUILDER)], cwd=ROOT, check=True)
         refresh_state = refreshed.get("refresh", {})
         domain_result = ", ".join(

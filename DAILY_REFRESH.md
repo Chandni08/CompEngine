@@ -59,6 +59,8 @@ The workflow and the local scheduler use the same portable batch entry point, `s
 10. Commits the validated data to the repository.
 11. Deploys `deploy-site/` directly to Vercel with the repository secrets, assigns `waters-nextgen-competitive-engine.vercel.app`, and verifies that the live `refresh_status.json` reports success, complete required-source coverage, and today's New York dataset date.
 
+The cloud job sets `SKIP_REFRESH_EXPORTS=1` because the leadership PowerPoint builder uses a local Codex artifact runtime and the scheduled workflow commits only refreshed JSON. This does not skip a data source, source-health check, or dashboard artifact; local runs continue to rebuild the PowerPoint.
+
 ## Local Manual Run
 
 ```bash

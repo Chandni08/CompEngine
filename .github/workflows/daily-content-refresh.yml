@@ -57,6 +57,7 @@ jobs:
         id: refresh
         env:
           AGILENT_HEADED: "1"
+          SKIP_REFRESH_EXPORTS: "1"
           REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
           REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
         run: xvfb-run --auto-servernum scripts/run_daily_refresh.sh --refresh-only
