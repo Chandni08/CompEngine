@@ -808,6 +808,13 @@ def collect_conferences(conference_data: dict[str, Any]) -> tuple[list[dict[str,
     monitored: list[dict[str, Any]] = []
     checked_at = utc_now()
     for event in conference_data.get("events", []):
+        prior_checked = str(event.get("lastChecked") or "")
+        prior_records = list(event.get("contentRecords") or [])
+        prior_endpoints = list(event.get("monitoredEndpoints") or [])
+        try:
+            prior_age_days = (date.today() - date.fromisoformat(prior_checked[:10])).days
+        except ValueError:
+            prior_age_days = 9999
         results: list[dict[str, Any]] = []
         content_records: list[dict[str, str]] = []
         for url in event.get("monitoringUrls") or [event.get("website")]:
@@ -822,11 +829,32 @@ def collect_conferences(conference_data: dict[str, Any]) -> tuple[list[dict[str,
                 content_records.extend(extract_conference_records(final_url, body, str(event["id"])))
         content_records = list({record["canonicalUrl"]: record for record in content_records}.values())
         reachable = sum(1 for item in results if item["status"] == 200)
-        event["lastChecked"] = checked_at
+        retained_recent_snapshot = bool(
+            not reachable
+            and prior_records
+            and event.get("collectionStatus") == "extracted"
+            and prior_age_days <= 7
+        )
+        current_attempt_detail = f"{reachable} of {len(results)} official endpoints reachable; {len(content_records)} public program-content links extracted."
+        if retained_recent_snapshot:
+            content_records = prior_records
+            effective_results = prior_endpoints
+            event["lastAttemptAt"] = checked_at
+            event["lastAttemptStatus"] = "unreachable"
+            event["lastAttemptDetail"] = current_attempt_detail
+            event["lastChecked"] = prior_checked
+            event["collectionStatus"] = "extracted"
+            event["collectionDetail"] = (
+                f"Retained {len(prior_records)} records from the verified {prior_checked[:10]} snapshot after a transient unreachable attempt; "
+                "the source remains inside its weekly cadence."
+            )
+        else:
+            effective_results = results
+            event["lastChecked"] = checked_at
+            event["collectionStatus"] = "extracted" if content_records else "partial" if reachable else "blocked"
+            event["collectionDetail"] = current_attempt_detail
         event["surfaces"] = ["Market intelligence", "Application trends"]
-        event["collectionStatus"] = "extracted" if content_records else "partial" if reachable else "blocked"
-        event["collectionDetail"] = f"{reachable} of {len(results)} official endpoints reachable; {len(content_records)} public program-content links extracted."
-        event["monitoredEndpoints"] = results
+        event["monitoredEndpoints"] = effective_results
         event["contentRecords"] = content_records
         event["contentRecordCount"] = len(content_records)
         entry = catalog_base(
@@ -846,14 +874,17 @@ def collect_conferences(conference_data: dict[str, Any]) -> tuple[list[dict[str,
             "nextAction": "Diff public program, abstract, poster, sponsor, and vendor-session pages; preserve exact record URLs when content is published.",
             "extractionStatus": event["collectionStatus"],
             "extractionReason": event["collectionDetail"],
-            "endpointReachabilityCount": reachable,
+            "endpointReachabilityCount": sum(1 for item in effective_results if item.get("status") == 200),
+            "currentAttemptReachabilityCount": reachable,
             "extractedRecords": len(content_records),
             "contentRecords": content_records,
             "fetchMethod": "official_conference_endpoint_monitor",
-            "lastExtractionCheck": checked_at,
+            "lastExtractionCheck": event["lastChecked"],
+            "lastAttemptAt": checked_at,
+            "lastAttemptStatus": "unreachable" if retained_recent_snapshot else event["collectionStatus"],
             "monitoringUrls": event.get("monitoringUrls") or [event.get("website")],
         })
-        if not reachable:
+        if not reachable and not retained_recent_snapshot:
             entry["health"] = "review"
             entry["issue"] = event["collectionDetail"]
         catalog_entries.append(entry)

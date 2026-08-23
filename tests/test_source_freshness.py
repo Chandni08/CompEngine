@@ -267,6 +267,28 @@ class CoverageIntegrityTests(unittest.TestCase):
         self.assertEqual(entries[0]["extractedRecords"], 0)
         self.assertEqual(events[0]["contentRecordCount"], 0)
 
+    def test_conference_transient_failure_retains_recent_verified_snapshot(self) -> None:
+        today = date.today().isoformat()
+        record = {"canonicalUrl": "https://example.com/program", "title": "Program"}
+        data = {"events": [{
+            "id": "imsis-2026",
+            "eventName": "IMSIS",
+            "website": "https://example.com/imsis",
+            "publisher": "IMSIS",
+            "marketSegments": [],
+            "lastChecked": today,
+            "collectionStatus": "extracted",
+            "contentRecords": [record],
+            "monitoredEndpoints": [{"url": "https://example.com/imsis", "status": 200}],
+        }]}
+        with patch.object(collect_scientific_sources, "fetch", return_value=(0, "https://example.com/imsis", "timeout")):
+            entries, events = collect_scientific_sources.collect_conferences(data)
+        self.assertEqual(events[0]["collectionStatus"], "extracted")
+        self.assertEqual(events[0]["contentRecords"], [record])
+        self.assertEqual(events[0]["lastAttemptStatus"], "unreachable")
+        self.assertEqual(entries[0]["currentAttemptReachabilityCount"], 0)
+        self.assertEqual(entries[0]["endpointReachabilityCount"], 1)
+
     def test_regulatory_http_200_alone_cannot_pass_content_freshness(self) -> None:
         with patch.object(collect_scientific_sources, "REGULATORY_SOURCES", ({"id": "reg", "source": "Reg", "publisher": "Official", "url": "https://example.com/reg", "marketSegments": [], "signalCoverage": [], "whatToMeasure": "", "whyItMatters": "", "documentIdentifier": "Missing document"},)), patch.object(collect_scientific_sources, "fetch", return_value=(200, "https://example.com/reg", "<html>reachable only</html>")):
             entry = collect_scientific_sources.collect_regulatory_sources()[0]
