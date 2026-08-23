@@ -226,6 +226,7 @@ async function main() {
   const urls = [...new Set(records.filter(({ record }) => record.sourceType !== "regulatory").map(({ record }) => record.url).filter(Boolean))];
   const sourceResults = await fetchAllSources(urls);
   const errors = [];
+  const freshlyValidatedKeywords = new Map();
 
   for (const { feedbackId, record } of records) {
     const context = `${feedbackId} -> ${record.label || record.url || "unnamed source"}`;
@@ -254,7 +255,13 @@ async function main() {
       errors.push(`${context}: source could not be validated (${source?.error || "no response"}); ${cacheErrors.join("; ")}`);
       continue;
     }
-    errors.push(...keywordCoverageErrors(record, source.text, context));
+    const coverageErrors = keywordCoverageErrors(record, source.text, context);
+    errors.push(...coverageErrors);
+    if (!coverageErrors.length) {
+      const keywords = freshlyValidatedKeywords.get(record.url) || new Set();
+      for (const keyword of record.sourceKeywords || []) keywords.add(keyword);
+      freshlyValidatedKeywords.set(record.url, keywords);
+    }
   }
 
   for (const feedback of data.feedback || []) {
@@ -268,6 +275,23 @@ async function main() {
     process.exitCode = 1;
     return;
   }
+
+  // A public source can occasionally reject or time out a cloud-runner request.
+  // Persist every successful full-page validation so a later transient failure
+  // can use the same evidence for the bounded cache window instead of blocking
+  // an otherwise healthy refresh. Failed or partial validations never enter it.
+  const validatedAt = new Date().toISOString().slice(0, 10);
+  for (const [url, keywords] of freshlyValidatedKeywords) {
+    cacheMap.set(url, {
+      url,
+      validatedKeywords: [...keywords],
+      validatedAt,
+      validationMethod: "full_source_text",
+    });
+  }
+  validationCache.generatedAt = new Date().toISOString();
+  validationCache.sources = [...cacheMap.values()].sort((left, right) => left.url.localeCompare(right.url));
+  await fs.writeFile(cacheFile, `${JSON.stringify(validationCache, null, 2)}\n`, "utf8");
 
   console.log(
     `Validated ${records.length} customer-voice source records across ${urls.length} unique URLs; every displayed keyword is present in its exact source.`,
