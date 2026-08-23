@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-08-20T14:40:36+00:00",
+  "generatedAt": "2026-08-23T22:11:16+00:00",
   "competitor": "PerkinElmer",
-  "windowStart": "2023-08-21",
+  "windowStart": "2023-08-24",
   "newsroom": [
     {
-      "url": "https://www.perkinelmer.com/be/corporate-and-newsroom/project-farma-acquires-simotech",
+      "url": "https://www.perkinelmer.com/corporate-and-newsroom/project-farma-acquires-simotech",
       "title": "Project Farma Acquires SimoTech, Bringing End-to-End GMP Automation and Digital Manufacturing Capabilities to Life Sciences Customers Worldwide",
       "date": "2026-08-11",
       "lastmod": "2026-08-11",
@@ -15,7 +15,7 @@
       "theme": "Portfolio expansion and corporate development"
     },
     {
-      "url": "https://www.perkinelmer.com/be/corporate-and-newsroom/perkinelmer-publishes-2025-sustainability-report-advancing-its-commitment-cleaner-science-and-more-sustainable-future",
+      "url": "https://www.perkinelmer.com/corporate-and-newsroom/perkinelmer-publishes-2025-sustainability-report-advancing-its-commitment-cleaner-science-and-more-sustainable-future",
       "title": "PerkinElmer Publishes 2025 Sustainability Report, Advancing its Commitment to Cleaner Science and a More Sustainable Future",
       "date": "2026-07-15",
       "lastmod": "2026-07-15",
@@ -26,7 +26,7 @@
       "theme": "Corporate activity"
     },
     {
-      "url": "https://www.perkinelmer.com/be/corporate-and-newsroom/perkinelmer-partners-exxpedition-advance-ocean-science-and-more-sustainable-future",
+      "url": "https://www.perkinelmer.com/corporate-and-newsroom/perkinelmer-partners-exxpedition-advance-ocean-science-and-more-sustainable-future",
       "title": "PerkinElmer Partners with eXXpedition to Advance Ocean Science and a More Sustainable Future",
       "date": "2026-07-13",
       "lastmod": "2026-07-13",
@@ -37,7 +37,7 @@
       "theme": "Corporate activity"
     },
     {
-      "url": "https://www.perkinelmer.com/be/corporate-and-newsroom/perkinelmer-and-covalent-announce-strategic-collaboration",
+      "url": "https://www.perkinelmer.com/corporate-and-newsroom/perkinelmer-and-covalent-announce-strategic-collaboration",
       "title": "PerkinElmer and Covalent Announce Strategic Collaboration to Advance Failure Analysis and Materials Characterization for Semiconductor, Electronics, and Battery Industries",
       "date": "2026-07-09",
       "lastmod": "2026-07-09",
@@ -48,7 +48,7 @@
       "theme": "Corporate activity"
     },
     {
-      "url": "https://www.perkinelmer.com/be/corporate-and-newsroom/perkinelmer-ceo-michael-stubblefield-joins-us-china-business-council-board-directors",
+      "url": "https://www.perkinelmer.com/corporate-and-newsroom/perkinelmer-ceo-michael-stubblefield-joins-us-china-business-council-board-directors",
       "title": "PerkinElmer CEO Michael Stubblefield Joins US-China Business Council Board of Directors",
       "date": "2026-06-17",
       "lastmod": "2026-06-17",
@@ -59,7 +59,7 @@
       "theme": "Corporate activity"
     },
     {
-      "url": "https://www.perkinelmer.com/be/corporate-and-newsroom/project-farma-expands-pmis-offering-oracle-primavera-cloud",
+      "url": "https://www.perkinelmer.com/corporate-and-newsroom/project-farma-expands-pmis-offering-oracle-primavera-cloud",
       "title": "Project Farma Expands PMIS Offering with Oracle Primavera Cloud to Address Growing Pharma Capital Project Complexity",
       "date": "2026-06-08",
       "lastmod": "2026-06-08",
@@ -70,7 +70,7 @@
       "theme": "Product and workflow expansion"
     },
     {
-      "url": "https://www.perkinelmer.com/be/corporate-and-newsroom/project-farma-partners-valkitai",
+      "url": "https://www.perkinelmer.com/corporate-and-newsroom/project-farma-partners-valkitai",
       "title": "Project Farma Partners with Valkit.ai - Modernizing Digital Validation with AI",
       "date": "2026-05-28",
       "lastmod": "2026-05-28",
@@ -81,7 +81,7 @@
       "theme": "Corporate activity"
     },
     {
-      "url": "https://www.perkinelmer.com/be/corporate-and-newsroom/lactoscope-500-delivers-next-level-dairy-analysis-greater-accuracy-stability-and-operational",
+      "url": "https://www.perkinelmer.com/corporate-and-newsroom/lactoscope-500-delivers-next-level-dairy-analysis-greater-accuracy-stability-and-operational",
       "title": "LactoScope 500 Delivers Next-Level Dairy Analysis, for Greater Accuracy, Stability, and Operational Control",
       "date": "2026-05-13",
       "lastmod": "2026-05-13",
@@ -92,7 +92,7 @@
       "theme": "Corporate activity"
     },
     {
-      "url": "https://www.perkinelmer.com/be/corporate-and-newsroom/pacbio-and-covaris-announce-joint-workflow-enabling-hifi-sequencing-ffpe-tumor-samples",
+      "url": "https://www.perkinelmer.com/corporate-and-newsroom/pacbio-and-covaris-announce-joint-workflow-enabling-hifi-sequencing-ffpe-tumor-samples",
       "title": "PacBio and Covaris Announce Joint Workflow Enabling HiFi Sequencing of FFPE Tumor Samples",
       "date": "2026-04-15",
       "lastmod": "2026-04-15",
@@ -103,10 +103,21 @@
       "theme": "Corporate activity"
     },
     {
-      "url": "https://www.perkinelmer.com/be/corporate-and-newsroom/strategic-partnership-between-covaris-and-hamilton-empowers-labs-with-sonication-star",
+      "url": "https://www.perkinelmer.com/corporate-and-newsroom/strategic-partnership-between-covaris-and-hamilton-empowers-labs-with-sonication-star",
       "title": "Strategic Partnership between Covaris and Hamilton Empowers Labs with Sonication STAR",
       "date": "2025-07-29",
       "lastmod": "2025-07-29",
+      "sourceTitleVerified": true,
+      "titleSource": "page_content_url_match",
+      "classification": "corporate",
+      "signalType": "Press release",
+      "theme": "Corporate activity"
+    },
+    {
+      "url": "https://www.perkinelmer.com/corporate-and-newsroom/perkinelmer-and-shandong-university-school-public-health-sign-cooperation-project-mass-spectrometry",
+      "title": "PerkinElmer and Shandong University School of Public Health Sign Cooperation Project on Mass Spectrometry Technology Application in Public Health",
+      "date": "2025-01-02",
+      "lastmod": "2025-01-02",
       "sourceTitleVerified": true,
       "titleSource": "page_content_url_match",
       "classification": "corporate",
@@ -116,7 +127,7 @@
   ],
   "recent_press_releases": [
     {
-      "url": "https://www.perkinelmer.com/be/corporate-and-newsroom/project-farma-acquires-simotech",
+      "url": "https://www.perkinelmer.com/corporate-and-newsroom/project-farma-acquires-simotech",
       "title": "Project Farma Acquires SimoTech, Bringing End-to-End GMP Automation and Digital Manufacturing Capabilities to Life Sciences Customers Worldwide",
       "date": "2026-08-11",
       "lastmod": "2026-08-11",
@@ -127,7 +138,7 @@
       "theme": "Portfolio expansion and corporate development"
     },
     {
-      "url": "https://www.perkinelmer.com/be/corporate-and-newsroom/perkinelmer-publishes-2025-sustainability-report-advancing-its-commitment-cleaner-science-and-more-sustainable-future",
+      "url": "https://www.perkinelmer.com/corporate-and-newsroom/perkinelmer-publishes-2025-sustainability-report-advancing-its-commitment-cleaner-science-and-more-sustainable-future",
       "title": "PerkinElmer Publishes 2025 Sustainability Report, Advancing its Commitment to Cleaner Science and a More Sustainable Future",
       "date": "2026-07-15",
       "lastmod": "2026-07-15",
@@ -138,7 +149,7 @@
       "theme": "Corporate activity"
     },
     {
-      "url": "https://www.perkinelmer.com/be/corporate-and-newsroom/perkinelmer-partners-exxpedition-advance-ocean-science-and-more-sustainable-future",
+      "url": "https://www.perkinelmer.com/corporate-and-newsroom/perkinelmer-partners-exxpedition-advance-ocean-science-and-more-sustainable-future",
       "title": "PerkinElmer Partners with eXXpedition to Advance Ocean Science and a More Sustainable Future",
       "date": "2026-07-13",
       "lastmod": "2026-07-13",
@@ -149,7 +160,7 @@
       "theme": "Corporate activity"
     },
     {
-      "url": "https://www.perkinelmer.com/be/corporate-and-newsroom/perkinelmer-and-covalent-announce-strategic-collaboration",
+      "url": "https://www.perkinelmer.com/corporate-and-newsroom/perkinelmer-and-covalent-announce-strategic-collaboration",
       "title": "PerkinElmer and Covalent Announce Strategic Collaboration to Advance Failure Analysis and Materials Characterization for Semiconductor, Electronics, and Battery Industries",
       "date": "2026-07-09",
       "lastmod": "2026-07-09",
@@ -160,7 +171,7 @@
       "theme": "Corporate activity"
     },
     {
-      "url": "https://www.perkinelmer.com/be/corporate-and-newsroom/perkinelmer-ceo-michael-stubblefield-joins-us-china-business-council-board-directors",
+      "url": "https://www.perkinelmer.com/corporate-and-newsroom/perkinelmer-ceo-michael-stubblefield-joins-us-china-business-council-board-directors",
       "title": "PerkinElmer CEO Michael Stubblefield Joins US-China Business Council Board of Directors",
       "date": "2026-06-17",
       "lastmod": "2026-06-17",
@@ -171,7 +182,7 @@
       "theme": "Corporate activity"
     },
     {
-      "url": "https://www.perkinelmer.com/be/corporate-and-newsroom/project-farma-expands-pmis-offering-oracle-primavera-cloud",
+      "url": "https://www.perkinelmer.com/corporate-and-newsroom/project-farma-expands-pmis-offering-oracle-primavera-cloud",
       "title": "Project Farma Expands PMIS Offering with Oracle Primavera Cloud to Address Growing Pharma Capital Project Complexity",
       "date": "2026-06-08",
       "lastmod": "2026-06-08",
@@ -182,7 +193,7 @@
       "theme": "Product and workflow expansion"
     },
     {
-      "url": "https://www.perkinelmer.com/be/corporate-and-newsroom/project-farma-partners-valkitai",
+      "url": "https://www.perkinelmer.com/corporate-and-newsroom/project-farma-partners-valkitai",
       "title": "Project Farma Partners with Valkit.ai - Modernizing Digital Validation with AI",
       "date": "2026-05-28",
       "lastmod": "2026-05-28",
@@ -193,7 +204,7 @@
       "theme": "Corporate activity"
     },
     {
-      "url": "https://www.perkinelmer.com/be/corporate-and-newsroom/lactoscope-500-delivers-next-level-dairy-analysis-greater-accuracy-stability-and-operational",
+      "url": "https://www.perkinelmer.com/corporate-and-newsroom/lactoscope-500-delivers-next-level-dairy-analysis-greater-accuracy-stability-and-operational",
       "title": "LactoScope 500 Delivers Next-Level Dairy Analysis, for Greater Accuracy, Stability, and Operational Control",
       "date": "2026-05-13",
       "lastmod": "2026-05-13",
@@ -206,127 +217,151 @@
   ],
   "products": [
     {
-      "url": "https://www.perkinelmer.com/in/library/app-fast-reliable-honey-authenticity-testing-for-3-methoxytyramine-analysis-on-the-qsight-500-lc-msms.html",
+      "url": "https://www.perkinelmer.com/library/app-fast-reliable-honey-authenticity-testing-for-3-methoxytyramine-analysis-on-the-qsight-500-lc-msms.html",
       "lastmod": "2026-04-24"
     },
     {
-      "url": "https://www.perkinelmer.com/in/library/app-reliable-and-robus-lc-msms-workflow-for-fosetyl-ai-and-metabolites-in-fruit-matrices.html",
+      "url": "https://www.perkinelmer.com/library/app-reliable-and-robus-lc-msms-workflow-for-fosetyl-ai-and-metabolites-in-fruit-matrices.html",
       "lastmod": "2026-01-12"
     },
     {
-      "url": "https://www.perkinelmer.com/in/library/abr-determination-of-antimony-speciation-in-soil-using-hplc-icp-ms.html",
+      "url": "https://www.perkinelmer.com/library/abr-determination-of-antimony-speciation-in-soil-using-hplc-icp-ms.html",
       "lastmod": "2025-09-12"
     },
     {
-      "url": "https://www.perkinelmer.com/in/library/cus-how-tera-environnement-is-shaping-the-future-of-pfas-air-monitoring-with-the-qsight-lcmsms.html",
+      "url": "https://www.perkinelmer.com/library/cus-how-tera-environnement-is-shaping-the-future-of-pfas-air-monitoring-with-the-qsight-lcmsms.html",
       "lastmod": "2025-07-18"
     },
     {
-      "url": "https://www.perkinelmer.com/in/library/bro-nexsar-hplc-icp-ms-speciation-solution.html",
+      "url": "https://www.perkinelmer.com/library/bro-nexsar-hplc-icp-ms-speciation-solution.html",
       "lastmod": "2025-05-26"
     },
     {
-      "url": "https://www.perkinelmer.com/th/library/app-pesticides-in-grapes-by-lc-ms-ms.html",
+      "url": "https://www.perkinelmer.com/au/library/determination-of-thirteen-beta-agonists-in-pork-using-uhplc.html",
       "lastmod": "2025-05-01"
     },
     {
-      "url": "https://www.perkinelmer.com/th/library/app-efficient-lc-ms-ms-method-for-testing-hemp-samples.html",
+      "url": "https://www.perkinelmer.com/au/library/app-estrogen-monitoring-in-river-water-lc-ms-ms.html",
       "lastmod": "2025-05-01"
     },
     {
-      "url": "https://www.perkinelmer.com/th/library/app-analysis-of-cannabinoids-in-hemp-seed-oils-by-hplc.html",
+      "url": "https://www.perkinelmer.com/au/library/app-pesticides-in-grapes-by-lc-ms-ms.html",
       "lastmod": "2025-05-01"
     },
     {
-      "url": "https://www.perkinelmer.com/th/library/app-analysis-of-organic-acids-in-fruit-juices-by-hplc-and-uv-detection.html",
+      "url": "https://www.perkinelmer.com/au/library/app-efficient-lc-ms-ms-method-for-testing-hemp-samples.html",
       "lastmod": "2025-05-01"
     },
     {
-      "url": "https://www.perkinelmer.com/th/library/app-analysis-of-illegal-dyes-in-chili-spices-via-uhplc-msms.html",
+      "url": "https://www.perkinelmer.com/au/library/app-analysis-of-cannabinoids-in-hemp-seed-oils-by-hplc.html",
       "lastmod": "2025-05-01"
     },
     {
-      "url": "https://www.perkinelmer.com/th/library/app-analysis-of-perfluorinated-compounds-in-water-by-lcmsms.html",
+      "url": "https://www.perkinelmer.com/au/library/app-analysis-of-organic-acids-in-fruit-juices-by-hplc-and-uv-detection.html",
       "lastmod": "2025-05-01"
     },
     {
-      "url": "https://www.perkinelmer.com/th/library/app-fast-screening-44-illicit-drugs-by-uhplc-ms-ms.html",
+      "url": "https://www.perkinelmer.com/au/library/app-analysis-of-illegal-dyes-in-chili-spices-via-uhplc-msms.html",
       "lastmod": "2025-05-01"
     },
     {
-      "url": "https://www.perkinelmer.com/th/library/app-rapid-uhplc-determination-of-nine-common-herbicides-in-drinking-water.html",
+      "url": "https://www.perkinelmer.com/au/library/app-analysis-of-perfluorinated-compounds-in-water-by-lcmsms.html",
       "lastmod": "2025-05-01"
     },
     {
-      "url": "https://www.perkinelmer.com/th/library/app-uhplc-separation-and-detection-of-bisphenol.html",
+      "url": "https://www.perkinelmer.com/au/library/app-fast-screening-44-illicit-drugs-by-uhplc-ms-ms.html",
       "lastmod": "2025-05-01"
     },
     {
-      "url": "https://www.perkinelmer.com/th/library/determination-of-sulfonamides-in-honey-by-uhplc-ms-ms-method.html",
+      "url": "https://www.perkinelmer.com/au/library/app-rapid-uhplc-determination-of-nine-common-herbicides-in-drinking-water.html",
       "lastmod": "2025-05-01"
     },
     {
-      "url": "https://www.perkinelmer.com/th/library/app-determination-of-coumarin-in-electronic-cigarette-liquid-by-uhplc.html",
+      "url": "https://www.perkinelmer.com/au/library/app-uhplc-separation-and-detection-of-bisphenol.html",
       "lastmod": "2025-05-01"
     },
     {
-      "url": "https://www.perkinelmer.com/th/library/app-determination-of-sulfonamides-in-milk-by-uplc-ms-ms.html",
+      "url": "https://www.perkinelmer.com/au/library/determination-of-sulfonamides-in-honey-by-uhplc-ms-ms-method.html",
       "lastmod": "2025-05-01"
     },
     {
-      "url": "https://www.perkinelmer.com/th/library/app-automated-vet-drugs-analysis-in-chicken-by-spme-uhplc-ms-ms.html",
+      "url": "https://www.perkinelmer.com/au/library/app-determination-of-coumarin-in-electronic-cigarette-liquid-by-uhplc.html",
       "lastmod": "2025-05-01"
     },
     {
-      "url": "https://www.perkinelmer.com/th/library/atl-lc-ms-ms-basics-how-it-works-design-enhancements-key-applications.html",
+      "url": "https://www.perkinelmer.com/au/library/app-determination-of-sulfonamides-in-milk-by-uplc-ms-ms.html",
       "lastmod": "2025-05-01"
     },
     {
-      "url": "https://www.perkinelmer.com/th/library/alt-driving-lab-efficiency-performance-lc-ms-ms.html",
+      "url": "https://www.perkinelmer.com/au/library/app-automated-vet-drugs-analysis-in-chicken-by-spme-uhplc-ms-ms.html",
       "lastmod": "2025-05-01"
     },
     {
-      "url": "https://www.perkinelmer.com/th/library/gde-hplc-guide-choosing-right-detector.html",
+      "url": "https://www.perkinelmer.com/au/library/atl-lc-ms-ms-basics-how-it-works-design-enhancements-key-applications.html",
       "lastmod": "2025-05-01"
     },
     {
-      "url": "https://www.perkinelmer.com/in/library/fly-perkinelmer-pfas-qsight-lc-ms-quantitative-workflow.html",
+      "url": "https://www.perkinelmer.com/library/alt-driving-lab-efficiency-performance-lc-ms-ms.html",
       "lastmod": "2025-05-01"
     },
     {
-      "url": "https://www.perkinelmer.com/in/library/bro-lc-300-hplc-uhplc-systems-interactive-brochure.html",
+      "url": "https://www.perkinelmer.com/library/gde-hplc-guide-choosing-right-detector.html",
       "lastmod": "2025-05-01"
     },
     {
-      "url": "https://www.perkinelmer.com/in/library/bro-enhancing-food-testing-productivity-lc-ms-ms.html",
+      "url": "https://www.perkinelmer.com/library/fly-perkinelmer-pfas-qsight-lc-ms-quantitative-workflow.html",
       "lastmod": "2025-05-01"
     },
     {
-      "url": "https://www.perkinelmer.com/in/library/bro-productivity-power-two-qsight-lc-ms-ms-system.html",
+      "url": "https://www.perkinelmer.com/library/bro-lc-300-hplc-uhplc-systems-interactive-brochure.html",
       "lastmod": "2025-05-01"
     },
     {
-      "url": "https://www.perkinelmer.com/library/validation-method-for-the-determination-of-pesticides-in-water-by-lc-ms-ms.html",
+      "url": "https://www.perkinelmer.com/library/bro-enhancing-food-testing-productivity-lc-ms-ms.html",
+      "lastmod": "2025-05-01"
+    },
+    {
+      "url": "https://www.perkinelmer.com/library/bro-productivity-power-two-qsight-lc-ms-ms-system.html",
+      "lastmod": "2025-05-01"
+    },
+    {
+      "url": "https://www.perkinelmer.com/be/library/validation-method-for-the-determination-of-pesticides-in-water-by-lc-ms-ms.html",
       "lastmod": "2025-03-27"
     },
     {
-      "url": "https://www.perkinelmer.com/library/complex-matrices-how-the-perkinelmer-qsight-lc-ms-ms-can-help-tackle-the-toughest-samples.html",
+      "url": "https://www.perkinelmer.com/dk/library/qsight-500-lc-msms-system-video.html",
+      "lastmod": "2025-03-03"
+    },
+    {
+      "url": "https://www.perkinelmer.com/perkinelmer-launches-qsightr-500-lcmsms-pittcon-2025-empowering-labs-speed-accuracy-and-unmatched",
+      "lastmod": "2025-03-03"
+    },
+    {
+      "url": "https://www.perkinelmer.com/dk/library/spc-qsight-500-lc-ms-ms.html",
+      "lastmod": "2025-02-28"
+    },
+    {
+      "url": "https://www.perkinelmer.com/dk/library/bro-qsight-500-lc-ms-ms.html",
+      "lastmod": "2025-02-28"
+    },
+    {
+      "url": "https://www.perkinelmer.com/be/library/complex-matrices-how-the-perkinelmer-qsight-lc-ms-ms-can-help-tackle-the-toughest-samples.html",
       "lastmod": "2025-01-18"
     },
     {
-      "url": "https://www.perkinelmer.com/library/introduction-to-hplc.html",
+      "url": "https://www.perkinelmer.com/be/library/introduction-to-hplc.html",
       "lastmod": "2025-01-15"
     },
     {
-      "url": "https://www.perkinelmer.com/library/lc-ms-tips-and-tricks.html",
+      "url": "https://www.perkinelmer.com/be/library/lc-ms-tips-and-tricks.html",
       "lastmod": "2025-01-15"
     },
     {
-      "url": "https://www.perkinelmer.com/library/determination-of-emerging-contaminants-in-water-by-lc-ms-ms.html",
+      "url": "https://www.perkinelmer.com/be/library/determination-of-emerging-contaminants-in-water-by-lc-ms-ms.html",
       "lastmod": "2025-01-15"
     },
     {
-      "url": "https://www.perkinelmer.com/library/maximizing-your-hplc-method-development.html",
+      "url": "https://www.perkinelmer.com/be/library/maximizing-your-hplc-method-development.html",
       "lastmod": "2024-12-09"
     },
     {
@@ -358,19 +393,19 @@
       "lastmod": "2024-12-03"
     },
     {
-      "url": "https://www.perkinelmer.com/library/analysis-of-contaminants-in-food-matrices-by-LC-MSMS.html",
+      "url": "https://www.perkinelmer.com/be/library/analysis-of-contaminants-in-food-matrices-by-LC-MSMS.html",
       "lastmod": "2024-12-02"
     },
     {
-      "url": "https://www.perkinelmer.com/library/monitoring-cyanotoxins-in-drinking-water-by-LC-MS-MS.html",
+      "url": "https://www.perkinelmer.com/be/library/monitoring-cyanotoxins-in-drinking-water-by-LC-MS-MS.html",
       "lastmod": "2024-12-02"
     },
     {
-      "url": "https://www.perkinelmer.com/library/water-contaminants-analysis-of-pfas-using-lc-ms-ms-technology.html",
+      "url": "https://www.perkinelmer.com/be/library/water-contaminants-analysis-of-pfas-using-lc-ms-ms-technology.html",
       "lastmod": "2024-12-02"
     },
     {
-      "url": "https://www.perkinelmer.com/library/water-contaminants-analysis-of-polar-contaminants-and-glyphosate-with-qsight-lc-ms-ms.html",
+      "url": "https://www.perkinelmer.com/be/library/water-contaminants-analysis-of-polar-contaminants-and-glyphosate-with-qsight-lc-ms-ms.html",
       "lastmod": "2024-12-02"
     },
     {
@@ -382,23 +417,23 @@
       "lastmod": "2024-12-02"
     },
     {
-      "url": "https://www.perkinelmer.com/library/customer-lc-ms-ms-spotlight-professor-sabra-botch-jones.html",
+      "url": "https://www.perkinelmer.com/be/library/customer-lc-ms-ms-spotlight-professor-sabra-botch-jones.html",
       "lastmod": "2024-11-27"
     },
     {
-      "url": "https://www.perkinelmer.com/library/an-introduction-to-lc-ms-ms.html",
+      "url": "https://www.perkinelmer.com/be/library/an-introduction-to-lc-ms-ms.html",
       "lastmod": "2024-11-27"
     },
     {
-      "url": "https://www.perkinelmer.com/be/library/monitoring-pharmaceuticals-and-personal-care-products-in-drinking-water-by-lc-ms-ms.html",
+      "url": "https://www.perkinelmer.com/dk/library/monitoring-pharmaceuticals-and-personal-care-products-in-drinking-water-by-lc-ms-ms.html",
       "lastmod": "2024-11-26"
     },
     {
-      "url": "https://www.perkinelmer.com/library/choosing-the-right-hplc-columns-webinar.html",
+      "url": "https://www.perkinelmer.com/be/library/choosing-the-right-hplc-columns-webinar.html",
       "lastmod": "2024-11-25"
     },
     {
-      "url": "https://www.perkinelmer.com/library/performance-and-productivity-with-the-lc-300-hplc-and-uhplc-systems-i.html",
+      "url": "https://www.perkinelmer.com/be/library/performance-and-productivity-with-the-lc-300-hplc-and-uhplc-systems-i.html",
       "lastmod": "2024-11-25"
     },
     {
@@ -406,123 +441,123 @@
       "lastmod": "2024-11-25"
     },
     {
-      "url": "https://www.perkinelmer.com/be/library/navigating-the-labyrinth-of-lc-ms-ms-contamination.html",
+      "url": "https://www.perkinelmer.com/dk/library/navigating-the-labyrinth-of-lc-ms-ms-contamination.html",
       "lastmod": "2024-11-25"
     },
     {
-      "url": "https://www.perkinelmer.com/library/basics-of-hplc-troubleshooting.html",
+      "url": "https://www.perkinelmer.com/be/library/basics-of-hplc-troubleshooting.html",
       "lastmod": "2024-11-22"
     },
     {
-      "url": "https://www.perkinelmer.com/library/lc-ms-ms-tour-video-dr-niladri-chatterjee-icar-cift.html",
+      "url": "https://www.perkinelmer.com/be/library/lc-ms-ms-tour-video-dr-niladri-chatterjee-icar-cift.html",
       "lastmod": "2024-11-21"
     },
     {
-      "url": "https://www.perkinelmer.com/be/library/app-ferulic-acid-analysis-in-angelica-sinensis-radix-by-hplc.html",
+      "url": "https://www.perkinelmer.com/dk/library/app-ferulic-acid-analysis-in-angelica-sinensis-radix-by-hplc.html",
       "lastmod": "2024-11-13"
     },
     {
-      "url": "https://www.perkinelmer.com/ie/library/gde-basics-hplc-uhplc-lc-columns-training.html",
+      "url": "https://www.perkinelmer.com/dk/library/gde-basics-hplc-uhplc-lc-columns-training.html",
       "lastmod": "2024-10-30"
     },
     {
-      "url": "https://www.perkinelmer.com/ie/library/gde-selecting-hplc-columns-going-under-the-hood.html",
+      "url": "https://www.perkinelmer.com/dk/library/gde-selecting-hplc-columns-going-under-the-hood.html",
       "lastmod": "2024-10-30"
     },
     {
-      "url": "https://www.perkinelmer.com/be/library/app-hplc-analysis-of-oleanolic-acid-and-ursonic-acid-in-eriobotrya-japonica-leaf.html",
+      "url": "https://www.perkinelmer.com/dk/library/app-hplc-analysis-of-oleanolic-acid-and-ursonic-acid-in-eriobotrya-japonica-leaf.html",
       "lastmod": "2024-10-25"
     },
     {
-      "url": "https://www.perkinelmer.com/ie/library/abr-optimizing-the-separation-of-fourtocopherols-and-fourtocotrienols-via-rp-hplc.html",
+      "url": "https://www.perkinelmer.com/dk/library/abr-optimizing-the-separation-of-fourtocopherols-and-fourtocotrienols-via-rp-hplc.html",
       "lastmod": "2024-10-14"
     },
     {
-      "url": "https://www.perkinelmer.com/ie/library/abr-hplc-analysis-of-betamethasone-dipropionate.html",
+      "url": "https://www.perkinelmer.com/dk/library/abr-hplc-analysis-of-betamethasone-dipropionate.html",
       "lastmod": "2024-10-11"
     },
     {
-      "url": "https://www.perkinelmer.com/ie/library/abr-hplc-analysis-of-finasteride-using-lc-300-in-accordance-with-the-usp.html",
+      "url": "https://www.perkinelmer.com/dk/library/abr-hplc-analysis-of-finasteride-using-lc-300-in-accordance-with-the-usp.html",
       "lastmod": "2024-10-11"
     },
     {
-      "url": "https://www.perkinelmer.com/ie/library/abr-hplc-analysis-of-lamotrigine-using-lc300-in-accordance-with-usp.html",
+      "url": "https://www.perkinelmer.com/dk/library/abr-hplc-analysis-of-lamotrigine-using-lc300-in-accordance-with-usp.html",
       "lastmod": "2024-10-11"
     },
     {
-      "url": "https://www.perkinelmer.com/ie/library/abr-hplc-analysis-of-levetiracetam-using-lc-300-in-accordance-with-usp.html",
+      "url": "https://www.perkinelmer.com/dk/library/abr-hplc-analysis-of-levetiracetam-using-lc-300-in-accordance-with-usp.html",
       "lastmod": "2024-10-11"
     },
     {
-      "url": "https://www.perkinelmer.com/ie/library/abr-hplc-analysis-of-meloxicam.html",
+      "url": "https://www.perkinelmer.com/dk/library/abr-hplc-analysis-of-meloxicam.html",
       "lastmod": "2024-10-11"
     },
     {
-      "url": "https://www.perkinelmer.com/ie/library/abr-hplc-analysis-of-omeprazole-using-lc-300-in-accordance-with-usp.html",
+      "url": "https://www.perkinelmer.com/dk/library/abr-hplc-analysis-of-omeprazole-using-lc-300-in-accordance-with-usp.html",
       "lastmod": "2024-10-11"
     },
     {
-      "url": "https://www.perkinelmer.com/ie/library/abr-hplc-analysis-of-pregabalin-using-lc-300-in-accordance-with-usp.html",
+      "url": "https://www.perkinelmer.com/dk/library/abr-hplc-analysis-of-pregabalin-using-lc-300-in-accordance-with-usp.html",
       "lastmod": "2024-10-11"
     },
     {
-      "url": "https://www.perkinelmer.com/ie/library/abr-hplc-assay-of-risperidone-impurities-using-lc-300-in-accordance-with-usp.html",
+      "url": "https://www.perkinelmer.com/dk/library/abr-hplc-assay-of-risperidone-impurities-using-lc-300-in-accordance-with-usp.html",
       "lastmod": "2024-10-11"
     },
     {
-      "url": "https://www.perkinelmer.com/ie/library/abr-hplc-assay-of-risperidone-using-lc-300-in-accordance-with-usp.html",
+      "url": "https://www.perkinelmer.com/dk/library/abr-hplc-assay-of-risperidone-using-lc-300-in-accordance-with-usp.html",
       "lastmod": "2024-10-11"
     },
     {
-      "url": "https://www.perkinelmer.com/ie/library/abr-determination-of-organotin-in-tap-water-by-hplc-icp-ms.html",
+      "url": "https://www.perkinelmer.com/dk/library/abr-determination-of-organotin-in-tap-water-by-hplc-icp-ms.html",
       "lastmod": "2024-10-11"
     },
     {
-      "url": "https://www.perkinelmer.com/ie/library/abr-hplc-analysis-of-vitamin-c-using-quasar-biphenyl-column.html",
+      "url": "https://www.perkinelmer.com/dk/library/abr-hplc-analysis-of-vitamin-c-using-quasar-biphenyl-column.html",
       "lastmod": "2024-10-11"
     },
     {
-      "url": "https://www.perkinelmer.com/ie/library/abr-warfarin-analysis-using-a-quasar-aq-uhplc-column.html",
+      "url": "https://www.perkinelmer.com/dk/library/abr-warfarin-analysis-using-a-quasar-aq-uhplc-column.html",
       "lastmod": "2024-10-11"
     },
     {
-      "url": "https://www.perkinelmer.com/be/library/wht-fast-and-efficient-hplc-separations-with-superficially-porous-particles.html",
+      "url": "https://www.perkinelmer.com/dk/library/wht-fast-and-efficient-hplc-separations-with-superficially-porous-particles.html",
       "lastmod": "2024-10-09"
     },
     {
-      "url": "https://www.perkinelmer.com/be/library/wht-uhplc-instrumentation-and-method-transfer-guidelines.html",
+      "url": "https://www.perkinelmer.com/dk/library/wht-uhplc-instrumentation-and-method-transfer-guidelines.html",
       "lastmod": "2024-10-09"
     },
     {
-      "url": "https://www.perkinelmer.com/ie/library/pst-aflatoxins-food-matrices-fluorescence-hplc-analysis.html",
+      "url": "https://www.perkinelmer.com/dk/library/pst-aflatoxins-food-matrices-fluorescence-hplc-analysis.html",
       "lastmod": "2024-10-09"
     },
     {
-      "url": "https://www.perkinelmer.com/library/uhplc-method-transfer-basics.html",
+      "url": "https://www.perkinelmer.com/be/library/uhplc-method-transfer-basics.html",
       "lastmod": "2024-07-11"
     },
     {
-      "url": "https://www.perkinelmer.com/library/intro-to-hplc-column-selection.html",
+      "url": "https://www.perkinelmer.com/be/library/intro-to-hplc-column-selection.html",
       "lastmod": "2024-07-11"
     },
     {
-      "url": "https://www.perkinelmer.com/be/library/hpcl-to-uhplc-method-transfer-series.html",
+      "url": "https://www.perkinelmer.com/dk/library/hpcl-to-uhplc-method-transfer-series.html",
       "lastmod": "2024-07-11"
     },
     {
-      "url": "https://www.perkinelmer.com/be/library/hplc-conference-resources.html",
+      "url": "https://www.perkinelmer.com/dk/library/hplc-conference-resources.html",
       "lastmod": "2024-07-11"
     },
     {
-      "url": "https://www.perkinelmer.com/be/library/best-practices-for-hplc-to-uhplc-method-transfer.html",
+      "url": "https://www.perkinelmer.com/dk/library/best-practices-for-hplc-to-uhplc-method-transfer.html",
       "lastmod": "2024-07-11"
     },
     {
-      "url": "https://www.perkinelmer.com/be/library/case-study-in-uhplc-method-transfer.html",
+      "url": "https://www.perkinelmer.com/dk/library/case-study-in-uhplc-method-transfer.html",
       "lastmod": "2024-07-11"
     },
     {
-      "url": "https://www.perkinelmer.com/be/library/chromatography-simplified-liquid-chromatography-basics.html",
+      "url": "https://www.perkinelmer.com/dk/library/chromatography-simplified-liquid-chromatography-basics.html",
       "lastmod": "2024-07-11"
     }
   ],
@@ -531,10 +566,10 @@
       "sourceId": "perkinelmer-news",
       "url": "https://www.perkinelmer.com/corporate-and-newsroom",
       "method": "official_sitemap_and_public_pages",
-      "attemptedAt": "2026-08-20T14:40:36+00:00",
-      "succeededAt": "2026-08-20T14:40:36+00:00",
-      "recordsSeen": 10,
-      "recordsIngested": 10,
+      "attemptedAt": "2026-08-23T22:11:16+00:00",
+      "succeededAt": "2026-08-23T22:11:16+00:00",
+      "recordsSeen": 11,
+      "recordsIngested": 11,
       "engineNewestDate": "2026-08-11",
       "sourceNewestDate": "2026-08-11",
       "collectionOutcome": "collected",
@@ -546,10 +581,10 @@
       "sourceId": "perkinelmer-lc-products",
       "url": "https://www.perkinelmer.com/category/liquid-chromatography",
       "method": "official_sitemap",
-      "attemptedAt": "2026-08-20T14:40:36+00:00",
-      "succeededAt": "2026-08-20T14:40:36+00:00",
-      "recordsSeen": 80,
-      "recordsIngested": 80,
+      "attemptedAt": "2026-08-23T22:11:16+00:00",
+      "succeededAt": "2026-08-23T22:11:16+00:00",
+      "recordsSeen": 86,
+      "recordsIngested": 86,
       "engineNewestDate": "2026-04-24",
       "sourceNewestDate": "2026-04-24",
       "collectionOutcome": "collected",

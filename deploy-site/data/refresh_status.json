@@ -1,9 +1,10 @@
 {
   "cadence": "daily",
   "status": "success",
-  "lastAttemptAt": "2026-08-20T14:53:56+00:00",
-  "lastSuccessfulRefreshAt": "2026-08-20T14:53:56+00:00",
-  "startedAt": "2026-08-20T14:20:53+00:00",
+  "datasetAsOfDate": "2026-08-23",
+  "lastAttemptAt": "2026-08-23T22:16:33+00:00",
+  "lastSuccessfulRefreshAt": "2026-08-23T22:16:33+00:00",
+  "startedAt": "2026-08-23T21:53:12+00:00",
   "automatedDomains": [
     "PubMed publication trends and competitor-linked publications",
     "SEC filing discovery",
@@ -23,17 +24,17 @@
     "PM recommendations"
   ],
   "message": "Automated refresh completed (PubMed: success, SEC: success, source checks: success, Agilent: success); all required sources verified.",
-  "buildPublishedAt": "2026-08-20T14:53:56+00:00",
-  "sourcesVerifiedAt": "2026-08-20T14:53:36+00:00",
+  "buildPublishedAt": "2026-08-23T22:16:33+00:00",
+  "sourcesVerifiedAt": "2026-08-23T22:16:33+00:00",
   "allRequiredSourcesCurrent": true,
   "requiredSourceBlockers": [],
   "countsByState": {
     "BLOCKED": 11,
     "CURRENT": 65,
     "DISABLED": 0,
-    "ERROR": 0,
+    "ERROR": 2,
     "MISSING": 0,
-    "PARTIAL": 15,
+    "PARTIAL": 13,
     "STALE": 0,
     "UNVERIFIED": 1
   },
@@ -41,9 +42,9 @@
     "BLOCKED": 11,
     "CURRENT": 65,
     "DISABLED": 0,
-    "ERROR": 0,
+    "ERROR": 2,
     "MISSING": 0,
-    "PARTIAL": 15,
+    "PARTIAL": 13,
     "STALE": 0,
     "UNVERIFIED": 1
   },

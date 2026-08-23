@@ -1,7 +1,7 @@
 {
   "snapshotSchemaVersion": 2,
   "observationType": "sitemap_inventory",
-  "capturedAt": "2026-08-20T14:48:33+00:00",
+  "capturedAt": "2026-08-23T22:14:08+00:00",
   "initialized": true,
   "products": {
     "https://sciex.com/products/mass-spectrometers/qtof-systems": "",
@@ -103,13 +103,6 @@
   "unverifiedInventoryChanges": {
     "new": [],
     "updated": [],
-    "missing": [
-      {
-        "url": "https://sciex.com/applications/biomedical-and-omics-research/oneomics",
-        "lastmod": "",
-        "category": "LC/MS",
-        "verification": "manual confirmation required"
-      }
-    ]
+    "missing": []
   }
 }

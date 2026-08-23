@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-08-20T14:48:33+00:00",
-  "asOfDate": "2026-08-20",
+  "generatedAt": "2026-08-23T22:14:09+00:00",
+  "asOfDate": "2026-08-23",
   "scope": "Official competitor application notes and technical notes showing applied LC, LC-MS, LC-MS/MS, and informatics workflows. Dates use the exact publication date where available and month or year precision where the official source provides only that level of detail.",
   "notes": [
     {
@@ -77,7 +77,7 @@
       "evidenceStatement": "Thermo Fisher promotes robustness and high throughput for quantitative peptide workflows on its triple-quadrupole platform.",
       "sourceType": "Official technical note",
       "sourceUrl": "https://www.thermofisher.com/blog/analyteguru/new-technical-note-robust-high-throughput-peptide-quantitation-on-the-tsq-certis-triple-quadrupole-ms-with-optispray-technology/",
-      "lastObservedAt": "2026-08-20T14:48:32+00:00"
+      "lastObservedAt": "2026-08-23T22:14:05+00:00"
     },
     {
       "id": "shimadzu-qacs-milk-2026",
@@ -200,7 +200,7 @@
       "sourceUrl": "https://www.shimadzu.com/an/sites/shimadzu.com.an/files/pim/pim_document_file/applications/application_note/26436/an_02-ssi-lcms-157-en.pdf",
       "sourceDate": "2024-07",
       "sourceDateType": "publication",
-      "ingestionDate": "2026-08-20"
+      "ingestionDate": "2026-08-23"
     },
     {
       "id": "thermo-oligo-system-test-2026",
@@ -218,7 +218,7 @@
       "sourceUrl": "https://documents.thermofisher.com/TFS-Assets/CMD/Application-Notes/an-001954-bt-integrated-lc-ms-oligonucleotide-analysis-an001954-na-en.pdf",
       "sourceDate": "2023-07",
       "sourceDateType": "publication",
-      "ingestionDate": "2026-08-20"
+      "ingestionDate": "2026-08-23"
     }
   ],
   "schemaVersion": 3,
@@ -254,7 +254,7 @@
   "sourceStatus": [
     {
       "competitor": "Agilent",
-      "attemptedAt": "2026-08-20T14:48:33+00:00",
+      "attemptedAt": "2026-08-23T22:14:09+00:00",
       "inventoryMode": "registered_official_records",
       "coverageStatus": "limited_inventory",
       "catalogRecords": 4,
@@ -269,7 +269,7 @@
     },
     {
       "competitor": "Thermo Fisher",
-      "attemptedAt": "2026-08-20T14:48:32+00:00",
+      "attemptedAt": "2026-08-23T22:14:05+00:00",
       "inventoryMode": "registered_official_records",
       "coverageStatus": "limited_inventory",
       "catalogRecords": 3,
@@ -284,7 +284,7 @@
     },
     {
       "competitor": "Shimadzu",
-      "attemptedAt": "2026-08-20T14:48:33+00:00",
+      "attemptedAt": "2026-08-23T22:14:05+00:00",
       "inventoryMode": "registered_official_records",
       "coverageStatus": "limited_inventory",
       "catalogRecords": 3,
@@ -299,7 +299,7 @@
     },
     {
       "competitor": "SCIEX",
-      "attemptedAt": "2026-08-20T14:48:33+00:00",
+      "attemptedAt": "2026-08-23T22:14:08+00:00",
       "inventoryMode": "registered_official_records",
       "coverageStatus": "limited_inventory",
       "catalogRecords": 4,

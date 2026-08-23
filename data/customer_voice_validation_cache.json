@@ -1,42 +1,2203 @@
 {
-  "generatedAt": "2026-07-23T14:30:00-04:00",
+  "generatedAt": "2026-08-23T22:16:32.843Z",
   "maxAgeDays": 30,
   "sources": [
-    {"url":"https://support.waters.com/KB_Inst/Chromatography/WKB4833_ACQUITY_BSM_or_QSM_Unstable_Pressure","validatedKeywords":["ACQUITY","pressure fluctuates","leak","seals"],"validatedAt":"2026-07-17","validationMethod":"full_source_text"},
-    {"url":"https://www.reddit.com/r/CHROMATOGRAPHY/comments/1uk333s/update_uplc_waters_high_pressure_problem/","validatedKeywords":["Waters UPLC","high and unstable pressure","column issue","needle seal readiness test"],"validatedAt":"2026-07-20","validationMethod":"full_source_text"},
-    {"url":"https://support.waters.com/KB_Inst/Chromatography/WKB193162_Carryover_solution_that_can_be_performed_by_user_with_ACQUITY_UPLC_H-Class","validatedKeywords":["ACQUITY UPLC H-Class","carryover solution"],"validatedAt":"2026-07-17","validationMethod":"full_source_text"},
-    {"url":"https://www.reddit.com/r/CHROMATOGRAPHY/comments/1h1i93y/waters_acquity_uplc_beh_17_um_21_x_100_mm_column/","validatedKeywords":["Waters ACQUITY UPLC","column","needle issues"],"validatedAt":"2026-07-17","validationMethod":"full_source_text"},
-    {"url":"https://www.reddit.com/r/CHROMATOGRAPHY/comments/1e3y2sy/getting_started_with_empower_3/","validatedKeywords":["getting started","Empower 3"],"validatedAt":"2026-07-17","validationMethod":"full_source_text"},
-    {"url":"https://www.reddit.com/r/CHROMATOGRAPHY/comments/1ion27e/is_getting_training_from_waters_worth_it/","validatedKeywords":["training","Waters","worth it"],"validatedAt":"2026-07-17","validationMethod":"full_source_text"},
-    {"url":"https://www.labwrench.com/thread/135698/hplc-pump-and-autosampler-preventative-performance-maintenance","validatedKeywords":["HPLC pump","autosampler","maintenance"],"validatedAt":"2026-07-17","validationMethod":"full_source_text"},
-    {"url":"https://www.labwrench.com/thread/187926/waters-alliance-2695-seal-wash-pump-on-during-operation","validatedKeywords":["Waters Alliance 2695","seal wash pump","operation"],"validatedAt":"2026-07-17","validationMethod":"full_source_text"},
-    {"url":"https://www.reddit.com/r/CHROMATOGRAPHY/comments/1somxpf/waters_acquity_arc_lcms_214_nm_uv_baseline/","validatedKeywords":["Waters ACQUITY Arc","LCMS","UV baseline","oscillations"],"validatedAt":"2026-07-17","validationMethod":"full_source_text"},
-    {"url":"https://www.reddit.com/r/CHROMATOGRAPHY/comments/1tk17h8/how_to_solve_the_problem_of_compatibility_between/","validatedKeywords":["compatibility","Waters","Agilent","testing methods"],"validatedAt":"2026-07-17","validationMethod":"full_source_text"},
-    {"url":"https://www.reddit.com/r/CHROMATOGRAPHY/comments/xlr4pf/best_uhplc_on_the_market/","validatedKeywords":["UHPLC","market"],"validatedAt":"2026-07-17","validationMethod":"full_source_text"},
-    {"url":"https://www.chromforum.org/viewtopic.php?t=8508","validatedKeywords":["Agilent 1200","Waters UPLC","ThermoFisher"],"validatedAt":"2026-07-17","validationMethod":"full_source_text"},
-    {"url":"https://www.chromforum.org/viewtopic.php?t=114464","validatedKeywords":["Agilent","HPLC","UHPLC","LC-MS","chromatography","autosampler","software","service"],"validatedAt":"2026-08-23","validationMethod":"full_source_text"},
-    {"url":"https://www.reddit.com/r/CHROMATOGRAPHY/comments/1q24noh/reccomendations_for_new_hplc_system_for_routine/","validatedKeywords":["Agilent","1260","repairability","durability","software","annoying or expensive","software pricing","Thermo","Vanquish","Chromeleon","learning curve","Shimadzu","i-Series","robust","easy to use","LabSolutions","training","new HPLC system","routine work"],"validatedAt":"2026-07-17","validationMethod":"full_source_text"},
-    {"url":"https://www.reddit.com/r/CHROMATOGRAPHY/comments/1h6lnr0/agilent_1260_hplc_vs_thermo_vanquish_flex/","validatedKeywords":["Agilent 1260 HPLC","Thermo Vanquish Flex"],"validatedAt":"2026-07-17","validationMethod":"full_source_text"},
-    {"url":"https://www.reddit.com/r/CHROMATOGRAPHY/comments/1cdniok/agilent_1260_repair_pm/","validatedKeywords":["Agilent 1260","repair"],"validatedAt":"2026-07-17","validationMethod":"full_source_text"},
-    {"url":"https://www.reddit.com/r/Chempros/comments/157qppk/purchase_of_watersthermo_lcms_system/","validatedKeywords":["Waters","Thermo","LC-MS system"],"validatedAt":"2026-07-17","validationMethod":"full_source_text"},
-    {"url":"https://www.reddit.com/r/CHROMATOGRAPHY/comments/17v4dij/shimadzu_nexera_xs_inert_vs_agilent_1290_bio/","validatedKeywords":["Shimadzu Nexera XS inert","Agilent 1290 Bio","help me choose"],"validatedAt":"2026-07-17","validationMethod":"full_source_text"},
-    {"url":"https://www.reddit.com/r/CHROMATOGRAPHY/comments/1i7ixun/lab_solutions_frustration/","validatedKeywords":["Lab Solutions","frustration"],"validatedAt":"2026-07-17","validationMethod":"full_source_text"},
-    {"url":"https://www.reddit.com/r/CHROMATOGRAPHY/comments/1f4airi/which_hplcmsms/","validatedKeywords":["HPLC","MS/MS"],"validatedAt":"2026-07-17","validationMethod":"full_source_text"},
-    {"url":"https://www.reddit.com/r/CHROMATOGRAPHY/comments/14w7fxn/lcms_help_sciex_6500/","validatedKeywords":["LC/MS","SCIEX 6500"],"validatedAt":"2026-07-17","validationMethod":"full_source_text"},
-    {"url":"https://www.reddit.com/r/CHROMATOGRAPHY/comments/1uu27p8/which_lc_ms_brand_is_reliable_and_affordable/","validatedKeywords":["LC MS brand","reliable","affordable"],"validatedAt":"2026-07-17","validationMethod":"full_source_text"},
-    {"url":"https://www.reddit.com/r/CHROMATOGRAPHY/comments/1onikdf/looking_for_a_hplc_machine/","validatedKeywords":["looking for","HPLC machine"],"validatedAt":"2026-07-17","validationMethod":"full_source_text"},
-    {"url":"https://www.reddit.com/r/massspectrometry/comments/1uxyipd/efficient_quant_workflow_for_targetlynx/","validatedKeywords":["TargetLynx","MassLynx","waters_connect","150 analytes"],"validatedAt":"2026-07-23","validationMethod":"full_source_text"},
-    {"url":"https://www.reddit.com/r/massspectrometry/comments/1ux1imr/most_frustrating_thing_about_mass_spectrometry/","validatedKeywords":["UNIFI","MassLynx","waters_connect","MS Quan"],"validatedAt":"2026-07-23","validationMethod":"full_source_text"},
-    {"url":"https://www.reddit.com/r/massspectrometry/comments/1u1dpq6/synapt_nonresponsive_fluidics_purge_issue/","validatedKeywords":["Synapt","fluidics stopped","purging","source pressure test"],"validatedAt":"2026-07-23","validationMethod":"full_source_text"},
-    {"url":"https://www.reddit.com/r/massspectrometry/comments/1up1dlw/best_software_to_use_agilent_g3540a_gc_with/","validatedKeywords":["Waters Xevo TQ-S","MassLynx","ChemStation","contact closure"],"validatedAt":"2026-07-23","validationMethod":"full_source_text"},
-    {"url":"https://www.reddit.com/r/CHROMATOGRAPHY/comments/1sbtsdx/comparing_vendors_and_systems_thoughts/","validatedKeywords":["instrument","consumables","software","human support"],"validatedAt":"2026-07-23","validationMethod":"full_source_text"},
-    {"url":"https://www.reddit.com/r/massspectrometry/comments/1sognqt/what_is_the_fastest_way_to_convert_raw_files_to/","validatedKeywords":["MassLynx","mzml","lock mass correction","centroiding"],"validatedAt":"2026-07-23","validationMethod":"full_source_text"},
-    {"url":"https://www.reddit.com/r/massspectrometry/comments/1rembme/imms_options/","validatedKeywords":["Waters","UNIFI","waters_connect","mzML"],"validatedAt":"2026-07-23","validationMethod":"full_source_text"},
-    {"url":"https://www.reddit.com/r/massspectrometry/comments/1tausv5/ms_is_half_the_equation/","validatedKeywords":["Waters LCs","LC-MS consumables","software","driver integration"],"validatedAt":"2026-07-23","validationMethod":"full_source_text"},
-    {"url":"https://www.reddit.com/r/massspectrometry/comments/1p15xrz/which_company_ranked_1_for_lcms/","validatedKeywords":["LCMS","technical support","software","hardware"],"validatedAt":"2026-07-23","validationMethod":"full_source_text"},
-    {"url":"https://www.reddit.com/r/massspectrometry/comments/1pw3739/sciex_or_thermo_for_proteomics/","validatedKeywords":["SCIEX","Thermo","Proteomics","Vanquish Flex"],"validatedAt":"2026-07-23","validationMethod":"full_source_text"},
-    {"url":"https://www.reddit.com/r/massspectrometry/comments/1nlcb3p/new_lab_ms_option_help/","validatedKeywords":["New Lab","MS","service","repairs"],"validatedAt":"2026-07-23","validationMethod":"full_source_text"},
-    {"url":"https://www.reddit.com/r/massspectrometry/comments/1mzna4c/a_record_of_fixing_a_secondhand_agilent_ms/","validatedKeywords":["Agilent 6550","mass spectrometer","net connection","embedded PC"],"validatedAt":"2026-07-23","validationMethod":"full_source_text"},
-    {"url":"https://www.reddit.com/r/CHROMATOGRAPHY/comments/1peddhs/who_consistently_gives_the_best_highest_quality/","validatedKeywords":["service contracts","Agilent","reliable","equipment"],"validatedAt":"2026-07-23","validationMethod":"full_source_text"}
+    {
+      "url": "https://support.waters.com/KB_Inst/Chromatography/WKB193162_Carryover_solution_that_can_be_performed_by_user_with_ACQUITY_UPLC_H-Class",
+      "validatedKeywords": [
+        "ACQUITY UPLC H-Class",
+        "carryover solution"
+      ],
+      "validatedAt": "2026-07-17",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://support.waters.com/KB_Inst/Chromatography/WKB4833_ACQUITY_BSM_or_QSM_Unstable_Pressure",
+      "validatedKeywords": [
+        "ACQUITY",
+        "pressure fluctuates",
+        "leak",
+        "seals"
+      ],
+      "validatedAt": "2026-07-17",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.chromforum.org/viewtopic.php?p=455950",
+      "validatedKeywords": [
+        "HPLC",
+        "LC-MS",
+        "chromatography",
+        "carryover",
+        "software",
+        "training"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.chromforum.org/viewtopic.php?p=463166",
+      "validatedKeywords": [
+        "Agilent",
+        "LC-MS",
+        "chromatography",
+        "software",
+        "training",
+        "cost"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.chromforum.org/viewtopic.php?p=463296",
+      "validatedKeywords": [
+        "LC-MS",
+        "chromatography",
+        "pressure",
+        "software",
+        "troubleshoot",
+        "troubleshooting",
+        "training"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.chromforum.org/viewtopic.php?t=109914",
+      "validatedKeywords": [
+        "HPLC",
+        "LC-MS",
+        "chromatography",
+        "software",
+        "training"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.chromforum.org/viewtopic.php?t=114464",
+      "validatedKeywords": [
+        "Agilent",
+        "HPLC",
+        "UHPLC",
+        "LC-MS",
+        "chromatography",
+        "autosampler",
+        "software",
+        "service"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.chromforum.org/viewtopic.php?t=119394",
+      "validatedKeywords": [
+        "Shimadzu",
+        "HPLC",
+        "LC-MS",
+        "chromatography",
+        "carryover",
+        "autosampler",
+        "pressure",
+        "leak"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.chromforum.org/viewtopic.php?t=120115",
+      "validatedKeywords": [
+        "Shimadzu",
+        "HPLC",
+        "LC-MS",
+        "chromatography",
+        "software",
+        "service",
+        "training"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.chromforum.org/viewtopic.php?t=12125",
+      "validatedKeywords": [
+        "Waters",
+        "Agilent",
+        "Thermo",
+        "LC-MS",
+        "chromatography",
+        "software",
+        "data export",
+        "export"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.chromforum.org/viewtopic.php?t=122219",
+      "validatedKeywords": [
+        "Agilent",
+        "HPLC",
+        "LC-MS",
+        "chromatography",
+        "software",
+        "service",
+        "setup",
+        "training"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.chromforum.org/viewtopic.php?t=122273",
+      "validatedKeywords": [
+        "Waters",
+        "HPLC",
+        "LC-MS",
+        "chromatography",
+        "pressure",
+        "leak",
+        "software",
+        "training"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.chromforum.org/viewtopic.php?t=122288",
+      "validatedKeywords": [
+        "Waters",
+        "HPLC",
+        "LC-MS",
+        "chromatography",
+        "pressure",
+        "software",
+        "training"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.chromforum.org/viewtopic.php?t=122309",
+      "validatedKeywords": [
+        "Shimadzu",
+        "HPLC",
+        "LC-MS",
+        "chromatography",
+        "autosampler",
+        "software",
+        "training"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.chromforum.org/viewtopic.php?t=122324",
+      "validatedKeywords": [
+        "Agilent",
+        "HPLC",
+        "LC-MS",
+        "chromatography",
+        "autosampler",
+        "pressure",
+        "software",
+        "training"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.chromforum.org/viewtopic.php?t=122334",
+      "validatedKeywords": [
+        "Agilent",
+        "HPLC",
+        "LC-MS",
+        "chromatography",
+        "pressure",
+        "software",
+        "setup",
+        "training"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.chromforum.org/viewtopic.php?t=122404",
+      "validatedKeywords": [
+        "Waters",
+        "HPLC",
+        "LC-MS",
+        "chromatography",
+        "software",
+        "troubleshoot",
+        "training"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.chromforum.org/viewtopic.php?t=122410",
+      "validatedKeywords": [
+        "Waters",
+        "Agilent",
+        "Shimadzu",
+        "HPLC",
+        "LC-MS",
+        "chromatography",
+        "pressure",
+        "software"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.chromforum.org/viewtopic.php?t=122419",
+      "validatedKeywords": [
+        "Thermo",
+        "Vanquish",
+        "Shimadzu",
+        "HPLC",
+        "UHPLC",
+        "LC-MS",
+        "chromatography",
+        "autosampler"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.chromforum.org/viewtopic.php?t=122420",
+      "validatedKeywords": [
+        "Agilent",
+        "HPLC",
+        "LC-MS",
+        "chromatography",
+        "software",
+        "troubleshoot",
+        "troubleshooting",
+        "training"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.chromforum.org/viewtopic.php?t=122426",
+      "validatedKeywords": [
+        "Agilent",
+        "HPLC",
+        "LC-MS",
+        "chromatography",
+        "software",
+        "training"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.chromforum.org/viewtopic.php?t=122460",
+      "validatedKeywords": [
+        "Waters",
+        "HPLC",
+        "LC-MS",
+        "chromatography",
+        "software",
+        "service",
+        "training"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.chromforum.org/viewtopic.php?t=122479",
+      "validatedKeywords": [
+        "Waters",
+        "Alliance",
+        "Agilent",
+        "Shimadzu",
+        "Nexera",
+        "HPLC",
+        "LC-MS",
+        "chromatography"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.chromforum.org/viewtopic.php?t=122481",
+      "validatedKeywords": [
+        "Waters",
+        "Agilent",
+        "HPLC",
+        "LC-MS",
+        "chromatography",
+        "software",
+        "training",
+        "cost"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.chromforum.org/viewtopic.php?t=14128",
+      "validatedKeywords": [
+        "Waters",
+        "HPLC",
+        "LC-MS",
+        "chromatography",
+        "software",
+        "training"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.chromforum.org/viewtopic.php?t=23778",
+      "validatedKeywords": [
+        "Shimadzu",
+        "HPLC",
+        "LC-MS",
+        "chromatography",
+        "software",
+        "training"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.chromforum.org/viewtopic.php?t=24303",
+      "validatedKeywords": [
+        "Agilent",
+        "HPLC",
+        "LC-MS",
+        "chromatography",
+        "autosampler",
+        "software",
+        "training"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.chromforum.org/viewtopic.php?t=3574",
+      "validatedKeywords": [
+        "HPLC",
+        "LC-MS",
+        "chromatography",
+        "method transfer",
+        "software",
+        "training"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.chromforum.org/viewtopic.php?t=45171",
+      "validatedKeywords": [
+        "LC-MS",
+        "chromatography",
+        "software",
+        "training"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.chromforum.org/viewtopic.php?t=46491",
+      "validatedKeywords": [
+        "HPLC",
+        "UHPLC",
+        "LC-MS",
+        "chromatography",
+        "software",
+        "training"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.chromforum.org/viewtopic.php?t=83684",
+      "validatedKeywords": [
+        "Waters",
+        "ACQUITY",
+        "HPLC",
+        "LC-MS",
+        "chromatography",
+        "pressure",
+        "software",
+        "training"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.chromforum.org/viewtopic.php?t=8508",
+      "validatedKeywords": [
+        "Waters",
+        "ACQUITY",
+        "Agilent",
+        "Thermo",
+        "Shimadzu",
+        "HPLC",
+        "UHPLC",
+        "LC-MS"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.chromforum.org/viewtopic.php?t=89794",
+      "validatedKeywords": [
+        "Waters",
+        "ACQUITY",
+        "HPLC",
+        "LC-MS",
+        "chromatography",
+        "pressure",
+        "leak",
+        "software"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.labwrench.com/thread/112979/no-signal-in-the-els-detector",
+      "validatedKeywords": [
+        "Waters",
+        "ACQUITY",
+        "HPLC",
+        "UHPLC",
+        "service",
+        "pressure"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.labwrench.com/thread/12858/serious-software-and-pump-problems",
+      "validatedKeywords": [
+        "Waters",
+        "Agilent",
+        "HPLC",
+        "pump",
+        "service",
+        "software",
+        "pressure"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.labwrench.com/thread/135698/hplc-pump-and-autosampler-preventative-performance-maintenance",
+      "validatedKeywords": [
+        "Waters",
+        "Alliance",
+        "HPLC",
+        "pump",
+        "autosampler",
+        "maintenance",
+        "service"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.labwrench.com/thread/13625/hplc-problems-rt-off-compounds-missing-not-seperating",
+      "validatedKeywords": [
+        "Waters",
+        "HPLC",
+        "pump",
+        "service",
+        "pressure"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.labwrench.com/thread/187926/waters-alliance-2695-seal-wash-pump-on-during-operation",
+      "validatedKeywords": [
+        "Waters",
+        "Alliance",
+        "HPLC",
+        "pump",
+        "autosampler",
+        "seal wash",
+        "service"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.labwrench.com/thread/260254/flow-stoppage",
+      "validatedKeywords": [
+        "Agilent",
+        "HPLC",
+        "pump",
+        "maintenance",
+        "service",
+        "software",
+        "pressure",
+        "troubleshooting"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.labwrench.com/thread/821/trying-to-compare-to-waters-uplc",
+      "validatedKeywords": [
+        "Waters",
+        "ACQUITY",
+        "Agilent",
+        "Thermo",
+        "Shimadzu",
+        "Nexera",
+        "SCIEX",
+        "HPLC"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.reddit.com/r/Chempros/comments/157qppk/purchase_of_watersthermo_lcms_system/",
+      "validatedKeywords": [
+        "Waters",
+        "Thermo",
+        "LC-MS system"
+      ],
+      "validatedAt": "2026-07-17",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/14w7fxn/lcms_help_sciex_6500/",
+      "validatedKeywords": [
+        "LC/MS",
+        "SCIEX 6500"
+      ],
+      "validatedAt": "2026-07-17",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/17v4dij/shimadzu_nexera_xs_inert_vs_agilent_1290_bio/",
+      "validatedKeywords": [
+        "Shimadzu Nexera XS inert",
+        "Agilent 1290 Bio",
+        "help me choose"
+      ],
+      "validatedAt": "2026-07-17",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1cdniok/agilent_1260_repair_pm/",
+      "validatedKeywords": [
+        "Agilent 1260",
+        "repair"
+      ],
+      "validatedAt": "2026-07-17",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1e3y2sy/getting_started_with_empower_3/",
+      "validatedKeywords": [
+        "getting started",
+        "Empower 3"
+      ],
+      "validatedAt": "2026-07-17",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1f4airi/which_hplcmsms/",
+      "validatedKeywords": [
+        "HPLC",
+        "MS/MS"
+      ],
+      "validatedAt": "2026-07-17",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1h1i93y/waters_acquity_uplc_beh_17_um_21_x_100_mm_column/",
+      "validatedKeywords": [
+        "Waters ACQUITY UPLC",
+        "column",
+        "needle issues"
+      ],
+      "validatedAt": "2026-07-17",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1h6lnr0/agilent_1260_hplc_vs_thermo_vanquish_flex/",
+      "validatedKeywords": [
+        "Agilent 1260 HPLC",
+        "Thermo Vanquish Flex"
+      ],
+      "validatedAt": "2026-07-17",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1i7ixun/lab_solutions_frustration/",
+      "validatedKeywords": [
+        "Lab Solutions",
+        "frustration"
+      ],
+      "validatedAt": "2026-07-17",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1ion27e/is_getting_training_from_waters_worth_it/",
+      "validatedKeywords": [
+        "training",
+        "Waters",
+        "worth it"
+      ],
+      "validatedAt": "2026-07-17",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1onikdf/looking_for_a_hplc_machine/",
+      "validatedKeywords": [
+        "looking for",
+        "HPLC machine"
+      ],
+      "validatedAt": "2026-07-17",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1peddhs/who_consistently_gives_the_best_highest_quality/",
+      "validatedKeywords": [
+        "service contracts",
+        "Agilent",
+        "reliable",
+        "equipment"
+      ],
+      "validatedAt": "2026-07-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1q24noh/reccomendations_for_new_hplc_system_for_routine/",
+      "validatedKeywords": [
+        "Agilent",
+        "1260",
+        "repairability",
+        "durability",
+        "software",
+        "annoying or expensive",
+        "software pricing",
+        "Thermo",
+        "Vanquish",
+        "Chromeleon",
+        "learning curve",
+        "Shimadzu",
+        "i-Series",
+        "robust",
+        "easy to use",
+        "LabSolutions",
+        "training",
+        "new HPLC system",
+        "routine work"
+      ],
+      "validatedAt": "2026-07-17",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1sbtsdx/comparing_vendors_and_systems_thoughts/",
+      "validatedKeywords": [
+        "instrument",
+        "consumables",
+        "software",
+        "human support"
+      ],
+      "validatedAt": "2026-07-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1somxpf/waters_acquity_arc_lcms_214_nm_uv_baseline/",
+      "validatedKeywords": [
+        "Waters ACQUITY Arc",
+        "LCMS",
+        "UV baseline",
+        "oscillations"
+      ],
+      "validatedAt": "2026-07-17",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1tk17h8/how_to_solve_the_problem_of_compatibility_between/",
+      "validatedKeywords": [
+        "compatibility",
+        "Waters",
+        "Agilent",
+        "testing methods"
+      ],
+      "validatedAt": "2026-07-17",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1uk333s/update_uplc_waters_high_pressure_problem/",
+      "validatedKeywords": [
+        "Waters UPLC",
+        "high and unstable pressure",
+        "column issue",
+        "needle seal readiness test"
+      ],
+      "validatedAt": "2026-07-20",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/1uu27p8/which_lc_ms_brand_is_reliable_and_affordable/",
+      "validatedKeywords": [
+        "LC MS brand",
+        "reliable",
+        "affordable"
+      ],
+      "validatedAt": "2026-07-17",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.reddit.com/r/CHROMATOGRAPHY/comments/xlr4pf/best_uhplc_on_the_market/",
+      "validatedKeywords": [
+        "UHPLC",
+        "market"
+      ],
+      "validatedAt": "2026-07-17",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.reddit.com/r/massspectrometry/comments/1mzna4c/a_record_of_fixing_a_secondhand_agilent_ms/",
+      "validatedKeywords": [
+        "Agilent 6550",
+        "mass spectrometer",
+        "net connection",
+        "embedded PC"
+      ],
+      "validatedAt": "2026-07-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.reddit.com/r/massspectrometry/comments/1nlcb3p/new_lab_ms_option_help/",
+      "validatedKeywords": [
+        "New Lab",
+        "MS",
+        "service",
+        "repairs"
+      ],
+      "validatedAt": "2026-07-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.reddit.com/r/massspectrometry/comments/1p15xrz/which_company_ranked_1_for_lcms/",
+      "validatedKeywords": [
+        "LCMS",
+        "technical support",
+        "software",
+        "hardware"
+      ],
+      "validatedAt": "2026-07-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.reddit.com/r/massspectrometry/comments/1pw3739/sciex_or_thermo_for_proteomics/",
+      "validatedKeywords": [
+        "SCIEX",
+        "Thermo",
+        "Proteomics",
+        "Vanquish Flex"
+      ],
+      "validatedAt": "2026-07-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.reddit.com/r/massspectrometry/comments/1rembme/imms_options/",
+      "validatedKeywords": [
+        "Waters",
+        "UNIFI",
+        "waters_connect",
+        "mzML"
+      ],
+      "validatedAt": "2026-07-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.reddit.com/r/massspectrometry/comments/1sognqt/what_is_the_fastest_way_to_convert_raw_files_to/",
+      "validatedKeywords": [
+        "MassLynx",
+        "mzml",
+        "lock mass correction",
+        "centroiding"
+      ],
+      "validatedAt": "2026-07-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.reddit.com/r/massspectrometry/comments/1tausv5/ms_is_half_the_equation/",
+      "validatedKeywords": [
+        "Waters LCs",
+        "LC-MS consumables",
+        "software",
+        "driver integration"
+      ],
+      "validatedAt": "2026-07-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.reddit.com/r/massspectrometry/comments/1u1dpq6/synapt_nonresponsive_fluidics_purge_issue/",
+      "validatedKeywords": [
+        "Synapt",
+        "fluidics stopped",
+        "purging",
+        "source pressure test"
+      ],
+      "validatedAt": "2026-07-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.reddit.com/r/massspectrometry/comments/1up1dlw/best_software_to_use_agilent_g3540a_gc_with/",
+      "validatedKeywords": [
+        "Waters Xevo TQ-S",
+        "MassLynx",
+        "ChemStation",
+        "contact closure"
+      ],
+      "validatedAt": "2026-07-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.reddit.com/r/massspectrometry/comments/1ux1imr/most_frustrating_thing_about_mass_spectrometry/",
+      "validatedKeywords": [
+        "UNIFI",
+        "MassLynx",
+        "waters_connect",
+        "MS Quan"
+      ],
+      "validatedAt": "2026-07-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.reddit.com/r/massspectrometry/comments/1uxyipd/efficient_quant_workflow_for_targetlynx/",
+      "validatedKeywords": [
+        "TargetLynx",
+        "MassLynx",
+        "waters_connect",
+        "150 analytes"
+      ],
+      "validatedAt": "2026-07-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/acquity-uplc-beh-columns?reviewItem=0dc1fce5bd3f37a7",
+      "validatedKeywords": [
+        "ACQUITY",
+        "review",
+        "easy to use"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/acquity-uplc-beh-columns?reviewItem=107dd2b174d8249c",
+      "validatedKeywords": [
+        "ACQUITY",
+        "review",
+        "reproducible"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/acquity-uplc-beh-columns?reviewItem=49a845ee73be6c8b",
+      "validatedKeywords": [
+        "ACQUITY",
+        "review"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/acquity-uplc-beh-columns?reviewItem=57e414c04f7c8fa0",
+      "validatedKeywords": [
+        "ACQUITY",
+        "review"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/acquity-uplc-beh-columns?reviewItem=5f472e32a69dee4d",
+      "validatedKeywords": [
+        "ACQUITY",
+        "review"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/acquity-uplc-beh-columns?reviewItem=682f15c592bb6a30",
+      "validatedKeywords": [
+        "ACQUITY",
+        "LC-MS",
+        "review"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/acquity-uplc-beh-columns?reviewItem=7775276515f0bd6b",
+      "validatedKeywords": [
+        "ACQUITY",
+        "HPLC",
+        "review"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/acquity-uplc-beh-columns?reviewItem=a5be319de218f915",
+      "validatedKeywords": [
+        "ACQUITY",
+        "review"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/acquity-uplc-beh-columns?reviewItem=af4779fd1d5ac54d",
+      "validatedKeywords": [
+        "ACQUITY",
+        "review"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/acquity-uplc-beh-columns?reviewItem=c9fe78a3a38dd3bd",
+      "validatedKeywords": [
+        "Waters",
+        "ACQUITY",
+        "review",
+        "reliable"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/acquity-uplc-r-beh-c18-and-c8-columns",
+      "validatedKeywords": [
+        "Waters",
+        "ACQUITY",
+        "Shimadzu",
+        "Nexera",
+        "HPLC",
+        "UHPLC",
+        "LC-MS",
+        "rating"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/acquity-uplc-r-i-class-plus-system?reviewItem=311d45a4f3d87b1f",
+      "validatedKeywords": [
+        "Waters",
+        "ACQUITY",
+        "review"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/acquity-uplc-r-i-class-plus-system?reviewItem=3790ce74a9a5e464",
+      "validatedKeywords": [
+        "ACQUITY",
+        "review",
+        "reliable"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/acquity-uplc-system?reviewItem=092f02d2c39bb832",
+      "validatedKeywords": [
+        "ACQUITY",
+        "HPLC",
+        "review"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/acquity-uplc-system?reviewItem=2cc06e7fe15169b5",
+      "validatedKeywords": [
+        "ACQUITY",
+        "review",
+        "reproducible"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/acquity-uplc-system?reviewItem=2edc40de2c9c2caf",
+      "validatedKeywords": [
+        "ACQUITY",
+        "review"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/acquity-uplc-system?reviewItem=6221c8f6f636b7f0",
+      "validatedKeywords": [
+        "ACQUITY",
+        "review",
+        "software",
+        "easy to use"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/acquity-uplc-system?reviewItem=798502d0223c581a",
+      "validatedKeywords": [
+        "ACQUITY",
+        "review",
+        "training"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/acquity-uplc-system?reviewItem=7a650fe72acf9413",
+      "validatedKeywords": [
+        "ACQUITY",
+        "review"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/acquity-uplc-system?reviewItem=7c26c12b4f6f1229",
+      "validatedKeywords": [
+        "Waters",
+        "ACQUITY",
+        "Agilent",
+        "review",
+        "software"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/acquity-uplc-system?reviewItem=80de55562dc487aa",
+      "validatedKeywords": [
+        "ACQUITY",
+        "review"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/acquity-uplc-system?reviewItem=8b464302dbd5f2dc",
+      "validatedKeywords": [
+        "Waters",
+        "ACQUITY",
+        "review",
+        "reliable",
+        "service"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/acquity-uplc-system?reviewItem=9e92cb23643cb02e",
+      "validatedKeywords": [
+        "ACQUITY",
+        "review",
+        "reproducible"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/agilent-1260-infinity-iii-binary-pump?reviewItem=193d61a060bcaa01",
+      "validatedKeywords": [
+        "Agilent",
+        "HPLC",
+        "UHPLC",
+        "review",
+        "ease of use",
+        "robustness"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/agilent-1290-infinity-ii-lc-system?reviewItem=239dd59d05feb934",
+      "validatedKeywords": [
+        "Agilent",
+        "HPLC",
+        "review",
+        "service"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/agilent-1290-infinity-ii-lc-system?reviewItem=566332f51015522f",
+      "validatedKeywords": [
+        "Agilent",
+        "review"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/agilent-1290-infinity-ii-lc-system?reviewItem=81bf75624c66c500",
+      "validatedKeywords": [
+        "Agilent",
+        "review",
+        "reliable",
+        "service",
+        "easy to use"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/agilent-1290-infinity-ii-lc-system?reviewItem=98dffc09a1644d9b",
+      "validatedKeywords": [
+        "Agilent",
+        "review",
+        "software",
+        "setup"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/agilent-1290-infinity-ii-lc-system?reviewItem=a5bda60eecae55e3",
+      "validatedKeywords": [
+        "Agilent",
+        "review"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/agilent-1290-infinity-ii-lc-system?reviewItem=adb2baf246f98528",
+      "validatedKeywords": [
+        "Agilent",
+        "review",
+        "troubleshoot",
+        "troubleshooting",
+        "pressure"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/agilent-1290-infinity-ii-lc-system?reviewItem=b033272462717711",
+      "validatedKeywords": [
+        "Agilent",
+        "review",
+        "reliable"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/agilent-1290-infinity-ii-lc-system?reviewItem=b55109634f99472b",
+      "validatedKeywords": [
+        "Agilent",
+        "HPLC",
+        "review",
+        "easy to use"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/agilent-1290-infinity-ii-lc-system?reviewItem=c6b950b76c02e348",
+      "validatedKeywords": [
+        "Agilent",
+        "HPLC",
+        "review"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/agilent-1290-infinity-ii-lc-system?reviewItem=dafea9f68162ad00",
+      "validatedKeywords": [
+        "Agilent",
+        "review",
+        "software",
+        "user-friendly",
+        "robustness"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/agilent-1290-infinity-iii-lc-system?reviewItem=42c5a95da8e3d91d",
+      "validatedKeywords": [
+        "Agilent",
+        "review",
+        "user friendly"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/arc-hplc-system?reviewItem=0568db63471e745f",
+      "validatedKeywords": [
+        "HPLC",
+        "review"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/arc-hplc-system?reviewItem=0e5b2545d7d11f15",
+      "validatedKeywords": [
+        "HPLC",
+        "review"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/arc-hplc-system?reviewItem=159e7b5e6219fa06",
+      "validatedKeywords": [
+        "Waters",
+        "HPLC",
+        "review",
+        "maintenance",
+        "user-friendly"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/arc-hplc-system?reviewItem=2ce3f8c184d2244f",
+      "validatedKeywords": [
+        "Waters",
+        "Alliance",
+        "HPLC",
+        "review"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/arc-hplc-system?reviewItem=4c73326f68110cdf",
+      "validatedKeywords": [
+        "HPLC",
+        "review",
+        "service"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/arc-hplc-system?reviewItem=6711faeb55e9d989",
+      "validatedKeywords": [
+        "HPLC",
+        "review",
+        "easy to use"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/arc-hplc-system?reviewItem=7438bc9e9e4a06a0",
+      "validatedKeywords": [
+        "Waters",
+        "HPLC",
+        "review",
+        "cost"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/arc-hplc-system?reviewItem=823dc30b19dcb94c",
+      "validatedKeywords": [
+        "HPLC",
+        "review",
+        "user friendly",
+        "easy to use"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/arc-hplc-system?reviewItem=c6866ce0f446fc50",
+      "validatedKeywords": [
+        "Waters",
+        "HPLC",
+        "review",
+        "reliable",
+        "software",
+        "user-friendly"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/arc-hplc-system?reviewItem=dd59084477b562c5",
+      "validatedKeywords": [
+        "HPLC",
+        "review",
+        "robustness"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/high-performance-liquid-chromatography?reviewItem=9c5de04de3c01894",
+      "validatedKeywords": [
+        "review",
+        "easy to use"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/high-performance-liquid-chromatography?reviewItem=cf26ccf9c378b8b3",
+      "validatedKeywords": [
+        "Thermo Scientific",
+        "Dionex",
+        "Ultimate 3000",
+        "HPLC",
+        "review"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/high-performance-liquid-chromatography?reviewItem=f524877e9e3ef844",
+      "validatedKeywords": [
+        "review",
+        "easy to use"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/i-series-integrated-u-hplc-systems?reviewItem=27602c7bf21a7900",
+      "validatedKeywords": [
+        "HPLC",
+        "review",
+        "user-friendly"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/i-series-integrated-u-hplc-systems?reviewItem=2cc644405b0fc909",
+      "validatedKeywords": [
+        "HPLC",
+        "review",
+        "service"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/i-series-integrated-u-hplc-systems?reviewItem=3f0e6414642aa906",
+      "validatedKeywords": [
+        "HPLC",
+        "review"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/i-series-integrated-u-hplc-systems?reviewItem=4a758f8fedac9057",
+      "validatedKeywords": [
+        "HPLC",
+        "review",
+        "service"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/i-series-integrated-u-hplc-systems?reviewItem=598b6687c01fa6c2",
+      "validatedKeywords": [
+        "HPLC",
+        "review",
+        "service",
+        "easy to use"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/i-series-integrated-u-hplc-systems?reviewItem=75889baa795ad86e",
+      "validatedKeywords": [
+        "Shimadzu",
+        "HPLC",
+        "review",
+        "software",
+        "service",
+        "easy to use"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/i-series-integrated-u-hplc-systems?reviewItem=a7e66164e9c68aab",
+      "validatedKeywords": [
+        "HPLC",
+        "review",
+        "data processing",
+        "easy to use"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/i-series-integrated-u-hplc-systems?reviewItem=c382c6a957df4b26",
+      "validatedKeywords": [
+        "HPLC",
+        "UHPLC",
+        "review",
+        "software",
+        "user-friendly"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/i-series-integrated-u-hplc-systems?reviewItem=e0620a2efeecf624",
+      "validatedKeywords": [
+        "HPLC",
+        "review",
+        "software",
+        "service"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/i-series-integrated-u-hplc-systems?reviewItem=f1879f6d392554c7",
+      "validatedKeywords": [
+        "HPLC",
+        "review",
+        "service",
+        "easy to use"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/lc-300-tm-hplc-and-uhplc-system?reviewItem=7af31a11eb15b674",
+      "validatedKeywords": [
+        "HPLC",
+        "UHPLC",
+        "review"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/lc-300-tm-hplc-and-uhplc-system?reviewItem=896608f46269ee1f",
+      "validatedKeywords": [
+        "HPLC",
+        "UHPLC",
+        "review"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/lc-300-tm-hplc-and-uhplc-system?reviewItem=9e7090adb9f4ebb7",
+      "validatedKeywords": [
+        "HPLC",
+        "UHPLC",
+        "review",
+        "software"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/lc-300-tm-hplc-and-uhplc-system?reviewItem=b1ab07e5649e3684",
+      "validatedKeywords": [
+        "Shimadzu",
+        "HPLC",
+        "UHPLC",
+        "review",
+        "reliable"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/lc-300-tm-hplc-and-uhplc-system?reviewItem=c8299bd22468a4f9",
+      "validatedKeywords": [
+        "HPLC",
+        "UHPLC",
+        "review",
+        "reliable",
+        "maintenance",
+        "easy to use",
+        "reproducible"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/lc-300-tm-hplc-and-uhplc-system?reviewItem=f62e0b63f694b571",
+      "validatedKeywords": [
+        "HPLC",
+        "UHPLC",
+        "review"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/nexera-40-series-uhplc?reviewItem=1ecd3f34a563ab40",
+      "validatedKeywords": [
+        "Nexera",
+        "HPLC",
+        "UHPLC",
+        "review"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/nexera-40-series-uhplc?reviewItem=23f89a37438247d6",
+      "validatedKeywords": [
+        "Shimadzu",
+        "Nexera",
+        "HPLC",
+        "UHPLC",
+        "review",
+        "reproducible"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/nexera-40-series-uhplc?reviewItem=4ff32d1701a7f81c",
+      "validatedKeywords": [
+        "Nexera",
+        "HPLC",
+        "UHPLC",
+        "review",
+        "cost"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/nexera-40-series-uhplc?reviewItem=59ab8c0ab73f0692",
+      "validatedKeywords": [
+        "Nexera",
+        "HPLC",
+        "UHPLC",
+        "review",
+        "service"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/nexera-40-series-uhplc?reviewItem=63b6e86e4a9fd5c4",
+      "validatedKeywords": [
+        "Nexera",
+        "HPLC",
+        "UHPLC",
+        "review",
+        "user friendly"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/nexera-40-series-uhplc?reviewItem=7788e1c99b3707a6",
+      "validatedKeywords": [
+        "Nexera",
+        "HPLC",
+        "UHPLC",
+        "review"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/nexera-40-series-uhplc?reviewItem=97867f146bd1ed72",
+      "validatedKeywords": [
+        "Nexera",
+        "HPLC",
+        "UHPLC",
+        "review",
+        "ease of use",
+        "software",
+        "validated method",
+        "robustness"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/nexera-40-series-uhplc?reviewItem=9dafabbcad96deda",
+      "validatedKeywords": [
+        "Nexera",
+        "HPLC",
+        "UHPLC",
+        "review"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/nexera-40-series-uhplc?reviewItem=ac56535f2a546b40",
+      "validatedKeywords": [
+        "Nexera",
+        "HPLC",
+        "UHPLC",
+        "rating",
+        "review",
+        "maintenance"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/nexera-40-series-uhplc?reviewItem=d1c3f7aadc2fee7e",
+      "validatedKeywords": [
+        "Nexera",
+        "HPLC",
+        "UHPLC",
+        "review",
+        "software"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/prominence-hplc-system?reviewItem=02cb66dd6558ce1e",
+      "validatedKeywords": [
+        "HPLC",
+        "review",
+        "easy to use"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/prominence-hplc-system?reviewItem=03e2a874b8bdeeba",
+      "validatedKeywords": [
+        "HPLC",
+        "review",
+        "user friendly"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/prominence-hplc-system?reviewItem=2250865037572af4",
+      "validatedKeywords": [
+        "HPLC",
+        "review",
+        "software",
+        "service",
+        "maintenance"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/prominence-hplc-system?reviewItem=4a487c5d1c3a7c6d",
+      "validatedKeywords": [
+        "HPLC",
+        "review",
+        "user friendly",
+        "cost"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/prominence-hplc-system?reviewItem=6d4de10bfd04f126",
+      "validatedKeywords": [
+        "HPLC",
+        "review"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/prominence-hplc-system?reviewItem=9b309c16ea8ea3db",
+      "validatedKeywords": [
+        "HPLC",
+        "review",
+        "software",
+        "service"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/prominence-hplc-system?reviewItem=af7e7e99964c85a2",
+      "validatedKeywords": [
+        "HPLC",
+        "review",
+        "software",
+        "user friendly",
+        "reproducible"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/prominence-hplc-system?reviewItem=b1dbfb3392d4cd53",
+      "validatedKeywords": [
+        "HPLC",
+        "review",
+        "software",
+        "export",
+        "easy to use"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/prominence-hplc-system?reviewItem=daceae579093b6c6",
+      "validatedKeywords": [
+        "HPLC",
+        "review"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/prominence-hplc-system?reviewItem=e91ddb42623372a6",
+      "validatedKeywords": [
+        "HPLC",
+        "review",
+        "software",
+        "troubleshoot",
+        "troubleshooting",
+        "pressure",
+        "easy to use"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/thermo-scientific-tm-vanquish-tm-flex-quaternary-uhplc-system?reviewItem=054a29ba26fd3e1a",
+      "validatedKeywords": [
+        "Thermo Scientific",
+        "Vanquish",
+        "HPLC",
+        "UHPLC",
+        "review",
+        "troubleshoot",
+        "troubleshooting"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/thermo-scientific-tm-vanquish-tm-flex-quaternary-uhplc-system?reviewItem=0748c03a5da1a2f9",
+      "validatedKeywords": [
+        "Thermo Scientific",
+        "Vanquish",
+        "HPLC",
+        "UHPLC",
+        "review"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/thermo-scientific-tm-vanquish-tm-flex-quaternary-uhplc-system?reviewItem=0dfbed6168201997",
+      "validatedKeywords": [
+        "Thermo Scientific",
+        "Vanquish",
+        "HPLC",
+        "UHPLC",
+        "review"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/thermo-scientific-tm-vanquish-tm-flex-quaternary-uhplc-system?reviewItem=37840dac493e2c49",
+      "validatedKeywords": [
+        "Thermo Scientific",
+        "Vanquish",
+        "HPLC",
+        "UHPLC",
+        "review",
+        "software",
+        "easy to use"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/thermo-scientific-tm-vanquish-tm-flex-quaternary-uhplc-system?reviewItem=42abce790d69a459",
+      "validatedKeywords": [
+        "Thermo Scientific",
+        "Vanquish",
+        "HPLC",
+        "UHPLC",
+        "review",
+        "training",
+        "robustness"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/thermo-scientific-tm-vanquish-tm-flex-quaternary-uhplc-system?reviewItem=42c5c3a1766ef489",
+      "validatedKeywords": [
+        "Thermo Scientific",
+        "Vanquish",
+        "HPLC",
+        "UHPLC",
+        "review",
+        "easy to use"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/thermo-scientific-tm-vanquish-tm-flex-quaternary-uhplc-system?reviewItem=4d822ee5a9663b8b",
+      "validatedKeywords": [
+        "Thermo Scientific",
+        "Vanquish",
+        "HPLC",
+        "UHPLC",
+        "review",
+        "easy to use"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/thermo-scientific-tm-vanquish-tm-flex-quaternary-uhplc-system?reviewItem=8535ed9e65733277",
+      "validatedKeywords": [
+        "Thermo Scientific",
+        "Vanquish",
+        "HPLC",
+        "UHPLC",
+        "review",
+        "reliable"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/thermo-scientific-tm-vanquish-tm-flex-quaternary-uhplc-system?reviewItem=b99c3ec45f4ce267",
+      "validatedKeywords": [
+        "Thermo Scientific",
+        "Vanquish",
+        "HPLC",
+        "UHPLC",
+        "review",
+        "ease of use"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/thermo-scientific-tm-vanquish-tm-flex-quaternary-uhplc-system?reviewItem=ec99819d527a6450",
+      "validatedKeywords": [
+        "Thermo Scientific",
+        "Vanquish",
+        "HPLC",
+        "UHPLC",
+        "review",
+        "ease of use"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/thermo-scientific-tm-vanquish-tm-horizon-uhplc-system?reviewItem=418a39a329a4cfef",
+      "validatedKeywords": [
+        "Thermo Scientific",
+        "Vanquish",
+        "HPLC",
+        "UHPLC",
+        "review",
+        "easy to use"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/thermo-scientific-tm-vanquish-tm-horizon-uhplc-system?reviewItem=fdc4360f02238176",
+      "validatedKeywords": [
+        "Agilent",
+        "Thermo Scientific",
+        "Vanquish",
+        "HPLC",
+        "UHPLC",
+        "review",
+        "software",
+        "lab advisor"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/thermo-scientific-tm-vanquish-tm-neo-uhplc-system?reviewItem=01399f44a3ef54ac",
+      "validatedKeywords": [
+        "Thermo Scientific",
+        "Vanquish",
+        "HPLC",
+        "UHPLC",
+        "review",
+        "user-friendly"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/thermo-scientific-tm-vanquish-tm-neo-uhplc-system?reviewItem=349c51086249f5b0",
+      "validatedKeywords": [
+        "Thermo Scientific",
+        "Vanquish",
+        "HPLC",
+        "UHPLC",
+        "review"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/thermo-scientific-tm-vanquish-tm-neo-uhplc-system?reviewItem=4c41c48a5c6a8872",
+      "validatedKeywords": [
+        "Thermo Scientific",
+        "Vanquish",
+        "HPLC",
+        "UHPLC",
+        "review"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/thermo-scientific-tm-vanquish-tm-neo-uhplc-system?reviewItem=6aeb40fce4e8b2d1",
+      "validatedKeywords": [
+        "Thermo Scientific",
+        "Vanquish",
+        "HPLC",
+        "UHPLC",
+        "review",
+        "software",
+        "service",
+        "maintenance"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/thermo-scientific-tm-vanquish-tm-neo-uhplc-system?reviewItem=736b53b7fc68a6ac",
+      "validatedKeywords": [
+        "Thermo Scientific",
+        "Vanquish",
+        "HPLC",
+        "UHPLC",
+        "review",
+        "easy to use"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/thermo-scientific-tm-vanquish-tm-neo-uhplc-system?reviewItem=80e2a812db393ad1",
+      "validatedKeywords": [
+        "Thermo Scientific",
+        "Vanquish",
+        "HPLC",
+        "UHPLC",
+        "LC-MS",
+        "review"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/thermo-scientific-tm-vanquish-tm-neo-uhplc-system?reviewItem=b1515c6884982023",
+      "validatedKeywords": [
+        "Thermo Scientific",
+        "Vanquish",
+        "HPLC",
+        "UHPLC",
+        "review",
+        "ease of use",
+        "pressure"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/thermo-scientific-tm-vanquish-tm-neo-uhplc-system?reviewItem=b9bd534ca60f5beb",
+      "validatedKeywords": [
+        "Thermo Scientific",
+        "Vanquish",
+        "HPLC",
+        "UHPLC",
+        "review"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/thermo-scientific-tm-vanquish-tm-neo-uhplc-system?reviewItem=d6f6ddf8ef9fb7b0",
+      "validatedKeywords": [
+        "Thermo Fisher",
+        "Thermo Scientific",
+        "Vanquish",
+        "HPLC",
+        "UHPLC",
+        "review",
+        "service",
+        "autosampler"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/thermo-scientific-tm-vanquish-tm-neo-uhplc-system?reviewItem=dd5f00c5d17521a6",
+      "validatedKeywords": [
+        "Thermo Scientific",
+        "Vanquish",
+        "HPLC",
+        "UHPLC",
+        "review"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/waters-alliance-tm-hplc-system?reviewItem=2cee73bf161b73ee",
+      "validatedKeywords": [
+        "Waters",
+        "Alliance",
+        "HPLC",
+        "review",
+        "software",
+        "user-friendly"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/waters-alliance-tm-hplc-system?reviewItem=2e1995292650a0b1",
+      "validatedKeywords": [
+        "Waters",
+        "Alliance",
+        "HPLC",
+        "review"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/waters-alliance-tm-hplc-system?reviewItem=461225f48c15e074",
+      "validatedKeywords": [
+        "Waters",
+        "Alliance",
+        "HPLC",
+        "review",
+        "reliable"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/waters-alliance-tm-hplc-system?reviewItem=5fc7e28d5781bcf5",
+      "validatedKeywords": [
+        "Waters",
+        "Alliance",
+        "HPLC",
+        "review"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/waters-alliance-tm-hplc-system?reviewItem=63b6de85b057f5c5",
+      "validatedKeywords": [
+        "Waters",
+        "Alliance",
+        "HPLC",
+        "review",
+        "reproducible"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/waters-alliance-tm-hplc-system?reviewItem=6ffe2e42ca74773f",
+      "validatedKeywords": [
+        "Waters",
+        "Alliance",
+        "HPLC",
+        "review",
+        "easy to use"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/waters-alliance-tm-hplc-system?reviewItem=a509ff1d33fdfedc",
+      "validatedKeywords": [
+        "Waters",
+        "Alliance",
+        "HPLC",
+        "review",
+        "reproducible"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/waters-alliance-tm-hplc-system?reviewItem=b6d84af28dba35f8",
+      "validatedKeywords": [
+        "Waters",
+        "Alliance",
+        "HPLC",
+        "review",
+        "software",
+        "carryover",
+        "method transfer",
+        "user-friendly"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/waters-alliance-tm-hplc-system?reviewItem=c9153a046a0ebd4d",
+      "validatedKeywords": [
+        "Waters",
+        "Alliance",
+        "HPLC",
+        "review"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    },
+    {
+      "url": "https://www.selectscience.net/product/waters-alliance-tm-hplc-system?reviewItem=eaf72330eba832e8",
+      "validatedKeywords": [
+        "Waters",
+        "Alliance",
+        "HPLC",
+        "review",
+        "software",
+        "service",
+        "maintenance"
+      ],
+      "validatedAt": "2026-08-23",
+      "validationMethod": "full_source_text"
+    }
   ]
 }
