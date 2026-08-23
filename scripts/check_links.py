@@ -7,6 +7,7 @@ import json
 import re
 import socket
 import sys
+from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
@@ -34,6 +35,8 @@ TRAILING_PUNCTUATION = ".,;:!?)]}"
 # and liable to trigger publisher rate limits. Their API endpoint and any links
 # promoted into user-facing evidence remain part of the ordinary link check.
 BULK_API_RECORD_KEYS = {"recentRecords"}
+DOMAIN_WIDE_404_HOSTS = {"fda.gov"}
+MIN_DOMAIN_WIDE_404S = 5
 
 
 def utc_now() -> str:
@@ -65,6 +68,14 @@ def collect_urls() -> list[str]:
         except (OSError, json.JSONDecodeError) as error:
             raise RuntimeError(f"Cannot read {path.relative_to(ROOT)}: {error}") from error
     return sorted(urls)
+
+
+def read_previous_results() -> list[dict[str, object]]:
+    try:
+        value = json.loads(OUTPUT_FILE.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return []
+    return value if isinstance(value, list) else []
 
 
 def is_dns_failure(reason: object) -> bool:
@@ -184,27 +195,76 @@ def check_url(url: str) -> dict[str, object]:
     }
 
 
+def normalized_host(url: object) -> str:
+    host = (urlparse(str(url)).hostname or "").lower()
+    return host.removeprefix("www.")
+
+
+def reclassify_domain_wide_404_anomalies(
+    results: list[dict[str, object]],
+    previous_results: list[dict[str, object]],
+) -> int:
+    """Keep a known domain-wide runner anomaly from becoming false link death.
+
+    This exception is deliberately narrow: every currently tracked URL on an
+    allowlisted host must return 404, at least five URLs must be affected, and
+    every affected URL must have been healthy in the previous validated report.
+    The links remain blocked/unverified rather than being promoted to healthy.
+    """
+    previous_by_url = {
+        str(item.get("url")): item
+        for item in previous_results
+        if isinstance(item, dict) and item.get("url")
+    }
+    by_host: dict[str, list[dict[str, object]]] = defaultdict(list)
+    for result in results:
+        by_host[normalized_host(result.get("url"))].append(result)
+
+    reclassified = 0
+    for host in DOMAIN_WIDE_404_HOSTS:
+        host_results = by_host.get(host, [])
+        anomalous = [
+            item
+            for item in host_results
+            if item.get("status") == "dead" and item.get("httpStatus") == 404
+        ]
+        if len(anomalous) < MIN_DOMAIN_WIDE_404S or len(anomalous) != len(host_results):
+            continue
+        if not all(previous_by_url.get(str(item.get("url")), {}).get("status") == "ok" for item in anomalous):
+            continue
+        reason = (
+            f"Domain-wide 404 anomaly: all {len(anomalous)} tracked {host} URLs returned 404 "
+            "after being healthy in the previous validated run; manual confirmation required."
+        )
+        for item in anomalous:
+            item["status"] = "blocked"
+            item["reason"] = reason
+            reclassified += 1
+    return reclassified
+
+
 def write_results(results: list[dict[str, object]]) -> None:
     temporary = OUTPUT_FILE.with_suffix(".json.tmp")
     temporary.write_text(json.dumps(results, indent=2) + "\n", encoding="utf-8")
     temporary.replace(OUTPUT_FILE)
 
 
-def print_dead_table(results: list[dict[str, object]]) -> None:
-    dead = [result for result in results if result["status"] == "dead"]
-    print("\nDead links")
+def print_failure_table(results: list[dict[str, object]], status_name: str, heading: str) -> None:
+    failures = [result for result in results if result["status"] == status_name]
+    print(f"\n{heading}")
     print("| HTTP status | URL |")
     print("| --- | --- |")
-    if not dead:
+    if not failures:
         print("| — | None |")
         return
-    for result in dead:
+    for result in failures:
         status = result["httpStatus"] if result["httpStatus"] is not None else "network failure"
         print(f"| {status} | {result['url']} |")
 
 
 def main() -> int:
     urls = collect_urls()
+    previous_results = read_previous_results()
     print(f"Checking {len(urls)} unique URLs from {DATA_DIR.relative_to(ROOT)}/ ...")
     results: list[dict[str, object]] = []
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
@@ -213,8 +273,15 @@ def main() -> int:
             results.append(future.result())
 
     results.sort(key=lambda result: str(result["url"]))
+    anomaly_count = reclassify_domain_wide_404_anomalies(results, previous_results)
+    if anomaly_count:
+        print(
+            f"Reclassified {anomaly_count} domain-wide anomalous 404 responses as blocked; "
+            "the affected links remain unverified."
+        )
     write_results(results)
-    print_dead_table(results)
+    print_failure_table(results, "dead", "Dead links")
+    print_failure_table(results, "mislink", "Semantic mislinks")
 
     counts = {status: sum(result["status"] == status for result in results) for status in ("ok", "blocked", "dead", "mislink")}
     print(f"\nLink check complete: {counts['ok']} ok, {counts['blocked']} blocked, {counts['dead']} dead, {counts['mislink']} mislinks.")

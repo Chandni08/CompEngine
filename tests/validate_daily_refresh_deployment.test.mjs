@@ -58,6 +58,9 @@ test("cloud refresh schedule validates before saving or deploying data", () => {
   assert.match(workflow, /cron: "0 11 \* \* \*"/);
   assert.match(workflow, /cron: "0 12 \* \* \*"/);
   assert.match(workflow, /TZ=America\/New_York date \+%H/);
+  assert.match(workflow, /outputs:\s+should_run:/);
+  assert.match(workflow, /if: needs\.schedule_gate\.outputs\.should_run == 'true'/);
+  assert.match(workflow, /actions\/upload-artifact@v7/);
   assert.ok(workflow.indexOf("Validate the production package") < workflow.indexOf("Save the validated daily data"));
-  assert.ok(workflow.indexOf("Run regression checks") < workflow.indexOf("Save the validated daily data"));
+  assert.ok(workflow.indexOf("Run ingestion regression checks") < workflow.indexOf("Save the validated daily data"));
 });

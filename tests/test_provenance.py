@@ -11,7 +11,11 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from provenance import DATE_TYPES, assess_source_quality, pubmed_provenance, valid_change_evidence  # noqa: E402
-from check_links import semantic_body_status, semantic_redirect_status  # noqa: E402
+from check_links import (  # noqa: E402
+    reclassify_domain_wide_404_anomalies,
+    semantic_body_status,
+    semantic_redirect_status,
+)
 import collect_real_data as collector  # noqa: E402
 
 
@@ -178,6 +182,23 @@ class ProvenanceTests(unittest.TestCase):
         self.assertEqual(status, "mislink")
         status, _ = semantic_body_status("text/html", "Please verify you are human")
         self.assertEqual(status, "blocked")
+
+    def test_domain_wide_fda_404_anomaly_remains_unverified(self):
+        urls = [f"https://www.fda.gov/example/{index}" for index in range(5)]
+        previous = [{"url": url, "status": "ok", "httpStatus": 200} for url in urls]
+        results = [{"url": url, "status": "dead", "httpStatus": 404} for url in urls]
+
+        self.assertEqual(reclassify_domain_wide_404_anomalies(results, previous), 5)
+        self.assertTrue(all(item["status"] == "blocked" for item in results))
+        self.assertTrue(all("manual confirmation required" in str(item["reason"]) for item in results))
+
+    def test_isolated_fda_404_remains_dead(self):
+        url = "https://www.fda.gov/example/removed"
+        previous = [{"url": url, "status": "ok", "httpStatus": 200}]
+        results = [{"url": url, "status": "dead", "httpStatus": 404}]
+
+        self.assertEqual(reclassify_domain_wide_404_anomalies(results, previous), 0)
+        self.assertEqual(results[0]["status"], "dead")
 
     def test_nexera_cl_keeps_publication_and_launch_dates_distinct(self):
         data = json.loads((ROOT / "data" / "product_launches.json").read_text())
