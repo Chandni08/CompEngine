@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-26T14:44:39+00:00",
+  "generatedAt": "2026-08-26T15:10:39+00:00",
   "competitors": {
     "Thermo Fisher": {
-      "generatedAt": "2026-08-26T14:44:36+00:00",
+      "generatedAt": "2026-08-26T15:10:38+00:00",
       "baselineCreated": false,
       "inventoryCounts": {
         "lcmsProductPages": 43,
@@ -322,38 +322,7 @@
           "sourceName": "Thermo Fisher investor relations news"
         }
       ],
-      "new_technical_insights": [
-        {
-          "date": "2026-08-25",
-          "title": "How Inert UHPLC Sample Flow Paths Help Reduce Metal\u2013Analyte Interactions in Large RNA Analysis",
-          "url": "https://www.thermofisher.com/blog/analyteguru/how-inert-uhplc-sample-flow-paths-help-reduce-metal-analyte-interactions-in-large-rna-analysis/",
-          "classification": "technical",
-          "sourceId": "thermo-lc-insights",
-          "sourceName": "Thermo Fisher liquid chromatography insights",
-          "technology": "LC/UHPLC",
-          "marketSegment": "Pharma"
-        },
-        {
-          "date": "2026-08-25",
-          "title": "How to Analyse All Your Vitamins (At Once) With Just One LC Instrument",
-          "url": "https://www.thermofisher.com/blog/analyteguru/how-to-analyse-all-your-vitamins-at-once-with-just-one-lc-instrument/",
-          "classification": "technical",
-          "sourceId": "thermo-lc-insights",
-          "sourceName": "Thermo Fisher liquid chromatography insights",
-          "technology": "LC/UHPLC",
-          "marketSegment": "Environmental"
-        },
-        {
-          "date": "2026-08-25",
-          "title": "High-Throughput Urine Drug Screening and Hormone Quantitation with LDTD-MS",
-          "url": "https://www.thermofisher.com/blog/analyteguru/high-throughput-urine-drug-screening-and-hormone-quantitation-with-ldtd-ms/",
-          "classification": "technical",
-          "sourceId": "thermo-ms-insights",
-          "sourceName": "Thermo Fisher mass spectrometry insights",
-          "technology": "LC-MS",
-          "marketSegment": "Clinical"
-        }
-      ],
+      "new_technical_insights": [],
       "technical_insights": [
         {
           "date": "2026-08-25",
@@ -606,7 +575,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official sitemap index parsed.",
           "extractedRecords": 0,
-          "checkedAt": "2026-08-26T14:44:34+00:00"
+          "checkedAt": "2026-08-26T15:10:35+00:00"
         },
         {
           "sourceId": "thermo-ms-products",
@@ -617,7 +586,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official US sitemap parsed; 43 LC/LC-MS product pages tracked.",
           "extractedRecords": 43,
-          "checkedAt": "2026-08-26T14:44:34+00:00"
+          "checkedAt": "2026-08-26T15:10:36+00:00"
         },
         {
           "sourceId": "thermo-dionex-ion-chromatography-products",
@@ -628,7 +597,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official Thermo sitemap parsed; 2 registered Thermo Scientific Dionex ion chromatography product pages tracked.",
           "extractedRecords": 2,
-          "checkedAt": "2026-08-26T14:44:34+00:00"
+          "checkedAt": "2026-08-26T15:10:36+00:00"
         },
         {
           "sourceId": "thermo-vanquish-neo-nano-lc-products",
@@ -639,7 +608,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official Thermo sitemap parsed; 1 registered Thermo Scientific Vanquish Neo nano-LC product pages tracked.",
           "extractedRecords": 1,
-          "checkedAt": "2026-08-26T14:44:34+00:00"
+          "checkedAt": "2026-08-26T15:10:36+00:00"
         },
         {
           "sourceId": "thermo-news",
@@ -650,7 +619,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official Thermo Fisher investor-relations feed parsed; 19 dated 2026 corporate releases extracted.",
           "extractedRecords": 19,
-          "checkedAt": "2026-08-26T14:44:35+00:00"
+          "checkedAt": "2026-08-26T15:10:36+00:00"
         },
         {
           "sourceId": "thermo-lc-insights",
@@ -661,7 +630,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official dated RSS feed parsed; 6 relevant LC/MS records extracted.",
           "extractedRecords": 6,
-          "checkedAt": "2026-08-26T14:44:35+00:00"
+          "checkedAt": "2026-08-26T15:10:36+00:00"
         },
         {
           "sourceId": "thermo-ms-insights",
@@ -672,7 +641,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official dated RSS feed parsed; 7 relevant LC/MS records extracted.",
           "extractedRecords": 7,
-          "checkedAt": "2026-08-26T14:44:35+00:00"
+          "checkedAt": "2026-08-26T15:10:36+00:00"
         },
         {
           "sourceId": "thermo-proteomics-insights",
@@ -683,12 +652,12 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official dated RSS feed parsed; 6 relevant LC/MS records extracted.",
           "extractedRecords": 6,
-          "checkedAt": "2026-08-26T14:44:36+00:00"
+          "checkedAt": "2026-08-26T15:10:38+00:00"
         }
       ]
     },
     "Shimadzu": {
-      "generatedAt": "2026-08-26T14:44:36+00:00",
+      "generatedAt": "2026-08-26T15:10:38+00:00",
       "baselineCreated": false,
       "inventoryCounts": {
         "lcmsProductPages": 78,
@@ -876,7 +845,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official analytical sitemap parsed; 78 LC/LC-MS/software product pages tracked.",
           "extractedRecords": 78,
-          "checkedAt": "2026-08-26T14:44:36+00:00"
+          "checkedAt": "2026-08-26T15:10:38+00:00"
         },
         {
           "sourceId": "shimadzu-news",
@@ -887,12 +856,12 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official dated news index parsed; 40 relevant releases extracted.",
           "extractedRecords": 40,
-          "checkedAt": "2026-08-26T14:44:36+00:00"
+          "checkedAt": "2026-08-26T15:10:38+00:00"
         }
       ]
     },
     "SCIEX": {
-      "generatedAt": "2026-08-26T14:44:39+00:00",
+      "generatedAt": "2026-08-26T15:10:39+00:00",
       "baselineCreated": false,
       "inventoryCounts": {
         "lcmsProductPages": 65,
@@ -972,7 +941,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official sitemap parsed; 65 MS/LC/software product pages tracked.",
           "extractedRecords": 65,
-          "checkedAt": "2026-08-26T14:44:38+00:00"
+          "checkedAt": "2026-08-26T15:10:39+00:00"
         },
         {
           "sourceId": "sciex-news",
@@ -983,7 +952,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official dated press index parsed; 5 relevant releases extracted.",
           "extractedRecords": 5,
-          "checkedAt": "2026-08-26T14:44:39+00:00"
+          "checkedAt": "2026-08-26T15:10:39+00:00"
         }
       ]
     }
