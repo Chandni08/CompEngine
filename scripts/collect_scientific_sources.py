@@ -212,7 +212,7 @@ def resolve_public_link(page_url: str, href: str) -> str:
     candidate = html.unescape(str(href or "")).strip()
     if not candidate or candidate.lower().startswith(("mailto:", "tel:", "javascript:", "data:")):
         return ""
-    if re.match(r"^(?:www\.)?[a-z0-9](?:[a-z0-9.-]*[a-z0-9])?\.[a-z]{2,}(?:[/?#]|$)", candidate, re.I):
+    if re.match(r"^www\.[a-z0-9](?:[a-z0-9.-]*[a-z0-9])?\.[a-z]{2,}(?:[/?#]|$)", candidate, re.I):
         candidate = f"https://{candidate}"
     return canonical_link(urljoin(page_url, candidate))
 

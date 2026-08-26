@@ -76,6 +76,28 @@ class DailyRefreshResilienceTests(unittest.TestCase):
 
         self.assertEqual(target, "https://www.sciex.com/events/clinical/amer/msacl-2026")
 
+    def test_relative_php_conference_link_stays_on_conference_host(self):
+        target = collect_scientific_sources.resolve_public_link(
+            "https://www.msacl.org/",
+            "index.php?header=MSACL_2026&tab=Agenda",
+        )
+
+        self.assertEqual(target, "https://www.msacl.org/index.php?header=MSACL_2026&tab=Agenda")
+
+    def test_fda_abuse_detection_redirect_is_blocked_not_dead(self):
+        current = [{
+            "url": "https://www.fda.gov/example",
+            "httpStatus": 404,
+            "finalUrl": "https://www.fda.gov/apology_objects/abuse-detection-apology.html",
+            "status": "dead",
+            "reason": "",
+        }]
+
+        changed = check_links.reclassify_known_access_control_destinations(current)
+
+        self.assertEqual(changed, 1)
+        self.assertEqual(current[0]["status"], "blocked")
+
     def test_publish_gate_rejects_stale_or_missing_implication_analysis(self):
         today = date.today().isoformat()
         base = {

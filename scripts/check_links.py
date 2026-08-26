@@ -43,6 +43,9 @@ DOMAIN_WIDE_404_REASON_PREFIX = "Domain-wide 404 anomaly:"
 # become proven-dead merely because the presentation of the block changed.
 WAF_404_CONTINUITY_HOSTS = {"pharmaceuticalonline.com"}
 WAF_404_REASON_PREFIX = "Runner/WAF 404 anomaly:"
+KNOWN_ACCESS_CONTROL_DESTINATIONS = {
+    ("fda.gov", "/apology_objects/abuse-detection-apology.html"),
+}
 
 
 def utc_now() -> str:
@@ -115,6 +118,9 @@ def semantic_redirect_status(requested_url: str, final_url: str) -> tuple[str | 
     requested = urlparse(requested_url)
     final = urlparse(final_url)
     final_path = (final.path or "/").lower()
+    final_host = (final.hostname or "").lower().removeprefix("www.")
+    if (final_host, final_path) in KNOWN_ACCESS_CONTROL_DESTINATIONS:
+        return "blocked", f"Redirected to the publisher's access-control destination: {final_url}"
     if any(marker in final_path for marker in ("custom404", "/404", "/login", "/signin", "/sign-in")):
         return "mislink", f"Redirected to non-evidence destination: {final_url}"
     requested_path = (requested.path or "/").rstrip("/")
@@ -204,6 +210,24 @@ def check_url(url: str) -> dict[str, object]:
 def normalized_host(url: object) -> str:
     host = (urlparse(str(url)).hostname or "").lower()
     return host.removeprefix("www.")
+
+
+def reclassify_known_access_control_destinations(results: list[dict[str, object]]) -> int:
+    """Reclassify explicit publisher WAF destinations even when HTTP is 404."""
+    reclassified = 0
+    for result in results:
+        if result.get("status") == "blocked":
+            continue
+        status, reason = semantic_redirect_status(
+            str(result.get("url") or ""),
+            str(result.get("finalUrl") or result.get("url") or ""),
+        )
+        if status != "blocked":
+            continue
+        result["status"] = "blocked"
+        result["reason"] = reason
+        reclassified += 1
+    return reclassified
 
 
 def reclassify_domain_wide_404_anomalies(
@@ -332,6 +356,12 @@ def main() -> int:
             results.append(future.result())
 
     results.sort(key=lambda result: str(result["url"]))
+    access_control_count = reclassify_known_access_control_destinations(results)
+    if access_control_count:
+        print(
+            f"Reclassified {access_control_count} explicit publisher access-control destinations as blocked; "
+            "the affected links remain unverified."
+        )
     anomaly_count = reclassify_domain_wide_404_anomalies(results, previous_results)
     if anomaly_count:
         print(
