@@ -1,7 +1,7 @@
 {
   "snapshotSchemaVersion": 2,
   "observationType": "sitemap_inventory",
-  "capturedAt": "2026-08-23T22:14:05+00:00",
+  "capturedAt": "2026-08-26T14:44:36+00:00",
   "initialized": true,
   "products": {
     "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/index.html": "2026-08-18",
@@ -86,6 +86,12 @@
   "productMetadata": {},
   "monitoredFamilies": [],
   "pressReleases": {
+    "https://www.shimadzu.com/news/2026/6nfli4th4y5gkm35.html": {
+      "date": "2026-08-25",
+      "title": "CVC Fund \u201cShimadzu Future Innovation Fund\u201d Invests in OptQC, a Developer of Optical Quantum Computers Expected to Advance Next-Generation R&D Infrastructure for Drug Discovery and Materials Development",
+      "url": "https://www.shimadzu.com/news/2026/6nfli4th4y5gkm35.html",
+      "classification": "corporate"
+    },
     "https://www.shimadzu.com/news/2026/zgdqilyigahzfzfi.html": {
       "date": "2026-08-18",
       "title": "Donation for Relief Efforts Following the 2026 Kumamoto Earthquake",
@@ -325,14 +331,7 @@
   "technicalFeedVersion": 3,
   "unverifiedInventoryChanges": {
     "new": [],
-    "updated": [
-      {
-        "url": "https://www.shimadzu.com/an/products/software-informatics/labsolutions-series/system-linkage-option/index.html",
-        "lastmod": "2026-08-21",
-        "previousLastmod": "2026-07-09",
-        "category": "LC/MS"
-      }
-    ],
+    "updated": [],
     "missing": []
   }
 }

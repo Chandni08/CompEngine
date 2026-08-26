@@ -1,7 +1,7 @@
 {
   "snapshotSchemaVersion": 2,
   "observationType": "sitemap_inventory",
-  "capturedAt": "2026-08-23T22:14:08+00:00",
+  "capturedAt": "2026-08-26T14:44:39+00:00",
   "initialized": true,
   "products": {
     "https://sciex.com/products/mass-spectrometers/qtof-systems": "",
@@ -73,6 +73,12 @@
   "productMetadata": {},
   "monitoredFamilies": [],
   "pressReleases": {
+    "https://sciex.com/about-us/press-releases/2026/sciex-helps-clinical-labs-move-from-sample-to-answer-faster-with-new-software-and-lc-solutions": {
+      "date": "2026-07-27",
+      "title": "SCIEX helps clinical labs move from sample to answer faster with new software and LC solutions",
+      "url": "https://sciex.com/about-us/press-releases/2026/sciex-helps-clinical-labs-move-from-sample-to-answer-faster-with-new-software-and-lc-solutions",
+      "classification": "product"
+    },
     "https://sciex.com/about-us/press-releases/2026/sciex-launches-its-5th-generation-of-nominal-mass-novus-v55-system-with-sciexos-5-0-software": {
       "date": "2026-06-01",
       "title": "SCIEX launches the novus V55 system with SCIEX OS 5.0 software and AI enablement tools",

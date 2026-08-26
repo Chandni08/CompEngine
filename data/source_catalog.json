@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-23T22:14:08+00:00",
+  "generatedAt": "2026-08-26T14:44:39+00:00",
   "step": "Step 0",
   "title": "Data Source Inventory",
   "sources": [
@@ -23,7 +23,7 @@
       "extractionReason": "Official Thermo Fisher investor-relations feed parsed; 19 dated 2026 corporate releases extracted.",
       "extractedRecords": 19,
       "fetchMethod": "official_ir_news_api",
-      "lastExtractionCheck": "2026-08-23T22:14:04+00:00"
+      "lastExtractionCheck": "2026-08-26T14:44:35+00:00"
     },
     {
       "id": "thermo-ms-products",
@@ -44,7 +44,7 @@
       "extractionReason": "Official US sitemap parsed; 43 LC/LC-MS product pages tracked.",
       "extractedRecords": 43,
       "fetchMethod": "product_sitemap_xml",
-      "lastExtractionCheck": "2026-08-23T22:14:04+00:00"
+      "lastExtractionCheck": "2026-08-26T14:44:34+00:00"
     },
     {
       "id": "thermo-dionex-ion-chromatography-products",
@@ -73,7 +73,7 @@
       "extractionReason": "Official Thermo sitemap parsed; 2 registered Thermo Scientific Dionex ion chromatography product pages tracked.",
       "extractedRecords": 2,
       "fetchMethod": "registered_product_sitemap",
-      "lastExtractionCheck": "2026-08-23T22:14:04+00:00"
+      "lastExtractionCheck": "2026-08-26T14:44:34+00:00"
     },
     {
       "id": "thermo-vanquish-neo-nano-lc-products",
@@ -101,7 +101,7 @@
       "extractionReason": "Official Thermo sitemap parsed; 1 registered Thermo Scientific Vanquish Neo nano-LC product pages tracked.",
       "extractedRecords": 1,
       "fetchMethod": "registered_product_sitemap",
-      "lastExtractionCheck": "2026-08-23T22:14:04+00:00"
+      "lastExtractionCheck": "2026-08-26T14:44:34+00:00"
     },
     {
       "id": "thermo-lc-insights",
@@ -122,7 +122,7 @@
       "extractionReason": "Official dated RSS feed parsed; 6 relevant LC/MS records extracted.",
       "extractedRecords": 6,
       "fetchMethod": "rss_feed",
-      "lastExtractionCheck": "2026-08-23T22:14:05+00:00"
+      "lastExtractionCheck": "2026-08-26T14:44:35+00:00"
     },
     {
       "id": "thermo-ms-insights",
@@ -140,10 +140,10 @@
       "issue": "",
       "nextAction": "Extract dated, relevant LC-MS technical posts and diff their canonical URLs daily.",
       "extractionStatus": "extracted",
-      "extractionReason": "Official dated RSS feed parsed; 8 relevant LC/MS records extracted.",
-      "extractedRecords": 8,
+      "extractionReason": "Official dated RSS feed parsed; 7 relevant LC/MS records extracted.",
+      "extractedRecords": 7,
       "fetchMethod": "rss_feed",
-      "lastExtractionCheck": "2026-08-23T22:14:05+00:00"
+      "lastExtractionCheck": "2026-08-26T14:44:35+00:00"
     },
     {
       "id": "thermo-proteomics-insights",
@@ -161,10 +161,10 @@
       "issue": "",
       "nextAction": "Extract dated proteomics LC-MS posts and diff their canonical URLs daily.",
       "extractionStatus": "extracted",
-      "extractionReason": "Official dated RSS feed parsed; 7 relevant LC/MS records extracted.",
-      "extractedRecords": 7,
+      "extractionReason": "Official dated RSS feed parsed; 6 relevant LC/MS records extracted.",
+      "extractedRecords": 6,
       "fetchMethod": "rss_feed",
-      "lastExtractionCheck": "2026-08-23T22:14:05+00:00"
+      "lastExtractionCheck": "2026-08-26T14:44:36+00:00"
     },
     {
       "id": "agilent-newsroom",
@@ -186,7 +186,7 @@
       "extractionStatus": "extracted",
       "extractionReason": "Official dated press-release index parsed; 34 releases tracked.",
       "extractedRecords": 34,
-      "lastExtractionCheck": "2026-08-23T22:14:03+00:00"
+      "lastExtractionCheck": "2026-08-26T14:44:33+00:00"
     },
     {
       "id": "agilent-investor-news",
@@ -207,7 +207,7 @@
       "extractionReason": "Official investor-relations feed parsed; 1 recent completed earnings results retained for replay.",
       "extractedRecords": 1,
       "fetchMethod": "official_ir_news_api",
-      "lastExtractionCheck": "2026-08-23T22:14:03+00:00"
+      "lastExtractionCheck": "2026-08-26T14:44:33+00:00"
     },
     {
       "id": "agilent-lcms",
@@ -229,7 +229,7 @@
       "extractionStatus": "extracted",
       "extractionReason": "Official product sitemaps parsed; 49 LC/MS product pages tracked.",
       "extractedRecords": 49,
-      "lastExtractionCheck": "2026-08-23T22:14:03+00:00"
+      "lastExtractionCheck": "2026-08-26T14:44:33+00:00"
     },
     {
       "id": "shimadzu-news",
@@ -247,10 +247,10 @@
       "issue": "",
       "nextAction": "Use as primary Shimadzu launch source.",
       "extractionStatus": "extracted",
-      "extractionReason": "Official dated news index parsed; 39 relevant releases extracted.",
-      "extractedRecords": 39,
+      "extractionReason": "Official dated news index parsed; 40 relevant releases extracted.",
+      "extractedRecords": 40,
       "fetchMethod": "dated_press_index",
-      "lastExtractionCheck": "2026-08-23T22:14:05+00:00"
+      "lastExtractionCheck": "2026-08-26T14:44:36+00:00"
     },
     {
       "id": "shimadzu-lcms",
@@ -270,7 +270,7 @@
       "extractionReason": "Official analytical sitemap parsed; 78 LC/LC-MS/software product pages tracked.",
       "extractedRecords": 78,
       "fetchMethod": "product_sitemap_xml",
-      "lastExtractionCheck": "2026-08-23T22:14:05+00:00"
+      "lastExtractionCheck": "2026-08-26T14:44:36+00:00"
     },
     {
       "id": "sciex-news",
@@ -288,10 +288,10 @@
       "issue": "",
       "nextAction": "Use as primary SCIEX launch source.",
       "extractionStatus": "extracted",
-      "extractionReason": "Official dated press index parsed; 4 relevant releases extracted.",
-      "extractedRecords": 4,
+      "extractionReason": "Official dated press index parsed; 5 relevant releases extracted.",
+      "extractedRecords": 5,
       "fetchMethod": "dated_press_index",
-      "lastExtractionCheck": "2026-08-23T22:14:08+00:00"
+      "lastExtractionCheck": "2026-08-26T14:44:39+00:00"
     },
     {
       "id": "sciex-products",
@@ -311,7 +311,7 @@
       "extractionReason": "Official sitemap parsed; 65 MS/LC/software product pages tracked.",
       "extractedRecords": 65,
       "fetchMethod": "product_sitemap_xml",
-      "lastExtractionCheck": "2026-08-23T22:14:08+00:00"
+      "lastExtractionCheck": "2026-08-26T14:44:38+00:00"
     },
     {
       "id": "perkinelmer-news",
@@ -463,10 +463,10 @@
       "whyItMatters": "Detect broadly influential analytical methods and measurement advances before they become routine application requirements.",
       "nextAction": "Review newly collected DOI records for LC, LC-MS, method-performance, transferability, and application signals.",
       "extractionStatus": "extracted",
-      "extractionReason": "Collected the complete 370-day window: 2000 DOI records from Crossref journal metadata.",
-      "extractedRecords": 2000,
+      "extractionReason": "Collected the complete 370-day window: 3430 DOI records from Crossref journal metadata.",
+      "extractedRecords": 3430,
       "fetchMethod": "crossref_journal_metadata",
-      "lastExtractionCheck": "2026-08-23T21:53:23+00:00",
+      "lastExtractionCheck": "2026-08-26T14:25:51+00:00",
       "metadataEndpoint": "https://api.crossref.org/journals/0003-2700/works",
       "surfaces": [
         "Market intelligence",
@@ -505,10 +505,10 @@
       "whyItMatters": "Track separation-performance requirements and method innovations relevant to LC hardware, columns, chemistries, and transferability.",
       "nextAction": "Review newly collected DOI records for LC, LC-MS, method-performance, transferability, and application signals.",
       "extractionStatus": "extracted",
-      "extractionReason": "Collected the complete 370-day window: 873 DOI records from Crossref journal metadata.",
-      "extractedRecords": 873,
+      "extractionReason": "Collected the complete 370-day window: 874 DOI records from Crossref journal metadata.",
+      "extractedRecords": 874,
       "fetchMethod": "crossref_journal_metadata",
-      "lastExtractionCheck": "2026-08-23T21:53:23+00:00",
+      "lastExtractionCheck": "2026-08-26T14:25:51+00:00",
       "metadataEndpoint": "https://api.crossref.org/journals/0021-9673/works",
       "surfaces": [
         "Market intelligence",
@@ -545,10 +545,10 @@
       "whyItMatters": "Identify sample-preparation, matrix, quantitation, and method-robustness needs in biological applications.",
       "nextAction": "Review newly collected DOI records for LC, LC-MS, method-performance, transferability, and application signals.",
       "extractionStatus": "extracted",
-      "extractionReason": "Collected the complete 370-day window: 346 DOI records from Crossref journal metadata.",
-      "extractedRecords": 346,
+      "extractionReason": "Collected the complete 370-day window: 344 DOI records from Crossref journal metadata.",
+      "extractedRecords": 344,
       "fetchMethod": "crossref_journal_metadata",
-      "lastExtractionCheck": "2026-08-23T21:53:23+00:00",
+      "lastExtractionCheck": "2026-08-26T14:25:51+00:00",
       "metadataEndpoint": "https://api.crossref.org/journals/1570-0232/works",
       "surfaces": [
         "Market intelligence",
@@ -586,10 +586,10 @@
       "whyItMatters": "Track mass-spectrometry performance and workflow advances that may change LC-MS system or software requirements.",
       "nextAction": "Review newly collected DOI records for LC, LC-MS, method-performance, transferability, and application signals.",
       "extractionStatus": "extracted",
-      "extractionReason": "Collected the complete 370-day window: 365 DOI records from Crossref journal metadata.",
-      "extractedRecords": 365,
+      "extractionReason": "Collected the complete 370-day window: 361 DOI records from Crossref journal metadata.",
+      "extractedRecords": 361,
       "fetchMethod": "crossref_journal_metadata",
-      "lastExtractionCheck": "2026-08-23T21:53:23+00:00",
+      "lastExtractionCheck": "2026-08-26T14:25:51+00:00",
       "metadataEndpoint": "https://api.crossref.org/journals/1044-0305/works",
       "surfaces": [
         "Market intelligence",
@@ -631,7 +631,7 @@
       "extractionReason": "Collected the complete 370-day window: 689 DOI records from Crossref journal metadata.",
       "extractedRecords": 689,
       "fetchMethod": "crossref_journal_metadata",
-      "lastExtractionCheck": "2026-08-23T21:53:23+00:00",
+      "lastExtractionCheck": "2026-08-26T14:25:51+00:00",
       "metadataEndpoint": "https://api.crossref.org/journals/1618-2642/works",
       "surfaces": [
         "Market intelligence",
@@ -668,10 +668,10 @@
       "whyItMatters": "Track regulated-method requirements and recurring pharmaceutical workflow problems that can drive LC and LC-MS product needs.",
       "nextAction": "Review newly collected DOI records for LC, LC-MS, method-performance, transferability, and application signals.",
       "extractionStatus": "extracted",
-      "extractionReason": "Collected the complete 370-day window: 537 DOI records from Crossref journal metadata.",
-      "extractedRecords": 537,
+      "extractionReason": "Collected the complete 370-day window: 536 DOI records from Crossref journal metadata.",
+      "extractedRecords": 536,
       "fetchMethod": "crossref_journal_metadata",
-      "lastExtractionCheck": "2026-08-23T21:53:23+00:00",
+      "lastExtractionCheck": "2026-08-26T14:25:51+00:00",
       "metadataEndpoint": "https://api.crossref.org/journals/0731-7085/works",
       "surfaces": [
         "Market intelligence",
@@ -709,10 +709,10 @@
       "whyItMatters": "Surface broad analytical-method trends and emerging contaminant workflows outside the biomedical emphasis of PubMed.",
       "nextAction": "Review newly collected DOI records for LC, LC-MS, method-performance, transferability, and application signals.",
       "extractionStatus": "extracted",
-      "extractionReason": "Collected the complete 370-day window: 1791 DOI records from Crossref journal metadata.",
-      "extractedRecords": 1791,
+      "extractionReason": "Collected the complete 370-day window: 1793 DOI records from Crossref journal metadata.",
+      "extractedRecords": 1793,
       "fetchMethod": "crossref_journal_metadata",
-      "lastExtractionCheck": "2026-08-23T21:53:23+00:00",
+      "lastExtractionCheck": "2026-08-26T14:25:51+00:00",
       "metadataEndpoint": "https://api.crossref.org/journals/0039-9140/works",
       "surfaces": [
         "Market intelligence",
@@ -754,7 +754,7 @@
       "extractionReason": "2 of 2 official endpoints reachable; 37 public program-content links extracted.",
       "extractedRecords": 37,
       "fetchMethod": "official_conference_endpoint_monitor",
-      "lastExtractionCheck": "2026-08-23T21:53:36+00:00",
+      "lastExtractionCheck": "2026-08-26T14:26:12+00:00",
       "monitoringUrls": [
         "https://www.asms.org/conferences/annual-conference",
         "https://www.asms.org/conferences/annual-conference/conference-program"
@@ -1026,7 +1026,7 @@
         }
       ],
       "currentAttemptReachabilityCount": 2,
-      "lastAttemptAt": "2026-08-23T21:53:36+00:00",
+      "lastAttemptAt": "2026-08-26T14:26:12+00:00",
       "lastAttemptStatus": "extracted"
     },
     {
@@ -1064,7 +1064,7 @@
       "extractionReason": "2 of 2 official endpoints reachable; 43 public program-content links extracted.",
       "extractedRecords": 43,
       "fetchMethod": "official_conference_endpoint_monitor",
-      "lastExtractionCheck": "2026-08-23T21:53:36+00:00",
+      "lastExtractionCheck": "2026-08-26T14:26:12+00:00",
       "monitoringUrls": [
         "https://hplc2026-symposium.org/",
         "https://hplc-symposium.org/2028"
@@ -1378,7 +1378,7 @@
         }
       ],
       "currentAttemptReachabilityCount": 2,
-      "lastAttemptAt": "2026-08-23T21:53:36+00:00",
+      "lastAttemptAt": "2026-08-26T14:26:12+00:00",
       "lastAttemptStatus": "extracted"
     },
     {
@@ -1416,7 +1416,7 @@
       "extractionReason": "1 of 1 official endpoints reachable; 0 public program-content links extracted.",
       "extractedRecords": 0,
       "fetchMethod": "official_conference_endpoint_monitor",
-      "lastExtractionCheck": "2026-08-23T21:53:36+00:00",
+      "lastExtractionCheck": "2026-08-26T14:26:12+00:00",
       "monitoringUrls": [
         "https://www.imss.nl/"
       ],
@@ -1427,7 +1427,7 @@
       "endpointReachabilityCount": 1,
       "contentRecords": [],
       "currentAttemptReachabilityCount": 1,
-      "lastAttemptAt": "2026-08-23T21:53:36+00:00",
+      "lastAttemptAt": "2026-08-26T14:26:12+00:00",
       "lastAttemptStatus": "partial"
     },
     {
@@ -1459,10 +1459,10 @@
       "whyItMatters": "MSACL separates early research from clinically available assays, providing direct evidence of what LC-MS workflows are approaching routine clinical use.",
       "nextAction": "Diff public program, abstract, poster, sponsor, and vendor-session pages; preserve exact record URLs when content is published.",
       "extractionStatus": "extracted",
-      "extractionReason": "2 of 2 official endpoints reachable; 124 public program-content links extracted.",
-      "extractedRecords": 124,
+      "extractionReason": "2 of 2 official endpoints reachable; 127 public program-content links extracted.",
+      "extractedRecords": 127,
       "fetchMethod": "official_conference_endpoint_monitor",
-      "lastExtractionCheck": "2026-08-23T21:53:36+00:00",
+      "lastExtractionCheck": "2026-08-26T14:26:12+00:00",
       "monitoringUrls": [
         "https://www.msacl.org/",
         "https://www.msacl.org/program/"
@@ -1796,6 +1796,13 @@
           "sourcePageUrl": "https://www.msacl.org/program/"
         },
         {
+          "id": "a38ec34549f504830f61",
+          "title": "Pre-Register",
+          "recordType": "Public conference program link",
+          "canonicalUrl": "https://ssi-shimadzu-8076067.hs-sites.com/2026-msacl-workshop",
+          "sourcePageUrl": "https://www.msacl.org/program/"
+        },
+        {
           "id": "b7219fbfd79994ee75af",
           "title": "Automating Therapeutic Drug Monitoring on the Open Architecture CLAM-2040 Platform",
           "recordType": "Public conference program link",
@@ -1842,6 +1849,20 @@
           "title": "CHU Sainte-Justine as an Institutional Actor in Precision Medicine Alongside Genomics",
           "recordType": "Public conference program link",
           "canonicalUrl": "https://www.msacl.org/workshop_presentation_summary.php?workshop_id=185&presenter_id=4107",
+          "sourcePageUrl": "https://www.msacl.org/program/"
+        },
+        {
+          "id": "c38765296af1fa697af4",
+          "title": "Exploring the SCIEX novus V55: Speed, simplicity, and workflow efficiency",
+          "recordType": "Public conference program link",
+          "canonicalUrl": "https://www.msacl.org/workshop_presentation_summary.php?workshop_id=187&presenter_id=4008",
+          "sourcePageUrl": "https://www.msacl.org/program/"
+        },
+        {
+          "id": "f646c675bbae52050717",
+          "title": "TBD",
+          "recordType": "Public conference program link",
+          "canonicalUrl": "https://www.msacl.org/workshop_presentation_summary.php?workshop_id=187&presenter_id=3917",
           "sourcePageUrl": "https://www.msacl.org/program/"
         },
         {
@@ -2343,7 +2364,7 @@
         }
       ],
       "currentAttemptReachabilityCount": 2,
-      "lastAttemptAt": "2026-08-23T21:53:36+00:00",
+      "lastAttemptAt": "2026-08-26T14:26:12+00:00",
       "lastAttemptStatus": "extracted"
     },
     {
@@ -2376,10 +2397,10 @@
       "whyItMatters": "EBF provides industry-led evidence of regulated bioanalysis practice across pharma and CRO laboratories, including issues not visible in publication-volume data.",
       "nextAction": "Diff public program, abstract, poster, sponsor, and vendor-session pages; preserve exact record URLs when content is published.",
       "extractionStatus": "extracted",
-      "extractionReason": "2 of 2 official endpoints reachable; 7 public program-content links extracted.",
-      "extractedRecords": 7,
+      "extractionReason": "2 of 2 official endpoints reachable; 5 public program-content links extracted.",
+      "extractedRecords": 5,
       "fetchMethod": "official_conference_endpoint_monitor",
-      "lastExtractionCheck": "2026-08-23T21:53:36+00:00",
+      "lastExtractionCheck": "2026-08-26T14:26:12+00:00",
       "monitoringUrls": [
         "https://e-b-f.eu/meetings/",
         "https://meetings.e-b-f.eu/open/"
@@ -2398,24 +2419,10 @@
           "sourcePageUrl": "https://meetings.e-b-f.eu/open/"
         },
         {
-          "id": "e2168c6f94a0b9e5b1a9",
-          "title": "this form",
-          "recordType": "Public conference program link",
-          "canonicalUrl": "https://meetings.e-b-f.eu/wp-content/uploads/2026/03/Abstracts-submission-form-2026-Podium-presentation.docx",
-          "sourcePageUrl": "https://meetings.e-b-f.eu/open/"
-        },
-        {
           "id": "66ba3990e22cbcd3a140",
           "title": "this form",
           "recordType": "Public conference program link",
           "canonicalUrl": "https://meetings.e-b-f.eu/wp-content/uploads/2026/03/Posters-submission-form-2026.docx",
-          "sourcePageUrl": "https://meetings.e-b-f.eu/open/"
-        },
-        {
-          "id": "33a4f87b12be55a78791",
-          "title": "here",
-          "recordType": "Public conference program link",
-          "canonicalUrl": "https://meetings.e-b-f.eu/wp-content/uploads/2026/03/19th-OS-Session-Goals.pdf",
           "sourcePageUrl": "https://meetings.e-b-f.eu/open/"
         },
         {
@@ -2441,7 +2448,7 @@
         }
       ],
       "currentAttemptReachabilityCount": 2,
-      "lastAttemptAt": "2026-08-23T21:53:36+00:00",
+      "lastAttemptAt": "2026-08-26T14:26:12+00:00",
       "lastAttemptStatus": "extracted"
     },
     {
@@ -2476,7 +2483,7 @@
       "extractionReason": "Endpoint reachability verified separately; it does not prove content freshness.",
       "extractedRecords": 0,
       "fetchMethod": "official_regulatory_page_check",
-      "lastExtractionCheck": "2026-08-23T21:54:03+00:00",
+      "lastExtractionCheck": "2026-08-26T14:26:42+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -2522,7 +2529,7 @@
       "extractionReason": "Endpoint reachability verified separately; it does not prove content freshness.",
       "extractedRecords": 0,
       "fetchMethod": "official_regulatory_page_check",
-      "lastExtractionCheck": "2026-08-23T21:54:03+00:00",
+      "lastExtractionCheck": "2026-08-26T14:26:42+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -2569,7 +2576,7 @@
       "extractionReason": "Official public document identifier and content were verified.",
       "extractedRecords": 1,
       "fetchMethod": "official_regulatory_page_check",
-      "lastExtractionCheck": "2026-08-23T21:54:03+00:00",
+      "lastExtractionCheck": "2026-08-26T14:26:42+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -2615,7 +2622,7 @@
       "extractionReason": "Official public document identifier and content were verified.",
       "extractedRecords": 1,
       "fetchMethod": "official_regulatory_page_check",
-      "lastExtractionCheck": "2026-08-23T21:54:03+00:00",
+      "lastExtractionCheck": "2026-08-26T14:26:42+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -2662,7 +2669,7 @@
       "extractionReason": "Official source unavailable during check: HTTP 404.",
       "extractedRecords": 0,
       "fetchMethod": "official_regulatory_page_check",
-      "lastExtractionCheck": "2026-08-23T21:54:03+00:00",
+      "lastExtractionCheck": "2026-08-26T14:26:42+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -2709,7 +2716,7 @@
       "extractionReason": "Official source unavailable during check: HTTP 404.",
       "extractedRecords": 0,
       "fetchMethod": "official_regulatory_page_check",
-      "lastExtractionCheck": "2026-08-23T21:54:03+00:00",
+      "lastExtractionCheck": "2026-08-26T14:26:42+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -2809,12 +2816,12 @@
         }
       ],
       "fetchMethod": "official_conference_endpoint_monitor",
-      "lastExtractionCheck": "2026-08-23T21:53:36+00:00",
+      "lastExtractionCheck": "2026-08-26T14:26:12+00:00",
       "monitoringUrls": [
         "https://www.casss.org/meetings-and-events/event/2026/01/27/default-calendar/wcbp-2026"
       ],
       "currentAttemptReachabilityCount": 1,
-      "lastAttemptAt": "2026-08-23T21:53:36+00:00",
+      "lastAttemptAt": "2026-08-26T14:26:12+00:00",
       "lastAttemptStatus": "extracted"
     },
     {
@@ -2896,12 +2903,12 @@
         }
       ],
       "fetchMethod": "official_conference_endpoint_monitor",
-      "lastExtractionCheck": "2026-08-23T21:53:36+00:00",
+      "lastExtractionCheck": "2026-08-26T14:26:12+00:00",
       "monitoringUrls": [
         "https://www.slas.org/events-calendar/slas2026-international-conference-exhibition/"
       ],
       "currentAttemptReachabilityCount": 1,
-      "lastAttemptAt": "2026-08-23T21:53:36+00:00",
+      "lastAttemptAt": "2026-08-26T14:26:12+00:00",
       "lastAttemptStatus": "extracted"
     },
     {
@@ -3018,12 +3025,12 @@
         }
       ],
       "fetchMethod": "official_conference_endpoint_monitor",
-      "lastExtractionCheck": "2026-08-23T21:53:36+00:00",
+      "lastExtractionCheck": "2026-08-26T14:26:12+00:00",
       "monitoringUrls": [
         "https://mrna-analytical-development.com/"
       ],
       "currentAttemptReachabilityCount": 1,
-      "lastAttemptAt": "2026-08-23T21:53:36+00:00",
+      "lastAttemptAt": "2026-08-26T14:26:12+00:00",
       "lastAttemptStatus": "extracted"
     },
     {
@@ -3133,12 +3140,12 @@
         }
       ],
       "fetchMethod": "official_conference_endpoint_monitor",
-      "lastExtractionCheck": "2026-08-23T21:53:36+00:00",
+      "lastExtractionCheck": "2026-08-26T14:26:12+00:00",
       "monitoringUrls": [
         "https://www.bioprocessingeurope.com/"
       ],
       "currentAttemptReachabilityCount": 1,
-      "lastAttemptAt": "2026-08-23T21:53:36+00:00",
+      "lastAttemptAt": "2026-08-26T14:26:12+00:00",
       "lastAttemptStatus": "extracted"
     },
     {
@@ -3207,12 +3214,12 @@
         }
       ],
       "fetchMethod": "official_conference_endpoint_monitor",
-      "lastExtractionCheck": "2026-08-23T21:53:36+00:00",
+      "lastExtractionCheck": "2026-08-26T14:26:12+00:00",
       "monitoringUrls": [
         "https://www.acs.org/events/spring.html"
       ],
       "currentAttemptReachabilityCount": 1,
-      "lastAttemptAt": "2026-08-23T21:53:36+00:00",
+      "lastAttemptAt": "2026-08-26T14:26:12+00:00",
       "lastAttemptStatus": "extracted"
     },
     {
@@ -3345,12 +3352,12 @@
         }
       ],
       "fetchMethod": "official_conference_endpoint_monitor",
-      "lastExtractionCheck": "2026-08-23T21:53:36+00:00",
+      "lastExtractionCheck": "2026-08-26T14:26:12+00:00",
       "monitoringUrls": [
         "https://analytica.de/en/munich/"
       ],
       "currentAttemptReachabilityCount": 1,
-      "lastAttemptAt": "2026-08-23T21:53:36+00:00",
+      "lastAttemptAt": "2026-08-26T14:26:12+00:00",
       "lastAttemptStatus": "extracted"
     },
     {
@@ -3452,12 +3459,12 @@
         }
       ],
       "fetchMethod": "official_conference_endpoint_monitor",
-      "lastExtractionCheck": "2026-08-23T21:53:36+00:00",
+      "lastExtractionCheck": "2026-08-26T14:26:12+00:00",
       "monitoringUrls": [
         "https://adc-analytical.com/"
       ],
       "currentAttemptReachabilityCount": 1,
-      "lastAttemptAt": "2026-08-23T21:53:36+00:00",
+      "lastAttemptAt": "2026-08-26T14:26:12+00:00",
       "lastAttemptStatus": "extracted"
     },
     {
@@ -3621,12 +3628,12 @@
         }
       ],
       "fetchMethod": "official_conference_endpoint_monitor",
-      "lastExtractionCheck": "2026-08-23T21:53:36+00:00",
+      "lastExtractionCheck": "2026-08-26T14:26:12+00:00",
       "monitoringUrls": [
         "https://www.pegsummit.com/"
       ],
       "currentAttemptReachabilityCount": 1,
-      "lastAttemptAt": "2026-08-23T21:53:36+00:00",
+      "lastAttemptAt": "2026-08-26T14:26:12+00:00",
       "lastAttemptStatus": "extracted"
     },
     {
@@ -3707,24 +3714,24 @@
           "sourcePageUrl": "https://informaconnect.com/tides/"
         },
         {
-          "id": "04353d022dc5ecf23d41",
+          "id": "bdf5d6deec42ea5819f1",
           "title": "Download Sponsorship Prospectus",
           "recordType": "Public conference program link",
-          "canonicalUrl": "https://get.informaconnect.com/tides-series/sponsorship/?utm_source=CORE&amp;utm_medium=WEB-INQ&amp;utm_campaign=tidesus_home_floorplan",
+          "canonicalUrl": "https://get.informaconnect.com/tides-series/sponsorship/?utm_source=CORE&utm_medium=WEB-INQ&utm_campaign=tidesus_home_floorplan",
           "sourcePageUrl": "https://informaconnect.com/tides/"
         },
         {
-          "id": "e118c5bea8f4dac7a01b",
+          "id": "c9e52a9edc134366c221",
           "title": "View Sponsor Prospectus",
           "recordType": "Public conference program link",
-          "canonicalUrl": "https://get.informaconnect.com/tides-series/sponsorship/?utm_source=organic&amp;utm_medium=CORE&amp;utm_campaign=tidesusa-home",
+          "canonicalUrl": "https://get.informaconnect.com/tides-series/sponsorship/?utm_source=organic&utm_medium=CORE&utm_campaign=tidesusa-home",
           "sourcePageUrl": "https://informaconnect.com/tides/"
         },
         {
-          "id": "3cfad9a123bc50b7f14f",
+          "id": "f4e2444a9740a12be5d1",
           "title": "Why Sponsor?",
           "recordType": "Public conference program link",
-          "canonicalUrl": "https://informaconnect.com/tides/why-sponsor/?utm_source=organic&amp;utm_medium=CORE&amp;utm_campaign=tidesusa-home-whysponsor",
+          "canonicalUrl": "https://informaconnect.com/tides/why-sponsor/?utm_source=organic&utm_medium=CORE&utm_campaign=tidesusa-home-whysponsor",
           "sourcePageUrl": "https://informaconnect.com/tides/"
         },
         {
@@ -3736,12 +3743,12 @@
         }
       ],
       "fetchMethod": "official_conference_endpoint_monitor",
-      "lastExtractionCheck": "2026-08-23T21:53:36+00:00",
+      "lastExtractionCheck": "2026-08-26T14:26:12+00:00",
       "monitoringUrls": [
         "https://informaconnect.com/tides/"
       ],
       "currentAttemptReachabilityCount": 1,
-      "lastAttemptAt": "2026-08-23T21:53:36+00:00",
+      "lastAttemptAt": "2026-08-26T14:26:12+00:00",
       "lastAttemptStatus": "extracted"
     },
     {
@@ -3786,10 +3793,10 @@
           "sourcePageUrl": "https://annualmeeting.asgct.org/"
         },
         {
-          "id": "f3dedefcee7ac5e92470",
+          "id": "a116ba64aafad192d30f",
           "title": "Interactive Program",
           "recordType": "Public conference program link",
-          "canonicalUrl": "https://pag.virtual-meeting.org/US/asgct2026/en-US/pag?is_sponsored=0&amp;is_highlighted=0&amp;is_on_demand=0&amp;streaming_allowed=0&amp;filterbox=false&amp;legendbox=false&amp;timezone=false&amp;day=2026-05-12&amp;pre_filter=&amp;viewType=calendar&amp;viewSize=L&amp;view=vertical",
+          "canonicalUrl": "https://pag.virtual-meeting.org/US/asgct2026/en-US/pag?is_sponsored=0&is_highlighted=0&is_on_demand=0&streaming_allowed=0&filterbox=false&legendbox=false&timezone=false&day=2026-05-12&pre_filter=&viewType=calendar&viewSize=L&view=vertical",
           "sourcePageUrl": "https://annualmeeting.asgct.org/"
         },
         {
@@ -3857,12 +3864,12 @@
         }
       ],
       "fetchMethod": "official_conference_endpoint_monitor",
-      "lastExtractionCheck": "2026-08-23T21:53:36+00:00",
+      "lastExtractionCheck": "2026-08-26T14:26:12+00:00",
       "monitoringUrls": [
         "https://annualmeeting.asgct.org/"
       ],
       "currentAttemptReachabilityCount": 1,
-      "lastAttemptAt": "2026-08-23T21:53:36+00:00",
+      "lastAttemptAt": "2026-08-26T14:26:12+00:00",
       "lastAttemptStatus": "extracted"
     },
     {
@@ -3950,12 +3957,12 @@
         }
       ],
       "fetchMethod": "official_conference_endpoint_monitor",
-      "lastExtractionCheck": "2026-08-23T21:53:36+00:00",
+      "lastExtractionCheck": "2026-08-26T14:26:12+00:00",
       "monitoringUrls": [
         "https://www.slas.org/events-calendar/slas-europe-2026-conference-and-exhibition/"
       ],
       "currentAttemptReachabilityCount": 1,
-      "lastAttemptAt": "2026-08-23T21:53:36+00:00",
+      "lastAttemptAt": "2026-08-26T14:26:12+00:00",
       "lastAttemptStatus": "extracted"
     },
     {
@@ -4010,12 +4017,12 @@
         }
       ],
       "fetchMethod": "official_conference_endpoint_monitor",
-      "lastExtractionCheck": "2026-08-23T21:53:36+00:00",
+      "lastExtractionCheck": "2026-08-26T14:26:12+00:00",
       "monitoringUrls": [
         "https://cvent.me/lKEada"
       ],
       "currentAttemptReachabilityCount": 1,
-      "lastAttemptAt": "2026-08-23T21:53:36+00:00",
+      "lastAttemptAt": "2026-08-26T14:26:12+00:00",
       "lastAttemptStatus": "extracted"
     },
     {
@@ -4062,12 +4069,12 @@
         }
       ],
       "fetchMethod": "official_conference_endpoint_monitor",
-      "lastExtractionCheck": "2026-08-23T21:53:36+00:00",
+      "lastExtractionCheck": "2026-08-26T14:26:12+00:00",
       "monitoringUrls": [
         "https://metabolomicssociety.org/"
       ],
       "currentAttemptReachabilityCount": 1,
-      "lastAttemptAt": "2026-08-23T21:53:36+00:00",
+      "lastAttemptAt": "2026-08-26T14:26:12+00:00",
       "lastAttemptStatus": "extracted"
     },
     {
@@ -4169,12 +4176,12 @@
         }
       ],
       "fetchMethod": "official_conference_endpoint_monitor",
-      "lastExtractionCheck": "2026-08-23T21:53:36+00:00",
+      "lastExtractionCheck": "2026-08-26T14:26:12+00:00",
       "monitoringUrls": [
         "https://issxmeetings.org/2026-euro/home"
       ],
       "currentAttemptReachabilityCount": 1,
-      "lastAttemptAt": "2026-08-23T21:53:36+00:00",
+      "lastAttemptAt": "2026-08-26T14:26:12+00:00",
       "lastAttemptStatus": "extracted"
     },
     {
@@ -4318,12 +4325,12 @@
         }
       ],
       "fetchMethod": "official_conference_endpoint_monitor",
-      "lastExtractionCheck": "2026-08-23T21:53:36+00:00",
+      "lastExtractionCheck": "2026-08-26T14:26:12+00:00",
       "monitoringUrls": [
         "https://www.bioprocessingsummit.com/"
       ],
       "currentAttemptReachabilityCount": 1,
-      "lastAttemptAt": "2026-08-23T21:53:36+00:00",
+      "lastAttemptAt": "2026-08-26T14:26:12+00:00",
       "lastAttemptStatus": "extracted"
     },
     {
@@ -4412,12 +4419,12 @@
         }
       ],
       "fetchMethod": "official_conference_endpoint_monitor",
-      "lastExtractionCheck": "2026-08-23T21:53:36+00:00",
+      "lastExtractionCheck": "2026-08-26T14:26:12+00:00",
       "monitoringUrls": [
         "https://www.acs.org/events/all-events/acs-fall-2026.html"
       ],
       "currentAttemptReachabilityCount": 1,
-      "lastAttemptAt": "2026-08-23T21:53:36+00:00",
+      "lastAttemptAt": "2026-08-26T14:26:12+00:00",
       "lastAttemptStatus": "extracted"
     },
     {
@@ -4588,10 +4595,10 @@
           "sourcePageUrl": "https://www.casss.org/meetings-and-events/symposia/mass-spectrometry"
         },
         {
-          "id": "fb4f11a5510a62f17643",
+          "id": "97cdc21bfc9ef5141ca3",
           "title": "Whitty-L&#233;veill&#233; Laurence, Merck &amp; Co., Inc., 2025 (1999642 KB)",
           "recordType": "Public conference program link",
-          "canonicalUrl": "https://www.casss.org/docs/default-source/mass-spec/2025-speaker-presentations/whitty-l&",
+          "canonicalUrl": "https://www.casss.org/docs/default-source/mass-spec/2025-speaker-presentations/whitty-l\u00e9veill\u00e9-laurence-merck-co-inc-2025.pdf?sfvrsn=f1e4a7a1_5",
           "sourcePageUrl": "https://www.casss.org/meetings-and-events/symposia/mass-spectrometry"
         },
         {
@@ -4624,12 +4631,12 @@
         }
       ],
       "fetchMethod": "official_conference_endpoint_monitor",
-      "lastExtractionCheck": "2026-08-23T21:53:36+00:00",
+      "lastExtractionCheck": "2026-08-26T14:26:12+00:00",
       "monitoringUrls": [
         "https://www.casss.org/meetings-and-events/multi-day-symposia/mass-spectrometry"
       ],
       "currentAttemptReachabilityCount": 1,
-      "lastAttemptAt": "2026-08-23T21:53:36+00:00",
+      "lastAttemptAt": "2026-08-26T14:26:12+00:00",
       "lastAttemptStatus": "extracted"
     },
     {
@@ -4703,12 +4710,12 @@
         }
       ],
       "fetchMethod": "official_conference_endpoint_monitor",
-      "lastExtractionCheck": "2026-08-23T21:53:36+00:00",
+      "lastExtractionCheck": "2026-08-26T14:26:12+00:00",
       "monitoringUrls": [
         "https://www.lab-of-the-future.com/europe/"
       ],
       "currentAttemptReachabilityCount": 1,
-      "lastAttemptAt": "2026-08-23T21:53:36+00:00",
+      "lastAttemptAt": "2026-08-26T14:26:12+00:00",
       "lastAttemptStatus": "extracted"
     },
     {
@@ -4789,12 +4796,12 @@
         }
       ],
       "fetchMethod": "official_conference_endpoint_monitor",
-      "lastExtractionCheck": "2026-08-23T21:53:36+00:00",
+      "lastExtractionCheck": "2026-08-26T14:26:12+00:00",
       "monitoringUrls": [
         "https://issxmeetings.org/2026-na/home"
       ],
       "currentAttemptReachabilityCount": 1,
-      "lastAttemptAt": "2026-08-23T21:53:36+00:00",
+      "lastAttemptAt": "2026-08-26T14:26:12+00:00",
       "lastAttemptStatus": "extracted"
     },
     {
@@ -4940,12 +4947,12 @@
         }
       ],
       "fetchMethod": "official_conference_endpoint_monitor",
-      "lastExtractionCheck": "2026-08-23T21:53:36+00:00",
+      "lastExtractionCheck": "2026-08-26T14:26:12+00:00",
       "monitoringUrls": [
         "https://www.aaps.org/pharmsci/annual-meeting"
       ],
       "currentAttemptReachabilityCount": 1,
-      "lastAttemptAt": "2026-08-23T21:53:36+00:00",
+      "lastAttemptAt": "2026-08-26T14:26:12+00:00",
       "lastAttemptStatus": "extracted"
     },
     {
@@ -4998,10 +5005,10 @@
           "sourcePageUrl": "https://informaconnect.com/tides-europe/"
         },
         {
-          "id": "cdbcaff45e6e95d87cd6",
+          "id": "8ecfbffa3e1f40e01289",
           "title": "Download Agenda",
           "recordType": "Public conference program link",
-          "canonicalUrl": "https://get.informaconnect.com/tides-europe-agenda/?utm_source=Website&amp;utm_medium=Nav-Bar",
+          "canonicalUrl": "https://get.informaconnect.com/tides-europe-agenda/?utm_source=Website&utm_medium=Nav-Bar",
           "sourcePageUrl": "https://informaconnect.com/tides-europe/"
         },
         {
@@ -5026,10 +5033,10 @@
           "sourcePageUrl": "https://informaconnect.com/tides-europe/"
         },
         {
-          "id": "e60eccbe21d560afaa38",
+          "id": "50e2de7108a9a0cebfed",
           "title": "Download the Full Agenda",
           "recordType": "Public conference program link",
-          "canonicalUrl": "https://get.informaconnect.com/tides-europe-agenda/?utm_source=Website&amp;utm_medium=Hero-CTA",
+          "canonicalUrl": "https://get.informaconnect.com/tides-europe-agenda/?utm_source=Website&utm_medium=Hero-CTA",
           "sourcePageUrl": "https://informaconnect.com/tides-europe/"
         },
         {
@@ -5096,10 +5103,10 @@
           "sourcePageUrl": "https://informaconnect.com/tides-europe/"
         },
         {
-          "id": "48d144681e0a92478841",
+          "id": "a6e1ad642e93acb63ef7",
           "title": "View Sponsor Prospectus",
           "recordType": "Public conference program link",
-          "canonicalUrl": "https://get.informaconnect.com/tides-series/sponsorship/?utm_source=CORE&amp;utm_medium=WEB-INQ&amp;utm_campaign=TIDESeurope-home",
+          "canonicalUrl": "https://get.informaconnect.com/tides-series/sponsorship/?utm_source=CORE&utm_medium=WEB-INQ&utm_campaign=TIDESeurope-home",
           "sourcePageUrl": "https://informaconnect.com/tides-europe/"
         },
         {
@@ -5111,12 +5118,12 @@
         }
       ],
       "fetchMethod": "official_conference_endpoint_monitor",
-      "lastExtractionCheck": "2026-08-23T21:53:36+00:00",
+      "lastExtractionCheck": "2026-08-26T14:26:12+00:00",
       "monitoringUrls": [
         "https://informaconnect.com/tides-europe/"
       ],
       "currentAttemptReachabilityCount": 1,
-      "lastAttemptAt": "2026-08-23T21:53:36+00:00",
+      "lastAttemptAt": "2026-08-26T14:26:12+00:00",
       "lastAttemptStatus": "extracted"
     },
     {
@@ -5233,12 +5240,12 @@
         }
       ],
       "fetchMethod": "official_conference_endpoint_monitor",
-      "lastExtractionCheck": "2026-08-23T21:53:36+00:00",
+      "lastExtractionCheck": "2026-08-26T14:26:12+00:00",
       "monitoringUrls": [
         "https://www.rafa2026.eu/"
       ],
       "currentAttemptReachabilityCount": 1,
-      "lastAttemptAt": "2026-08-23T21:53:36+00:00",
+      "lastAttemptAt": "2026-08-26T14:26:12+00:00",
       "lastAttemptStatus": "extracted"
     },
     {
@@ -5367,12 +5374,12 @@
         }
       ],
       "fetchMethod": "official_conference_endpoint_monitor",
-      "lastExtractionCheck": "2026-08-23T21:53:36+00:00",
+      "lastExtractionCheck": "2026-08-26T14:26:12+00:00",
       "monitoringUrls": [
         "https://www.pegsummiteurope.com/"
       ],
       "currentAttemptReachabilityCount": 1,
-      "lastAttemptAt": "2026-08-23T21:53:36+00:00",
+      "lastAttemptAt": "2026-08-26T14:26:12+00:00",
       "lastAttemptStatus": "extracted"
     },
     {
@@ -5490,12 +5497,12 @@
         }
       ],
       "fetchMethod": "official_conference_endpoint_monitor",
-      "lastExtractionCheck": "2026-08-23T21:53:36+00:00",
+      "lastExtractionCheck": "2026-08-26T14:26:12+00:00",
       "monitoringUrls": [
         "https://www.setac.org/discover-events/global-meetings/setac-north-america-47th-annual-meeting/program/daily-schedule.html"
       ],
       "currentAttemptReachabilityCount": 1,
-      "lastAttemptAt": "2026-08-23T21:53:36+00:00",
+      "lastAttemptAt": "2026-08-26T14:26:12+00:00",
       "lastAttemptStatus": "extracted"
     },
     {
@@ -5555,12 +5562,12 @@
         }
       ],
       "fetchMethod": "official_conference_endpoint_monitor",
-      "lastExtractionCheck": "2026-08-23T21:53:36+00:00",
+      "lastExtractionCheck": "2026-08-26T14:26:12+00:00",
       "monitoringUrls": [
         "https://www.msimaging.science/"
       ],
       "currentAttemptReachabilityCount": 1,
-      "lastAttemptAt": "2026-08-23T21:53:36+00:00",
+      "lastAttemptAt": "2026-08-26T14:26:12+00:00",
       "lastAttemptStatus": "extracted"
     },
     {
@@ -5599,7 +5606,7 @@
       "extractionReason": "0 of 1 publisher-owned endpoints reachable; 12 dated public records available. Retained the last verified records because the publisher endpoint did not yield records in this run.",
       "extractedRecords": 12,
       "fetchMethod": "publisher_public_metadata",
-      "lastExtractionCheck": "2026-08-23T21:53:12+00:00",
+      "lastExtractionCheck": "2026-08-26T14:25:35+00:00",
       "monitoringUrls": [
         "https://www.chromatographyonline.com/rss.xml"
       ]
@@ -5637,10 +5644,10 @@
       "whyItMatters": "Surface biopharma and CDMO analytical workflow needs that could influence LC, LC-MS, compliance, informatics, and method-transfer priorities.",
       "nextAction": "Review new dated records for workflow needs, buying criteria, emerging applications, and competitor positioning.",
       "extractionStatus": "extracted",
-      "extractionReason": "1 of 1 publisher-owned endpoints reachable; 4 dated public records available.",
-      "extractedRecords": 4,
+      "extractionReason": "1 of 1 publisher-owned endpoints reachable; 3 dated public records available.",
+      "extractedRecords": 3,
       "fetchMethod": "publisher_public_metadata",
-      "lastExtractionCheck": "2026-08-23T21:53:12+00:00",
+      "lastExtractionCheck": "2026-08-26T14:25:35+00:00",
       "monitoringUrls": [
         "https://www.biopharminternational.com/rss.xml"
       ]
@@ -5681,7 +5688,7 @@
       "extractionReason": "1 of 1 publisher-owned endpoints reachable; 500 dated public records available.",
       "extractedRecords": 500,
       "fetchMethod": "publisher_public_metadata",
-      "lastExtractionCheck": "2026-08-23T21:53:12+00:00",
+      "lastExtractionCheck": "2026-08-26T14:25:35+00:00",
       "monitoringUrls": [
         "https://www.sepscience.com/sitemap/sitemap-articles-1.xml"
       ]
@@ -5722,7 +5729,7 @@
       "extractionReason": "3 of 3 publisher-owned endpoints reachable; 6 dated public records available.",
       "extractedRecords": 6,
       "fetchMethod": "publisher_public_metadata",
-      "lastExtractionCheck": "2026-08-23T21:53:12+00:00",
+      "lastExtractionCheck": "2026-08-26T14:25:35+00:00",
       "monitoringUrls": [
         "https://www.labroots.com/rss/trending",
         "https://www.labroots.com/rss/trending/chemistry-and-physics",
@@ -5762,10 +5769,10 @@
       "whyItMatters": "Capture buying criteria beyond instrument specs, especially uptime, ease of use, training, maintenance burden, and total operating cost.",
       "nextAction": "Review new dated records for workflow needs, buying criteria, emerging applications, and competitor positioning.",
       "extractionStatus": "extracted",
-      "extractionReason": "1 of 1 publisher-owned endpoints reachable; 182 dated public records available.",
-      "extractedRecords": 182,
+      "extractionReason": "1 of 1 publisher-owned endpoints reachable; 188 dated public records available.",
+      "extractedRecords": 188,
       "fetchMethod": "publisher_public_metadata",
-      "lastExtractionCheck": "2026-08-23T21:53:12+00:00",
+      "lastExtractionCheck": "2026-08-26T14:25:35+00:00",
       "monitoringUrls": [
         "https://www.labmanager.com/sitemap/sitemap-articles-1.xml"
       ]
@@ -5803,10 +5810,10 @@
       "whyItMatters": "Track how vendors package LC, informatics, consumables, and services for pharma workflows and regulated environments.",
       "nextAction": "Review new dated records for workflow needs, buying criteria, emerging applications, and competitor positioning.",
       "extractionStatus": "extracted",
-      "extractionReason": "1 of 1 publisher-owned endpoints reachable; 1 dated public records available.",
-      "extractedRecords": 1,
+      "extractionReason": "1 of 1 publisher-owned endpoints reachable; 2 dated public records available.",
+      "extractedRecords": 2,
       "fetchMethod": "publisher_public_metadata",
-      "lastExtractionCheck": "2026-08-23T21:53:12+00:00",
+      "lastExtractionCheck": "2026-08-26T14:25:35+00:00",
       "monitoringUrls": [
         "https://www.pharmaceuticalonline.com/"
       ]
@@ -5847,7 +5854,7 @@
       "extractionReason": "1 of 1 publisher-owned endpoints reachable; 4 dated public records available.",
       "extractedRecords": 4,
       "fetchMethod": "publisher_public_metadata",
-      "lastExtractionCheck": "2026-08-23T21:53:12+00:00",
+      "lastExtractionCheck": "2026-08-26T14:25:35+00:00",
       "monitoringUrls": [
         "https://theanalyticalscientist.com/"
       ]
@@ -5885,10 +5892,10 @@
       "whyItMatters": "Track regional regulatory and pharma QC themes that may affect Waters LC positioning in Europe and global regulated markets.",
       "nextAction": "Review new dated records for workflow needs, buying criteria, emerging applications, and competitor positioning.",
       "extractionStatus": "extracted",
-      "extractionReason": "1 of 1 publisher-owned endpoints reachable; 28 dated public records available.",
-      "extractedRecords": 28,
+      "extractionReason": "1 of 1 publisher-owned endpoints reachable; 29 dated public records available.",
+      "extractedRecords": 29,
       "fetchMethod": "publisher_public_metadata",
-      "lastExtractionCheck": "2026-08-23T21:53:12+00:00",
+      "lastExtractionCheck": "2026-08-26T14:25:35+00:00",
       "monitoringUrls": [
         "https://www.europeanpharmaceuticalreview.com/googlesitemap.aspx?year=2026"
       ]
@@ -5929,7 +5936,7 @@
       "extractionReason": "1 of 1 publisher-owned endpoints reachable; 15 dated public records available.",
       "extractedRecords": 15,
       "fetchMethod": "publisher_public_metadata",
-      "lastExtractionCheck": "2026-08-23T21:53:12+00:00",
+      "lastExtractionCheck": "2026-08-26T14:25:35+00:00",
       "monitoringUrls": [
         "https://www.americanpharmaceuticalreview.com/Specialty/Chromatography/1444-Article-Archives/"
       ]

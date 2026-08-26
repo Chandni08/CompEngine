@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-08-23T22:14:09+00:00",
+  "generatedAt": "2026-08-26T14:44:39+00:00",
   "competitors": {
     "Thermo Fisher": {
-      "generatedAt": "2026-08-23T22:14:05+00:00",
+      "generatedAt": "2026-08-26T14:44:36+00:00",
       "baselineCreated": false,
       "inventoryCounts": {
         "lcmsProductPages": 43,
         "pressReleases": 19,
-        "technicalInsights": 19,
+        "technicalInsights": 17,
         "thermo-dionex-ion-chromatographyPages": 2,
         "thermo-vanquish-neo-nano-lcPages": 1
       },
@@ -190,19 +190,6 @@
           "summary": "Thermo Fisher Scientific Inc. (NYSE: TMO), the world leader in serving science, will hold its 2026 Investor Day on Wednesday, May 20, 2026, starting at 9:00 a.m.",
           "sourceId": "thermo-news",
           "sourceName": "Thermo Fisher investor relations news"
-        },
-        {
-          "date": "2026-04-27",
-          "title": "Thermo Fisher Scientific Signs Agreement to Sell its Microbiology Business to Astorg",
-          "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2026/Thermo-Fisher-Scientific-Signs-Agreement-to-Sell-its-Microbiology-Business-to-Astorg/default.aspx",
-          "classification": "corporate",
-          "theme": "Corporate strategy",
-          "intent": "Corporate strategic activity",
-          "technology": "LC/UHPLC",
-          "marketSegment": "Pharma",
-          "summary": "Thermo Fisher Scientific Inc. (NYSE: TMO), the world leader in serving science, today announced that it has signed a definitive agreement to sell its microbiology business to Astorg, a leading pan-European private equity firm, for consideration of approximately $1.075 billion, consisting of cash and a $50 million se...",
-          "sourceId": "thermo-news",
-          "sourceName": "Thermo Fisher investor relations news"
         }
       ],
       "recent_press_releases": [
@@ -333,23 +320,71 @@
           "summary": "Thermo Fisher Scientific Inc. (NYSE: TMO), the world leader in serving science, will hold its 2026 Investor Day on Wednesday, May 20, 2026, starting at 9:00 a.m.",
           "sourceId": "thermo-news",
           "sourceName": "Thermo Fisher investor relations news"
-        },
-        {
-          "date": "2026-04-27",
-          "title": "Thermo Fisher Scientific Signs Agreement to Sell its Microbiology Business to Astorg",
-          "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2026/Thermo-Fisher-Scientific-Signs-Agreement-to-Sell-its-Microbiology-Business-to-Astorg/default.aspx",
-          "classification": "corporate",
-          "theme": "Corporate strategy",
-          "intent": "Corporate strategic activity",
-          "technology": "LC/UHPLC",
-          "marketSegment": "Pharma",
-          "summary": "Thermo Fisher Scientific Inc. (NYSE: TMO), the world leader in serving science, today announced that it has signed a definitive agreement to sell its microbiology business to Astorg, a leading pan-European private equity firm, for consideration of approximately $1.075 billion, consisting of cash and a $50 million se...",
-          "sourceId": "thermo-news",
-          "sourceName": "Thermo Fisher investor relations news"
         }
       ],
-      "new_technical_insights": [],
+      "new_technical_insights": [
+        {
+          "date": "2026-08-25",
+          "title": "How Inert UHPLC Sample Flow Paths Help Reduce Metal\u2013Analyte Interactions in Large RNA Analysis",
+          "url": "https://www.thermofisher.com/blog/analyteguru/how-inert-uhplc-sample-flow-paths-help-reduce-metal-analyte-interactions-in-large-rna-analysis/",
+          "classification": "technical",
+          "sourceId": "thermo-lc-insights",
+          "sourceName": "Thermo Fisher liquid chromatography insights",
+          "technology": "LC/UHPLC",
+          "marketSegment": "Pharma"
+        },
+        {
+          "date": "2026-08-25",
+          "title": "How to Analyse All Your Vitamins (At Once) With Just One LC Instrument",
+          "url": "https://www.thermofisher.com/blog/analyteguru/how-to-analyse-all-your-vitamins-at-once-with-just-one-lc-instrument/",
+          "classification": "technical",
+          "sourceId": "thermo-lc-insights",
+          "sourceName": "Thermo Fisher liquid chromatography insights",
+          "technology": "LC/UHPLC",
+          "marketSegment": "Environmental"
+        },
+        {
+          "date": "2026-08-25",
+          "title": "High-Throughput Urine Drug Screening and Hormone Quantitation with LDTD-MS",
+          "url": "https://www.thermofisher.com/blog/analyteguru/high-throughput-urine-drug-screening-and-hormone-quantitation-with-ldtd-ms/",
+          "classification": "technical",
+          "sourceId": "thermo-ms-insights",
+          "sourceName": "Thermo Fisher mass spectrometry insights",
+          "technology": "LC-MS",
+          "marketSegment": "Clinical"
+        }
+      ],
       "technical_insights": [
+        {
+          "date": "2026-08-25",
+          "title": "How Inert UHPLC Sample Flow Paths Help Reduce Metal\u2013Analyte Interactions in Large RNA Analysis",
+          "url": "https://www.thermofisher.com/blog/analyteguru/how-inert-uhplc-sample-flow-paths-help-reduce-metal-analyte-interactions-in-large-rna-analysis/",
+          "classification": "technical",
+          "sourceId": "thermo-lc-insights",
+          "sourceName": "Thermo Fisher liquid chromatography insights",
+          "technology": "LC/UHPLC",
+          "marketSegment": "Pharma"
+        },
+        {
+          "date": "2026-08-25",
+          "title": "How to Analyse All Your Vitamins (At Once) With Just One LC Instrument",
+          "url": "https://www.thermofisher.com/blog/analyteguru/how-to-analyse-all-your-vitamins-at-once-with-just-one-lc-instrument/",
+          "classification": "technical",
+          "sourceId": "thermo-lc-insights",
+          "sourceName": "Thermo Fisher liquid chromatography insights",
+          "technology": "LC/UHPLC",
+          "marketSegment": "Environmental"
+        },
+        {
+          "date": "2026-08-25",
+          "title": "High-Throughput Urine Drug Screening and Hormone Quantitation with LDTD-MS",
+          "url": "https://www.thermofisher.com/blog/analyteguru/high-throughput-urine-drug-screening-and-hormone-quantitation-with-ldtd-ms/",
+          "classification": "technical",
+          "sourceId": "thermo-ms-insights",
+          "sourceName": "Thermo Fisher mass spectrometry insights",
+          "technology": "LC-MS",
+          "marketSegment": "Clinical"
+        },
         {
           "date": "2026-08-18",
           "title": "Join Thermo Fisher Scientific at MSACL 2026",
@@ -571,7 +606,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official sitemap index parsed.",
           "extractedRecords": 0,
-          "checkedAt": "2026-08-23T22:14:03+00:00"
+          "checkedAt": "2026-08-26T14:44:34+00:00"
         },
         {
           "sourceId": "thermo-ms-products",
@@ -582,7 +617,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official US sitemap parsed; 43 LC/LC-MS product pages tracked.",
           "extractedRecords": 43,
-          "checkedAt": "2026-08-23T22:14:04+00:00"
+          "checkedAt": "2026-08-26T14:44:34+00:00"
         },
         {
           "sourceId": "thermo-dionex-ion-chromatography-products",
@@ -593,7 +628,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official Thermo sitemap parsed; 2 registered Thermo Scientific Dionex ion chromatography product pages tracked.",
           "extractedRecords": 2,
-          "checkedAt": "2026-08-23T22:14:04+00:00"
+          "checkedAt": "2026-08-26T14:44:34+00:00"
         },
         {
           "sourceId": "thermo-vanquish-neo-nano-lc-products",
@@ -604,7 +639,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official Thermo sitemap parsed; 1 registered Thermo Scientific Vanquish Neo nano-LC product pages tracked.",
           "extractedRecords": 1,
-          "checkedAt": "2026-08-23T22:14:04+00:00"
+          "checkedAt": "2026-08-26T14:44:34+00:00"
         },
         {
           "sourceId": "thermo-news",
@@ -615,7 +650,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official Thermo Fisher investor-relations feed parsed; 19 dated 2026 corporate releases extracted.",
           "extractedRecords": 19,
-          "checkedAt": "2026-08-23T22:14:04+00:00"
+          "checkedAt": "2026-08-26T14:44:35+00:00"
         },
         {
           "sourceId": "thermo-lc-insights",
@@ -626,7 +661,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official dated RSS feed parsed; 6 relevant LC/MS records extracted.",
           "extractedRecords": 6,
-          "checkedAt": "2026-08-23T22:14:05+00:00"
+          "checkedAt": "2026-08-26T14:44:35+00:00"
         },
         {
           "sourceId": "thermo-ms-insights",
@@ -635,9 +670,9 @@
           "httpStatus": 200,
           "status": "available",
           "extractionStatus": "extracted",
-          "extractionReason": "Official dated RSS feed parsed; 8 relevant LC/MS records extracted.",
-          "extractedRecords": 8,
-          "checkedAt": "2026-08-23T22:14:05+00:00"
+          "extractionReason": "Official dated RSS feed parsed; 7 relevant LC/MS records extracted.",
+          "extractedRecords": 7,
+          "checkedAt": "2026-08-26T14:44:35+00:00"
         },
         {
           "sourceId": "thermo-proteomics-insights",
@@ -646,18 +681,18 @@
           "httpStatus": 200,
           "status": "available",
           "extractionStatus": "extracted",
-          "extractionReason": "Official dated RSS feed parsed; 7 relevant LC/MS records extracted.",
-          "extractedRecords": 7,
-          "checkedAt": "2026-08-23T22:14:05+00:00"
+          "extractionReason": "Official dated RSS feed parsed; 6 relevant LC/MS records extracted.",
+          "extractedRecords": 6,
+          "checkedAt": "2026-08-26T14:44:36+00:00"
         }
       ]
     },
     "Shimadzu": {
-      "generatedAt": "2026-08-23T22:14:05+00:00",
+      "generatedAt": "2026-08-26T14:44:36+00:00",
       "baselineCreated": false,
       "inventoryCounts": {
         "lcmsProductPages": 78,
-        "pressReleases": 39,
+        "pressReleases": 40,
         "technicalInsights": 0
       },
       "monitoredFamilies": [],
@@ -666,18 +701,17 @@
       "updated_products": [],
       "unverified_inventory_changes": {
         "new": [],
-        "updated": [
-          {
-            "url": "https://www.shimadzu.com/an/products/software-informatics/labsolutions-series/system-linkage-option/index.html",
-            "lastmod": "2026-08-21",
-            "previousLastmod": "2026-07-09",
-            "category": "LC/MS"
-          }
-        ],
+        "updated": [],
         "missing": []
       },
       "new_press_releases": [
         {
+          "date": "2026-08-25",
+          "title": "CVC Fund \u201cShimadzu Future Innovation Fund\u201d Invests in OptQC, a Developer of Optical Quantum Computers Expected to Advance Next-Generation R&D Infrastructure for Drug Discovery and Materials Development",
+          "url": "https://www.shimadzu.com/news/2026/6nfli4th4y5gkm35.html",
+          "classification": "corporate"
+        },
+        {
           "date": "2026-08-18",
           "title": "Donation for Relief Efforts Following the 2026 Kumamoto Earthquake",
           "url": "https://www.shimadzu.com/news/2026/zgdqilyigahzfzfi.html",
@@ -748,22 +782,16 @@
           "title": "BIPM, RIKEN and Shimadzu launch collaboration to explore the role of transportable optical frequency standards",
           "url": "https://www.shimadzu.com/news/2026/mp345hgpek6lm85j.html",
           "classification": "product"
-        },
-        {
-          "date": "2026-04-27",
-          "title": "Supporting Diverse Surgical and Diagnostic Applications with High-Definition Imaging and Positioning Freedom Expansion of the product lineup with SC15 and OPESCOPE ACTENO FD15, new mobile C-arm systems",
-          "url": "https://www.shimadzu.com/news/2026/3wqzblb912kax0m9.html",
-          "classification": "corporate"
-        },
-        {
-          "date": "2026-04-27",
-          "title": "Shimadzu Corporation Acquires German Startup Plasmion GmbH Secures SICRIT Ion Source Technology for Mass Spectrometers",
-          "url": "https://www.shimadzu.com/news/2026/qmv_7cupefrinwt6.html",
-          "classification": "corporate"
         }
       ],
       "recent_press_releases": [
         {
+          "date": "2026-08-25",
+          "title": "CVC Fund \u201cShimadzu Future Innovation Fund\u201d Invests in OptQC, a Developer of Optical Quantum Computers Expected to Advance Next-Generation R&D Infrastructure for Drug Discovery and Materials Development",
+          "url": "https://www.shimadzu.com/news/2026/6nfli4th4y5gkm35.html",
+          "classification": "corporate"
+        },
+        {
           "date": "2026-08-18",
           "title": "Donation for Relief Efforts Following the 2026 Kumamoto Earthquake",
           "url": "https://www.shimadzu.com/news/2026/zgdqilyigahzfzfi.html",
@@ -834,18 +862,6 @@
           "title": "BIPM, RIKEN and Shimadzu launch collaboration to explore the role of transportable optical frequency standards",
           "url": "https://www.shimadzu.com/news/2026/mp345hgpek6lm85j.html",
           "classification": "product"
-        },
-        {
-          "date": "2026-04-27",
-          "title": "Supporting Diverse Surgical and Diagnostic Applications with High-Definition Imaging and Positioning Freedom Expansion of the product lineup with SC15 and OPESCOPE ACTENO FD15, new mobile C-arm systems",
-          "url": "https://www.shimadzu.com/news/2026/3wqzblb912kax0m9.html",
-          "classification": "corporate"
-        },
-        {
-          "date": "2026-04-27",
-          "title": "Shimadzu Corporation Acquires German Startup Plasmion GmbH Secures SICRIT Ion Source Technology for Mass Spectrometers",
-          "url": "https://www.shimadzu.com/news/2026/qmv_7cupefrinwt6.html",
-          "classification": "corporate"
         }
       ],
       "new_technical_insights": [],
@@ -860,7 +876,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official analytical sitemap parsed; 78 LC/LC-MS/software product pages tracked.",
           "extractedRecords": 78,
-          "checkedAt": "2026-08-23T22:14:05+00:00"
+          "checkedAt": "2026-08-26T14:44:36+00:00"
         },
         {
           "sourceId": "shimadzu-news",
@@ -869,18 +885,18 @@
           "httpStatus": 200,
           "status": "available",
           "extractionStatus": "extracted",
-          "extractionReason": "Official dated news index parsed; 39 relevant releases extracted.",
-          "extractedRecords": 39,
-          "checkedAt": "2026-08-23T22:14:05+00:00"
+          "extractionReason": "Official dated news index parsed; 40 relevant releases extracted.",
+          "extractedRecords": 40,
+          "checkedAt": "2026-08-26T14:44:36+00:00"
         }
       ]
     },
     "SCIEX": {
-      "generatedAt": "2026-08-23T22:14:08+00:00",
+      "generatedAt": "2026-08-26T14:44:39+00:00",
       "baselineCreated": false,
       "inventoryCounts": {
         "lcmsProductPages": 65,
-        "pressReleases": 4,
+        "pressReleases": 5,
         "technicalInsights": 0
       },
       "monitoredFamilies": [],
@@ -893,6 +909,12 @@
         "missing": []
       },
       "new_press_releases": [
+        {
+          "date": "2026-07-27",
+          "title": "SCIEX helps clinical labs move from sample to answer faster with new software and LC solutions",
+          "url": "https://sciex.com/about-us/press-releases/2026/sciex-helps-clinical-labs-move-from-sample-to-answer-faster-with-new-software-and-lc-solutions",
+          "classification": "product"
+        },
         {
           "date": "2026-06-01",
           "title": "SCIEX launches the novus V55 system with SCIEX OS 5.0 software and AI enablement tools",
@@ -913,6 +935,12 @@
         }
       ],
       "recent_press_releases": [
+        {
+          "date": "2026-07-27",
+          "title": "SCIEX helps clinical labs move from sample to answer faster with new software and LC solutions",
+          "url": "https://sciex.com/about-us/press-releases/2026/sciex-helps-clinical-labs-move-from-sample-to-answer-faster-with-new-software-and-lc-solutions",
+          "classification": "product"
+        },
         {
           "date": "2026-06-01",
           "title": "SCIEX launches the novus V55 system with SCIEX OS 5.0 software and AI enablement tools",
@@ -944,7 +972,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official sitemap parsed; 65 MS/LC/software product pages tracked.",
           "extractedRecords": 65,
-          "checkedAt": "2026-08-23T22:14:08+00:00"
+          "checkedAt": "2026-08-26T14:44:38+00:00"
         },
         {
           "sourceId": "sciex-news",
@@ -953,9 +981,9 @@
           "httpStatus": 200,
           "status": "available",
           "extractionStatus": "extracted",
-          "extractionReason": "Official dated press index parsed; 4 relevant releases extracted.",
-          "extractedRecords": 4,
-          "checkedAt": "2026-08-23T22:14:08+00:00"
+          "extractionReason": "Official dated press index parsed; 5 relevant releases extracted.",
+          "extractedRecords": 5,
+          "checkedAt": "2026-08-26T14:44:39+00:00"
         }
       ]
     }

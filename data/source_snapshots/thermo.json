@@ -1,7 +1,7 @@
 {
   "snapshotSchemaVersion": 2,
   "observationType": "sitemap_inventory",
-  "capturedAt": "2026-08-23T22:14:05+00:00",
+  "capturedAt": "2026-08-26T14:44:36+00:00",
   "initialized": true,
   "products": {
     "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-horizon-uhplc-system.html": "2026-07-15",
@@ -606,6 +606,36 @@
       "sourceName": "Thermo Fisher mass spectrometry insights",
       "technology": "LC/UHPLC",
       "marketSegment": "Biopharma"
+    },
+    "https://www.thermofisher.com/blog/analyteguru/how-inert-uhplc-sample-flow-paths-help-reduce-metal-analyte-interactions-in-large-rna-analysis/": {
+      "date": "2026-08-25",
+      "title": "How Inert UHPLC Sample Flow Paths Help Reduce Metal\u2013Analyte Interactions in Large RNA Analysis",
+      "url": "https://www.thermofisher.com/blog/analyteguru/how-inert-uhplc-sample-flow-paths-help-reduce-metal-analyte-interactions-in-large-rna-analysis/",
+      "classification": "technical",
+      "sourceId": "thermo-lc-insights",
+      "sourceName": "Thermo Fisher liquid chromatography insights",
+      "technology": "LC/UHPLC",
+      "marketSegment": "Pharma"
+    },
+    "https://www.thermofisher.com/blog/analyteguru/how-to-analyse-all-your-vitamins-at-once-with-just-one-lc-instrument/": {
+      "date": "2026-08-25",
+      "title": "How to Analyse All Your Vitamins (At Once) With Just One LC Instrument",
+      "url": "https://www.thermofisher.com/blog/analyteguru/how-to-analyse-all-your-vitamins-at-once-with-just-one-lc-instrument/",
+      "classification": "technical",
+      "sourceId": "thermo-lc-insights",
+      "sourceName": "Thermo Fisher liquid chromatography insights",
+      "technology": "LC/UHPLC",
+      "marketSegment": "Environmental"
+    },
+    "https://www.thermofisher.com/blog/analyteguru/high-throughput-urine-drug-screening-and-hormone-quantitation-with-ldtd-ms/": {
+      "date": "2026-08-25",
+      "title": "High-Throughput Urine Drug Screening and Hormone Quantitation with LDTD-MS",
+      "url": "https://www.thermofisher.com/blog/analyteguru/high-throughput-urine-drug-screening-and-hormone-quantitation-with-ldtd-ms/",
+      "classification": "technical",
+      "sourceId": "thermo-ms-insights",
+      "sourceName": "Thermo Fisher mass spectrometry insights",
+      "technology": "LC-MS",
+      "marketSegment": "Clinical"
     }
   },
   "technicalFeedVersion": 3,
