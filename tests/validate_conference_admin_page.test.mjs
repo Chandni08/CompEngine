@@ -17,10 +17,17 @@ test("conference admin provides the requested source fields and catalog actions"
   assert.match(html, /Tier 1 · Highest priority/);
   assert.match(html, /Tier 2 · Targeted monitoring/);
   assert.match(html, /Tier 3 · Watch list/);
-  assert.match(app, /localStorage\.setItem\(CONFERENCE_ADMIN_STORAGE_KEY/);
+  assert.match(app, /async function saveCatalog\(records\)/);
+  assert.match(app, /fetch\("api\/conferences"/);
+  assert.match(app, /method: "PUT"/);
+  assert.match(app, /Authorization: `Bearer \$\{token\}`/);
   assert.match(app, /data-admin-edit/);
   assert.match(app, /data-admin-delete/);
   assert.match(app, /exportConferenceCatalog/);
+  assert.match(app, /async function scrapeConferenceDetails\(link\)/);
+  assert.match(app, /fetch\("api\/scrape-conference"/);
+  assert.match(app, /only current or future events can enter Upcoming Conferences/);
+  assert.match(app, /Checking official page…/);
   assert.match(html, /class="conference-sidebar admin-sidebar"/);
   assert.match(html, /class="admin-catalog-grid" role="list"/);
   assert.doesNotMatch(html, /class="admin-conference-table"/);
@@ -31,22 +38,22 @@ test("conference admin provides the requested source fields and catalog actions"
   assert.match(html, /id="adminSignOut"/);
   assert.match(app, /CONFERENCE_ADMIN_SESSION_KEY/);
   assert.match(app, /sessionStorage\.setItem\(CONFERENCE_ADMIN_SESSION_KEY/);
-  assert.match(app, /crypto\.subtle\.digest\("SHA-256"/);
+  assert.match(app, /authenticateConferenceAdmin/);
+  assert.match(html, /Permanent server catalog/);
 });
 
-test("conference intelligence reads and live-refreshes the admin catalog", async () => {
+test("conference intelligence omits the monitored source catalog section", async () => {
   const [html, app] = await Promise.all([
     read("../conference.html"),
     read("../conference-page.js"),
   ]);
 
-  assert.match(html, /id="conferenceSourceCatalog"/);
-  assert.match(html, /Admin entries appear here immediately/);
-  assert.match(app, /CONFERENCE_ADMIN_STORAGE_KEY = "waters-conference-admin-catalog-v1"/);
-  assert.match(app, /readConferenceAdminCatalog/);
-  assert.match(app, /window\.addEventListener\("storage"/);
-  assert.match(app, /window\.addEventListener\("pageshow"/);
-  assert.match(app, /Awaiting dates and intelligence enrichment/);
+  assert.doesNotMatch(html, /conferenceSourceCatalog|Monitored Conference Sources|Live Admin Catalog/);
+  assert.doesNotMatch(app, /renderConferenceSourceCatalog|readConferenceAdminCatalog|sourceCatalogExpanded/);
+  assert.match(app, /fetch\("data\/conference_preparation\.json"/);
+  assert.match(app, /async function loadLiveConferenceCatalog\(\)/);
+  assert.match(app, /fetch\("api\/conferences", \{ cache: "no-store" \}\)/);
+  assert.match(app, /conferenceState\.data\.events = mergeConferenceEvents/);
 });
 
 test("conference admin is reachable from conference intelligence surfaces", async () => {
@@ -61,8 +68,8 @@ test("conference admin is reachable from conference intelligence surfaces", asyn
   }
 });
 
-test("conference admin source and deployment assets stay synchronized", async () => {
-  const names = ["conference-admin.html", "conference-admin.css", "conference-admin.js"];
+test("conference source and deployment assets stay synchronized", async () => {
+  const names = ["conference-admin.html", "conference-admin.css", "conference-admin.js", "conference.html", "conference-page.css", "conference-page.js", "api/conferences.js"];
   for (const name of names) {
     const [source, deployed] = await Promise.all([read(`../${name}`), read(`../deploy-site/${name}`)]);
     assert.equal(deployed, source, `${name} differs in deploy-site`);

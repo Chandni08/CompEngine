@@ -1,16 +1,12 @@
 const conferenceState = {
   data: null,
-  sourceCatalog: [],
-  publishedSourceCatalog: [],
-  sourceCatalogExpanded: false,
   selectedEventId: "",
   eventPage: 1,
   eventPageSize: 4,
   filters: { market: "All", technology: "All", competitor: "All" },
 };
 
-const CONFERENCE_ADMIN_STORAGE_KEY = "waters-conference-admin-catalog-v1";
-
+const CONFERENCE_SCRAPE_MAX_AGE_MS = 6 * 60 * 60 * 1000;
 const byId = (id) => document.getElementById(id);
 const conferenceDatePolicy = globalThis.ConferenceDatePolicy;
 
@@ -32,76 +28,106 @@ function uniqueSorted(values) {
   return [...new Set(values.filter(Boolean))].sort((a, b) => a.localeCompare(b));
 }
 
-function readConferenceAdminCatalog() {
-  try {
-    const catalog = JSON.parse(localStorage.getItem(CONFERENCE_ADMIN_STORAGE_KEY));
-    return Array.isArray(catalog) ? catalog : null;
-  } catch {
-    return null;
-  }
+async function readConferenceCatalog() {
+  const response = await fetch("api/conferences", { cache: "no-store" });
+  const payload = await response.json().catch(() => ({}));
+  if (!response.ok) throw new Error(payload.error || `Conference server catalog load failed: ${response.status}`);
+  return Array.isArray(payload.records) ? payload.records : [];
 }
 
-function publishedConferenceCatalog(catalog) {
-  return (catalog?.events || []).map((event) => ({
-    id: event.id,
-    title: event.eventName,
-    link: event.website,
-    tier: event.tier || "Tier 3",
-    source: "Published catalog",
-  }));
-}
-
-function conferenceTierClass(tier) {
-  return String(tier || "Tier 3").toLowerCase().replace(" ", "-");
-}
-
-function preparationEventForSource(source) {
-  const normalizedTitle = String(source.title || "").toLowerCase();
-  const normalizedLink = String(source.link || "").replace(/\/$/, "");
-  return (conferenceState.data?.events || []).find((event) =>
-    event.id === source.id
-    || event.eventName.toLowerCase() === normalizedTitle
-    || String(event.website || "").replace(/\/$/, "") === normalizedLink
-  );
-}
-
-function renderConferenceSourceCatalog() {
-  const catalog = byId("conferenceSourceCatalog");
-  if (!catalog) return;
-  const sorted = [...conferenceState.sourceCatalog].sort((a, b) => {
-    const aDraft = a.source === "Published catalog" ? 1 : 0;
-    const bDraft = b.source === "Published catalog" ? 1 : 0;
-    return aDraft - bDraft || a.tier.localeCompare(b.tier) || a.title.localeCompare(b.title);
+async function scrapeConferenceEntry(record) {
+  const response = await fetch("api/scrape-conference", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ url: record.link }),
   });
-  const visible = conferenceState.sourceCatalogExpanded ? sorted : sorted.slice(0, 8);
-  byId("conferenceSourceCatalogCount").textContent = `${sorted.length} monitored source${sorted.length === 1 ? "" : "s"}`;
-  const toggle = byId("toggleConferenceSourceCatalog");
-  toggle.hidden = sorted.length <= 8;
-  toggle.textContent = conferenceState.sourceCatalogExpanded ? "Show less" : `Show all ${sorted.length}`;
-  toggle.setAttribute("aria-expanded", String(conferenceState.sourceCatalogExpanded));
-  catalog.innerHTML = visible.map((source) => {
-    const event = preparationEventForSource(source);
-    const isAdminUpdate = source.source !== "Published catalog";
-    return `
-      <article class="conference-source-card${isAdminUpdate ? " admin-update" : ""}">
-        <div class="conference-source-card-topline">
-          <span class="conference-tier-badge ${conferenceTierClass(source.tier)}">${escapeHtml(source.tier || "Tier 3")}</span>
-          <small>${isAdminUpdate ? "Admin update" : event ? "Brief available" : "Monitoring only"}</small>
-        </div>
-        <strong>${escapeHtml(source.title)}</strong>
-        <p>${event ? `${escapeHtml(event.dateRange)} · Preparation brief available` : "Awaiting dates and intelligence enrichment"}</p>
-        <div class="conference-source-card-actions">
-          <a href="${escapeHtml(source.link)}" target="_blank" rel="noreferrer">Official source ↗</a>
-          ${event ? `<button type="button" data-conference-event="${escapeHtml(event.id)}">Open brief →</button>` : `<a href="conference-admin.html">Edit source →</a>`}
-        </div>
-      </article>
-    `;
-  }).join("") || `<p class="conference-empty-note">No conference sources are currently monitored.</p>`;
+  const payload = await response.json().catch(() => ({}));
+  if (!response.ok) throw new Error(payload.error || `Conference date lookup failed: ${response.status}`);
+  return { ...record, ...payload, title: record.title || payload.title, link: payload.sourceUrl || record.link };
 }
 
-function refreshConferenceSourceCatalog() {
-  conferenceState.sourceCatalog = readConferenceAdminCatalog() || [...conferenceState.publishedSourceCatalog];
-  renderConferenceSourceCatalog();
+function scrapedEntryIsFresh(record) {
+  const scrapedAt = new Date(record.scrapedAt || 0).getTime();
+  return record.startDate && record.endDate && Number.isFinite(scrapedAt) && Date.now() - scrapedAt < CONFERENCE_SCRAPE_MAX_AGE_MS;
+}
+
+function conferenceEventFromCatalog(record) {
+  if (!record.startDate || !record.endDate) return null;
+  return {
+    id: record.id,
+    eventName: record.title,
+    dateRange: record.dateRange || (record.startDate === record.endDate
+      ? formatDate(record.startDate)
+      : `${formatDate(record.startDate, { month: "short", day: "numeric" })}–${formatDate(record.endDate)}`),
+    location: record.location || "Location on official event page",
+    startDate: record.startDate,
+    endDate: record.endDate,
+    tier: record.tier || "Tier 3",
+    website: record.link,
+    marketSegments: record.marketSegments || [],
+    technologyFocus: record.technologyFocus || [],
+    annualTheme: "Newly monitored event — full intelligence enrichment is pending.",
+    scientificFocus: ["The official event date is verified. Review the current program before assigning scientific-content priorities."],
+    industryTrendsToWatch: ["This event entered Upcoming Conferences from a real-time read of its official website."],
+    competitorWatch: [],
+    competitorContent: [],
+    watersScientificContent: [],
+    boothRecommendations: [],
+    watersPrep: ["Review the official agenda, identify relevant Waters audiences, and enrich the preparation brief."],
+    monitoringLinks: [
+      { label: "Official event page", url: record.link },
+      ...(record.evidenceUrl && record.evidenceUrl !== record.link ? [{ label: "Verified date source", url: record.evidenceUrl }] : []),
+    ],
+    liveAdminEntry: record.source !== "Published catalog",
+  };
+}
+
+function normalizedEventIdentity(value) {
+  return String(value || "").toLowerCase().replace(/https?:\/\/(www\.)?/, "").replace(/[^a-z0-9]+/g, "").trim();
+}
+
+async function loadLiveConferenceCatalog() {
+  const catalog = await readConferenceCatalog();
+  const enriched = await Promise.all(catalog.map(async (record) => {
+    if (record.source === "Published catalog" || scrapedEntryIsFresh(record)) return record;
+    try { return await scrapeConferenceEntry(record); } catch { return record; }
+  }));
+  return enriched;
+}
+
+function normalizedEventId(value) {
+  return String(value || "").replace(/-prep$/, "");
+}
+
+function matchingPreparedEvent(record, publishedEvents) {
+  const recordKeys = [normalizedEventIdentity(record.title), normalizedEventIdentity(record.link)].filter(Boolean);
+  return publishedEvents.find((event) => normalizedEventId(event.id) === normalizedEventId(record.id)
+    || [normalizedEventIdentity(event.eventName), normalizedEventIdentity(event.website)].some((key) => key && recordKeys.includes(key)));
+}
+
+function mergeConferenceEvents(publishedEvents, catalogRecords, originalCatalogRecords = []) {
+  const matchedPublishedIds = new Set();
+  const catalogEvents = catalogRecords.map((record) => {
+    const prepared = matchingPreparedEvent(record, publishedEvents);
+    if (!prepared) return conferenceEventFromCatalog(record);
+    matchedPublishedIds.add(prepared.id);
+    return {
+      ...prepared,
+      eventName: record.title || prepared.eventName,
+      website: record.link || prepared.website,
+      tier: record.tier || prepared.tier,
+      startDate: record.startDate || prepared.startDate,
+      endDate: record.endDate || prepared.endDate,
+      dateRange: record.dateRange || prepared.dateRange,
+      location: record.location || prepared.location,
+      marketSegments: record.marketSegments?.length ? record.marketSegments : prepared.marketSegments,
+      technologyFocus: record.technologyFocus?.length ? record.technologyFocus : prepared.technologyFocus,
+      catalogUpdatedAt: record.updatedAt || "",
+    };
+  }).filter(Boolean);
+  const preparedOnlyEvents = publishedEvents.filter((event) => !matchedPublishedIds.has(event.id))
+    .filter((event) => !originalCatalogRecords.some((record) => matchingPreparedEvent(record, [event])));
+  return [...catalogEvents, ...preparedOnlyEvents];
 }
 
 function competitorNames(event) {
@@ -352,7 +378,6 @@ function renderConferencePage() {
     </div>
   ` : "";
   renderStats(events);
-  renderConferenceSourceCatalog();
   renderEventDetail(selected);
 }
 
@@ -410,15 +435,6 @@ function setupInteractions() {
       byId("conferenceEventList").scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
   });
-  byId("toggleConferenceSourceCatalog").addEventListener("click", () => {
-    conferenceState.sourceCatalogExpanded = !conferenceState.sourceCatalogExpanded;
-    renderConferenceSourceCatalog();
-  });
-  window.addEventListener("storage", (event) => {
-    if (event.key === CONFERENCE_ADMIN_STORAGE_KEY) refreshConferenceSourceCatalog();
-  });
-  window.addEventListener("pageshow", refreshConferenceSourceCatalog);
-  window.addEventListener("focus", refreshConferenceSourceCatalog);
   byId("competitorAppearancesModal").addEventListener("click", (event) => {
     if (event.target === event.currentTarget) closeCompetitorAppearancesModal();
   });
@@ -441,15 +457,21 @@ function setupInteractions() {
 }
 
 async function initConferencePage() {
-  const [preparationResponse, sourceResponse] = await Promise.all([
+  const [preparationResponse, sourceResponse, liveCatalog] = await Promise.all([
     fetch("data/conference_preparation.json", { cache: "no-store" }),
     fetch("data/conference_sources.json", { cache: "no-store" }),
+    loadLiveConferenceCatalog(),
   ]);
   if (!preparationResponse.ok) throw new Error(`Conference preparation data load failed: ${preparationResponse.status}`);
-  if (!sourceResponse.ok) throw new Error(`Conference source catalog load failed: ${sourceResponse.status}`);
+  if (!sourceResponse.ok) throw new Error(`Conference source data load failed: ${sourceResponse.status}`);
   conferenceState.data = await preparationResponse.json();
-  conferenceState.publishedSourceCatalog = publishedConferenceCatalog(await sourceResponse.json());
-  conferenceState.sourceCatalog = readConferenceAdminCatalog() || [...conferenceState.publishedSourceCatalog];
+  const sourceCatalog = await sourceResponse.json();
+  const originalCatalogRecords = (sourceCatalog.events || []).map((event) => ({
+    id: event.id,
+    title: event.eventName,
+    link: event.website,
+  }));
+  conferenceState.data.events = mergeConferenceEvents(conferenceState.data.events || [], liveCatalog, originalCatalogRecords);
   const events = conferenceState.data.events || [];
   conferenceState.selectedEventId = events.find((event) => event.id === decodeURIComponent(location.hash.slice(1)))?.id || [...events].sort((a, b) => a.startDate.localeCompare(b.startDate))[0]?.id || "";
   populateSelect("conferenceMarketFilter", uniqueSorted(events.flatMap((event) => event.marketSegments)));

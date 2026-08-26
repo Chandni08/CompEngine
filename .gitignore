@@ -11,3 +11,4 @@ output/
 __pycache__/
 *.py[cod]
 .DS_Store
+data/conference_catalog.runtime.json

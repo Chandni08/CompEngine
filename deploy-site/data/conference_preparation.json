@@ -812,6 +812,53 @@
           "url": "https://www.setac.org/discover-events/global-meetings/setac-north-america-47th-annual-meeting/exhibits-supporters/exhibitor-listing-and-floor-plan.html"
         }
       ]
+    },
+    {
+      "id": "ep3m-summit-2026-prep",
+      "eventName": "EP3M Summit 2026",
+      "dateRange": "Sep 29-30, 2026",
+      "location": "Boston, MA + Virtual",
+      "startDate": "2026-09-29",
+      "endDate": "2026-09-30",
+      "tier": "Tier 3",
+      "website": "https://www.ep3msummit.com/",
+      "marketSegments": [
+        "Pharma",
+        "Biopharma"
+      ],
+      "technologyFocus": [
+        "AI",
+        "Data",
+        "Informatics"
+      ],
+      "annualTheme": "Optimize portfolio insights, prioritization, and decision making for pharma and biotech",
+      "scientificFocus": [
+        "R&D portfolio governance and investment tradeoffs",
+        "Data-driven decision support and AI adoption",
+        "Cross-functional execution across pharmaceutical and biotechnology portfolios"
+      ],
+      "industryTrendsToWatch": [
+        "Biopharma portfolio leaders are formalizing decision rights, investment frameworks, and data-driven governance.",
+        "AI adoption is entering portfolio planning and executive decision-support workflows."
+      ],
+      "competitorWatch": [],
+      "competitorContent": [],
+      "watersScientificContent": [],
+      "boothRecommendations": [],
+      "watersPrep": [
+        "Review the final agenda for portfolio-governance, analytics, and AI sessions relevant to Waters strategic planning.",
+        "Identify pharma and biotech decision leaders whose workflow priorities can inform Next Gen LC portfolio choices."
+      ],
+      "monitoringLinks": [
+        {
+          "label": "Official event page",
+          "url": "https://www.ep3msummit.com/"
+        },
+        {
+          "label": "2026 program and verified dates",
+          "url": "https://www.ep3msummit.com/executiveprojectprogramportfoliomanagement"
+        }
+      ]
     }
   ],
   "schemaVersion": 2

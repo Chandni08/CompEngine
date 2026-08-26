@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-23T22:14:09+00:00",
+  "generatedAt": "2026-08-23T18:33:56+00:00",
   "competitors": {
     "Thermo Fisher": {
-      "generatedAt": "2026-08-23T22:14:05+00:00",
+      "generatedAt": "2026-08-23T18:33:55+00:00",
       "baselineCreated": false,
       "inventoryCounts": {
         "lcmsProductPages": 43,
-        "pressReleases": 19,
+        "pressReleases": 0,
         "technicalInsights": 19,
         "thermo-dionex-ion-chromatographyPages": 2,
         "thermo-vanquish-neo-nano-lcPages": 1
@@ -62,292 +62,8 @@
         "updated": [],
         "missing": []
       },
-      "new_press_releases": [
-        {
-          "date": "2026-08-12",
-          "title": "Thermo Fisher Scientific Completes Sale of its Microbiology Business to Astorg",
-          "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2026/Thermo-Fisher-Scientific-Completes-Sale-of-its-Microbiology-Business-to-Astorg/default.aspx",
-          "classification": "corporate",
-          "theme": "Corporate strategy",
-          "intent": "Corporate strategic activity",
-          "technology": "LC/UHPLC",
-          "marketSegment": "Pharma",
-          "summary": "Thermo Fisher Scientific Inc. (NYSE: TMO), the world leader in serving science, today announced that it has completed the sale of its microbiology business to Astorg, a leading pan-European private equity firm, for consideration of approximately $1.075 billion, consisting of cash and a $50 million seller note.",
-          "sourceId": "thermo-news",
-          "sourceName": "Thermo Fisher investor relations news"
-        },
-        {
-          "date": "2026-07-23",
-          "title": "Thermo Fisher Scientific Reports Second Quarter 2026 Results",
-          "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2026/Thermo-Fisher-Scientific-Reports-Second-Quarter-2026-Results/default.aspx",
-          "classification": "corporate",
-          "theme": "Quarterly earnings and end-market demand",
-          "intent": "Corporate performance and investment capacity",
-          "technology": "Portfolio",
-          "marketSegment": "Corporate",
-          "summary": "Thermo paired higher Analytical Instruments revenue and margin with AI-enabled Orbitrap launches and new bioprocess and proteomics customer infrastructure.",
-          "earningsMetrics": [
-            {
-              "label": "Analytical Instruments revenue",
-              "value": "$1.847B",
-              "change": "+6.9% YoY"
-            },
-            {
-              "label": "Analytical Instruments segment income",
-              "value": "$424M",
-              "change": "+30.5% YoY"
-            },
-            {
-              "label": "Analytical Instruments margin",
-              "value": "23.0%",
-              "change": "+4.2 pts YoY"
-            }
-          ],
-          "pmInsights": [
-            "Portfolio economics: Analytical Instruments revenue increased 6.9% to $1.847 billion; segment income increased 30.5% to $424 million and margin expanded 4.2 points to 23.0%.",
-            "Product direction: Orbitrap Tribrid Apex and Excedion pair AI-driven analytics with multiomics, structural biology, biopharma characterization, small-molecule analysis and hard-to-detect drug-development targets.",
-            "Commercial model: the Plainville Bioprocess Design Center and PRECISE-SG100K collaboration extend Thermo into pharma and biotech co-development and integrated Olink plus Orbitrap Astral proteomics."
-          ],
-          "watersPmImplication": "Assess Thermo at the workflow level\u2014separations and MS, analytics, application proof and customer co-development\u2014not on instrument specifications alone.",
-          "evidenceBoundary": "The release does not separate LC or chromatography revenue, unit growth, pricing or market share; Analytical Instruments performance is not evidence of LC share gain.",
-          "sourceId": "thermo-news",
-          "sourceName": "Thermo Fisher investor relations news"
-        },
-        {
-          "date": "2026-07-09",
-          "title": "Thermo Fisher Scientific Announces Quarterly Dividend",
-          "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2026/Thermo-Fisher-Scientific-Announces-Quarterly-Dividend-3dcda308b/default.aspx",
-          "classification": "corporate",
-          "theme": "Corporate strategy",
-          "intent": "Corporate strategic activity",
-          "technology": "LC/UHPLC",
-          "marketSegment": "Pharma",
-          "summary": "Thermo Fisher Scientific Inc. (NYSE: TMO), the world leader in serving science, today announced that its Board of Directors authorized a quarterly cash dividend of $0.47 per common share, payable on October 15, 2026, to shareholders of record as of September 15, 2026.",
-          "sourceId": "thermo-news",
-          "sourceName": "Thermo Fisher investor relations news"
-        },
-        {
-          "date": "2026-07-01",
-          "title": "Thermo Fisher Scientific to Hold Earnings Conference Call on Thursday, July 23, 2026",
-          "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2026/Thermo-Fisher-Scientific-to-Hold-Earnings-Conference-Call-on-Thursday-July-23-2026/default.aspx",
-          "classification": "corporate",
-          "theme": "Upcoming earnings call",
-          "intent": "Quarterly performance disclosure",
-          "technology": "Portfolio",
-          "marketSegment": "Corporate",
-          "summary": "Thermo Fisher scheduled its Q2 2026 earnings call for Thursday, July 23, 2026, and will hold a conference call on the same day at 8:30 a.m. ET.",
-          "sourceId": "thermo-news",
-          "sourceName": "Thermo Fisher investor relations news"
-        },
-        {
-          "date": "2026-05-28",
-          "title": "Thermo Fisher Scientific Unveils Next-generation Innovations at ASMS 2026 to Accelerate the Path from Drug Discovery to New Therapies",
-          "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2026/Thermo-Fisher-Scientific-Unveils-Next-generation-Innovations-at-ASMS-2026-to-Accelerate-the-Path-from-Drug-Discovery-to-New-Therapies/default.aspx",
-          "classification": "corporate",
-          "theme": "Corporate strategy",
-          "intent": "Corporate strategic activity",
-          "technology": "LC/UHPLC",
-          "marketSegment": "Pharma",
-          "summary": "New mass spectrometry platforms, combined with AI-driven analytics and scalable proteomics solutions, help scientists turn complex biology into actionable insights across research and drug development Thermo Fisher Scientific Inc. (NYSE: TMO), the world leader in serving science, today announced the Thermo Scientifi...",
-          "sourceId": "thermo-news",
-          "sourceName": "Thermo Fisher investor relations news"
-        },
-        {
-          "date": "2026-05-20",
-          "title": "Thermo Fisher Scientific Announces Quarterly Dividend",
-          "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2026/Thermo-Fisher-Scientific-Announces-Quarterly-Dividend/default.aspx",
-          "classification": "corporate",
-          "theme": "Corporate strategy",
-          "intent": "Corporate strategic activity",
-          "technology": "LC/UHPLC",
-          "marketSegment": "Pharma",
-          "summary": "Thermo Fisher Scientific Inc. (NYSE: TMO), the world leader in serving science, today announced that its Board of Directors authorized a quarterly cash dividend of $0.47 per common share, payable on July 15, 2026, to shareholders of record as of June 15, 2026.",
-          "sourceId": "thermo-news",
-          "sourceName": "Thermo Fisher investor relations news"
-        },
-        {
-          "date": "2026-05-20",
-          "title": "Thermo Fisher Scientific Highlights Industry Leadership, Growth Outlook and Long-Term Value Creation at 2026 Investor Day",
-          "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2026/Thermo-Fisher-Scientific-Highlights-Industry-Leadership-Growth-Outlook-and-Long-Term-Value-Creation-at-2026-Investor-Day/default.aspx",
-          "classification": "corporate",
-          "theme": "Investor strategy and growth outlook",
-          "intent": "Long-term growth strategy",
-          "technology": "Portfolio",
-          "marketSegment": "Corporate",
-          "summary": "Thermo Fisher Scientific Inc. (NYSE: TMO), the world leader in serving science, hosted its Investor Day today.",
-          "sourceId": "thermo-news",
-          "sourceName": "Thermo Fisher investor relations news"
-        },
-        {
-          "date": "2026-04-28",
-          "title": "Thermo Fisher Scientific to Host Investor Day",
-          "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2026/Thermo-Fisher-Scientific-to-Host-Investor-Day/default.aspx",
-          "classification": "corporate",
-          "theme": "Investor strategy and growth outlook",
-          "intent": "Long-term growth strategy",
-          "technology": "Portfolio",
-          "marketSegment": "Corporate",
-          "summary": "Thermo Fisher Scientific Inc. (NYSE: TMO), the world leader in serving science, will hold its 2026 Investor Day on Wednesday, May 20, 2026, starting at 9:00 a.m.",
-          "sourceId": "thermo-news",
-          "sourceName": "Thermo Fisher investor relations news"
-        },
-        {
-          "date": "2026-04-27",
-          "title": "Thermo Fisher Scientific Signs Agreement to Sell its Microbiology Business to Astorg",
-          "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2026/Thermo-Fisher-Scientific-Signs-Agreement-to-Sell-its-Microbiology-Business-to-Astorg/default.aspx",
-          "classification": "corporate",
-          "theme": "Corporate strategy",
-          "intent": "Corporate strategic activity",
-          "technology": "LC/UHPLC",
-          "marketSegment": "Pharma",
-          "summary": "Thermo Fisher Scientific Inc. (NYSE: TMO), the world leader in serving science, today announced that it has signed a definitive agreement to sell its microbiology business to Astorg, a leading pan-European private equity firm, for consideration of approximately $1.075 billion, consisting of cash and a $50 million se...",
-          "sourceId": "thermo-news",
-          "sourceName": "Thermo Fisher investor relations news"
-        }
-      ],
-      "recent_press_releases": [
-        {
-          "date": "2026-08-12",
-          "title": "Thermo Fisher Scientific Completes Sale of its Microbiology Business to Astorg",
-          "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2026/Thermo-Fisher-Scientific-Completes-Sale-of-its-Microbiology-Business-to-Astorg/default.aspx",
-          "classification": "corporate",
-          "theme": "Corporate strategy",
-          "intent": "Corporate strategic activity",
-          "technology": "LC/UHPLC",
-          "marketSegment": "Pharma",
-          "summary": "Thermo Fisher Scientific Inc. (NYSE: TMO), the world leader in serving science, today announced that it has completed the sale of its microbiology business to Astorg, a leading pan-European private equity firm, for consideration of approximately $1.075 billion, consisting of cash and a $50 million seller note.",
-          "sourceId": "thermo-news",
-          "sourceName": "Thermo Fisher investor relations news"
-        },
-        {
-          "date": "2026-07-23",
-          "title": "Thermo Fisher Scientific Reports Second Quarter 2026 Results",
-          "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2026/Thermo-Fisher-Scientific-Reports-Second-Quarter-2026-Results/default.aspx",
-          "classification": "corporate",
-          "theme": "Quarterly earnings and end-market demand",
-          "intent": "Corporate performance and investment capacity",
-          "technology": "Portfolio",
-          "marketSegment": "Corporate",
-          "summary": "Thermo paired higher Analytical Instruments revenue and margin with AI-enabled Orbitrap launches and new bioprocess and proteomics customer infrastructure.",
-          "earningsMetrics": [
-            {
-              "label": "Analytical Instruments revenue",
-              "value": "$1.847B",
-              "change": "+6.9% YoY"
-            },
-            {
-              "label": "Analytical Instruments segment income",
-              "value": "$424M",
-              "change": "+30.5% YoY"
-            },
-            {
-              "label": "Analytical Instruments margin",
-              "value": "23.0%",
-              "change": "+4.2 pts YoY"
-            }
-          ],
-          "pmInsights": [
-            "Portfolio economics: Analytical Instruments revenue increased 6.9% to $1.847 billion; segment income increased 30.5% to $424 million and margin expanded 4.2 points to 23.0%.",
-            "Product direction: Orbitrap Tribrid Apex and Excedion pair AI-driven analytics with multiomics, structural biology, biopharma characterization, small-molecule analysis and hard-to-detect drug-development targets.",
-            "Commercial model: the Plainville Bioprocess Design Center and PRECISE-SG100K collaboration extend Thermo into pharma and biotech co-development and integrated Olink plus Orbitrap Astral proteomics."
-          ],
-          "watersPmImplication": "Assess Thermo at the workflow level\u2014separations and MS, analytics, application proof and customer co-development\u2014not on instrument specifications alone.",
-          "evidenceBoundary": "The release does not separate LC or chromatography revenue, unit growth, pricing or market share; Analytical Instruments performance is not evidence of LC share gain.",
-          "sourceId": "thermo-news",
-          "sourceName": "Thermo Fisher investor relations news"
-        },
-        {
-          "date": "2026-07-09",
-          "title": "Thermo Fisher Scientific Announces Quarterly Dividend",
-          "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2026/Thermo-Fisher-Scientific-Announces-Quarterly-Dividend-3dcda308b/default.aspx",
-          "classification": "corporate",
-          "theme": "Corporate strategy",
-          "intent": "Corporate strategic activity",
-          "technology": "LC/UHPLC",
-          "marketSegment": "Pharma",
-          "summary": "Thermo Fisher Scientific Inc. (NYSE: TMO), the world leader in serving science, today announced that its Board of Directors authorized a quarterly cash dividend of $0.47 per common share, payable on October 15, 2026, to shareholders of record as of September 15, 2026.",
-          "sourceId": "thermo-news",
-          "sourceName": "Thermo Fisher investor relations news"
-        },
-        {
-          "date": "2026-07-01",
-          "title": "Thermo Fisher Scientific to Hold Earnings Conference Call on Thursday, July 23, 2026",
-          "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2026/Thermo-Fisher-Scientific-to-Hold-Earnings-Conference-Call-on-Thursday-July-23-2026/default.aspx",
-          "classification": "corporate",
-          "theme": "Upcoming earnings call",
-          "intent": "Quarterly performance disclosure",
-          "technology": "Portfolio",
-          "marketSegment": "Corporate",
-          "summary": "Thermo Fisher scheduled its Q2 2026 earnings call for Thursday, July 23, 2026, and will hold a conference call on the same day at 8:30 a.m. ET.",
-          "sourceId": "thermo-news",
-          "sourceName": "Thermo Fisher investor relations news"
-        },
-        {
-          "date": "2026-05-28",
-          "title": "Thermo Fisher Scientific Unveils Next-generation Innovations at ASMS 2026 to Accelerate the Path from Drug Discovery to New Therapies",
-          "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2026/Thermo-Fisher-Scientific-Unveils-Next-generation-Innovations-at-ASMS-2026-to-Accelerate-the-Path-from-Drug-Discovery-to-New-Therapies/default.aspx",
-          "classification": "corporate",
-          "theme": "Corporate strategy",
-          "intent": "Corporate strategic activity",
-          "technology": "LC/UHPLC",
-          "marketSegment": "Pharma",
-          "summary": "New mass spectrometry platforms, combined with AI-driven analytics and scalable proteomics solutions, help scientists turn complex biology into actionable insights across research and drug development Thermo Fisher Scientific Inc. (NYSE: TMO), the world leader in serving science, today announced the Thermo Scientifi...",
-          "sourceId": "thermo-news",
-          "sourceName": "Thermo Fisher investor relations news"
-        },
-        {
-          "date": "2026-05-20",
-          "title": "Thermo Fisher Scientific Announces Quarterly Dividend",
-          "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2026/Thermo-Fisher-Scientific-Announces-Quarterly-Dividend/default.aspx",
-          "classification": "corporate",
-          "theme": "Corporate strategy",
-          "intent": "Corporate strategic activity",
-          "technology": "LC/UHPLC",
-          "marketSegment": "Pharma",
-          "summary": "Thermo Fisher Scientific Inc. (NYSE: TMO), the world leader in serving science, today announced that its Board of Directors authorized a quarterly cash dividend of $0.47 per common share, payable on July 15, 2026, to shareholders of record as of June 15, 2026.",
-          "sourceId": "thermo-news",
-          "sourceName": "Thermo Fisher investor relations news"
-        },
-        {
-          "date": "2026-05-20",
-          "title": "Thermo Fisher Scientific Highlights Industry Leadership, Growth Outlook and Long-Term Value Creation at 2026 Investor Day",
-          "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2026/Thermo-Fisher-Scientific-Highlights-Industry-Leadership-Growth-Outlook-and-Long-Term-Value-Creation-at-2026-Investor-Day/default.aspx",
-          "classification": "corporate",
-          "theme": "Investor strategy and growth outlook",
-          "intent": "Long-term growth strategy",
-          "technology": "Portfolio",
-          "marketSegment": "Corporate",
-          "summary": "Thermo Fisher Scientific Inc. (NYSE: TMO), the world leader in serving science, hosted its Investor Day today.",
-          "sourceId": "thermo-news",
-          "sourceName": "Thermo Fisher investor relations news"
-        },
-        {
-          "date": "2026-04-28",
-          "title": "Thermo Fisher Scientific to Host Investor Day",
-          "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2026/Thermo-Fisher-Scientific-to-Host-Investor-Day/default.aspx",
-          "classification": "corporate",
-          "theme": "Investor strategy and growth outlook",
-          "intent": "Long-term growth strategy",
-          "technology": "Portfolio",
-          "marketSegment": "Corporate",
-          "summary": "Thermo Fisher Scientific Inc. (NYSE: TMO), the world leader in serving science, will hold its 2026 Investor Day on Wednesday, May 20, 2026, starting at 9:00 a.m.",
-          "sourceId": "thermo-news",
-          "sourceName": "Thermo Fisher investor relations news"
-        },
-        {
-          "date": "2026-04-27",
-          "title": "Thermo Fisher Scientific Signs Agreement to Sell its Microbiology Business to Astorg",
-          "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2026/Thermo-Fisher-Scientific-Signs-Agreement-to-Sell-its-Microbiology-Business-to-Astorg/default.aspx",
-          "classification": "corporate",
-          "theme": "Corporate strategy",
-          "intent": "Corporate strategic activity",
-          "technology": "LC/UHPLC",
-          "marketSegment": "Pharma",
-          "summary": "Thermo Fisher Scientific Inc. (NYSE: TMO), the world leader in serving science, today announced that it has signed a definitive agreement to sell its microbiology business to Astorg, a leading pan-European private equity firm, for consideration of approximately $1.075 billion, consisting of cash and a $50 million se...",
-          "sourceId": "thermo-news",
-          "sourceName": "Thermo Fisher investor relations news"
-        }
-      ],
+      "new_press_releases": [],
+      "recent_press_releases": [],
       "new_technical_insights": [],
       "technical_insights": [
         {
@@ -571,7 +287,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official sitemap index parsed.",
           "extractedRecords": 0,
-          "checkedAt": "2026-08-23T22:14:03+00:00"
+          "checkedAt": "2026-08-23T18:33:53+00:00"
         },
         {
           "sourceId": "thermo-ms-products",
@@ -582,7 +298,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official US sitemap parsed; 43 LC/LC-MS product pages tracked.",
           "extractedRecords": 43,
-          "checkedAt": "2026-08-23T22:14:04+00:00"
+          "checkedAt": "2026-08-23T18:33:54+00:00"
         },
         {
           "sourceId": "thermo-dionex-ion-chromatography-products",
@@ -593,7 +309,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official Thermo sitemap parsed; 2 registered Thermo Scientific Dionex ion chromatography product pages tracked.",
           "extractedRecords": 2,
-          "checkedAt": "2026-08-23T22:14:04+00:00"
+          "checkedAt": "2026-08-23T18:33:54+00:00"
         },
         {
           "sourceId": "thermo-vanquish-neo-nano-lc-products",
@@ -604,18 +320,18 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official Thermo sitemap parsed; 1 registered Thermo Scientific Vanquish Neo nano-LC product pages tracked.",
           "extractedRecords": 1,
-          "checkedAt": "2026-08-23T22:14:04+00:00"
+          "checkedAt": "2026-08-23T18:33:54+00:00"
         },
         {
           "sourceId": "thermo-news",
           "url": "https://ir.thermofisher.com/investors/news-events/news/default.aspx",
           "fetchMethod": "official_ir_news_api",
-          "httpStatus": 200,
-          "status": "available",
-          "extractionStatus": "extracted",
-          "extractionReason": "Official Thermo Fisher investor-relations feed parsed; 19 dated 2026 corporate releases extracted.",
-          "extractedRecords": 19,
-          "checkedAt": "2026-08-23T22:14:04+00:00"
+          "httpStatus": 429,
+          "status": "collection_review_needed",
+          "extractionStatus": "blocked",
+          "extractionReason": "Investor-relations feed unavailable or contained no dated records: https://ir.thermofisher.com/feed/PressRelease.svc/GetPressReleaseList?LanguageId=1&bodyType=3&pressReleaseDateFilter=3&categoryId=&pageSize=-1&pageNumber=0&tagList=&includeTags=true&year=2026&excludeSelection=1.",
+          "extractedRecords": 0,
+          "checkedAt": "2026-08-23T18:33:54+00:00"
         },
         {
           "sourceId": "thermo-lc-insights",
@@ -626,7 +342,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official dated RSS feed parsed; 6 relevant LC/MS records extracted.",
           "extractedRecords": 6,
-          "checkedAt": "2026-08-23T22:14:05+00:00"
+          "checkedAt": "2026-08-23T18:33:55+00:00"
         },
         {
           "sourceId": "thermo-ms-insights",
@@ -637,7 +353,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official dated RSS feed parsed; 8 relevant LC/MS records extracted.",
           "extractedRecords": 8,
-          "checkedAt": "2026-08-23T22:14:05+00:00"
+          "checkedAt": "2026-08-23T18:33:55+00:00"
         },
         {
           "sourceId": "thermo-proteomics-insights",
@@ -648,12 +364,12 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official dated RSS feed parsed; 7 relevant LC/MS records extracted.",
           "extractedRecords": 7,
-          "checkedAt": "2026-08-23T22:14:05+00:00"
+          "checkedAt": "2026-08-23T18:33:55+00:00"
         }
       ]
     },
     "Shimadzu": {
-      "generatedAt": "2026-08-23T22:14:05+00:00",
+      "generatedAt": "2026-08-23T18:33:56+00:00",
       "baselineCreated": false,
       "inventoryCounts": {
         "lcmsProductPages": 78,
@@ -860,7 +576,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official analytical sitemap parsed; 78 LC/LC-MS/software product pages tracked.",
           "extractedRecords": 78,
-          "checkedAt": "2026-08-23T22:14:05+00:00"
+          "checkedAt": "2026-08-23T18:33:55+00:00"
         },
         {
           "sourceId": "shimadzu-news",
@@ -871,12 +587,12 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official dated news index parsed; 39 relevant releases extracted.",
           "extractedRecords": 39,
-          "checkedAt": "2026-08-23T22:14:05+00:00"
+          "checkedAt": "2026-08-23T18:33:56+00:00"
         }
       ]
     },
     "SCIEX": {
-      "generatedAt": "2026-08-23T22:14:08+00:00",
+      "generatedAt": "2026-08-23T18:33:56+00:00",
       "baselineCreated": false,
       "inventoryCounts": {
         "lcmsProductPages": 65,
@@ -944,7 +660,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official sitemap parsed; 65 MS/LC/software product pages tracked.",
           "extractedRecords": 65,
-          "checkedAt": "2026-08-23T22:14:08+00:00"
+          "checkedAt": "2026-08-23T18:33:56+00:00"
         },
         {
           "sourceId": "sciex-news",
@@ -955,7 +671,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official dated press index parsed; 4 relevant releases extracted.",
           "extractedRecords": 4,
-          "checkedAt": "2026-08-23T22:14:08+00:00"
+          "checkedAt": "2026-08-23T18:33:56+00:00"
         }
       ]
     }

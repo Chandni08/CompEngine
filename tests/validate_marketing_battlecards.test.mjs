@@ -20,7 +20,7 @@ test("Product Marketing inherits the Product Management panel hierarchy", async 
   ]) assert.match(standardNavigation, new RegExp(`data-section-nav="${id}"`));
 });
 
-test("Product Marketing uses the Product Management render path with PMM consideration labels", async () => {
+test("Product Marketing uses the Product Management layout without extra filters", async () => {
   const app = await readFile(new URL("app.js", root), "utf8");
 
   assert.match(app, /const hiddenForProductManagement = state\.view === "Product" \|\| state\.view === "Marketing"/);
@@ -28,10 +28,10 @@ test("Product Marketing uses the Product Management render path with PMM conside
   assert.match(app, /marketingWorkspace\.hidden = true/);
   assert.match(app, /standardNavigation\.hidden = false/);
   assert.match(app, /marketingNavigation\.hidden = true/);
-  assert.doesNotMatch(app, /renderMarketingWorkspace\(signals\);\s*scheduleSectionNavRefresh\(\);\s*return;/s);
-  assert.match(app, /state\.view === "Marketing"[\s\S]*?<dt>Next PMM Considerations<\/dt>[\s\S]*?<dt>Next PM Considerations<\/dt>/);
-  assert.match(app, /state\.view === "Marketing" \? "Next PMM consideration" : "Next PM consideration"/);
-  assert.match(app, /state\.view === "Marketing" \? "Waters PMM Considerations" : "Waters PM Considerations"/);
+  assert.doesNotMatch(app, /if \(state\.view === "Marketing"\) \{\s*renderMarketingWorkspace\(signals\);/s);
+  assert.match(app, /navigationLabel\.textContent = "Roadmap Intelligence"/);
+  assert.match(app, /control\.hidden = true[\s\S]*?label\.hidden = true/);
+  assert.match(app, /if \(filters\.role\.value === "Marketing"\) \{\s*clearHeadToHeadUrlParameters\(\);\s*state\.headToHead\.initialized = true;\s*return;/s);
 });
 
 test("competitor plays render one governed selling motion per Competitor Intent record", async () => {
@@ -72,8 +72,29 @@ test("selling-motion inputs keep observed move text separate from PM interpretat
 test("Marketing copy states the decision-and-activation purpose", async () => {
   const app = await readFile(new URL("app.js", root), "utf8");
 
-  assert.match(app, /Product Marketing view/);
-  assert.match(app, /Informing positioning, competitive response, proof priorities, and market activation for Next Gen LC\./);
+  assert.match(app, /Product Marketing Decision & Activation Center/);
+  assert.match(app, /Decide what to say, to whom, against whom, and with which approved proof\./);
+  for (const step of ["Target", "Decide", "Prove", "Approve", "Ship"]) assert.match(app, new RegExp(`<strong>${step}<\\/strong>`));
+  assert.match(app, /Market activity <small>directional—not demand<\/small>/);
+});
+
+test("Product Marketing role and targeting are persistent and URL-addressable", async () => {
+  const app = await readFile(new URL("app.js", root), "utf8");
+
+  assert.match(app, /competition-engine:role-view:v1/);
+  assert.match(app, /params\.get\("view"\)/);
+  assert.match(app, /url\.searchParams\.set\("view", state\.view\)/);
+  assert.match(app, /localStorage\.setItem\(roleViewStorageKey, state\.view\)/);
+  assert.match(app, /initializeRoleView\(\);\s*initializeHeadToHeadSelection\(\);/);
+});
+
+test("competitor aliases collapse into canonical filter identities", async () => {
+  const app = await readFile(new URL("app.js", root), "utf8");
+
+  assert.match(app, /\["AGILENT TECHNOLOGIES, INC\.", "Agilent"\]/);
+  assert.match(app, /\["THERMO FISHER SCIENTIFIC INC\.", "Thermo Fisher"\]/);
+  assert.match(app, /names\.map\(canonicalCompetitorName\)/);
+  assert.match(app, /function competitorMatchesFilter/);
 });
 
 test("shared Product Management panels generate PMM decisions rather than renamed roadmap copy", async () => {

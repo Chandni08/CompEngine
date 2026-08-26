@@ -1,0 +1,705 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-08-23T18:47:53Z",
+  "horizon": {
+    "label": "1 year",
+    "start": "2025-08-23",
+    "end": "2026-08-23",
+    "basis": "Default selected dashboard Horizon filter as of 2026-08-23"
+  },
+  "scope": {
+    "technologies": ["LC", "HPLC", "UHPLC/UPLC", "LC-MS", "LC-MS/MS", "MS workflows"],
+    "includedCompetitors": ["Agilent", "Thermo Fisher Scientific", "SCIEX", "Shimadzu Corporation", "PerkinElmer/Revvity"],
+    "excludedDashboardEntries": [
+      {"name": "Market-wide", "reason": "Not a competitor or note publisher."},
+      {"name": "Danaher Corporation", "reason": "Corporate parent; SCIEX is the instrument-brand library reviewed."},
+      {"name": "Hitachi High-Tech", "reason": "Not present in the live dashboard competitor filter."}
+    ]
+  },
+  "coverage": {
+    "statement": "46 notes reviewed across 3 competitors; 4 libraries could not be fully verified.",
+    "notesReviewed": 46,
+    "competitorsRepresented": 3,
+    "librariesNotFullyVerified": 4,
+    "libraries": [
+      {
+        "competitor": "Agilent",
+        "libraryUrl": "https://www.agilent.com/en/promotions/applicationfinder",
+        "libraryReportedTotal": 1269,
+        "recordsReviewed": 1269,
+        "verifiedInScope": 17,
+        "status": "complete_for_window",
+        "note": "The official LC and LC/MS Application Finder data inventory was reviewed in full and filtered to the exact horizon and allowed content types."
+      },
+      {
+        "competitor": "Thermo Fisher Scientific",
+        "libraryUrl": "https://www.thermofisher.com/sg/en/home/industrial/mass-spectrometry/mass-spectrometry-learning-center/mass-spectrometry-resource-library/lc-ms-resources.html",
+        "libraryReportedTotal": null,
+        "recordsReviewed": 2,
+        "verifiedInScope": 2,
+        "status": "partial_no_enumerable_total",
+        "note": "The official resource page did not expose an enumerable, dated LC/LC-MS inventory. Only notes whose PDF title, type, date code, instruments and official URL were confirmed are included."
+      },
+      {
+        "competitor": "SCIEX",
+        "libraryUrl": "https://sciex.com/search-results?contentType=Technical%20notes",
+        "libraryReportedTotal": 939,
+        "recordsReviewed": 10,
+        "verifiedInScope": 0,
+        "status": "partial_dates_not_exposed",
+        "note": "The index was reachable and reported 939 technical notes, but result cards and reviewed note pages did not print a publication date. No date was inferred from crawl time or references."
+      },
+      {
+        "competitor": "Shimadzu Corporation",
+        "libraryUrl": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/triple-quadrupole-lc-msms/lcms-tq-rx-series/downloads.html",
+        "libraryReportedTotal": 100,
+        "recordsReviewed": 100,
+        "verifiedInScope": 27,
+        "status": "complete_for_rx_library_partial_for_other_product_families",
+        "note": "All 100 records in the official LCMS-TQ RX merged-download inventory were reviewed through the vendor's JSON inventory endpoint; 27 dated application notes qualified in the exact horizon. Additional term-varied checks covered PFAS, peptide/biopharma, intact-protein and food applications, but other Shimadzu LC/LC-MS product-family libraries were not exhaustively enumerated. Twenty-six PDFs use Shimadzu's exact 'Application News' label rather than the index facet's 'Application Note' label."
+      },
+      {
+        "competitor": "PerkinElmer/Revvity",
+        "libraryUrl": "https://customerportal.perkinelmer.com/library/search/",
+        "libraryReportedTotal": null,
+        "recordsReviewed": 0,
+        "verifiedInScope": 0,
+        "status": "inaccessible_or_out_of_scope_library",
+        "note": "The accessible PerkinElmer application search was GC-oriented and did not expose an LC/LC-MS inventory or total; no qualifying Revvity instrument-workflow note with a printed in-window date was verified."
+      }
+    ]
+  },
+  "selfAudit": {
+    "completedAt": "2026-08-23T18:47:53Z",
+    "verifiedNoteRows": 46,
+    "duplicateExactUrls": 0,
+    "duplicateNormalizedTitles": 0,
+    "secondPassUrlCheck": {
+      "directPdfResponsesConfirmedTwice": 29,
+      "agilentPdfUrlsReturningAutomatedAccessDenial": 17,
+      "note": "The 27 Shimadzu and two Thermo Fisher PDF URLs returned PDF content on both checks. Agilent's 17 exact PDF URLs returned HTTP 403 to the automated second-pass client; each URL and its title, date, type and named system were reconfirmed twice in the official Agilent Application Finder inventory, and none redirected to a library or search-results page. This access-control limitation is reported rather than treated as a successful direct PDF re-open."
+    },
+    "termVariedBackstop": {
+      "terms": ["PFAS", "peptide quantitation", "biopharma characterization", "intact protein", "food contaminants"],
+      "vendorsChecked": ["Agilent", "Thermo Fisher Scientific", "SCIEX", "Shimadzu Corporation", "PerkinElmer/Revvity"],
+      "handling": "Only official vendor records were considered. Search-result crawl dates were not treated as publication dates; candidates without a date printed on the official record or document were excluded."
+    },
+    "fieldCheck": "Every included row was checked against an official vendor library record or official PDF for title, printed date or printed date code, named system, note type and vendor identity."
+  },
+  "summaryStats": {
+    "mostRepeatedTheme": {
+      "theme": "PFAS and fluorinated-contaminant testing",
+      "noteCount": 20,
+      "tieBreakRule": "Highest verified note count; alphabetical theme name would break a tie."
+    },
+    "mostActiveNotePublisher": {
+      "competitor": "Shimadzu Corporation",
+      "noteCount": 27,
+      "boundary": "Ranking is computed only from the 46 verified notes and is not a complete cross-vendor publication-volume comparison because four libraries are incomplete."
+    },
+    "latestOfficialNoteActivity": {
+      "date": "2026-08-16",
+      "competitor": "Shimadzu Corporation",
+      "theme": "PFAS and fluorinated-contaminant testing",
+      "title": "Direct Injection Analysis of PFAS in Seawater Using the Shimadzu LCMS-8060RX"
+    }
+  },
+  "themes": [
+    {
+      "theme": "PFAS and fluorinated-contaminant testing",
+      "note_count": 20,
+      "competitors": ["Agilent", "Thermo Fisher Scientific", "Shimadzu Corporation"],
+      "latest_date": "2026-08-16",
+      "notes": [
+        {
+          "date": "2026-08-16",
+          "competitor": "Shimadzu Corporation",
+          "application_area": "PFAS in seawater",
+          "title": "Direct Injection Analysis of PFAS in Seawater Using the Shimadzu LCMS-8060RX",
+          "instruments": "LCMS-8060RX",
+          "note_type": "Application Note",
+          "description": "Describes direct-injection LC-MS/MS analysis of PFAS in seawater on the LCMS-8060RX.",
+          "url": "https://www.shimadzu.com/an/sites/shimadzu.com.an/files/pim/pim_document_file/applications/application_note/26936/an_07-2604-en.pdf"
+        },
+        {
+          "date": "2026-07-02",
+          "competitor": "Shimadzu Corporation",
+          "application_area": "PFAS in water containing suspended solids",
+          "title": "Analysis of PFAS in Water Samples Containing Insolubles Using Triple Quadrupole LC/MS/MS",
+          "instruments": "Nexera X3; LCMS-8060RX",
+          "note_type": "Application News",
+          "description": "Describes sample preparation and LC-MS/MS measurement of 30 PFAS in water samples containing insoluble material.",
+          "url": "https://www.shimadzu.com/an/sites/shimadzu.com.an/files/pim/pim_document_file/applications/application_note/26757/an_01-00992-en.pdf"
+        },
+        {
+          "date": "2026-06",
+          "competitor": "Thermo Fisher Scientific",
+          "application_area": "Ultrashort-chain PFAS in drinking water",
+          "title": "Anticipating emerging regulations: Direct injection LC-MS/MS quantification of C1–C4 ultrashort-chain PFAS in drinking water using the TSQ Altis Plus EFOX Edition",
+          "instruments": "Vanquish Duo UHPLC system; TSQ Altis Plus EFOX Edition Triple Quadrupole Mass Spectrometer; Chromeleon CDS",
+          "note_type": "Application note",
+          "description": "Presents a direct-injection HILIC LC-MS/MS method for C1–C4 PFAS in drinking water.",
+          "url": "https://documents.thermofisher.com/TFS-Assets/CMD/Application-Notes/an-004442-en-pfas-tsq-altis-plus-efox-editon-an004442-em-en.pdf"
+        },
+        {
+          "date": "2026-04-16",
+          "competitor": "Shimadzu Corporation",
+          "application_area": "PFAS in seafood",
+          "title": "Determination of 30 PFAS in Seafood by Liquid Chromatography Triple Quadrupole Mass Spectrometry (LC-MS/MS)",
+          "instruments": "Nexera series; LCMS-8060NX",
+          "note_type": "Application News",
+          "description": "Describes QuEChERS preparation and LC-MS/MS determination of 30 PFAS in seafood.",
+          "url": "https://www.shimadzu.com/an/sites/shimadzu.com.an/files/pim/pim_document_file/applications/application_note/26436/an_02-ssi-lcms-157-en.pdf"
+        },
+        {
+          "date": "2026-04-16",
+          "competitor": "Shimadzu Corporation",
+          "application_area": "PFAS in foods for infants and young children",
+          "title": "Determination of 30 PFAS in Foods for Infants and Young Children (Baby Food) by Liquid Chromatography Triple Quadrupole Mass Spectrometry (LC-MS/MS)",
+          "instruments": "Nexera series; LCMS-8060NX",
+          "note_type": "Application News",
+          "description": "Describes QuEChERS preparation and LC-MS/MS determination of 30 PFAS in foods for infants and young children.",
+          "url": "https://www.shimadzu.com/an/sites/shimadzu.com.an/files/pim/pim_document_file/applications/application_note/26437/an_02-ssi-lcms-163-en.pdf"
+        },
+        {
+          "date": "2026-04-16",
+          "competitor": "Shimadzu Corporation",
+          "application_area": "PFAS in coffee",
+          "title": "Determination of 30 PFAS in Coffee by Liquid Chromatography Triple Quadrupole Mass Spectrometry (LC-MS/MS)",
+          "instruments": "Nexera series; LCMS-8060NX",
+          "note_type": "Application News",
+          "description": "Describes extraction, SPE cleanup and LC-MS/MS determination of 30 PFAS in coffee.",
+          "url": "https://www.shimadzu.com/an/sites/shimadzu.com.an/files/pim/pim_document_file/applications/application_note/26438/an_02-ssi-lcms-164-en.pdf"
+        },
+        {
+          "date": "2026-04-16",
+          "competitor": "Shimadzu Corporation",
+          "application_area": "PFAS in eggs",
+          "title": "Determination of 30 PFAS in Egg by Liquid Chromatography Triple Quadrupole Mass Spectrometry (LC-MS/MS)",
+          "instruments": "Nexera series; LCMS-8060NX",
+          "note_type": "Application News",
+          "description": "Describes QuEChERS preparation and LC-MS/MS determination of 30 PFAS in egg samples.",
+          "url": "https://www.shimadzu.com/an/sites/shimadzu.com.an/files/pim/pim_document_file/applications/application_note/26439/an_02-ssi-lcms-165-en.pdf"
+        },
+        {
+          "date": "2026-04-16",
+          "competitor": "Shimadzu Corporation",
+          "application_area": "PFAS in fish oil",
+          "title": "Determination of 30 PFAS in Fish Oil by Liquid Chromatography Triple Quadrupole Mass Spectrometry (LC-MS/MS)",
+          "instruments": "Nexera series; LCMS-8060NX",
+          "note_type": "Application News",
+          "description": "Describes sample preparation and LC-MS/MS determination of 30 PFAS in fish oil.",
+          "url": "https://www.shimadzu.com/an/sites/shimadzu.com.an/files/pim/pim_document_file/applications/application_note/26440/an_02-ssi-lcms-166-en.pdf"
+        },
+        {
+          "date": "2026-04-16",
+          "competitor": "Shimadzu Corporation",
+          "application_area": "PFAS in fish",
+          "title": "Determination of 30 PFAS in Fish by Liquid Chromatography Triple Quadrupole Mass Spectrometry (LC-MS/MS)",
+          "instruments": "Nexera series; LCMS-8060NX",
+          "note_type": "Application News",
+          "description": "Describes QuEChERS preparation and LC-MS/MS determination of 30 PFAS in fish.",
+          "url": "https://www.shimadzu.com/an/sites/shimadzu.com.an/files/pim/pim_document_file/applications/application_note/26441/an_02-ssi-lcms-167-en.pdf"
+        },
+        {
+          "date": "2026-04-16",
+          "competitor": "Shimadzu Corporation",
+          "application_area": "PFAS in milk",
+          "title": "Determination of 30 PFAS in Milk by Liquid Chromatography Triple Quadrupole Mass Spectrometry (LC-MS/MS)",
+          "instruments": "Nexera series; LCMS-8060NX",
+          "note_type": "Application News",
+          "description": "Describes QuEChERS preparation and LC-MS/MS determination of 30 PFAS in milk.",
+          "url": "https://www.shimadzu.com/an/sites/shimadzu.com.an/files/pim/pim_document_file/applications/application_note/26442/an_02-ssi-lcms-168-en.pdf"
+        },
+        {
+          "date": "2026-04-16",
+          "competitor": "Shimadzu Corporation",
+          "application_area": "PFAS in offal",
+          "title": "Determination of 30 PFAS in Offal by Liquid Chromatography Triple Quadrupole Mass Spectrometry (LC-MS/MS)",
+          "instruments": "Nexera series; LCMS-8060NX",
+          "note_type": "Application News",
+          "description": "Describes QuEChERS preparation and LC-MS/MS determination of 30 PFAS in offal.",
+          "url": "https://www.shimadzu.com/an/sites/shimadzu.com.an/files/pim/pim_document_file/applications/application_note/26443/an_02-ssi-lcms-169-en.pdf"
+        },
+        {
+          "date": "2026-04-16",
+          "competitor": "Shimadzu Corporation",
+          "application_area": "PFAS in pet food",
+          "title": "Determination of 30 PFAS in Pet Food by Liquid Chromatography Triple Quadrupole Mass Spectrometry (LC-MS/MS)",
+          "instruments": "Nexera series; LCMS-8060NX",
+          "note_type": "Application News",
+          "description": "Describes QuEChERS preparation and LC-MS/MS determination of 30 PFAS in pet food.",
+          "url": "https://www.shimadzu.com/an/sites/shimadzu.com.an/files/pim/pim_document_file/applications/application_note/26444/an_02-ssi-lcms-170-en.pdf"
+        },
+        {
+          "date": "2026-04-16",
+          "competitor": "Shimadzu Corporation",
+          "application_area": "PFAS in produce",
+          "title": "Determination of 30 PFAS in Produce by Liquid Chromatography Triple Quadrupole Mass Spectrometry (LC-MS/MS)",
+          "instruments": "Nexera series; LCMS-8060NX",
+          "note_type": "Application News",
+          "description": "Describes QuEChERS preparation and LC-MS/MS determination of 30 PFAS in produce.",
+          "url": "https://www.shimadzu.com/an/sites/shimadzu.com.an/files/pim/pim_document_file/applications/application_note/26445/an_02-ssi-lcms-171-en.pdf"
+        },
+        {
+          "date": "2026-04-16",
+          "competitor": "Shimadzu Corporation",
+          "application_area": "PFAS in protein powder",
+          "title": "Determination of 30 PFAS in Protein Powder by Liquid Chromatography Triple Quadrupole Mass Spectrometry (LC-MS/MS)",
+          "instruments": "Nexera series; LCMS-8060NX",
+          "note_type": "Application News",
+          "description": "Describes QuEChERS preparation and LC-MS/MS determination of 30 PFAS in protein powder.",
+          "url": "https://www.shimadzu.com/an/sites/shimadzu.com.an/files/pim/pim_document_file/applications/application_note/26446/an_02-ssi-lcms-172-en.pdf"
+        },
+        {
+          "date": "2026-02-25",
+          "competitor": "Shimadzu Corporation",
+          "application_area": "PFAS in textiles under EN 17681",
+          "title": "Analysis of PFAS in Textiles Based on EN 17681-1 and EN 17681-2",
+          "instruments": "Nexera X3; LCMS-8050RX",
+          "note_type": "Application News",
+          "description": "Describes the LC-MS/MS portion of EN 17681 testing for ionic PFAS in textiles using the LCMS-8050RX.",
+          "url": "https://www.shimadzu.com/an/sites/shimadzu.com.an/files/pim/pim_document_file/applications/application_note/26257/an_01-01108-en.pdf"
+        },
+        {
+          "date": "2026-01-21",
+          "competitor": "Agilent",
+          "application_area": "Broad-panel PFAS method development",
+          "title": "Development and Optimization for a Comprehensive LC/MS/MS Method for the Detection of 74 PFAS Compounds",
+          "instruments": "1290 Infinity III LC System; 6495 Triple Quadrupole LC/MS",
+          "note_type": "Application Note",
+          "description": "Documents development and optimization of an LC-MS/MS method covering 74 PFAS compounds.",
+          "url": "https://www.agilent.com/cs/library/applications/an-lc-ms-ms-method-detection-pfas-compounds-5994-8903en-agilent.pdf"
+        },
+        {
+          "date": "2026-01-06",
+          "competitor": "Agilent",
+          "application_area": "Ultrashort- through long-chain PFAS in drinking water",
+          "title": "Simultaneous C1–C18 PFAS Analysis in Drinking Water by Large-Volume Direct Injection Using an Altura Poroshell 120 PFAS Column",
+          "instruments": "1290 Infinity III LC System; 6475 Triple Quadrupole LC/MS",
+          "note_type": "Application Note",
+          "description": "Describes large-volume direct-injection LC-MS/MS analysis of C1–C18 PFAS in drinking water.",
+          "url": "https://www.agilent.com/cs/library/applications/an-c1-c18-pfas-analysis-drinking-water-altura-poroshell-120-pfas-5994-8895en-agilent.pdf"
+        },
+        {
+          "date": "2025-11-24",
+          "competitor": "Agilent",
+          "application_area": "PFAS in beer and wine",
+          "title": "Determination of 43 PFAS in Beer and Wine Using the Agilent Captiva EMR PFAS Food I passthrough cleanup and LC/MS/MS detection",
+          "instruments": "1290 Infinity III LC System; 6495 Triple Quadrupole LC/MS",
+          "note_type": "Application Note",
+          "description": "Describes passthrough cleanup and LC-MS/MS determination of 43 PFAS in beer and wine.",
+          "url": "https://www.agilent.com/cs/library/applications/an-captiva-emr-pfas-food-i-cartridge-5994-8813en-agilent.pdf"
+        },
+        {
+          "date": "2025-11-13",
+          "competitor": "Agilent",
+          "application_area": "PFAS in biosolids under EPA Method 1633 guidance",
+          "title": "Determination of 40 PFAS in Biosolids Following EPA Method 1633 Quality Control Guidance",
+          "instruments": "1290 Infinity III LC System; 6495 Triple Quadrupole LC/MS",
+          "note_type": "Application Note",
+          "description": "Describes sample preparation and LC-MS/MS determination of 40 PFAS in biosolids following EPA Method 1633 quality-control guidance.",
+          "url": "https://www.agilent.com/cs/library/applications/an-pfas-biosolids-captiva-emr-5994-8777en-agilent.pdf"
+        },
+        {
+          "date": "2025-09-30",
+          "competitor": "Shimadzu Corporation",
+          "application_area": "PFAS in wastewater under ISO 21675",
+          "title": "Analysis of PFAS in Wastewater Based on ISO 21675 Using Triple Quadrupole LC/MS/MS",
+          "instruments": "Nexera X3; LCMS-8060RX",
+          "note_type": "Application News",
+          "description": "Describes solid-phase extraction and LC-MS/MS analysis of PFAS in wastewater following ISO 21675.",
+          "url": "https://www.shimadzu.com/an/sites/shimadzu.com.an/files/pim/pim_document_file/applications/application_note/25898/an_01-00991-en.pdf"
+        }
+      ]
+    },
+    {
+      "theme": "Food contaminant and residue testing",
+      "note_count": 4,
+      "competitors": ["Agilent", "Shimadzu Corporation"],
+      "latest_date": "2026-04-16",
+      "notes": [
+        {
+          "date": "2026-04-16",
+          "competitor": "Shimadzu Corporation",
+          "application_area": "Quaternary ammonium residues in milk",
+          "title": "Quantitative Analysis of QACs in Milk Using a QuEChERs Sample Preparation Approach",
+          "instruments": "Nexera X3; LCMS-8045RX",
+          "note_type": "Application News",
+          "description": "Describes QuEChERS preparation and LC-MS/MS measurement of quaternary ammonium compounds in milk.",
+          "url": "https://www.shimadzu.com/an/sites/shimadzu.com.an/files/pim/pim_document_file/applications/application_note/26462/an_05-sca-210-097-en.pdf"
+        },
+        {
+          "date": "2026-02-09",
+          "competitor": "Agilent",
+          "application_area": "Aflatoxins in food",
+          "title": "Sensitive Detection of Aflatoxins by the Agilent 1290 Infinity III Fluorescence Detector",
+          "instruments": "1290 Infinity III LC System; Fluorescence Detector",
+          "note_type": "Application Note",
+          "description": "Describes LC with fluorescence detection for six aflatoxins.",
+          "url": "https://www.agilent.com/cs/library/applications/an-1290-infinity-iii-fld-aflatoxins-5994-8938en-agilent.pdf"
+        },
+        {
+          "date": "2026-01-13",
+          "competitor": "Shimadzu Corporation",
+          "application_area": "Food-allergen peptides in processed foods",
+          "title": "Simultaneous Analysis of Food Allergens, Including Nuts and Fruits, Using a Triple Quadrupole Mass Spectrometer",
+          "instruments": "Nexera X3; LCMS-9030; LCMS-8060RX",
+          "note_type": "Application News",
+          "description": "Describes Q-TOF transition discovery and triple-quadrupole LC-MS/MS verification for 17 food allergens in processed foods.",
+          "url": "https://www.shimadzu.com/an/sites/shimadzu.com.an/files/pim/pim_document_file/applications/application_note/26122/an_01-00955-en.pdf"
+        },
+        {
+          "date": "2025-10-31",
+          "competitor": "Agilent",
+          "application_area": "Pesticide screening in food",
+          "title": "Pesticide Screening with Fast Polarity Switching Using Agilent Revident LC/Q-TOF",
+          "instruments": "1290 Infinity III LC System; Revident Quadrupole Time of Flight LC/MS",
+          "note_type": "Application Note",
+          "description": "Describes LC/Q-TOF pesticide screening using fast polarity switching.",
+          "url": "https://www.agilent.com/cs/library/applications/an-pesticide-screening-revident-lc-qtof-5994-8751en-agilent.pdf"
+        }
+      ]
+    },
+    {
+      "theme": "Cereulide testing in food",
+      "note_count": 2,
+      "competitors": ["Shimadzu Corporation"],
+      "latest_date": "2026-05-19",
+      "notes": [
+        {
+          "date": "2026-05-19",
+          "competitor": "Shimadzu Corporation",
+          "application_area": "Cereulide in infant formula",
+          "title": "Analysis of Cereulide in Reconstituted Infant Formula Using Triple Quadrupole LC-MS/MS",
+          "instruments": "Nexera X3; LCMS-8060RX",
+          "note_type": "Application News",
+          "description": "Compares ISO 18465-based and QuEChERS sample preparation for LC-MS/MS measurement of cereulide in reconstituted infant formula.",
+          "url": "https://www.shimadzu.com/an/sites/shimadzu.com.an/files/pim/pim_document_file/applications/application_note/26510/an_01-01209-en.pdf"
+        },
+        {
+          "date": "2025-11-04",
+          "competitor": "Shimadzu Corporation",
+          "application_area": "Cereulide in food",
+          "title": "Analysis of Cereulide in Food Using Triple Quadrupole Mass Spectrometer",
+          "instruments": "Nexera X3; LCMS-8060RX",
+          "note_type": "Application News",
+          "description": "Describes sample preparation and triple-quadrupole LC-MS/MS analysis of cereulide in food.",
+          "url": "https://www.shimadzu.com/an/sites/shimadzu.com.an/files/pim/pim_document_file/applications/application_note/25985/an_01-00939-en.pdf"
+        }
+      ]
+    },
+    {
+      "theme": "Nucleic-acid therapeutic characterization and quality control",
+      "note_count": 3,
+      "competitors": ["Agilent"],
+      "latest_date": "2025-12-10",
+      "notes": [
+        {
+          "date": "2025-12-10",
+          "competitor": "Agilent",
+          "application_area": "CRISPR-Cas9 gene-editing tool analysis",
+          "title": "HILIC Analysis of CRISPR-Cas9 Gene Editing Tools on a Low Adsorption LC Flow Path Using the Agilent 1290 Infinity III Bio LC System and Ultra-Inert Column Hardware",
+          "instruments": "1290 Infinity III Bio LC System",
+          "note_type": "Application Note",
+          "description": "Describes HILIC analysis of CRISPR-Cas9-related mRNA and oligonucleotide materials on a low-adsorption LC flow path.",
+          "url": "https://www.agilent.com/cs/library/applications/an-crispr-cas9-altura-poroshell-5994-8834en-agilent.pdf"
+        },
+        {
+          "date": "2025-10-24",
+          "competitor": "Agilent",
+          "application_area": "Lipid nanoparticle critical-quality attributes",
+          "title": "Advanced SEC with Online LS/DLS Detection for the Analysis of Lipid Nanoparticles CQAs",
+          "instruments": "1290 Infinity III Bio LC System; Bio-SEC Multidetector System; Refractive Index Detector",
+          "note_type": "Application Note",
+          "description": "Describes size-exclusion chromatography with online light-scattering and refractive-index detection for lipid-nanoparticle quality attributes.",
+          "url": "https://www.agilent.com/cs/library/applications/an-advanced-sec-online-ls-dls-5994-8735en-agilent.pdf"
+        },
+        {
+          "date": "2025-10-15",
+          "competitor": "Agilent",
+          "application_area": "Antisense oligonucleotide quality control",
+          "title": "Automated LC/MS Quality Control of Anti-Sense Oligonucleotides",
+          "instruments": "1290 Infinity III Bio LC System; InfinityLab Pro iQ Plus",
+          "note_type": "Application Note",
+          "description": "Describes automated LC/MS purity and assay review for antisense oligonucleotide quality control.",
+          "url": "https://www.agilent.com/cs/library/applications/an-openlab-antisense-oligonucleotides-5994-8730en-agilent.pdf"
+        }
+      ]
+    },
+    {
+      "theme": "Explosives in soil by LC-MS/MS",
+      "note_count": 2,
+      "competitors": ["Agilent", "Shimadzu Corporation"],
+      "latest_date": "2026-07-16",
+      "notes": [
+        {
+          "date": "2026-07-16",
+          "competitor": "Shimadzu Corporation",
+          "application_area": "Explosives and residues in soil",
+          "title": "Rapid LC-MS/MS Analysis of 19 Explosives in Soil",
+          "instruments": "Nexera X3; LCMS-8060RX",
+          "note_type": "Application News",
+          "description": "Describes soil extraction and positive/negative-ion LC-MS/MS analysis of 19 explosive compounds.",
+          "url": "https://www.shimadzu.com/an/sites/shimadzu.com.an/files/pim/pim_document_file/applications/application_note/26824/an_01-01203-en.pdf"
+        },
+        {
+          "date": "2025-11-18",
+          "competitor": "Agilent",
+          "application_area": "Explosives in soil",
+          "title": "Determination of Explosives in Soil Using the Agilent 1260 Infinity III LC System",
+          "instruments": "1260 Infinity III LC System; Diode Array Detector",
+          "note_type": "Application Note",
+          "description": "Describes LC determination of 19 explosive compounds and related residues in soil.",
+          "url": "https://www.agilent.com/cs/library/applications/an-explosives-soil-1260-infinity-iii-prosohell-120-5994-8810en-agilent.pdf"
+        }
+      ]
+    },
+    {
+      "theme": "Quantitative small-molecule bioanalysis in biological matrices",
+      "note_count": 4,
+      "competitors": ["Agilent", "Shimadzu Corporation"],
+      "latest_date": "2026-05-19",
+      "notes": [
+        {
+          "date": "2026-05-19",
+          "competitor": "Shimadzu Corporation",
+          "application_area": "Antidiabetic drugs in whole blood",
+          "title": "Simultaneous Analysis of 27 Antidiabetic Drugs in Whole Blood by LC–MS/MS",
+          "instruments": "Nexera X3; LCMS-8050RX",
+          "note_type": "Application News",
+          "description": "Describes QuEChERS-based preparation and simultaneous LC-MS/MS measurement of 27 antidiabetic drugs in whole blood.",
+          "url": "https://www.shimadzu.com/an/sites/shimadzu.com.an/files/pim/pim_document_file/applications/application_note/26509/an_01-01143-en.pdf"
+        },
+        {
+          "date": "2026-03-02",
+          "competitor": "Shimadzu Corporation",
+          "application_area": "Anticoagulants in plasma",
+          "title": "Rapid Analysis of Anticoagulants in Plasma Using LC-MS/MS",
+          "instruments": "Nexera X4; LCMS-8060RX",
+          "note_type": "Application News",
+          "description": "Describes LC-MS/MS measurement of eight anticoagulants in human plasma.",
+          "url": "https://www.shimadzu.com/an/sites/shimadzu.com.an/files/pim/pim_document_file/applications/application_note/26246/an_01-01078-en.pdf"
+        },
+        {
+          "date": "2025-11-25",
+          "competitor": "Shimadzu Corporation",
+          "application_area": "Ethylene glycol in blood",
+          "title": "LC-MS/MS Analysis of Ethylene Glycol in Blood Using a Simple Derivatization Method",
+          "instruments": "Nexera XR; LCMS-8050",
+          "note_type": "Application News",
+          "description": "Describes derivatization and LC-MS/MS measurement of ethylene glycol in blood.",
+          "url": "https://www.shimadzu.com/an/sites/shimadzu.com.an/files/pim/pim_document_file/applications/application_note/26049/an_01-01041-en.pdf"
+        },
+        {
+          "date": "2025-10-23",
+          "competitor": "Agilent",
+          "application_area": "Multiclass steroids in serum",
+          "title": "Comprehensive Quantitative Analysis of Multiclass Steroids in Serum",
+          "instruments": "1290 Infinity III LC System; 6495 Triple Quadrupole LC/MS",
+          "note_type": "Application Note",
+          "description": "Describes LC-MS/MS quantitation of a multiclass steroid panel in serum.",
+          "url": "https://www.agilent.com/cs/library/applications/an-tecan-steroid-panel-kit-6495-qqq-lcms-5994-8729en-agilent.pdf"
+        }
+      ]
+    },
+    {
+      "theme": "Emerging: targeted peptide biomarker quantitation",
+      "note_count": 1,
+      "competitors": ["Thermo Fisher Scientific"],
+      "latest_date": "2026-02",
+      "notes": [
+        {
+          "date": "2026-02",
+          "competitor": "Thermo Fisher Scientific",
+          "application_area": "Targeted peptide and biomarker quantitation",
+          "title": "Robust peptide quantitation using the TSQ Certis triple quadrupole mass spectrometer and OptiSpray ion source and cartridges",
+          "instruments": "Vanquish Neo UHPLC System; TSQ Certis Triple Quadrupole Mass Spectrometer; OptiSpray ion source and cartridge columns",
+          "note_type": "Technical note",
+          "description": "Evaluates a multiplexed targeted-peptide assay for reproducibility, retention-time stability and sensitivity.",
+          "url": "https://documents.thermofisher.com/TFS-Assets/CMD/Technical-Notes/tn-004401-lsms-tsq-certis-peptides-tn004401-na-en.pdf"
+        }
+      ]
+    },
+    {
+      "theme": "Emerging: lactoferrin analysis in human milk",
+      "note_count": 1,
+      "competitors": ["Agilent"],
+      "latest_date": "2025-10-01",
+      "notes": [
+        {
+          "date": "2025-10-01",
+          "competitor": "Agilent",
+          "application_area": "Lactoferrin in human milk",
+          "title": "A Simple, Accurate, and Reliable Method for Lactoferrin Analysis in Human Milk",
+          "instruments": "1260 Infinity III Prime LC System; Diode Array Detector",
+          "note_type": "Application Note",
+          "description": "Describes an LC method for measuring lactoferrin in human milk.",
+          "url": "https://www.agilent.com/cs/library/applications/an-lactoferrin-human-milk-1260-infinityii-prime-5994-8517en-agilent.pdf"
+        }
+      ]
+    },
+    {
+      "theme": "Emerging: pharmaceutical LC solvent-effect mitigation",
+      "note_count": 1,
+      "competitors": ["Agilent"],
+      "latest_date": "2026-01-23",
+      "notes": [
+        {
+          "date": "2026-01-23",
+          "competitor": "Agilent",
+          "application_area": "Solvent-effect mitigation in pharmaceutical LC",
+          "title": "Overcoming Strong Solvent Effects in the Analysis of Vepdegestrant Using feed injection with the Agilent 1260 Infinity III hybrid multisampler",
+          "instruments": "1260 Infinity III Prime LC System; Diode Array Detector",
+          "note_type": "Application Note",
+          "description": "Describes feed injection to manage strong-solvent effects in LC analysis of vepdegestrant.",
+          "url": "https://www.agilent.com/cs/library/applications/an-solvent-effects-analysis-vepdegestrant-using-feed-injection-5994-8946en-agilent.pdf"
+        }
+      ]
+    },
+    {
+      "theme": "Emerging: plant-extract authenticity testing",
+      "note_count": 1,
+      "competitors": ["Agilent"],
+      "latest_date": "2026-01-16",
+      "notes": [
+        {
+          "date": "2026-01-16",
+          "competitor": "Agilent",
+          "application_area": "Plant-extract authenticity testing",
+          "title": "Workflow for Authenticity Testing of Plant Extract Using Revident LC/Q‑TOF and MassHunter Explorer",
+          "instruments": "1290 Infinity III LC System; Revident Quadrupole Time of Flight LC/MS",
+          "note_type": "Application Note",
+          "description": "Describes LC/Q-TOF and software-based comparison for plant-extract authenticity testing.",
+          "url": "https://www.agilent.com/cs/library/applications/an-authenticity-plant-lc-qtof-5994-8855en-agilent.pdf"
+        }
+      ]
+    },
+    {
+      "theme": "Emerging: automated bioprocess monitoring",
+      "note_count": 1,
+      "competitors": ["Agilent"],
+      "latest_date": "2025-12-12",
+      "notes": [
+        {
+          "date": "2025-12-12",
+          "competitor": "Agilent",
+          "application_area": "Automated bioprocess monitoring",
+          "title": "Automated Bioprocess Monitoring with Agilent 1290 Infinity III Bio Online LC Solutions",
+          "instruments": "1290 Infinity III Bio Online LC System; Diode Array Detector",
+          "note_type": "Application Note",
+          "description": "Describes automated online LC monitoring of a bioprocess using amino-acid measurement.",
+          "url": "https://www.agilent.com/cs/library/applications/an-automated-bioprocess-monitoring-1290-infinity-bioonline-solutions-5994-8865en-agilent.pdf"
+        }
+      ]
+    },
+    {
+      "theme": "Emerging: B-vitamin analysis in dietary supplements",
+      "note_count": 1,
+      "competitors": ["Agilent"],
+      "latest_date": "2025-12-01",
+      "notes": [
+        {
+          "date": "2025-12-01",
+          "competitor": "Agilent",
+          "application_area": "B vitamins in dietary supplements",
+          "title": "B Vitamin Analysis in Dietary Supplements on the Agilent 1290 Infinity III LC System",
+          "instruments": "1290 Infinity III LC System; Diode Array Detector",
+          "note_type": "Application Note",
+          "description": "Describes LC analysis of seven B vitamins in dietary supplements.",
+          "url": "https://www.agilent.com/cs/library/applications/an-b-vitamin-dietary-supplements-1290-infinityiii-lc-5994-8826en-agilent.pdf"
+        }
+      ]
+    },
+    {
+      "theme": "Emerging: mass-based preparative fraction collection",
+      "note_count": 1,
+      "competitors": ["Agilent"],
+      "latest_date": "2025-10-01",
+      "notes": [
+        {
+          "date": "2025-10-01",
+          "competitor": "Agilent",
+          "application_area": "Mass-based preparative fraction collection",
+          "title": "Purify with Ease Using Mass-Based Fraction Collection with InfinityLab Pro iQ and OpenLab CDS",
+          "instruments": "1290 Infinity II Preparative LC/MSD System; InfinityLab Pro iQ Plus",
+          "note_type": "Application Note",
+          "description": "Describes mass-triggered preparative fraction collection controlled through OpenLab CDS.",
+          "url": "https://www.agilent.com/cs/library/applications/an-openlab-mbfc-elderberry-5994-8704en-agilent.pdf"
+        }
+      ]
+    },
+    {
+      "theme": "Emerging: culture-condition optimization using LC/MS data",
+      "note_count": 1,
+      "competitors": ["Shimadzu Corporation"],
+      "latest_date": "2026-06-02",
+      "notes": [
+        {
+          "date": "2026-06-02",
+          "competitor": "Shimadzu Corporation",
+          "application_area": "Cell-culture condition optimization using LC/MS measurements",
+          "title": "Efficient Optimization of Culture Conditions Using the CellTune Culture Optimization Support Software",
+          "instruments": "unconfirmed",
+          "note_type": "Application News",
+          "description": "Describes software-assisted selection and optimization of cell-culture variables using measured LC/MS data and culture metadata.",
+          "url": "https://www.shimadzu.com/an/sites/shimadzu.com.an/files/pim/pim_document_file/applications/application_note/26529/an_01-00804-en.pdf"
+        }
+      ]
+    },
+    {
+      "theme": "Emerging: geographic rice metabolomics",
+      "note_count": 1,
+      "competitors": ["Shimadzu Corporation"],
+      "latest_date": "2025-12-09",
+      "notes": [
+        {
+          "date": "2025-12-09",
+          "competitor": "Shimadzu Corporation",
+          "application_area": "Rice metabolite comparison by production area",
+          "title": "Comparison of Metabolites in Rice from Different Production Areas Using LC-MS/MS",
+          "instruments": "Nexera X3; LCMS-8060RX",
+          "note_type": "Application News",
+          "description": "Describes LC-MS/MS metabolite profiling to compare rice samples from different production areas.",
+          "url": "https://www.shimadzu.com/an/sites/shimadzu.com.an/files/pim/pim_document_file/applications/application_note/26086/an_01-01062-en.pdf"
+        }
+      ]
+    },
+    {
+      "theme": "Emerging: NDSRI impurity analysis in drug products",
+      "note_count": 1,
+      "competitors": ["Shimadzu Corporation"],
+      "latest_date": "2025-11-09",
+      "notes": [
+        {
+          "date": "2025-11-09",
+          "competitor": "Shimadzu Corporation",
+          "application_area": "NDSRI in chlorpromazine tablets",
+          "title": "Determination of NDSRI in Chlorpromazine Tablets by LCMS-8050",
+          "instruments": "Nexera; LCMS-8050",
+          "note_type": "Application News",
+          "description": "Describes LC-MS/MS determination of a nitrosamine drug-substance-related impurity in chlorpromazine tablets.",
+          "url": "https://www.shimadzu.com/an/sites/shimadzu.com.an/files/pim/pim_document_file/applications/application_note/25996/an_03-lcmsms-991-en.pdf"
+        }
+      ]
+    },
+    {
+      "theme": "Emerging: MS peak tracking for LC-MS/MS method development",
+      "note_count": 1,
+      "competitors": ["Shimadzu Corporation"],
+      "latest_date": "2025-11-04",
+      "notes": [
+        {
+          "date": "2025-11-04",
+          "competitor": "Shimadzu Corporation",
+          "application_area": "LC-MS/MS method development",
+          "title": "Enhancing Method Development Efficiency Using MS Peak Tracking with a Triple Quadrupole Mass Spectrometer",
+          "instruments": "Nexera X3; LCMS-8060RX",
+          "note_type": "Application News",
+          "description": "Describes use of MS peak tracking to support LC-MS/MS method development on a triple-quadrupole system.",
+          "url": "https://www.shimadzu.com/an/sites/shimadzu.com.an/files/pim/pim_document_file/applications/application_note/25989/an_01-01059-en.pdf"
+        }
+      ]
+    }
+  ]
+}

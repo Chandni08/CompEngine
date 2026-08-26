@@ -876,3 +876,171 @@ body { background: #f2f2f5; }
   #conferenceAdminForm .admin-form-actions { grid-column: auto; }
   .admin-catalog-grid { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* Match the Conference Intelligence visual system */
+:root {
+  --admin-orange: var(--teal);
+  --admin-orange-dark: #006f7d;
+  --admin-orange-soft: var(--teal-soft);
+  --admin-shadow: none;
+}
+
+body {
+  background: var(--surface);
+  color: var(--ink);
+  font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.admin-sidebar {
+  border-right: 0;
+  background: linear-gradient(180deg, var(--navy) 0%, var(--navy-deep) 100%);
+  color: #ffffff;
+  backdrop-filter: none;
+}
+.admin-sidebar .conference-brand-mark {
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: transparent;
+  color: #ffffff;
+}
+.admin-sidebar .conference-brand span { color: #a8d3d8; }
+.admin-sidebar .conference-brand strong { color: #ffffff; }
+.admin-sidebar nav a { color: #d9e8ea; font-weight: 700; }
+.admin-sidebar nav a:hover,
+.admin-sidebar nav a:focus-visible { background: rgba(255, 255, 255, 0.1); color: #ffffff; }
+.admin-sidebar nav a.active {
+  border-left: 4px solid #58d7d1;
+  padding-left: 10px;
+  background: #0c5964;
+  color: #ffffff;
+}
+.admin-sidebar .conference-sidebar-note {
+  border: 1px solid rgba(174, 221, 225, 0.24);
+  background: rgba(255, 255, 255, 0.06);
+}
+.admin-sidebar .conference-sidebar-note span { color: #8fd2d5; }
+.admin-sidebar .conference-sidebar-note p { color: #d5e6e8; }
+
+.admin-page-shell { gap: 20px; padding-top: 30px; }
+.admin-page-header { align-items: flex-start; }
+.admin-page-header .conference-breadcrumb { margin-bottom: 11px; color: var(--muted); }
+.admin-page-header .conference-breadcrumb a { color: var(--teal); font-weight: 800; }
+.admin-page-header .admin-kicker,
+.admin-card-heading > span,
+.admin-catalog-header > div > span {
+  color: #087888;
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.admin-page-header h1 {
+  margin-top: 5px;
+  color: var(--ink);
+  font-size: clamp(28px, 3vw, 42px);
+  font-weight: 750;
+  letter-spacing: -0.035em;
+}
+.admin-page-header > div > p:last-child { max-width: 820px; margin-top: 9px; color: var(--muted); font-size: 15px; }
+.admin-page-header .conference-header-actions button,
+.admin-page-header .conference-header-actions > a {
+  min-height: auto;
+  border-color: #b9d2d6;
+  border-radius: 10px;
+  padding: 11px 15px;
+  background: #ffffff;
+  color: #17606b;
+  font-size: 13px;
+  font-weight: 800;
+}
+.admin-page-header .conference-header-actions .admin-secondary-button { border-color: var(--teal); background: var(--teal); color: #ffffff; }
+
+.admin-stat-grid { gap: 12px; }
+.admin-stat-card {
+  gap: 12px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  padding: 15px;
+  box-shadow: none;
+}
+.admin-stat-icon { width: 42px; height: 42px; flex-basis: 42px; border-radius: 11px; background: #e8f5f6; color: #087888; }
+.admin-stat-copy strong { color: var(--ink); font-size: 24px; }
+.admin-stat-copy span { color: var(--muted); font-size: 12px; font-weight: 700; }
+
+.admin-form-card,
+.admin-catalog-card {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: none;
+}
+.admin-form-card { overflow: hidden; }
+.admin-card-heading { border-color: var(--line); padding: 22px 24px; }
+.admin-card-heading h2,
+.admin-catalog-header h2 { color: var(--ink); font-size: 20px; font-weight: 750; }
+.admin-card-heading p,
+.admin-catalog-header p { color: var(--muted); font-size: 12px; }
+#conferenceAdminForm { gap: 14px; padding: 22px 24px; }
+#conferenceAdminForm label { color: #385760; font-size: 12px; font-weight: 800; }
+#conferenceAdminForm input,
+#conferenceAdminForm select {
+  min-height: 44px;
+  border-color: #c7dadd;
+  border-radius: 9px;
+  padding: 10px 11px;
+  color: var(--ink);
+  font-size: 14px;
+}
+#conferenceAdminForm input:focus,
+#conferenceAdminForm select:focus,
+.admin-list-tools input:focus,
+.admin-list-tools select:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(0, 135, 151, 0.12); }
+.field-hint { color: #7b8d92; font-size: 10px; }
+.admin-primary-button { border-radius: 9px; background: var(--teal); font-size: 12px; font-weight: 850; }
+.admin-primary-button:hover,
+.admin-primary-button:focus-visible { background: #006f7d; }
+.admin-text-button { color: #087988; }
+.admin-storage-note { border-color: var(--line); background: #f6fafb; }
+.admin-storage-note > span { background: #dff3e7; color: #277445; }
+
+.admin-catalog-header { border-color: var(--line); padding: 21px 24px; }
+.admin-reset-button { border-color: #d2dfe1; border-radius: 8px; color: #5d7379; }
+.admin-list-tools { border-color: #e5edef; padding: 14px 24px; background: #f8fbfb; }
+.admin-list-tools .admin-search-field input,
+.admin-list-tools .admin-tier-filter select { border-color: #c7dadd; border-radius: 9px; color: var(--ink); }
+.admin-catalog-list-wrap { padding: 20px 24px 26px; }
+.admin-catalog-grid { gap: 12px; }
+.admin-conference-card {
+  min-height: 180px;
+  border: 1px solid #dce6e8;
+  border-radius: 12px;
+  padding: 17px;
+  background: #fafcfd;
+  box-shadow: none;
+}
+.admin-conference-card:hover {
+  border-color: #70bfc6;
+  background: #f3fafb;
+  box-shadow: 0 8px 20px rgba(6, 72, 82, 0.09);
+  transform: translateY(-1px);
+}
+.admin-conference-card.is-new { border-color: #58b8c1; background: #edf8f8; box-shadow: inset 0 3px 0 var(--teal); }
+.admin-conference-card-copy h3 { color: var(--ink); font-size: 15px; font-weight: 750; }
+.admin-conference-card .admin-source-link { color: #007d8b; font-size: 12px; font-weight: 750; }
+.admin-conference-date { margin: 0; color: #526a72; font-size: 11px; font-weight: 750; line-height: 1.4; }
+.admin-primary-button:disabled { cursor: progress; opacity: .65; }
+.admin-conference-card .admin-row-actions { border-color: #e1e9eb; }
+.admin-row-action { color: #087988; font-size: 11px; font-weight: 800; }
+.admin-row-action:hover,
+.admin-row-action:focus-visible { background: #eaf6f6; }
+.admin-tier-badge { font-size: 10px; font-weight: 850; }
+
+@media (max-width: 1120px) {
+  .admin-sidebar {
+    background: linear-gradient(180deg, var(--navy) 0%, var(--navy-deep) 100%);
+    color: #ffffff;
+  }
+}
+
+@media (max-width: 620px) {
+  .admin-page-header h1 { font-size: 28px; }
+}

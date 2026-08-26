@@ -219,58 +219,6 @@ a { color: inherit; }
 .conference-stat-grid p { overflow: hidden; margin: 5px 0 0; color: var(--muted); font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
 .conference-stat-grid small { display: block; margin-top: 6px; color: #007d8b; font-size: 10px; font-weight: 850; }
 
-.conference-source-catalog-panel {
-  display: grid;
-  gap: 14px;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  padding: 16px;
-  background: #ffffff;
-}
-.conference-source-catalog-header { align-items: center; }
-.conference-source-catalog-header > div:first-child { max-width: 760px; }
-.conference-source-catalog-header h2 { margin: 2px 0 0; }
-.conference-source-catalog-header p { margin: 5px 0 0; color: var(--muted); font-size: 11px; line-height: 1.45; }
-.conference-source-catalog-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; align-items: center; }
-.conference-source-catalog-actions strong { color: #526a72; font-size: 10px; }
-.conference-source-catalog-actions button {
-  border: 1px solid #b9d7da;
-  border-radius: 8px;
-  padding: 7px 9px;
-  background: #ffffff;
-  color: #087988;
-  font-size: 10px;
-  font-weight: 850;
-  cursor: pointer;
-}
-.conference-source-catalog-actions button[hidden] { display: none; }
-.conference-source-catalog { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 9px; }
-.conference-source-card {
-  display: grid;
-  min-width: 0;
-  align-content: start;
-  gap: 8px;
-  border: 1px solid #dce6e8;
-  border-radius: 11px;
-  padding: 12px;
-  background: #fafcfd;
-}
-.conference-source-card.admin-update { border-color: #f1b691; background: #fff8f3; box-shadow: inset 0 3px 0 #e96a27; }
-.conference-source-card-topline { display: flex; justify-content: space-between; gap: 8px; align-items: center; }
-.conference-source-card-topline small { color: #768a90; font-size: 9px; font-weight: 800; }
-.conference-source-card.admin-update .conference-source-card-topline small { color: #b64f19; }
-.conference-tier-badge { display: inline-flex; border-radius: 999px; padding: 4px 7px; font-size: 9px; font-weight: 850; }
-.conference-tier-badge.tier-1 { background: #ffe9dd; color: #b84611; }
-.conference-tier-badge.tier-2 { background: #fff3cc; color: #866000; }
-.conference-tier-badge.tier-3 { background: #edf1f2; color: #516970; }
-.conference-source-card > strong { color: #23444d; font-size: 12px; line-height: 1.35; }
-.conference-source-card > p { margin: 0; color: var(--muted); font-size: 10px; line-height: 1.4; }
-.conference-source-card-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; padding-top: 3px; }
-.conference-source-card-actions a,
-.conference-source-card-actions button { border: 0; padding: 0; background: transparent; color: #087988; font: inherit; font-size: 9px; font-weight: 850; text-decoration: none; cursor: pointer; }
-.conference-source-card-actions a:hover,
-.conference-source-card-actions button:hover { text-decoration: underline; }
-
 .conference-timeline-panel,
 .conference-event-rail,
 .conference-event-detail {
@@ -506,7 +454,6 @@ a { color: inherit; }
   .conference-sidebar-note { display: none; }
   .conference-page-shell { width: 100%; margin-left: 0; }
   .conference-filter-bar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .conference-source-catalog { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .conference-reset { justify-self: start; }
 }
 
@@ -514,7 +461,6 @@ a { color: inherit; }
   .conference-page-shell { padding: 18px; }
   .conference-page-header { display: grid; }
   .conference-stat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .conference-source-catalog { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .conference-workspace,
   .event-detail-grid,
   .event-prep-source-grid { grid-template-columns: minmax(0, 1fr); }
@@ -533,9 +479,6 @@ a { color: inherit; }
   .conference-header-actions > a { text-align: center; }
   .conference-filter-bar,
   .conference-stat-grid { grid-template-columns: minmax(0, 1fr); }
-  .conference-source-catalog { grid-template-columns: minmax(0, 1fr); }
-  .conference-source-catalog-header { display: grid; align-items: start; }
-  .conference-source-catalog-actions { justify-content: flex-start; }
   .conference-stat-grid p { white-space: normal; }
   .conference-timeline { grid-auto-columns: 140px; }
   .event-detail-header { display: grid; }

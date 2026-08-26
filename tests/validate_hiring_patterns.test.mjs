@@ -8,7 +8,7 @@ const app = readFileSync(new URL("app.js", root), "utf8");
 const css = readFileSync(new URL("product-ui.css", root), "utf8");
 const dataset = JSON.parse(readFileSync(new URL("data/hiring_patterns.json", root), "utf8"));
 
-test("Engineering exposes source-bounded competitor hiring patterns", () => {
+test("Product Management and Engineering expose source-bounded competitor hiring patterns", () => {
   assert.match(html, /id="competitor-hiring-patterns"/);
   assert.match(html, /Competitor Hiring Patterns/);
   assert.match(html, /id="hiringPatternsNav"/);
@@ -17,11 +17,15 @@ test("Engineering exposes source-bounded competitor hiring patterns", () => {
   assert.match(app, /function renderHiringPatterns\(\)/);
   assert.match(app, /function setupHiringPatternNavigation\(\)/);
   assert.match(app, /data-hiring-competitor/);
-  assert.match(app, /const engineeringEvidenceVisible = state\.view === "Engineering"/);
+  assert.match(app, /const technicalEvidenceVisible = \["Engineering", "Product"\]\.includes\(state\.view\)/);
   assert.match(css, /\.hiring-selected-detail/);
   assert.match(css, /\.hiring-strength-meter/);
   assert.doesNotMatch(app, /hiring-monitor-next|Signals That Would Strengthen or Change This Read/);
   assert.doesNotMatch(css, /hiring-monitor-next/);
+  assert.doesNotMatch(app, /class="hiring-evidence-boundary"/);
+  assert.doesNotMatch(app, /Observed Roles and Programs/);
+  assert.doesNotMatch(app, /What Capabilities the Talent Evidence Points Toward/);
+  assert.doesNotMatch(app, /hiring-pattern-readout|Hiring pattern read/);
 });
 
 test("all five competitors have hiring, AI-skill, and LC-MS planning reads", () => {
@@ -46,7 +50,7 @@ test("all five competitors have hiring, AI-skill, and LC-MS planning reads", () 
       assert.match(observation.checkedDate, /^\d{4}-\d{2}-\d{2}$/);
       assert.match(observation.sourceUrl, /^https:\/\//);
       assert.ok(observation.detail.length > 100);
-      assert.ok(observation.relevance.length > 25);
+      if (observation.relevance) assert.ok(observation.relevance.length > 25);
     });
   });
 });
@@ -71,26 +75,26 @@ test("expired individual job links are removed and current Agilent postings are 
   assert.equal(currentPostings.length, 2);
   assert.ok(currentPostings.every((item) => item.checkedDate === "2026-08-22"));
   assert.ok(currentPostings.every((item) => /4039078|4039321/.test(item.sourceUrl)));
+  assert.equal(currentPostings.find((item) => item.title === "Head of Agentic AI Platform Engineering")?.relevance, "");
 });
 
-test("patent, leadership, and hiring surfaces are gated only to Engineering", () => {
+test("patent, leadership, and hiring surfaces are available to Product Management and Engineering", () => {
   const visibilityStart = app.indexOf("function updateRolePanelVisibility()");
   const visibilityEnd = app.indexOf("function render()", visibilityStart);
   const visibilityBody = app.slice(visibilityStart, visibilityEnd);
   const sourceCountStart = app.indexOf("function renderSourceCounts(signals)");
   const sourceCountEnd = app.indexOf("function populateCompetitors()", sourceCountStart);
   const sourceCountBody = app.slice(sourceCountStart, sourceCountEnd);
-  const engineeringGate = visibilityBody.slice(
-    visibilityBody.indexOf("const engineeringEvidenceVisible"),
+  const technicalGate = visibilityBody.slice(
+    visibilityBody.indexOf("const technicalEvidenceVisible"),
     visibilityBody.indexOf("const marketingView"),
   );
-  assert.match(visibilityBody, /const engineeringEvidenceVisible = state\.view === "Engineering"/);
-  assert.match(visibilityBody, /patentPanel\.hidden = !engineeringEvidenceVisible/);
-  assert.match(visibilityBody, /leadershipProfilePanel\.hidden = !engineeringEvidenceVisible/);
-  assert.match(visibilityBody, /hiringPatternsPanel\.hidden = !engineeringEvidenceVisible/);
-  assert.doesNotMatch(engineeringGate, /state\.view === "Product"/);
-  assert.equal((sourceCountBody.match(/state\.view === "Engineering"/g) || []).length, 3);
-  assert.doesNotMatch(sourceCountBody, /state\.view === "Product"[^\n]*(?:patent|leadership|hiring)/i);
+  assert.match(visibilityBody, /const technicalEvidenceVisible = \["Engineering", "Product"\]\.includes\(state\.view\)/);
+  assert.match(visibilityBody, /patentPanel\.hidden = !technicalEvidenceVisible/);
+  assert.match(visibilityBody, /leadershipProfilePanel\.hidden = !technicalEvidenceVisible/);
+  assert.match(visibilityBody, /hiringPatternsPanel\.hidden = !technicalEvidenceVisible/);
+  assert.match(technicalGate, /"Product"/);
+  assert.equal((sourceCountBody.match(/\["Engineering", "Product"\]\.includes\(state\.view\)/g) || []).length, 3);
 });
 
 test("deployment mirror contains matching hiring code, UI, styles, and data", () => {
