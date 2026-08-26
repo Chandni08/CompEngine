@@ -21,7 +21,7 @@ if str(ROOT) not in sys.path:
 
 from scripts.customer_voice_ingestion import SOURCE_CREDIBILITY, EvidenceRecord  # noqa: E402
 from scripts.customer_voice_ingestion import chromforum, fda_bulk, labwrench, reddit_api, selectscience  # noqa: E402
-from scripts.customer_voice_ingestion.common import canonical_url, deduplicate_records  # noqa: E402
+from scripts.customer_voice_ingestion.common import canonical_url, deduplicate_records, unique_keywords  # noqa: E402
 
 
 DATA_FILE = ROOT / "data" / "customer_voice.json"
@@ -305,6 +305,33 @@ def merge_records(data: dict[str, Any], records_by_adapter: dict[str, list[Evide
     return added, enriched
 
 
+def reconcile_selectscience_review_keywords(data: dict[str, Any]) -> int:
+    """Remove legacy page-chrome keywords from structured review evidence.
+
+    Older ingestion extracted vendor terms from the entire product page, so a
+    Waters review could inherit Shimadzu/Nexera words from recommendation or
+    navigation chrome. Product-review keywords must come only from the product
+    title, the exact visible review, and its application area.
+    """
+    repaired = 0
+    for feedback in data.get("feedback", []):
+        if not str(feedback.get("id", "")).startswith("cv-public-"):
+            continue
+        for record in feedback.get("evidenceRecords", []):
+            host = (urlparse(str(record.get("url") or "")).hostname or "").lower().removeprefix("www.")
+            if host != "selectscience.net" or "structured product review" not in str(record.get("recordType", "")).lower():
+                continue
+            evidence_text = " ".join(
+                str(record.get(field) or "")
+                for field in ("label", "reviewText", "applicationArea")
+            )
+            verified_keywords = unique_keywords(evidence_text, selectscience.TERMS)
+            if record.get("sourceKeywords") != verified_keywords:
+                record["sourceKeywords"] = verified_keywords
+                repaired += 1
+    return repaired
+
+
 def refresh_generated_feedback_fields(data: dict[str, Any]) -> int:
     """Recompute only collector-owned summaries when richer evidence is re-ingested."""
     refreshed = 0
@@ -504,6 +531,7 @@ def main() -> int:
             results[adapter_name] = []
             LOGGER.exception("%s adapter failed and was skipped", adapter_name)
     added, enriched = merge_records(data, results)
+    source_keyword_repairs = reconcile_selectscience_review_keywords(data)
     summaries_refreshed = refresh_generated_feedback_fields(data)
     out_of_scope_removed = prune_out_of_scope_labwrench_feedback(data)
     expired_reddit_records_removed = 0
@@ -528,6 +556,7 @@ def main() -> int:
         "recordsEnriched": enriched,
         "schemaFieldsMigrated": migrated,
         "sourceIdentityRepairs": identity_repairs,
+        "sourceKeywordRepairs": source_keyword_repairs,
         "generatedSummariesRefreshed": summaries_refreshed,
         "outOfScopeRecordsRemoved": out_of_scope_removed,
         "expiredUnverifiableRedditRecordsRemoved": expired_reddit_records_removed,

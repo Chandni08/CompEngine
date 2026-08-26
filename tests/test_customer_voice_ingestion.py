@@ -13,6 +13,7 @@ from scripts.collect_customer_voice import (
     ADAPTERS,
     prune_expired_unverifiable_reddit_feedback,
     prune_out_of_scope_labwrench_feedback,
+    reconcile_selectscience_review_keywords,
 )
 from scripts.customer_voice_ingestion import SOURCE_CREDIBILITY, EvidenceRecord
 from scripts.customer_voice_ingestion import chromforum, fda_bulk, labwrench, selectscience
@@ -60,6 +61,28 @@ class CustomerVoiceScopeTests(unittest.TestCase):
 
 
 class CustomerVoiceSchemaTests(unittest.TestCase):
+    def test_selectscience_review_keywords_exclude_cross_vendor_page_chrome(self) -> None:
+        data = {"feedback": [{
+            "id": "cv-public-review",
+            "evidenceRecords": [{
+                "label": "SelectScience: Buy ACQUITY UPLC BEH Columns Read Reviews",
+                "url": "https://www.selectscience.net/product/acquity-uplc-beh-columns",
+                "recordType": "Public structured product review",
+                "sourceKeywords": ["Waters", "ACQUITY", "Shimadzu", "Nexera", "HPLC", "rating"],
+                "excerpt": "Page chrome mentions Shimadzu Nexera elsewhere.",
+                "reviewText": "Perfect column for metabolomic purpose!",
+            }],
+        }]}
+
+        repaired = reconcile_selectscience_review_keywords(data)
+
+        keywords = data["feedback"][0]["evidenceRecords"][0]["sourceKeywords"]
+        self.assertEqual(repaired, 1)
+        self.assertIn("ACQUITY", keywords)
+        self.assertIn("review", keywords)
+        self.assertNotIn("Shimadzu", keywords)
+        self.assertNotIn("Nexera", keywords)
+
     def test_expired_unverifiable_reddit_evidence_fails_closed(self) -> None:
         expired_url = "https://www.reddit.com/r/CHROMATOGRAPHY/comments/expired/example/"
         current_url = "https://www.reddit.com/r/CHROMATOGRAPHY/comments/current/example/"
