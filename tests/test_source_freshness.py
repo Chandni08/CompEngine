@@ -188,11 +188,13 @@ class CommunityTraversalTests(unittest.TestCase):
 
 class CompletenessTests(unittest.TestCase):
     def test_crossref_cursor_pagination_exceeds_40_and_preserves_newest_doi(self) -> None:
-        first = [{"DOI": f"10.1000/{index}", "title": [f"Title {index}"], "published": {"date-parts": [[2026, 7, 30]]}, "URL": ""} for index in range(1000)]
+        first = [{"DOI": f"10.1000/{index}", "title": [f"Title {index}"], "published": {"date-parts": [[2026, 7, 29]]}, "URL": ""} for index in range(1000)]
         second = [{"DOI": "10.1000/newest", "title": ["Newest DOI"], "published": {"date-parts": [[2026, 7, 30]]}, "URL": ""}]
         payloads = [first, second]
+        requested_urls = []
 
         def fake_fetch(_url: str, **_kwargs):
+            requested_urls.append(_url)
             page = payloads.pop(0)
             cursor = "next" if len(page) == 1000 else ""
             return 200, _url, json.dumps({"message": {"items": page, "next-cursor": cursor}})
@@ -202,6 +204,8 @@ class CompletenessTests(unittest.TestCase):
         self.assertEqual(status, 200)
         self.assertEqual(len(records), 1001)
         self.assertIn("10.1000/newest", {item["doi"] for item in records})
+        self.assertEqual(records[0]["doi"], "10.1000/newest")
+        self.assertTrue(all("sort=" not in url and "order=" not in url for url in requested_urls))
         self.assertIn("complete 370-day window", detail)
 
     def test_sec_retains_all_in_window_8k_and_deduplicates_accessions(self) -> None:

@@ -649,7 +649,7 @@ def collect_crossref_records(issn: str) -> tuple[int, list[dict[str, str]], str]
     status = 200
     while cursor:
         endpoint = (
-            f"{base}?filter=from-pub-date:{start},until-pub-date:{end}&sort=published&order=desc&rows=1000"
+            f"{base}?filter=from-pub-date:{start},until-pub-date:{end}&rows=1000"
             "&select=DOI,title,published,published-online,published-print,issued,created,URL,container-title,type"
             f"&cursor={quote(cursor)}"
         )
@@ -666,19 +666,24 @@ def collect_crossref_records(issn: str) -> tuple[int, list[dict[str, str]], str]
         if not page or len(page) < 1000 or next_cursor == cursor:
             break
         cursor = next_cursor
-    records: list[dict[str, str]] = []
+    records_by_doi: dict[str, dict[str, str]] = {}
     for item in items:
         title_values = item.get("title") or []
         doi = str(item.get("DOI") or "").strip()
         title = re.sub(r"\s+", " ", str(title_values[0] if title_values else "")).strip()
         if not doi or not title:
             continue
-        records.append({
+        records_by_doi[doi.lower()] = {
             "title": title,
             "date": publication_date(item),
             "doi": doi,
             "sourceUrl": f"https://doi.org/{doi}",
-        })
+        }
+    records = sorted(
+        records_by_doi.values(),
+        key=lambda record: (record.get("date", ""), record.get("doi", "")),
+        reverse=True,
+    )
     return status, records, f"Collected the complete 370-day window: {len(records)} DOI records from Crossref journal metadata."
 
 
