@@ -54,10 +54,13 @@ The workflow and the local scheduler use the same portable batch entry point, `s
 5. Validates every customer-voice source keyword against the exact linked page; Reddit records use Reddit's canonical oEmbed title so bot challenges cannot create a false pass.
 6. Fails the refresh and deployment when a displayed customer-voice keyword is absent, a source cannot be read, or any URL returns 404/410 or has a DNS failure or timeout.
 7. Reconciles every Agilent current-year newsroom/IR archive record—not only the recent replay window—against the published intelligence dataset, and fails on missing or duplicate releases.
-8. Restores every data artifact from the last good dataset if collection, high-water verification, or validation fails.
-9. Synchronizes `data/` with `deploy-site/data/`.
-10. Commits the validated data to the repository.
-11. Deploys `deploy-site/` directly to Vercel with the repository secrets, assigns `waters-nextgen-competitive-engine.vercel.app`, and verifies that the live `refresh_status.json` reports success, complete required-source coverage, and today's New York dataset date.
+8. Rebuilds the PM recommendation queue, current evidence counts, considerations, and decision implications from the fully refreshed dataset; the gate rejects stale recommendation-generation dates or missing implications.
+9. Restores every data artifact from the last good dataset if collection, high-water verification, or validation fails.
+10. Synchronizes `data/` with `deploy-site/data/`.
+11. Commits the validated data to the repository.
+12. Deploys `deploy-site/` directly to Vercel with the repository secrets, assigns `waters-nextgen-competitive-engine.vercel.app`, and verifies that the live `refresh_status.json` reports success, complete required-source coverage, and today's New York dataset date.
+
+The link gate distinguishes a proven dead link from access-control behavior. HTTP 404/410 responses normally fail publication. The only exceptions remain blocked and visibly unverified: a domain-wide FDA 404 pattern that was healthy before the GitHub-runner anomaly began, and an allowlisted publisher URL that changes from a recorded bot challenge to a runner-only 404. These exceptions never promote a URL to healthy and do not weaken required-source high-water checks.
 
 The cloud job sets `SKIP_REFRESH_EXPORTS=1` because the leadership PowerPoint builder uses a local Codex artifact runtime and the scheduled workflow commits only refreshed JSON. This does not skip a data source, source-health check, or dashboard artifact; local runs continue to rebuild the PowerPoint.
 

@@ -74,13 +74,14 @@ AUTOMATED_DOMAINS = [
     "Public customer voice from robots-compliant forums, structured reviews, Reddit OAuth, and FDA bulk data",
     "PerkinElmer official newsroom and LC product sitemap",
     "Competitor application-note catalog reconciliation, freshness, and completeness validation",
+    "Evidence-backed PM recommendations, considerations, and decision implications regenerated from the refreshed dataset",
 ]
 
 CURATED_DOMAINS = [
     "Product-launch interpretation and machine comparisons",
     "Partnership interpretation",
     "Conference preparation",
-    "PM recommendations",
+    "PM recommendation frameworks, internal decision gates, and validation methods",
 ]
 
 
@@ -133,6 +134,14 @@ def validate_intelligence(data: dict) -> None:
         errors.append("fewer than 10 signals were retained")
     if len(data.get("recommendations", [])) < 1:
         errors.append("no PM recommendations were retained")
+    for recommendation in data.get("recommendations", []):
+        title = recommendation.get("title", "untitled recommendation")
+        generated_at = str(recommendation.get("canonicalDecision", {}).get("generatedAt", ""))
+        if generated_at[:10] != date.today().isoformat():
+            errors.append(f"recommendation analysis was not regenerated today: {title}")
+        implications = recommendation.get("urgency", {}).get("decisionImplications", [])
+        if not implications or not all(str(item).strip() for item in implications):
+            errors.append(f"recommendation has no decision implications: {title}")
 
     themes = data.get("trends", {}).get("themes", [])
     if len(themes) < 5:

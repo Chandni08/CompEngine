@@ -37,6 +37,12 @@ TRAILING_PUNCTUATION = ".,;:!?)]}"
 BULK_API_RECORD_KEYS = {"recentRecords"}
 DOMAIN_WIDE_404_HOSTS = {"fda.gov"}
 MIN_DOMAIN_WIDE_404S = 5
+DOMAIN_WIDE_404_REASON_PREFIX = "Domain-wide 404 anomaly:"
+# Some publisher WAFs return a bot challenge on one GitHub-hosted runner and a
+# synthetic 404 on another. A URL that was already blocked by that WAF has not
+# become proven-dead merely because the presentation of the block changed.
+WAF_404_CONTINUITY_HOSTS = {"pharmaceuticalonline.com"}
+WAF_404_REASON_PREFIX = "Runner/WAF 404 anomaly:"
 
 
 def utc_now() -> str:
@@ -208,8 +214,10 @@ def reclassify_domain_wide_404_anomalies(
 
     This exception is deliberately narrow: every currently tracked URL on an
     allowlisted host must return 404, at least five URLs must be affected, and
-    every affected URL must have been healthy in the previous validated report.
-    The links remain blocked/unverified rather than being promoted to healthy.
+    every affected URL must have been healthy before the runner anomaly began.
+    A prior anomaly classification is accepted so the same GitHub-runner block
+    cannot pass once and then fail every later daily run. The links remain
+    blocked/unverified rather than being promoted to healthy.
     """
     previous_by_url = {
         str(item.get("url")): item
@@ -230,16 +238,67 @@ def reclassify_domain_wide_404_anomalies(
         ]
         if len(anomalous) < MIN_DOMAIN_WIDE_404S or len(anomalous) != len(host_results):
             continue
-        if not all(previous_by_url.get(str(item.get("url")), {}).get("status") == "ok" for item in anomalous):
+        if not all(
+            previous_by_url.get(str(item.get("url")), {}).get("status") == "ok"
+            or (
+                previous_by_url.get(str(item.get("url")), {}).get("status") == "blocked"
+                and str(previous_by_url.get(str(item.get("url")), {}).get("reason", "")).startswith(
+                    DOMAIN_WIDE_404_REASON_PREFIX
+                )
+            )
+            for item in anomalous
+        ):
             continue
         reason = (
-            f"Domain-wide 404 anomaly: all {len(anomalous)} tracked {host} URLs returned 404 "
+            f"{DOMAIN_WIDE_404_REASON_PREFIX} all {len(anomalous)} tracked {host} URLs returned 404 "
             "after being healthy in the previous validated run; manual confirmation required."
         )
         for item in anomalous:
             item["status"] = "blocked"
             item["reason"] = reason
             reclassified += 1
+    return reclassified
+
+
+def reclassify_waf_404_transitions(
+    results: list[dict[str, object]],
+    previous_results: list[dict[str, object]],
+) -> int:
+    """Keep a known WAF response change from masquerading as proven link death.
+
+    This does not excuse a newly discovered 404. It applies only to an exact URL
+    on an allowlisted host whose last validated result was an access-control
+    block (or this same anomaly). A 410 remains dead because it is an explicit
+    retirement signal.
+    """
+    previous_by_url = {
+        str(item.get("url")): item
+        for item in previous_results
+        if isinstance(item, dict) and item.get("url")
+    }
+    reclassified = 0
+    for result in results:
+        if result.get("status") not in {"dead", "mislink"} or result.get("httpStatus") != 404:
+            continue
+        if normalized_host(result.get("url")) not in WAF_404_CONTINUITY_HOSTS:
+            continue
+        previous = previous_by_url.get(str(result.get("url")), {})
+        previous_reason = str(previous.get("reason", ""))
+        prior_waf_block = previous.get("status") == "blocked" and (
+            previous_reason.startswith(WAF_404_REASON_PREFIX)
+            or any(
+                marker in previous_reason.lower()
+                for marker in ("access-control", "bot-challenge", "captcha", "verify you are human")
+            )
+        )
+        if not prior_waf_block:
+            continue
+        result["status"] = "blocked"
+        result["reason"] = (
+            f"{WAF_404_REASON_PREFIX} the GitHub runner returned 404 for a URL previously blocked "
+            "by access control; the URL remains unverified and requires independent confirmation."
+        )
+        reclassified += 1
     return reclassified
 
 
@@ -277,6 +336,12 @@ def main() -> int:
     if anomaly_count:
         print(
             f"Reclassified {anomaly_count} domain-wide anomalous 404 responses as blocked; "
+            "the affected links remain unverified."
+        )
+    waf_anomaly_count = reclassify_waf_404_transitions(results, previous_results)
+    if waf_anomaly_count:
+        print(
+            f"Reclassified {waf_anomaly_count} WAF response-transition 404s as blocked; "
             "the affected links remain unverified."
         )
     write_results(results)

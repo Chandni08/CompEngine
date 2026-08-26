@@ -81,7 +81,7 @@ jobs:
         run: python scripts/validate_press_release_completeness.py
 
       - name: Run ingestion regression checks
-        run: python -m unittest tests/test_customer_voice_ingestion.py
+        run: python -m unittest tests/test_customer_voice_ingestion.py tests/test_daily_refresh_resilience.py
 
       - name: Save the validated daily data
         run: |

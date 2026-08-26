@@ -201,6 +201,22 @@ def canonical_link(url: str) -> str:
     return urlunparse((parsed.scheme.lower(), parsed.netloc.lower(), parsed.path, "", parsed.query, ""))
 
 
+def resolve_public_link(page_url: str, href: str) -> str:
+    """Resolve an extracted link, including publisher HTML with a bare host.
+
+    Some conference pages emit external links such as ``www.sciex.com/...``
+    without a scheme. ``urljoin`` treats those as local paths, producing a
+    fabricated conference-host URL. Recognize that form before resolving normal
+    relative and protocol-relative links.
+    """
+    candidate = html.unescape(str(href or "")).strip()
+    if not candidate or candidate.lower().startswith(("mailto:", "tel:", "javascript:", "data:")):
+        return ""
+    if re.match(r"^(?:www\.)?[a-z0-9](?:[a-z0-9.-]*[a-z0-9])?\.[a-z]{2,}(?:[/?#]|$)", candidate, re.I):
+        candidate = f"https://{candidate}"
+    return canonical_link(urljoin(page_url, candidate))
+
+
 def extract_conference_records(page_url: str, body: str, event_id: str) -> list[dict[str, str]]:
     """Extract public program-like links as content records; endpoint health stays separate."""
     records: list[dict[str, str]] = []
@@ -214,7 +230,7 @@ def extract_conference_records(page_url: str, body: str, event_id: str) -> list[
             continue
         title = re.sub(r"<[^>]+>", " ", raw_title)
         title = re.sub(r"\s+", " ", title).strip()
-        target = canonical_link(urljoin(page_url, href))
+        target = resolve_public_link(page_url, href)
         if not title or not target.startswith("http") or not CONFERENCE_CONTENT_TERMS.search(f"{title} {target}"):
             continue
         if target in seen:
@@ -388,7 +404,7 @@ def parse_dated_card_records(base_url: str, body: str, record_type: str) -> list
             records.append({
                 "title": title[:240],
                 "date": item_date,
-                "sourceUrl": canonical_link(urljoin(base_url, href)),
+                "sourceUrl": resolve_public_link(base_url, href),
                 "recordType": record_type,
                 "dateBasis": "published",
             })
@@ -408,7 +424,7 @@ def parse_article_archive_records(base_url: str, body: str, record_type: str) ->
             records.append({
                 "title": title[:240],
                 "date": item_date,
-                "sourceUrl": canonical_link(urljoin(base_url, anchor.group(1))),
+                "sourceUrl": resolve_public_link(base_url, anchor.group(1)),
                 "recordType": record_type,
                 "dateBasis": "published",
             })
@@ -420,7 +436,7 @@ def parse_document_listing_records(base_url: str, body: str, record_type: str) -
     seen: set[str] = set()
     for href, raw_title in re.findall(r'<a[^>]+href=["\']([^"\']+)["\'][^>]*>(.*?)</a>', body, flags=re.I | re.S):
         title = clean_record_title(raw_title)
-        link = canonical_link(urljoin(base_url, href))
+        link = resolve_public_link(base_url, href)
         if "/doc/" not in urlparse(link).path or not title or link in seen:
             continue
         if not TRADE_RELEVANCE_TERMS.search(title):
