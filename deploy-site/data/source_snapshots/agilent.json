@@ -1,7 +1,7 @@
 {
   "snapshotSchemaVersion": 2,
   "observationType": "sitemap_inventory",
-  "capturedAt": "2026-08-26T15:10:34+00:00",
+  "capturedAt": "2026-08-27T13:17:44+00:00",
   "productInventoryInitialized": true,
   "pressIndexInitialized": true,
   "products": {
@@ -568,6 +568,21 @@
       "theme": "Product and workflow expansion",
       "intent": "Product and portfolio expansion",
       "summary": "Agilent Accelerates Digital Pathology with the Launch of the Agilent S540MD Slide Scanner System"
+    },
+    "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Reports-Third-Quarter-Fiscal-Year-2026-Financial-Results/default.aspx": {
+      "date": "2026-08-26",
+      "title": "Agilent Reports Third-Quarter Fiscal Year 2026 Financial Results",
+      "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Reports-Third-Quarter-Fiscal-Year-2026-Financial-Results/default.aspx",
+      "sourceId": "agilent-investor-news",
+      "sourceName": "Agilent investor relations news",
+      "classification": "corporate",
+      "signalType": "Quarterly earnings result",
+      "marketSegment": "Corporate",
+      "technology": "Portfolio",
+      "theme": "Quarterly earnings and end-market demand",
+      "intent": "Corporate performance and investment capacity",
+      "summary": "Agilent Reports Third-Quarter Fiscal Year 2026 Financial Results. Review the official reported result for segment demand, margin, outlook, and investment-capacity signals.",
+      "evidenceBoundary": "The earnings release does not separately report LC or LC-MS revenue, units, pricing, or market share."
     }
   },
   "unverifiedInventoryChanges": {

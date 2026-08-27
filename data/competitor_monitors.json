@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-26T15:10:39+00:00",
+  "generatedAt": "2026-08-27T13:17:47+00:00",
   "competitors": {
     "Thermo Fisher": {
-      "generatedAt": "2026-08-26T15:10:38+00:00",
+      "generatedAt": "2026-08-27T13:17:46+00:00",
       "baselineCreated": false,
       "inventoryCounts": {
         "lcmsProductPages": 43,
@@ -58,9 +58,54 @@
       "discontinued_products": [],
       "updated_products": [],
       "unverified_inventory_changes": {
-        "new": [],
-        "updated": [],
-        "missing": []
+        "new": [
+          {
+            "url": "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-amplify-uhplc-system.html",
+            "lastmod": "2026-06-29",
+            "category": "LC/MS"
+          }
+        ],
+        "updated": [
+          {
+            "url": "https://www.thermofisher.com/us/en/home/industrial/chromatography/ion-chromatography-ic/ion-chromatography-systems/instrument-selection/ics-6000.html",
+            "lastmod": "2026-08-12",
+            "previousLastmod": "2026-03-23",
+            "category": "Ion chromatography",
+            "monitoringFamily": "thermo-dionex-ion-chromatography",
+            "monitoringFamilyName": "Thermo Scientific Dionex ion chromatography",
+            "technology": "Ion chromatography",
+            "marketSegments": [
+              "Environmental",
+              "Food & Beverage"
+            ]
+          },
+          {
+            "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/orbitrap-tribrid-mass-spectrometers/orbitrap-tribrid-apex-mass-spectrometer.html",
+            "lastmod": "2026-08-14",
+            "previousLastmod": "2026-05-27",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/triple-quadrupole-lc-ms/tsq-quantis-triple-quadrupole-ms.html",
+            "lastmod": "2026-08-06",
+            "previousLastmod": "2026-07-30",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/triple-quadrupole-lc-ms/tsq-altis-triple-quadrupole-ms.html",
+            "lastmod": "2026-08-03",
+            "previousLastmod": "2026-07-29",
+            "category": "LC/MS"
+          }
+        ],
+        "missing": [
+          {
+            "url": "https://www.thermofisher.com/order/catalog/product/VQ-AMPLIFY",
+            "lastmod": "2026-06-29",
+            "category": "LC/MS",
+            "verification": "manual confirmation required"
+          }
+        ]
       },
       "new_press_releases": [
         {
@@ -175,19 +220,6 @@
           "technology": "Portfolio",
           "marketSegment": "Corporate",
           "summary": "Thermo Fisher Scientific Inc. (NYSE: TMO), the world leader in serving science, hosted its Investor Day today.",
-          "sourceId": "thermo-news",
-          "sourceName": "Thermo Fisher investor relations news"
-        },
-        {
-          "date": "2026-04-28",
-          "title": "Thermo Fisher Scientific to Host Investor Day",
-          "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2026/Thermo-Fisher-Scientific-to-Host-Investor-Day/default.aspx",
-          "classification": "corporate",
-          "theme": "Investor strategy and growth outlook",
-          "intent": "Long-term growth strategy",
-          "technology": "Portfolio",
-          "marketSegment": "Corporate",
-          "summary": "Thermo Fisher Scientific Inc. (NYSE: TMO), the world leader in serving science, will hold its 2026 Investor Day on Wednesday, May 20, 2026, starting at 9:00 a.m.",
           "sourceId": "thermo-news",
           "sourceName": "Thermo Fisher investor relations news"
         }
@@ -305,19 +337,6 @@
           "technology": "Portfolio",
           "marketSegment": "Corporate",
           "summary": "Thermo Fisher Scientific Inc. (NYSE: TMO), the world leader in serving science, hosted its Investor Day today.",
-          "sourceId": "thermo-news",
-          "sourceName": "Thermo Fisher investor relations news"
-        },
-        {
-          "date": "2026-04-28",
-          "title": "Thermo Fisher Scientific to Host Investor Day",
-          "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2026/Thermo-Fisher-Scientific-to-Host-Investor-Day/default.aspx",
-          "classification": "corporate",
-          "theme": "Investor strategy and growth outlook",
-          "intent": "Long-term growth strategy",
-          "technology": "Portfolio",
-          "marketSegment": "Corporate",
-          "summary": "Thermo Fisher Scientific Inc. (NYSE: TMO), the world leader in serving science, will hold its 2026 Investor Day on Wednesday, May 20, 2026, starting at 9:00 a.m.",
           "sourceId": "thermo-news",
           "sourceName": "Thermo Fisher investor relations news"
         }
@@ -575,7 +594,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official sitemap index parsed.",
           "extractedRecords": 0,
-          "checkedAt": "2026-08-26T15:10:35+00:00"
+          "checkedAt": "2026-08-27T13:17:44+00:00"
         },
         {
           "sourceId": "thermo-ms-products",
@@ -586,7 +605,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official US sitemap parsed; 43 LC/LC-MS product pages tracked.",
           "extractedRecords": 43,
-          "checkedAt": "2026-08-26T15:10:36+00:00"
+          "checkedAt": "2026-08-27T13:17:45+00:00"
         },
         {
           "sourceId": "thermo-dionex-ion-chromatography-products",
@@ -597,7 +616,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official Thermo sitemap parsed; 2 registered Thermo Scientific Dionex ion chromatography product pages tracked.",
           "extractedRecords": 2,
-          "checkedAt": "2026-08-26T15:10:36+00:00"
+          "checkedAt": "2026-08-27T13:17:45+00:00"
         },
         {
           "sourceId": "thermo-vanquish-neo-nano-lc-products",
@@ -608,7 +627,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official Thermo sitemap parsed; 1 registered Thermo Scientific Vanquish Neo nano-LC product pages tracked.",
           "extractedRecords": 1,
-          "checkedAt": "2026-08-26T15:10:36+00:00"
+          "checkedAt": "2026-08-27T13:17:45+00:00"
         },
         {
           "sourceId": "thermo-news",
@@ -619,7 +638,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official Thermo Fisher investor-relations feed parsed; 19 dated 2026 corporate releases extracted.",
           "extractedRecords": 19,
-          "checkedAt": "2026-08-26T15:10:36+00:00"
+          "checkedAt": "2026-08-27T13:17:45+00:00"
         },
         {
           "sourceId": "thermo-lc-insights",
@@ -630,7 +649,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official dated RSS feed parsed; 6 relevant LC/MS records extracted.",
           "extractedRecords": 6,
-          "checkedAt": "2026-08-26T15:10:36+00:00"
+          "checkedAt": "2026-08-27T13:17:45+00:00"
         },
         {
           "sourceId": "thermo-ms-insights",
@@ -641,7 +660,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official dated RSS feed parsed; 7 relevant LC/MS records extracted.",
           "extractedRecords": 7,
-          "checkedAt": "2026-08-26T15:10:36+00:00"
+          "checkedAt": "2026-08-27T13:17:45+00:00"
         },
         {
           "sourceId": "thermo-proteomics-insights",
@@ -652,12 +671,12 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official dated RSS feed parsed; 6 relevant LC/MS records extracted.",
           "extractedRecords": 6,
-          "checkedAt": "2026-08-26T15:10:38+00:00"
+          "checkedAt": "2026-08-27T13:17:46+00:00"
         }
       ]
     },
     "Shimadzu": {
-      "generatedAt": "2026-08-26T15:10:38+00:00",
+      "generatedAt": "2026-08-27T13:17:46+00:00",
       "baselineCreated": false,
       "inventoryCounts": {
         "lcmsProductPages": 78,
@@ -845,7 +864,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official analytical sitemap parsed; 78 LC/LC-MS/software product pages tracked.",
           "extractedRecords": 78,
-          "checkedAt": "2026-08-26T15:10:38+00:00"
+          "checkedAt": "2026-08-27T13:17:46+00:00"
         },
         {
           "sourceId": "shimadzu-news",
@@ -856,12 +875,12 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official dated news index parsed; 40 relevant releases extracted.",
           "extractedRecords": 40,
-          "checkedAt": "2026-08-26T15:10:38+00:00"
+          "checkedAt": "2026-08-27T13:17:46+00:00"
         }
       ]
     },
     "SCIEX": {
-      "generatedAt": "2026-08-26T15:10:39+00:00",
+      "generatedAt": "2026-08-27T13:17:47+00:00",
       "baselineCreated": false,
       "inventoryCounts": {
         "lcmsProductPages": 65,
@@ -941,7 +960,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official sitemap parsed; 65 MS/LC/software product pages tracked.",
           "extractedRecords": 65,
-          "checkedAt": "2026-08-26T15:10:39+00:00"
+          "checkedAt": "2026-08-27T13:17:46+00:00"
         },
         {
           "sourceId": "sciex-news",
@@ -952,7 +971,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official dated press index parsed; 5 relevant releases extracted.",
           "extractedRecords": 5,
-          "checkedAt": "2026-08-26T15:10:39+00:00"
+          "checkedAt": "2026-08-27T13:17:47+00:00"
         }
       ]
     }
