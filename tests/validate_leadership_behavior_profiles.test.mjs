@@ -9,7 +9,7 @@ const css = readFileSync(new URL("product-ui.css", root), "utf8");
 const dataset = JSON.parse(readFileSync(new URL("data/leadership_profiles.json", root), "utf8"));
 const peopleDataset = JSON.parse(readFileSync(new URL("data/leadership_people.json", root), "utf8"));
 
-test("Engineering exposes evidence-based competitor leadership profiles", () => {
+test("Product Management and Engineering expose evidence-based competitor leadership profiles", () => {
   assert.match(html, /id="leadership-behavior-profiles"/);
   assert.match(html, /Competitor Leadership Behavior Profiles/);
   assert.match(html, /id="leadershipBehaviorNav"/);
@@ -19,20 +19,31 @@ test("Engineering exposes evidence-based competitor leadership profiles", () => 
   assert.match(app, /function firstLeadershipSentence\(value\)/);
   assert.match(app, /const leadershipPersonPriority =/);
   assert.match(app, /const conciseCareerArc =/);
-  assert.match(app, /\.slice\(0, 1\)/);
-  assert.match(app, /profile\.watchItems\.slice\(0, 2\)/);
   assert.match(app, /function moveLeadershipPersonSlider\(competitor, direction\)/);
   assert.match(app, /data-leadership-person-action="previous"/);
   assert.match(app, /data-leadership-person-select/);
   assert.ok(
     app.indexOf('<div class="leadership-person-dots"') < app.indexOf('<header class="leadership-person-slider-header"'),
-    "leader selector should render above the relevant-leaders profile header",
+    "leader selector should render above the profile header",
   );
-  assert.match(app, /const engineeringEvidenceVisible = state\.view === "Engineering"/);
+  assert.doesNotMatch(app, /Relevant leaders/);
+  assert.doesNotMatch(app, /Public role history and official company activity/);
+  assert.match(app, /const technicalEvidenceVisible = \["Engineering", "Product"\]\.includes\(state\.view\)/);
   assert.match(css, /\.leadership-selected-detail/);
   assert.match(css, /\.leadership-person-slider/);
   assert.doesNotMatch(app, /leadership-evidence-boundary/);
   assert.doesNotMatch(css, /leadership-evidence-boundary/);
+  assert.doesNotMatch(app, /<h6>Company Activity<\/h6>/);
+  assert.doesNotMatch(app, /class="leadership-company-activity"/);
+  assert.doesNotMatch(app, /class="leadership-person-sources"/);
+  assert.doesNotMatch(app, /latestCompanyChanges/);
+  assert.doesNotMatch(app, /class="leadership-watchlist"/);
+  assert.doesNotMatch(app, /Signals That Could Confirm or Change This Read/);
+  assert.doesNotMatch(app, />Evidence-backed behavior</);
+  assert.match(app, /class="leadership-behavior-evidence"/);
+  assert.doesNotMatch(app, /class="leadership-signals"/);
+  assert.doesNotMatch(app, /Observable Decisions and Planning Implications/);
+  assert.match(css, /\.leadership-behavior-evidence/);
 });
 
 test("all five competitor profiles map current executive and LC-MS portfolio ownership", () => {

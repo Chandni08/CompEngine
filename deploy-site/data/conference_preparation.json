@@ -812,6 +812,86 @@
           "url": "https://www.setac.org/discover-events/global-meetings/setac-north-america-47th-annual-meeting/exhibits-supporters/exhibitor-listing-and-floor-plan.html"
         }
       ]
+    },
+    {
+      "id": "ep3m-summit-2026-prep",
+      "eventName": "EP3M Summit 2026",
+      "dateRange": "Sep 29-30, 2026",
+      "location": "Boston, MA + Virtual",
+      "startDate": "2026-09-29",
+      "endDate": "2026-09-30",
+      "tier": "Tier 3",
+      "website": "https://www.ep3msummit.com/",
+      "marketSegments": [
+        "Pharma",
+        "Biopharma"
+      ],
+      "technologyFocus": [
+        "AI",
+        "Data",
+        "Informatics"
+      ],
+      "annualTheme": "Optimize portfolio insights, prioritization, and decision making for pharma and biotech",
+      "scientificFocus": [
+        "R&D portfolio governance and investment tradeoffs",
+        "Data-driven decision support and AI adoption",
+        "Cross-functional execution across pharmaceutical and biotechnology portfolios"
+      ],
+      "industryTrendsToWatch": [
+        "Biopharma portfolio leaders are formalizing decision rights, investment frameworks, and data-driven governance.",
+        "AI adoption is entering portfolio planning and executive decision-support workflows."
+      ],
+      "competitorWatch": [],
+      "competitorContent": [
+        {
+          "competitor": "Tracked instrument competitors",
+          "evidenceStatus": "Expected — not confirmed",
+          "content": "No Agilent, Thermo Fisher, SCIEX, Shimadzu, or PerkinElmer participation is confirmed in the public 2026 program. Monitor the final agenda for portfolio-governance, AI, and decision-support themes that may affect analytical-platform investment priorities.",
+          "evidenceBasis": "The official 2026 program establishes the summit themes and dates but does not currently identify participation by the tracked instrument competitors.",
+          "sourceLabel": "EP3M Summit 2026 program",
+          "sourceUrl": "https://www.ep3msummit.com/executiveprojectprogramportfoliomanagement"
+        }
+      ],
+      "watersScientificContent": [
+        {
+          "title": "Evidence-led analytical portfolio governance",
+          "deliverable": "A decision framework showing how customer evidence, competitive signals, and technical validation translate into analytical-platform portfolio choices.",
+          "proofNeeded": "Traceable source evidence, explicit decision gates, accountable owners, and measured outcomes from completed portfolio decisions."
+        },
+        {
+          "title": "AI-assisted portfolio insight with human governance",
+          "deliverable": "A practical session demonstrating how automated external intelligence can accelerate portfolio reviews without treating unverified inference as fact.",
+          "proofNeeded": "Source traceability, review controls, refresh reliability, and examples where automated insight changed or rejected a proposed decision."
+        }
+      ],
+      "boothRecommendations": [
+        {
+          "product": "Alliance iS HPLC System",
+          "role": "Ground portfolio-governance discussions in a current regulated-laboratory platform and its customer decision criteria.",
+          "message": "Connect platform investment choices to method continuity, compliance-ready operation, and measurable laboratory workflow outcomes.",
+          "productUrl": "https://www.waters.com/nextgen/en/products/chromatography/chromatography-systems/alliance-is-hplc-system.html"
+        },
+        {
+          "product": "BioAccord LC-MS System",
+          "role": "Illustrate how a defined workflow package can make advanced analytical capability accessible to a broader operating team.",
+          "message": "Use evidence from routine biopharma workflows to discuss packaging, adoption, and portfolio prioritization decisions.",
+          "productUrl": "https://www.waters.com/nextgen/us/en/products/mass-spectrometry/mass-spectrometry-systems/bioaccord-lc-ms-system.html"
+        }
+      ],
+      "watersPrep": [
+        "Review the final agenda for portfolio-governance, analytics, and AI sessions relevant to Waters strategic planning.",
+        "Identify pharma and biotech decision leaders whose workflow priorities can inform Next Gen LC portfolio choices."
+      ],
+      "monitoringLinks": [
+        {
+          "label": "Official event page",
+          "url": "https://www.ep3msummit.com/"
+        },
+        {
+          "label": "2026 program and verified dates",
+          "url": "https://www.ep3msummit.com/executiveprojectprogramportfoliomanagement"
+        }
+      ]
     }
   ],
   "schemaVersion": 2

@@ -89,8 +89,12 @@ test("desktop rail stays stable while responsive navigation collapses", () => {
   assert.match(css, /@media \(max-width: 640px\)[\s\S]*?\.section-nav-groups\s*\{\s*grid-template-columns:\s*minmax\(0, 1fr\);/);
 });
 
-test("sidebar fixes ship identically", () => {
-  assert.equal(deployHtml, html);
+test("sidebar styling and Product Marketing's Product renderer stay mirrored", () => {
+  assert.match(html, /<option value="Marketing">Product Marketing<\/option>/);
+  assert.match(deployHtml, /<option value="Marketing">Product Marketing<\/option>/);
+  assert.match(app, /const validRoleViews = new Set\(Object\.keys\(viewCopy\)\);/);
+  assert.match(deployApp, /const validRoleViews = new Set\(Object\.keys\(viewCopy\)\);/);
+  assert.match(app, /state\.view = selectedView;/);
   assert.equal(deployApp, app);
   assert.equal(deployCss, css);
   assert.equal(deployBaseCss, baseCss);

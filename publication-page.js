@@ -614,7 +614,11 @@ async function init() {
   populateSelect("publicationClassFilter", uniqueSorted(sources.map(sourceClass)));
   populateMarketSelect();
   populateSelect("publicationTopicFilter", uniqueSorted(sources.flatMap(sourceTopics)));
-  publicationState.selectedSourceId = sources.find((source) => source.recentRecords?.length)?.id || sources[0]?.id || "";
+  const requestedSourceId = new URLSearchParams(location.search).get("source");
+  publicationState.selectedSourceId = sources.find((source) => source.id === requestedSourceId)?.id
+    || sources.find((source) => source.recentRecords?.length)?.id
+    || sources[0]?.id
+    || "";
   bindEvents();
   render();
 }

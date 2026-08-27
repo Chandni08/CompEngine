@@ -34,7 +34,7 @@ test("company source drill-down admits only exact sources with verified company 
 
 test("the company view ignores only the competitor filter", () => {
   assert.match(app, /customerVoiceItemsForHorizon\(filters\.horizon\.value, \{ ignoreCompetitor: true \}\)/);
-  assert.match(app, /ignoreCompetitor \|\| filters\.competitor\.value === "All"/);
+  assert.match(app, /ignoreCompetitor \|\| competitorMatchesFilter\(item\.company\)/);
 });
 
 test("company cards are compact and responsive", () => {

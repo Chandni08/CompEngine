@@ -49,6 +49,7 @@ const state = {
   activeIntentCompetitor: "",
   activeFilingCompetitor: "",
   activePatentCompetitor: "",
+  activePatentIndexByCompetitor: {},
   activeLeadershipCompetitor: "",
   activeLeadershipPersonByCompetitor: {},
   activeHiringCompetitor: "",
@@ -161,9 +162,9 @@ const viewCopy = {
     categories: ["Scientific application intelligence", "Market intelligence", "Corporate intelligence", "Product intelligence"],
   },
   Marketing: {
-    title: "Next Gen Competitive Intelligence Engine",
+    title: "Product Marketing Decision & Activation Center",
     viewLabel: "Product Marketing view",
-    subtitle: "Informing positioning, competitive response, proof priorities, and market activation for Next Gen LC.",
+    subtitle: "Decide what to say, to whom, against whom, and with which approved proof.",
     decisionQuestion: "What can Waters credibly claim, prove, and activate to win?",
     categories: ["Scientific application intelligence", "Market intelligence", "Corporate intelligence", "Product intelligence"],
   },
@@ -179,6 +180,21 @@ const competitorColors = {
 };
 
 const primaryCompetitors = ["Thermo Fisher", "Agilent", "Shimadzu", "SCIEX", "PerkinElmer"];
+
+const competitorAliases = new Map([
+  ["AGILENT TECHNOLOGIES, INC.", "Agilent"],
+  ["THERMO FISHER SCIENTIFIC INC.", "Thermo Fisher"],
+  ["REVVITY, INC.", "Revvity"],
+]);
+
+function canonicalCompetitorName(value) {
+  const name = String(value || "").trim();
+  return competitorAliases.get(name.toUpperCase()) || name;
+}
+
+function competitorMatchesFilter(value, selected = filters.competitor.value) {
+  return selected === "All" || canonicalCompetitorName(value) === canonicalCompetitorName(selected);
+}
 
 // Canonical Waters capability inventory used by both capability-priority and gap-map views.
 // A capability is displayed only when the loaded evidence base contains a dated matching record.
@@ -711,10 +727,20 @@ function setupFilingInsightNavigation() {
 
 function setupPatentInsightNavigation() {
   byId("patentInsights").addEventListener("click", (event) => {
-    const trigger = event.target.closest("button[data-patent-select]");
-    if (!trigger) return;
-    state.activePatentCompetitor = trigger.dataset.patentSelect;
-    renderPatentInsights();
+    const competitorTrigger = event.target.closest("button[data-patent-select]");
+    if (competitorTrigger) {
+      state.activePatentCompetitor = competitorTrigger.dataset.patentSelect;
+      renderPatentInsights();
+      return;
+    }
+    const actionTrigger = event.target.closest("button[data-patent-carousel-action]");
+    if (!actionTrigger) return;
+    movePatentCarousel(actionTrigger.dataset.patentCarouselAction);
+  });
+  byId("patentInsights").addEventListener("keydown", (event) => {
+    if (!event.target.closest("[data-patent-carousel]") || !["ArrowLeft", "ArrowRight"].includes(event.key)) return;
+    event.preventDefault();
+    movePatentCarousel(event.key === "ArrowLeft" ? "previous" : "next");
   });
 }
 
@@ -938,7 +964,7 @@ function comparisonLaunches() {
       filters.technology.value,
       `${product.product} ${product.signalType || ""} ${itemMarketSegments(product).join(" ")} ${product.subtechnology || ""}`,
     ))
-    .filter((product) => filters.competitor.value === "All" || product.competitor === filters.competitor.value)
+    .filter((product) => competitorMatchesFilter(product.competitor))
     .sort((a, b) => new Date(b.date) - new Date(a.date));
 }
 
@@ -1175,7 +1201,10 @@ function competitorHighlightedFeatures(profile, launch, comparison) {
 }
 
 function competitorFeatureHighlightsMarkup(profile, launch, comparison) {
-  const features = competitorHighlightedFeatures(profile, launch, comparison);
+  const features = competitorHighlightedFeatures(profile, launch, comparison)
+    .filter((feature) => state.view !== "Marketing"
+      || !(/\bintroduced in \d{4}\b/i.test(feature.detail) && /\b(product|system)\b/i.test(feature.detail)));
+  if (!features.length) return "";
   return `
     <section class="competitor-feature-panel">
       <div class="mini-header">
@@ -1194,9 +1223,229 @@ function competitorFeatureHighlightsMarkup(profile, launch, comparison) {
   `;
 }
 
+function marketingComparatorSourceRead(readout) {
+  const sourceRead = String(readout || "Assess the customer-visible workflow difference.");
+  return sourceRead
+    .replace(
+      /^.+?\bintroduced in \d{4};.+?\bintroduced in \d{4}\.\s*The PM question is whether the competitor changes the same customer workflow, buying criterion, or handoff that Waters must defend\.?/i,
+      "Test whether the offer changes the buyer's decision criteria, required proof, or seller objections.",
+    )
+    .replace(
+      /The PM question is whether the competitor changes the same customer workflow, buying criterion, or handoff that Waters must defend\.?/gi,
+      "The PMM question is whether the competitor changes the buying criterion, category narrative, proof expectation, or seller objection that Waters must address.",
+    )
+    .replace(
+      /PM should identify which software gaps are product gaps versus packaging gaps\.?/gi,
+      "PMM should distinguish true product gaps from packaging and proof gaps, route validated capability gaps to Product Management, and close the market-facing message gaps.",
+    )
+    .replace(
+      /PM should decide whether speed is a feature gap or a segment-specific watch item\.?/gi,
+      "PMM should test whether speed changes buyer preference in the target segment, position around the proof customers value, and route any validated capability gap to Product Management.",
+    )
+    .replace(/\bPM should track\b/gi, "PMM should monitor")
+    .replace(/\bPM should\b/gi, "PMM should")
+    .replace(/\bThe PM question\b/gi, "The PMM question")
+    .replace(/\bPM team\b/gi, "PMM team")
+    .replace(/\bPM\b/gi, "PMM");
+}
+
 function marketingComparatorRead(launch, comparison) {
   const competitor = launch.competitor || "the selected competitor";
-  return `PMM should treat ${competitor}'s offer as a buying narrative, not only a feature comparison. ${comparison.pmRead || "Assess the customer-visible workflow difference."} Translate the defensible Waters advantage into role-specific proof; keep unverified superiority, uptime, and outcome claims out of field materials.`;
+  return `Determine whether ${competitor}'s offer changes the buyer's decision criteria, required proof, or seller objections for this product pair. Define the role-specific Waters proof approved for field use; exclude unverified superiority, uptime, and outcome claims.`;
+}
+
+function comparatorDecisionRead(rowRead, impactNote) {
+  if (state.view !== "Marketing") return rowRead;
+  const translatedRead = marketingComparatorSourceRead(rowRead);
+  const translatedImpact = marketingComparatorSourceRead(impactNote);
+  const normalize = (value) => String(value || "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+  return normalize(translatedRead) === normalize(translatedImpact)
+    ? "Covered in the impact summary above; validate it under a shared customer workflow."
+    : translatedRead;
+}
+
+function marketingProductStrategyLens(launch, waters, comparison) {
+  const text = `${launch.product} ${launch.technology} ${launch.marketSegment || ""} ${launch.summary || ""} ${launch.pmImplication || ""} ${comparison.pmRead || ""}`.toLowerCase();
+  const productPair = `${waters.product} against ${launch.product}`;
+  if (/mam|multi-attribute|oligo|protein|biopharm|peptide/.test(text)) return {
+    strategy: `${launch.competitor} is marketing ${launch.product} as a named biopharma workflow—not a stand-alone instrument—so software, methods, application support, and adoption confidence become part of the product decision.`,
+    contentTypes: [
+      `Named workflow landing page for ${waters.product}, organized around the buyer's application job and governing claim`,
+      `${productPair} proof brief covering setup, method execution, data review, training, service, and substantiation limits`,
+      "Customer validation story or expert webinar showing adoption speed and reproducible biopharma execution",
+      "Role-based product narrative for scientists, QA/validation, lab leadership, and the economic buyer",
+    ],
+    switchTrigger: "buyers need a complete application workflow with lower setup, validation, or data-review friction",
+    scorecard: "application readiness, method confidence, data review, adoption effort, and defensible results",
+    offer: "a workflow-readiness assessment with an application-scientist proof session and a scoped customer evaluation",
+  };
+  if (/pfas|regulated|quantitation|nitrosamine|clinical|quality control|\bqc\b/.test(text)) return {
+    strategy: `${launch.competitor} is positioning ${launch.product} through regulation-ready application proof and routine execution, making method readiness, compliance, reproducibility, and laboratory confidence part of the product story.`,
+    contentTypes: [
+      `Regulated-workflow application note and claims matrix for ${waters.product} versus ${launch.product}`,
+      "Method-readiness page connecting sample preparation, LC-MS performance, compliance, reproducibility, and service",
+      "Matched-condition proof brief with explicit comparability limits and approval status for every proposed claim",
+      "Customer case study or regulator-facing webinar focused on defensible routine execution",
+    ],
+    switchTrigger: "regulated laboratories are replacing or validating workflows and cannot absorb avoidable method or compliance risk",
+    scorecard: "method readiness, reproducibility, traceability, routine uptime, review burden, and compliance confidence",
+    offer: "a claims-safe method assessment, matched proof review, and low-risk evaluation plan",
+  };
+  if (/software|informatics|data review|automation|assist|guided|labsolutions|empower/.test(text)) return {
+    strategy: `${launch.competitor} is marketing ${launch.product} through task-level workflow simplification, software guidance, automation, and data confidence rather than relying on hardware specifications alone.`,
+    contentTypes: [
+      `Task-based workflow comparison for ${waters.product} versus ${launch.product}: setup, operation, troubleshooting, review, and reporting`,
+      "Short product demonstration video with the underlying proof source and claim guardrails",
+      "Software integration and migration guide for bench, QA/IT, and administrator roles",
+      "Customer validation story quantifying only proven reductions in steps, errors, review time, or training burden",
+    ],
+    switchTrigger: "workflow friction, training, data review, or software handoffs are influencing preference",
+    scorecard: "operator steps, setup and recovery, data integrity, review time, integration, and accountable support",
+    offer: "a task-based workflow benchmark and guided proof-of-value session using the customer's representative process",
+  };
+  if (/value|routine|modern|replacement|service|continuity|i-series|nexera|hplc/.test(text)) return {
+    strategy: `${launch.competitor} is marketing ${launch.product} as a practical modernization choice, using value, routine productivity, method continuity, serviceability, and simpler operation to reduce perceived switching risk.`,
+    contentTypes: [
+      `Product-level modernization guide comparing ${waters.product} with ${launch.product} on method continuity, operator work, uptime, and service`,
+      "Interactive migration or economic-value calculator with customer-owned assumptions",
+      "Installed-base case study showing validated transfer effort, adoption risk, routine errors, and lifecycle outcomes",
+      "Short workflow demonstration paired with a proof-backed replacement battlecard",
+    ],
+    switchTrigger: "installed-base accounts are considering routine-LC replacement and weigh continuity, service, and total adoption risk",
+    scorecard: "method transfer, operator interventions, service continuity, downtime, lifecycle cost, and result defensibility",
+    offer: "a risk-reversal migration assessment with a documented transfer and service-continuity plan",
+  };
+  return {
+    strategy: `${launch.competitor} is using ${launch.product} to shape a customer-visible product and workflow narrative. The sustained marketing strategy remains directional until repeated external content supports it.`,
+    contentTypes: [
+      `${productPair} buyer guide tied to the exact decision criteria`,
+      "Matched-condition comparative proof brief with claim and evidence guardrails",
+      "Product workflow demonstration or application note",
+      "Customer validation story and role-based seller sequence",
+    ],
+    switchTrigger: "the selected competitor product is active in a qualified replacement or expansion opportunity",
+    scorecard: "the buyer's highest-priority workflow outcomes and the proof Waters can substantiate",
+    offer: "a scoped product comparison, customer reference, and low-risk evaluation",
+  };
+}
+
+function marketingProductContentModel(launch, waters, comparison, featureProfile) {
+  const relevanceText = `${launch.product} ${launch.technology || ""} ${launch.marketSegment || ""} ${launch.summary || ""} ${launch.pmImplication || ""} ${comparison.pmRead || ""} ${comparison.watersPositioning || ""}`;
+  const productThemePattern = /mam|multi-attribute|oligo|protein|biopharm|peptide/i.test(relevanceText)
+    ? /mam|multi-attribute|oligo|protein|biopharm|peptide|anti-sense|antisense/i
+    : /pfas|regulated|quantitation|nitrosamine|clinical|quality control|\bqc\b/i.test(relevanceText)
+      ? /pfas|regulated|quantitation|nitrosamine|clinical|quality control|\bqc\b|impurity/i
+      : /software|informatics|data review|automation|assist|guided|labsolutions|empower/i.test(relevanceText)
+        ? /software|informatics|data review|automation|assist|guided|labsolutions|empower/i
+        : /value|routine|modern|replacement|service|continuity|i-series|nexera|hplc/i.test(relevanceText)
+          ? /value|routine|modern|replacement|service|continuity|hplc|uhplc/i
+          : null;
+  const competitorNotes = pmmGovernedRecords(currentCompetitorApplicationNotes())
+    .filter((note) => note.competitor === launch.competitor)
+    .map((note) => ({
+      note,
+      relevance: (productThemePattern?.test(`${note.title} ${note.applicationArea} ${note.marketSegment} ${note.products}`) ? 10 : 0)
+        + pmmWordOverlap(`${note.title} ${note.applicationArea} ${note.marketSegment} ${note.technology} ${note.products} ${note.evidenceStatement}`, relevanceText),
+    }))
+    .sort((left, right) => right.relevance - left.relevance || new Date(right.note.date) - new Date(left.note.date));
+  const relevantNotes = competitorNotes.filter((item) => item.relevance > 0).map((item) => item.note);
+  const selectedNotes = (relevantNotes.length ? relevantNotes : competitorNotes.map((item) => item.note)).slice(0, 3);
+  const competitorTechnicalItems = (featureProfile?.rows || [])
+    .filter((row) => isHttpUrl(row.competitorSourceUrl))
+    .map((row) => {
+      const sourceType = marketingContentTypeLabel({ url: row.competitorSourceUrl });
+      return {
+        title: `${launch.competitor} ${sourceType.toLowerCase()}: ${row.dimension}`,
+        sourceName: sourceType,
+        url: row.competitorSourceUrl,
+        relationshipRank: 1,
+      };
+    });
+  const watersTechnicalItems = (featureProfile?.rows || [])
+    .filter((row) => isHttpUrl(row.watersSourceUrl))
+    .map((row) => {
+      const sourceType = marketingContentTypeLabel({ url: row.watersSourceUrl });
+      return {
+        title: `Waters ${sourceType.toLowerCase()}: ${row.dimension}`,
+        sourceName: sourceType,
+        url: row.watersSourceUrl,
+        relationshipRank: 1,
+      };
+    });
+  const watersSystemItems = [
+    isHttpUrl(waters.sourceUrl) ? { title: waters.product, sourceName: waters.sourceName || "Waters official product source", url: waters.sourceUrl, relationshipRank: 0 } : null,
+    ...(waters.artifacts || []).map((artifact) => ({
+      title: artifact.title || waters.product,
+      sourceName: artifact.sourceType || "Waters external asset",
+      url: artifact.url,
+      relationshipRank: 0,
+    })),
+  ].filter((item) => item && isHttpUrl(item.url));
+  const deduplicateContent = (items) => {
+    const seen = new Set();
+    return items.filter((item) => item.url && !seen.has(item.url) && seen.add(item.url));
+  };
+  const contentTypePriority = new Map([
+    ["Application / technical note", 0],
+    ["Customer proof", 1],
+    ["Product page", 2],
+    ["Launch / newsroom story", 3],
+    ["Webinar / event", 4],
+    ["Specification", 5],
+    ["Support / product documentation", 6],
+    ["External product content", 7],
+  ]);
+  const exactCompetitorItems = deduplicateContent([
+    { title: `Exact product source: ${launch.product}`, sourceName: launch.sourceName || "Official launch source", url: timelineUrlForLaunch(launch), relationshipRank: 0 },
+    ...competitorTechnicalItems,
+  ]);
+  const relatedCompetitorItems = selectedNotes.map((note) => ({
+    title: `Related ${competitorApplicationTheme(note).toLowerCase()} evidence: ${note.title}`,
+    sourceName: note.sourceType || "Official application note",
+    url: note.sourceUrl,
+    relationshipRank: 2,
+  }));
+  const competitorItems = deduplicateContent([...exactCompetitorItems, ...relatedCompetitorItems])
+    .sort((left, right) => (left.relationshipRank ?? 9) - (right.relationshipRank ?? 9)
+      || (contentTypePriority.get(marketingContentTypeLabel(left)) ?? 99) - (contentTypePriority.get(marketingContentTypeLabel(right)) ?? 99));
+  const watersItems = deduplicateContent([...watersTechnicalItems, ...watersSystemItems])
+    .sort((left, right) => (left.relationshipRank ?? 9) - (right.relationshipRank ?? 9)
+      || (contentTypePriority.get(marketingContentTypeLabel(left)) ?? 99) - (contentTypePriority.get(marketingContentTypeLabel(right)) ?? 99));
+  const competitorTypes = [...new Set(competitorItems.map(marketingContentTypeLabel))];
+  const watersTypes = [...new Set(watersItems.map(marketingContentTypeLabel))];
+  const exactCompetitorTypes = [...new Set(exactCompetitorItems.map(marketingContentTypeLabel))];
+  const competitorHasExactWorkflowProof = exactCompetitorTypes.includes("Application / technical note");
+  const watersHasWorkflowProof = watersTypes.includes("Application / technical note");
+  const comparisonRead = competitorHasExactWorkflowProof && !watersHasWorkflowProof
+    ? `${launch.competitor} has matched workflow proof for ${launch.product}; the loaded ${waters.product} set is not matched by an application or technical note at the same product-comparison level.`
+    : watersHasWorkflowProof
+      ? `${launch.product} has exact product sources${selectedNotes.length ? ` plus ${selectedNotes.length} related official workflow note${selectedNotes.length === 1 ? "" : "s"}` : ""}; ${waters.product} has matched external proof. PMM should build a direct buyer narrative while preserving relationship, test-condition, and approval limits.`
+      : `The loaded exact product-pair evidence is primarily product, launch, specification, or support content${selectedNotes.length ? `, with ${selectedNotes.length} related competitor workflow note${selectedNotes.length === 1 ? "" : "s"}` : ""}. PMM should close the exact workflow-proof gap before asserting a customer outcome advantage.`;
+  return { competitorItems, watersItems, competitorTypes, watersTypes, comparisonRead };
+}
+
+function marketingProductShareStrategyMarkup(launch, waters, comparison, featureProfile) {
+  const lens = marketingProductStrategyLens(launch, waters, comparison);
+  const content = marketingProductContentModel(launch, waters, comparison, featureProfile);
+  const segments = itemMarketSegments(launch).filter((segment) => segment && segment !== "All").join(" / ") || "qualified";
+  const competitorMix = content.competitorTypes.length ? content.competitorTypes.join(" · ") : "No matched competitor content type";
+  const watersMix = content.watersTypes.length ? content.watersTypes.join(" · ") : "No matched Waters content type";
+  const takeShare = [
+    `Target ${segments} accounts evaluating ${launch.product} where ${lens.switchTrigger}. Confirm the addressable switching pool with CRM and win/loss data.`,
+    `Reframe the product scorecard around ${lens.scorecard}; use ${waters.product} only where matched evidence supports the position.`,
+    `Activate ${lens.offer}, supported by the product content below, then measure progression, competitive displacement, proof acceptance, and conversion by account stage.`,
+  ];
+  return `<section class="pmm-share-strategy pmm-product-share-strategy" aria-label="Product marketing strategy and product-level take-share plan">
+    <header><div><span>Product marketing strategy and share capture</span><strong>${escapeHtml(waters.product)} vs ${escapeHtml(launch.product)}</strong></div><small>External product content indicates positioning activity—not preference, adoption, or share movement. Validate the opportunity with account, pipeline, and win/loss evidence.</small></header>
+    <div class="pmm-market-strategy-grid">
+      <article><span>Competitor product marketing strategy</span><strong>${escapeHtml(lens.strategy)}</strong><p>${content.competitorItems.length} exact or related product/workflow asset${content.competitorItems.length === 1 ? "" : "s"} · ${escapeHtml(competitorMix)}.</p>${marketingContentEvidenceLinksMarkup(content.competitorItems, `${launch.competitor} product and workflow examples`)}</article>
+      <article><span>Compared with Waters product content</span><strong>${escapeHtml(content.comparisonRead)}</strong><p>${content.watersItems.length} matched ${escapeHtml(waters.product)} asset${content.watersItems.length === 1 ? "" : "s"} · ${escapeHtml(watersMix)}.</p>${marketingContentEvidenceLinksMarkup(content.watersItems, "Waters product examples")}</article>
+    </div>
+    <div class="pmm-share-action-grid">
+      <article><span>Product content to create</span><ul>${lens.contentTypes.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></article>
+      <article class="pmm-take-share-play"><span>Product-level PMM take-share play</span><ol>${takeShare.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ol><small>Recommended account-conversion strategy; not a forecast or claim that share gain has occurred.</small></article>
+    </div>
+  </section>`;
 }
 
 function renderComparisonBody() {
@@ -1243,8 +1492,9 @@ function renderComparisonBody() {
         <p>${escapeHtml(watersPositioning)}</p>
       </div>
     </section>
+    ${state.view === "Marketing" ? marketingProductShareStrategyMarkup(launch, waters, comparison, featureProfile) : ""}
     ${
-      comparison.shortHorizonDefense
+      comparison.shortHorizonDefense && state.view !== "Marketing"
         ? `<section class="comparison-defense-section">
             <div class="mini-header">
               <h4>Short-Horizon Defense</h4>
@@ -1275,7 +1525,7 @@ function renderComparisonBody() {
                   <td><strong>${escapeHtml(row.dimension)}</strong></td>
                   <td>${escapeHtml(row.competitor)}</td>
                   <td>${escapeHtml(row.waters)}</td>
-                  <td>${escapeHtml(row.pmRead)}</td>
+                  <td>${escapeHtml(comparatorDecisionRead(row.pmRead, impactNote))}</td>
                 </tr>
               `)
               .join("")}
@@ -1283,21 +1533,21 @@ function renderComparisonBody() {
         </table>
       </div>
     </section>
-    <section class="comparison-action-grid">
-      <article>
-        <span>Positioning moves</span>
-        <ul>${(comparison.positioningMoves || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
-      </article>
-      <article>
-        <span>Questions to answer before a roadmap decision</span>
-        <ul>${(comparison.validationQuestions || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
-      </article>
-      <article>
-        <span>Waters comparator strengths</span>
-        <ul>${(waters?.strengths || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
-      </article>
-    </section>
-    <p class="comparison-caution">Working comparison based on public information. Verify exact specifications, performance claims, and customer evidence before using it outside an internal product discussion.</p>
+    ${state.view === "Marketing" ? "" : `<section class="comparison-action-grid">
+        <article>
+          <span>Positioning moves</span>
+          <ul>${(comparison.positioningMoves || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+        </article>
+        <article>
+          <span>Questions to answer before a roadmap decision</span>
+          <ul>${(comparison.validationQuestions || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+        </article>
+        <article>
+          <span>Waters comparator strengths</span>
+          <ul>${(waters?.strengths || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+        </article>
+      </section>`}
+    <p class="comparison-caution">Working comparison based on public information. Verify exact specifications, performance claims, and customer evidence before using it outside an internal ${state.view === "Marketing" ? "product marketing activation" : "product discussion"}.</p>
   `;
 }
 
@@ -1838,6 +2088,41 @@ function normalizeMarketingTargeting() {
 }
 
 const headToHeadStorageKey = "competition-engine:pmm-head-to-head:v1";
+const roleViewStorageKey = "competition-engine:role-view:v1";
+const validRoleViews = new Set(Object.keys(viewCopy));
+const headToHeadUrlParameters = ["h2hWaters", "h2hCompetitor", "h2hProduct", "h2hMarket", "h2hApplication", "h2hSituation", "h2hBuyer", "h2hGeo"];
+
+function clearHeadToHeadUrlParameters() {
+  const url = new URL(window.location.href);
+  headToHeadUrlParameters.forEach((key) => url.searchParams.delete(key));
+  window.history.replaceState(null, "", `${url.pathname}${url.search}${url.hash}`);
+}
+
+function initializeRoleView() {
+  const params = new URLSearchParams(window.location.search);
+  const requestedView = params.get("view");
+  let storedView = "";
+  try { storedView = localStorage.getItem(roleViewStorageKey) || ""; } catch { storedView = ""; }
+  const initialView = validRoleViews.has(requestedView)
+    ? requestedView
+    : validRoleViews.has(storedView)
+      ? storedView
+      : filters.role.value;
+  filters.role.value = initialView;
+}
+
+function persistRoleView() {
+  if (!validRoleViews.has(state.view)) return;
+  try { localStorage.setItem(roleViewStorageKey, state.view); } catch { /* device-local persistence unavailable */ }
+  const url = new URL(window.location.href);
+  if (state.view === "Product") url.searchParams.delete("view");
+  else url.searchParams.set("view", state.view);
+  const nextUrl = `${url.pathname}${url.search}${url.hash}`;
+  if (nextUrl !== `${window.location.pathname}${window.location.search}${window.location.hash}`) {
+    window.history.replaceState(null, "", nextUrl);
+  }
+}
+
 const headToHeadAttributes = [
   { key: "reliability", label: "Reliability", pattern: /reliab|uptime|failure|leak|pressure|robust|maintenance|diagnostic/i },
   { key: "method-transfer", label: "Method transfer", pattern: /method transfer|migration|continuity|validated method|equivalen|compatib/i },
@@ -1872,13 +2157,18 @@ function headToHeadAvailableCompetitors() {
   );
   const ordered = [...primaryCompetitors, ...available.filter((competitor) => !primaryCompetitors.includes(competitor))]
     .filter((competitor, index, values) => available.includes(competitor) && values.indexOf(competitor) === index);
-  return filters.competitor.value === "All" ? ordered : ordered.filter((competitor) => competitor === filters.competitor.value);
+  return filters.competitor.value === "All" ? ordered : ordered.filter((competitor) => competitorMatchesFilter(competitor));
 }
 
 function initializeHeadToHeadSelection() {
   if (state.headToHead.initialized) return;
   state.headToHead.matchModel = headToHeadBuildMatchModel();
   const params = new URLSearchParams(window.location.search);
+  if (filters.role.value === "Marketing") {
+    clearHeadToHeadUrlParameters();
+    state.headToHead.initialized = true;
+    return;
+  }
   let stored = {};
   try { stored = JSON.parse(localStorage.getItem(headToHeadStorageKey) || "{}"); } catch { stored = {}; }
   const fromUrl = params.has("h2hWaters") || params.has("h2hCompetitor") || params.has("h2hProduct");
@@ -1894,7 +2184,12 @@ function initializeHeadToHeadSelection() {
   } : stored;
   if (selection.competitorProductOverrides && typeof selection.competitorProductOverrides === "object") state.headToHead.competitorProductOverrides = { ...selection.competitorProductOverrides };
   if (selection.watersProduct && state.headToHead.matchModel.watersProducts.some((product) => product.id === selection.watersProduct)) state.marketingTargeting.watersProduct = selection.watersProduct;
-  if (selection.competitor) state.headToHead.activeCompetitor = selection.competitor;
+  if (selection.competitor) {
+    state.headToHead.activeCompetitor = canonicalCompetitorName(selection.competitor);
+    if ([...filters.competitor.options].some((option) => option.value === state.headToHead.activeCompetitor)) {
+      filters.competitor.value = state.headToHead.activeCompetitor;
+    }
+  }
   if (selection.competitorProductId && selection.competitor) state.headToHead.competitorProductOverrides[selection.competitor] = selection.competitorProductId;
   if (selection.market && [...filters.segment.options].some((option) => option.value === selection.market)) filters.segment.value = selection.market;
   if (selection.application) state.marketingTargeting.application = selection.application;
@@ -1933,7 +2228,7 @@ function persistHeadToHeadSelection() {
     };
     Object.entries(optionalParams).forEach(([key, value]) => value && value !== "All" ? url.searchParams.set(key, value) : url.searchParams.delete(key));
   } else {
-    ["h2hWaters", "h2hCompetitor", "h2hProduct", "h2hMarket", "h2hApplication", "h2hSituation", "h2hBuyer", "h2hGeo"].forEach((key) => url.searchParams.delete(key));
+    headToHeadUrlParameters.forEach((key) => url.searchParams.delete(key));
   }
   window.history.replaceState(null, "", `${url.pathname}${url.search}${url.hash}`);
 }
@@ -3028,7 +3323,7 @@ function pmmCompetitorIntentSellingMotions(signals, supportedClaims, proofPriori
   const competitorOrder = ["Thermo Fisher", "Agilent", "Shimadzu", "SCIEX", "PerkinElmer"];
   const competitors = filters.competitor.value === "All"
     ? competitorOrder
-    : competitorOrder.filter((competitor) => competitor === filters.competitor.value);
+    : competitorOrder.filter((competitor) => competitorMatchesFilter(competitor));
   const profiles = competitors.map((competitor) => competitorIntentProfile(competitor, signals)).map((profile) => ({
     ...profile,
     evidenceItems: pmmGovernedRecords(profile.evidenceItems || []),
@@ -5196,7 +5491,7 @@ function pmmAppendixHistoricalCapabilityRecords() {
   ]);
   const technical = pmmGovernedRecords(state.technicalComparisons?.profiles || []).flatMap((profile) => {
     const competitor = launchCompetitors.get(profile.launchId) || "Competitor unresolved";
-    if (selectedCompetitor !== "All" && competitor !== selectedCompetitor) return [];
+    if (!competitorMatchesFilter(competitor, selectedCompetitor)) return [];
     return pmmGovernedRecords(profile.rows || []).flatMap((row) => [
       pmmAppendixRecord({
         ...pmmGovernanceFields(row),
@@ -5469,7 +5764,6 @@ function pmmClaimRiskScore(row) {
 }
 
 function pmmStartHereModel(model) {
-  const selectedSegment = model.artifactProduction?.selectedSegment || model.buyingCommittee.segments[0] || null;
   const claimPool = model.visibleClaimRows.length ? model.visibleClaimRows : model.claimRows;
   const supportedRegistryClaims = claimPool
     .filter((claim) => claim.substantiationStatus !== "Unsupported"
@@ -5486,9 +5780,21 @@ function pmmStartHereModel(model) {
     ...(model.appendix.validation?.missingApprovedClaims || []),
     ...(model.appendix.validation?.missingPillars || []),
   ];
-  const primaryCompetitor = model.sellerAssets?.competitor || model.contexts[0]?.competitor || "Competitor unresolved";
+  const hasNarrowTarget = filters.segment.value !== "All"
+    || state.marketingTargeting.application !== "All"
+    || state.marketingTargeting.buyingSituation !== "All"
+    || state.marketingTargeting.buyerRole !== "All";
+  const chosenTargetContext = [
+    filters.segment.value,
+    state.marketingTargeting.application,
+    state.marketingTargeting.buyingSituation,
+    state.marketingTargeting.buyerRole,
+  ].filter((value) => value && value !== "All").join(" · ");
+  const primaryCompetitor = filters.competitor.value === "All"
+    ? "All priority competitors"
+    : canonicalCompetitorName(filters.competitor.value);
   return {
-    chosenSegment: selectedSegment ? `${selectedSegment.segment}${selectedSegment.application !== "All" ? ` · ${selectedSegment.application}` : ""}` : pmmTargetingDisplayValue(model.governingPosition.targeting.market, "Segment unresolved"),
+    chosenSegment: hasNarrowTarget ? chosenTargetContext || "Target context unresolved" : "All target contexts",
     watersProduct: pmmTargetingDisplayValue(model.governingPosition.targeting.watersProduct, "All Waters products"),
     competitor: primaryCompetitor,
     fieldReadyClaimCount: model.sellerAssets?.approvedClaims?.length || 0,
@@ -5503,11 +5809,26 @@ function renderMarketingStartHere(summary) {
   const target = byId("pmmStartHere");
   const nextProof = summary.nextProof;
   target.innerHTML = `<header><div><div class="pmm-eyebrow">PMM Readiness</div><h2 id="pmmStartHereTitle">Current Field Status</h2></div><p>${escapeHtml(summary.watersProduct)} · ${escapeHtml(summary.chosenSegment)} · ${escapeHtml(summary.competitor)}</p></header>
+    <ol class="pmm-workflow-path" aria-label="Product Marketing workflow">
+      <li><span>1</span><strong>Target</strong><small>Product, market, buyer</small></li>
+      <li><span>2</span><strong>Decide</strong><small>Position and response</small></li>
+      <li><span>3</span><strong>Prove</strong><small>Close evidence gaps</small></li>
+      <li><span>4</span><strong>Approve</strong><small>Govern exact wording</small></li>
+      <li><span>5</span><strong>Ship</strong><small>Release seller assets</small></li>
+    </ol>
     <div class="pmm-readiness-strip" aria-label="Current Product Marketing readiness counts">
       <a href="#pmm-claims-risk" data-section-nav="pmm-claims-risk"><span>Field-ready claims</span><strong>${summary.fieldReadyClaimCount}</strong><small>${summary.fieldReadyClaimCount ? "Approved and citable" : "None cleared"}</small></a>
       <a href="#pmm-claims-risk" data-section-nav="pmm-claims-risk"><span>Supported, not approved</span><strong>${summary.supportedAwaitingApprovalCount}</strong><small>Claim Control</small></a>
       <a href="#pmm-positioning-decisions" data-section-nav="pmm-positioning-decisions"><span>Proof gaps</span><strong>${summary.proofGapCount}</strong><small>Top 3 + backlog</small></a>
       <a href="#pmm-evidence-appendix" data-section-nav="pmm-evidence-appendix" class="${summary.traceabilityGapCount ? "has-gap" : "is-clear"}"><span>Traceability gaps</span><strong>${summary.traceabilityGapCount}</strong><small>${summary.traceabilityGapCount ? "Needs attention" : "Required links resolved"}</small></a>
+    </div>
+    <div class="pmm-evidence-legend" aria-label="Evidence interpretation guardrails">
+      <strong>Evidence ladder</strong>
+      <span data-evidence-tier="activity">Market activity <small>directional—not demand</small></span>
+      <span data-evidence-tier="buyer">Buyer evidence <small>exact customer language</small></span>
+      <span data-evidence-tier="competitor">Competitor claim <small>observed positioning</small></span>
+      <span data-evidence-tier="proof">Comparative proof <small>matched conditions</small></span>
+      <span data-evidence-tier="approval">Approval <small>required before field use</small></span>
     </div>
     ${nextProof ? `<article class="pmm-next-proof"><div><span>Next proof decision</span><strong>${escapeHtml(nextProof.claimText)}</strong><p>${escapeHtml(nextProof.missingStudyEvidence)}</p><small>Unblocks: ${escapeHtml(nextProof.sellerAsset)}</small></div><a href="#pmm-positioning-decisions" data-section-nav="pmm-positioning-decisions">Open priority →</a></article>` : ""}`;
 }
@@ -6439,7 +6760,7 @@ function filteredSignalsForHorizon(horizonValue) {
       filters.technology.value,
       `${signal.title} ${signal.summary} ${signal.signalType} ${signal.pmImplication || ""}`,
     );
-    const competitorMatch = filters.competitor.value === "All" || signal.competitor === filters.competitor.value;
+    const competitorMatch = competitorMatchesFilter(signal.competitor);
     return categoryMatch && horizonMatch && geoMatch && segmentMatch && technologyMatch && competitorMatch
       && pmmTargetingMatches(signal);
   });
@@ -6450,11 +6771,11 @@ function competitorIntentSignals(signals) {
     .filter((signal) => signal.category === "Corporate intelligence")
     .filter((signal) => inSelectedHorizon(signal.date))
     .filter((signal) => geographyMatches(signal.geography))
-    .filter((signal) => filters.competitor.value === "All" || signal.competitor === filters.competitor.value);
+    .filter((signal) => competitorMatchesFilter(signal.competitor));
   const newsroomSignals = currentNewsroomSignals(state.data?.signals || [])
     .filter((signal) => inSelectedHorizon(signal.date))
     .filter((signal) => geographyMatches(signal.geography))
-    .filter((signal) => filters.competitor.value === "All" || signal.competitor === filters.competitor.value);
+    .filter((signal) => competitorMatchesFilter(signal.competitor));
   const seen = new Set();
   return [...signals, ...corporateSignals, ...newsroomSignals].filter((signal) => {
     const key = signal.id || canonicalEvidenceUrl(signal.sourceUrl || signal.url) || `${signal.competitor}|${signal.date}|${signal.title}`;
@@ -6540,7 +6861,7 @@ function filteredLaunchesForHorizon(horizonValue) {
       filters.technology.value,
       `${launch.product} ${launch.launchType} ${launch.marketSegment || ""}`,
     ))
-    .filter((launch) => filters.competitor.value === "All" || launch.competitor === filters.competitor.value)
+    .filter((launch) => competitorMatchesFilter(launch.competitor))
     .filter((launch) => pmmTargetingMatches(launch))
     .sort((a, b) => new Date(b.date) - new Date(a.date));
 }
@@ -6553,7 +6874,7 @@ function currentConferenceSources() {
     .filter((event) => conferenceDatePolicy.isCurrentOrUpcoming(event, cutoffDate))
     .filter((event) => filters.segment.value === "All" || event.marketSegments.includes(filters.segment.value))
     .filter((event) => filters.technology.value === "All" || event.technologyFocus.some((technology) => technologyMatchesFilter(technology, filters.technology.value, event.eventName)))
-    .filter((event) => filters.competitor.value === "All" || event.competitorWatch.some((competitor) => competitor.name === filters.competitor.value))
+    .filter((event) => filters.competitor.value === "All" || event.competitorWatch.some((competitor) => competitorMatchesFilter(competitor.name)))
     .filter((event) => pmmTargetingMatches(event))
     .sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
 }
@@ -6572,13 +6893,13 @@ function currentPatentInsights() {
       filters.technology.value,
       `${insight.title} ${insight.signal} ${insight.roadmapImplication} ${insight.watchNext}`,
     ))
-    .filter((insight) => filters.competitor.value === "All" || insight.competitor === filters.competitor.value)
+    .filter((insight) => competitorMatchesFilter(insight.competitor))
     .sort((a, b) => new Date(b.publicationDate || b.date) - new Date(a.publicationDate || a.date));
 }
 
 function currentLeadershipProfiles() {
   const profiles = state.leadershipProfiles?.profiles || [];
-  return profiles.filter((profile) => filters.competitor.value === "All" || profile.competitor === filters.competitor.value);
+  return profiles.filter((profile) => competitorMatchesFilter(profile.competitor));
 }
 
 const leadershipPersonPriority = {
@@ -6602,7 +6923,7 @@ function leadershipPeopleForCompetitor(competitor) {
 
 function currentHiringPatterns() {
   const profiles = state.hiringPatterns?.profiles || [];
-  return profiles.filter((profile) => filters.competitor.value === "All" || profile.competitor === filters.competitor.value);
+  return profiles.filter((profile) => competitorMatchesFilter(profile.competitor));
 }
 
 function moveLeadershipPersonSlider(competitor, direction) {
@@ -6628,7 +6949,7 @@ function filteredFilingInsightsForHorizon(horizonValue) {
         `${insight.headline} ${insight.evidence} ${insight.whyItMatters} ${insight.pmImplication}`,
       );
     })
-    .filter((insight) => filters.competitor.value === "All" || insight.competitor === filters.competitor.value)
+    .filter((insight) => competitorMatchesFilter(insight.competitor))
     .filter((insight) => pmmTargetingMatches(insight))
     .sort((a, b) => (b.impactScore || 0) - (a.impactScore || 0));
 }
@@ -7912,7 +8233,7 @@ function renderDirectorSummary(signals) {
   const competitorRead = leadCompetitorRead(signals, topRecommendation);
   const validation = validationNeedsForRecommendation(topRecommendation);
   const evidenceLinks = recommendationEvidenceLinks(topRecommendation);
-  const marketingView = state.view === "Marketing";
+  const marketingView = false;
   const items = [
     {
       label: marketingView ? "PMM market read" : context.summaryLabel,
@@ -9367,15 +9688,251 @@ function marketingCompetitorResponse(profile) {
   };
 }
 
+function marketingCompetitorImpact(profile) {
+  const competitorImpacts = {
+    Agilent: {
+      shortTerm: "Agilent's software, service, and packaged-workflow story may weaken Waters seller confidence in active pharma deals unless PMM supplies sourced counter-positioning for method setup, usability, and lifecycle support.",
+      longTerm: "Agilent may reset buying criteria toward lab productivity, AI-assisted workflows, and regional application access. PMM should establish the outcome-based category narrative and proof territory Waters intends to own.",
+    },
+    "Thermo Fisher": {
+      shortTerm: "Thermo Fisher's end-to-end portfolio breadth may define the buying frame before Waters enters the conversation. PMM should equip sellers with role-specific, evidence-backed workflow messaging for the priority application.",
+      longTerm: "Portfolio breadth may shift evaluation from individual instruments to workflow ecosystems. PMM should choose the vertical position where Waters can credibly lead and build the proof package around it.",
+    },
+    Shimadzu: {
+      shortTerm: "Shimadzu's value and modernization story may increase replacement pressure in routine LC. PMM should counter with substantiated method-continuity, lifecycle-cost, service-confidence, and adoption-risk messaging.",
+      longTerm: "Shimadzu may make value, continuity, and serviceability durable buying criteria. PMM should position Waters around lower adoption risk and defensible results, supported by validated economic and workflow proof.",
+    },
+    SCIEX: {
+      shortTerm: "SCIEX's instrument-plus-software story may expose unclear Waters LC-to-MS handoffs in active opportunities. PMM should provide a claims-safe workflow rebuttal tied to the exact system and buyer role in scope.",
+      longTerm: "If software-led workflow differentiation hardens, PMM should own a separations, sample-path, or method-continuity position that Waters can prove without making unsupported MS-performance comparisons.",
+    },
+    PerkinElmer: {
+      shortTerm: "Sparse current evidence does not justify a broad campaign response. PMM should limit messaging to verified replacement situations and use transparent service, uptime, transfer, and cost evidence.",
+      longTerm: "PMM should continue monitoring for repeated LC, software, service, or application-workflow investment before treating PerkinElmer as a broader positioning threat.",
+    },
+  };
+  return competitorImpacts[profile.competitor] || {
+    shortTerm: "PMM should update seller messaging only where dated evidence changes the buyer frame or exposes a substantiated Waters proof gap.",
+    longTerm: "PMM should decide which customer job and defensible proof territory Waters will own before the competitor's positioning hardens.",
+  };
+}
+
+function marketingContentTypeLabel(item) {
+  const text = `${item?.title || ""} ${item?.sourceName || ""} ${item?.sourceType || ""} ${item?.url || item?.sourceUrl || ""}`.toLowerCase();
+  if (/app[- ]?note|application note|technical note/.test(text)) return "Application / technical note";
+  if (/case study|customer story|customer success/.test(text)) return "Customer proof";
+  if (/webinar|conference|event page|event source/.test(text)) return "Webinar / event";
+  if (/newsroom|press release|launch release|investor/.test(text)) return "Launch / newsroom story";
+  if (/specification|spec sheet|_spec|\/spec/.test(text)) return "Specification";
+  if (/manual|support|release note|operator guide|user guide/.test(text)) return "Support / product documentation";
+  if (/product page|\/products?\//.test(text)) return "Product page";
+  return "External product content";
+}
+
+function marketingExternalContentModel(profile) {
+  const competitorNotes = pmmGovernedRecords(currentCompetitorApplicationNotes())
+    .filter((note) => note.competitor === profile.competitor);
+  const competitorLaunches = currentLaunches()
+    .filter((launch) => launch.competitor === profile.competitor);
+  const launchLookup = new Map(comparisonLaunches().map((launch) => [launch.id, launch]));
+  const matchedComparisons = (state.productComparisons?.launchComparisons || [])
+    .filter((comparison) => launchLookup.get(comparison.launchId)?.competitor === profile.competitor);
+  const preferredWatersIds = {
+    Agilent: ["acquity-premier-system", "bioaccord-lcms-system"],
+    "Thermo Fisher": ["bioaccord-lcms-system", "xevo-tq-absolute", "select-series-mrt"],
+    Shimadzu: ["alliance-is-hplc", "acquity-uplc-i-class-plus", "xevo-tq-absolute", "empower-lc-workflow"],
+    SCIEX: ["xevo-tq-absolute", "select-series-mrt", "empower-lc-workflow"],
+    PerkinElmer: ["alliance-is-hplc", "arc-hplc-system"],
+  }[profile.competitor] || [];
+  const watersIds = new Set([
+    ...matchedComparisons.map((comparison) => comparison.closestWatersId),
+    ...preferredWatersIds,
+  ].filter(Boolean));
+  const watersSystems = (state.productComparisons?.watersSystems || [])
+    .filter((system) => watersIds.has(system.id));
+  const watersSystemItems = watersSystems.flatMap((system) => [
+    isHttpUrl(system.sourceUrl) ? {
+      title: system.product,
+      sourceName: system.sourceName || "Waters official product source",
+      url: system.sourceUrl,
+    } : null,
+    ...(system.artifacts || []).map((artifact) => ({
+      title: artifact.title || system.product,
+      sourceName: artifact.sourceType || "Waters external asset",
+      url: artifact.url,
+    })),
+  ]).filter((item) => item && isHttpUrl(item.url));
+  const watersTechnicalItems = (state.technicalComparisons?.profiles || []).flatMap((technicalProfile) => {
+    const launch = launchLookup.get(technicalProfile.launchId);
+    if (launch?.competitor !== profile.competitor) return [];
+    return (technicalProfile.rows || [])
+      .filter((row) => isHttpUrl(row.watersSourceUrl))
+      .map((row) => {
+        const sourceType = marketingContentTypeLabel({ url: row.watersSourceUrl });
+        return {
+          title: row.watersSourceName || `Waters ${sourceType.toLowerCase()}: ${row.dimension}`,
+          sourceName: row.watersSourceName || sourceType,
+          url: row.watersSourceUrl,
+        };
+      });
+  });
+  const deduplicateContent = (items) => {
+    const seen = new Set();
+    return items.filter((item) => item.url && !seen.has(item.url) && seen.add(item.url));
+  };
+  const competitorItems = deduplicateContent([
+    ...competitorNotes.map((note) => ({
+      title: note.title,
+      sourceName: note.sourceType || "Official application note",
+      url: note.sourceUrl,
+    })),
+    ...competitorLaunches.map((launch) => ({
+      title: launch.product,
+      sourceName: launch.sourceName || "Official launch source",
+      url: timelineUrlForLaunch(launch),
+    })),
+  ]);
+  const contentTypePriority = new Map([
+    ["Application / technical note", 0],
+    ["Customer proof", 1],
+    ["Product page", 2],
+    ["Launch / newsroom story", 3],
+    ["Webinar / event", 4],
+    ["Specification", 5],
+    ["Support / product documentation", 6],
+    ["External product content", 7],
+  ]);
+  const watersItems = deduplicateContent([...watersTechnicalItems, ...watersSystemItems])
+    .sort((left, right) => (contentTypePriority.get(marketingContentTypeLabel(left)) ?? 99) - (contentTypePriority.get(marketingContentTypeLabel(right)) ?? 99));
+  const competitorTypes = [...new Set(competitorItems.map(marketingContentTypeLabel))];
+  const watersTypes = [...new Set(watersItems.map(marketingContentTypeLabel))];
+  const themes = rankedApplicationThemes(competitorNotes).slice(0, 2).map(([theme, count]) => `${theme} (${count})`);
+  const workflowProofGap = competitorNotes.length && !watersTypes.includes("Application / technical note")
+    ? "The loaded competitor evidence has workflow proof that is not matched by a Waters application or technical note in the same comparison set."
+    : "Waters has external evidence in the loaded comparison set; PMM's opportunity is to connect it into a sharper buyer-specific narrative rather than publish isolated product artifacts.";
+  return {
+    competitorItems,
+    watersItems,
+    competitorTypes,
+    watersTypes,
+    themes,
+    workflowProofGap,
+  };
+}
+
+function marketingSharePlay(profile) {
+  const plays = {
+    Agilent: {
+      strategy: "Agilent packages instruments, OpenLab and partner software, applications, regional co-development, and CrossLab services into an end-to-end regulated-workflow story.",
+      contentTypes: [
+        "Outcome-led MAM or oligo workflow landing page with one governing claim and proof hierarchy",
+        "ACQUITY Premier versus Agilent workflow proof brief covering setup, method transfer, data review, and service continuity",
+        "Customer validation story or expert webinar showing adoption speed and reproducible regulated execution",
+        "Role-based seller sequence for the bench user, QA/validation veto, lab manager, and economic buyer",
+      ],
+      takeShare: [
+        "Target pharma and advanced-therapeutics accounts where Agilent is selling ecosystem breadth but the decision depends on regulated execution or method continuity.",
+        "Reframe the evaluation from software breadth to the customer job Waters can prove: defensible workflow execution with lower method and adoption risk.",
+        "Activate an account-based migration offer using a comparative workflow assessment, proof-backed battlecard, and customer reference before requesting a platform switch.",
+      ],
+    },
+    "Thermo Fisher": {
+      strategy: "Thermo Fisher uses portfolio breadth and vertical workflow content to frame the category from sample and bioproduction context through LC-MS, software, and service.",
+      contentTypes: [
+        "Vertical workflow hub for one priority LNP, MAM, oligo, or protein-characterization job",
+        "Customer case study connecting separations quality, informatics, application support, and time to a defensible result",
+        "Competitive migration guide that helps buyers avoid overbuying an ecosystem when specialist workflow performance decides the outcome",
+        "Expert webinar and nurture sequence tailored to scientific users, QA/IT veto roles, and lab leadership",
+      ],
+      takeShare: [
+        "Concentrate on vertical use cases where Waters application depth can beat a broad portfolio promise; do not fight Thermo on catalog size.",
+        "Define the buying scorecard around method confidence, separations, reproducibility, and data review, then prove those criteria under matched conditions.",
+        "Use application specialists and reference customers to convert high-intent accounts with a workflow proof session and a scoped evaluation plan.",
+      ],
+    },
+    Shimadzu: {
+      strategy: "Shimadzu combines practical value, routine-lab productivity, simpler operation, and a steady application-note cadence to make modernization feel attainable.",
+      contentTypes: [
+        "Routine-QC modernization guide comparing method continuity, operator steps, uptime, serviceability, and lifecycle cost",
+        "Interactive migration or total-value calculator with clearly labeled customer assumptions",
+        "Short workflow demonstration video paired with the underlying application note and substantiated claims",
+        "Installed-base case study showing lower adoption risk, fewer routine errors, and reliable regulated execution",
+      ],
+      takeShare: [
+        "Prioritize routine-QC replacement accounts where method migration, compliance risk, and service continuity outweigh acquisition price.",
+        "Neutralize the value-platform frame with a validated economic-value story tied to downtime, transfer effort, operator interventions, and result defensibility.",
+        "Offer a risk-reversal evaluation and migration plan, then use lifecycle proof and service commitments to convert the account—not premium-brand assertions.",
+      ],
+    },
+    SCIEX: {
+      strategy: "SCIEX turns instrument launches, software, and frequent technical notes into a complete LC-MS performance and data-workflow narrative for regulated quantitation and omics.",
+      contentTypes: [
+        "End-to-end Waters LC-MS workflow story connecting separations, sample path, MS, data review, compliance, and service ownership",
+        "Claims-safe regulated-quantitation or omics proof pack with matched test conditions and explicit comparability limits",
+        "Recorded workflow demonstration focused on setup, LC-to-MS handoff, exception review, and reporting",
+        "Application note plus seller talk track for the exact SCIEX system, buying situation, and buyer committee",
+      ],
+      takeShare: [
+        "Separate regulated-quantitation opportunities from discovery and high-throughput screening so PMM does not use one generic LC-MS counter-position.",
+        "Make separations quality, method continuity, data confidence, and accountable workflow ownership the decision criteria Waters can prove.",
+        "Run a named-account proof campaign with application scientists and service partners; convert only after the comparison establishes a customer-relevant advantage.",
+      ],
+    },
+    PerkinElmer: {
+      strategy: "Current public evidence supports a narrower value, service, and replacement narrative; it does not establish a broad PerkinElmer LC marketing push.",
+      contentTypes: [
+        "Narrow replacement guide for verified PerkinElmer deal situations",
+        "Service, uptime, method-transfer, and lifecycle-cost evidence brief",
+        "Account-specific proof email and seller talk track rather than a broad campaign",
+      ],
+      takeShare: [
+        "Use CRM and field input to identify actual PerkinElmer replacement situations before allocating campaign spend.",
+        "Lead with transparent regulated-chromatography depth, service continuity, and method-transfer proof in those named accounts.",
+        "Scale the play only if repeated win/loss and opportunity evidence confirms a larger addressable switching pool.",
+      ],
+    },
+  };
+  return plays[profile.competitor] || {
+    strategy: "The competitor is using public product and workflow content to influence the buying frame; the exact sustained strategy remains directional.",
+    contentTypes: ["Buyer-specific workflow page", "Comparative proof brief", "Customer validation story", "Seller activation sequence"],
+    takeShare: [
+      "Choose a narrow segment and switching trigger using CRM and win/loss evidence.",
+      "Define one buyer-relevant position Waters can substantiate against the exact competitor claim.",
+      "Activate with comparative proof, a reference, and a low-risk evaluation offer, then measure conversion by account stage.",
+    ],
+  };
+}
+
+function marketingContentEvidenceLinksMarkup(items, label) {
+  if (!items.length) return `<small>No matched ${escapeHtml(label.toLowerCase())} asset is loaded under the active filters.</small>`;
+  return `<div class="pmm-content-evidence-links"><span>${escapeHtml(label)}</span>${items.slice(0, 3).map((item) => `<a href="${escapeHtml(item.url)}" target="_blank" rel="noreferrer">${escapeHtml(item.title)} ↗</a>`).join("")}</div>`;
+}
+
+function marketingShareStrategyMarkup(profile) {
+  const content = marketingExternalContentModel(profile);
+  const play = marketingSharePlay(profile);
+  const competitorMix = content.competitorTypes.length ? content.competitorTypes.join(" · ") : "No matched content type under current filters";
+  const watersMix = content.watersTypes.length ? content.watersTypes.join(" · ") : "No matched Waters content type in the loaded comparison set";
+  const themeText = content.themes.length ? ` Dominant matched themes: ${content.themes.join("; ")}.` : "";
+  return `<section class="pmm-share-strategy" aria-label="Competitor marketing strategy and PMM take-share plan">
+    <header><div><span>Marketing strategy and share capture</span><strong>How PMM can change the buying frame</strong></div><small>Public content shows positioning activity—not actual market-share movement. Validate account opportunity and conversion with CRM, win/loss, and pipeline data.</small></header>
+    <div class="pmm-market-strategy-grid">
+      <article><span>Competitor marketing strategy</span><strong>${escapeHtml(play.strategy)}</strong><p>${content.competitorItems.length} matched competitor external asset${content.competitorItems.length === 1 ? "" : "s"} · ${escapeHtml(competitorMix)}.${escapeHtml(themeText)}</p>${marketingContentEvidenceLinksMarkup(content.competitorItems, "Competitor examples")}</article>
+      <article><span>Compared with Waters external content</span><strong>${escapeHtml(content.workflowProofGap)}</strong><p>${content.watersItems.length} matched Waters external asset${content.watersItems.length === 1 ? "" : "s"} · ${escapeHtml(watersMix)}.</p>${marketingContentEvidenceLinksMarkup(content.watersItems, "Waters examples")}</article>
+    </div>
+    <div class="pmm-share-action-grid">
+      <article><span>Content types to create</span><ul>${play.contentTypes.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></article>
+      <article class="pmm-take-share-play"><span>PMM take-share play</span><ol>${play.takeShare.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ol><small>Recommended strategy; not a forecast or claim that share gain has occurred.</small></article>
+    </div>
+  </section>`;
+}
+
 function competitorIntentDetailMarkup(profile) {
   const competitorAccent = competitorColors[profile.competitor] || "#789199";
   const response = state.view === "Marketing" ? marketingCompetitorResponse(profile) : profile.response;
-  const shortTermImpact = state.view === "Marketing"
-    ? `Message risk: ${profile.shortTermImpact} PMM should update the active battlecard and seller narrative only where dated evidence supports the change.`
-    : profile.shortTermImpact;
-  const longTermImpact = state.view === "Marketing"
-    ? `Positioning risk: ${profile.midLongTermImpact} PMM should decide which customer job and proof territory Waters will own before the competitor frame hardens.`
-    : profile.midLongTermImpact;
+  const marketingImpact = state.view === "Marketing" ? marketingCompetitorImpact(profile) : null;
+  const shortTermImpact = marketingImpact?.shortTerm || profile.shortTermImpact;
+  const longTermImpact = marketingImpact?.longTerm || profile.midLongTermImpact;
   return `
     <article id="intent-selected-detail" class="intent-detail-panel risk-${profile.risk.toLowerCase()}" style="--intent-competitor-accent: ${escapeHtml(competitorAccent)}" role="tabpanel" aria-label="${escapeHtml(profile.competitor)} competitor intent">
       <div class="intent-detail-header">
@@ -9429,6 +9986,7 @@ function competitorIntentDetailMarkup(profile) {
             <p><span>Differentiate</span>${escapeHtml(response.differentiate)}</p>
             <p><span>Accelerate</span>${escapeHtml(response.accelerate)}</p>
           </div>
+          ${state.view === "Marketing" ? marketingShareStrategyMarkup(profile) : ""}
         </div>
       </details>
     </article>
@@ -9437,7 +9995,7 @@ function competitorIntentDetailMarkup(profile) {
 
 function renderCompetitorIntentCards(signals) {
   const competitorOrder = ["Thermo Fisher", "Agilent", "Shimadzu", "SCIEX", "PerkinElmer"];
-  const competitors = filters.competitor.value === "All" ? competitorOrder : competitorOrder.filter((name) => name === filters.competitor.value);
+  const competitors = filters.competitor.value === "All" ? competitorOrder : competitorOrder.filter((name) => competitorMatchesFilter(name));
   const threatRank = { High: 3, Medium: 2, Watch: 1 };
   const profiles = competitors
     .map((competitor) => competitorIntentProfile(competitor, signals))
@@ -9873,7 +10431,7 @@ function customerVoiceItemsForHorizon(horizonValue, { ignoreCompetitor = false }
       const text = `${item.platform} ${item.product} ${item.category} ${item.theme}`;
       return technologyMatchesFilter("", filters.technology.value, text);
     })
-    .filter((item) => ignoreCompetitor || filters.competitor.value === "All" || item.company === filters.competitor.value)
+    .filter((item) => ignoreCompetitor || competitorMatchesFilter(item.company))
     .filter((item) => pmmTargetingMatches(item, { includeBuyerRole: true }))
     .filter((item) => {
       if (!term) return true;
@@ -12101,6 +12659,15 @@ function patentStatusTone(legalStatus) {
   return " is-pending";
 }
 
+function movePatentCarousel(direction) {
+  const companyInsights = currentPatentInsights().filter((item) => item.competitor === state.activePatentCompetitor);
+  if (companyInsights.length < 2) return;
+  const currentIndex = Number(state.activePatentIndexByCompetitor[state.activePatentCompetitor] || 0);
+  const delta = direction === "previous" ? -1 : 1;
+  state.activePatentIndexByCompetitor[state.activePatentCompetitor] = (currentIndex + delta + companyInsights.length) % companyInsights.length;
+  renderPatentInsights();
+}
+
 function renderPatentInsights() {
   const target = byId("patentInsights");
   const counter = byId("patentInsightCount");
@@ -12136,6 +12703,12 @@ function renderPatentInsights() {
   }
   const [competitor, companyInsights] = activeGroup;
   const themes = [...new Set(companyInsights.map((item) => item.theme))];
+  const requestedPatentIndex = Number(state.activePatentIndexByCompetitor[competitor] || 0);
+  const activePatentIndex = Number.isInteger(requestedPatentIndex) && requestedPatentIndex >= 0 && requestedPatentIndex < companyInsights.length
+    ? requestedPatentIndex
+    : 0;
+  state.activePatentIndexByCompetitor[competitor] = activePatentIndex;
+  const insight = companyInsights[activePatentIndex];
   target.innerHTML = `
     <div class="intent-master-detail patent-master-detail">
       <nav class="intent-competitor-rail patent-company-rail" role="tablist" aria-label="Competitors with published patent applications">
@@ -12168,9 +12741,18 @@ function renderPatentInsights() {
             </div>
           ` : ""}
         </header>
-        <div class="patent-card-grid">
-          ${companyInsights.map((insight) => `
-            <article class="patent-card">
+        <div class="patent-carousel" data-patent-carousel tabindex="0" role="region" aria-roledescription="carousel" aria-label="${escapeHtml(competitor)} patent applications">
+          <div class="patent-carousel-toolbar">
+            <span class="patent-carousel-position" aria-live="polite">Patent ${activePatentIndex + 1} of ${companyInsights.length}</span>
+            ${companyInsights.length > 1 ? `
+              <div class="patent-carousel-controls">
+                <button type="button" data-patent-carousel-action="previous" aria-label="Show previous ${escapeHtml(competitor)} patent">← <span>Previous</span></button>
+                <button type="button" data-patent-carousel-action="next" aria-label="Show next ${escapeHtml(competitor)} patent"><span>Next</span> →</button>
+              </div>
+            ` : ""}
+          </div>
+          <div class="patent-card-grid">
+            <article class="patent-card" aria-label="Patent ${activePatentIndex + 1} of ${companyInsights.length}">
               <div class="patent-card-heading">
                 <div>
                   <span class="patent-card-theme">${escapeHtml(insight.theme)}</span>
@@ -12190,13 +12772,10 @@ function renderPatentInsights() {
                 <section><span>What the filing signals</span><p>${escapeHtml(insight.signal)}</p></section>
                 <section class="patent-pm-action"><span>Potential roadmap implication</span><p>${escapeHtml(insight.roadmapImplication)}</p></section>
               </div>
-              <div class="patent-watch-row"><span>Watch next</span><p>${escapeHtml(insight.watchNext)}</p></div>
-              <p class="patent-evidence-boundary"><strong>Evidence boundary:</strong> ${escapeHtml(insight.evidenceBoundary)}</p>
               <a href="${escapeHtml(insight.sourceUrl)}" target="_blank" rel="noreferrer">Open published patent record ↗</a>
             </article>
-          `).join("")}
+          </div>
         </div>
-        <aside class="patent-method-note"><strong>How to use this:</strong> Compare filing themes with launches, hiring, application notes, and customer evidence before changing roadmap priority. Card headlines are analyst summaries, so the registered office title and assignee are shown beneath each headline. Priority, filing, and publication dates are listed separately because an application usually becomes public well after its earliest priority date.</aside>
       </section>
     </div>
   `;
@@ -12244,9 +12823,6 @@ function renderLeadershipBehaviorProfiles() {
   const conciseCareerArc = activePerson?.careerArc?.length > 1
     ? [activePerson.careerArc[0], activePerson.careerArc.at(-1)]
     : activePerson?.careerArc || [];
-  const latestCompanyChanges = [...(activePerson?.companyChanges || [])]
-    .sort((left, right) => new Date(right.date) - new Date(left.date))
-    .slice(0, 1);
   target.innerHTML = `
     <div class="intent-master-detail leadership-master-detail">
       <nav class="intent-competitor-rail leadership-company-rail" role="tablist" aria-label="Competitor leadership profiles">
@@ -12282,6 +12858,14 @@ function renderLeadershipBehaviorProfiles() {
           <span>Observed operating pattern</span>
           <h5>${escapeHtml(profile.behaviorHeadline)}</h5>
           <p>${escapeHtml(firstLeadershipSentence(profile.behaviorSummary))}</p>
+          ${profile.observableSignals.slice(0, 1).map((signal) => `
+            <div class="leadership-behavior-evidence">
+              <span>${escapeHtml(signal.label)}</span>
+              <p><strong>Observed:</strong> ${escapeHtml(signal.observedAction)}</p>
+              <p class="leadership-planning-implication"><strong>Waters planning implication:</strong> ${escapeHtml(signal.planningImplication)}</p>
+              <a href="${escapeHtml(signal.sourceUrl)}" target="_blank" rel="noreferrer">${escapeHtml(signal.sourceName)} · ${formatDate(signal.sourceDate)} ↗</a>
+            </div>
+          `).join("")}
         </section>
         ${activePerson && activeLeader ? `
           <section class="leadership-person-slider" data-leadership-person-slider data-competitor="${escapeHtml(profile.competitor)}" tabindex="0" aria-label="${escapeHtml(profile.competitor)} leader profiles. Use left and right arrow keys to change person.">
@@ -12293,7 +12877,6 @@ function renderLeadershipBehaviorProfiles() {
             </div>
             <header class="leadership-person-slider-header">
               <div>
-                <span>Relevant leaders</span>
                 <h5>Leader Profile</h5>
               </div>
               <div class="leadership-person-slider-controls" aria-label="Change selected leader">
@@ -12327,50 +12910,12 @@ function renderLeadershipBehaviorProfiles() {
                   <section class="leadership-likely-focus">
                     <div><span>Likely Focus</span><em>${escapeHtml(activePerson.likelyFocus.confidence)}</em></div>
                     <p>${escapeHtml(activePerson.likelyFocus.statement)}</p>
-                    <small><strong>Evidence:</strong> Public role history and official company activity.</small>
                   </section>
                 </div>
-                <section class="leadership-company-activity">
-                  <div class="leadership-subhead"><h6>Company Activity</h6></div>
-                  <div class="leadership-company-change-list">
-                    ${latestCompanyChanges.map((change) => `
-                      <article>
-                        <time datetime="${escapeHtml(change.date)}">${formatDate(change.date)}</time>
-                        <h6>${escapeHtml(change.title)}</h6>
-                        <p>${escapeHtml(firstLeadershipSentence(change.detail))}</p>
-                        <a href="${escapeHtml(change.sourceUrl)}" target="_blank" rel="noreferrer">${escapeHtml(change.sourceName)} ↗</a>
-                      </article>
-                    `).join("")}
-                  </div>
-                </section>
-                <footer class="leadership-person-sources">
-                  <span>Sources</span>
-                  ${activePerson.sources.slice(0, 2).map((source) => `<a href="${escapeHtml(source.url)}" target="_blank" rel="noreferrer">${escapeHtml(source.name)} ↗</a>`).join("")}
-                </footer>
               </article>
             </div>
           </section>
         ` : `<div class="leadership-profile-empty"><strong>No person-level evidence profile is available.</strong><p>The reporting line remains visible in the company profile, but no working-pattern inference is shown without a named individual and official sources.</p></div>`}
-        <section class="leadership-signals" aria-labelledby="leadershipSignalsTitle">
-          <div class="leadership-subhead">
-            <span>Evidence-backed behavior</span>
-            <h5 id="leadershipSignalsTitle">Observable Decisions and Planning Implications</h5>
-          </div>
-          <div class="leadership-signal-grid">
-            ${profile.observableSignals.slice(0, 1).map((signal) => `
-              <article class="leadership-signal-card">
-                <span>${escapeHtml(signal.label)}</span>
-                <p><strong>Observed:</strong> ${escapeHtml(signal.observedAction)}</p>
-                <p class="leadership-planning-implication"><strong>Waters planning implication:</strong> ${escapeHtml(signal.planningImplication)}</p>
-                <a href="${escapeHtml(signal.sourceUrl)}" target="_blank" rel="noreferrer">${escapeHtml(signal.sourceName)} · ${formatDate(signal.sourceDate)} ↗</a>
-              </article>
-            `).join("")}
-          </div>
-        </section>
-        <section class="leadership-watchlist">
-          <div class="leadership-subhead"><span>Monitor next</span><h5>Signals That Could Confirm or Change This Read</h5></div>
-          <ul>${profile.watchItems.slice(0, 2).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
-        </section>
       </section>
     </div>
   `;
@@ -12421,12 +12966,8 @@ function renderHiringPatterns() {
           </div>
           <span class="hiring-ai-signal">AI talent signal · <b>${escapeHtml(profile.aiTalentSignal)}</b></span>
         </header>
-        <section class="hiring-pattern-readout">
-          <span>Hiring pattern read</span>
-          <p>${escapeHtml(profile.patternSummary)}</p>
-        </section>
         <section class="hiring-skill-section">
-          <div class="hiring-section-heading"><span>Skill-cluster signal</span><h5>What Capabilities the Talent Evidence Points Toward</h5></div>
+          <div class="hiring-section-heading"><span>Skill-cluster signal</span></div>
           <div class="hiring-skill-grid">
             ${profile.skillClusters.map((cluster) => `
               <article class="hiring-skill-card hiring-strength-${escapeHtml(cluster.strength.toLowerCase())}">
@@ -12438,14 +12979,14 @@ function renderHiringPatterns() {
           </div>
         </section>
         <section class="hiring-observations-section">
-          <div class="hiring-section-heading"><span>Posting and talent evidence</span><h5>Observed Roles and Programs</h5></div>
+          <div class="hiring-section-heading"><span>Posting and talent evidence</span></div>
           <div class="hiring-observation-grid">
             ${profile.observations.map((observation) => `
               <article class="hiring-observation-card">
                 <div class="hiring-observation-meta"><span>${escapeHtml(observation.status)}</span><time datetime="${escapeHtml(observation.checkedDate)}">Checked ${formatDate(observation.checkedDate)}</time></div>
                 <h6>${escapeHtml(observation.title)}</h6>
                 <p>${escapeHtml(observation.detail)}</p>
-                <small><strong>LC-MS relevance:</strong> ${escapeHtml(observation.relevance)}</small>
+                ${observation.relevance ? `<small><strong>LC-MS relevance:</strong> ${escapeHtml(observation.relevance)}</small>` : ""}
                 <a href="${escapeHtml(observation.sourceUrl)}" target="_blank" rel="noreferrer">${escapeHtml(observation.sourceName)} ↗</a>
               </article>
             `).join("")}
@@ -12461,7 +13002,6 @@ function renderHiringPatterns() {
             <p>${escapeHtml(profile.planningImplication)}</p>
           </section>
         </div>
-        <aside class="hiring-evidence-boundary"><strong>Evidence boundary:</strong> ${escapeHtml(profile.evidenceBoundary)} ${escapeHtml(state.hiringPatterns?.methodology || "")}</aside>
       </section>
     </div>
   `;
@@ -12655,7 +13195,7 @@ function currentCompetitorApplicationNotes() {
       filters.technology.value,
       `${note.title} ${note.applicationArea} ${note.products} ${note.evidenceStatement}`,
     ))
-    .filter((note) => filters.competitor.value === "All" || note.competitor === filters.competitor.value)
+    .filter((note) => competitorMatchesFilter(note.competitor))
     .filter((note) => pmmTargetingMatches(note))
     .sort((a, b) => new Date(b.date) - new Date(a.date));
 }
@@ -12713,14 +13253,6 @@ function competitorNoteThemeStatus(group) {
   if (group.competitors.length >= 2) return "Cross-vendor observation";
   const ageDays = Math.max(0, Math.floor((Date.now() - new Date(`${group.latestDate}T00:00:00`)) / 86400000));
   return ageDays <= 120 ? "Recent single-vendor observation" : "Single-vendor observation";
-}
-
-function competitorNoteThemeRead(group) {
-  const count = group.notes.length;
-  if (group.competitors.length >= 2) {
-    return `${count} sampled official notes span ${group.competitors.length} vendors (${group.competitors.join(", ")}). This is corroborated within the catalog, but incomplete vendor inventories prevent a publication-volume or market-priority conclusion.`;
-  }
-  return `${count} sampled official ${count === 1 ? "note" : "notes"} from ${group.competitors[0]} show an observed workflow emphasis. Treat it as directional evidence, not a competitor trend.`;
 }
 
 function currentMarketApplicationSources() {
@@ -12905,7 +13437,6 @@ function nonPubmedObservedSignalsMarkup(signalData, label) {
             <span>#${index + 1} observed topic</span>
             <h6>${escapeHtml(signal.label)}</h6>
             <strong>${signal.records.length} exact records · ${signal.journalCount} ${signal.journalCount === 1 ? "journal" : "journals"}</strong>
-            <p><b>Matched on:</b> ${escapeHtml(signal.rule)}.</p>
             <small>Latest record: ${escapeHtml(formatDate(signal.latestDate))}</small>
             <a href="#decisionEvidenceModal" data-non-pubmed-theme="${escapeHtml(signal.id)}">View ${signal.records.length} exact records →</a>
           </article>
@@ -13037,7 +13568,6 @@ function competitorApplicationNoteMarkup(notes, label) {
   if (!notes.length) return `<div class="empty">No official competitor application notes match the active filters and ${escapeHtml(label.toLowerCase())} horizon. This is a competitor-source coverage gap, not a market-trend conclusion.</div>`;
   const themes = competitorNoteThemeGroups(notes);
   const competitors = [...new Set(notes.map((note) => note.competitor))].sort();
-  const crossVendorThemes = themes.filter((group) => group.competitors.length >= 2);
   const latestNote = [...notes].sort((a, b) => new Date(b.date) - new Date(a.date))[0];
   return `
     <div class="competitor-application-summary">
@@ -13053,7 +13583,6 @@ function competitorApplicationNoteMarkup(notes, label) {
         <span>Latest sampled note</span>
         <strong>${escapeHtml(formatDate(latestNote.date))} · ${escapeHtml(competitorApplicationTheme(latestNote))}</strong>
       </div>
-      <p><strong>Coverage boundary:</strong> ${crossVendorThemes.length} themes appear across multiple vendors in this catalog. The source set is curated and incomplete for vendor libraries, so note counts are not used to rank themes, compare publisher activity, or infer market demand.</p>
     </div>
     <div class="competitor-note-theme-grid">
       ${themes.map((group) => `
@@ -13065,7 +13594,6 @@ function competitorApplicationNoteMarkup(notes, label) {
               </div>
               <strong>${group.notes.length} ${group.notes.length === 1 ? "note" : "notes"}</strong>
             </div>
-            <p class="competitor-note-theme-read"><strong>Evidence read:</strong> ${escapeHtml(competitorNoteThemeRead(group))}</p>
             <div class="competitor-note-theme-meta">
               <span>Competitors: ${escapeHtml(group.competitors.join(", "))}</span>
               <span>Latest: ${escapeHtml(formatDate(group.latestDate))}</span>
@@ -13318,9 +13846,9 @@ function renderSourceCounts(signals) {
     <a class="source-pill source-pill-link" href="#competitive-timeline-section" data-evidence-target="competitive-timeline-section" aria-label="View ${launches.length} matching launches"><span>Matching launches</span><strong>${launches.length}<small>View →</small></strong></a>
     ${publicEvidenceSourcePill}
     <a class="source-pill source-pill-link" href="#filing-evidence" data-evidence-target="filing-evidence" aria-label="View ${filingInsights.length} filing insights"><span>Filing insights</span><strong>${filingInsights.length}<small>View →</small></strong></a>
-    ${state.view === "Engineering" ? `<a class="source-pill source-pill-link" href="#patent-filing-insights" data-evidence-target="patent-filing-insights" aria-label="View ${patentInsights.length} patent filing insights"><span>Patent filing insights</span><strong>${patentInsights.length}<small>View →</small></strong></a>` : ""}
-    ${state.view === "Engineering" ? `<a class="source-pill source-pill-link" href="#leadership-behavior-profiles" data-evidence-target="leadership-behavior-profiles" aria-label="View ${leadershipProfiles.length} competitor leadership profiles"><span>Leadership profiles</span><strong>${leadershipProfiles.length}<small>View →</small></strong></a>` : ""}
-    ${state.view === "Engineering" ? `<a class="source-pill source-pill-link" href="#competitor-hiring-patterns" data-evidence-target="competitor-hiring-patterns" aria-label="View ${hiringPatterns.length} competitor hiring patterns"><span>Hiring patterns</span><strong>${hiringPatterns.length}<small>View →</small></strong></a>` : ""}
+    ${["Engineering", "Product"].includes(state.view) ? `<a class="source-pill source-pill-link" href="#patent-filing-insights" data-evidence-target="patent-filing-insights" aria-label="View ${patentInsights.length} patent filing insights"><span>Patent filing insights</span><strong>${patentInsights.length}<small>View →</small></strong></a>` : ""}
+    ${["Engineering", "Product"].includes(state.view) ? `<a class="source-pill source-pill-link" href="#leadership-behavior-profiles" data-evidence-target="leadership-behavior-profiles" aria-label="View ${leadershipProfiles.length} competitor leadership profiles"><span>Leadership profiles</span><strong>${leadershipProfiles.length}<small>View →</small></strong></a>` : ""}
+    ${["Engineering", "Product"].includes(state.view) ? `<a class="source-pill source-pill-link" href="#competitor-hiring-patterns" data-evidence-target="competitor-hiring-patterns" aria-label="View ${hiringPatterns.length} competitor hiring patterns"><span>Hiring patterns</span><strong>${hiringPatterns.length}<small>View →</small></strong></a>` : ""}
     <div class="source-pill"><span>Publication records</span><strong>${publicationRecords.toLocaleString()}</strong></div>
     <a class="source-pill source-pill-link" href="#customer-voice" data-evidence-target="customer-voice" aria-label="View ${customerVoiceSignals.length} customer-voice theme summaries and their public sources"><span>Public customer voice</span><strong>${customerVoiceSignals.length} theme summaries<small>View →</small></strong></a>
     <a class="source-pill source-pill-link" href="#competitor-intent-section" data-evidence-target="competitor-intent-section" aria-label="View ${activeCompetitors} competitors with matching launches"><span>Competitors with launches</span><strong>${activeCompetitors}<small>View →</small></strong></a>
@@ -13333,7 +13861,7 @@ function populateCompetitors() {
     ...state.data.signals.map((signal) => signal.competitor),
     ...state.productData.launches.map((launch) => launch.competitor),
   ];
-  const competitors = [...new Set(names)].sort();
+  const competitors = [...new Set(names.map(canonicalCompetitorName).filter(Boolean))].sort();
   filters.competitor.innerHTML = `<option>All</option>${competitors.map((name) => `<option>${name}</option>`).join("")}`;
 }
 
@@ -13365,33 +13893,33 @@ function updateRolePanelVisibility() {
     publicEvidenceNav.hidden = hiddenForProductManagement;
     publicEvidenceNav.setAttribute("aria-hidden", String(hiddenForProductManagement));
   }
-  const engineeringEvidenceVisible = state.view === "Engineering";
+  const technicalEvidenceVisible = ["Engineering", "Product"].includes(state.view);
   if (patentPanel) {
-    patentPanel.hidden = !engineeringEvidenceVisible;
-    patentPanel.setAttribute("aria-hidden", String(!engineeringEvidenceVisible));
+    patentPanel.hidden = !technicalEvidenceVisible;
+    patentPanel.setAttribute("aria-hidden", String(!technicalEvidenceVisible));
   }
   if (patentNav) {
-    patentNav.hidden = !engineeringEvidenceVisible;
-    patentNav.setAttribute("aria-hidden", String(!engineeringEvidenceVisible));
+    patentNav.hidden = !technicalEvidenceVisible;
+    patentNav.setAttribute("aria-hidden", String(!technicalEvidenceVisible));
   }
   if (leadershipProfilePanel) {
-    leadershipProfilePanel.hidden = !engineeringEvidenceVisible;
-    leadershipProfilePanel.setAttribute("aria-hidden", String(!engineeringEvidenceVisible));
+    leadershipProfilePanel.hidden = !technicalEvidenceVisible;
+    leadershipProfilePanel.setAttribute("aria-hidden", String(!technicalEvidenceVisible));
   }
   if (leadershipProfileNav) {
-    leadershipProfileNav.hidden = !engineeringEvidenceVisible;
-    leadershipProfileNav.setAttribute("aria-hidden", String(!engineeringEvidenceVisible));
+    leadershipProfileNav.hidden = !technicalEvidenceVisible;
+    leadershipProfileNav.setAttribute("aria-hidden", String(!technicalEvidenceVisible));
   }
   if (hiringPatternsPanel) {
-    hiringPatternsPanel.hidden = !engineeringEvidenceVisible;
-    hiringPatternsPanel.setAttribute("aria-hidden", String(!engineeringEvidenceVisible));
+    hiringPatternsPanel.hidden = !technicalEvidenceVisible;
+    hiringPatternsPanel.setAttribute("aria-hidden", String(!technicalEvidenceVisible));
   }
   if (hiringPatternsNav) {
-    hiringPatternsNav.hidden = !engineeringEvidenceVisible;
-    hiringPatternsNav.setAttribute("aria-hidden", String(!engineeringEvidenceVisible));
+    hiringPatternsNav.hidden = !technicalEvidenceVisible;
+    hiringPatternsNav.setAttribute("aria-hidden", String(!technicalEvidenceVisible));
   }
 
-  const marketingView = state.view === "Marketing";
+  const marketingView = false;
   const appShell = document.querySelector(".app-shell");
   const visualDashboard = document.querySelector(".visual-dashboard");
   const comparatorPanel = byId("product-comparator");
@@ -13405,6 +13933,14 @@ function updateRolePanelVisibility() {
   document.querySelectorAll(".pmm-hierarchy-filter").forEach((control) => {
     control.hidden = true;
     control.setAttribute("aria-hidden", "true");
+  });
+  document.querySelectorAll(".pmm-filter-label").forEach((label) => {
+    label.hidden = true;
+    label.setAttribute("aria-hidden", "true");
+  });
+  document.querySelectorAll(".standard-filter-label").forEach((label) => {
+    label.hidden = false;
+    label.setAttribute("aria-hidden", "false");
   });
   if (appShell) {
     [...appShell.children].forEach((child) => {
@@ -13426,7 +13962,12 @@ function updateRolePanelVisibility() {
   const comparisonControls = document.querySelector("#product-comparator .comparison-controls");
   if (comparisonControls) comparisonControls.hidden = false;
 
-  const inactiveNavigation = marketingNavigation;
+  document.querySelectorAll(".standard-role-section").forEach((section) => {
+    section.hidden = false;
+    section.setAttribute("aria-hidden", "false");
+  });
+
+  const inactiveNavigation = marketingView ? standardNavigation : marketingNavigation;
   inactiveNavigation?.querySelectorAll("[data-section-nav]").forEach((link) => {
     link.classList.remove("active");
     link.removeAttribute("aria-current");
@@ -13434,7 +13975,9 @@ function updateRolePanelVisibility() {
 }
 
 function render() {
-  state.view = filters.role.value;
+  const selectedView = filters.role.value;
+  state.view = selectedView;
+  persistRoleView();
   updateRolePanelVisibility();
   const signals = currentSignals();
   byId("currentViewBadge").textContent = viewCopy[state.view].viewLabel;
@@ -13464,6 +14007,7 @@ function render() {
   renderShortHorizonDefense();
   renderTrends();
   renderSignals(signals);
+  state.marketingWorkspaceModel = null;
   scheduleSectionNavRefresh();
 }
 
@@ -13561,6 +14105,7 @@ async function loadData() {
   byId("asOf").textContent = `Real public data as of ${state.data.asOfDate}`;
   renderRefreshStatus();
   populateCompetitors();
+  initializeRoleView();
   initializeHeadToHeadSelection();
   setupSourceCountLinks();
   setupMetricDrilldowns();

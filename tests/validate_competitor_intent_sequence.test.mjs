@@ -19,8 +19,20 @@ test("competitor intent presents observed actions before forecast and response o
 
   const observedIndex = detailMarkup.indexOf("competitorActivityMarkup(profile)");
   const directionIndex = detailMarkup.indexOf("intent-likely-direction");
-  const responseIndex = detailMarkup.indexOf("Waters PM Considerations");
+  const responseIndex = detailMarkup.indexOf("Waters PMM Considerations");
   assert.ok(observedIndex >= 0 && observedIndex < directionIndex && directionIndex < responseIndex);
+  assert.match(detailMarkup, /state\.view === "Marketing" \? "Waters PMM Considerations" : "Waters PM Considerations"/);
+  assert.match(detailMarkup, /state\.view === "Marketing"\s*\? marketingCompetitorResponse\(profile\)\s*: profile\.response/);
+  assert.match(app, /function marketingCompetitorImpact\(profile\)/);
+  assert.match(detailMarkup, /state\.view === "Marketing" \? marketingCompetitorImpact\(profile\) : null/);
+  assert.match(app, /function marketingExternalContentModel\(profile\)/);
+  assert.match(app, /function marketingSharePlay\(profile\)/);
+  assert.match(app, /Competitor marketing strategy/);
+  assert.match(app, /Compared with Waters external content/);
+  assert.match(app, /Content types to create/);
+  assert.match(app, /PMM take-share play/);
+  assert.match(app, /Public content shows positioning activity—not actual market-share movement/);
+  assert.match(detailMarkup, /state\.view === "Marketing" \? marketingShareStrategyMarkup\(profile\) : ""/);
   assert.doesNotMatch(detailMarkup, /Evidence-based inference from the actions above/);
   assert.doesNotMatch(detailMarkup, /Waters response options/);
   assert.doesNotMatch(detailMarkup, /Implications for Waters/i);

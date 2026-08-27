@@ -6,16 +6,35 @@ const conferenceAdminState = {
 };
 
 const CONFERENCE_ADMIN_STORAGE_KEY = "waters-conference-admin-catalog-v1";
-const CONFERENCE_ADMIN_SESSION_KEY = "waters-conference-admin-authorized-v1";
-const CONFERENCE_ADMIN_USER_ID = "admin";
-const CONFERENCE_ADMIN_PASSWORD_HASH = "14e3fd9cabc868dc8ead6ca4daea0fdeca90288ce2b4a66d0a47175f31ad127d";
+const CONFERENCE_ADMIN_SESSION_KEY = "waters-conference-admin-session-v2";
 const adminById = (id) => document.getElementById(id);
-let conferenceAdminInitialized = false;
+let conferenceAdminInteractionsReady = false;
 
-async function hashAdminCredential(value) {
-  const bytes = new TextEncoder().encode(value);
-  const digest = await crypto.subtle.digest("SHA-256", bytes);
-  return [...new Uint8Array(digest)].map((byte) => byte.toString(16).padStart(2, "0")).join("");
+async function conferenceApi(options = {}) {
+  const response = await fetch("api/conferences", {
+    cache: "no-store",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...(options.headers || {}),
+    },
+  });
+  const payload = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    if (response.status === 401) {
+      sessionStorage.removeItem(CONFERENCE_ADMIN_SESSION_KEY);
+      setAdminAuthVisibility(false);
+    }
+    throw new Error(payload.error || `Conference server catalog request failed: ${response.status}`);
+  }
+  return payload;
+}
+
+async function authenticateConferenceAdmin(userId, password) {
+  return conferenceApi({
+    method: "POST",
+    body: JSON.stringify({ userId, password }),
+  });
 }
 
 function setAdminAuthVisibility(isAuthorized) {
@@ -27,15 +46,16 @@ function setAdminAuthVisibility(isAuthorized) {
 async function submitAdminCredentials(event) {
   event.preventDefault();
   const userId = adminById("adminUserId").value.trim();
-  const passwordHash = await hashAdminCredential(adminById("adminPassword").value);
-  const isAuthorized = userId === CONFERENCE_ADMIN_USER_ID && passwordHash === CONFERENCE_ADMIN_PASSWORD_HASH;
-  if (!isAuthorized) {
+  try {
+    const session = await authenticateConferenceAdmin(userId, adminById("adminPassword").value);
+    sessionStorage.setItem(CONFERENCE_ADMIN_SESSION_KEY, session.token);
+  } catch (error) {
     adminById("adminAuthError").hidden = false;
+    adminById("adminAuthError").textContent = error.message;
     adminById("adminPassword").value = "";
     adminById("adminPassword").focus();
     return;
   }
-  sessionStorage.setItem(CONFERENCE_ADMIN_SESSION_KEY, "true");
   adminById("adminAuthError").hidden = true;
   setAdminAuthVisibility(true);
   await initConferenceAdmin();
@@ -87,8 +107,37 @@ function readDraftCatalog() {
   }
 }
 
-function saveDraftCatalog() {
-  localStorage.setItem(CONFERENCE_ADMIN_STORAGE_KEY, JSON.stringify(conferenceAdminState.records));
+function cacheCatalog(records) {
+  localStorage.setItem(CONFERENCE_ADMIN_STORAGE_KEY, JSON.stringify(records));
+}
+
+async function saveCatalog(records) {
+  const token = sessionStorage.getItem(CONFERENCE_ADMIN_SESSION_KEY);
+  if (!token) throw new Error("Your admin session has expired. Sign in again.");
+  const payload = await conferenceApi({
+    method: "PUT",
+    headers: { Authorization: `Bearer ${token}` },
+    body: JSON.stringify({ records }),
+  });
+  cacheCatalog(payload.records);
+  return payload.records;
+}
+
+async function scrapeConferenceDetails(link) {
+  const response = await fetch("api/scrape-conference", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ url: link }),
+  });
+  const payload = await response.json().catch(() => ({}));
+  if (!response.ok) throw new Error(payload.error || `Conference date lookup failed: ${response.status}`);
+  return payload;
+}
+
+function isUpcomingConference(record) {
+  const today = new Date();
+  const localToday = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
+  return Boolean(record.endDate && record.endDate >= localToday);
 }
 
 function publishedCatalogRecords(catalog) {
@@ -97,6 +146,12 @@ function publishedCatalogRecords(catalog) {
     title: event.eventName,
     link: event.website,
     tier: event.tier || "Tier 3",
+    startDate: event.startDate || "",
+    endDate: event.endDate || "",
+    dateRange: event.dateRange || "",
+    location: event.location || "",
+    marketSegments: event.marketSegments || [],
+    technologyFocus: event.technologyFocus || [],
     source: "Published catalog",
     updatedAt: catalog.generatedAt || "",
   }));
@@ -142,6 +197,7 @@ function renderAdminCatalog() {
       <div class="admin-conference-card-copy">
         <h3>${adminEscapeHtml(record.title)}</h3>
         <a class="admin-source-link" href="${adminEscapeHtml(record.link)}" target="_blank" rel="noreferrer" title="${adminEscapeHtml(record.link)}">${adminEscapeHtml(safeHostname(record.link))} ↗</a>
+        ${record.dateRange ? `<p class="admin-conference-date">${adminEscapeHtml(record.dateRange)}${record.location ? ` · ${adminEscapeHtml(record.location)}` : ""}</p>` : ""}
       </div>
       <div class="admin-row-actions">
         <button class="admin-row-action" type="button" data-admin-edit="${adminEscapeHtml(record.id)}" aria-label="Edit ${adminEscapeHtml(record.title)}">Edit</button>
@@ -164,6 +220,7 @@ function resetAdminForm() {
   adminById("conferenceRecordId").value = "";
   adminById("adminFormMode").textContent = "New Entry";
   adminById("adminFormHeading").textContent = "Add a Conference";
+  adminById("saveConference").disabled = false;
   adminById("saveConference").textContent = "Add Conference";
   adminById("cancelConferenceEdit").hidden = true;
   clearFieldValidation();
@@ -200,7 +257,7 @@ function editConference(record) {
   adminById("conferenceAdminForm").scrollIntoView({ behavior: "smooth", block: "center" });
 }
 
-function submitConference(event) {
+async function submitConference(event) {
   event.preventDefault();
   const id = adminById("conferenceRecordId").value;
   const title = adminById("conferenceTitle").value.trim();
@@ -220,46 +277,80 @@ function submitConference(event) {
   if (duplicate) return showAdminError("This conference title or link is already in the catalog.", ["conferenceTitle", "conferenceLink"]);
 
   const existing = conferenceAdminState.records.find((record) => record.id === id);
+  const saveButton = adminById("saveConference");
+  saveButton.disabled = true;
+  saveButton.textContent = "Checking official page…";
+  let scraped;
+  try {
+    scraped = await scrapeConferenceDetails(link);
+  } catch (error) {
+    saveButton.disabled = false;
+    saveButton.textContent = existing ? "Save Changes" : "Add Conference";
+    return showAdminError(`The official page could not be verified: ${error.message}`, ["conferenceLink"]);
+  }
+  if (!isUpcomingConference(scraped)) {
+    saveButton.disabled = false;
+    saveButton.textContent = existing ? "Save Changes" : "Add Conference";
+    return showAdminError(`This event ended on ${scraped.endDate}; only current or future events can enter Upcoming Conferences.`, ["conferenceLink"]);
+  }
   const nextRecord = {
+    ...existing,
+    ...scraped,
     id: id || recordId(title),
     title,
-    link,
+    officialTitle: scraped.title,
+    link: scraped.sourceUrl || link,
     tier,
     source: existing?.source === "Published catalog" ? "Edited draft" : "Admin entry",
     updatedAt: new Date().toISOString(),
   };
-  if (existing) conferenceAdminState.records = conferenceAdminState.records.map((record) => record.id === id ? nextRecord : record);
-  else conferenceAdminState.records = [nextRecord, ...conferenceAdminState.records];
-  saveDraftCatalog();
+  const nextRecords = existing
+    ? conferenceAdminState.records.map((record) => record.id === id ? nextRecord : record)
+    : [nextRecord, ...conferenceAdminState.records];
+  saveButton.textContent = "Saving permanently…";
+  try {
+    conferenceAdminState.records = await saveCatalog(nextRecords);
+  } catch (error) {
+    saveButton.disabled = false;
+    saveButton.textContent = existing ? "Save Changes" : "Add Conference";
+    return showAdminError(`The conference could not be permanently saved: ${error.message}`);
+  }
   renderAdminCatalog();
   resetAdminForm();
-  showAdminToast(existing ? "Conference updated." : "Conference added to the draft catalog.");
+  showAdminToast(`${existing ? "Conference updated" : "Conference added"} permanently · ${scraped.dateRange} verified.`);
 }
 
-function deleteConference(id) {
+async function deleteConference(id) {
   const record = conferenceAdminState.records.find((item) => item.id === id);
-  if (!record || !window.confirm(`Remove “${record.title}” from the draft catalog?`)) return;
-  conferenceAdminState.records = conferenceAdminState.records.filter((item) => item.id !== id);
-  saveDraftCatalog();
+  if (!record || !window.confirm(`Permanently remove “${record.title}” from the conference catalog?`)) return;
+  const nextRecords = conferenceAdminState.records.filter((item) => item.id !== id);
+  try {
+    conferenceAdminState.records = await saveCatalog(nextRecords);
+  } catch (error) {
+    return showAdminToast(`Conference was not removed: ${error.message}`);
+  }
   if (adminById("conferenceRecordId").value === id) resetAdminForm();
   renderAdminCatalog();
-  showAdminToast("Conference removed.");
+  showAdminToast("Conference permanently removed.");
 }
 
-function resetToPublishedCatalog() {
-  if (!window.confirm("Discard browser changes and restore the published conference catalog?")) return;
-  conferenceAdminState.records = structuredClone(conferenceAdminState.publishedRecords);
-  localStorage.removeItem(CONFERENCE_ADMIN_STORAGE_KEY);
+async function resetToPublishedCatalog() {
+  if (!window.confirm("Discard saved changes and restore the published conference catalog?")) return;
+  try {
+    conferenceAdminState.records = await saveCatalog(structuredClone(conferenceAdminState.publishedRecords));
+  } catch (error) {
+    return showAdminToast(`Catalog was not reset: ${error.message}`);
+  }
   resetAdminForm();
   renderAdminCatalog();
-  showAdminToast("Published catalog restored.");
+  showAdminToast("Published catalog permanently restored.");
 }
 
 function exportConferenceCatalog() {
   const payload = {
     generatedAt: new Date().toISOString(),
     source: "Conference Admin draft export",
-    events: conferenceAdminState.records.map(({ id, title, link, tier }) => ({ id, eventName: title, website: link, tier })),
+    events: conferenceAdminState.records.map(({ id, title, link, tier, startDate, endDate, dateRange, location, evidenceUrl }) => ({ id, eventName: title, website: link, tier, startDate, endDate, dateRange, location, evidenceUrl })),
   };
   const blob = new Blob([`${JSON.stringify(payload, null, 2)}\n`], { type: "application/json" });
   const url = URL.createObjectURL(blob);
@@ -272,7 +363,9 @@ function exportConferenceCatalog() {
 }
 
 function setupAdminInteractions() {
-  adminById("conferenceAdminForm").addEventListener("submit", submitConference);
+  adminById("conferenceAdminForm").addEventListener("submit", (event) => {
+    submitConference(event).catch((error) => showAdminError(error.message || "The conference could not be added.", ["conferenceLink"]));
+  });
   adminById("cancelConferenceEdit").addEventListener("click", resetAdminForm);
   adminById("resetConferenceCatalog").addEventListener("click", resetToPublishedCatalog);
   adminById("exportConferenceCatalog").addEventListener("click", exportConferenceCatalog);
@@ -292,20 +385,31 @@ function setupAdminInteractions() {
       return;
     }
     const remove = event.target.closest("[data-admin-delete]");
-    if (remove) deleteConference(remove.dataset.adminDelete);
+    if (remove) deleteConference(remove.dataset.adminDelete).catch((error) => showAdminToast(error.message));
   });
 }
 
 async function initConferenceAdmin() {
-  if (conferenceAdminInitialized) return;
-  const response = await fetch("data/conference_sources.json", { cache: "no-store" });
+  const [response, serverCatalog] = await Promise.all([
+    fetch("data/conference_sources.json", { cache: "no-store" }),
+    conferenceApi(),
+  ]);
   if (!response.ok) throw new Error(`Conference source catalog load failed: ${response.status}`);
   const catalog = await response.json();
   conferenceAdminState.publishedRecords = publishedCatalogRecords(catalog);
-  conferenceAdminState.records = readDraftCatalog() || structuredClone(conferenceAdminState.publishedRecords);
-  setupAdminInteractions();
+  const browserDraft = readDraftCatalog();
+  if (!serverCatalog.persisted && browserDraft?.length) {
+    conferenceAdminState.records = await saveCatalog(browserDraft);
+    showAdminToast("Existing browser catalog migrated to the permanent server file.");
+  } else {
+    conferenceAdminState.records = serverCatalog.records;
+    cacheCatalog(conferenceAdminState.records);
+  }
+  if (!conferenceAdminInteractionsReady) {
+    setupAdminInteractions();
+    conferenceAdminInteractionsReady = true;
+  }
   renderAdminCatalog();
-  conferenceAdminInitialized = true;
 }
 
 async function startConferenceAdmin() {
@@ -316,7 +420,7 @@ async function startConferenceAdmin() {
     });
   });
   adminById("adminSignOut").addEventListener("click", signOutConferenceAdmin);
-  const isAuthorized = sessionStorage.getItem(CONFERENCE_ADMIN_SESSION_KEY) === "true";
+  const isAuthorized = Boolean(sessionStorage.getItem(CONFERENCE_ADMIN_SESSION_KEY));
   setAdminAuthVisibility(isAuthorized);
   if (isAuthorized) await initConferenceAdmin();
 }

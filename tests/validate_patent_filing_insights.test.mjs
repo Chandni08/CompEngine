@@ -8,12 +8,12 @@ const app = readFileSync(new URL("app.js", root), "utf8");
 const css = readFileSync(new URL("product-ui.css", root), "utf8");
 const dataset = JSON.parse(readFileSync(new URL("data/patent_insights.json", root), "utf8"));
 
-test("Engineering exposes a dedicated patent filing insights section", () => {
+test("Product Management and Engineering expose a dedicated patent filing insights section", () => {
   assert.match(html, /id="patent-filing-insights"/);
   assert.match(html, /Competitor Patent Filing Insights/);
   assert.match(html, /id="patentFilingNav"/);
   assert.match(html, /Engineering · Early architecture signal/);
-  assert.match(app, /const engineeringEvidenceVisible = state\.view === "Engineering"/);
+  assert.match(app, /const technicalEvidenceVisible = \["Engineering", "Product"\]\.includes\(state\.view\)/);
   assert.match(app, /renderPatentInsights\(\)/);
   assert.match(css, /\.patent-selected-detail/);
 });
@@ -63,7 +63,7 @@ test("deployment mirror contains the patent section and matching data", () => {
   const deployedData = JSON.parse(readFileSync(new URL("deploy-site/data/patent_insights.json", root), "utf8"));
   assert.match(deployedHtml, /id="patent-filing-insights"/);
   assert.match(deployedApp, /fetch\("data\/patent_insights\.json"/);
-  assert.match(deployedApp, /const engineeringEvidenceVisible = state\.view === "Engineering"/);
+  assert.match(deployedApp, /const technicalEvidenceVisible = \["Engineering", "Product"\]\.includes\(state\.view\)/);
   assert.deepEqual(deployedData, dataset);
 });
 
@@ -76,6 +76,21 @@ test("each record carries a registered office title, assignee, and priority date
   });
   assert.match(app, /Registered title/);
   assert.match(app, /Earliest priority/);
+});
+
+test("patents use a single-card accessible carousel", () => {
+  assert.match(app, /const insight = companyInsights\[activePatentIndex\]/);
+  assert.doesNotMatch(app, /companyInsights\.map\(\(insight\)/);
+  assert.match(app, /data-patent-carousel-action="previous"/);
+  assert.match(app, /data-patent-carousel-action="next"/);
+  assert.match(app, /companyInsights\.length > 1 \? `/);
+  assert.doesNotMatch(app, /companyInsights\.length < 2 \? "disabled"/);
+  assert.match(app, /aria-roledescription="carousel"/);
+  assert.match(app, /"ArrowLeft", "ArrowRight"/);
+  assert.match(css, /\.patent-carousel-controls/);
+  assert.doesNotMatch(app, /data-patent-carousel-index|patent-carousel-dots/);
+  assert.doesNotMatch(css, /\.patent-carousel-dots/);
+  assert.doesNotMatch(app, /patent-method-note|How to use this:/);
 });
 
 test("the company readout does not restate a single filing's headline and implication", () => {

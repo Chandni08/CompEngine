@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Next Gen Competitive Intelligence Engine</title>
-    <link rel="stylesheet" href="styles.css?v=20260816-css-balance-1" />
-    <link rel="stylesheet" href="product-ui.css?v=20260822-hiring-monitor-removed" />
+    <link rel="stylesheet" href="styles.css?v=20260826-pmm-share-strategy" />
+    <link rel="stylesheet" href="product-ui.css?v=20260823-patent-refresh-2" />
   </head>
   <body>
     <aside class="sidebar">
@@ -104,26 +104,8 @@
             <option value="Marketing">Product Marketing</option>
           </select>
         </label>
-        <label class="pmm-hierarchy-filter pmm-product-first-filter" hidden>
-          <span>1 · Waters product</span>
-          <select id="pmmWatersProductFilter" data-pmm-target-filter="watersProduct" aria-describedby="pmmTargetingHelp">
-            <option value="All">Choose a Waters product</option>
-          </select>
-        </label>
-        <label>
-          Geography
-          <select id="geoFilter">
-            <option value="All">All geographies</option>
-            <option value="Global">Global / non-regional</option>
-            <option>North America</option>
-            <option>Europe</option>
-            <option>APAC</option>
-            <option>China</option>
-            <option>India</option>
-          </select>
-        </label>
-        <label>
-          Market
+        <label class="market-filter-label">
+          <span class="standard-filter-label">Market</span><span class="pmm-filter-label" hidden>1 · Market</span>
           <select id="segmentFilter">
             <option>All</option>
             <option>Pharma</option>
@@ -136,26 +118,56 @@
             <option>Food &amp; Beverage</option>
           </select>
         </label>
+        <label class="pmm-hierarchy-filter pmm-product-first-filter" hidden>
+          <span>2 · Waters product</span>
+          <select id="pmmWatersProductFilter" data-pmm-target-filter="watersProduct" aria-describedby="pmmTargetingHelp">
+            <option value="All">Choose a Waters product</option>
+          </select>
+        </label>
         <label class="pmm-hierarchy-filter" hidden>
-          Application / workflow
+          <span>3 · Application / workflow</span>
           <select id="pmmApplicationFilter" data-pmm-target-filter="application" aria-describedby="pmmTargetingHelp">
             <option value="All">All supported applications</option>
           </select>
         </label>
         <label class="pmm-hierarchy-filter" hidden>
-          Buying situation
+          <span>4 · Buying situation</span>
           <select id="pmmBuyingSituationFilter" data-pmm-target-filter="buyingSituation" aria-describedby="pmmTargetingHelp">
             <option value="All">All buying situations</option>
           </select>
         </label>
+        <label class="geography-filter-label">
+          <span class="standard-filter-label">Geography</span><span class="pmm-filter-label" hidden>5 · Geography</span>
+          <select id="geoFilter">
+            <option value="All">All geographies</option>
+            <option value="Global">Global / non-regional</option>
+            <option>North America</option>
+            <option>Europe</option>
+            <option>APAC</option>
+            <option>China</option>
+            <option>India</option>
+          </select>
+        </label>
         <label class="pmm-hierarchy-filter" hidden>
-          Buyer role
+          <span>6 · Buyer role</span>
           <select id="pmmBuyerRoleFilter" data-pmm-target-filter="buyerRole" aria-describedby="pmmTargetingHelp">
             <option value="All">All buyer roles</option>
           </select>
         </label>
+        <label class="competitor-filter-label">
+          <span class="standard-filter-label">Competitor</span><span class="pmm-filter-label" hidden>Battlecard competitor <small>optional</small></span>
+          <select id="competitorFilter">
+            <option>All</option>
+          </select>
+        </label>
+        <label class="pmm-head-to-head-filter" hidden>
+          Competitor product
+          <select id="pmmCompetitorProductFilter" aria-describedby="pmmHeadToHeadFilterHelp" disabled>
+            <option value="">Choose Waters product and competitor</option>
+          </select>
+        </label>
         <label class="pmm-hierarchy-filter" hidden>
-          Field citation
+          <span>Field citation</span>
           <select id="pmmFieldCitableFilter" data-pmm-governance-filter="fieldCitable" aria-describedby="pmmGovernanceHelp">
             <option value="All">All citation states</option>
             <option value="true">Field-citable only</option>
@@ -163,7 +175,7 @@
           </select>
         </label>
         <label class="pmm-hierarchy-filter" hidden>
-          Approval state
+          <span>Approval state</span>
           <select id="pmmApprovalStateFilter" data-pmm-governance-filter="approvalState" aria-describedby="pmmGovernanceHelp">
             <option value="All">All approval states</option>
             <option value="draft">Draft</option>
@@ -180,18 +192,6 @@
             <option>UHPLC/UPLC</option>
             <option>LC-MS</option>
             <option>MS</option>
-          </select>
-        </label>
-        <label class="competitor-filter-label">
-          <span class="standard-filter-label">Competitor</span><span class="pmm-filter-label" hidden>Battlecard competitor <small>optional</small></span>
-          <select id="competitorFilter">
-            <option>All</option>
-          </select>
-        </label>
-        <label class="pmm-head-to-head-filter" hidden>
-          Competitor product
-          <select id="pmmCompetitorProductFilter" aria-describedby="pmmHeadToHeadFilterHelp" disabled>
-            <option value="">Choose Waters product and competitor</option>
           </select>
         </label>
         <label>
@@ -540,7 +540,6 @@
           <div>
             <p class="patent-section-eyebrow">Engineering · Early architecture signal</p>
             <h3 id="patentFilingTitle">Competitor Patent Filing Insights</h3>
-            <p class="panel-helper">Published applications that may reveal where competitors are protecting workflow, instrument, and data-processing capabilities. A filing is directional evidence—not proof of a launched product.</p>
           </div>
           <span id="patentInsightCount">0 published applications</span>
         </div>
@@ -726,6 +725,6 @@
     <script src="vendor/pptxgen.bundle.js?v=4.0.1"></script>
     <script src="vendor/docx.iife.js?v=9.5.1"></script>
     <script src="artifact-export.js?v=20260802-seller-assets-1"></script>
-    <script src="app.js?v=20260822-hiring-monitor-removed"></script>
+    <script src="app.js?v=20260826-pmm-product-dedupe-8"></script>
   </body>
 </html>

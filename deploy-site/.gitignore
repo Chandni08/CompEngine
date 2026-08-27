@@ -1,1 +1,3 @@
 .vercel
+.env*
+data/conference_catalog.runtime.json

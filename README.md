@@ -55,6 +55,27 @@ node scripts/build_sites_static.mjs
 
 The generated bundle is written to `dist/`.
 
+## Conference catalog persistence
+
+Conference Admin reads and writes its shared catalog through `/api/conferences`. On a Waters-hosted Node server, set `CONFERENCE_CATALOG_PATH` to a writable, backed-up location outside the application release directory:
+
+```bash
+CONFERENCE_CATALOG_PATH=/var/lib/waters-competition-engine/conferences.json
+CONFERENCE_ADMIN_USER_ID=your-admin-id
+CONFERENCE_ADMIN_PASSWORD_HASH=sha256-hex-of-the-admin-password
+CONFERENCE_ADMIN_SESSION_SECRET=a-long-random-session-signing-secret
+```
+
+If the variable is omitted, the API uses `data/conference_catalog.runtime.json`. The service account running the application must have permission to create and replace the configured file. This JSON storage mode is intended for one application-server instance; use shared database storage if the application is later scaled to multiple instances.
+
+The three admin authentication variables are required for sign-in and catalog writes. There are no built-in production credentials. Generate the password hash with a local SHA-256 utility and store both the hash and an independent random session secret in the hosting provider's encrypted environment settings.
+
+## Global search
+
+The persistent search beside **Dashboard sections** uses a lightweight client-side index built only after the dashboard's complete JSON data set has loaded; it does not depend on which cards happen to be visible or expanded. Results are role-gated, grouped by owning section, and constrained by the active Geography, Market, Technology, Competitor, and Horizon filters. The scope line above the results shows those constraints, and **Search everywhere** temporarily ignores the non-role filters without exposing content from another role. Product Marketing sections are searchable only while the Product Marketing role is selected.
+
+Use `Cmd+K` on macOS or `Ctrl+K` on Windows/Linux to open search. Arrow keys move through results, `Enter` opens the selected result, and `Escape` closes search and restores focus.
+
 ## Main project files
 
 - `index.html` — dashboard entry point

@@ -5,11 +5,11 @@ import test from "node:test";
 const app = await readFile(new URL("../app.js", import.meta.url), "utf8");
 const deploymentApp = await readFile(new URL("../deploy-site/app.js", import.meta.url), "utf8");
 
-test("competitor application notes are presented as coverage-limited evidence", () => {
+test("competitor application notes avoid unsupported coverage and activity rankings", () => {
   for (const source of [app, deploymentApp]) {
     assert.match(source, /Competitor Application-Note Evidence/);
-    assert.match(source, /The source set is curated and incomplete for vendor libraries/);
-    assert.match(source, /note counts are not used to rank themes/);
+    assert.doesNotMatch(source, /The source set is curated and incomplete for vendor libraries/);
+    assert.doesNotMatch(source, /note counts are not used to rank themes/);
     assert.doesNotMatch(source, /Most repeated competitor-note theme/);
     assert.doesNotMatch(source, /Most active note publisher/);
   }
