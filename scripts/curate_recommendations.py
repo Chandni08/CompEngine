@@ -189,7 +189,7 @@ RECOMMENDATIONS = [
                 },
                 {
                     "label": "Thermo Fisher Vanquish Amplify page",
-                    "url": "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-amplify-uhplc-system.html",
+                    "url": "https://www.thermofisher.com/order/catalog/product/VQ-AMPLIFY",
                     "publisher": "Thermo Fisher Scientific",
                     "sourceType": "official_product_page",
                     "sourceControl": "issuer",

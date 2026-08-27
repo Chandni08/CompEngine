@@ -217,6 +217,11 @@ def resolve_public_link(page_url: str, href: str) -> str:
     return canonical_link(urljoin(page_url, candidate))
 
 
+RETIRED_CONFERENCE_CONTENT_URLS = {
+    "https://www.casss.org/docs/default-source/mass-spec/2025-speaker-presentations/whitty-léveillé-laurence-merck-co-inc-2025.pdf",
+}
+
+
 def extract_conference_records(page_url: str, body: str, event_id: str) -> list[dict[str, str]]:
     """Extract public program-like links as content records; endpoint health stays separate."""
     records: list[dict[str, str]] = []
@@ -232,6 +237,8 @@ def extract_conference_records(page_url: str, body: str, event_id: str) -> list[
         title = re.sub(r"\s+", " ", title).strip()
         target = resolve_public_link(page_url, href)
         if not title or not target.startswith("http") or not CONFERENCE_CONTENT_TERMS.search(f"{title} {target}"):
+            continue
+        if target.split("?", 1)[0] in RETIRED_CONFERENCE_CONTENT_URLS:
             continue
         if target in seen:
             continue

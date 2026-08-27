@@ -61,6 +61,8 @@ KNOWN_SOURCE_URL_MIGRATIONS = {
         "https://sciex.com/applications/biomedical-and-omics-research/oneomics",
     "https://www.acs.org/events/all-events/acs-spring-2026.html":
         "https://www.acs.org/events/spring.html",
+    "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-amplify-uhplc-system.html":
+        "https://www.thermofisher.com/order/catalog/product/VQ-AMPLIFY",
 }
 
 AUTOMATED_DOMAINS = [

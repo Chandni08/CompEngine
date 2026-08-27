@@ -84,6 +84,25 @@ class DailyRefreshResilienceTests(unittest.TestCase):
 
         self.assertEqual(target, "https://www.msacl.org/index.php?header=MSACL_2026&tab=Agenda")
 
+    def test_retired_conference_document_is_not_republished_from_stale_index(self):
+        body = '''<a href="https://www.casss.org/docs/default-source/mass-spec/2025-speaker-presentations/whitty-l&#233;veill&#233;-laurence-merck-co-inc-2025.pdf?sfvrsn=f1e4a7a1_5">Whitty-L&#233;veill&#233; Laurence, 2025 presentation</a>'''
+
+        records = collect_scientific_sources.extract_conference_records(
+            "https://www.casss.org/meetings-and-events/symposia/mass-spectrometry",
+            body,
+            "casss-mass-spec",
+        )
+
+        self.assertEqual(records, [])
+
+    def test_retired_thermo_product_page_migrates_to_current_catalog(self):
+        retired = "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-amplify-uhplc-system.html"
+
+        self.assertEqual(
+            refresh_daily.KNOWN_SOURCE_URL_MIGRATIONS[retired],
+            "https://www.thermofisher.com/order/catalog/product/VQ-AMPLIFY",
+        )
+
     def test_fda_abuse_detection_redirect_is_blocked_not_dead(self):
         current = [{
             "url": "https://www.fda.gov/example",
