@@ -2,8 +2,11 @@ name: Daily competitive-intelligence refresh
 
 on:
   schedule:
-    - cron: "0 11 * * *"
-    - cron: "0 12 * * *"
+    # Avoid GitHub's top-of-hour scheduler congestion. These cover 7:17 AM
+    # New York across daylight-saving transitions; the 8:17 AM EDT trigger is
+    # retained as a same-day fallback if GitHub drops or the first run fails.
+    - cron: "17 11 * * *"
+    - cron: "17 12 * * *"
   workflow_dispatch:
 
 permissions:
@@ -19,16 +22,25 @@ jobs:
     outputs:
       should_run: ${{ steps.gate.outputs.should_run }}
     steps:
+      - name: Check out refresh state
+        uses: actions/checkout@v7
+
       - name: Decide whether this is the 7 AM New York run
         id: gate
         env:
           EVENT_NAME: ${{ github.event_name }}
         run: |
-          if [ "$EVENT_NAME" != "schedule" ] || [ "$(TZ=America/New_York date +%H)" = "07" ]; then
+          local_hour=$(TZ=America/New_York date +%H)
+          local_date=$(TZ=America/New_York date +%F)
+          dataset_date=$(python -c 'import json; print(json.load(open("data/refresh_status.json")).get("datasetAsOfDate", ""))')
+          if [ "$EVENT_NAME" != "schedule" ] || [ "$local_hour" = "07" ]; then
             echo "should_run=true" >> "$GITHUB_OUTPUT"
+          elif [ "$local_hour" = "08" ] && [ "$dataset_date" != "$local_date" ]; then
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
+            echo "Running the 8 AM fallback because no successful dataset is published for $local_date"
           else
             echo "should_run=false" >> "$GITHUB_OUTPUT"
-            echo "Skipping because this schedule trigger is outside 7 AM America/New_York"
+            echo "Skipping: local hour is $local_hour and dataset date is ${dataset_date:-missing}"
           fi
 
   refresh:
