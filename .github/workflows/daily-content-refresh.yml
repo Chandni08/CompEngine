@@ -108,12 +108,14 @@ jobs:
           WATERS_HOST: waters-nextgen-competitive-engine.vercel.app
         run: |
           expected_date=$(TZ=America/New_York date +%F)
+          expected_refresh_at=$(python -c 'import json; print(json.load(open("data/refresh_status.json"))["lastSuccessfulRefreshAt"])')
           # The validated data commit triggers the project's Vercel Git
-          # integration. Poll the public alias until that deployment is live.
+          # integration. Poll until the public alias serves this exact refresh,
+          # not merely an earlier deployment from the same calendar day.
           for attempt in $(seq 1 30); do
             live_status=$(curl --fail --silent --show-error --location "https://$WATERS_HOST/data/refresh_status.json?verify=$GITHUB_RUN_ID-$attempt" || true)
-            if LIVE_STATUS="$live_status" EXPECTED_DATE="$expected_date" python -c 'import json, os; value=json.loads(os.environ["LIVE_STATUS"]); assert value["status"] == "success" and value["allRequiredSourcesCurrent"] is True and value["datasetAsOfDate"] == os.environ["EXPECTED_DATE"]' 2>/dev/null; then
-              echo "Verified $WATERS_HOST at dataset date $expected_date"
+            if LIVE_STATUS="$live_status" EXPECTED_DATE="$expected_date" EXPECTED_REFRESH_AT="$expected_refresh_at" python -c 'import json, os; value=json.loads(os.environ["LIVE_STATUS"]); assert value["status"] == "success" and value["allRequiredSourcesCurrent"] is True and value["datasetAsOfDate"] == os.environ["EXPECTED_DATE"] and value["lastSuccessfulRefreshAt"] == os.environ["EXPECTED_REFRESH_AT"]' 2>/dev/null; then
+              echo "Verified $WATERS_HOST at exact refresh $expected_refresh_at"
               exit 0
             fi
             sleep 10
