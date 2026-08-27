@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-27T12:59:37+00:00",
+  "generatedAt": "2026-08-27T13:28:03+00:00",
   "purpose": "Publication, forum, webinar, and trade-media source map for Waters Next Gen LC competitive intelligence.",
   "sources": [
     {
@@ -29,7 +29,7 @@
       "confidenceUse": "High for topic trend monitoring; validate any customer claim with article-level source review.",
       "sourceClass": "Trade, forum, and learning source",
       "collectorType": "public-content-feed",
-      "lastChecked": "2026-08-27T12:59:27+00:00",
+      "lastChecked": "2026-08-27T13:27:51+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -144,7 +144,7 @@
       ],
       "itemEvidence": {
         "scope": "publisher_owned_public_metadata",
-        "queryExecutedAt": "2026-08-27T12:59:27+00:00",
+        "queryExecutedAt": "2026-08-27T13:27:51+00:00",
         "sourceResultCount": 12,
         "sourceNewestUrl": "https://www.chromatographyonline.com/view/uhplc-ms-ms-reveals-rice-pdd-s-role-trna-tags",
         "sourceNewestDate": "2026-07-30",
@@ -178,7 +178,7 @@
       "confidenceUse": "High for market and workflow direction; use with launch and customer evidence before changing roadmap priority.",
       "sourceClass": "Trade, forum, and learning source",
       "collectorType": "public-content-feed",
-      "lastChecked": "2026-08-27T12:59:27+00:00",
+      "lastChecked": "2026-08-27T13:27:51+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -223,7 +223,7 @@
       ],
       "itemEvidence": {
         "scope": "publisher_owned_public_metadata",
-        "queryExecutedAt": "2026-08-27T12:59:27+00:00",
+        "queryExecutedAt": "2026-08-27T13:27:51+00:00",
         "sourceResultCount": 2,
         "sourceNewestUrl": "https://www.biopharminternational.com/view/fda-approves-zymeworks-bispecific-antibody-ziihera-for-first-line-her2-gastroesophageal-cancer",
         "sourceNewestDate": "2026-08-25",
@@ -257,7 +257,7 @@
       "confidenceUse": "Medium-high for application and training signals; validate commercial importance with customer evidence.",
       "sourceClass": "Trade, forum, and learning source",
       "collectorType": "public-content-feed",
-      "lastChecked": "2026-08-27T12:59:27+00:00",
+      "lastChecked": "2026-08-27T13:27:51+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -3788,7 +3788,7 @@
       ],
       "itemEvidence": {
         "scope": "publisher_owned_public_metadata",
-        "queryExecutedAt": "2026-08-27T12:59:27+00:00",
+        "queryExecutedAt": "2026-08-27T13:27:51+00:00",
         "sourceResultCount": 500,
         "sourceNewestUrl": "https://www.sepscience.com/building-non-targeted-analysis-workflows-without-losing-the-unknowns-12694",
         "sourceNewestDate": "2026-08-25",
@@ -3822,7 +3822,7 @@
       "confidenceUse": "Medium for customer-language and education themes; avoid treating discussion volume as market share.",
       "sourceClass": "Trade, forum, and learning source",
       "collectorType": "public-content-feed",
-      "lastChecked": "2026-08-27T12:59:27+00:00",
+      "lastChecked": "2026-08-27T13:27:51+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -3907,7 +3907,7 @@
       ],
       "itemEvidence": {
         "scope": "publisher_owned_public_metadata",
-        "queryExecutedAt": "2026-08-27T12:59:27+00:00",
+        "queryExecutedAt": "2026-08-27T13:27:51+00:00",
         "sourceResultCount": 6,
         "sourceNewestUrl": "https://www.labroots.com/trending/earth-and-environmental-sciences/30888/pfas-regulations-driving-chromatography-procurement-federal-agencies-2",
         "sourceNewestDate": "2026-08-12",
@@ -3941,7 +3941,7 @@
       "confidenceUse": "High for buying-criteria context; validate product-specific claims with direct source links.",
       "sourceClass": "Trade, forum, and learning source",
       "collectorType": "public-content-feed",
-      "lastChecked": "2026-08-27T12:59:27+00:00",
+      "lastChecked": "2026-08-27T13:27:51+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -5295,7 +5295,7 @@
       ],
       "itemEvidence": {
         "scope": "publisher_owned_public_metadata",
-        "queryExecutedAt": "2026-08-27T12:59:27+00:00",
+        "queryExecutedAt": "2026-08-27T13:27:51+00:00",
         "sourceResultCount": 189,
         "sourceNewestUrl": "https://www.labmanager.com/bioz-badges-accelerating-electron-microscopy-sample-prep-evaluation-with-quorum-technologies-35859",
         "sourceNewestDate": "2026-08-26",
@@ -5329,7 +5329,7 @@
       "confidenceUse": "Medium for messaging and sponsor activity; distinguish editorial coverage from sponsored content.",
       "sourceClass": "Trade, forum, and learning source",
       "collectorType": "public-content-feed",
-      "lastChecked": "2026-08-27T12:59:27+00:00",
+      "lastChecked": "2026-08-27T13:27:51+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -5367,7 +5367,7 @@
       ],
       "itemEvidence": {
         "scope": "publisher_owned_public_metadata",
-        "queryExecutedAt": "2026-08-27T12:59:27+00:00",
+        "queryExecutedAt": "2026-08-27T13:27:51+00:00",
         "sourceResultCount": 1,
         "sourceNewestUrl": "https://www.pharmaceuticalonline.com/doc/ai-needs-human-oversight-to-better-gmp-documentation-0001",
         "sourceNewestDate": "2026-08-12",
@@ -5401,7 +5401,7 @@
       "confidenceUse": "Medium-high for strategic narrative; pair with product launches and application notes.",
       "sourceClass": "Trade, forum, and learning source",
       "collectorType": "public-content-feed",
-      "lastChecked": "2026-08-27T12:59:27+00:00",
+      "lastChecked": "2026-08-27T13:27:51+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -5460,7 +5460,7 @@
       ],
       "itemEvidence": {
         "scope": "publisher_owned_public_metadata",
-        "queryExecutedAt": "2026-08-27T12:59:27+00:00",
+        "queryExecutedAt": "2026-08-27T13:27:51+00:00",
         "sourceResultCount": 4,
         "sourceNewestUrl": "https://theanalyticalscientist.com/issues/2026/articles/august/the-changing-role-of-analytical-science-in-drug-discovery/",
         "sourceNewestDate": "2026-08-27",
@@ -5494,7 +5494,7 @@
       "confidenceUse": "Medium-high for regional and regulatory context; validate with official regulatory sources when used for compliance decisions.",
       "sourceClass": "Trade, forum, and learning source",
       "collectorType": "public-content-feed",
-      "lastChecked": "2026-08-27T12:59:27+00:00",
+      "lastChecked": "2026-08-27T13:27:51+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -5728,7 +5728,7 @@
       ],
       "itemEvidence": {
         "scope": "publisher_owned_public_metadata",
-        "queryExecutedAt": "2026-08-27T12:59:27+00:00",
+        "queryExecutedAt": "2026-08-27T13:27:51+00:00",
         "sourceResultCount": 29,
         "sourceNewestUrl": "https://www.europeanpharmaceuticalreview.com/modernising-pharma-qa/qc-laboratories-preparing-for-a-more-connected-compliant-future/2136119.article",
         "sourceNewestDate": "2026-08-25",
@@ -5762,7 +5762,7 @@
       "confidenceUse": "Medium-high for pharma analytical trend monitoring; distinguish editorial evidence from sponsored material.",
       "sourceClass": "Trade, forum, and learning source",
       "collectorType": "public-content-feed",
-      "lastChecked": "2026-08-27T12:59:27+00:00",
+      "lastChecked": "2026-08-27T13:27:51+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -5898,7 +5898,7 @@
       ],
       "itemEvidence": {
         "scope": "publisher_owned_public_metadata",
-        "queryExecutedAt": "2026-08-27T12:59:27+00:00",
+        "queryExecutedAt": "2026-08-27T13:27:51+00:00",
         "sourceResultCount": 15,
         "sourceNewestUrl": "https://www.americanpharmaceuticalreview.com/Specialty/Chromatography/Featured-Articles/626623-USP-41-and-1251-Chapters-on-Balances/",
         "sourceNewestDate": "2026-07-07",
@@ -5945,7 +5945,7 @@
       ],
       "ingestionStatus": "Active monitoring",
       "confidenceUse": "High for peer-reviewed scientific direction; article-level applicability and method comparability still require review.",
-      "lastChecked": "2026-08-27T12:59:37+00:00",
+      "lastChecked": "2026-08-27T13:28:03+00:00",
       "collectionStatus": "extracted",
       "collectionDetail": "Collected the complete 370-day window: 3419 DOI records from Crossref journal metadata.",
       "extractedRecords": 3419,
@@ -26484,7 +26484,7 @@
       "trendCollectionDetail": "Collected rolling publication counts from Crossref journal metadata.",
       "itemEvidence": {
         "scope": "complete_370_day_window",
-        "queryExecutedAt": "2026-08-27T12:59:37+00:00",
+        "queryExecutedAt": "2026-08-27T13:28:03+00:00",
         "sourceResultCount": 3419,
         "sourceNewestDoi": "10.1021/acs.analchem.6c05123",
         "sourceNewestDate": "2026-08-22",
@@ -26532,10 +26532,10 @@
       ],
       "ingestionStatus": "Active monitoring",
       "confidenceUse": "High for chromatography science and method-performance evidence.",
-      "lastChecked": "2026-08-27T12:59:37+00:00",
+      "lastChecked": "2026-08-27T13:28:03+00:00",
       "collectionStatus": "extracted",
-      "collectionDetail": "Collected the complete 370-day window: 877 DOI records from Crossref journal metadata.",
-      "extractedRecords": 877,
+      "collectionDetail": "Collected the complete 370-day window: 876 DOI records from Crossref journal metadata.",
+      "extractedRecords": 876,
       "recentRecords": [
         {
           "title": "Editorial Board",
@@ -26656,12 +26656,6 @@
           "date": "2026-08-01",
           "doi": "10.1016/j.chroma.2026.467369",
           "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467369"
-        },
-        {
-          "title": "Preparation of cyclodextrin functionalized magnetic microporous organic network for efficient application in magnetic solid phase extraction of four typical mycotoxins in medicinal and edible plants",
-          "date": "2026-08-01",
-          "doi": "10.1016/j.chroma.2026.467368",
-          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467368"
         },
         {
           "title": "Natural polysaccharide-based molecularly imprinted polymers as sorbents for selective removal of amino acids as a potential approach for management of aminoacidopathies: Template and monomer selection study",
@@ -31807,20 +31801,20 @@
       ],
       "publicationTrend": {
         "asOf": "2026-08-27",
-        "last30Days": 143,
+        "last30Days": 142,
         "prior30Days": 58,
-        "last90Days": 241,
+        "last90Days": 240,
         "prior90Days": 153,
-        "trailing12Months": 877,
-        "change90Pct": 58,
+        "trailing12Months": 876,
+        "change90Pct": 57,
         "direction": "Higher publication pace",
         "comparisonBasis": "Crossref publication counts: latest 90 days versus the preceding 90 days."
       },
       "trendCollectionDetail": "Collected rolling publication counts from Crossref journal metadata.",
       "itemEvidence": {
         "scope": "complete_370_day_window",
-        "queryExecutedAt": "2026-08-27T12:59:37+00:00",
-        "sourceResultCount": 877,
+        "queryExecutedAt": "2026-08-27T13:28:03+00:00",
+        "sourceResultCount": 876,
         "sourceNewestDoi": "10.1016/s0021-9673(26)00556-x",
         "sourceNewestDate": "2026-08-01",
         "newestDoiIngested": true,
@@ -31865,7 +31859,7 @@
       ],
       "ingestionStatus": "Active monitoring",
       "confidenceUse": "High for biomedical separation and bioanalytical-method evidence.",
-      "lastChecked": "2026-08-27T12:59:37+00:00",
+      "lastChecked": "2026-08-27T13:28:03+00:00",
       "collectionStatus": "extracted",
       "collectionDetail": "Collected the complete 370-day window: 346 DOI records from Crossref journal metadata.",
       "extractedRecords": 346,
@@ -33966,7 +33960,7 @@
       "trendCollectionDetail": "Collected rolling publication counts from Crossref journal metadata.",
       "itemEvidence": {
         "scope": "complete_370_day_window",
-        "queryExecutedAt": "2026-08-27T12:59:37+00:00",
+        "queryExecutedAt": "2026-08-27T13:28:03+00:00",
         "sourceResultCount": 346,
         "sourceNewestDoi": "10.1016/s1570-0232(26)00244-8",
         "sourceNewestDate": "2026-08-01",
@@ -34013,7 +34007,7 @@
       ],
       "ingestionStatus": "Active monitoring",
       "confidenceUse": "High for peer-reviewed MS technology and application direction.",
-      "lastChecked": "2026-08-27T12:59:37+00:00",
+      "lastChecked": "2026-08-27T13:28:03+00:00",
       "collectionStatus": "extracted",
       "collectionDetail": "Collected the complete 370-day window: 358 DOI records from Crossref journal metadata.",
       "extractedRecords": 358,
@@ -36186,7 +36180,7 @@
       "trendCollectionDetail": "Collected rolling publication counts from Crossref journal metadata.",
       "itemEvidence": {
         "scope": "complete_370_day_window",
-        "queryExecutedAt": "2026-08-27T12:59:37+00:00",
+        "queryExecutedAt": "2026-08-27T13:28:03+00:00",
         "sourceResultCount": 358,
         "sourceNewestDoi": "10.1021/jasms.6c00124",
         "sourceNewestDate": "2026-08-22",
@@ -36234,7 +36228,7 @@
       ],
       "ingestionStatus": "Active monitoring",
       "confidenceUse": "High for cross-market analytical and bioanalytical evidence.",
-      "lastChecked": "2026-08-27T12:59:37+00:00",
+      "lastChecked": "2026-08-27T13:28:03+00:00",
       "collectionStatus": "extracted",
       "collectionDetail": "Collected the complete 370-day window: 687 DOI records from Crossref journal metadata.",
       "extractedRecords": 687,
@@ -40381,7 +40375,7 @@
       "trendCollectionDetail": "Collected rolling publication counts from Crossref journal metadata.",
       "itemEvidence": {
         "scope": "complete_370_day_window",
-        "queryExecutedAt": "2026-08-27T12:59:37+00:00",
+        "queryExecutedAt": "2026-08-27T13:28:03+00:00",
         "sourceResultCount": 687,
         "sourceNewestDoi": "10.1007/s00216-026-06756-z",
         "sourceNewestDate": "2026-08-26",
@@ -40427,7 +40421,7 @@
       ],
       "ingestionStatus": "Active monitoring",
       "confidenceUse": "High for pharmaceutical analytical-method and validation evidence.",
-      "lastChecked": "2026-08-27T12:59:37+00:00",
+      "lastChecked": "2026-08-27T13:28:03+00:00",
       "collectionStatus": "extracted",
       "collectionDetail": "Collected the complete 370-day window: 539 DOI records from Crossref journal metadata.",
       "extractedRecords": 539,
@@ -43686,7 +43680,7 @@
       "trendCollectionDetail": "Collected rolling publication counts from Crossref journal metadata.",
       "itemEvidence": {
         "scope": "complete_370_day_window",
-        "queryExecutedAt": "2026-08-27T12:59:37+00:00",
+        "queryExecutedAt": "2026-08-27T13:28:03+00:00",
         "sourceResultCount": 539,
         "sourceNewestDoi": "10.1016/s0731-7085(26)00172-x",
         "sourceNewestDate": "2026-08-01",
@@ -43733,7 +43727,7 @@
       ],
       "ingestionStatus": "Active monitoring",
       "confidenceUse": "High for analytical-method direction across environmental, food, clinical, and academic markets.",
-      "lastChecked": "2026-08-27T12:59:37+00:00",
+      "lastChecked": "2026-08-27T13:28:03+00:00",
       "collectionStatus": "extracted",
       "collectionDetail": "Collected the complete 370-day window: 1791 DOI records from Crossref journal metadata.",
       "extractedRecords": 1791,
@@ -54504,7 +54498,7 @@
       "trendCollectionDetail": "Collected rolling publication counts from Crossref journal metadata.",
       "itemEvidence": {
         "scope": "complete_370_day_window",
-        "queryExecutedAt": "2026-08-27T12:59:37+00:00",
+        "queryExecutedAt": "2026-08-27T13:28:03+00:00",
         "sourceResultCount": 1791,
         "sourceNewestDoi": "10.1016/s0039-9140(26)00478-9",
         "sourceNewestDate": "2026-08-01",

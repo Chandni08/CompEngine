@@ -1,7 +1,7 @@
 {
   "snapshotSchemaVersion": 2,
   "observationType": "sitemap_inventory",
-  "capturedAt": "2026-08-27T13:17:46+00:00",
+  "capturedAt": "2026-08-27T13:46:18+00:00",
   "initialized": true,
   "products": {
     "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-horizon-uhplc-system.html": "2026-07-15",
@@ -647,39 +647,7 @@
         "category": "LC/MS"
       }
     ],
-    "updated": [
-      {
-        "url": "https://www.thermofisher.com/us/en/home/industrial/chromatography/ion-chromatography-ic/ion-chromatography-systems/instrument-selection/ics-6000.html",
-        "lastmod": "2026-08-12",
-        "previousLastmod": "2026-03-23",
-        "category": "Ion chromatography",
-        "monitoringFamily": "thermo-dionex-ion-chromatography",
-        "monitoringFamilyName": "Thermo Scientific Dionex ion chromatography",
-        "technology": "Ion chromatography",
-        "marketSegments": [
-          "Environmental",
-          "Food & Beverage"
-        ]
-      },
-      {
-        "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/orbitrap-tribrid-mass-spectrometers/orbitrap-tribrid-apex-mass-spectrometer.html",
-        "lastmod": "2026-08-14",
-        "previousLastmod": "2026-05-27",
-        "category": "LC/MS"
-      },
-      {
-        "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/triple-quadrupole-lc-ms/tsq-quantis-triple-quadrupole-ms.html",
-        "lastmod": "2026-08-06",
-        "previousLastmod": "2026-07-30",
-        "category": "LC/MS"
-      },
-      {
-        "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/triple-quadrupole-lc-ms/tsq-altis-triple-quadrupole-ms.html",
-        "lastmod": "2026-08-03",
-        "previousLastmod": "2026-07-29",
-        "category": "LC/MS"
-      }
-    ],
+    "updated": [],
     "missing": [
       {
         "url": "https://www.thermofisher.com/order/catalog/product/VQ-AMPLIFY",
