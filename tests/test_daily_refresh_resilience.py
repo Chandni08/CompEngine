@@ -103,6 +103,14 @@ class DailyRefreshResilienceTests(unittest.TestCase):
             "https://www.thermofisher.com/order/catalog/product/VQ-AMPLIFY",
         )
 
+    def test_retired_acs_fall_page_migrates_to_current_event_page(self):
+        retired = "https://www.acs.org/events/all-events/acs-fall-2026.html"
+
+        self.assertEqual(
+            refresh_daily.KNOWN_SOURCE_URL_MIGRATIONS[retired],
+            "https://www.acs.org/events/fall.html",
+        )
+
     def test_fda_abuse_detection_redirect_is_blocked_not_dead(self):
         current = [{
             "url": "https://www.fda.gov/example",
