@@ -28,6 +28,21 @@ REVVITY_Q2_2026_EXHIBIT_URL = (
     "https://www.sec.gov/Archives/edgar/data/31791/000003179126000022/"
     "q22026pressrelease.htm"
 )
+AGILENT_Q2_2026_ACCESSION = "0001090872-26-000052"
+AGILENT_Q2_2026_EXHIBIT_URL = (
+    "https://www.sec.gov/Archives/edgar/data/1090872/000109087226000052/"
+    "exhibit991-q226pressrelease.htm"
+)
+AGILENT_Q3_2026_ACCESSION = "0001090872-26-000062"
+AGILENT_Q3_2026_EXHIBIT_URL = (
+    "https://www.sec.gov/Archives/edgar/data/1090872/000109087226000062/"
+    "exhibit991-q326pressrelease.htm"
+)
+THERMO_Q2_2026_ACCESSION = "0000097745-26-000138"
+THERMO_Q2_2026_EXHIBIT_URL = (
+    "https://www.sec.gov/Archives/edgar/data/97745/000009774526000138/"
+    "q22026earnings8kex99_1.htm"
+)
 
 HORIZONS = {
     "30d": 30,
@@ -653,6 +668,149 @@ def revvity_q2_2026_earnings_enrichment() -> dict:
     }
 
 
+def agilent_q2_2026_sec_enrichment() -> dict:
+    """Use the filed Q2 earnings exhibit as the canonical earnings evidence."""
+    return {
+        "competitor": "Agilent",
+        "registrant": "Agilent Technologies, Inc.",
+        "relatedOperatingBusiness": None,
+        "attributionBoundary": "The earnings evidence is Agilent Technologies, Inc.'s SEC-filed Exhibit 99.1.",
+        "category": "Corporate intelligence",
+        "signalType": "SEC earnings filing",
+        "title": "Agilent Reports Second-Quarter Fiscal Year 2026 Financial Results",
+        "summary": (
+            "Agilent paired broad-based revenue growth with higher Life Sciences and Diagnostics, "
+            "CrossLab, and Applied Markets performance while raising fiscal 2026 revenue, margin, "
+            "and EPS guidance."
+        ),
+        "earningsMetrics": [
+            {"label": "Life Sciences and Diagnostics revenue", "value": "$732M", "change": "+12% reported / +9% core year over year"},
+            {"label": "CrossLab revenue", "value": "$759M", "change": "+6% reported / +2% core; 32.0% operating margin"},
+            {"label": "Applied Markets revenue", "value": "$344M", "change": "+14% reported / +11% core year over year"},
+        ],
+        "pmInsights": [
+            "All three operating groups grew; Life Sciences and Diagnostics and Applied Markets posted the strongest core growth.",
+            "CrossLab remained Agilent's largest reported group and carried a 32.0% operating margin, making lifecycle and service economics strategically material.",
+            "Agilent raised fiscal 2026 revenue, core-growth, operating-margin, and non-GAAP EPS guidance, increasing capacity to invest behind priority workflows.",
+        ],
+        "watersPmImplication": (
+            "Assess Agilent as an installed-base lifecycle and workflow competitor—not only an LC instrument competitor—"
+            "and track where CrossLab, software, and applications are bundled into regulated customer outcomes."
+        ),
+        "evidenceBoundary": (
+            "Agilent's filed release does not separately report LC or LC-MS revenue, units, pricing, or share; "
+            "segment growth is not direct evidence of LC market-share gain."
+        ),
+        "sourceName": "SEC EDGAR Exhibit 99.1",
+        "sourceUrl": AGILENT_Q2_2026_EXHIBIT_URL,
+        "marketSegment": "Corporate",
+        "technology": "Portfolio",
+        "theme": "Filed quarterly earnings evidence",
+        "intent": "Corporate performance and investment capacity",
+        "recommendation": "Use the filed operating-group disclosures to assess demand and investment capacity without inferring LC share.",
+        "supportingExcerpt": "Life Sciences and Diagnostics Markets Group revenue was $732 million; Agilent CrossLab Group revenue was $759 million",
+        "sourceLocation": "SEC Exhibit 99.1 financial highlights",
+        "evidenceStatus": "verified",
+    }
+
+
+def agilent_q3_2026_sec_enrichment() -> dict:
+    """Use the filed Q3 earnings exhibit as the canonical earnings evidence."""
+    return {
+        "competitor": "Agilent",
+        "registrant": "Agilent Technologies, Inc.",
+        "relatedOperatingBusiness": None,
+        "attributionBoundary": "The earnings evidence is Agilent Technologies, Inc.'s SEC-filed Exhibit 99.1.",
+        "category": "Corporate intelligence",
+        "signalType": "SEC earnings filing",
+        "title": "Agilent Reports Third-Quarter Fiscal Year 2026 Financial Results",
+        "summary": (
+            "Agilent reported $1.88 billion of Q3 revenue, 7.3% core growth, broad-based "
+            "operating-group growth, and higher fiscal 2026 revenue, margin, and non-GAAP EPS guidance."
+        ),
+        "earningsMetrics": [
+            {"label": "Q3 revenue", "value": "$1.88B", "change": "+8.1% reported / +7.3% core year over year"},
+            {"label": "Non-GAAP operating margin", "value": "28.3%", "change": "+320 bps year over year; includes ~110 bps tariff-refund benefit"},
+            {"label": "Life Sciences and Diagnostics", "value": "$746M", "change": "+11% reported / +10% core; 23.5% operating margin"},
+            {"label": "CrossLab", "value": "$786M", "change": "+6% reported / +5% core; 34.3% operating margin"},
+            {"label": "Applied Markets", "value": "$346M", "change": "+7% reported / +7% core; 24.9% operating margin"},
+            {"label": "FY26 revenue outlook", "value": "$7.49–$7.51B", "change": "+5.8% to +6.0% core; midpoint raised 65 bps"},
+        ],
+        "pmInsights": [
+            "All three operating groups grew on both reported and core bases; Life Sciences and Diagnostics led at 10% core growth.",
+            "CrossLab remained Agilent's largest operating group and posted a 34.3% operating margin, reinforcing the strategic importance of service, uptime, compliance, and lifecycle economics.",
+            "Agilent raised full-year revenue, operating-margin, and non-GAAP EPS guidance, increasing the financial capacity available for priority workflows and commercial execution.",
+            "Tariff refunds contributed about 110 basis points to Q3 non-GAAP operating margin and $0.06 to non-GAAP EPS, so the headline margin expansion is not fully operational.",
+        ],
+        "watersPmImplication": (
+            "Pressure-test Waters' instrument, service, informatics, and application proof as one lifecycle proposition. "
+            "Track whether Agilent converts stronger LDG growth and CrossLab economics into bundled regulated-workflow offers."
+        ),
+        "evidenceBoundary": (
+            "Agilent's filed release does not separately report LC or LC-MS revenue, units, pricing, or market share. "
+            "Operating-group growth and raised guidance are corporate capacity signals, not direct evidence of LC market-share gain."
+        ),
+        "sourceName": "SEC EDGAR Exhibit 99.1",
+        "sourceUrl": AGILENT_Q3_2026_EXHIBIT_URL,
+        "marketSegment": "Corporate",
+        "technology": "Portfolio",
+        "theme": "Filed quarterly earnings evidence",
+        "intent": "Corporate performance and investment capacity",
+        "recommendation": (
+            "Use the filed segment and margin disclosures to assess competitive investment capacity and lifecycle economics; "
+            "do not infer LC or LC-MS share because the exhibit does not disclose it."
+        ),
+        "supportingExcerpt": "Revenue of $1.88 billion ... growth of 8.1% reported and up 7.3% core",
+        "sourceLocation": "SEC Exhibit 99.1 opening highlights and financial highlights",
+        "evidenceStatus": "verified",
+    }
+
+
+def thermo_q2_2026_sec_enrichment() -> dict:
+    """Use Thermo Fisher's filed Exhibit 99.1 for the existing Q2 PM readout."""
+    return {
+        "competitor": "Thermo Fisher",
+        "registrant": "Thermo Fisher Scientific Inc.",
+        "relatedOperatingBusiness": None,
+        "attributionBoundary": "The earnings evidence is Thermo Fisher Scientific Inc.'s SEC-filed Exhibit 99.1.",
+        "category": "Corporate intelligence",
+        "signalType": "SEC earnings filing",
+        "title": "Thermo Fisher Scientific Reports Second Quarter 2026 Results",
+        "summary": (
+            "Thermo paired higher Analytical Instruments revenue and margin with AI-enabled Orbitrap launches "
+            "and new bioprocess and proteomics customer infrastructure."
+        ),
+        "earningsMetrics": [
+            {"label": "Analytical Instruments revenue", "value": "$1.847B", "change": "+6.9% YoY"},
+            {"label": "Analytical Instruments segment income", "value": "$424M", "change": "+30.5% YoY"},
+            {"label": "Analytical Instruments margin", "value": "23.0%", "change": "+4.2 pts YoY"},
+        ],
+        "pmInsights": [
+            "Portfolio economics: Analytical Instruments revenue increased 6.9% to $1.847 billion; segment income increased 30.5% to $424 million and margin expanded 4.2 points to 23.0%.",
+            "Product direction: Orbitrap Tribrid Apex and Excedion pair AI-driven analytics with multiomics, structural biology, biopharma characterization, small-molecule analysis and hard-to-detect drug-development targets.",
+            "Commercial model: the Plainville Bioprocess Design Center and PRECISE-SG100K collaboration extend Thermo into pharma and biotech co-development and integrated Olink plus Orbitrap Astral proteomics.",
+        ],
+        "watersPmImplication": (
+            "Treat the quarter as a combined portfolio, workflow, and customer-infrastructure signal; "
+            "compare Waters' LC/MS roadmap and proof at the workflow level."
+        ),
+        "evidenceBoundary": (
+            "The filed exhibit does not separate LC or chromatography revenue, unit growth, pricing, or market share; "
+            "Analytical Instruments performance is not evidence of LC share gain."
+        ),
+        "sourceName": "SEC EDGAR Exhibit 99.1",
+        "sourceUrl": THERMO_Q2_2026_EXHIBIT_URL,
+        "marketSegment": "Corporate",
+        "technology": "Portfolio",
+        "theme": "Filed quarterly earnings evidence",
+        "intent": "Corporate performance and investment capacity",
+        "recommendation": "Use the filed segment economics and named workflow investments without inferring LC market share.",
+        "supportingExcerpt": "Analytical Instruments Segment adjusted operating income increased 30% and adjusted operating margin increased 420 basis points",
+        "sourceLocation": "SEC Exhibit 99.1 segment results and business highlights",
+        "evidenceStatus": "verified",
+    }
+
+
 def collect_sec_signals() -> list[dict]:
     signals: list[dict] = []
     earliest_supported = TODAY - timedelta(days=HORIZONS["3y"])
@@ -718,6 +876,12 @@ def collect_sec_signals() -> list[dict]:
                 }
             if accession == REVVITY_Q2_2026_ACCESSION:
                 signal.update(revvity_q2_2026_earnings_enrichment())
+            if accession == AGILENT_Q2_2026_ACCESSION:
+                signal.update(agilent_q2_2026_sec_enrichment())
+            if accession == AGILENT_Q3_2026_ACCESSION:
+                signal.update(agilent_q3_2026_sec_enrichment())
+            if accession == THERMO_Q2_2026_ACCESSION:
+                signal.update(thermo_q2_2026_sec_enrichment())
             signals.append(signal)
             added_by_form[form] += 1
             if all(added_by_form[key] >= limits[key] for key in limits):

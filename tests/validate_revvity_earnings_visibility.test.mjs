@@ -52,7 +52,7 @@ test("SEC Filing Insights merges Revvity and Revvity, Inc. into one company entr
   assert.match(app, /function filingDisplayCompany\(company\)/);
   assert.match(app, /\^revvity\(\?:,\\s\*inc\\\.\?\)\?\$\/i\.test\(normalizedCompany\) \? "Revvity"/);
   assert.match(app, /currentFilingInsights\(\)\.map\(\(insight\) => \(\{/);
-  assert.match(app, /currentEarningsSignals\(competitorIntentSignals\(\[\]\)\)\.map\(\(signal\) => \(\{/);
+  assert.match(app, /currentFiledEarningsSignals\(competitorIntentSignals\(\[\]\)\)\.map\(\(signal\) => \(\{/);
   assert.match(app, /filingCorporateMovesForCompany\(competitor\)/);
   assert.equal(deployApp, app);
 });

@@ -32,19 +32,64 @@ test("Agilent refresh reconciles every official archive record and exposes newsr
   assert.match(app, /\[- \]quarter/);
 });
 
-test("Agilent Q2 result is visible and carries PM-relevant official metrics", async () => {
+test("Agilent Q2 result is sourced from its SEC-filed earnings exhibit", async () => {
   const intelligence = JSON.parse(await read("data/intelligence.json"));
   const earnings = intelligence.signals.find(
     (signal) => signal.competitor === "Agilent"
-      && signal.title === "Agilent Reports Second-Quarter Fiscal Year 2026 Financial Results",
+      && signal.title === "Agilent Reports Second-Quarter Fiscal Year 2026 Financial Results"
+      && signal.signalType === "SEC earnings filing",
   );
 
-  assert.ok(earnings, "the official Agilent Q2 result must be present in intelligence.json");
+  assert.ok(earnings, "the SEC-filed Agilent Q2 result must be present in intelligence.json");
   assert.equal(earnings.date, "2026-05-27");
-  assert.match(earnings.sourceUrl, /^https:\/\/www\.investor\.agilent\.com\//);
+  assert.match(earnings.sourceUrl, /^https:\/\/www\.sec\.gov\/Archives\/edgar\/data\/1090872\//);
+  assert.equal(earnings.sourceName, "SEC EDGAR Exhibit 99.1");
   assert.equal(earnings.earningsMetrics.length, 3);
   assert.equal(earnings.pmInsights.length, 3);
-  assert.match(earnings.evidenceBoundary, /does not separately report LC or LC-MS revenue/);
+  assert.match(earnings.evidenceBoundary, /does not separately report LC or LC-MS revenue/i);
+});
+
+test("Agilent Q3 result uses the SEC exhibit and carries a full PM readout", async () => {
+  const intelligence = JSON.parse(await read("data/intelligence.json"));
+  const filings = JSON.parse(await read("data/filing_insights.json"));
+  const earnings = intelligence.signals.find(
+    (signal) => signal.id === "sec-agilent-0001090872-26-000062",
+  );
+  const q3Insights = filings.insights.filter(
+    (insight) => insight.competitor === "Agilent"
+      && insight.date === "2026-08-26"
+      && insight.sourceUrl.includes("000109087226000062"),
+  );
+
+  assert.ok(earnings, "the SEC-filed Agilent Q3 result must be present in intelligence.json");
+  assert.equal(earnings.competitor, "Agilent");
+  assert.equal(earnings.signalType, "SEC earnings filing");
+  assert.equal(earnings.sourceName, "SEC EDGAR Exhibit 99.1");
+  assert.match(earnings.sourceUrl, /exhibit991-q326pressrelease\.htm$/);
+  assert.equal(earnings.earningsMetrics.length, 6);
+  assert.equal(earnings.pmInsights.length, 4);
+  assert.match(earnings.summary, /\$1\.88 billion/);
+
+  assert.equal(q3Insights.length, 2, "two PM-ready Q3 insights must cite the filed exhibit");
+  assert.ok(q3Insights.every((insight) => insight.evidenceStatus === "verified"));
+  assert.ok(q3Insights.every((insight) => insight.supportingExcerpt && insight.sourceLocation));
+});
+
+test("SEC Filing Insights renders only SEC-filed earnings sources", async () => {
+  const app = await read("app.js");
+  const selectorStart = app.indexOf("function currentFiledEarningsSignals");
+  const selectorEnd = app.indexOf("function currentNewsroomSignals", selectorStart);
+  const selector = app.slice(selectorStart, selectorEnd);
+  const rendererStart = app.indexOf("function renderFilingInsights");
+  const rendererEnd = app.indexOf("function patentStatusTone", rendererStart);
+  const renderer = app.slice(rendererStart, rendererEnd);
+
+  assert.ok(selector.includes("/sec\\.gov\\/Archives\\/edgar\\/data\\//i"));
+  assert.match(selector, /sec earnings filing/);
+  assert.match(selector, /!\/announcement\|upcoming/);
+  assert.match(renderer, /currentFiledEarningsSignals/);
+  assert.match(renderer, /Open SEC earnings exhibit/);
+  assert.doesNotMatch(renderer, /currentEarningsSignals\(competitorIntentSignals/);
 });
 
 test("every Agilent archive row is published and the latest earnings announcement is classified", async () => {

@@ -10,12 +10,14 @@ test("Thermo July earnings are included in the visible competitor-intent profile
   const intelligence = JSON.parse(await read("data/intelligence.json"));
   const earnings = intelligence.signals.find(
     (signal) => signal.competitor === "Thermo Fisher"
-      && signal.title === "Thermo Fisher Scientific Reports Second Quarter 2026 Results",
+      && signal.title === "Thermo Fisher Scientific Reports Second Quarter 2026 Results"
+      && signal.signalType === "SEC earnings filing",
   );
 
   assert.ok(earnings, "the dated official earnings result must be present in intelligence.json");
   assert.equal(earnings.date, "2026-07-23");
-  assert.match(earnings.sourceUrl, /^https:\/\/ir\.thermofisher\.com\//);
+  assert.match(earnings.sourceUrl, /^https:\/\/www\.sec\.gov\/Archives\/edgar\/data\/97745\//);
+  assert.equal(earnings.sourceName, "SEC EDGAR Exhibit 99.1");
   assert.equal(earnings.earningsMetrics.length, 3);
   assert.equal(earnings.pmInsights.length, 3);
   assert.match(earnings.summary, /Analytical Instruments revenue and margin/);
@@ -38,9 +40,9 @@ test("Thermo July earnings are included in the visible competitor-intent profile
   assert.match(app, /Evidence boundary:/);
   assert.match(app, /earnings\.length \? `\$\{earnings\.length\} earnings update/);
   assert.match(app, /type: \/quarterly earnings result\/i\.test\(signal\.signalType \|\| ""\) \? "Earnings result" : "Earnings announcement"/);
-  assert.match(app, /const earnings = currentEarningsSignals\(competitorIntentSignals\(\[\]\)\)/);
-  assert.match(app, /Official earnings result/);
-  assert.match(app, /Open official earnings update ↗/);
+  assert.match(app, /const earnings = currentFiledEarningsSignals\(competitorIntentSignals\(\[\]\)\)/);
+  assert.match(app, /SEC-filed earnings result/);
+  assert.match(app, /Open SEC earnings exhibit ↗/);
   assert.match(app, /\[\.\.\.companyInsights, \.\.\.companyEarnings\]/);
 });
 

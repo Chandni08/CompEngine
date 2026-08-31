@@ -60,7 +60,7 @@ test("Agilent synthesis covers every current launch, strategic move, newsroom up
   const agilentFilings = filings.insights.filter((item) => item.competitor === "Agilent");
   assert.equal(agilentLaunches.length, 2);
   assert.ok(agilentMoves.length >= 5, `expected at least five current strategic moves, found ${agilentMoves.length}`);
-  assert.equal(agilentFilings.length, 2);
+  assert.equal(agilentFilings.length, 4);
   assert.match(app, /type: "Newsroom update"/);
 
   [

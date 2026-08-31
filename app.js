@@ -6795,9 +6795,16 @@ function currentStrategicSignals(signals) {
 function currentEarningsSignals(signals) {
   return signals
     .filter((signal) => signal.category === "Corporate intelligence")
-    .filter((signal) => /quarterly earnings result|earnings event announcement|upcoming earnings event/i.test(`${signal.signalType || ""} ${signal.theme || ""}`)
+    .filter((signal) => /quarterly earnings result|sec earnings filing|filed quarterly earnings evidence|earnings event announcement|upcoming earnings event/i.test(`${signal.signalType || ""} ${signal.theme || ""}`)
       || /(?:reports?|announces?)\s+(?:first|second|third|fourth|q[1-4])[- ]quarter.*(?:financial\s+)?results/i.test(signal.title || ""))
     .sort((a, b) => new Date(b.date) - new Date(a.date));
+}
+
+function currentFiledEarningsSignals(signals) {
+  return currentEarningsSignals(signals)
+    .filter((signal) => /sec\.gov\/Archives\/edgar\/data\//i.test(signal.sourceUrl || ""))
+    .filter((signal) => /sec earnings filing|quarterly earnings result/i.test(signal.signalType || ""))
+    .filter((signal) => !/announcement|upcoming/i.test(`${signal.signalType || ""} ${signal.theme || ""}`));
 }
 
 function currentNewsroomSignals(signals) {
@@ -12500,7 +12507,7 @@ function renderFilingInsights() {
     ...insight,
     competitor: filingDisplayCompany(insight.competitor),
   }));
-  const earnings = currentEarningsSignals(competitorIntentSignals([])).map((signal) => ({
+  const earnings = currentFiledEarningsSignals(competitorIntentSignals([])).map((signal) => ({
     ...signal,
     competitor: filingDisplayCompany(signal.competitor),
   }));
@@ -12510,7 +12517,7 @@ function renderFilingInsights() {
   ]);
   const corporateMoveCount = [...visibleCompanies]
     .reduce((total, company) => total + filingCorporateMovesForCompany(company).items.length, 0);
-  byId("filingInsightCount").textContent = `${earnings.length} earnings update${earnings.length === 1 ? "" : "s"} · ${insights.length} filing insights · ${corporateMoveCount} corporate moves`;
+  byId("filingInsightCount").textContent = `${earnings.length} filed earnings result${earnings.length === 1 ? "" : "s"} · ${insights.length} filing insights · ${corporateMoveCount} corporate moves`;
   const competitorOrder = ["Agilent", "Thermo Fisher", "Shimadzu", "SCIEX", "PerkinElmer"];
   const groupedInsights = new Map();
   insights.forEach((insight) => {
@@ -12547,7 +12554,7 @@ function renderFilingInsights() {
                 <button type="button" class="intent-competitor-option${selected ? " is-selected" : ""}" data-filing-select="${escapeHtml(competitor)}" role="tab" aria-selected="${selected}" aria-controls="filing-selected-detail">
                   <span class="intent-option-copy">
                     <strong>${escapeHtml(competitor)}</strong>
-                    <span>${companyEarnings.length} earnings · ${companyInsights.length} filing insights</span>
+                    <span>${companyEarnings.length} filed earnings · ${companyInsights.length} filing insights</span>
                     <small>${totalRecords} public record${totalRecords === 1 ? "" : "s"}</small>
                   </span>
                   <span class="intent-option-arrow" aria-hidden="true">›</span>
@@ -12565,7 +12572,7 @@ function renderFilingInsights() {
             .filter(Boolean)
             .sort((a, b) => new Date(b) - new Date(a))[0];
           const insightLabel = companyInsights.length === 1 ? "insight" : "insights";
-          const earningsLabel = companyEarnings.length === 1 ? "earnings update" : "earnings updates";
+          const earningsLabel = companyEarnings.length === 1 ? "filed earnings result" : "filed earnings results";
           return `
             <section id="filing-selected-detail" class="filing-company-group filing-selected-detail" role="tabpanel" aria-label="${escapeHtml(competitor)} earnings and filing evidence">
               <div class="filing-company-header">
@@ -12578,16 +12585,16 @@ function renderFilingInsights() {
                 ? `
                   <div class="filing-company-body filing-earnings-body">
                     ${companyEarnings.map((signal) => {
-                      const completedResult = /quarterly earnings result/i.test(signal.signalType || "");
+                      const completedResult = /quarterly earnings result|sec earnings filing/i.test(signal.signalType || "");
                       return `
                       <article class="filing-card filing-earnings-card">
                         <div class="filing-card-top">
                           <strong>${escapeHtml(signal.title)}</strong>
-                          <span class="tag medium">${completedResult ? "Official earnings result" : "Official earnings announcement"}</span>
+                          <span class="tag medium">${completedResult ? "SEC-filed earnings result" : "Official earnings result"}</span>
                         </div>
                         <p class="muted">${formatDate(signal.date)} · ${escapeHtml(signal.sourceName)}</p>
                         ${earningsPmReadoutMarkup(signal)}
-                        <a href="${escapeHtml(signal.sourceUrl)}" target="_blank" rel="noreferrer">Open official earnings update ↗</a>
+                        <a href="${escapeHtml(signal.sourceUrl)}" target="_blank" rel="noreferrer">Open SEC earnings exhibit ↗</a>
                       </article>
                     `;}).join("")}
                   </div>
@@ -12649,7 +12656,7 @@ function renderFilingInsights() {
         .join("")}
         </div>
       `
-    : `<div class="empty">No earnings results or investor filing insights match the current filters.</div>`;
+    : `<div class="empty">No SEC-filed earnings results or investor filing insights match the current filters.</div>`;
 }
 
 function patentStatusTone(legalStatus) {

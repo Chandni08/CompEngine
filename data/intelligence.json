@@ -1806,57 +1806,66 @@
     {
       "id": "sec-agilent-0001090872-26-000062",
       "date": "2026-08-26",
-      "competitor": "AGILENT TECHNOLOGIES, INC.",
-      "registrant": "AGILENT TECHNOLOGIES, INC.",
-      "relatedOperatingBusiness": "Agilent",
-      "attributionBoundary": "This is a AGILENT TECHNOLOGIES, INC. filing. It is not attributed to Agilent unless the cited filing passage explicitly names that operating business.",
+      "competitor": "Agilent",
+      "registrant": "Agilent Technologies, Inc.",
+      "relatedOperatingBusiness": null,
+      "attributionBoundary": "The earnings evidence is Agilent Technologies, Inc.'s SEC-filed Exhibit 99.1.",
       "category": "Corporate intelligence",
-      "signalType": "Investor filing",
-      "title": "AGILENT TECHNOLOGIES, INC. filed 8-K",
-      "summary": "Public SEC filing by AGILENT TECHNOLOGIES, INC.; useful for strategy, capital allocation, risk, and segment-language tracking.",
-      "sourceName": "SEC EDGAR",
-      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1090872/000109087226000062/a-20260826.htm",
+      "signalType": "SEC earnings filing",
+      "title": "Agilent Reports Third-Quarter Fiscal Year 2026 Financial Results",
+      "summary": "Agilent reported $1.88 billion of Q3 revenue, 7.3% core growth, broad-based operating-group growth, and higher fiscal 2026 revenue, margin, and non-GAAP EPS guidance.",
+      "sourceName": "SEC EDGAR Exhibit 99.1",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1090872/000109087226000062/exhibit991-q326pressrelease.htm",
       "geography": "Global",
-      "marketSegment": "Pharma",
+      "marketSegment": "Corporate",
       "technology": "Portfolio",
-      "theme": "Corporate strategy disclosure",
+      "theme": "Filed quarterly earnings evidence",
       "evidenceCount": 1,
-      "intent": "Strategic disclosure or corporate event",
-      "recommendation": "Review filing language for capital-allocation priorities, segment focus, risk factors, and acquisition signals.",
-      "priorityScore": 70,
-      "tier": "Medium",
-      "scoreBreakdown": {
-        "sourceAuthority": {
-          "rating": "High",
-          "contribution": 30,
-          "max": 30,
-          "basis": "SEC filing"
+      "intent": "Corporate performance and investment capacity",
+      "recommendation": "Use the filed segment and margin disclosures to assess competitive investment capacity and lifecycle economics; do not infer LC or LC-MS share because the exhibit does not disclose it.",
+      "earningsMetrics": [
+        {
+          "label": "Q3 revenue",
+          "value": "$1.88B",
+          "change": "+8.1% reported / +7.3% core year over year"
         },
-        "recency": {
-          "ageDays": 5,
-          "contribution": 24.52,
-          "max": 25,
-          "halfLifeDays": 180
+        {
+          "label": "Non-GAAP operating margin",
+          "value": "28.3%",
+          "change": "+320 bps year over year; includes ~110 bps tariff-refund benefit"
         },
-        "lcRelevance": {
-          "matchedTerms": [],
-          "contribution": 0,
-          "max": 30
+        {
+          "label": "Life Sciences and Diagnostics",
+          "value": "$746M",
+          "change": "+11% reported / +10% core; 23.5% operating margin"
         },
-        "corroboration": {
-          "theme": "Corporate strategy disclosure",
-          "independentSources": 167,
-          "contribution": 15,
-          "max": 15
+        {
+          "label": "CrossLab",
+          "value": "$786M",
+          "change": "+6% reported / +5% core; 34.3% operating margin"
+        },
+        {
+          "label": "Applied Markets",
+          "value": "$346M",
+          "change": "+7% reported / +7% core; 24.9% operating margin"
+        },
+        {
+          "label": "FY26 revenue outlook",
+          "value": "$7.49–$7.51B",
+          "change": "+5.8% to +6.0% core; midpoint raised 65 bps"
         }
-      },
-      "claimID": "sec-agilent-0001090872-26-000062",
-      "retrievalDate": "2026-08-31T17:24:12",
-      "sourceDate": "2026-08-26",
-      "sourceDateType": "publication",
-      "languageType": "analyst_paraphrase",
-      "evidenceStatus": "partial",
-      "caveat": ""
+      ],
+      "pmInsights": [
+        "All three operating groups grew on both reported and core bases; Life Sciences and Diagnostics led at 10% core growth.",
+        "CrossLab remained Agilent's largest operating group and posted a 34.3% operating margin, reinforcing the strategic importance of service, uptime, compliance, and lifecycle economics.",
+        "Agilent raised full-year revenue, operating-margin, and non-GAAP EPS guidance, increasing the financial capacity available for priority workflows and commercial execution.",
+        "Tariff refunds contributed about 110 basis points to Q3 non-GAAP operating margin and $0.06 to non-GAAP EPS, so the headline margin expansion is not fully operational."
+      ],
+      "watersPmImplication": "Pressure-test Waters' instrument, service, informatics, and application proof as one lifecycle proposition. Track whether Agilent converts stronger LDG growth and CrossLab economics into bundled regulated-workflow offers.",
+      "evidenceBoundary": "Agilent's filed release does not separately report LC or LC-MS revenue, units, pricing, or market share. Operating-group growth and raised guidance are corporate capacity signals, not direct evidence of LC market-share gain.",
+      "supportingExcerpt": "Revenue of $1.88 billion ... growth of 8.1% reported and up 7.3% core",
+      "sourceLocation": "SEC Exhibit 99.1 opening highlights and financial highlights",
+      "evidenceStatus": "verified"
     },
     {
       "id": "thermo-fisher-monitor-technical-insight-1680d220e681",
@@ -7095,57 +7104,50 @@
     {
       "id": "sec-thermo-0000097745-26-000138",
       "date": "2026-07-23",
-      "competitor": "THERMO FISHER SCIENTIFIC INC.",
-      "registrant": "THERMO FISHER SCIENTIFIC INC.",
-      "relatedOperatingBusiness": "Thermo Fisher",
-      "attributionBoundary": "This is a THERMO FISHER SCIENTIFIC INC. filing. It is not attributed to Thermo Fisher unless the cited filing passage explicitly names that operating business.",
+      "competitor": "Thermo Fisher",
+      "registrant": "Thermo Fisher Scientific Inc.",
+      "relatedOperatingBusiness": null,
+      "attributionBoundary": "The earnings evidence is Thermo Fisher Scientific Inc.'s SEC-filed Exhibit 99.1.",
       "category": "Corporate intelligence",
-      "signalType": "Investor filing",
-      "title": "THERMO FISHER SCIENTIFIC INC. filed 8-K",
-      "summary": "Public SEC filing by THERMO FISHER SCIENTIFIC INC.; useful for strategy, capital allocation, risk, and segment-language tracking.",
-      "sourceName": "SEC EDGAR",
-      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/97745/000009774526000138/tmo-20260723.htm",
+      "signalType": "SEC earnings filing",
+      "title": "Thermo Fisher Scientific Reports Second Quarter 2026 Results",
+      "summary": "Thermo paired higher Analytical Instruments revenue and margin with AI-enabled Orbitrap launches and new bioprocess and proteomics customer infrastructure.",
+      "sourceName": "SEC EDGAR Exhibit 99.1",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/97745/000009774526000138/q22026earnings8kex99_1.htm",
       "geography": "Global",
-      "marketSegment": "Pharma",
+      "marketSegment": "Corporate",
       "technology": "Portfolio",
-      "theme": "Corporate strategy disclosure",
+      "theme": "Filed quarterly earnings evidence",
       "evidenceCount": 1,
-      "intent": "Strategic disclosure or corporate event",
-      "recommendation": "Review filing language for capital-allocation priorities, segment focus, risk factors, and acquisition signals.",
-      "priorityScore": 67,
-      "tier": "Medium",
-      "scoreBreakdown": {
-        "sourceAuthority": {
-          "rating": "High",
-          "contribution": 30,
-          "max": 30,
-          "basis": "SEC filing"
+      "intent": "Corporate performance and investment capacity",
+      "recommendation": "Use the filed segment economics and named workflow investments without inferring LC market share.",
+      "earningsMetrics": [
+        {
+          "label": "Analytical Instruments revenue",
+          "value": "$1.847B",
+          "change": "+6.9% YoY"
         },
-        "recency": {
-          "ageDays": 39,
-          "contribution": 21.51,
-          "max": 25,
-          "halfLifeDays": 180
+        {
+          "label": "Analytical Instruments segment income",
+          "value": "$424M",
+          "change": "+30.5% YoY"
         },
-        "lcRelevance": {
-          "matchedTerms": [],
-          "contribution": 0,
-          "max": 30
-        },
-        "corroboration": {
-          "theme": "Corporate strategy disclosure",
-          "independentSources": 167,
-          "contribution": 15,
-          "max": 15
+        {
+          "label": "Analytical Instruments margin",
+          "value": "23.0%",
+          "change": "+4.2 pts YoY"
         }
-      },
-      "claimID": "sec-thermo-0000097745-26-000138",
-      "retrievalDate": "2026-08-31T17:24:12",
-      "sourceDate": "2026-07-23",
-      "sourceDateType": "publication",
-      "languageType": "analyst_paraphrase",
-      "evidenceStatus": "partial",
-      "caveat": ""
+      ],
+      "pmInsights": [
+        "Portfolio economics: Analytical Instruments revenue increased 6.9% to $1.847 billion; segment income increased 30.5% to $424 million and margin expanded 4.2 points to 23.0%.",
+        "Product direction: Orbitrap Tribrid Apex and Excedion pair AI-driven analytics with multiomics, structural biology, biopharma characterization, small-molecule analysis and hard-to-detect drug-development targets.",
+        "Commercial model: the Plainville Bioprocess Design Center and PRECISE-SG100K collaboration extend Thermo into pharma and biotech co-development and integrated Olink plus Orbitrap Astral proteomics."
+      ],
+      "watersPmImplication": "Treat the quarter as a combined portfolio, workflow, and customer-infrastructure signal; compare Waters' LC/MS roadmap and proof at the workflow level.",
+      "evidenceBoundary": "The filed exhibit does not separate LC or chromatography revenue, unit growth, pricing, or market share; Analytical Instruments performance is not evidence of LC share gain.",
+      "supportingExcerpt": "Analytical Instruments Segment adjusted operating income increased 30% and adjusted operating margin increased 420 basis points",
+      "sourceLocation": "SEC Exhibit 99.1 segment results and business highlights",
+      "evidenceStatus": "verified"
     },
     {
       "id": "sec-sciex-0000313616-26-000163",
@@ -14314,57 +14316,50 @@
     {
       "id": "sec-agilent-0001090872-26-000052",
       "date": "2026-05-27",
-      "competitor": "AGILENT TECHNOLOGIES, INC.",
-      "registrant": "AGILENT TECHNOLOGIES, INC.",
-      "relatedOperatingBusiness": "Agilent",
-      "attributionBoundary": "This is a AGILENT TECHNOLOGIES, INC. filing. It is not attributed to Agilent unless the cited filing passage explicitly names that operating business.",
+      "competitor": "Agilent",
+      "registrant": "Agilent Technologies, Inc.",
+      "relatedOperatingBusiness": null,
+      "attributionBoundary": "The earnings evidence is Agilent Technologies, Inc.'s SEC-filed Exhibit 99.1.",
       "category": "Corporate intelligence",
-      "signalType": "Investor filing",
-      "title": "AGILENT TECHNOLOGIES, INC. filed 8-K",
-      "summary": "Public SEC filing by AGILENT TECHNOLOGIES, INC.; useful for strategy, capital allocation, risk, and segment-language tracking.",
-      "sourceName": "SEC EDGAR",
-      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1090872/000109087226000052/a-20260520.htm",
+      "signalType": "SEC earnings filing",
+      "title": "Agilent Reports Second-Quarter Fiscal Year 2026 Financial Results",
+      "summary": "Agilent paired broad-based revenue growth with higher Life Sciences and Diagnostics, CrossLab, and Applied Markets performance while raising fiscal 2026 revenue, margin, and EPS guidance.",
+      "sourceName": "SEC EDGAR Exhibit 99.1",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1090872/000109087226000052/exhibit991-q226pressrelease.htm",
       "geography": "Global",
-      "marketSegment": "Pharma",
+      "marketSegment": "Corporate",
       "technology": "Portfolio",
-      "theme": "Corporate strategy disclosure",
+      "theme": "Filed quarterly earnings evidence",
       "evidenceCount": 1,
-      "intent": "Strategic disclosure or corporate event",
-      "recommendation": "Review filing language for capital-allocation priorities, segment focus, risk factors, and acquisition signals.",
-      "priorityScore": 62,
-      "tier": "Medium",
-      "scoreBreakdown": {
-        "sourceAuthority": {
-          "rating": "High",
-          "contribution": 30,
-          "max": 30,
-          "basis": "SEC filing"
+      "intent": "Corporate performance and investment capacity",
+      "recommendation": "Use the filed operating-group disclosures to assess demand and investment capacity without inferring LC share.",
+      "earningsMetrics": [
+        {
+          "label": "Life Sciences and Diagnostics revenue",
+          "value": "$732M",
+          "change": "+12% reported / +9% core year over year"
         },
-        "recency": {
-          "ageDays": 96,
-          "contribution": 17.27,
-          "max": 25,
-          "halfLifeDays": 180
+        {
+          "label": "CrossLab revenue",
+          "value": "$759M",
+          "change": "+6% reported / +2% core; 32.0% operating margin"
         },
-        "lcRelevance": {
-          "matchedTerms": [],
-          "contribution": 0,
-          "max": 30
-        },
-        "corroboration": {
-          "theme": "Corporate strategy disclosure",
-          "independentSources": 167,
-          "contribution": 15,
-          "max": 15
+        {
+          "label": "Applied Markets revenue",
+          "value": "$344M",
+          "change": "+14% reported / +11% core year over year"
         }
-      },
-      "claimID": "sec-agilent-0001090872-26-000052",
-      "retrievalDate": "2026-08-31T17:24:12",
-      "sourceDate": "2026-05-27",
-      "sourceDateType": "publication",
-      "languageType": "analyst_paraphrase",
-      "evidenceStatus": "partial",
-      "caveat": ""
+      ],
+      "pmInsights": [
+        "All three operating groups grew; Life Sciences and Diagnostics and Applied Markets posted the strongest core growth.",
+        "CrossLab remained Agilent's largest reported group and carried a 32.0% operating margin, making lifecycle and service economics strategically material.",
+        "Agilent raised fiscal 2026 revenue, core-growth, operating-margin, and non-GAAP EPS guidance, increasing capacity to invest behind priority workflows."
+      ],
+      "watersPmImplication": "Assess Agilent as an installed-base lifecycle and workflow competitor—not only an LC instrument competitor—and track where CrossLab, software, and applications are bundled into regulated customer outcomes.",
+      "evidenceBoundary": "Agilent's filed release does not separately report LC or LC-MS revenue, units, pricing, or share; segment growth is not direct evidence of LC market-share gain.",
+      "supportingExcerpt": "Life Sciences and Diagnostics Markets Group revenue was $732 million; Agilent CrossLab Group revenue was $759 million",
+      "sourceLocation": "SEC Exhibit 99.1 financial highlights",
+      "evidenceStatus": "verified"
     },
     {
       "id": "thermo-fisher-monitor-product-page-updated-09b041f24af6",
