@@ -60,9 +60,14 @@ test("daily publication validates, deploys, aliases, and verifies the Waters sit
 });
 
 test("cloud refresh schedule validates before saving or deploying data", () => {
-  assert.match(workflow, /cron: "0 11 \* \* \*"/);
-  assert.match(workflow, /cron: "0 12 \* \* \*"/);
-  assert.match(workflow, /TZ=America\/New_York date \+%H/);
+  assert.match(workflow, /cron: "17 11 \* \* \*"/);
+  assert.match(workflow, /cron: "17 12 \* \* \*"/);
+  assert.match(workflow, /cron: "17 13 \* \* \*"/);
+  assert.match(workflow, /EVENT_SCHEDULE: \$\{\{ github\.event\.schedule \}\}/);
+  assert.match(workflow, /TZ=America\/New_York date \+%z/);
+  assert.doesNotMatch(workflow, /date \+%H/);
+  assert.match(workflow, /deploy_only:/);
+  assert.match(workflow, /if: github\.event\.inputs\.deploy_only != 'true'/);
   assert.match(workflow, /outputs:\s+should_run:/);
   assert.match(workflow, /if: needs\.schedule_gate\.outputs\.should_run == 'true'/);
   assert.match(workflow, /actions\/upload-artifact@v7/);

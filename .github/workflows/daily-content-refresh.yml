@@ -10,6 +10,12 @@ on:
     - cron: "17 12 * * *"
     - cron: "17 13 * * *"
   workflow_dispatch:
+    inputs:
+      deploy_only:
+        description: Deploy the latest validated dataset without recollecting sources
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: write
@@ -78,12 +84,14 @@ jobs:
         run: python -m pip install "requests>=2.32,<3" "certifi>=2024.7.4"
 
       - name: Set up Chromium fallback for WAF-challenged official pages
+        if: github.event.inputs.deploy_only != 'true'
         run: |
           npm install --no-save --no-package-lock playwright@1.55.0
           npx playwright install --with-deps chromium
 
       - name: Refresh and validate public intelligence
         id: refresh
+        if: github.event.inputs.deploy_only != 'true'
         env:
           AGILENT_HEADED: "1"
           SKIP_REFRESH_EXPORTS: "1"
@@ -120,22 +128,44 @@ jobs:
           git diff --cached --quiet || git commit -m "data: daily competitive-intelligence refresh"
           git push
 
-      - name: Wait for Vercel's Git deployment and verify the live dataset
+      - name: Deploy the validated build to Vercel
+        id: deploy
         env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          WATERS_HOST: waters-nextgen-competitive-engine.vercel.app
+        run: |
+          : "${VERCEL_TOKEN:?VERCEL_TOKEN is required for unattended deployment}"
+          : "${VERCEL_ORG_ID:?VERCEL_ORG_ID is required for unattended deployment}"
+          : "${VERCEL_PROJECT_ID:?VERCEL_PROJECT_ID is required for unattended deployment}"
+          # The Vercel project has deploy-site configured as its Root Directory,
+          # so invoke the CLI from the repository root to resolve it once.
+          deployment_output=$(npx --yes vercel@57.0.0 deploy --prod --yes --token "$VERCEL_TOKEN")
+          printf '%s\n' "$deployment_output"
+          deployment_url=$(printf '%s\n' "$deployment_output" | grep -Eo 'https://[^[:space:]]+\.vercel\.app' | tail -n 1)
+          test -n "$deployment_url"
+          echo "deployment_url=$deployment_url" >> "$GITHUB_OUTPUT"
+
+      - name: Verify the exact refreshed Vercel deployment
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          DEPLOYMENT_URL: ${{ steps.deploy.outputs.deployment_url }}
           WATERS_HOST: waters-nextgen-competitive-engine.vercel.app
         run: |
           expected_date=$(TZ=America/New_York date +%F)
           expected_refresh_at=$(python -c 'import json; print(json.load(open("data/refresh_status.json"))["lastSuccessfulRefreshAt"])')
-          # The validated data commit triggers the project's Vercel Git
-          # integration. Poll until the public alias serves this exact refresh,
-          # not merely an earlier deployment from the same calendar day.
-          for attempt in $(seq 1 30); do
+          npx --yes vercel@57.0.0 alias set "$DEPLOYMENT_URL" "$WATERS_HOST" --token "$VERCEL_TOKEN"
+          for attempt in $(seq 1 20); do
+            deployment_status=$(curl --fail --silent --show-error --location "$DEPLOYMENT_URL/data/refresh_status.json?verify=$GITHUB_RUN_ID-$attempt" || true)
             live_status=$(curl --fail --silent --show-error --location "https://$WATERS_HOST/data/refresh_status.json?verify=$GITHUB_RUN_ID-$attempt" || true)
-            if LIVE_STATUS="$live_status" EXPECTED_DATE="$expected_date" EXPECTED_REFRESH_AT="$expected_refresh_at" python -c 'import json, os; value=json.loads(os.environ["LIVE_STATUS"]); assert value["status"] == "success" and value["allRequiredSourcesCurrent"] is True and value["datasetAsOfDate"] == os.environ["EXPECTED_DATE"] and value["lastSuccessfulRefreshAt"] == os.environ["EXPECTED_REFRESH_AT"]' 2>/dev/null; then
-              echo "Verified $WATERS_HOST at exact refresh $expected_refresh_at"
+            if DEPLOYMENT_STATUS="$deployment_status" LIVE_STATUS="$live_status" EXPECTED_DATE="$expected_date" EXPECTED_REFRESH_AT="$expected_refresh_at" python -c 'import json, os; expected_date=os.environ["EXPECTED_DATE"]; expected_refresh=os.environ["EXPECTED_REFRESH_AT"]; values=[json.loads(os.environ[name]) for name in ("DEPLOYMENT_STATUS", "LIVE_STATUS")]; assert all(value["status"] == "success" and value["allRequiredSourcesCurrent"] is True and value["datasetAsOfDate"] == expected_date and value["lastSuccessfulRefreshAt"] == expected_refresh for value in values)' 2>/dev/null; then
+              echo "Verified exact deployment and $WATERS_HOST at refresh $expected_refresh_at"
               exit 0
             fi
             sleep 10
           done
-          echo "Vercel's Git deployment did not expose today's validated dataset" >&2
+          echo "Vercel did not expose today's exact validated dataset" >&2
           exit 1
