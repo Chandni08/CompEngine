@@ -145,9 +145,12 @@ jobs:
           # the authenticated team member instead of the automation commit.
           npx --yes vercel@59.10.0 build --prod --yes --token "$VERCEL_TOKEN"
           deploy_package=$(mktemp -d "$RUNNER_TEMP/vercel-prebuilt.XXXXXX")
-          mkdir -p "$deploy_package/deploy-site/.vercel"
+          mkdir -p "$deploy_package/.vercel" "$deploy_package/deploy-site/.vercel"
+          cp -R .vercel/output "$deploy_package/.vercel/output"
+          cp .vercel/project.json "$deploy_package/.vercel/project.json"
           cp -R .vercel/output "$deploy_package/deploy-site/.vercel/output"
           cp .vercel/project.json "$deploy_package/deploy-site/.vercel/project.json"
+          test -f "$deploy_package/.vercel/output/config.json"
           test -f "$deploy_package/deploy-site/.vercel/output/config.json"
           deployment_output=$(cd "$deploy_package" && npx --yes vercel@59.10.0 deploy --prebuilt --prod --yes --skip-domain --token "$VERCEL_TOKEN")
           printf '%s\n' "$deployment_output"
