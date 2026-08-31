@@ -1,10 +1,10 @@
 {
   "snapshotSchemaVersion": 2,
   "observationType": "sitemap_inventory",
-  "capturedAt": "2026-08-31T17:27:09+00:00",
+  "capturedAt": "2026-08-31T22:56:31+00:00",
   "initialized": true,
   "products": {
-    "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/index.html": "2026-08-27",
+    "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/index.html": "2026-08-31",
     "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-modified-nucleosides/index.html": "2026-08-27",
     "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-short-chain-fatty-acids/index.html": "2026-08-27",
     "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-system/lcmsms-method-package-for-veterinary-drugs-ver-2/index.html": "2026-08-27",
@@ -40,7 +40,7 @@
     "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/quadrupole-time-of-flight-lc-msms/index.html": "2026-08-27",
     "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/quadrupole-time-of-flight-lc-msms/lcms-9050/index.html": "2026-08-27",
     "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/single-quadrupole-lc-ms/index.html": "2026-08-27",
-    "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/single-quadrupole-lc-ms/lcms-2050/index.html": "2026-08-27",
+    "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/single-quadrupole-lc-ms/lcms-2050/index.html": "2026-08-31",
     "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-option/dpims-8060/index.html": "2026-08-27",
     "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-option/dpims-qt/index.html": "2026-08-27",
     "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-option/index.html": "2026-08-27",
@@ -48,7 +48,7 @@
     "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/triple-quadrupole-lc-msms/comparison/index.html": "2026-08-27",
     "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/triple-quadrupole-lc-msms/index.html": "2026-08-27",
     "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/triple-quadrupole-lc-msms/nexera-mikros/index.html": "2026-08-27",
-    "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/triple-quadrupole-lc-msms/lcms-tq-rx-series/index.html": "2026-08-27",
+    "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/triple-quadrupole-lc-msms/lcms-tq-rx-series/index.html": "2026-08-31",
     "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/triple-quadrupole-lc-msms/lcms-8065xe/index.html": "2026-08-27",
     "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-software/multi-charged-ion-analysis-software/index.html": "2026-08-27",
     "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/lc-ms-software/labsolutions-insight/index.html": "2026-07-09",
@@ -77,12 +77,12 @@
     "https://www.shimadzu.com/an/products/software-informatics/labsolutions-series/labsolutions-cs-powered-by-i-qlinks/index.html": "2026-07-09",
     "https://www.shimadzu.com/an/products/software-informatics/labsolutions-series/labsolutions-insight-profiler/index.html": "2026-07-09",
     "https://www.shimadzu.com/an/products/liquid-chromatography/ion-chromatograph/index.html": "2026-07-09",
-    "https://www.shimadzu.com/an/products/liquid-chromatography/ion-chromatograph/nexera-ic/index.html": "2026-07-09",
-    "https://www.shimadzu.com/an/products/liquid-chromatography/hplcuhplc/i-series/index.html": "2026-07-09",
+    "https://www.shimadzu.com/an/products/liquid-chromatography/ion-chromatograph/nexera-ic/index.html": "2026-08-31",
+    "https://www.shimadzu.com/an/products/liquid-chromatography/hplcuhplc/i-series/index.html": "2026-08-31",
     "https://www.shimadzu.com/an/products/liquid-chromatography/hplcuhplc/index.html": "2026-07-09",
-    "https://www.shimadzu.com/an/products/liquid-chromatography/hplcuhplc/lc-2030c-nt/index.html": "2026-07-09",
-    "https://www.shimadzu.com/an/products/liquid-chromatography/hplcuhplc/nexera-series/index.html": "2026-07-09",
-    "https://www.shimadzu.com/an/products/liquid-chromatography/hplcuhplc/nexera-x4/index.html": "2026-07-09"
+    "https://www.shimadzu.com/an/products/liquid-chromatography/hplcuhplc/lc-2030c-nt/index.html": "2026-08-31",
+    "https://www.shimadzu.com/an/products/liquid-chromatography/hplcuhplc/nexera-series/index.html": "2026-08-31",
+    "https://www.shimadzu.com/an/products/liquid-chromatography/hplcuhplc/nexera-x4/index.html": "2026-08-31"
   },
   "productMetadata": {},
   "monitoredFamilies": [],
@@ -332,7 +332,56 @@
   "technicalFeedVersion": 3,
   "unverifiedInventoryChanges": {
     "new": [],
-    "updated": [],
+    "updated": [
+      {
+        "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/index.html",
+        "lastmod": "2026-08-31",
+        "previousLastmod": "2026-08-27",
+        "category": "LC/MS"
+      },
+      {
+        "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/single-quadrupole-lc-ms/lcms-2050/index.html",
+        "lastmod": "2026-08-31",
+        "previousLastmod": "2026-08-27",
+        "category": "LC/MS"
+      },
+      {
+        "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/triple-quadrupole-lc-msms/lcms-tq-rx-series/index.html",
+        "lastmod": "2026-08-31",
+        "previousLastmod": "2026-08-27",
+        "category": "LC/MS"
+      },
+      {
+        "url": "https://www.shimadzu.com/an/products/liquid-chromatography/ion-chromatograph/nexera-ic/index.html",
+        "lastmod": "2026-08-31",
+        "previousLastmod": "2026-07-09",
+        "category": "LC/MS"
+      },
+      {
+        "url": "https://www.shimadzu.com/an/products/liquid-chromatography/hplcuhplc/i-series/index.html",
+        "lastmod": "2026-08-31",
+        "previousLastmod": "2026-07-09",
+        "category": "LC/MS"
+      },
+      {
+        "url": "https://www.shimadzu.com/an/products/liquid-chromatography/hplcuhplc/lc-2030c-nt/index.html",
+        "lastmod": "2026-08-31",
+        "previousLastmod": "2026-07-09",
+        "category": "LC/MS"
+      },
+      {
+        "url": "https://www.shimadzu.com/an/products/liquid-chromatography/hplcuhplc/nexera-series/index.html",
+        "lastmod": "2026-08-31",
+        "previousLastmod": "2026-07-09",
+        "category": "LC/MS"
+      },
+      {
+        "url": "https://www.shimadzu.com/an/products/liquid-chromatography/hplcuhplc/nexera-x4/index.html",
+        "lastmod": "2026-08-31",
+        "previousLastmod": "2026-07-09",
+        "category": "LC/MS"
+      }
+    ],
     "missing": []
   }
 }
