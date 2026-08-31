@@ -2,11 +2,13 @@ name: Daily competitive-intelligence refresh
 
 on:
   schedule:
-    # Avoid GitHub's top-of-hour scheduler congestion. These cover 7:17 AM
-    # New York across daylight-saving transitions; the 8:17 AM EDT trigger is
-    # retained as a same-day fallback if GitHub drops or the first run fails.
+    # 11:17 UTC is 7:17 AM during daylight time, 12:17 UTC is the daylight
+    # fallback or the 7:17 AM standard-time run, and 13:17 UTC is the
+    # standard-time fallback. The gate keys off the scheduled cron expression,
+    # not runner start time, because GitHub may delay scheduled jobs for hours.
     - cron: "17 11 * * *"
     - cron: "17 12 * * *"
+    - cron: "17 13 * * *"
   workflow_dispatch:
 
 permissions:
@@ -24,23 +26,38 @@ jobs:
     steps:
       - name: Check out refresh state
         uses: actions/checkout@v7
+        with:
+          # A fallback run may have been queued before the primary run pushed
+          # today's data, so read the branch head at execution time.
+          ref: ${{ github.event.repository.default_branch }}
 
-      - name: Decide whether this is the 7 AM New York run
+      - name: Decide whether today's refresh still needs to run
         id: gate
         env:
           EVENT_NAME: ${{ github.event_name }}
+          EVENT_SCHEDULE: ${{ github.event.schedule }}
         run: |
-          local_hour=$(TZ=America/New_York date +%H)
           local_date=$(TZ=America/New_York date +%F)
+          ny_offset=$(TZ=America/New_York date +%z)
           dataset_date=$(python -c 'import json; print(json.load(open("data/refresh_status.json")).get("datasetAsOfDate", ""))')
-          if [ "$EVENT_NAME" != "schedule" ] || [ "$local_hour" = "07" ]; then
+          if [ "$EVENT_NAME" != "schedule" ]; then
             echo "should_run=true" >> "$GITHUB_OUTPUT"
-          elif [ "$local_hour" = "08" ] && [ "$dataset_date" != "$local_date" ]; then
+            echo "Running a manually dispatched refresh"
+          elif [ "$dataset_date" = "$local_date" ]; then
+            echo "should_run=false" >> "$GITHUB_OUTPUT"
+            echo "Skipping: dataset $dataset_date is already current"
+          elif [ "$EVENT_SCHEDULE" = "17 11 * * *" ] && [ "$ny_offset" = "-0400" ]; then
             echo "should_run=true" >> "$GITHUB_OUTPUT"
-            echo "Running the 8 AM fallback because no successful dataset is published for $local_date"
+            echo "Running the daylight-time primary schedule for $local_date"
+          elif [ "$EVENT_SCHEDULE" = "17 12 * * *" ]; then
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
+            echo "Running the primary/fallback schedule for $local_date"
+          elif [ "$EVENT_SCHEDULE" = "17 13 * * *" ] && [ "$ny_offset" = "-0500" ]; then
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
+            echo "Running the standard-time fallback schedule for $local_date"
           else
             echo "should_run=false" >> "$GITHUB_OUTPUT"
-            echo "Skipping: local hour is $local_hour and dataset date is ${dataset_date:-missing}"
+            echo "Skipping cron $EVENT_SCHEDULE for New York offset $ny_offset"
           fi
 
   refresh:
