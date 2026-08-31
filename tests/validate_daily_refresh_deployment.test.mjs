@@ -73,7 +73,9 @@ test("cloud refresh schedule validates before saving or deploying data", () => {
   assert.match(workflow, /actions\/upload-artifact@v7/);
   assert.match(workflow, /scripts\/run_daily_refresh\.sh --refresh-only/);
   assert.match(workflow, /VERCEL_TOKEN/);
-  assert.match(workflow, /vercel@57\.0\.0 deploy --prod --yes/);
+  assert.match(workflow, /vercel@59\.10\.0 build --prod --yes/);
+  assert.match(workflow, /vercel@59\.10\.0 deploy --prebuilt --prod --yes --skip-domain/);
+  assert.match(workflow, /mktemp -d "\$RUNNER_TEMP\/vercel-prebuilt/);
   assert.match(workflow, /datasetAsOfDate/);
   assert.doesNotMatch(workflow, /relying on the Vercel Git integration/);
   assert.ok(workflow.indexOf("Validate the production package") < workflow.indexOf("Save the validated daily data"));

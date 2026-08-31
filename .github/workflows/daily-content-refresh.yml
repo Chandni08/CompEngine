@@ -139,9 +139,15 @@ jobs:
           : "${VERCEL_TOKEN:?VERCEL_TOKEN is required for unattended deployment}"
           : "${VERCEL_ORG_ID:?VERCEL_ORG_ID is required for unattended deployment}"
           : "${VERCEL_PROJECT_ID:?VERCEL_PROJECT_ID is required for unattended deployment}"
-          # The Vercel project has deploy-site configured as its Root Directory,
-          # so invoke the CLI from the repository root to resolve it once.
-          deployment_output=$(npx --yes vercel@57.0.0 deploy --prod --yes --token "$VERCEL_TOKEN")
+          # Build from the repository root because the Vercel project has
+          # deploy-site configured as its Root Directory. Then deploy from a
+          # metadata-free package so Vercel attributes the CLI deployment to
+          # the authenticated team member instead of the automation commit.
+          npx --yes vercel@59.10.0 build --prod --yes --token "$VERCEL_TOKEN"
+          deploy_package=$(mktemp -d "$RUNNER_TEMP/vercel-prebuilt.XXXXXX")
+          mkdir -p "$deploy_package/deploy-site"
+          cp -R .vercel "$deploy_package/deploy-site/.vercel"
+          deployment_output=$(cd "$deploy_package" && npx --yes vercel@59.10.0 deploy --prebuilt --prod --yes --skip-domain --token "$VERCEL_TOKEN")
           printf '%s\n' "$deployment_output"
           deployment_url=$(printf '%s\n' "$deployment_output" | grep -Eo 'https://[^[:space:]]+\.vercel\.app' | tail -n 1)
           test -n "$deployment_url"
@@ -157,7 +163,7 @@ jobs:
         run: |
           expected_date=$(TZ=America/New_York date +%F)
           expected_refresh_at=$(python -c 'import json; print(json.load(open("data/refresh_status.json"))["lastSuccessfulRefreshAt"])')
-          npx --yes vercel@57.0.0 alias set "$DEPLOYMENT_URL" "$WATERS_HOST" --token "$VERCEL_TOKEN"
+          npx --yes vercel@59.10.0 alias set "$DEPLOYMENT_URL" "$WATERS_HOST" --token "$VERCEL_TOKEN"
           for attempt in $(seq 1 20); do
             deployment_status=$(curl --fail --silent --show-error --location "$DEPLOYMENT_URL/data/refresh_status.json?verify=$GITHUB_RUN_ID-$attempt" || true)
             live_status=$(curl --fail --silent --show-error --location "https://$WATERS_HOST/data/refresh_status.json?verify=$GITHUB_RUN_ID-$attempt" || true)
