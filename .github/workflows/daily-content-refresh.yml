@@ -1,4 +1,4 @@
-name: Daily competitive-intelligence refresh
+name: Daily competitive-intelligence data refresh
 
 on:
   schedule:
@@ -10,12 +10,6 @@ on:
     - cron: "17 12 * * *"
     - cron: "17 13 * * *"
   workflow_dispatch:
-    inputs:
-      deploy_only:
-        description: Deploy the latest validated dataset without recollecting sources
-        required: false
-        default: false
-        type: boolean
 
 permissions:
   contents: write
@@ -66,14 +60,18 @@ jobs:
             echo "Skipping cron $EVENT_SCHEDULE for New York offset $ny_offset"
           fi
 
-  refresh:
+  refresh_data:
     needs: schedule_gate
     if: needs.schedule_gate.outputs.should_run == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 60
+    outputs:
+      data_commit: ${{ steps.save.outputs.data_commit }}
     steps:
       - name: Check out the website
         uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.repository.default_branch }}
 
       - name: Set up Python
         uses: actions/setup-python@v7
@@ -84,14 +82,12 @@ jobs:
         run: python -m pip install "requests>=2.32,<3" "certifi>=2024.7.4"
 
       - name: Set up Chromium fallback for WAF-challenged official pages
-        if: github.event.inputs.deploy_only != 'true'
         run: |
           npm install --no-save --no-package-lock playwright@1.55.0
           npx playwright install --with-deps chromium
 
       - name: Refresh and validate public intelligence
         id: refresh
-        if: github.event.inputs.deploy_only != 'true'
         env:
           AGILENT_HEADED: "1"
           SKIP_REFRESH_EXPORTS: "1"
@@ -121,62 +117,29 @@ jobs:
         run: python -m unittest tests/test_customer_voice_ingestion.py tests/test_daily_refresh_resilience.py
 
       - name: Save the validated daily data
+        id: save
+        env:
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
         run: |
           git config user.name "competitive-intelligence-refresh"
           git config user.email "competitive-intelligence-refresh@users.noreply.github.com"
           git add data deploy-site/data
           git diff --cached --quiet || git commit -m "data: daily competitive-intelligence refresh"
-          git push
+          git push origin "HEAD:$DEFAULT_BRANCH"
+          data_commit=$(git rev-parse HEAD)
+          echo "data_commit=$data_commit" >> "$GITHUB_OUTPUT"
 
-      - name: Deploy the validated build to Vercel
-        id: deploy
+      - name: Write the validated data reference
         env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-          WATERS_HOST: waters-nextgen-competitive-engine.vercel.app
+          DATA_COMMIT: ${{ steps.save.outputs.data_commit }}
         run: |
-          : "${VERCEL_TOKEN:?VERCEL_TOKEN is required for unattended deployment}"
-          : "${VERCEL_ORG_ID:?VERCEL_ORG_ID is required for unattended deployment}"
-          : "${VERCEL_PROJECT_ID:?VERCEL_PROJECT_ID is required for unattended deployment}"
-          # Build from the repository root because the Vercel project has
-          # deploy-site configured as its Root Directory. Then deploy from a
-          # metadata-free package so Vercel attributes the CLI deployment to
-          # the authenticated team member instead of the automation commit.
-          npx --yes vercel@59.10.0 build --prod --yes --token "$VERCEL_TOKEN"
-          deploy_package=$(mktemp -d "$RUNNER_TEMP/vercel-prebuilt.XXXXXX")
-          mkdir -p "$deploy_package/.vercel" "$deploy_package/deploy-site/.vercel"
-          cp -R .vercel/output "$deploy_package/.vercel/output"
-          cp .vercel/project.json "$deploy_package/.vercel/project.json"
-          cp -R .vercel/output "$deploy_package/deploy-site/.vercel/output"
-          cp .vercel/project.json "$deploy_package/deploy-site/.vercel/project.json"
-          test -f "$deploy_package/.vercel/output/config.json"
-          test -f "$deploy_package/deploy-site/.vercel/output/config.json"
-          deployment_output=$(cd "$deploy_package" && npx --yes vercel@59.10.0 deploy --prebuilt --prod --yes --skip-domain --token "$VERCEL_TOKEN")
-          printf '%s\n' "$deployment_output"
-          deployment_url=$(printf '%s\n' "$deployment_output" | grep -Eo 'https://[^[:space:]]+\.vercel\.app' | tail -n 1)
-          test -n "$deployment_url"
-          echo "deployment_url=$deployment_url" >> "$GITHUB_OUTPUT"
+          mkdir -p "$RUNNER_TEMP/validated-data-ref"
+          printf '%s\n' "$DATA_COMMIT" > "$RUNNER_TEMP/validated-data-ref/data_commit.txt"
 
-      - name: Verify the exact refreshed Vercel deployment
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-          DEPLOYMENT_URL: ${{ steps.deploy.outputs.deployment_url }}
-          WATERS_HOST: waters-nextgen-competitive-engine.vercel.app
-        run: |
-          expected_date=$(TZ=America/New_York date +%F)
-          expected_refresh_at=$(python -c 'import json; print(json.load(open("data/refresh_status.json"))["lastSuccessfulRefreshAt"])')
-          npx --yes vercel@59.10.0 alias set "$DEPLOYMENT_URL" "$WATERS_HOST" --token "$VERCEL_TOKEN"
-          for attempt in $(seq 1 20); do
-            deployment_status=$(curl --fail --silent --show-error --location "$DEPLOYMENT_URL/data/refresh_status.json?verify=$GITHUB_RUN_ID-$attempt" || true)
-            live_status=$(curl --fail --silent --show-error --location "https://$WATERS_HOST/data/refresh_status.json?verify=$GITHUB_RUN_ID-$attempt" || true)
-            if DEPLOYMENT_STATUS="$deployment_status" LIVE_STATUS="$live_status" EXPECTED_DATE="$expected_date" EXPECTED_REFRESH_AT="$expected_refresh_at" python -c 'import json, os; expected_date=os.environ["EXPECTED_DATE"]; expected_refresh=os.environ["EXPECTED_REFRESH_AT"]; values=[json.loads(os.environ[name]) for name in ("DEPLOYMENT_STATUS", "LIVE_STATUS")]; assert all(value["status"] == "success" and value["allRequiredSourcesCurrent"] is True and value["datasetAsOfDate"] == expected_date and value["lastSuccessfulRefreshAt"] == expected_refresh for value in values)' 2>/dev/null; then
-              echo "Verified exact deployment and $WATERS_HOST at refresh $expected_refresh_at"
-              exit 0
-            fi
-            sleep 10
-          done
-          echo "Vercel did not expose today's exact validated dataset" >&2
-          exit 1
+      - name: Publish the validated data reference
+        uses: actions/upload-artifact@v7
+        with:
+          name: validated-data-ref
+          path: ${{ runner.temp }}/validated-data-ref/data_commit.txt
+          if-no-files-found: error
+          retention-days: 14

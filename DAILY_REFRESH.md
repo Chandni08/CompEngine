@@ -1,4 +1,4 @@
-# Daily Content Refresh
+# Daily Data Refresh and Deployment
 
 The website includes a fail-safe daily refresh pipeline.
 
@@ -33,32 +33,41 @@ The dashboard must not expose a longer horizon unless the refresh pipeline conta
 
 ## Schedule
 
-`.github/workflows/daily-content-refresh.yml` runs in GitHub Actions and can also be started manually from GitHub Actions.
+`.github/workflows/daily-content-refresh.yml` owns data refresh and can also be started manually from GitHub Actions. It never deploys a website.
+
+`.github/workflows/deploy-latest-data.yml` owns deployment. It starts automatically only after a data-refresh run publishes an immutable validated commit reference, and it can also be started manually for a specific validated commit or branch.
 
 The scheduled job targets `7:17 AM America/New_York` year-round. Three offset-aware UTC triggers cover daylight and standard time plus a same-day fallback. The gate uses the cron expression and the published dataset date instead of the runner's start hour, so a GitHub scheduling delay cannot cause a needed refresh to be skipped.
 
-The scheduler runs entirely on GitHub-hosted infrastructure. It does not require Codex, a ChatGPT session, or a powered-on laptop. Configure these GitHub repository secrets:
+The scheduler runs entirely on GitHub-hosted infrastructure. It does not require Codex, a ChatGPT session, or a powered-on laptop.
+
+The data-refresh workflow uses these source credentials when enabled:
 
 - `REDDIT_CLIENT_ID`
 - `REDDIT_CLIENT_SECRET`
+
+The Vercel deployment job owns these platform-specific credentials:
+
 - `VERCEL_TOKEN`
 - `VERCEL_ORG_ID`
 - `VERCEL_PROJECT_ID`
 
-The workflow and the local scheduler use the same portable batch entry point, `scripts/run_daily_refresh.sh`. GitHub passes `--refresh-only` because commit and deployment are handled by later workflow steps. The batch job:
+The data workflow and the local scheduler use the same portable batch entry point, `scripts/run_daily_refresh.sh`. GitHub passes `--refresh-only`; deployment is owned by a separate workflow. The data-refresh job:
 
 1. Runs `scripts/refresh_daily.py` through the available Python 3 executable.
 2. Collects the automated public-source data.
 3. Validates signal volume, recommendations, publication themes, dates, and cumulative horizon counts.
 4. Checks every public URL in `data/`, follows redirects, and writes `data/link_health.json`.
 5. Validates every customer-voice source keyword against the exact linked page; Reddit records use Reddit's canonical oEmbed title so bot challenges cannot create a false pass.
-6. Fails the refresh and deployment when a displayed customer-voice keyword is absent, a source cannot be read, or any URL returns 404/410 or has a DNS failure or timeout.
+6. Fails the refresh when a displayed customer-voice keyword is absent, a source cannot be read, or any URL returns 404/410 or has a DNS failure or timeout.
 7. Reconciles every Agilent current-year newsroom/IR archive record—not only the recent replay window—against the published intelligence dataset, and fails on missing or duplicate releases.
 8. Rebuilds the PM recommendation queue, current evidence counts, considerations, and decision implications from the fully refreshed dataset; the gate rejects stale recommendation-generation dates or missing implications.
 9. Restores every data artifact from the last good dataset if collection, high-water verification, or validation fails.
 10. Synchronizes `data/` with `deploy-site/data/`.
 11. Commits the validated data to the repository.
-12. Deploys `deploy-site/` directly to Vercel with the repository secrets, assigns `waters-nextgen-competitive-engine.vercel.app`, and verifies that the live `refresh_status.json` reports success, complete required-source coverage, and today's New York dataset date.
+12. Uploads `validated-data-ref`, containing the exact immutable commit SHA that downstream deployment jobs must consume.
+
+The deployment workflow resolves that reference and fans out into independent platform jobs. The current `deploy_vercel` job checks out the exact validated commit, validates `deploy-site/`, deploys it, assigns `waters-nextgen-competitive-engine.vercel.app`, and verifies the live dataset date and refresh timestamp. A future platform is added as a sibling job with its own credentials, concurrency group, deployment command, and verification; it must check out the same resolved commit SHA. One platform's failure does not roll back the validated data commit or prevent sibling platforms from completing.
 
 The link gate distinguishes a proven dead link from access-control behavior. HTTP 404/410 responses normally fail publication. The only exceptions remain blocked and visibly unverified: a domain-wide FDA 404 pattern that was healthy before the GitHub-runner anomaly began, and an allowlisted publisher URL that changes from a recorded bot challenge to a runner-only 404. These exceptions never promote a URL to healthy and do not weaken required-source high-water checks.
 
@@ -112,7 +121,7 @@ scripts/run_daily_refresh.sh --refresh-only
 
 The script derives the repository root from its own location. `COMPETITION_ENGINE_ROOT` and `COMPETITION_ENGINE_PYTHON` are optional overrides for non-standard installations.
 
-GitHub Actions publishes only after the refresh and every deployment gate succeeds. A partial refresh never deploys: every required source must prove complete traversal and exact newest-item presence. Failed collection, blocked pagination, stale high-water marks, or validation failures leave the last verified production build unchanged.
+GitHub Actions emits a deployment reference only after the complete data refresh and every data-quality gate succeed. A partial refresh never triggers deployment: every required source must prove complete traversal and exact newest-item presence. Failed collection, blocked pagination, stale high-water marks, or validation failures leave the canonical validated commit and production builds unchanged. Deployment failures are reported per platform and do not change data-refresh success.
 
 The dashboard reads `data/refresh_status.json` and shows whether the daily refresh is current, overdue, or failed. A page left open checks hourly for a newly published dataset and reloads when one is available.
 

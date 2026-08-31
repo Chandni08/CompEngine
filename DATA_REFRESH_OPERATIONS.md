@@ -21,4 +21,11 @@ Retries should be scheduled by the orchestrator after the site's rate-limit or c
 
 ## Publication
 
-Publish only after validators pass. The UI may display the build publication time, but it may show sources verified current only when `allRequiredSourcesCurrent` is true. A partial run may still package the last validated data and updated source-health ledger, but must never be labeled globally current.
+The refresh and deployment lifecycles are separate:
+
+1. `daily-content-refresh.yml` collects sources, updates transformations, validates the complete dataset, commits `data/` and `deploy-site/data/`, and publishes an immutable `validated-data-ref` artifact.
+2. `deploy-latest-data.yml` resolves that artifact to an exact commit SHA. Every platform job checks out that same SHA and deploys independently.
+
+Publish a deployment reference only after validators pass. The UI may display the build publication time, but it may show sources verified current only when `allRequiredSourcesCurrent` is true. A partial run must never publish a new deployment reference or be labeled globally current.
+
+To redeploy without scraping, manually run `Deploy latest validated competitive-intelligence data`. Leave `data_ref` blank for the default branch or provide an exact validated commit SHA. Adding another hosting platform requires a sibling deployment job that depends on `resolve_data_commit`, checks out `needs.resolve_data_commit.outputs.data_commit`, and uses platform-specific secrets and verification.
