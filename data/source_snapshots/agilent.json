@@ -1,7 +1,7 @@
 {
   "snapshotSchemaVersion": 2,
   "observationType": "sitemap_inventory",
-  "capturedAt": "2026-08-31T22:56:28+00:00",
+  "capturedAt": "2026-09-01T15:47:17+00:00",
   "productInventoryInitialized": true,
   "pressIndexInitialized": true,
   "products": {
@@ -583,6 +583,20 @@
       "intent": "Corporate performance and investment capacity",
       "summary": "Agilent Reports Third-Quarter Fiscal Year 2026 Financial Results. Review the official reported result for segment demand, margin, outlook, and investment-capacity signals.",
       "evidenceBoundary": "The earnings release does not separately report LC or LC-MS revenue, units, pricing, or market share."
+    },
+    "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Introduces-the-Cary-635-FTIR-Spectrometer/default.aspx": {
+      "date": "2026-09-01",
+      "title": "Agilent Introduces the Cary 635 FTIR Spectrometer",
+      "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Introduces-the-Cary-635-FTIR-Spectrometer/default.aspx",
+      "sourceId": "agilent-investor-news",
+      "sourceName": "Agilent investor relations news",
+      "classification": "product",
+      "signalType": "Product release",
+      "marketSegment": "Corporate",
+      "technology": "Portfolio",
+      "theme": "Product and workflow expansion",
+      "intent": "Product and portfolio expansion",
+      "summary": "Agilent Introduces the Cary 635 FTIR Spectrometer"
     }
   },
   "unverifiedInventoryChanges": {

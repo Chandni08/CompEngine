@@ -1,7 +1,7 @@
 {
   "snapshotSchemaVersion": 2,
   "observationType": "sitemap_inventory",
-  "capturedAt": "2026-08-31T22:56:31+00:00",
+  "capturedAt": "2026-09-01T15:47:20+00:00",
   "initialized": true,
   "products": {
     "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/index.html": "2026-08-31",
@@ -87,6 +87,12 @@
   "productMetadata": {},
   "monitoredFamilies": [],
   "pressReleases": {
+    "https://www.shimadzu.com/news/2026/k9mzc2osgbgrbtny.html": {
+      "date": "2026-09-01",
+      "title": "Release of Combustion Ion Chromatograph System with More Efficient Analytical Operations For PFAS Analysis and Other Environmental Regulatory Applications",
+      "url": "https://www.shimadzu.com/news/2026/k9mzc2osgbgrbtny.html",
+      "classification": "product"
+    },
     "https://www.shimadzu.com/news/2026/6nfli4th4y5gkm35.html": {
       "date": "2026-08-25",
       "title": "CVC Fund \u201cShimadzu Future Innovation Fund\u201d Invests in OptQC, a Developer of Optical Quantum Computers Expected to Advance Next-Generation R&D Infrastructure for Drug Discovery and Materials Development",
@@ -332,56 +338,7 @@
   "technicalFeedVersion": 3,
   "unverifiedInventoryChanges": {
     "new": [],
-    "updated": [
-      {
-        "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/index.html",
-        "lastmod": "2026-08-31",
-        "previousLastmod": "2026-08-27",
-        "category": "LC/MS"
-      },
-      {
-        "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/single-quadrupole-lc-ms/lcms-2050/index.html",
-        "lastmod": "2026-08-31",
-        "previousLastmod": "2026-08-27",
-        "category": "LC/MS"
-      },
-      {
-        "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/triple-quadrupole-lc-msms/lcms-tq-rx-series/index.html",
-        "lastmod": "2026-08-31",
-        "previousLastmod": "2026-08-27",
-        "category": "LC/MS"
-      },
-      {
-        "url": "https://www.shimadzu.com/an/products/liquid-chromatography/ion-chromatograph/nexera-ic/index.html",
-        "lastmod": "2026-08-31",
-        "previousLastmod": "2026-07-09",
-        "category": "LC/MS"
-      },
-      {
-        "url": "https://www.shimadzu.com/an/products/liquid-chromatography/hplcuhplc/i-series/index.html",
-        "lastmod": "2026-08-31",
-        "previousLastmod": "2026-07-09",
-        "category": "LC/MS"
-      },
-      {
-        "url": "https://www.shimadzu.com/an/products/liquid-chromatography/hplcuhplc/lc-2030c-nt/index.html",
-        "lastmod": "2026-08-31",
-        "previousLastmod": "2026-07-09",
-        "category": "LC/MS"
-      },
-      {
-        "url": "https://www.shimadzu.com/an/products/liquid-chromatography/hplcuhplc/nexera-series/index.html",
-        "lastmod": "2026-08-31",
-        "previousLastmod": "2026-07-09",
-        "category": "LC/MS"
-      },
-      {
-        "url": "https://www.shimadzu.com/an/products/liquid-chromatography/hplcuhplc/nexera-x4/index.html",
-        "lastmod": "2026-08-31",
-        "previousLastmod": "2026-07-09",
-        "category": "LC/MS"
-      }
-    ],
+    "updated": [],
     "missing": []
   }
 }

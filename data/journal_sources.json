@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-31T22:38:13+00:00",
+  "generatedAt": "2026-09-01T15:29:16+00:00",
   "purpose": "Publication, forum, webinar, and trade-media source map for Waters Next Gen LC competitive intelligence.",
   "sources": [
     {
@@ -29,7 +29,7 @@
       "confidenceUse": "High for topic trend monitoring; validate any customer claim with article-level source review.",
       "sourceClass": "Trade, forum, and learning source",
       "collectorType": "public-content-feed",
-      "lastChecked": "2026-08-31T22:38:02+00:00",
+      "lastChecked": "2026-09-01T15:29:01+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -124,7 +124,7 @@
         }
       ],
       "contentTrend": {
-        "asOf": "2026-08-31",
+        "asOf": "2026-09-01",
         "last30Days": 0,
         "prior30Days": 7,
         "last90Days": 10,
@@ -144,7 +144,7 @@
       ],
       "itemEvidence": {
         "scope": "publisher_owned_public_metadata",
-        "queryExecutedAt": "2026-08-31T22:38:02+00:00",
+        "queryExecutedAt": "2026-09-01T15:29:01+00:00",
         "sourceResultCount": 12,
         "sourceNewestUrl": "https://www.chromatographyonline.com/view/uhplc-ms-ms-reveals-rice-pdd-s-role-trna-tags",
         "sourceNewestDate": "2026-07-30",
@@ -178,7 +178,7 @@
       "confidenceUse": "High for market and workflow direction; use with launch and customer evidence before changing roadmap priority.",
       "sourceClass": "Trade, forum, and learning source",
       "collectorType": "public-content-feed",
-      "lastChecked": "2026-08-31T22:38:02+00:00",
+      "lastChecked": "2026-09-01T15:29:01+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -196,7 +196,7 @@
         }
       ],
       "contentTrend": {
-        "asOf": "2026-08-31",
+        "asOf": "2026-09-01",
         "last30Days": 1,
         "prior30Days": 0,
         "last90Days": 1,
@@ -216,7 +216,7 @@
       ],
       "itemEvidence": {
         "scope": "publisher_owned_public_metadata",
-        "queryExecutedAt": "2026-08-31T22:38:02+00:00",
+        "queryExecutedAt": "2026-09-01T15:29:01+00:00",
         "sourceResultCount": 1,
         "sourceNewestUrl": "https://www.biopharminternational.com/view/fda-approves-zymeworks-bispecific-antibody-ziihera-for-first-line-her2-gastroesophageal-cancer",
         "sourceNewestDate": "2026-08-25",
@@ -250,7 +250,7 @@
       "confidenceUse": "Medium-high for application and training signals; validate commercial importance with customer evidence.",
       "sourceClass": "Trade, forum, and learning source",
       "collectorType": "public-content-feed",
-      "lastChecked": "2026-08-31T22:38:02+00:00",
+      "lastChecked": "2026-09-01T15:29:01+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -260,9 +260,23 @@
       "extractedRecords": 500,
       "recentRecords": [
         {
+          "title": "Why Traditional Adme Often Fails For Protacs",
+          "date": "2026-09-01",
+          "sourceUrl": "https://www.sepscience.com/why-traditional-adme-often-fails-for-protacs-12703",
+          "recordType": "Separation Science public content record",
+          "dateBasis": "last_modified"
+        },
+        {
           "title": "Shimadzu Launches Gcms Tq Rx Series For Pesticide Residue And Environmental Gc MS Analysis",
           "date": "2026-08-31",
           "sourceUrl": "https://www.sepscience.com/shimadzu-launches-gcms-tq-rx-series-for-pesticide-residue-and-environmental-gc-ms-analysis-12701",
+          "recordType": "Separation Science public content record",
+          "dateBasis": "last_modified"
+        },
+        {
+          "title": "Mastering Chromatography Scale Up Expert Insights On Column Dynamics Heavy Feeds And Continuous Processing",
+          "date": "2026-08-31",
+          "sourceUrl": "https://www.sepscience.com/mastering-chromatography-scale-up-expert-insights-on-column-dynamics-heavy-feeds-and-continuous-processing-12700",
           "recordType": "Separation Science public content record",
           "dateBasis": "last_modified"
         },
@@ -3744,30 +3758,16 @@
           "sourceUrl": "https://www.sepscience.com/fast-track-to-certainty-confident-biopharma-decisions-with-lc-single-quadrupole-mass-detection-12158",
           "recordType": "Separation Science public content record",
           "dateBasis": "last_modified"
-        },
-        {
-          "title": "PFAS Determination In Water According To Epa 1633",
-          "date": "2025-10-31",
-          "sourceUrl": "https://www.sepscience.com/pfas-determination-in-water-according-to-epa-1633-12157",
-          "recordType": "Separation Science public content record",
-          "dateBasis": "last_modified"
-        },
-        {
-          "title": "Ce MS Coupling Interfaces Challenges And Applications In Biopharma And Omics",
-          "date": "2025-10-31",
-          "sourceUrl": "https://www.sepscience.com/ce-ms-coupling-interfaces-challenges-and-applications-in-biopharma-and-omics-12156",
-          "recordType": "Separation Science public content record",
-          "dateBasis": "last_modified"
         }
       ],
       "contentTrend": {
-        "asOf": "2026-08-31",
-        "last30Days": 60,
-        "prior30Days": 69,
-        "last90Days": 230,
-        "prior90Days": 146,
+        "asOf": "2026-09-01",
+        "last30Days": 62,
+        "prior30Days": 59,
+        "last90Days": 226,
+        "prior90Days": 150,
         "trailing12Months": 500,
-        "change90Pct": 58,
+        "change90Pct": 51,
         "direction": "Higher source activity",
         "comparisonBasis": "Dated public records captured from publisher-owned feeds, sitemaps, or listing pages; availability varies by publisher."
       },
@@ -3776,15 +3776,15 @@
           "url": "https://www.sepscience.com/sitemap/sitemap-articles-1.xml",
           "finalUrl": "https://www.sepscience.com/sitemap/sitemap-articles-1.xml",
           "status": 200,
-          "recordsExtracted": 2396
+          "recordsExtracted": 2398
         }
       ],
       "itemEvidence": {
         "scope": "publisher_owned_public_metadata",
-        "queryExecutedAt": "2026-08-31T22:38:02+00:00",
+        "queryExecutedAt": "2026-09-01T15:29:01+00:00",
         "sourceResultCount": 500,
-        "sourceNewestUrl": "https://www.sepscience.com/shimadzu-launches-gcms-tq-rx-series-for-pesticide-residue-and-environmental-gc-ms-analysis-12701",
-        "sourceNewestDate": "2026-08-31",
+        "sourceNewestUrl": "https://www.sepscience.com/why-traditional-adme-often-fails-for-protacs-12703",
+        "sourceNewestDate": "2026-09-01",
         "retainedFromPriorRun": false
       }
     },
@@ -3815,7 +3815,7 @@
       "confidenceUse": "Medium for customer-language and education themes; avoid treating discussion volume as market share.",
       "sourceClass": "Trade, forum, and learning source",
       "collectorType": "public-content-feed",
-      "lastChecked": "2026-08-31T22:38:02+00:00",
+      "lastChecked": "2026-09-01T15:29:01+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -3861,7 +3861,7 @@
         }
       ],
       "contentTrend": {
-        "asOf": "2026-08-31",
+        "asOf": "2026-09-01",
         "last30Days": 1,
         "prior30Days": 1,
         "last90Days": 3,
@@ -3893,7 +3893,7 @@
       ],
       "itemEvidence": {
         "scope": "publisher_owned_public_metadata",
-        "queryExecutedAt": "2026-08-31T22:38:02+00:00",
+        "queryExecutedAt": "2026-09-01T15:29:01+00:00",
         "sourceResultCount": 5,
         "sourceNewestUrl": "https://www.labroots.com/trending/chemistry-and-physics/30888/pfas-regulations-driving-chromatography-procurement-federal-agencies-2",
         "sourceNewestDate": "2026-08-12",
@@ -3927,15 +3927,22 @@
       "confidenceUse": "High for buying-criteria context; validate product-specific claims with direct source links.",
       "sourceClass": "Trade, forum, and learning source",
       "collectorType": "public-content-feed",
-      "lastChecked": "2026-08-31T22:38:02+00:00",
+      "lastChecked": "2026-09-01T15:29:01+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
       ],
       "collectionStatus": "extracted",
-      "collectionDetail": "1 of 1 publisher-owned endpoints reachable; 188 dated public records available.",
-      "extractedRecords": 188,
+      "collectionDetail": "1 of 1 publisher-owned endpoints reachable; 189 dated public records available.",
+      "extractedRecords": 189,
       "recentRecords": [
+        {
+          "title": "PFAS Water Testing Automated Spe Eof And Aof Workflows From Velaris",
+          "date": "2026-09-01",
+          "sourceUrl": "https://www.labmanager.com/pfas-water-testing-automated-spe-eof-and-aof-workflows-from-velaris-35879",
+          "recordType": "Lab Manager public content record",
+          "dateBasis": "last_modified"
+        },
         {
           "title": "Laboratory Automation Accelerating Drug Candidates With Analytik Jena S Jenxplor",
           "date": "2026-08-31",
@@ -5254,12 +5261,12 @@
         }
       ],
       "contentTrend": {
-        "asOf": "2026-08-31",
-        "last30Days": 13,
+        "asOf": "2026-09-01",
+        "last30Days": 14,
         "prior30Days": 27,
         "last90Days": 56,
         "prior90Days": 33,
-        "trailing12Months": 187,
+        "trailing12Months": 188,
         "change90Pct": 70,
         "direction": "Higher source activity",
         "comparisonBasis": "Dated public records captured from publisher-owned feeds, sitemaps, or listing pages; availability varies by publisher."
@@ -5274,10 +5281,10 @@
       ],
       "itemEvidence": {
         "scope": "publisher_owned_public_metadata",
-        "queryExecutedAt": "2026-08-31T22:38:02+00:00",
-        "sourceResultCount": 188,
-        "sourceNewestUrl": "https://www.labmanager.com/laboratory-automation-accelerating-drug-candidates-with-analytik-jena-s-jenxplor-35878",
-        "sourceNewestDate": "2026-08-31",
+        "queryExecutedAt": "2026-09-01T15:29:01+00:00",
+        "sourceResultCount": 189,
+        "sourceNewestUrl": "https://www.labmanager.com/pfas-water-testing-automated-spe-eof-and-aof-workflows-from-velaris-35879",
+        "sourceNewestDate": "2026-09-01",
         "retainedFromPriorRun": false
       }
     },
@@ -5308,7 +5315,7 @@
       "confidenceUse": "Medium for messaging and sponsor activity; distinguish editorial coverage from sponsored content.",
       "sourceClass": "Trade, forum, and learning source",
       "collectorType": "public-content-feed",
-      "lastChecked": "2026-08-31T22:38:02+00:00",
+      "lastChecked": "2026-09-01T15:29:01+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -5340,7 +5347,7 @@
         }
       ],
       "contentTrend": {
-        "asOf": "2026-08-31",
+        "asOf": "2026-09-01",
         "last30Days": 3,
         "prior30Days": 0,
         "last90Days": 3,
@@ -5360,7 +5367,7 @@
       ],
       "itemEvidence": {
         "scope": "publisher_owned_public_metadata",
-        "queryExecutedAt": "2026-08-31T22:38:02+00:00",
+        "queryExecutedAt": "2026-09-01T15:29:01+00:00",
         "sourceResultCount": 3,
         "sourceNewestUrl": "https://www.pharmaceuticalonline.com/doc/ai-needs-human-oversight-to-better-gmp-documentation-0003",
         "sourceNewestDate": "2026-08-30",
@@ -5394,7 +5401,7 @@
       "confidenceUse": "Medium-high for strategic narrative; pair with product launches and application notes.",
       "sourceClass": "Trade, forum, and learning source",
       "collectorType": "public-content-feed",
-      "lastChecked": "2026-08-31T22:38:02+00:00",
+      "lastChecked": "2026-09-01T15:29:01+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -5404,9 +5411,9 @@
       "extractedRecords": 4,
       "recentRecords": [
         {
-          "title": "The Changing Role of Analytical Science in Drug Discovery",
-          "date": "2026-08-27",
-          "sourceUrl": "https://theanalyticalscientist.com/issues/2026/articles/august/the-changing-role-of-analytical-science-in-drug-discovery/",
+          "title": "The Past, Present, and Future of GC Column Innovation",
+          "date": "2026-08-31",
+          "sourceUrl": "https://theanalyticalscientist.com/issues/2026/articles/august/the-past-present-and-future-of-gc-column-innovation/",
           "recordType": "The Analytical Scientist public content record",
           "dateBasis": "published"
         },
@@ -5433,7 +5440,7 @@
         }
       ],
       "contentTrend": {
-        "asOf": "2026-08-31",
+        "asOf": "2026-09-01",
         "last30Days": 1,
         "prior30Days": 0,
         "last90Days": 1,
@@ -5453,10 +5460,10 @@
       ],
       "itemEvidence": {
         "scope": "publisher_owned_public_metadata",
-        "queryExecutedAt": "2026-08-31T22:38:02+00:00",
+        "queryExecutedAt": "2026-09-01T15:29:01+00:00",
         "sourceResultCount": 4,
-        "sourceNewestUrl": "https://theanalyticalscientist.com/issues/2026/articles/august/the-changing-role-of-analytical-science-in-drug-discovery/",
-        "sourceNewestDate": "2026-08-27",
+        "sourceNewestUrl": "https://theanalyticalscientist.com/issues/2026/articles/august/the-past-present-and-future-of-gc-column-innovation/",
+        "sourceNewestDate": "2026-08-31",
         "retainedFromPriorRun": false
       }
     },
@@ -5487,7 +5494,7 @@
       "confidenceUse": "Medium-high for regional and regulatory context; validate with official regulatory sources when used for compliance decisions.",
       "sourceClass": "Trade, forum, and learning source",
       "collectorType": "public-content-feed",
-      "lastChecked": "2026-08-31T22:38:02+00:00",
+      "lastChecked": "2026-09-01T15:29:01+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -5497,16 +5504,23 @@
       "extractedRecords": 29,
       "recentRecords": [
         {
-          "title": "QC Laboratories Preparing For A More Connected Compliant Future",
-          "date": "2026-08-28",
-          "sourceUrl": "https://www.europeanpharmaceuticalreview.com/modernising-pharma-qa/qc-laboratories-preparing-for-a-more-connected-compliant-future/2136119.article",
+          "title": "Selecting The Right Qpcr Workflow Strategy Task Based Vs Full Automation",
+          "date": "2026-09-01",
+          "sourceUrl": "https://www.europeanpharmaceuticalreview.com/selecting-the-right-qpcr-workflow-strategy-task-based-vs-full-automation/2135547.article",
           "recordType": "European Pharmaceutical Review public content record",
           "dateBasis": "last_modified"
         },
         {
           "title": "Implementing Reporter Assay Based Mat For Rapid Pyrogen Detection",
-          "date": "2026-08-28",
+          "date": "2026-09-01",
           "sourceUrl": "https://www.europeanpharmaceuticalreview.com/webinars/implementing-reporter-assay-based-mat-for-rapid-pyrogen-detection/2135806.article",
+          "recordType": "European Pharmaceutical Review public content record",
+          "dateBasis": "last_modified"
+        },
+        {
+          "title": "QC Laboratories Preparing For A More Connected Compliant Future",
+          "date": "2026-08-28",
+          "sourceUrl": "https://www.europeanpharmaceuticalreview.com/modernising-pharma-qa/qc-laboratories-preparing-for-a-more-connected-compliant-future/2136119.article",
           "recordType": "European Pharmaceutical Review public content record",
           "dateBasis": "last_modified"
         },
@@ -5542,13 +5556,6 @@
           "title": "Unlocking Peptide Permeability With High Throughput Sfc Epsa Analysis",
           "date": "2026-08-12",
           "sourceUrl": "https://www.europeanpharmaceuticalreview.com/unlocking-peptide-permeability-with-high-throughput-sfc-epsa-analysis/2136097.article",
-          "recordType": "European Pharmaceutical Review public content record",
-          "dateBasis": "last_modified"
-        },
-        {
-          "title": "Selecting The Right Qpcr Workflow Strategy Task Based Vs Full Automation",
-          "date": "2026-08-12",
-          "sourceUrl": "https://www.europeanpharmaceuticalreview.com/selecting-the-right-qpcr-workflow-strategy-task-based-vs-full-automation/2135547.article",
           "recordType": "European Pharmaceutical Review public content record",
           "dateBasis": "last_modified"
         },
@@ -5701,7 +5708,7 @@
         }
       ],
       "contentTrend": {
-        "asOf": "2026-08-31",
+        "asOf": "2026-09-01",
         "last30Days": 10,
         "prior30Days": 1,
         "last90Days": 13,
@@ -5716,15 +5723,15 @@
           "url": "https://www.europeanpharmaceuticalreview.com/googlesitemap.aspx?year=2026",
           "finalUrl": "https://www.europeanpharmaceuticalreview.com/googlesitemap.aspx?year=2026",
           "status": 200,
-          "recordsExtracted": 346
+          "recordsExtracted": 349
         }
       ],
       "itemEvidence": {
         "scope": "publisher_owned_public_metadata",
-        "queryExecutedAt": "2026-08-31T22:38:02+00:00",
+        "queryExecutedAt": "2026-09-01T15:29:01+00:00",
         "sourceResultCount": 29,
-        "sourceNewestUrl": "https://www.europeanpharmaceuticalreview.com/modernising-pharma-qa/qc-laboratories-preparing-for-a-more-connected-compliant-future/2136119.article",
-        "sourceNewestDate": "2026-08-28",
+        "sourceNewestUrl": "https://www.europeanpharmaceuticalreview.com/selecting-the-right-qpcr-workflow-strategy-task-based-vs-full-automation/2135547.article",
+        "sourceNewestDate": "2026-09-01",
         "retainedFromPriorRun": false
       }
     },
@@ -5755,7 +5762,7 @@
       "confidenceUse": "Medium-high for pharma analytical trend monitoring; distinguish editorial evidence from sponsored material.",
       "sourceClass": "Trade, forum, and learning source",
       "collectorType": "public-content-feed",
-      "lastChecked": "2026-08-31T22:38:02+00:00",
+      "lastChecked": "2026-09-01T15:29:01+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -5871,7 +5878,7 @@
         }
       ],
       "contentTrend": {
-        "asOf": "2026-08-31",
+        "asOf": "2026-09-01",
         "last30Days": 0,
         "prior30Days": 1,
         "last90Days": 8,
@@ -5891,7 +5898,7 @@
       ],
       "itemEvidence": {
         "scope": "publisher_owned_public_metadata",
-        "queryExecutedAt": "2026-08-31T22:38:02+00:00",
+        "queryExecutedAt": "2026-09-01T15:29:01+00:00",
         "sourceResultCount": 15,
         "sourceNewestUrl": "https://www.americanpharmaceuticalreview.com/Specialty/Chromatography/Featured-Articles/626623-USP-41-and-1251-Chapters-on-Balances/",
         "sourceNewestDate": "2026-07-07",
@@ -5938,11 +5945,77 @@
       ],
       "ingestionStatus": "Active monitoring",
       "confidenceUse": "High for peer-reviewed scientific direction; article-level applicability and method comparability still require review.",
-      "lastChecked": "2026-08-31T22:38:13+00:00",
+      "lastChecked": "2026-09-01T15:29:16+00:00",
       "collectionStatus": "extracted",
-      "collectionDetail": "Collected the complete 370-day window: 3418 DOI records from Crossref journal metadata.",
-      "extractedRecords": 3418,
+      "collectionDetail": "Collected the complete 370-day window: 3417 DOI records from Crossref journal metadata.",
+      "extractedRecords": 3417,
       "recentRecords": [
+        {
+          "title": "Poly(amino acid) Dot-Based Fluorescent Receptor Array for Multiplexed Sensing of Saccharides and Amino Acids",
+          "date": "2026-08-27",
+          "doi": "10.1021/acs.analchem.6c03407",
+          "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c03407"
+        },
+        {
+          "title": "Monitoring Liraglutide Oligomeric Interconversion and Fibril Dissociation through High-Pressure NMR Spectroscopy",
+          "date": "2026-08-27",
+          "doi": "10.1021/acs.analchem.5c07959",
+          "sourceUrl": "https://doi.org/10.1021/acs.analchem.5c07959"
+        },
+        {
+          "title": "Structure–Spectrum Fidelity in Tandem Mass Spectrometry: Quantifying the Limits of Similarity-Based Structural Inference",
+          "date": "2026-08-26",
+          "doi": "10.1021/acs.analchem.6c04898",
+          "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c04898"
+        },
+        {
+          "title": "Reversible Imaging of the HOCl/GSH Redox Cycle Reveals the HOCl–Ferroptosis Regulatory Axis in Ischemic Stroke",
+          "date": "2026-08-26",
+          "doi": "10.1021/acs.analchem.6c04276",
+          "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c04276"
+        },
+        {
+          "title": "Asymmetric Biomimetic Solid-State Nanochannels: Constructing, Sensing, and Perspectives",
+          "date": "2026-08-26",
+          "doi": "10.1021/acs.analchem.6c03738",
+          "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c03738"
+        },
+        {
+          "title": "Disambiguation of Product Ion Assignments, Including Internal Fragment Ions from Top-Down Mass Spectrometry, Using Ion Mobility-Aligned Fragmentation (MAF)",
+          "date": "2026-08-26",
+          "doi": "10.1021/acs.analchem.6c03396",
+          "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c03396"
+        },
+        {
+          "title": "Beyond Membrane Fluidity: Lipid Unsaturation and Hofmeister Cations Govern Nanoplastic Dynamics at Membrane Interfaces",
+          "date": "2026-08-26",
+          "doi": "10.1021/acs.analchem.6c02646",
+          "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c02646"
+        },
+        {
+          "title": "Unlocking High-Fidelity Chemical NMR Spectral Information from Nonuniformly Sampled Experiments with Deep Learning",
+          "date": "2026-08-26",
+          "doi": "10.1021/acs.analchem.6c02079",
+          "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c02079"
+        },
+        {
+          "title": "4D-Printed Temperature-Switchable Monolithic Packing for NIR-Actuated Elemental Speciation Analysis",
+          "date": "2026-08-26",
+          "doi": "10.1021/acs.analchem.6c01832",
+          "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c01832"
+        },
+        {
+          "title": "Issue Editorial Masthead",
+          "date": "2026-08-25",
+          "doi": "10.1021/acv098i033_2120615",
+          "sourceUrl": "https://doi.org/10.1021/acv098i033_2120615"
+        },
+        {
+          "title": "Issue Publication Information",
+          "date": "2026-08-25",
+          "doi": "10.1021/acv098i033_2120614",
+          "sourceUrl": "https://doi.org/10.1021/acv098i033_2120614"
+        },
         {
           "title": "Target-Triggered Molecular Domino Effect: A Programmable Peptide Self-Assembly Induced Signal Amplification System",
           "date": "2026-08-25",
@@ -5950,10 +6023,22 @@
           "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c04164"
         },
         {
+          "title": "Orthogonal Photoelectrochemical–Colorimetric Fingerprints for Machine Learning-Assisted Discrimination of Four Organophosphorus Pesticides",
+          "date": "2026-08-25",
+          "doi": "10.1021/acs.analchem.6c03801",
+          "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c03801"
+        },
+        {
           "title": "Targeted Lifetime Probe Enables Quantitative FLIM Mapping of Lipid Droplet Polarity Remodeling under Copper-Induced Oxidative Stress",
           "date": "2026-08-25",
           "doi": "10.1021/acs.analchem.6c03779",
           "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c03779"
+        },
+        {
+          "title": "A Draft Map of <i>E. coli</i> Proteoforms",
+          "date": "2026-08-25",
+          "doi": "10.1021/acs.analchem.6c03571",
+          "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c03571"
         },
         {
           "title": "Spectral-Proteomic Integration Analysis (SPIA) Deciphers Molecular Trajectories of Breast Cancer and Enables Multitarget Therapeutic Assessment",
@@ -5968,6 +6053,12 @@
           "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c02984"
         },
         {
+          "title": "AquaQuanta Portable Multiplex Photonic Aptasensor Based on Cholesteric Liquid Crystal Network for Toxins Detection",
+          "date": "2026-08-25",
+          "doi": "10.1021/acs.analchem.6c02942",
+          "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c02942"
+        },
+        {
           "title": "Vib2Conf: AI-Driven Discrimination of Molecular Conformations from Vibrational Spectra",
           "date": "2026-08-25",
           "doi": "10.1021/acs.analchem.6c02845",
@@ -5978,6 +6069,12 @@
           "date": "2026-08-25",
           "doi": "10.1021/acs.analchem.6c02650",
           "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c02650"
+        },
+        {
+          "title": "Ion Mobility-Constrained Nontargeted Screening of PFAS in Complex Environmental Matrices Using 18-T FTICR Mass Spectrometry",
+          "date": "2026-08-25",
+          "doi": "10.1021/acs.analchem.6c02263",
+          "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c02263"
         },
         {
           "title": "Self-Assembled Peptide Hydrogel-Engineered Au/SCN/PCN-222 Photocathode for Antifouling Photoelectrochemical Immunoassay of S100B",
@@ -6610,22 +6707,10 @@
           "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c03277"
         },
         {
-          "title": "Multidimensional Quantitative Analysis of Biological Responses to DNA Nanoassemblies with Defined Structure and Surface Chemistry",
-          "date": "2026-08-14",
-          "doi": "10.1021/acs.analchem.6c03267",
-          "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c03267"
-        },
-        {
           "title": "Differential Measurements of Acidification Within Neutrophil Swarms",
           "date": "2026-08-14",
           "doi": "10.1021/acs.analchem.6c03242",
           "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c03242"
-        },
-        {
-          "title": "Solvent-Free Bubbling Extraction Mass Spectrometry for Ultrasensitive, Size-Independent Detection of Microplastics in Water",
-          "date": "2026-08-14",
-          "doi": "10.1021/acs.analchem.6c02800",
-          "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c02800"
         },
         {
           "title": "Silica-Embedded Proteins Enable Higher Yield and Atomic Ion Detection in Deep-UV Laser-Assisted Atom Probe Tomography",
@@ -6674,6 +6759,18 @@
           "date": "2026-08-13",
           "doi": "10.1021/acs.analchem.6c04005",
           "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c04005"
+        },
+        {
+          "title": "Multidimensional Quantitative Analysis of Biological Responses to DNA Nanoassemblies with Defined Structure and Surface Chemistry",
+          "date": "2026-08-13",
+          "doi": "10.1021/acs.analchem.6c03267",
+          "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c03267"
+        },
+        {
+          "title": "Solvent-Free Bubbling Extraction Mass Spectrometry for Ultrasensitive, Size-Independent Detection of Microplastics in Water",
+          "date": "2026-08-13",
+          "doi": "10.1021/acs.analchem.6c02800",
+          "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c02800"
         },
         {
           "title": "Mixture Analysis at Micromolar Concentrations with 2D Benchtop NMR Enhanced by SABRE Hyperpolarization",
@@ -6730,22 +6827,10 @@
           "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c01498"
         },
         {
-          "title": "Iron Oxide Nanoparticles for Hepatocyte-Targeted T2 Imaging with Inverse Illumination of Liver Tumors",
-          "date": "2026-08-13",
-          "doi": "10.1021/acs.analchem.6c00502",
-          "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c00502"
-        },
-        {
           "title": "Dual-Locked Near-Infrared Hemicyanine Probe toward ATP and HClO for Improved Inflammatory Bowel Disease Diagnosis",
           "date": "2026-08-12",
           "doi": "10.1021/acs.analchem.6c05272",
           "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c05272"
-        },
-        {
-          "title": "Programmable Versatile Socket: A Tight-Locking and High-Gain CRISPR/Cas12a Molecular Circuit for Ultrasensitive Sensing of Diverse Targets",
-          "date": "2026-08-12",
-          "doi": "10.1021/acs.analchem.6c04985",
-          "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c04985"
         },
         {
           "title": "Single-Cell Recognition and Separation via Matched Reciprocating-Flow Interfaces and Peptide Recognition Dynamics",
@@ -6796,6 +6881,12 @@
           "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c01620"
         },
         {
+          "title": "Iron Oxide Nanoparticles for Hepatocyte-Targeted T2 Imaging with Inverse Illumination of Liver Tumors",
+          "date": "2026-08-12",
+          "doi": "10.1021/acs.analchem.6c00502",
+          "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c00502"
+        },
+        {
           "title": "Issue Editorial Masthead",
           "date": "2026-08-11",
           "doi": "10.1021/acv098i031_2114043",
@@ -6806,6 +6897,12 @@
           "date": "2026-08-11",
           "doi": "10.1021/acv098i031_2114042",
           "sourceUrl": "https://doi.org/10.1021/acv098i031_2114042"
+        },
+        {
+          "title": "Programmable Versatile Socket: A Tight-Locking and High-Gain CRISPR/Cas12a Molecular Circuit for Ultrasensitive Sensing of Diverse Targets",
+          "date": "2026-08-11",
+          "doi": "10.1021/acs.analchem.6c04985",
+          "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c04985"
         },
         {
           "title": "Ligand-Field Engineered White Copper-Based Nanozyme: Low-Background Detection for Sensitive Discrimination of Wine Origin",
@@ -6848,12 +6945,6 @@
           "date": "2026-08-11",
           "doi": "10.1021/acs.analchem.6c02220",
           "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c02220"
-        },
-        {
-          "title": "Enhancing Microplastic Raman Spectral Quality and Classification via a Dual Encoder Residual Network",
-          "date": "2026-08-11",
-          "doi": "10.1021/acs.analchem.6c02067",
-          "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c02067"
         },
         {
           "title": "Fast Diffusion-Based Metabolomics Profiling by 3D Pure Shift HSQC-DOSY NMR with COLMARvista",
@@ -6928,6 +7019,12 @@
           "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c02099"
         },
         {
+          "title": "Enhancing Microplastic Raman Spectral Quality and Classification via a Dual Encoder Residual Network",
+          "date": "2026-08-10",
+          "doi": "10.1021/acs.analchem.6c02067",
+          "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c02067"
+        },
+        {
           "title": "3D-Printed Stackable Air–Liquid Interface Platform for Isotopic Tracing of Cancer-Derived Volatiles",
           "date": "2026-08-10",
           "doi": "10.1021/acs.analchem.6c01865",
@@ -6952,12 +7049,6 @@
           "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c03110"
         },
         {
-          "title": "Enzymatic Ligation-Enhanced Catalytic Hairpin Assembly for Accelerated Kinetics with Restricted Leakage",
-          "date": "2026-08-08",
-          "doi": "10.1021/acs.analchem.6c03212",
-          "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c03212"
-        },
-        {
           "title": "A Robust Isotope Ratio LC–MS/MS Workflow for High-Throughput Metabolic Profiling of Bacteria",
           "date": "2026-08-08",
           "doi": "10.1021/acs.analchem.5c04931",
@@ -6968,6 +7059,12 @@
           "date": "2026-08-07",
           "doi": "10.1021/acs.analchem.6c03473",
           "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c03473"
+        },
+        {
+          "title": "Enzymatic Ligation-Enhanced Catalytic Hairpin Assembly for Accelerated Kinetics with Restricted Leakage",
+          "date": "2026-08-07",
+          "doi": "10.1021/acs.analchem.6c03212",
+          "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c03212"
         },
         {
           "title": "Aspiration Patch Proteomics Enables CE–ESI–MS Proteotyping of Identified Single Neurons in Intact Brain Tissue",
@@ -26354,102 +26451,6 @@
           "date": "2025-08-27",
           "doi": "10.1021/acs.analchem.5c01058",
           "sourceUrl": "https://doi.org/10.1021/acs.analchem.5c01058"
-        },
-        {
-          "title": "Issue Editorial Masthead",
-          "date": "2025-08-26",
-          "doi": "10.1021/acv097i033_1976342",
-          "sourceUrl": "https://doi.org/10.1021/acv097i033_1976342"
-        },
-        {
-          "title": "Issue Publication Information",
-          "date": "2025-08-26",
-          "doi": "10.1021/acv097i033_1976341",
-          "sourceUrl": "https://doi.org/10.1021/acv097i033_1976341"
-        },
-        {
-          "title": "Knitting Organic Cage into Hyper Cross-Linked Polymers for the Efficient Capture of Fluoroquinolones in Pork Samples",
-          "date": "2025-08-26",
-          "doi": "10.1021/acs.analchem.5c03564",
-          "sourceUrl": "https://doi.org/10.1021/acs.analchem.5c03564"
-        },
-        {
-          "title": "Identification and Distribution of the Dietary Antioxidant Ergothioneine in Humans and Animal Models Combining NMR, RANSY, and MS Methods",
-          "date": "2025-08-26",
-          "doi": "10.1021/acs.analchem.5c03507",
-          "sourceUrl": "https://doi.org/10.1021/acs.analchem.5c03507"
-        },
-        {
-          "title": "Simple Alternative Approach to the Molybdenum Blue Method for Quantification and Speciation of Phosphate and Arsenate in Freshwater",
-          "date": "2025-08-26",
-          "doi": "10.1021/acs.analchem.5c02336",
-          "sourceUrl": "https://doi.org/10.1021/acs.analchem.5c02336"
-        },
-        {
-          "title": "Molecular Average and Intramolecular δ <sup>13</sup> C Measurements of Pyruvic Acid and Acetic Acid Using Gas Chromatography Orbitrap Mass Spectrometry (GC Orbitrap-MS)",
-          "date": "2025-08-26",
-          "doi": "10.1021/acs.analchem.5c02194",
-          "sourceUrl": "https://doi.org/10.1021/acs.analchem.5c02194"
-        },
-        {
-          "title": "Calibration Transfer of Deep Learning Models among Multiple Raman Spectrometers via Low-Rank Adaptation",
-          "date": "2025-08-26",
-          "doi": "10.1021/acs.analchem.5c01846",
-          "sourceUrl": "https://doi.org/10.1021/acs.analchem.5c01846"
-        },
-        {
-          "title": "To Spray or To Sublimate: Considerations for the Matrix Application of Three Common Positive Ion Mode Matrices",
-          "date": "2025-08-26",
-          "doi": "10.1021/acs.analchem.5c01767",
-          "sourceUrl": "https://doi.org/10.1021/acs.analchem.5c01767"
-        },
-        {
-          "title": "Rapid MS-Based Single-Cell Analysis Assisted by Photochemical Derivatization in Living Cell Membranes Reveals Lipidomic Patterns with Located C═C Bonds",
-          "date": "2025-08-26",
-          "doi": "10.1021/acs.analchem.5c01725",
-          "sourceUrl": "https://doi.org/10.1021/acs.analchem.5c01725"
-        },
-        {
-          "title": "Eutectic Point Determination of Type V Hydrophobic Octanoic Acid-Based Solvents by “Lock-Free” <sup>1</sup>H and <sup>13</sup>C NMR Self-Diffusion Experiments",
-          "date": "2025-08-26",
-          "doi": "10.1021/acs.analchem.5c01641",
-          "sourceUrl": "https://doi.org/10.1021/acs.analchem.5c01641"
-        },
-        {
-          "title": "Voltage Switching on a Dual Nano-Electrospray/Atmospheric Pressure Chemical Ionization Platform Provides Higher Discrimination Power for Malaria Detection via Direct Infusion Mass Spectrometry",
-          "date": "2025-08-26",
-          "doi": "10.1021/acs.analchem.5c01383",
-          "sourceUrl": "https://doi.org/10.1021/acs.analchem.5c01383"
-        },
-        {
-          "title": "Microfluidic Electrochemical Impedance Sensor for Hematological Tests of Blood under Different Osmotic Conditions",
-          "date": "2025-08-26",
-          "doi": "10.1021/acs.analchem.5c01251",
-          "sourceUrl": "https://doi.org/10.1021/acs.analchem.5c01251"
-        },
-        {
-          "title": "De Novo Design of Photosensitizers Activated by Tumor Microenvironments for NIR Imaging and Photodynamic Therapy of Tumor",
-          "date": "2025-08-26",
-          "doi": "10.1021/acs.analchem.5c01048",
-          "sourceUrl": "https://doi.org/10.1021/acs.analchem.5c01048"
-        },
-        {
-          "title": "Assessing Acetyl-Coenzyme A Carboxylase Activity and Inhibition in <i>Caenorhabtidis elegans</i> Using a Partially Purified Protein Extract",
-          "date": "2025-08-26",
-          "doi": "10.1021/acs.analchem.5c00828",
-          "sourceUrl": "https://doi.org/10.1021/acs.analchem.5c00828"
-        },
-        {
-          "title": "Unveiling Radical-Based Reactions in Photochemical Vapor Generation via Online and In Situ Electron Paramagnetic Resonance Monitoring",
-          "date": "2025-08-26",
-          "doi": "10.1021/acs.analchem.5c00598",
-          "sourceUrl": "https://doi.org/10.1021/acs.analchem.5c00598"
-        },
-        {
-          "title": "QC4Metabolomics: Real-Time and Retrospective Quality Control of Metabolomics Data",
-          "date": "2025-08-26",
-          "doi": "10.1021/acs.analchem.4c07078",
-          "sourceUrl": "https://doi.org/10.1021/acs.analchem.4c07078"
         }
       ],
       "metadataEndpoint": "https://api.crossref.org/journals/0003-2700/works",
@@ -26458,23 +26459,23 @@
         "Application trends"
       ],
       "publicationTrend": {
-        "asOf": "2026-08-31",
-        "last30Days": 217,
-        "prior30Days": 265,
-        "last90Days": 805,
-        "prior90Days": 875,
-        "trailing12Months": 3366,
-        "change90Pct": -8,
+        "asOf": "2026-09-01",
+        "last30Days": 232,
+        "prior30Days": 256,
+        "last90Days": 801,
+        "prior90Days": 884,
+        "trailing12Months": 3370,
+        "change90Pct": -9,
         "direction": "Stable publication pace",
         "comparisonBasis": "Crossref publication counts: latest 90 days versus the preceding 90 days."
       },
       "trendCollectionDetail": "Collected rolling publication counts from Crossref journal metadata.",
       "itemEvidence": {
         "scope": "complete_370_day_window",
-        "queryExecutedAt": "2026-08-31T22:38:13+00:00",
-        "sourceResultCount": 3418,
-        "sourceNewestDoi": "10.1021/acs.analchem.6c04164",
-        "sourceNewestDate": "2026-08-25",
+        "queryExecutedAt": "2026-09-01T15:29:16+00:00",
+        "sourceResultCount": 3417,
+        "sourceNewestDoi": "10.1021/acs.analchem.6c03407",
+        "sourceNewestDate": "2026-08-27",
         "newestDoiIngested": true,
         "paginationComplete": true
       }
@@ -26519,11 +26520,659 @@
       ],
       "ingestionStatus": "Active monitoring",
       "confidenceUse": "High for chromatography science and method-performance evidence.",
-      "lastChecked": "2026-08-31T22:38:13+00:00",
+      "lastChecked": "2026-09-01T15:29:16+00:00",
       "collectionStatus": "extracted",
-      "collectionDetail": "Collected the complete 370-day window: 879 DOI records from Crossref journal metadata.",
-      "extractedRecords": 879,
+      "collectionDetail": "Collected the complete 370-day window: 991 DOI records from Crossref journal metadata.",
+      "extractedRecords": 991,
       "recentRecords": [
+        {
+          "title": "Editorial Board",
+          "date": "2026-09-01",
+          "doi": "10.1016/s0021-9673(26)00680-1",
+          "sourceUrl": "https://doi.org/10.1016/s0021-9673(26)00680-1"
+        },
+        {
+          "title": "Editorial Board",
+          "date": "2026-09-01",
+          "doi": "10.1016/s0021-9673(26)00581-9",
+          "sourceUrl": "https://doi.org/10.1016/s0021-9673(26)00581-9"
+        },
+        {
+          "title": "Multidimensional gas chromatography approach to measure aroma compounds in post-consumer recycled plastic materials",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467340",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467340"
+        },
+        {
+          "title": "Tailoring deep eutectic solvents: Preparation, properties, and frontiers in enantioseparation",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467337",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467337"
+        },
+        {
+          "title": "Integrated LC × LC–ASCA workflow for chemically interpretable fingerprinting of cultivar and cultivation dependent metabolic variability in Cannabis sativa",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467331",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467331"
+        },
+        {
+          "title": "An alkyl polyglucoside-based switchable ternary supramolecular solvent for efficient enrichment of hepatotoxic components with different polarities in Psoraleae Fructus",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467330",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467330"
+        },
+        {
+          "title": "Evaluation of Ion Chromatography Methods for Bromate Determination in Wastewaters",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467329",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467329"
+        },
+        {
+          "title": "A modeling framework for uncertainty quantification in filter-plate-based high-throughput screening of the chromatography partition coefficient",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467325",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467325"
+        },
+        {
+          "title": "Development of a thin-layer chromatography-angiotensin-converting enzyme bioassay coupled with digital image analysis for effect-directed screening of enzyme inhibitors",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467324",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467324"
+        },
+        {
+          "title": "Boronic acid-functionalized covalent organic polymer using Ugi reaction for the enrichment of salbutamol, ractopamine, terbutaline and ribavirin in feed",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467323",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467323"
+        },
+        {
+          "title": "Separation of imidazolium-based ionic liquid cations with various substituents on a pentafluorophenylpropyl stationary phase using UHPLC-MS",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467322",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467322"
+        },
+        {
+          "title": "AQbD-guided development of a robust and green SI-RP-HPLC method for impurity profiling of an efonidipine hydrochloride ethanolate and chlorthalidone combination, with LC–MS and NMR-based identification of degradation product in efonidipine",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467321",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467321"
+        },
+        {
+          "title": "Machine learning-based in silico quantification framework for non-targeted PFAS in complex vegetable matrices",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467320",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467320"
+        },
+        {
+          "title": "Dimethyl carbonate as a green solvent in ternary solvent systems for liquid chromatography: Investigation of miscibility limits and mobile phase viscosities",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467318",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467318"
+        },
+        {
+          "title": "Enhancing targeted LC-Q-TOF analysis of emerging contaminants through multivariate mass spectrometry optimization",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467317",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467317"
+        },
+        {
+          "title": "Single laboratory validation of multi-residue extraction and cleanup method for analysis of 50 pesticides, 14 veterinary drugs, and 7 Polychlorinated biphenyls in bovine milk by tandem mass spectrometry",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467316",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467316"
+        },
+        {
+          "title": "Optimization and validation of a two-step extraction dispersive liquid–liquid microextraction (UA-DLLME) method for the determination of 17 antibiotics in influent wastewater",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467315",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467315"
+        },
+        {
+          "title": "Prediction of centrifugal partition chromatography separation performance via statistical design",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467314",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467314"
+        },
+        {
+          "title": "A green and efficient SUPRADES-ultrasound extraction strategy for isoflavones from Pueraria lobata root: process optimization, molecular interaction mechanism, and sustainability assessment",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467313",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467313"
+        },
+        {
+          "title": "Efficient separation of similar-polar functional components in Gastrodia elata using modified multiple dual-mode high-speed counter-current chromatography and preparative HPLC",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467312",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467312"
+        },
+        {
+          "title": "Position-specific isotope fragmentation differential quantification (PIF-DQ) of phenylalanine positional isotopomers: A rapid UPLC-MS/MS approach for urine analysis in the IAAO method",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467311",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467311"
+        },
+        {
+          "title": "Opportunities and challenges of sub-1μm particle columns in ultra-high-pressure liquid chromatography: A theoretical framework",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467310",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467310"
+        },
+        {
+          "title": "Automated and systematic screening of ion-pair reversed-phase LC conditions accelerating assay development of oligonucleotides in pharmaceutical mixtures",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467309",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467309"
+        },
+        {
+          "title": "Complementary application of high-speed gas chromatography and Fourier transform infrared spectroscopy for enhanced partial least squares modeling and prediction of the physical properties of kerosene-based rocket and jet fuels",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467308",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467308"
+        },
+        {
+          "title": "De novo design of a peptide ligand for specific affinity purification of human complement C1q",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467307",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467307"
+        },
+        {
+          "title": "Considerations on column length in gradient elution mode: “selectivity-limited” and “efficiency limited” separations",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467306",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467306"
+        },
+        {
+          "title": "Mixed-mode multidimensional polysaccharide fingerprint coupled with hierarchical data fusion for the precise authentication of Gastrodia elata Blume subtypes",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467305",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467305"
+        },
+        {
+          "title": "Cholesterol-assisted lecithin-modified zirconia stationary phase enables pH-tunable retention and extraction of organic compounds",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467304",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467304"
+        },
+        {
+          "title": "Simultaneous separation of two indicator constituents in Salvia miltiorrhiza Bge. from compound Chinese medicine using ionic Liquid@Covalent organic framework (IL@COF) discs",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467303",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467303"
+        },
+        {
+          "title": "Surface thermodynamic properties of [CnMIM][MeSO4] ionic liquids determined by inverse gas chromatography with temperature-dependent molecular area correction",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467302",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467302"
+        },
+        {
+          "title": "Development and validation of an LC–MS method based on derivatization for quantification of kynurenine pathway metabolites in serum and application in cancer patients",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467301",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467301"
+        },
+        {
+          "title": "SPE columns with pH–sensitive molecularly imprinted polymer toward gentamicin",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467300",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467300"
+        },
+        {
+          "title": "Volatile organic compound emissions from automotive interior materials: Material selection implications for in‑vehicle air quality",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467299",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467299"
+        },
+        {
+          "title": "Metal-organic framework@hydrogen-bonded organic framework composite for efficient dispersive solid-phase extraction of fluoroquinolones in aquatic products",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467298",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467298"
+        },
+        {
+          "title": "Direct thermal desorption–gas chromatography–mass spectrometry for screening volatile PFAS and side–chain fluoropolymers in food contact materials",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467297",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467297"
+        },
+        {
+          "title": "Automated discovery of conjugates drives a reverse-metabolomics strategy: From LC-HRMS-based phase II prediction to GC-HRMS validation of phase I metabolites of 6β-chlorotestosterone",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467296",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467296"
+        },
+        {
+          "title": "Structure and functional properties of large pore cellulose-based beads for chromatography of large biomolecules",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467295",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467295"
+        },
+        {
+          "title": "Native elution immunoaffinity chromatography for the efficient purification of vesicular stomatitis virus",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467294",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467294"
+        },
+        {
+          "title": "A unified HPLC-ESI-HRMS approach for the quantitative analysis of four aminopolycarboxylic acids and gluconic acid in complex nuclear effluents. Part B: How speciation can help unravelling separation mechanism and support method development?",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467293",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467293"
+        },
+        {
+          "title": "Ion-exchange chromatography for impurity profiling of therapeutic peptides",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467292",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467292"
+        },
+        {
+          "title": "Recent development in charged stationary phases for ion exchange chromatography and mixed-mode chromatography",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467291",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467291"
+        },
+        {
+          "title": "Comprehensive chemical and enantiomeric characterization of commercial turpentine oils by GC–MS",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467289",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467289"
+        },
+        {
+          "title": "Hydrophobic filter sampling for simultaneous determination of airborne plasticizers and microplastics in indoor air by Py-GC/MS",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467287",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467287"
+        },
+        {
+          "title": "Accurate determination of isocratic retention behavior of 10–120 mer oligonucleotides in anion-exchange chromatography for gradient optimization",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467286",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467286"
+        },
+        {
+          "title": "Novel applications of broadband cavity enhanced absorption spectroscopy (BBCEAS) as a detector for HPLC at ultraviolet wavelengths from 250 - 400 nm",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467285",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467285"
+        },
+        {
+          "title": "Untargeted GC × GC/HRMS profiling of volatile and semi-volatile organic compounds in dried edible mushrooms supported by multivariate statistical tools",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467284",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467284"
+        },
+        {
+          "title": "Simulation of peptide retention on dual reversed phase: strong cation exchange functionalized stationary phase gradients",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467283",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467283"
+        },
+        {
+          "title": "In situ formation of hydrophobic deep eutectic solvents for liquid-liquid microextraction of neonicotinoid insecticides in water and tea infusion samples",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467282",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467282"
+        },
+        {
+          "title": "Imidazole-functionalized covalent organic framework for sensitive analysis of neonicotinoid insecticides",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467281",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467281"
+        },
+        {
+          "title": "Determination of in-chain ketone functionality distribution in polyolefin materials via a selective 2,4-dinitrophenylhydrazine (DNPH) derivatization",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467280",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467280"
+        },
+        {
+          "title": "Broad-spectrum analytical method for the simultaneous determination of multiple classes of urinary volatile organic compound metabolites",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467279",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467279"
+        },
+        {
+          "title": "Development of a liquid chromatography-ion mobility-mass spectrometry method for the screening of d-amino acid alterations in plasma",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467278",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467278"
+        },
+        {
+          "title": "A unified HPLC-ESI-HRMS approach for the quantitative analysis of four aminopolycarboxylic acids and gluconic acid in complex nuclear effluents. Part a: Method development and validation",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467277",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467277"
+        },
+        {
+          "title": "Determination of the total fluorine content and quantification of the PVdF binder amount in lithium ion battery materials by combustion ion chromatography",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467276",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467276"
+        },
+        {
+          "title": "TODGA-impregnated extraction chromatographic resin for the separation of U(VI) and Th(IV) from nitric acid media",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467275",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467275"
+        },
+        {
+          "title": "In situ formation of deep eutectic solvent for disperser-free microextraction of Fast Green and Erythrosine in food and pharmaceutical samples",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467274",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467274"
+        },
+        {
+          "title": "Cationic guanidine covalent organic frameworks with abundant hydrogen-bonding sites for efficient enrichment and sensitive detection of nitrobenzenes in tea",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467273",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467273"
+        },
+        {
+          "title": "MS-compatible hydrophobic interaction chromatography of intact proteins using long-ligand stationary phases",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467272",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467272"
+        },
+        {
+          "title": "Leveraging protein language model for maturation of high-affinity peptide ligand in the purification of an adeno‒associated virus vector",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467271",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467271"
+        },
+        {
+          "title": "High-throughput analysis method for the comprehensive assessment of per- and polyfluoroalkyl substances, bisphenols, organophosphate esters, phthalates and personal care product additives in indoor dust",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467270",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467270"
+        },
+        {
+          "title": "Isomer-specific separation and analysis of 42 bile acids in intestinal contents using ultra-high performance liquid chromatography-tandem mass spectrometry",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467269",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467269"
+        },
+        {
+          "title": "Application of magnetite nanoparticles for selective magnetic solid-phase extraction of tetracycline residues from honey prior to their HPLC-MS/MS determination",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467268",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467268"
+        },
+        {
+          "title": "An HPLC-MS/MS multi-analyte method for the determination of 70 azo dye-derived primary aromatic amines for the assessment of migration from dyed textiles",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467267",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467267"
+        },
+        {
+          "title": "Vortex-assisted dispersive solid-phase extraction of tetracyclines in honey and eggs using green sulfonated carbon derived from spent coffee grounds",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467266",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467266"
+        },
+        {
+          "title": "Amino-rich magnetic covalent organic framework: a promising adsorbent for high-efficiency extraction of four emerging phenolic pollutants in tea beverage, milk and chicken",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467265",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467265"
+        },
+        {
+          "title": "Direct‑injection UHPLC–MS/MS multiresidue method for the determination of 97 pesticides in groundwater and surface water",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467264",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467264"
+        },
+        {
+          "title": "Multi-class supercritical fluid extraction of bioactive compounds from Citrus leaves: Development of a unified strategy for phenols, carotenoids, oxygen heterocyclic compounds and tocopherols",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467263",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467263"
+        },
+        {
+          "title": "Dried urine spot strategy coupled with UHPLC-MS/MS for the analysis of troponin activators",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467262",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467262"
+        },
+        {
+          "title": "Sol-gel-based Chitosan/porphyrin-based covalent organic framework hollow fiber for enhancement of hollow fiber solid phase microextraction of acetamiprid and imidacloprid, followed by quantification through high-performance liquid chromatography",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467261",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467261"
+        },
+        {
+          "title": "Sulfonated polyvinyl chloride microparticles onto stainless-steel sheets: A cationic-exchanger planar phase for extraction of basic drugs in saliva samples",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467259",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467259"
+        },
+        {
+          "title": "Hydrophobic deep eutectic solvent-based green sample pretreatment strategy for chromatographic–mass spectrometric analysis of anthraquinones from Rheum palmatum L․",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467258",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467258"
+        },
+        {
+          "title": "Solvent classification based on gas-liquid partition constants and the solvation parameter model",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467257",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467257"
+        },
+        {
+          "title": "Selection, optimization, and validation of thermal desorption for analysis of VOCs and PAHs in combustion emissions",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467256",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467256"
+        },
+        {
+          "title": "Sustainable magnetic porous organic frameworks for rapid pre-concentration of benzoylurea pesticides in tea",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467255",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467255"
+        },
+        {
+          "title": "Optimisation and evaluation of performic acid epoxidation for the determination of mineral oil aromatic hydrocarbons (MOAH) in edible oils and fats – a promising global approach",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467247",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467247"
+        },
+        {
+          "title": "Preparation of quinine and poly (ionic liquid)s co-modified silica gel and its application in mixed mode chromatographic separation",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467246",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467246"
+        },
+        {
+          "title": "Efficient dual-mode liquid chromatography–tandem mass spectrometry methods for quantifying major cyanotoxins in natural water",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467245",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467245"
+        },
+        {
+          "title": "Detection of ionisable lipids in equine plasma by supported liquid extraction and liquid chromatography-high-resolution tandem mass spectrometry for doping control of mRNA agents",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467244",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467244"
+        },
+        {
+          "title": "Multiscale simulation of liquid chromatography: How the mobile-phase flow velocity modulates the plate height–retention factor relationship in random and ordered beds of porous particles",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467243",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467243"
+        },
+        {
+          "title": "Method development and validation for neutral PFAS in food packaging using fast low pressure gas chromatography – mass spectrometry",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467242",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467242"
+        },
+        {
+          "title": "Insights into cellulose/pectin effect in tobermorite/mandarin orange peel composite hydrogels and rehabilitation effect on Cd- and Pb-contaminated slopes",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467241",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467241"
+        },
+        {
+          "title": "Alternative solvents in liquid chromatography and supercritical fluid chromatography for the separation of phenolic compounds",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467240",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467240"
+        },
+        {
+          "title": "Retention prediction in reversed-phase liquid chromatography using XGBoost-based quantitative structure-retention relationships models",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467239",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467239"
+        },
+        {
+          "title": "Recent advances in pretreatment and chromatographic detection methods of bisphenol A over the past decade",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467238",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467238"
+        },
+        {
+          "title": "Preparation of magnetic zwitterionic covalent organic frameworks for rapid simultaneous extraction of hydrophilic and hydrophobic organophosphates from environmental waters coupled with UHPLC-MS/MS determination",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467237",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467237"
+        },
+        {
+          "title": "Ion chromatography: Current strengths, key limitations, and future trends",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467236",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467236"
+        },
+        {
+          "title": "MOF-supported surface-imprinted polymer for hazard governance of aristolochic acids in herbal matrices: A safety-control strategy supported by multiscale simulations",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467235",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467235"
+        },
+        {
+          "title": "Portable cold-assisted head-space solid-phase microextraction coupled with GC–MS/MS for sensitive determination of trace polychlorinated naphthalenes in water",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467234",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467234"
+        },
+        {
+          "title": "Separation and enrichment of phages at the interface between two phases in a green solvent-based sugaring-out extraction system",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467222",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467222"
+        },
+        {
+          "title": "Characterization of phosphorous impurities originating from the synthesis of Sarin",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467221",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467221"
+        },
+        {
+          "title": "Analysis of organic and inorganic acids in biomass pyrolysis process samples by ion chromatography-mass spectrometry",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467220",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467220"
+        },
+        {
+          "title": "Impurity profiling of lipid-conjugated oligonucleotides using reversed-phase with and without ion-pair reagents and hydrophilic interaction liquid chromatography",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467219",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467219"
+        },
+        {
+          "title": "Stereo-sensitive modelling of gas chromatographic retention indices of mono-cycloalkanes in jet fuel range",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467218",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467218"
+        },
+        {
+          "title": "Approaches to using retention indices with coupled column pressure tuning in gas chromatography",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467217",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467217"
+        },
+        {
+          "title": "A single-plate strategy for simultaneous chemical and biological profiling of natural products via TLC-bioautography-ambient mass spectrometry",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467216",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467216"
+        },
+        {
+          "title": "Review on isotachophoresis in trace biochemical sample analysis: state of art and future prospects",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467215",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467215"
+        },
+        {
+          "title": "Polybenzimidazole-based magnetic solid-phase extraction coupled with gas chromatography–mass spectrometry for the determination of triazine herbicides in environmental waters",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467214",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467214"
+        },
+        {
+          "title": "Acid-treated ZIF-67-derived porous carbon based QuEChERS coupled with LC-MS/MS for sensitive determination of multi-pesticide residues",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467213",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467213"
+        },
+        {
+          "title": "Advances and perspectives in Oligo(dT) Affinity chromatography for mRNA capture: Resins, ligands and process intensification",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467212",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467212"
+        },
+        {
+          "title": "Cell separation coupled with surface-enhanced Raman spectroscopy: A critical review",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467211",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467211"
+        },
+        {
+          "title": "Multi-residue analysis of systemic insecticides and their transformation products in environmental matrixes: Method development and application",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467209",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467209"
+        },
+        {
+          "title": "Development and validation of a modified QuEChERS-LC-MS/MS method for multi-class pesticide residue analysis in soils from pesticide production sites",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467207",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467207"
+        },
+        {
+          "title": "Design of countercurrent separation of bufadienolides from waste toad eggs by quantum mechanism-enhanced nuclear magnetic resonance",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467206",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467206"
+        },
+        {
+          "title": "Extraction and chromatographic purification of purpurin: A scalable approach using modified dry column vacuum chromatography",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467205",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467205"
+        },
+        {
+          "title": "Analytical strategies for identifying PDE5 inhibitors in damiana (Turnera diffusa) products",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467204",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467204"
+        },
+        {
+          "title": "Chromatographic peak shape from a stochastic-diffusive model with multiple retention mechanisms: Analytic time-domain expression and derivatives",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467203",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467203"
+        },
+        {
+          "title": "Simultaneous determination of multiple organotin compounds in fish oil by GC–MS following method development and optimization",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467199",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467199"
+        },
+        {
+          "title": "Porosity and related parameters of LC columns",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.chroma.2026.467177",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467177"
+        },
         {
           "title": "Editorial Board",
           "date": "2026-08-01",
@@ -26547,6 +27196,30 @@
           "date": "2026-08-01",
           "doi": "10.1016/s0021-9673(26)00445-0",
           "sourceUrl": "https://doi.org/10.1016/s0021-9673(26)00445-0"
+        },
+        {
+          "title": "Rapid Determination of Triazine Herbicides in Environmental and Biological Fluids by hydroxyl COF-based SBSE Combined with Dielectric Barrier Discharge Ionization-Mass Spectrometry",
+          "date": "2026-08-01",
+          "doi": "10.1016/j.chroma.2026.467414",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467414"
+        },
+        {
+          "title": "PREPARATION AND CHARACTERIZATION OF A SOLVENT IMPREGNATED RESIN FOR THE RECOVERY OF RARE EARTH ELEMENTS FROM WASTE RECYCLING SOLUTIONS",
+          "date": "2026-08-01",
+          "doi": "10.1016/j.chroma.2026.467413",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467413"
+        },
+        {
+          "title": "Engineered metal organic frameworks-assisted LDI MS for metabolic analysis in in vitro diagnosis: From functional design to applications",
+          "date": "2026-08-01",
+          "doi": "10.1016/j.chroma.2026.467412",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467412"
+        },
+        {
+          "title": "High Resolution Mass Spectrometry Screening Method for Routine Surveillance of Pharmacologically Active Substance Residues in Meat and Milk",
+          "date": "2026-08-01",
+          "doi": "10.1016/j.chroma.2026.467411",
+          "sourceUrl": "https://doi.org/10.1016/j.chroma.2026.467411"
         },
         {
           "title": "Integrating GC-MS profiling and portable mass spectrometry with machine learning for comprehensive chemical characterization and rapid authentication of nine Curcuma species",
@@ -31805,23 +32478,23 @@
         "Application trends"
       ],
       "publicationTrend": {
-        "asOf": "2026-08-31",
-        "last30Days": 0,
-        "prior30Days": 145,
-        "last90Days": 203,
+        "asOf": "2026-09-01",
+        "last30Days": 108,
+        "prior30Days": 149,
+        "last90Days": 315,
         "prior90Days": 153,
-        "trailing12Months": 879,
-        "change90Pct": 33,
+        "trailing12Months": 915,
+        "change90Pct": 106,
         "direction": "Higher publication pace",
         "comparisonBasis": "Crossref publication counts: latest 90 days versus the preceding 90 days."
       },
       "trendCollectionDetail": "Collected rolling publication counts from Crossref journal metadata.",
       "itemEvidence": {
         "scope": "complete_370_day_window",
-        "queryExecutedAt": "2026-08-31T22:38:13+00:00",
-        "sourceResultCount": 879,
-        "sourceNewestDoi": "10.1016/s0021-9673(26)00556-x",
-        "sourceNewestDate": "2026-08-01",
+        "queryExecutedAt": "2026-09-01T15:29:16+00:00",
+        "sourceResultCount": 991,
+        "sourceNewestDoi": "10.1016/s0021-9673(26)00680-1",
+        "sourceNewestDate": "2026-09-01",
         "newestDoiIngested": true,
         "paginationComplete": true
       }
@@ -31864,16 +32537,424 @@
       ],
       "ingestionStatus": "Active monitoring",
       "confidenceUse": "High for biomedical separation and bioanalytical-method evidence.",
-      "lastChecked": "2026-08-31T22:38:13+00:00",
+      "lastChecked": "2026-09-01T15:29:16+00:00",
       "collectionStatus": "extracted",
-      "collectionDetail": "Collected the complete 370-day window: 347 DOI records from Crossref journal metadata.",
-      "extractedRecords": 347,
+      "collectionDetail": "Collected the complete 370-day window: 415 DOI records from Crossref journal metadata.",
+      "extractedRecords": 415,
       "recentRecords": [
+        {
+          "title": "Editorial Board",
+          "date": "2026-09-01",
+          "doi": "10.1016/s1570-0232(26)00321-1",
+          "sourceUrl": "https://doi.org/10.1016/s1570-0232(26)00321-1"
+        },
+        {
+          "title": "Linking the chemical profile of Artemisia herba-alba essential oil to its cytotoxic effects: an in silico and spermatozoa model study",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125216",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125216"
+        },
+        {
+          "title": "A spectrum-effect based method for screening active components and elucidating processing-enhanced pro-osteoblast proliferation activity of Epimedii folium using UPLC-DAD fingerprint and GC-IMS",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125215",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125215"
+        },
+        {
+          "title": "An integrated chromatographic fingerprinting strategy for quality evaluation and Q marker screening based on the bi value method: A case study of Xuezhikang capsules",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125214",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125214"
+        },
+        {
+          "title": "A systematic profiling of chemicalome and metabolome of Citrus aurantium ‘Changshan-huyou’ flavonoids to provide insights into its potential in vivo pharmacodynamic material basis",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125213",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125213"
+        },
+        {
+          "title": "Optimization of sample preparation for post-translational modification analysis: establishing an accurate method for the determination of deamidation and succinimide intermediates in monoclonal antibodies",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125212",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125212"
+        },
+        {
+          "title": "Dual high-resolution profiling integrates α-glucosidase inhibition and DPPH assays to identify bioactive constituents in Lygodium japonicum roots",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125210",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125210"
+        },
+        {
+          "title": "GC–MS analysis and antioxidant activity of volatile component in Moringa oleifera Lam. seed shell from different origins",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125209",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125209"
+        },
+        {
+          "title": "Integrating lipidomics and network pharmacology reveals Valproic acid remodels the lipid metabolic microenvironment in hepatocellular carcinoma",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125208",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125208"
+        },
+        {
+          "title": "Chemometric-based analytical standardization of bee venom: Resolving the melittin-equivalence paradox through multivariate quality assurance",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125207",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125207"
+        },
+        {
+          "title": "Ultrafast affinity extraction with non-covalent entrapment for biointeraction analysis: development and applications to single- and multi-site drug-protein binding",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125206",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125206"
+        },
+        {
+          "title": "Comparative evaluation of native and fluorinated amino acid probes in stereoselective plasma profiling: A proof-of-concept study by chiral LC–MS/MS",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125205",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125205"
+        },
+        {
+          "title": "Integrated in silico transdermal prediction, serum pharmacochemistry, and experimental validation reveal the active constituents and therapeutic mechanism of Aifu Nuangong plaster against primary dysmenorrhea",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125204",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125204"
+        },
+        {
+          "title": "Characterization of lipophilic oil fraction from Primula vulgaris: Chemical profile, antioxidant capacity, and DNA damage assessment",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125203",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125203"
+        },
+        {
+          "title": "Discovery of the efficacious component group of Bu Fei formula and its mechanism of ameliorating chronic obstructive pulmonary disease by inhibiting the IL-33 pathway",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125202",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125202"
+        },
+        {
+          "title": "Integrated network pharmacology, gut microbiome, and metabolomics analyses reveal the protective mechanism of Guizhi Gegen decoction against influenza",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125201",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125201"
+        },
+        {
+          "title": "EGCG alleviates sepsis-induced myocardial injury by regulating macrophage polarization via the TLR4/MyD88/NF-κB pathway",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125200",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125200"
+        },
+        {
+          "title": "Identification of 11α/β-hydroxy-12β-deoxysaxitoxin (12β-deoxyM2) in bivalve molluscs",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125199",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125199"
+        },
+        {
+          "title": "Development and application of a liquid chromatography–tandem mass spectrometry method for the analysis of Areca nut alkaloids in rat plasma for a toxicokinetic study",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125198",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125198"
+        },
+        {
+          "title": "Matrix fidelity in microsampling: Plasma-first LC–MS/MS quantification of mycophenolic acid and MPAG",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125197",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125197"
+        },
+        {
+          "title": "Comparative study on detoxification and efficacy-preserving mechanisms of two Tiebangchui processing methods from compositional alterations to in vivo systemic behavior",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125196",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125196"
+        },
+        {
+          "title": "Characterizing the molecular signature of obesity through urine metabolomics in a large Chinese population",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125195",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125195"
+        },
+        {
+          "title": "A method for quantifying non-esterified cis-9,trans-11-conjugated linoleic acid in finger-prick plasma by LC/ESI-MS/MS with isotope-coded derivatization",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125194",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125194"
+        },
+        {
+          "title": "The discovery of α-glucosidase inhibitors from Folium Mori using virtual screening and ligand fishing strategies",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125193",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125193"
+        },
+        {
+          "title": "Hydrogen-bonded organic frameworks-immobilized thrombin: Ligand fishing of thrombin inhibitors from Chishao and Chishao–Chuanxiong herbal pair",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125192",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125192"
+        },
+        {
+          "title": "Headgroup and acyl composition determine lipid recovery from silica in preparative HPTLC workflows",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125191",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125191"
+        },
+        {
+          "title": "A twin enrichment method based on dual-template molecularly imprinted polymer and dispersive liquid-liquid microextraction for simultaneous determination of two COVID-19 medicines in biological fluids",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125190",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125190"
+        },
+        {
+          "title": "Chromatographic Insights into Marine Science: Celebrating 125 Years of the Institute of Marine Research in Norway",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125189",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125189"
+        },
+        {
+          "title": "HPLC-MS/MS quantification of genomic deoxyuridine via differential protonation",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125188",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125188"
+        },
+        {
+          "title": "Rapid two-step purification of Podoviridae bacteriophages using CIMmultus monolithic chromatography",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125187",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125187"
+        },
+        {
+          "title": "Comprehensive profiling of synthetic cannabinoids fragment ions using UPLC-HRMS in conjunction with online databases",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125186",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125186"
+        },
+        {
+          "title": "QSRR analysis of retention behavior of androstane-3-oxime derivatives in diverse RP-UHPLC systems",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125185",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125185"
+        },
+        {
+          "title": "Determination of fluorine in lithium cobalt oxide samples by acid digestion–ion chromatography – A preliminary study",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125184",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125184"
+        },
+        {
+          "title": "High throughput analysis of methoxy polyethylene glycol polymers with 6 subunits by UPCC-MS3 coupled with multiple fragmentation to improve sensitivity",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125183",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125183"
+        },
+        {
+          "title": "Stability-indicating RP-HPLC–DAD method for aspirin and vonoprazan using analytical quality by design and comprehensive greenness assessment",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125182",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125182"
+        },
+        {
+          "title": "Integrating UHPLC-Q-TOF/MS and multi-omics to elucidate the regulatory mechanisms of Xiong's Shiwei Wendan decoction in MASLD",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125181",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125181"
+        },
+        {
+          "title": "An integrated strategy combining Spectrum-effect relationships with in-vitro activity verification for the screening of vasodilatory components from Gastrodia elata Blume",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125180",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125180"
+        },
+        {
+          "title": "Study on Sijunzi decoction regulating intestinal microbiota structure and metabolic profile for improving chronic fatigue syndrome",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125179",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125179"
+        },
+        {
+          "title": "Systematic profiling of chemical components in Tribulus terrestris L. extract and its absorbed parent compounds/metabolites in rat plasma utilizing UPLC-Q-TOF/MS",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125178",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125178"
+        },
+        {
+          "title": "Enantioselective analysis of synthetic cathinones and amphetamine-type stimulants in biological fluids via LC-MS/MS",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125177",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125177"
+        },
+        {
+          "title": "High-resolution LC–MS/MS analysis of brain N-glycans reveals composition-specific changes in Parkinson's disease",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125176",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125176"
+        },
+        {
+          "title": "Angelicae Sinensis Radix exerts antidepressant effects by regulating erythrocyte homeostasis via the sphingolipid metabolism pathway",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125175",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125175"
+        },
+        {
+          "title": "Screening and identification of potent glycosidase (α-amylase and α-glucosidase) inhibitors from Eucommia ulmoides Oliver male flowers using bioaffinity ultrafiltration coupled with UHPLC-HRMS and biolayer interferometry",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125174",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125174"
+        },
+        {
+          "title": "Shugan Xiaozhi decoction protects mice against metabolic dysfunction associated steatohepatitis by modulating liver injury and intestinal flora",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125173",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125173"
+        },
+        {
+          "title": "From dust to disease: Neopterin as a marker of silicosis in ceramic industry workers",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125172",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125172"
+        },
+        {
+          "title": "Porous quaternized chitosan microspheres for heparin adsorption: preparation, characterization, and performance",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125171",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125171"
+        },
+        {
+          "title": "Targeted affinity fishing of components from the n-butanol extract of Gualou-Xiebai-Banxia decoction for the FGF21/FGFR1/βKlotho-FRS2α pathway and verification of their activities",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125170",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125170"
+        },
+        {
+          "title": "Single-step purification of soybean peroxidase using Aminobenzohydrazide-based affinity chromatography matrices",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125169",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125169"
+        },
+        {
+          "title": "Sulfonic acid-functionalized covalent organic framework-based dispersive solid-phase extraction combined with miniaturized mass spectrometry for the analysis of diquat in biological samples",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125168",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125168"
+        },
+        {
+          "title": "Simultaneous determination of trimethylamine N-oxide (TMAO) and its 15 related metabolites by UPLC-MS/MS in human serum",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125167",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125167"
+        },
+        {
+          "title": "Simultaneous UHPLC-MS/MS profiling of eight phosphate metabolites reveals divergent metabolic reprogramming under hypoxic stress",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125166",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125166"
+        },
+        {
+          "title": "A simple LC-MS/MS method for the simultaneous determination of 18 free fatty acids in human serum",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125165",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125165"
+        },
+        {
+          "title": "Synthetic progress and applications of bioaffinity chromatography columns",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125164",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125164"
+        },
+        {
+          "title": "Development and validation of an LC-MS/MS assay for the quantification of Miransertib in human plasma and clinical application",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125161",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125161"
+        },
+        {
+          "title": "Integrated metabolomics of tumor and plasma reveals local and systemic metabolic responses to T-DM1 therapy",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125160",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125160"
+        },
+        {
+          "title": "Exploring anti-inflammatory related quality markers of Urtica cannabina L. based on spectrum–effect relationship",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125159",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125159"
+        },
+        {
+          "title": "The liver-hippocampus metabolic dialogue: a novel target and mechanism for the antidepressant action of Zhi-Zi-Hou-Po decoction",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125151",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125151"
+        },
+        {
+          "title": "Development of trypsin peptide mapping for hydroxylysine modification quantification in an IgG4 bispecific antibody and investigation of influencing factors",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125150",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125150"
+        },
+        {
+          "title": "Comprehensive profiling and sensitive quantification of gangliosides in mouse brain based on boron-doped TiO2 composites coupled with UPLC-cIM-MS/UPLC-QQQ-MS/MS",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125149",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125149"
+        },
+        {
+          "title": "Porous framework materials as advanced adsorbents in needle trap devices (NTDs): A critical review",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125148",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125148"
+        },
+        {
+          "title": "Validation of an HPLC-MS method for simultaneous determination of seven troponin activators in human urine and serum for doping control",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125147",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125147"
+        },
+        {
+          "title": "Determination and stereoselective pharmacokinetics of fluralaner enantiomers in broiler chickens by liquid chromatography-tandem mass spectrometry",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125146",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125146"
+        },
+        {
+          "title": "Oridonin and ponicidin induce GSDME-mediated pyroptosis in pancreatic ductal adenocarcinoma",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125145",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125145"
+        },
+        {
+          "title": "Molecularly imprinted polymers: Recent advances in protein chromatography",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125136",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125136"
+        },
+        {
+          "title": "Kaempferol in Jichuan decoction alleviates slow-transit constipation by attenuating oxidative stress-induced interstitial cells of Cajal apoptosis: A network pharmacological study",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125135",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125135"
+        },
+        {
+          "title": "Polyacrylonitrile/polypyrrole nanofiber-filled packed-fiber solid-phase extraction coupled with HPLC-FLD for matrix-interference-resistant determination of urinary pteridines and its application in autism spectrum disorder research",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125134",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125134"
+        },
+        {
+          "title": "Determination of kinetic and equilibrium parameters of three phenolic acids with CaSR using multiple affinity chromatographic approaches and isothermal titration calorimetry",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jchromb.2026.125127",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125127"
+        },
         {
           "title": "Editorial Board",
           "date": "2026-08-01",
           "doi": "10.1016/s1570-0232(26)00244-8",
           "sourceUrl": "https://doi.org/10.1016/s1570-0232(26)00244-8"
+        },
+        {
+          "title": "Simultaneous analysis of 40 pyrrolizidine alkaloids in herbs and spices by supercritical fluid chromatography-tandem mass spectrometry",
+          "date": "2026-08-01",
+          "doi": "10.1016/j.jchromb.2026.125290",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2026.125290"
         },
         {
           "title": "Development and optimization of a mobile affinity selection chromatography method for analysis of therapeutic monoclonal antibody aggregates in the presence of human serum albumin",
@@ -33958,23 +35039,23 @@
         "Application trends"
       ],
       "publicationTrend": {
-        "asOf": "2026-08-31",
-        "last30Days": 0,
-        "prior30Days": 18,
-        "last90Days": 28,
+        "asOf": "2026-09-01",
+        "last30Days": 67,
+        "prior30Days": 19,
+        "last90Days": 96,
         "prior90Days": 109,
-        "trailing12Months": 347,
-        "change90Pct": -74,
+        "trailing12Months": 386,
+        "change90Pct": -12,
         "direction": "Lower publication pace",
         "comparisonBasis": "Crossref publication counts: latest 90 days versus the preceding 90 days."
       },
       "trendCollectionDetail": "Collected rolling publication counts from Crossref journal metadata.",
       "itemEvidence": {
         "scope": "complete_370_day_window",
-        "queryExecutedAt": "2026-08-31T22:38:13+00:00",
-        "sourceResultCount": 347,
-        "sourceNewestDoi": "10.1016/s1570-0232(26)00244-8",
-        "sourceNewestDate": "2026-08-01",
+        "queryExecutedAt": "2026-09-01T15:29:16+00:00",
+        "sourceResultCount": 415,
+        "sourceNewestDoi": "10.1016/s1570-0232(26)00321-1",
+        "sourceNewestDate": "2026-09-01",
         "newestDoiIngested": true,
         "paginationComplete": true
       }
@@ -34018,11 +35099,23 @@
       ],
       "ingestionStatus": "Active monitoring",
       "confidenceUse": "High for peer-reviewed MS technology and application direction.",
-      "lastChecked": "2026-08-31T22:38:13+00:00",
+      "lastChecked": "2026-09-01T15:29:16+00:00",
       "collectionStatus": "extracted",
-      "collectionDetail": "Collected the complete 370-day window: 358 DOI records from Crossref journal metadata.",
-      "extractedRecords": 358,
+      "collectionDetail": "Collected the complete 370-day window: 357 DOI records from Crossref journal metadata.",
+      "extractedRecords": 357,
       "recentRecords": [
+        {
+          "title": "Evaluation of Free and Released Sulfur Mustard Diols in Human Blood and Urine Using Multi-ionization GC–QQQ and GC–Q-TOF",
+          "date": "2026-08-26",
+          "doi": "10.1021/jasms.6c00197",
+          "sourceUrl": "https://doi.org/10.1021/jasms.6c00197"
+        },
+        {
+          "title": "Ion Mobility-Collision Induced Unfolding Detects Stability Shifts within Hidden Protein Conformer Families",
+          "date": "2026-08-25",
+          "doi": "10.1021/jasms.6c00275",
+          "sourceUrl": "https://doi.org/10.1021/jasms.6c00275"
+        },
         {
           "title": "Optimized Sodium-Enhanced MALDI-2 Enables Multimodal Imaging of Triacylglycerols",
           "date": "2026-08-25",
@@ -36152,24 +37245,6 @@
           "date": "2025-08-27",
           "doi": "10.1021/jasms.5c00213",
           "sourceUrl": "https://doi.org/10.1021/jasms.5c00213"
-        },
-        {
-          "title": "Interdomain Interactions Modulate Refolding Kinetics and Aggregation in a Monoclonal Antibody",
-          "date": "2025-08-26",
-          "doi": "10.1021/jasms.5c00166",
-          "sourceUrl": "https://doi.org/10.1021/jasms.5c00166"
-        },
-        {
-          "title": "Side Chain Driven Mass Spectral Fragmentation of Lys Containing Peptides: C<sup>α</sup>-CO Bond Cleavage in Xxx-Lys-Xxx Sequences",
-          "date": "2025-08-26",
-          "doi": "10.1021/jasms.5c00154",
-          "sourceUrl": "https://doi.org/10.1021/jasms.5c00154"
-        },
-        {
-          "title": "Absolute Quantitation of Coeluting Impurities in Peptide Drugs Using High Resolution Mass Spectrometry: Glucagon a Case Study in Pharmaceutical Development",
-          "date": "2025-08-26",
-          "doi": "10.1021/jasms.5c00105",
-          "sourceUrl": "https://doi.org/10.1021/jasms.5c00105"
         }
       ],
       "metadataEndpoint": "https://api.crossref.org/journals/1044-0305/works",
@@ -36178,23 +37253,23 @@
         "Application trends"
       ],
       "publicationTrend": {
-        "asOf": "2026-08-31",
-        "last30Days": 21,
+        "asOf": "2026-09-01",
+        "last30Days": 23,
         "prior30Days": 34,
-        "last90Days": 87,
-        "prior90Days": 75,
+        "last90Days": 82,
+        "prior90Days": 80,
         "trailing12Months": 350,
-        "change90Pct": 16,
-        "direction": "Higher publication pace",
+        "change90Pct": 2,
+        "direction": "Stable publication pace",
         "comparisonBasis": "Crossref publication counts: latest 90 days versus the preceding 90 days."
       },
       "trendCollectionDetail": "Collected rolling publication counts from Crossref journal metadata.",
       "itemEvidence": {
         "scope": "complete_370_day_window",
-        "queryExecutedAt": "2026-08-31T22:38:13+00:00",
-        "sourceResultCount": 358,
-        "sourceNewestDoi": "10.1021/jasms.6c00227",
-        "sourceNewestDate": "2026-08-25",
+        "queryExecutedAt": "2026-09-01T15:29:16+00:00",
+        "sourceResultCount": 357,
+        "sourceNewestDoi": "10.1021/jasms.6c00197",
+        "sourceNewestDate": "2026-08-26",
         "newestDoiIngested": true,
         "paginationComplete": true
       }
@@ -36239,11 +37314,29 @@
       ],
       "ingestionStatus": "Active monitoring",
       "confidenceUse": "High for cross-market analytical and bioanalytical evidence.",
-      "lastChecked": "2026-08-31T22:38:13+00:00",
+      "lastChecked": "2026-09-01T15:29:16+00:00",
       "collectionStatus": "extracted",
-      "collectionDetail": "Collected the complete 370-day window: 691 DOI records from Crossref journal metadata.",
-      "extractedRecords": 691,
+      "collectionDetail": "Collected the complete 370-day window: 693 DOI records from Crossref journal metadata.",
+      "extractedRecords": 693,
       "recentRecords": [
+        {
+          "title": "A portable Au@Pt nanozyme–based colorimetric immunosensor for highly sensitive on-site detection of silk textile artifacts",
+          "date": "2026-09-01",
+          "doi": "10.1007/s00216-026-06774-x",
+          "sourceUrl": "https://doi.org/10.1007/s00216-026-06774-x"
+        },
+        {
+          "title": "N, S-doped carbon dots/chiral ionic liquid composites for enhanced electrochemical recognition of tryptophan enantiomers",
+          "date": "2026-09-01",
+          "doi": "10.1007/s00216-026-06771-0",
+          "sourceUrl": "https://doi.org/10.1007/s00216-026-06771-0"
+        },
+        {
+          "title": "Assessment of metal variability in green and red seaweed exposed to TiO2 nanoparticles",
+          "date": "2026-09-01",
+          "doi": "10.1007/s00216-026-06763-0",
+          "sourceUrl": "https://doi.org/10.1007/s00216-026-06763-0"
+        },
         {
           "title": "Bacterial biomineralization-engineered Ag-Pt nanozyme for label-free and sensitive colorimetric detection of enrofloxacin in aquatic products",
           "date": "2026-08-31",
@@ -40383,12 +41476,6 @@
           "date": "2025-08-27",
           "doi": "10.1007/s00216-025-06040-6",
           "sourceUrl": "https://doi.org/10.1007/s00216-025-06040-6"
-        },
-        {
-          "title": "Medium-entropy nanoenzyme with high oxidase-like activity for sensitive detection of interleukin-6 based on ELISA",
-          "date": "2025-08-26",
-          "doi": "10.1007/s00216-025-06054-0",
-          "sourceUrl": "https://doi.org/10.1007/s00216-025-06054-0"
         }
       ],
       "metadataEndpoint": "https://api.crossref.org/journals/1618-2642/works",
@@ -40397,23 +41484,23 @@
         "Application trends"
       ],
       "publicationTrend": {
-        "asOf": "2026-08-31",
-        "last30Days": 57,
-        "prior30Days": 58,
+        "asOf": "2026-09-01",
+        "last30Days": 60,
+        "prior30Days": 56,
         "last90Days": 184,
-        "prior90Days": 160,
-        "trailing12Months": 673,
-        "change90Pct": 15,
+        "prior90Days": 161,
+        "trailing12Months": 672,
+        "change90Pct": 14,
         "direction": "Higher publication pace",
         "comparisonBasis": "Crossref publication counts: latest 90 days versus the preceding 90 days."
       },
       "trendCollectionDetail": "Collected rolling publication counts from Crossref journal metadata.",
       "itemEvidence": {
         "scope": "complete_370_day_window",
-        "queryExecutedAt": "2026-08-31T22:38:13+00:00",
-        "sourceResultCount": 691,
-        "sourceNewestDoi": "10.1007/s00216-026-06766-x",
-        "sourceNewestDate": "2026-08-31",
+        "queryExecutedAt": "2026-09-01T15:29:16+00:00",
+        "sourceResultCount": 693,
+        "sourceNewestDoi": "10.1007/s00216-026-06774-x",
+        "sourceNewestDate": "2026-09-01",
         "newestDoiIngested": true,
         "paginationComplete": true
       }
@@ -40456,11 +41543,323 @@
       ],
       "ingestionStatus": "Active monitoring",
       "confidenceUse": "High for pharmaceutical analytical-method and validation evidence.",
-      "lastChecked": "2026-08-31T22:38:13+00:00",
+      "lastChecked": "2026-09-01T15:29:16+00:00",
       "collectionStatus": "extracted",
-      "collectionDetail": "Collected the complete 370-day window: 541 DOI records from Crossref journal metadata.",
-      "extractedRecords": 541,
+      "collectionDetail": "Collected the complete 370-day window: 592 DOI records from Crossref journal metadata.",
+      "extractedRecords": 592,
       "recentRecords": [
+        {
+          "title": "Editorial Board",
+          "date": "2026-09-01",
+          "doi": "10.1016/s0731-7085(26)00233-5",
+          "sourceUrl": "https://doi.org/10.1016/s0731-7085(26)00233-5"
+        },
+        {
+          "title": "Editorial Board",
+          "date": "2026-09-01",
+          "doi": "10.1016/s0731-7085(26)00199-8",
+          "sourceUrl": "https://doi.org/10.1016/s0731-7085(26)00199-8"
+        },
+        {
+          "title": "Illuminating the Dark Host Cell Proteome: A host cell protein coverage method for LC-MS impurity assays",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117555",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117555"
+        },
+        {
+          "title": "Comprehensive impurity profiling and stability assessment of indacaterol maleate integrating LC–MS and in silico genotoxicity",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117554",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117554"
+        },
+        {
+          "title": "Differences in hepatic metabolism of Liandan Xiaoyan Formula between control and ulcerative colitis mice associated with FXR/PXR-CYP450 changes",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117548",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117548"
+        },
+        {
+          "title": "Reconsidering astatine-211 analytics: Retention effects in reversed-phase HPLC",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117547",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117547"
+        },
+        {
+          "title": "Hydrophilic interaction chromatography and tandem mass spectrometry for the characterization of methylated oligoribonucleotides",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117546",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117546"
+        },
+        {
+          "title": "Investigation of excipient-related artifacts observed in the leachables study of tiragolumab by LC-HRMS and GC-MS",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117545",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117545"
+        },
+        {
+          "title": "Multi-omics reveals the role of PPARα signaling in the treatment of hyperlipidemia with Qinlian Hongqu Decoction",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117544",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117544"
+        },
+        {
+          "title": "Assessing valproate-induced changes in NADH levels in patients with type 2 diabetes using a silver nanoparticle-based method: An in-vitro study",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117543",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117543"
+        },
+        {
+          "title": "Degradation study of thiamine hydrochloride and analysis of expired ampoules using a novel, validated HPLC-UV method",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117542",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117542"
+        },
+        {
+          "title": "Development and validation of a sensitive UPLC-MS/MS platform for comprehensive bile acid profiling in multiple biological matrices: Application to a 17α-ethinylestradiol-induced cholestatic rat model",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117541",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117541"
+        },
+        {
+          "title": "Ammonium adduct-triggered MS³ detection and post-column infusion in UPC²-MS³: A green strategy for sensitive tissue distribution study of methoxy polyethylene glycol with 6 subunits in zebrafish",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117540",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117540"
+        },
+        {
+          "title": "Integrated metabolomics and transcriptomics analysis to reveal the mechanism of Xuefu Zhuyu Decoction in the treatment of nitroglycerin-induced chronic migraine",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117539",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117539"
+        },
+        {
+          "title": "Evaluation of the impact of uncertainty on mass balance applied to stress testing studies",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117538",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117538"
+        },
+        {
+          "title": "Systemic defense against oxidative stress – The role of iron imbalance revealed by multiomics mechanisms leading to urosepsis",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117537",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117537"
+        },
+        {
+          "title": "Pharmacokinetics and qualitative metabolite profiling of major alkaloids in rats after acupoint administration of Xiatianwu Injection",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117536",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117536"
+        },
+        {
+          "title": "Mechanism of Qibai Pingfei Capsule in ameliorating COPD-associated inflammation via the ABCA3/PPARγ/NF-κB pathway: A serum-targeted metabolomics and lipidomics study",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117535",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117535"
+        },
+        {
+          "title": "Perturbation of the quaternary state of insulin aspart formulation after prolonged storage in a closed-vial, real-world setting",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117527",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117527"
+        },
+        {
+          "title": "Investigating the pharmacokinetics and conjugate metabolism of potential hepatotoxic prenylflavonoids in Epimedium extract using LC-MS/MS",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117525",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117525"
+        },
+        {
+          "title": "Optimizing LOD/LOQ and sample consumption during analytical ultracentrifugation to characterize AAV gene therapy vectors",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117524",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117524"
+        },
+        {
+          "title": "Integrated chiral separation, recognition mechanism and enantioselective pharmacokinetic study of tetrahydrojatrorrhizine enantiomers by HPLC-MS/MS method",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117522",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117522"
+        },
+        {
+          "title": "Development and validation of a rapid UPLC-MS/MS method for quantifying bevacizumab in human plasma and application in Chinese cancer patients",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117521",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117521"
+        },
+        {
+          "title": "A sustainable optical nanosensor based on biogenic mesoporous silica and a chromophore for ultra-trace Fe³ ⁺ determination in environmental and pharmaceutical samples",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117520",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117520"
+        },
+        {
+          "title": "UHPLC-Orbitrap-HRMS-based metabolite identification and profiling of methylophiopogonone A, A bioactive constituent from Ophiopogon japonicus",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117519",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117519"
+        },
+        {
+          "title": "Antiproliferative effects of pachymic acid on thyroid cancer cells and characterization of its metabolites",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117518",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117518"
+        },
+        {
+          "title": "Integrated LC-HRMS/MS-based metabolomics and in vitro and in vivo bioassays for comparative evaluation of two ethnomedicinal Paris species and their official counterparts",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117517",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117517"
+        },
+        {
+          "title": "PCN-224/β-Cyclodextrin dual-modified magnetic nanocomposite for efficient extraction and determination of nobiletin and tangeretin in Chenpi-based beverages",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117516",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117516"
+        },
+        {
+          "title": "An ultrasensitive chemiluminescence immunoassay for the detection of thyroid stimulating hormone based on antibody charge distribution–guided directional conjugation on magnetic beads",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117515",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117515"
+        },
+        {
+          "title": "Development and validation of an UHPLC-MS/MS method for simultaneous quantification of Tazobactam, Meropenem, Vancomycin, Linezolid and Piperacillin in human plasma: Application in critically ill patients",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117514",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117514"
+        },
+        {
+          "title": "A novel pharmacokinetics-pharmacodynamics strategy for effective components exploration combined with metabolomics and proteomics: Application to Xingbei Zhike granule",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117513",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117513"
+        },
+        {
+          "title": "Deep eutectic solvent-assisted magnetic nanoparticle extraction of curdione from Curcuma wenyujin for analytical and bioactivity evaluation",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117512",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117512"
+        },
+        {
+          "title": "Validation of a quantitative analysis method for tryptophan metabolites in asthmatic mice and bacteria using GC-MS/MS",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117511",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117511"
+        },
+        {
+          "title": "Targeted phytocannabinomics provides new insights into the biosynthetic origin of cis-Δ⁹-THCA in Cannabis sativa L.",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117510",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117510"
+        },
+        {
+          "title": "Sorbent-coated metal discs: A hybrid active/passive exhaled breath sampling alternative for early lung cancer screening",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117509",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117509"
+        },
+        {
+          "title": "The drug substance of traditional Japanese Kampo medicines retains exosome-like nanoparticles derived from crude drugs",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117508",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117508"
+        },
+        {
+          "title": "Identification of anticancer and cardioprotective quality markers in Chuanxiong Rhizoma using a bioassay driven effect-constituent index approach",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117507",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117507"
+        },
+        {
+          "title": "Simultaneous quantification and aerodynamic particle size distribution analysis of tiotropium bromide and olodaterol in nebulized aerosol using UHPLC-MS/MS",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117500",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117500"
+        },
+        {
+          "title": "Methyl orange-enhanced DNA hybridization: A gene sensor approach for hepatitis delta detection",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117499",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117499"
+        },
+        {
+          "title": "Biosensor based on hybrid composite and Concanavalin a lectin for microorganisms differentiation",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117498",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117498"
+        },
+        {
+          "title": "Discovery of anti-renal fibrosis quality markers from Piperis longi fructus: An integrated strategy of hollow fibre cell trapping method coupled with liquid chromatography-mass spectrometry and in vitro efficacy verification",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117497",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117497"
+        },
+        {
+          "title": "Development of a facile and novel strategy for N-glycan analysis: Stable isotope labeling via Endo‑CC N180H‑catalyzed transglycosylation for quantitative glycomics",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117496",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117496"
+        },
+        {
+          "title": "Strategic characterization of active pharmaceutical ingredients co-eluting impurities: Identification, enrichment and structural elucidation of an oxidized impurity from mobocertinib drug substance",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117495",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117495"
+        },
+        {
+          "title": "Network pharmacology and experimental validation reveal the multi-target mechanism of Jianpi XiaoxianFormula (BYTQF) against Allergic Rhinitis in mice",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117494",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117494"
+        },
+        {
+          "title": "Uncovering the active substances of Modified Fangjihuangqi Decoction in reducing cardiomyocytes’ mitochondrial oxidative damage",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117493",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117493"
+        },
+        {
+          "title": "Characterization of forced degradation products of tyrosine kinase inhibitor apatinib mesylate by LC-MS/MS and NMR with in silico toxicity assessment",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117492",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117492"
+        },
+        {
+          "title": "A holistic strategy for the preparation and quality control of sugar-free Fufang Ciwujia granules: Comprehensive quality evaluation through fingerprint and QAMS",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117491",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117491"
+        },
+        {
+          "title": "Metabolism and efficacy-oriented screening of Q-markers for platycodon grandiflorum: A comprehensive evaluation framework of inflammation-specific metabolites and pharmacologically active components in chronic pharyngitis treatment",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117490",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117490"
+        },
+        {
+          "title": "Development and validation of an online extraction HPLC-HRMS method for the quantification of carbapenems in FecalSwab™ samples",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117489",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117489"
+        },
+        {
+          "title": "GC-MS method development and validation for the determination of Short Chain Fatty Acids in human feces",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117488",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117488"
+        },
+        {
+          "title": "Heterologous internal calibration for multiplexed internal quantification in targeted LC–MS/MS bioanalysis",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117487",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117487"
+        },
+        {
+          "title": "A rapid 2-minute LC-MS/MS method with simple protein precipitation for simultaneous determination of tryptophan and its two metabolites kynurenine and kynurenic acid in human serum",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.jpba.2026.117448",
+          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117448"
+        },
         {
           "title": "Editorial Board",
           "date": "2026-08-01",
@@ -40490,12 +41889,6 @@
           "date": "2026-08-01",
           "doi": "10.1016/j.jpba.2026.117717",
           "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117717"
-        },
-        {
-          "title": "An integrated NP-CMC-HPLC strategy for screening bioactive candidates with antidepressant potential and quality characterization of Curcuma wenyujin",
-          "date": "2026-08-01",
-          "doi": "10.1016/j.jpba.2026.117715",
-          "sourceUrl": "https://doi.org/10.1016/j.jpba.2026.117715"
         },
         {
           "title": "Comprehensive Chemical Characterization of Quanduzhong Capsules and In Vivo Profiling of Parent Constituents and Metabolites in Rats by UPLC-Q-TOF-MSE",
@@ -43714,23 +45107,23 @@
         "Application trends"
       ],
       "publicationTrend": {
-        "asOf": "2026-08-31",
-        "last30Days": 0,
-        "prior30Days": 35,
-        "last90Days": 60,
+        "asOf": "2026-09-01",
+        "last30Days": 52,
+        "prior30Days": 34,
+        "last90Days": 111,
         "prior90Days": 75,
-        "trailing12Months": 541,
-        "change90Pct": -20,
-        "direction": "Lower publication pace",
+        "trailing12Months": 509,
+        "change90Pct": 48,
+        "direction": "Higher publication pace",
         "comparisonBasis": "Crossref publication counts: latest 90 days versus the preceding 90 days."
       },
       "trendCollectionDetail": "Collected rolling publication counts from Crossref journal metadata.",
       "itemEvidence": {
         "scope": "complete_370_day_window",
-        "queryExecutedAt": "2026-08-31T22:38:13+00:00",
-        "sourceResultCount": 541,
-        "sourceNewestDoi": "10.1016/s0731-7085(26)00172-x",
-        "sourceNewestDate": "2026-08-01",
+        "queryExecutedAt": "2026-09-01T15:29:16+00:00",
+        "sourceResultCount": 592,
+        "sourceNewestDoi": "10.1016/s0731-7085(26)00233-5",
+        "sourceNewestDate": "2026-09-01",
         "newestDoiIngested": true,
         "paginationComplete": true
       }
@@ -43774,11 +45167,587 @@
       ],
       "ingestionStatus": "Active monitoring",
       "confidenceUse": "High for analytical-method direction across environmental, food, clinical, and academic markets.",
-      "lastChecked": "2026-08-31T22:38:13+00:00",
+      "lastChecked": "2026-09-01T15:29:16+00:00",
       "collectionStatus": "extracted",
-      "collectionDetail": "Collected the complete 370-day window: 1781 DOI records from Crossref journal metadata.",
-      "extractedRecords": 1781,
+      "collectionDetail": "Collected the complete 370-day window: 1879 DOI records from Crossref journal metadata.",
+      "extractedRecords": 1879,
       "recentRecords": [
+        {
+          "title": "Editorial Board",
+          "date": "2026-09-01",
+          "doi": "10.1016/s0039-9140(26)00637-5",
+          "sourceUrl": "https://doi.org/10.1016/s0039-9140(26)00637-5"
+        },
+        {
+          "title": "Front Matter",
+          "date": "2026-09-01",
+          "doi": "10.1016/s0039-9140(26)00636-3",
+          "sourceUrl": "https://doi.org/10.1016/s0039-9140(26)00636-3"
+        },
+        {
+          "title": "Outside Front Cover",
+          "date": "2026-09-01",
+          "doi": "10.1016/s0039-9140(26)00634-x",
+          "sourceUrl": "https://doi.org/10.1016/s0039-9140(26)00634-x"
+        },
+        {
+          "title": "Rapid on-site and simultaneous detection of four foodborne Vibrio species in seafood using a microfluidic RPA-CRISPR/Cas12a platform",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.130547",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.130547"
+        },
+        {
+          "title": "Determination of six alternaria toxins in prepared dishes using MIL-101(Fe)-based dispersive solid-phase extraction coupled with ultra-high performance liquid chromatography-tandem mass spectrometry",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.130546",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.130546"
+        },
+        {
+          "title": "Berberine-Mediated Bidirectional Regulation of MIL-101(Fe-Cu) nanozyme: A Novel Probe-Free Colorimetric Strategy for Alkaloid Sensing and Its Biological Application",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.130544",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.130544"
+        },
+        {
+          "title": "Recent Advances of Colorimetric Sensors based on Laccase-Mimicking Nanozymes",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.130541",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.130541"
+        },
+        {
+          "title": "A 3D-printed extraction device based on aptamer-functionalized metal–organic frameworks for ochratoxin A determination in alcoholic beverages",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.130539",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.130539"
+        },
+        {
+          "title": "Electrospun In2O3–WO3–Pd heterojunction nanofibers for ultralow-concentration NO2 detection at low-temperature",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129946",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129946"
+        },
+        {
+          "title": "Deep eutectic solvent-based rapid extraction for multielement analysis of onion pulp and peel by ICP-MS/MS: a green alternative to microwave digestion",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129940",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129940"
+        },
+        {
+          "title": "Highly sensitive determination of glutathione with a colorimetric sensor based on bimetallic Pt–Cu nanorods as peroxidase mimetics",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129938",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129938"
+        },
+        {
+          "title": "Ultra-sensitive acrylamide detection in potato chips extract based on carbon paste electrode modified with liposomes carrying ferrocene-labeled aptamer",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129937",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129937"
+        },
+        {
+          "title": "Non-enzymatic Raman sensing and imaging of lactic acid directly from intact microbial cultures with protonation-state resolution",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129934",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129934"
+        },
+        {
+          "title": "Biowaste to biosensors: Comparative insights into chitosan-based nanocomposites for high-performance electrochemical sensing",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129931",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129931"
+        },
+        {
+          "title": "Flow injection analysis-stripping voltammetric sensor for determination lead(II) in aqueous environments",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129928",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129928"
+        },
+        {
+          "title": "Selective one-pot fluorescent probing technique for determination of tolterodine in dosage forms, content uniformity, and human plasma via coumarin synthesis",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129927",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129927"
+        },
+        {
+          "title": "A portable colorimetric-fluorometric dual-mode paper-based sensor based on NCDs@NH2-MIL-88B@rMIP for the detection of oxytetracycline in water",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129925",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129925"
+        },
+        {
+          "title": "Quantitative N–S chelation speciation and pH-dependent selectivity of Pb(II) and Cu(II) on thiourea-functionalized rice husk cellulose under extreme proton competition (pH 2): An XPS-based analytical study",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129923",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129923"
+        },
+        {
+          "title": "Insights into the occurrence and biotoxicity impact of zinc oxide nanoparticles within healthcare and sanitary products",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129922",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129922"
+        },
+        {
+          "title": "Corrigendum to “Effective rapid screening for sulfoxaflor insecticide in ornamental flowers by paper-based biosensing formats implementing sustainable extraction and packaging approaches” [Talanta, 300 (2026) 129168]",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129921",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129921"
+        },
+        {
+          "title": "Au-Ag NFs@Pt NCs nanozymes-driven aptasensor for sensitive visual detection of aflatoxin B1 in peanut",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129919",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129919"
+        },
+        {
+          "title": "Gas chromatography-mass spectrometry coupled to PARAFAC-SIMCA for the authentication of acacia honey",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129915",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129915"
+        },
+        {
+          "title": "Characterization of proteoforms within α-synuclein complexes in living cells by cleavable cross-linking combined with top-down mass spectrometry",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129914",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129914"
+        },
+        {
+          "title": "On-site sample preparation for benzo[a]pyrene in soils via pipette-tip based extraction with hydrophobic deep eutectic solvents and direct HPLC-FLD analysis",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129913",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129913"
+        },
+        {
+          "title": "A highly biocompatible chip for continuous blood electrolyte detection based on hydrophilic surface modification",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129912",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129912"
+        },
+        {
+          "title": "Microfluidic patch integrated with cobalt oxide/cobalt phosphate nanozyme for electrochemical lactate sensing at neutral pH",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129911",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129911"
+        },
+        {
+          "title": "Humidity-resistant triethylamine sensor based on Cu-doped CdIn2S4 nanoflowers",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129910",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129910"
+        },
+        {
+          "title": "Dual color microsphere encoded by fluorescent protein and Cy5-labeled anti-Tag ssDNA for multiplex detection of respiratory pathogens",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129909",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129909"
+        },
+        {
+          "title": "High-sensitivity quantification of trace carbonyl compounds in wine by a derivatization-free SPE-SBSE-TD-GC-GC-MS approach",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129908",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129908"
+        },
+        {
+          "title": "A novel time-gated luminescent ruthenium(II) complex probe for highly sensitive detection of methylglyoxal in foods and complex biological samples",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129907",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129907"
+        },
+        {
+          "title": "Automatic flow-through oral bioaccessibility method for real-time monitoring of zinc leachability from bio-based food packaging edible films",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129906",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129906"
+        },
+        {
+          "title": "Multi-gas recognition based on ZnO–Au–SnO2 heterostructure gas sensors and one-dimensional convolutional neural networks",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129904",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129904"
+        },
+        {
+          "title": "Exploring efficacy differences and quality evaluation of Gentiana rigescens Franch. from different Jiuzhi methods using UPHLC, FT-MIR, and FT-IR combined with network pharmacology",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129903",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129903"
+        },
+        {
+          "title": "Development of certified reference materials of medium crude oil for water content with enhanced stability",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129902",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129902"
+        },
+        {
+          "title": "Machine learning–empowered smartphone platforms for sustainable point-of-care bacterial detection",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129901",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129901"
+        },
+        {
+          "title": "Three-dimensional openwork structure YMn1-xFexO3 spherical nanomaterials for H2S gas sensors with superior sensitivity",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129900",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129900"
+        },
+        {
+          "title": "Overcoming signal masking by water oxidation: A bioinspired pillararene-based artificial receptor electrochemical sensing interface with enhanced host-guest interactions for ultrasensitive cadaverine detection",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129899",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129899"
+        },
+        {
+          "title": "Electrochemical biosensor for ultrasensitive thrombin detection based on aptamer-modulated transcriptional inhibition of cell-free synthetic biology",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129898",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129898"
+        },
+        {
+          "title": "Biocapture platform based on α-poly-l-lysine functionalized SWCNTs for lead monitoring",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129897",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129897"
+        },
+        {
+          "title": "A label-free impedance cytometry platform for multi-functional and high-precision bacterial characterization",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129896",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129896"
+        },
+        {
+          "title": "Boosting the sensitivity of ICP-TOF-MS for single-cell metallome profiling via overpulsing and isotope summation",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129895",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129895"
+        },
+        {
+          "title": "Feasibility verification of fingerstick capillary microsampling replacing venipuncture for therapeutic drug monitoring of 12 antibiotics using a rapid LC-MS/MS assay",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129894",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129894"
+        },
+        {
+          "title": "Exogenous functional protein reprograms mitochondria centered metabolism and protein homeostasis in Zygosaccharomyces rouxii under salt stress",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129893",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129893"
+        },
+        {
+          "title": "A polydopamine nanoparticles-blended carboxymethylcellulose hydrogel for integrated postoperative management of breast cancer: Preventing recurrence/metastasis and promoting wound healing",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129891",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129891"
+        },
+        {
+          "title": "Development of a quantitative LC-MS/MS-based assay for Lycosin–II–analog 3 and assessment of its stability in biological matrices",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129890",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129890"
+        },
+        {
+          "title": "A distance-readable gas pressure sensing device for on-site monitoring of the permanganate index (CODMn) in surface water",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129889",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129889"
+        },
+        {
+          "title": "Integrating effective concentration modeling with single-cell ICP-MS to address the influence of exposure conditions when evaluating mercury-selenium interaction in human neuroblastoma cell line",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129887",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129887"
+        },
+        {
+          "title": "Design logic and research advances in heterometallic coordination polymer-based fluorescent sensors: Spanning d-f, s-f, and s-d systems",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129884",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129884"
+        },
+        {
+          "title": "La,S–CeO2/Ag-based reusable SERS substrate for simultaneous detection of multiple hazardous molecules",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129882",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129882"
+        },
+        {
+          "title": "An orientation-controlled molecularly imprinted paper-based fluorescent sensor for turn-on detection of ochratoxin A",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129881",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129881"
+        },
+        {
+          "title": "A bimetallic metal-organic framework-based aptasensor for dual-mode colorimetric and fluorescent detection of Fumonisin B1",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129872",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129872"
+        },
+        {
+          "title": "Droplet-based laser ablation ICP-MS for direct elemental screening of oils with minimal sample preparation",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129869",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129869"
+        },
+        {
+          "title": "Scout-triggered MRM from untargeted data: An R-based strategy for multiplexed targeted metabolomics",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129865",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129865"
+        },
+        {
+          "title": "Raman spectroscopy in renal analysis: Technologies, applications, and advancements",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129860",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129860"
+        },
+        {
+          "title": "Functionalized nanocellulose for sustainable pesticide sensing: From synthesis and surface engineering to electrochemical and SERS applications",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129857",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129857"
+        },
+        {
+          "title": "Nanomaterial-enabled CRISPR-Cas biosensing for non-nucleic acid targets: Strategies, mechanisms, and applications",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129831",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129831"
+        },
+        {
+          "title": "Molecularly imprinted plasmonic nanosensors: A reagent-free platform for ultrasensitive, real-time drug detection in complex biofluids",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129830",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129830"
+        },
+        {
+          "title": "NH2–Ag@CuNWs with self-catalytically enhanced electrochemiluminescence as a luminophore for the ultrasensitive evaluation of liver cancer markers",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129818",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129818"
+        },
+        {
+          "title": "Corrigendum to ‘Quinoline yellow acts as a novel amyloid fibrillation probe by using surface-enhanced Raman spectroscopy’ [Talanta 280 (2024) 126685]",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129817",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129817"
+        },
+        {
+          "title": "A low-cost, LED-based SPRi platform with adaptive spectral analysis and localized enrichment for ultrasensitive detection of Tau",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129816",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129816"
+        },
+        {
+          "title": "Rapid sub-ppm hydrogen (H2) detection using automated loop-injection quadrupole mass spectrometry",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129815",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129815"
+        },
+        {
+          "title": "A dual-functional magnetic-fluorescent nanobead-based multi-color lateral flow immunoassay for simultaneous detection of aflatoxin B1 and zearalenone",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129811",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129811"
+        },
+        {
+          "title": "A novel MXene-integrated MIP-based electrochemical sensor for highly selective and sensitive lenalidomide recognition",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129809",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129809"
+        },
+        {
+          "title": "Dual signal amplification via ATRP and ROMP for ultra-sensitive detection of miRNA-21",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129807",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129807"
+        },
+        {
+          "title": "Enhanced solid-state fluorescence emitting of carbon nanodots by nafion matrix for sensitive and reusable detection of copper ions",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129804",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129804"
+        },
+        {
+          "title": "Unlocking multimodal activity in metal-free doped carbon dots: A robust nanozyme for colorimetric Kaempferol detection",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129803",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129803"
+        },
+        {
+          "title": "Deep eutectic solvents in the analytical extraction, detection and quantification of IARC-classified food carcinogens: performance, mechanisms, and future perspectives",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129800",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129800"
+        },
+        {
+          "title": "Constructing rosin-based quaternary ammonium salt-functionalized silica stationary phase for versatile chromatographic separations",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129799",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129799"
+        },
+        {
+          "title": "Enhancing elemental visualization imaging accuracy on irregular material surfaces with an auto-focus laser-induced breakdown spectroscopy optical system",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129797",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129797"
+        },
+        {
+          "title": "Self-programmable DNA hydrogel films design and application in biosensors",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129793",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129793"
+        },
+        {
+          "title": "3D-printed electrochemical device functionalized with nanoparticles for trace atrazine detection in soil pore water",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129791",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129791"
+        },
+        {
+          "title": "Non-invasive electrochemical detection of cortisol in artificial sweat using molecularly imprinted polymer",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129790",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129790"
+        },
+        {
+          "title": "From rational engineering of a broad-spectrum aptamer to multi-residue screening: A fluorescent aptasensor for multiplexed sulfonamides",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129789",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129789"
+        },
+        {
+          "title": "Detection of chlorpyrifos in rice fields soil based on terahertz spectroscopic techniques",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129788",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129788"
+        },
+        {
+          "title": "An antibody-mediated versatile SERS sandwich biosensor for ultrasensitive detection of functional proteins in cells and tissues",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129787",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129787"
+        },
+        {
+          "title": "A smartphone-detection strategy for accurate discrimination of Chinese teas via simultaneous sensing of infusion and aroma using multi-metal nanozymes",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129786",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129786"
+        },
+        {
+          "title": "Phosphate- Cr-MOF/polysulfone porous beads as sorbent in the pipette tip-μSPE method for determination of phthalate esters in food matrices",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129785",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129785"
+        },
+        {
+          "title": "Identification of baijiu flavor types and brands by NMR spectroscopy and multivariate statistical analysis",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129784",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129784"
+        },
+        {
+          "title": "The application of a difluorophenyl stationary phase embedded with imidazolium ionic liquid in HILIC/RPLC/IEC mixed-mode chromatography",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129783",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129783"
+        },
+        {
+          "title": "Controllable synthesis of dual-functionalized magnetic microporous organic network for effective extraction of steroid hormones",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129781",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129781"
+        },
+        {
+          "title": "Dual-function aerogel electrocatalyst enabling efficient hydrogen production and ambient-temperature hydrogen detection",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129780",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129780"
+        },
+        {
+          "title": "Boron-doped diamond electrode as a superior tool for ultra-trace-level voltammetric determination of herbicide penoxsulam at highly positive potential",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129779",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129779"
+        },
+        {
+          "title": "Fabrication and optimization of a hybrid 3D-printed flexible electrochemical biosensor for sensitive detection of 1-hydroxypyrene glucuronide, an associated wildfire exposure biomarker",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129778",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129778"
+        },
+        {
+          "title": "An immunosensor based on Cu doping enhanced Gd MOF electrochemiluminescence was used to detect CA19-9",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129777",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129777"
+        },
+        {
+          "title": "Volatolomic analysis of extracellular vesicles extracted from cultured cells",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129776",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129776"
+        },
+        {
+          "title": "Enhanced identification of medicinal caterpillar fungus with structural lipidomic analysis",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129775",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129775"
+        },
+        {
+          "title": "Tunable dendritic Fe3O4@mSiO2-Ni2+ core-shell magnetic nanospheres for selective enrichment of histidine-rich proteins",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129774",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129774"
+        },
+        {
+          "title": "A targeted strategy for screening bioactive inhibitors from Morus alba L.: Immobilized PTP1B affinity chromatography",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129772",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129772"
+        },
+        {
+          "title": "Rational design of Cr(VI) aptamer guided by revealed cation-mediated binding mechanism and construction of a label-free fluorescent aptasensor",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129771",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129771"
+        },
+        {
+          "title": "High accuracy raw coal analysis by LIBS via fusing feature aware and score-space anomaly detection",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129770",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129770"
+        },
+        {
+          "title": "Unveiling iron chemical speciation in low sample volumes by a spectroelectrochemical approach",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129768",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129768"
+        },
+        {
+          "title": "A novel asymmetric BODIPY-based fluorescent probe for monitoring the polarity of lipid droplets in diabetic models",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129765",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129765"
+        },
+        {
+          "title": "Iodide-assisted gold nanoparticles-poly(L-arginine)-poly(L-lysine)-based electrochemical sensor for determining nitrite with a sub-nanomolar detection limit",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129762",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129762"
+        },
+        {
+          "title": "Multifunctional potentiostat for static and fluidic electrochemical sensing: Validation and application to detection of Pseudomonas aeruginosa",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129761",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129761"
+        },
+        {
+          "title": "Low flow liquid flowmetry. A tutorial review",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129760",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129760"
+        },
+        {
+          "title": "Corrigendum to ‘Tracking metal-containing particles in wastewater using single-particle ICP-MS’ [Talanta 305 (2026), 129692]",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.129755",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.129755"
+        },
         {
           "title": "Editorial Board",
           "date": "2026-08-01",
@@ -43816,16 +45785,34 @@
           "sourceUrl": "https://doi.org/10.1016/s0039-9140(26)00375-9"
         },
         {
+          "title": "Overcoming the Sensitivity–Selectivity Trade-off in Laser-Induced Breakdown Spectroscopy (LIBS) for Uranium Isotope Analysis via Joint Spectral Decomposition of Single- and Double-Pulse Spectra",
+          "date": "2026-08-01",
+          "doi": "10.1016/j.talanta.2026.130548",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.130548"
+        },
+        {
+          "title": "Extraction of low-level methylmercury from sediments for species-specific isotope ratio determination by GC-MC-ICP-MS",
+          "date": "2026-08-01",
+          "doi": "10.1016/j.talanta.2026.130543",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.130543"
+        },
+        {
+          "title": "VL-ThyNet: An interpretable analytical framework integrating visual foundation models and vision-language reasoning for malignancy risk assessment of C-TIRADS 4 thyroid nodules",
+          "date": "2026-08-01",
+          "doi": "10.1016/j.talanta.2026.130540",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.130540"
+        },
+        {
+          "title": "Photoelectrochemical Highly Efficient Detection of β-amyloid 1-42 Based on In-Situ Grown Donor-Acceptor Covalent Organic Frameworks Combined with Dual-Aptamer Sandwich Amplification Strategy",
+          "date": "2026-08-01",
+          "doi": "10.1016/j.talanta.2026.130537",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.130537"
+        },
+        {
           "title": "Construction of multivalent aptamer-based fluorogenic DNA nanostructures for label-free fluorescent biosensors",
           "date": "2026-08-01",
           "doi": "10.1016/j.talanta.2026.130535",
           "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.130535"
-        },
-        {
-          "title": "A Near-Infrared Fluorescent Probe Based on the DCI Skeleton for Highly Selective Phosgene Detection and Its Application in Electrospinning-Based Sensing",
-          "date": "2026-08-01",
-          "doi": "10.1016/j.talanta.2026.130533",
-          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.130533"
         },
         {
           "title": "Comparative Machine Learning-Assisted Terahertz and Ultraviolet-Visible Spectroscopy for Rapid Authentication and Quantitative Assessment of Adulteration Levels in Chinese Medicinal Herbs",
@@ -43856,12 +45843,6 @@
           "date": "2026-08-01",
           "doi": "10.1016/j.talanta.2026.130508",
           "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.130508"
-        },
-        {
-          "title": "Scalable Fabrication and Mechanistic Understanding of Horizontally Aligned MWCNT Nanochannel Devices for Ionic Current-Based DNA Biosensing",
-          "date": "2026-08-01",
-          "doi": "10.1016/j.talanta.2026.130505",
-          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.130505"
         },
         {
           "title": "Preparation of highly thermally conductive composite phase change materials based on MXene aerogel with superb electromagnetic shielding properties",
@@ -54472,23 +56453,23 @@
         "Application trends"
       ],
       "publicationTrend": {
-        "asOf": "2026-08-31",
-        "last30Days": 0,
-        "prior30Days": 202,
-        "last90Days": 252,
+        "asOf": "2026-09-01",
+        "last30Days": 96,
+        "prior30Days": 204,
+        "last90Days": 350,
         "prior90Days": 333,
-        "trailing12Months": 1781,
-        "change90Pct": -24,
-        "direction": "Lower publication pace",
+        "trailing12Months": 1770,
+        "change90Pct": 5,
+        "direction": "Stable publication pace",
         "comparisonBasis": "Crossref publication counts: latest 90 days versus the preceding 90 days."
       },
       "trendCollectionDetail": "Collected rolling publication counts from Crossref journal metadata.",
       "itemEvidence": {
         "scope": "complete_370_day_window",
-        "queryExecutedAt": "2026-08-31T22:38:13+00:00",
-        "sourceResultCount": 1781,
-        "sourceNewestDoi": "10.1016/s0039-9140(26)00478-9",
-        "sourceNewestDate": "2026-08-01",
+        "queryExecutedAt": "2026-09-01T15:29:16+00:00",
+        "sourceResultCount": 1879,
+        "sourceNewestDoi": "10.1016/s0039-9140(26)00637-5",
+        "sourceNewestDate": "2026-09-01",
         "newestDoiIngested": true,
         "paginationComplete": true
       }

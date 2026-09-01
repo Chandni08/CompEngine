@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-31T22:56:32+00:00",
+  "generatedAt": "2026-09-01T15:47:21+00:00",
   "competitors": {
     "Thermo Fisher": {
-      "generatedAt": "2026-08-31T22:56:31+00:00",
+      "generatedAt": "2026-09-01T15:47:20+00:00",
       "baselineCreated": false,
       "inventoryCounts": {
-        "lcmsProductPages": 41,
-        "pressReleases": 19,
+        "lcmsProductPages": 43,
+        "pressReleases": 20,
         "technicalInsights": 17,
         "thermo-dionex-ion-chromatographyPages": 2,
         "thermo-vanquish-neo-nano-lcPages": 1
@@ -58,36 +58,47 @@
       "discontinued_products": [],
       "updated_products": [],
       "unverified_inventory_changes": {
-        "new": [],
+        "new": [
+          {
+            "url": "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-amplify-uhplc-system.html",
+            "lastmod": "2026-06-29",
+            "category": "LC/MS"
+          },
+          {
+            "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/orbitrap-tribrid-mass-spectrometers/orbitrap-tribrid-apex-mass-spectrometer.html",
+            "lastmod": "2026-08-14",
+            "category": "LC/MS"
+          }
+        ],
         "updated": [
           {
             "url": "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-horizon-uhplc-system.html",
-            "lastmod": "2026-03-23",
-            "previousLastmod": "2026-07-15",
+            "lastmod": "2026-07-15",
+            "previousLastmod": "2026-03-23",
             "category": "LC/MS"
           },
           {
             "url": "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-flex-uhplc-system.html",
-            "lastmod": "2026-03-24",
-            "previousLastmod": "2026-07-15",
+            "lastmod": "2026-07-15",
+            "previousLastmod": "2026-03-24",
             "category": "LC/MS"
           },
           {
             "url": "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-core-hplc-system.html",
-            "lastmod": "2026-04-21",
-            "previousLastmod": "2026-07-15",
+            "lastmod": "2026-07-15",
+            "previousLastmod": "2026-04-21",
             "category": "LC/MS"
           },
           {
             "url": "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-duo-uhplc-dual-lc-system.html",
-            "lastmod": "2025-09-23",
-            "previousLastmod": "2026-07-16",
+            "lastmod": "2026-07-16",
+            "previousLastmod": "2025-09-23",
             "category": "LC/MS"
           },
           {
             "url": "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-neo-uhplc-system.html",
-            "lastmod": "2026-03-24",
-            "previousLastmod": "2026-07-15",
+            "lastmod": "2026-07-15",
+            "previousLastmod": "2026-03-24",
             "category": "Nano-LC",
             "monitoringFamily": "thermo-vanquish-neo-nano-lc",
             "monitoringFamilyName": "Thermo Scientific Vanquish Neo nano-LC",
@@ -99,8 +110,8 @@
           },
           {
             "url": "https://www.thermofisher.com/us/en/home/industrial/chromatography/ion-chromatography-ic/ion-chromatography-systems/instrument-selection/ics-6000.html",
-            "lastmod": "2026-03-23",
-            "previousLastmod": "2026-08-12",
+            "lastmod": "2026-08-12",
+            "previousLastmod": "2026-03-23",
             "category": "Ion chromatography",
             "monitoringFamily": "thermo-dionex-ion-chromatography",
             "monitoringFamilyName": "Thermo Scientific Dionex ion chromatography",
@@ -112,99 +123,99 @@
           },
           {
             "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms.html",
-            "lastmod": "2026-04-28",
-            "previousLastmod": "2026-07-10",
+            "lastmod": "2026-07-10",
+            "previousLastmod": "2026-04-28",
             "category": "LC/MS"
           },
           {
             "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/orbitrap-exploris-mass-spectrometers.html",
-            "lastmod": "2026-04-24",
-            "previousLastmod": "2026-06-30",
+            "lastmod": "2026-06-30",
+            "previousLastmod": "2026-04-24",
             "category": "LC/MS"
           },
           {
             "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/orbitrap-exploris-mass-spectrometers/orbitrap-exploris-480-mass-spectrometers.html",
-            "lastmod": "2026-05-04",
-            "previousLastmod": "2026-06-30",
+            "lastmod": "2026-06-30",
+            "previousLastmod": "2026-05-04",
             "category": "LC/MS"
           },
           {
             "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/orbitrap-exploris-mass-spectrometers/orbitrap-exploris-240-mass-spectrometers.html",
-            "lastmod": "2026-05-14",
-            "previousLastmod": "2026-06-30",
+            "lastmod": "2026-06-30",
+            "previousLastmod": "2026-05-14",
             "category": "LC/MS"
           },
           {
             "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/orbitrap-exploris-mass-spectrometers/orbitrap-exploris-120-mass-spectrometers.html",
-            "lastmod": "2026-04-20",
-            "previousLastmod": "2026-06-30",
+            "lastmod": "2026-06-30",
+            "previousLastmod": "2026-04-20",
             "category": "LC/MS"
           },
           {
             "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/q-exactive-orbitrap-mass-spectrometers.html",
-            "lastmod": "2026-04-22",
-            "previousLastmod": "2026-07-09",
+            "lastmod": "2026-07-09",
+            "previousLastmod": "2026-04-22",
             "category": "LC/MS"
           },
           {
             "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/orbitrap-tribrid-mass-spectrometers/orbitrap-eclipse-tribrid-mass-spectrometer.html",
-            "lastmod": "2026-04-22",
-            "previousLastmod": "2026-05-26",
+            "lastmod": "2026-05-26",
+            "previousLastmod": "2026-04-22",
             "category": "LC/MS"
           },
           {
             "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/orbitrap-excedion-pro-mass-spectrometer.html",
-            "lastmod": "2026-03-27",
-            "previousLastmod": "2026-06-29",
+            "lastmod": "2026-06-29",
+            "previousLastmod": "2026-03-27",
             "category": "LC/MS"
           },
           {
             "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/orbitrap-excedion-pro-mass-spectrometer/orbitrap-excedion-pro-ms.html",
-            "lastmod": "2026-03-27",
-            "previousLastmod": "2026-05-22",
+            "lastmod": "2026-05-22",
+            "previousLastmod": "2026-03-27",
             "category": "LC/MS"
           },
           {
             "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/orbitrap-excedion-pro-mass-spectrometer/orbitrap-excedion-pro-biopharma-ms.html",
-            "lastmod": "2026-03-27",
-            "previousLastmod": "2026-06-29",
+            "lastmod": "2026-06-29",
+            "previousLastmod": "2026-03-27",
             "category": "LC/MS"
           },
           {
             "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/triple-quadrupole-lc-ms/tsq-quantis-triple-quadrupole-ms.html",
-            "lastmod": "2025-11-04",
-            "previousLastmod": "2026-08-06",
+            "lastmod": "2026-08-06",
+            "previousLastmod": "2025-11-04",
             "category": "LC/MS"
           },
           {
             "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/triple-quadrupole-lc-ms/tsq-altis-triple-quadrupole-ms.html",
-            "lastmod": "2026-04-09",
-            "previousLastmod": "2026-08-03",
+            "lastmod": "2026-08-03",
+            "previousLastmod": "2026-04-09",
             "category": "LC/MS"
           },
           {
             "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/triple-quadrupole-lc-ms/tsq-certis-triple-quadripole-ms.html",
-            "lastmod": "2026-05-08",
-            "previousLastmod": "2026-07-10",
+            "lastmod": "2026-07-10",
+            "previousLastmod": "2026-05-08",
             "category": "LC/MS"
           }
         ],
-        "missing": [
-          {
-            "url": "https://www.thermofisher.com/order/catalog/product/VQ-AMPLIFY",
-            "lastmod": "2026-06-29",
-            "category": "LC/MS",
-            "verification": "manual confirmation required"
-          },
-          {
-            "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/orbitrap-tribrid-mass-spectrometers/orbitrap-tribrid-apex-mass-spectrometer.html",
-            "lastmod": "2026-08-14",
-            "category": "LC/MS",
-            "verification": "manual confirmation required"
-          }
-        ]
+        "missing": []
       },
       "new_press_releases": [
+        {
+          "date": "2026-09-01",
+          "title": "Thermo Fisher Scientific to Present at the Morgan Stanley 24th Annual Global Healthcare Conference on September 15, 2026",
+          "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2026/Thermo-Fisher-Scientific-to-Present-at-the-Morgan-Stanley-24th-Annual-Global-Healthcare-Conference-on-September-15-2026/default.aspx",
+          "classification": "corporate",
+          "theme": "Corporate strategy",
+          "intent": "Corporate strategic activity",
+          "technology": "LC/UHPLC",
+          "marketSegment": "Pharma",
+          "summary": "Thermo Fisher Scientific Inc. (NYSE: TMO), the world leader in serving science, announced that Marc N.",
+          "sourceId": "thermo-news",
+          "sourceName": "Thermo Fisher investor relations news"
+        },
         {
           "date": "2026-08-12",
           "title": "Thermo Fisher Scientific Completes Sale of its Microbiology Business to Astorg",
@@ -322,6 +333,19 @@
         }
       ],
       "recent_press_releases": [
+        {
+          "date": "2026-09-01",
+          "title": "Thermo Fisher Scientific to Present at the Morgan Stanley 24th Annual Global Healthcare Conference on September 15, 2026",
+          "url": "https://ir.thermofisher.com/investors/news-events/news/news-details/2026/Thermo-Fisher-Scientific-to-Present-at-the-Morgan-Stanley-24th-Annual-Global-Healthcare-Conference-on-September-15-2026/default.aspx",
+          "classification": "corporate",
+          "theme": "Corporate strategy",
+          "intent": "Corporate strategic activity",
+          "technology": "LC/UHPLC",
+          "marketSegment": "Pharma",
+          "summary": "Thermo Fisher Scientific Inc. (NYSE: TMO), the world leader in serving science, announced that Marc N.",
+          "sourceId": "thermo-news",
+          "sourceName": "Thermo Fisher investor relations news"
+        },
         {
           "date": "2026-08-12",
           "title": "Thermo Fisher Scientific Completes Sale of its Microbiology Business to Astorg",
@@ -691,7 +715,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official sitemap index parsed.",
           "extractedRecords": 0,
-          "checkedAt": "2026-08-31T22:56:29+00:00"
+          "checkedAt": "2026-09-01T15:47:17+00:00"
         },
         {
           "sourceId": "thermo-ms-products",
@@ -700,9 +724,9 @@
           "httpStatus": 200,
           "status": "available",
           "extractionStatus": "extracted",
-          "extractionReason": "Official US sitemap parsed; 41 LC/LC-MS product pages tracked.",
-          "extractedRecords": 41,
-          "checkedAt": "2026-08-31T22:56:30+00:00"
+          "extractionReason": "Official US sitemap parsed; 43 LC/LC-MS product pages tracked.",
+          "extractedRecords": 43,
+          "checkedAt": "2026-09-01T15:47:18+00:00"
         },
         {
           "sourceId": "thermo-dionex-ion-chromatography-products",
@@ -713,7 +737,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official Thermo sitemap parsed; 2 registered Thermo Scientific Dionex ion chromatography product pages tracked.",
           "extractedRecords": 2,
-          "checkedAt": "2026-08-31T22:56:30+00:00"
+          "checkedAt": "2026-09-01T15:47:18+00:00"
         },
         {
           "sourceId": "thermo-vanquish-neo-nano-lc-products",
@@ -724,7 +748,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official Thermo sitemap parsed; 1 registered Thermo Scientific Vanquish Neo nano-LC product pages tracked.",
           "extractedRecords": 1,
-          "checkedAt": "2026-08-31T22:56:30+00:00"
+          "checkedAt": "2026-09-01T15:47:18+00:00"
         },
         {
           "sourceId": "thermo-news",
@@ -733,9 +757,9 @@
           "httpStatus": 200,
           "status": "available",
           "extractionStatus": "extracted",
-          "extractionReason": "Official Thermo Fisher investor-relations feed parsed; 19 dated 2026 corporate releases extracted.",
-          "extractedRecords": 19,
-          "checkedAt": "2026-08-31T22:56:30+00:00"
+          "extractionReason": "Official Thermo Fisher investor-relations feed parsed; 20 dated 2026 corporate releases extracted.",
+          "extractedRecords": 20,
+          "checkedAt": "2026-09-01T15:47:19+00:00"
         },
         {
           "sourceId": "thermo-lc-insights",
@@ -746,7 +770,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official dated RSS feed parsed; 6 relevant LC/MS records extracted.",
           "extractedRecords": 6,
-          "checkedAt": "2026-08-31T22:56:30+00:00"
+          "checkedAt": "2026-09-01T15:47:20+00:00"
         },
         {
           "sourceId": "thermo-ms-insights",
@@ -757,7 +781,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official dated RSS feed parsed; 7 relevant LC/MS records extracted.",
           "extractedRecords": 7,
-          "checkedAt": "2026-08-31T22:56:31+00:00"
+          "checkedAt": "2026-09-01T15:47:20+00:00"
         },
         {
           "sourceId": "thermo-proteomics-insights",
@@ -768,16 +792,16 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official dated RSS feed parsed; 6 relevant LC/MS records extracted.",
           "extractedRecords": 6,
-          "checkedAt": "2026-08-31T22:56:31+00:00"
+          "checkedAt": "2026-09-01T15:47:20+00:00"
         }
       ]
     },
     "Shimadzu": {
-      "generatedAt": "2026-08-31T22:56:31+00:00",
+      "generatedAt": "2026-09-01T15:47:20+00:00",
       "baselineCreated": false,
       "inventoryCounts": {
         "lcmsProductPages": 79,
-        "pressReleases": 40,
+        "pressReleases": 41,
         "technicalInsights": 0
       },
       "monitoredFamilies": [],
@@ -786,59 +810,16 @@
       "updated_products": [],
       "unverified_inventory_changes": {
         "new": [],
-        "updated": [
-          {
-            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/index.html",
-            "lastmod": "2026-08-31",
-            "previousLastmod": "2026-08-27",
-            "category": "LC/MS"
-          },
-          {
-            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/single-quadrupole-lc-ms/lcms-2050/index.html",
-            "lastmod": "2026-08-31",
-            "previousLastmod": "2026-08-27",
-            "category": "LC/MS"
-          },
-          {
-            "url": "https://www.shimadzu.com/an/products/liquid-chromatograph-mass-spectrometry/triple-quadrupole-lc-msms/lcms-tq-rx-series/index.html",
-            "lastmod": "2026-08-31",
-            "previousLastmod": "2026-08-27",
-            "category": "LC/MS"
-          },
-          {
-            "url": "https://www.shimadzu.com/an/products/liquid-chromatography/ion-chromatograph/nexera-ic/index.html",
-            "lastmod": "2026-08-31",
-            "previousLastmod": "2026-07-09",
-            "category": "LC/MS"
-          },
-          {
-            "url": "https://www.shimadzu.com/an/products/liquid-chromatography/hplcuhplc/i-series/index.html",
-            "lastmod": "2026-08-31",
-            "previousLastmod": "2026-07-09",
-            "category": "LC/MS"
-          },
-          {
-            "url": "https://www.shimadzu.com/an/products/liquid-chromatography/hplcuhplc/lc-2030c-nt/index.html",
-            "lastmod": "2026-08-31",
-            "previousLastmod": "2026-07-09",
-            "category": "LC/MS"
-          },
-          {
-            "url": "https://www.shimadzu.com/an/products/liquid-chromatography/hplcuhplc/nexera-series/index.html",
-            "lastmod": "2026-08-31",
-            "previousLastmod": "2026-07-09",
-            "category": "LC/MS"
-          },
-          {
-            "url": "https://www.shimadzu.com/an/products/liquid-chromatography/hplcuhplc/nexera-x4/index.html",
-            "lastmod": "2026-08-31",
-            "previousLastmod": "2026-07-09",
-            "category": "LC/MS"
-          }
-        ],
+        "updated": [],
         "missing": []
       },
       "new_press_releases": [
+        {
+          "date": "2026-09-01",
+          "title": "Release of Combustion Ion Chromatograph System with More Efficient Analytical Operations For PFAS Analysis and Other Environmental Regulatory Applications",
+          "url": "https://www.shimadzu.com/news/2026/k9mzc2osgbgrbtny.html",
+          "classification": "product"
+        },
         {
           "date": "2026-08-25",
           "title": "CVC Fund \u201cShimadzu Future Innovation Fund\u201d Invests in OptQC, a Developer of Optical Quantum Computers Expected to Advance Next-Generation R&D Infrastructure for Drug Discovery and Materials Development",
@@ -919,6 +900,12 @@
         }
       ],
       "recent_press_releases": [
+        {
+          "date": "2026-09-01",
+          "title": "Release of Combustion Ion Chromatograph System with More Efficient Analytical Operations For PFAS Analysis and Other Environmental Regulatory Applications",
+          "url": "https://www.shimadzu.com/news/2026/k9mzc2osgbgrbtny.html",
+          "classification": "product"
+        },
         {
           "date": "2026-08-25",
           "title": "CVC Fund \u201cShimadzu Future Innovation Fund\u201d Invests in OptQC, a Developer of Optical Quantum Computers Expected to Advance Next-Generation R&D Infrastructure for Drug Discovery and Materials Development",
@@ -1010,7 +997,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official analytical sitemap parsed; 79 LC/LC-MS/software product pages tracked.",
           "extractedRecords": 79,
-          "checkedAt": "2026-08-31T22:56:31+00:00"
+          "checkedAt": "2026-09-01T15:47:20+00:00"
         },
         {
           "sourceId": "shimadzu-news",
@@ -1019,14 +1006,14 @@
           "httpStatus": 200,
           "status": "available",
           "extractionStatus": "extracted",
-          "extractionReason": "Official dated news index parsed; 40 relevant releases extracted.",
-          "extractedRecords": 40,
-          "checkedAt": "2026-08-31T22:56:31+00:00"
+          "extractionReason": "Official dated news index parsed; 41 relevant releases extracted.",
+          "extractedRecords": 41,
+          "checkedAt": "2026-09-01T15:47:20+00:00"
         }
       ]
     },
     "SCIEX": {
-      "generatedAt": "2026-08-31T22:56:32+00:00",
+      "generatedAt": "2026-09-01T15:47:21+00:00",
       "baselineCreated": false,
       "inventoryCounts": {
         "lcmsProductPages": 65,
@@ -1106,7 +1093,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official sitemap parsed; 65 MS/LC/software product pages tracked.",
           "extractedRecords": 65,
-          "checkedAt": "2026-08-31T22:56:32+00:00"
+          "checkedAt": "2026-09-01T15:47:21+00:00"
         },
         {
           "sourceId": "sciex-news",
@@ -1117,7 +1104,7 @@
           "extractionStatus": "extracted",
           "extractionReason": "Official dated press index parsed; 5 relevant releases extracted.",
           "extractedRecords": 5,
-          "checkedAt": "2026-08-31T22:56:32+00:00"
+          "checkedAt": "2026-09-01T15:47:21+00:00"
         }
       ]
     }

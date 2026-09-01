@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "asOfDate": "2026-08-31",
+  "asOfDate": "2026-09-01",
   "normalization": "All date-only records normalize to 00:00:00Z; future records after the window end are excluded.",
   "windows": [
     {
       "id": "30d",
       "label": "30 days",
-      "startUtc": "2026-08-01T00:00:00Z",
-      "endUtc": "2026-08-31T00:00:00Z",
+      "startUtc": "2026-08-02T00:00:00Z",
+      "endUtc": "2026-09-01T00:00:00Z",
       "boundaryConvention": "closed interval over normalized record timestamps: start <= timestamp <= end",
       "availableInUi": true,
       "kind": "dateRange"
@@ -15,8 +15,8 @@
     {
       "id": "60d",
       "label": "60 days",
-      "startUtc": "2026-07-02T00:00:00Z",
-      "endUtc": "2026-08-31T00:00:00Z",
+      "startUtc": "2026-07-03T00:00:00Z",
+      "endUtc": "2026-09-01T00:00:00Z",
       "boundaryConvention": "closed interval over normalized record timestamps: start <= timestamp <= end",
       "availableInUi": true,
       "kind": "dateRange"
@@ -24,8 +24,8 @@
     {
       "id": "90d",
       "label": "90 days",
-      "startUtc": "2026-06-02T00:00:00Z",
-      "endUtc": "2026-08-31T00:00:00Z",
+      "startUtc": "2026-06-03T00:00:00Z",
+      "endUtc": "2026-09-01T00:00:00Z",
       "boundaryConvention": "closed interval over normalized record timestamps: start <= timestamp <= end",
       "availableInUi": true,
       "kind": "dateRange"
@@ -34,7 +34,7 @@
       "id": "current_quarter",
       "label": "Current quarter",
       "startUtc": "2026-07-01T00:00:00Z",
-      "endUtc": "2026-08-31T00:00:00Z",
+      "endUtc": "2026-09-01T00:00:00Z",
       "boundaryConvention": "closed interval over normalized record timestamps: start <= timestamp <= end",
       "availableInUi": false,
       "kind": "dateRange"
@@ -52,7 +52,7 @@
       "id": "ytd",
       "label": "Year to date",
       "startUtc": "2026-01-01T00:00:00Z",
-      "endUtc": "2026-08-31T00:00:00Z",
+      "endUtc": "2026-09-01T00:00:00Z",
       "boundaryConvention": "closed interval over normalized record timestamps: start <= timestamp <= end",
       "availableInUi": false,
       "kind": "dateRange"
@@ -60,8 +60,8 @@
     {
       "id": "1y",
       "label": "1 year",
-      "startUtc": "2025-08-31T00:00:00Z",
-      "endUtc": "2026-08-31T00:00:00Z",
+      "startUtc": "2025-09-01T00:00:00Z",
+      "endUtc": "2026-09-01T00:00:00Z",
       "boundaryConvention": "closed interval over normalized record timestamps: start <= timestamp <= end",
       "availableInUi": true,
       "kind": "dateRange"
@@ -69,8 +69,8 @@
     {
       "id": "trailing_12_months",
       "label": "Trailing 12 months",
-      "startUtc": "2025-08-31T00:00:00Z",
-      "endUtc": "2026-08-31T00:00:00Z",
+      "startUtc": "2025-09-01T00:00:00Z",
+      "endUtc": "2026-09-01T00:00:00Z",
       "boundaryConvention": "closed interval over normalized record timestamps: start <= timestamp <= end",
       "availableInUi": false,
       "kind": "dateRange"
@@ -78,8 +78,8 @@
     {
       "id": "3y",
       "label": "3 years",
-      "startUtc": "2023-09-01T00:00:00Z",
-      "endUtc": "2026-08-31T00:00:00Z",
+      "startUtc": "2023-09-02T00:00:00Z",
+      "endUtc": "2026-09-01T00:00:00Z",
       "boundaryConvention": "closed interval over normalized record timestamps: start <= timestamp <= end",
       "availableInUi": true,
       "kind": "dateRange"
@@ -87,8 +87,8 @@
     {
       "id": "5y",
       "label": "5 years",
-      "startUtc": "2021-09-01T00:00:00Z",
-      "endUtc": "2026-08-31T00:00:00Z",
+      "startUtc": "2021-09-02T00:00:00Z",
+      "endUtc": "2026-09-01T00:00:00Z",
       "boundaryConvention": "closed interval over normalized record timestamps: start <= timestamp <= end",
       "availableInUi": false,
       "kind": "dateRange"
@@ -97,7 +97,7 @@
       "id": "since_2023_07",
       "label": "Since July 2023",
       "startUtc": "2023-07-01T00:00:00Z",
-      "endUtc": "2026-08-31T00:00:00Z",
+      "endUtc": "2026-09-01T00:00:00Z",
       "boundaryConvention": "closed interval over normalized record timestamps: start <= timestamp <= end",
       "availableInUi": false,
       "kind": "dateRange"
@@ -106,7 +106,7 @@
       "id": "current_calendar_year",
       "label": "Current calendar year",
       "startUtc": "2026-01-01T00:00:00Z",
-      "endUtc": "2026-08-31T00:00:00Z",
+      "endUtc": "2026-09-01T00:00:00Z",
       "boundaryConvention": "closed interval over normalized record timestamps: start <= timestamp <= end",
       "availableInUi": false,
       "kind": "dateRange"
@@ -124,7 +124,7 @@
       "id": "all_historical",
       "label": "All historical periods",
       "startUtc": "1996-01-01T00:00:00Z",
-      "endUtc": "2026-08-31T00:00:00Z",
+      "endUtc": "2026-09-01T00:00:00Z",
       "boundaryConvention": "closed interval over normalized record timestamps: start <= timestamp <= end",
       "availableInUi": false,
       "kind": "dateRange"
@@ -133,7 +133,7 @@
       "id": "past_conferences",
       "label": "Past conferences",
       "startUtc": "1996-01-01T00:00:00Z",
-      "endUtc": "2026-08-30T00:00:00Z",
+      "endUtc": "2026-08-31T00:00:00Z",
       "boundaryConvention": "closed interval over normalized record timestamps: start <= timestamp <= end",
       "availableInUi": false,
       "kind": "conferenceDateRange"
@@ -141,7 +141,7 @@
     {
       "id": "upcoming_conferences",
       "label": "Upcoming conferences",
-      "startUtc": "2026-08-31T00:00:00Z",
+      "startUtc": "2026-09-01T00:00:00Z",
       "endUtc": "2100-12-31T00:00:00Z",
       "boundaryConvention": "closed interval over normalized record timestamps: start <= timestamp <= end",
       "availableInUi": false,
