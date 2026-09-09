@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-09T02:48:16+00:00",
+  "generatedAt": "2026-09-09T03:19:32+00:00",
   "purpose": "Publication, forum, webinar, and trade-media source map for Waters Next Gen LC competitive intelligence.",
   "sources": [
     {
@@ -29,7 +29,7 @@
       "confidenceUse": "High for topic trend monitoring; validate any customer claim with article-level source review.",
       "sourceClass": "Trade, forum, and learning source",
       "collectorType": "public-content-feed",
-      "lastChecked": "2026-09-09T02:48:04+00:00",
+      "lastChecked": "2026-09-09T03:19:20+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -144,7 +144,7 @@
       ],
       "itemEvidence": {
         "scope": "publisher_owned_public_metadata",
-        "queryExecutedAt": "2026-09-09T02:48:04+00:00",
+        "queryExecutedAt": "2026-09-09T03:19:20+00:00",
         "sourceResultCount": 12,
         "sourceNewestUrl": "https://www.chromatographyonline.com/view/uhplc-ms-ms-reveals-rice-pdd-s-role-trna-tags",
         "sourceNewestDate": "2026-07-30",
@@ -178,7 +178,7 @@
       "confidenceUse": "High for market and workflow direction; use with launch and customer evidence before changing roadmap priority.",
       "sourceClass": "Trade, forum, and learning source",
       "collectorType": "public-content-feed",
-      "lastChecked": "2026-09-09T02:48:04+00:00",
+      "lastChecked": "2026-09-09T03:19:20+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -223,7 +223,7 @@
       ],
       "itemEvidence": {
         "scope": "publisher_owned_public_metadata",
-        "queryExecutedAt": "2026-09-09T02:48:04+00:00",
+        "queryExecutedAt": "2026-09-09T03:19:20+00:00",
         "sourceResultCount": 2,
         "sourceNewestUrl": "https://www.biopharminternational.com/view/aptar-pharma-and-aceso-therapeutics-partner-to-advance-inhaled-antisense-oligonucleotide-for-cystic-fibrosis",
         "sourceNewestDate": "2026-09-08",
@@ -257,7 +257,7 @@
       "confidenceUse": "Medium-high for application and training signals; validate commercial importance with customer evidence.",
       "sourceClass": "Trade, forum, and learning source",
       "collectorType": "public-content-feed",
-      "lastChecked": "2026-09-09T02:48:04+00:00",
+      "lastChecked": "2026-09-09T03:19:20+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -3788,7 +3788,7 @@
       ],
       "itemEvidence": {
         "scope": "publisher_owned_public_metadata",
-        "queryExecutedAt": "2026-09-09T02:48:04+00:00",
+        "queryExecutedAt": "2026-09-09T03:19:20+00:00",
         "sourceResultCount": 500,
         "sourceNewestUrl": "https://www.sepscience.com/eppendorf-launches-centrifuge-5811-r-for-multipurpose-refrigerated-benchtop-workflows-12731",
         "sourceNewestDate": "2026-09-08",
@@ -3822,7 +3822,7 @@
       "confidenceUse": "Medium for customer-language and education themes; avoid treating discussion volume as market share.",
       "sourceClass": "Trade, forum, and learning source",
       "collectorType": "public-content-feed",
-      "lastChecked": "2026-09-09T02:48:04+00:00",
+      "lastChecked": "2026-09-09T03:19:20+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -3900,7 +3900,7 @@
       ],
       "itemEvidence": {
         "scope": "publisher_owned_public_metadata",
-        "queryExecutedAt": "2026-09-09T02:48:04+00:00",
+        "queryExecutedAt": "2026-09-09T03:19:20+00:00",
         "sourceResultCount": 5,
         "sourceNewestUrl": "https://www.labroots.com/trending/chemistry-and-physics/30888/pfas-regulations-driving-chromatography-procurement-federal-agencies-2",
         "sourceNewestDate": "2026-08-12",
@@ -3934,7 +3934,7 @@
       "confidenceUse": "High for buying-criteria context; validate product-specific claims with direct source links.",
       "sourceClass": "Trade, forum, and learning source",
       "collectorType": "public-content-feed",
-      "lastChecked": "2026-09-09T02:48:04+00:00",
+      "lastChecked": "2026-09-09T03:19:20+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -5302,7 +5302,7 @@
       ],
       "itemEvidence": {
         "scope": "publisher_owned_public_metadata",
-        "queryExecutedAt": "2026-09-09T02:48:04+00:00",
+        "queryExecutedAt": "2026-09-09T03:19:20+00:00",
         "sourceResultCount": 191,
         "sourceNewestUrl": "https://www.labmanager.com/purdue-researchers-eliminate-lc-ms-sample-preparation-with-spatial-extraction-tool-35895",
         "sourceNewestDate": "2026-09-06",
@@ -5336,7 +5336,7 @@
       "confidenceUse": "Medium for messaging and sponsor activity; distinguish editorial coverage from sponsored content.",
       "sourceClass": "Trade, forum, and learning source",
       "collectorType": "public-content-feed",
-      "lastChecked": "2026-09-09T02:48:04+00:00",
+      "lastChecked": "2026-09-09T03:19:20+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -5381,7 +5381,7 @@
       ],
       "itemEvidence": {
         "scope": "publisher_owned_public_metadata",
-        "queryExecutedAt": "2026-09-09T02:48:04+00:00",
+        "queryExecutedAt": "2026-09-09T03:19:20+00:00",
         "sourceResultCount": 2,
         "sourceNewestUrl": "https://www.pharmaceuticalonline.com/doc/ai-fills-the-decision-making-gaps-in-process-analytical-technology-0001",
         "sourceNewestDate": "2026-09-08",
@@ -5415,7 +5415,7 @@
       "confidenceUse": "Medium-high for strategic narrative; pair with product launches and application notes.",
       "sourceClass": "Trade, forum, and learning source",
       "collectorType": "public-content-feed",
-      "lastChecked": "2026-09-09T02:48:04+00:00",
+      "lastChecked": "2026-09-09T03:19:20+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -5474,7 +5474,7 @@
       ],
       "itemEvidence": {
         "scope": "publisher_owned_public_metadata",
-        "queryExecutedAt": "2026-09-09T02:48:04+00:00",
+        "queryExecutedAt": "2026-09-09T03:19:20+00:00",
         "sourceResultCount": 4,
         "sourceNewestUrl": "https://theanalyticalscientist.com/issues/2026/articles/september/gcxgc-detective-stories-the-smell-of-adventure/",
         "sourceNewestDate": "2026-09-07",
@@ -5508,7 +5508,7 @@
       "confidenceUse": "Medium-high for regional and regulatory context; validate with official regulatory sources when used for compliance decisions.",
       "sourceClass": "Trade, forum, and learning source",
       "collectorType": "public-content-feed",
-      "lastChecked": "2026-09-09T02:48:04+00:00",
+      "lastChecked": "2026-09-09T03:19:20+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -5742,7 +5742,7 @@
       ],
       "itemEvidence": {
         "scope": "publisher_owned_public_metadata",
-        "queryExecutedAt": "2026-09-09T02:48:04+00:00",
+        "queryExecutedAt": "2026-09-09T03:19:20+00:00",
         "sourceResultCount": 29,
         "sourceNewestUrl": "https://www.europeanpharmaceuticalreview.com/webinars/implementing-reporter-assay-based-mat-for-rapid-pyrogen-detection/2135806.article",
         "sourceNewestDate": "2026-09-04",
@@ -5776,7 +5776,7 @@
       "confidenceUse": "Medium-high for pharma analytical trend monitoring; distinguish editorial evidence from sponsored material.",
       "sourceClass": "Trade, forum, and learning source",
       "collectorType": "public-content-feed",
-      "lastChecked": "2026-09-09T02:48:04+00:00",
+      "lastChecked": "2026-09-09T03:19:20+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -5912,7 +5912,7 @@
       ],
       "itemEvidence": {
         "scope": "publisher_owned_public_metadata",
-        "queryExecutedAt": "2026-09-09T02:48:04+00:00",
+        "queryExecutedAt": "2026-09-09T03:19:20+00:00",
         "sourceResultCount": 15,
         "sourceNewestUrl": "https://www.americanpharmaceuticalreview.com/Specialty/Chromatography/Featured-Articles/627968-Oral-Absorption-of-Peptides-and-Proteins-and-Their-Role-in-Drug-Pharmacokinetics/",
         "sourceNewestDate": "2026-09-08",
@@ -5959,7 +5959,7 @@
       ],
       "ingestionStatus": "Active monitoring",
       "confidenceUse": "High for peer-reviewed scientific direction; article-level applicability and method comparability still require review.",
-      "lastChecked": "2026-09-09T02:48:16+00:00",
+      "lastChecked": "2026-09-09T03:19:32+00:00",
       "collectionStatus": "extracted",
       "collectionDetail": "Collected the complete 370-day window: 3468 DOI records from Crossref journal metadata.",
       "extractedRecords": 3468,
@@ -6941,12 +6941,6 @@
           "date": "2026-08-21",
           "doi": "10.1021/acs.analchem.5c08210",
           "sourceUrl": "https://doi.org/10.1021/acs.analchem.5c08210"
-        },
-        {
-          "title": "Triplet Reservoir Dynamics and Near-Infrared Electrochemiluminescence of Platinum–Acetylide Oligomers",
-          "date": "2026-08-20",
-          "doi": "10.1021/acs.analchem.6c03420",
-          "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c03420"
         },
         {
           "title": "Visualizing Polymer Cross-linking Density: A Universal Fluorescence Strategy Based on Aggregation-Induced Emission",
@@ -8533,16 +8527,16 @@
           "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c02340"
         },
         {
-          "title": "Ultrasensitive SERS Detection and AI-Assisted Differentiation of Structurally Similar Pollutants on Flexible Aluminum Substrates",
-          "date": "2026-07-24",
-          "doi": "10.1021/acs.analchem.6c01951",
-          "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c01951"
-        },
-        {
           "title": "HaloTag-Based FACS-Compatible Assay for Intracellular Haloalkane Detection with a Potential Application to Halogenase Screening",
           "date": "2026-07-24",
           "doi": "10.1021/acs.analchem.6c02230",
           "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c02230"
+        },
+        {
+          "title": "Ultrasensitive SERS Detection and AI-Assisted Differentiation of Structurally Similar Pollutants on Flexible Aluminum Substrates",
+          "date": "2026-07-24",
+          "doi": "10.1021/acs.analchem.6c01951",
+          "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c01951"
         },
         {
           "title": "Classification of <i>N</i> -Nitrosamines and Other Nitroso Compounds by Using Tandem Mass Spectrometry Experiments Based on Collision- Activated Dissociation",
@@ -9787,12 +9781,6 @@
           "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c02064"
         },
         {
-          "title": "Machine Learning-Assisted Nanopore for Enhanced Fingerprinting Analysis of Functional Glycans",
-          "date": "2026-06-30",
-          "doi": "10.1021/acs.analchem.6c03225",
-          "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c03225"
-        },
-        {
           "title": "One-Step Chemoenzymatic Labeling and Oxime-Reversible Enrichment for O-GlcNAcylation Profiling under Oxidative Stress",
           "date": "2026-06-30",
           "doi": "10.1021/acs.analchem.6c02009",
@@ -10709,12 +10697,6 @@
           "date": "2026-06-16",
           "doi": "10.1021/acs.analchem.6c01229",
           "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c01229"
-        },
-        {
-          "title": "Streamlined Dual-Readout HPV-16 DNA Sensor Empowered by the Intrinsic Colorimetric and Electrochemiluminescent Activities of Nanocrystalline PCN-224",
-          "date": "2026-06-16",
-          "doi": "10.1021/acs.analchem.6c02325",
-          "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c02325"
         },
         {
           "title": "An Organelle-Orthogonal Dual-Response Probe for In Situ Monitoring of Mitochondrial H <sub>2</sub> O <sub>2</sub> and Lipid Droplet Polarity in Ferroptosis",
@@ -16069,12 +16051,6 @@
           "sourceUrl": "https://doi.org/10.1021/acs.analchem.5c06392"
         },
         {
-          "title": "Stem-Engineered Aptamers with Enhanced Stability and Affinity for Tumor-Targeted Imaging",
-          "date": "2026-03-18",
-          "doi": "10.1021/acs.analchem.5c06759",
-          "sourceUrl": "https://doi.org/10.1021/acs.analchem.5c06759"
-        },
-        {
           "title": "Comparison of Liquid Chromatography- and Nano-Electrospray Ionization-Mass Spectrometry Approaches for Single-Cell Metabolomics",
           "date": "2026-03-18",
           "doi": "10.1021/acs.analchem.5c06318",
@@ -17369,12 +17345,6 @@
           "date": "2026-02-25",
           "doi": "10.1021/acs.analchem.5c07275",
           "sourceUrl": "https://doi.org/10.1021/acs.analchem.5c07275"
-        },
-        {
-          "title": "Endogenous Enzyme-Driven 3D DNA Nanomachines for Simultaneous Intracellular Imaging of miRNA-155 and miRNA-21",
-          "date": "2026-02-25",
-          "doi": "10.1021/acs.analchem.5c07813",
-          "sourceUrl": "https://doi.org/10.1021/acs.analchem.5c07813"
         },
         {
           "title": "Detection of Gaseous Mercuric Halides Using Acetate and Iodide Chemical Ionization Mass Spectrometry",
@@ -26822,7 +26792,7 @@
       "trendCollectionDetail": "Collected rolling publication counts from Crossref journal metadata.",
       "itemEvidence": {
         "scope": "complete_370_day_window",
-        "queryExecutedAt": "2026-09-09T02:48:16+00:00",
+        "queryExecutedAt": "2026-09-09T03:19:32+00:00",
         "sourceResultCount": 3468,
         "sourceNewestDoi": "10.1021/acv098i035_2125929",
         "sourceNewestDate": "2026-09-08",
@@ -26870,7 +26840,7 @@
       ],
       "ingestionStatus": "Active monitoring",
       "confidenceUse": "High for chromatography science and method-performance evidence.",
-      "lastChecked": "2026-09-09T02:48:16+00:00",
+      "lastChecked": "2026-09-09T03:19:32+00:00",
       "collectionStatus": "extracted",
       "collectionDetail": "Collected the complete 370-day window: 907 DOI records from Crossref journal metadata.",
       "extractedRecords": 907,
@@ -32337,7 +32307,7 @@
       "trendCollectionDetail": "Collected rolling publication counts from Crossref journal metadata.",
       "itemEvidence": {
         "scope": "complete_370_day_window",
-        "queryExecutedAt": "2026-09-09T02:48:16+00:00",
+        "queryExecutedAt": "2026-09-09T03:19:32+00:00",
         "sourceResultCount": 907,
         "sourceNewestDoi": "10.1016/s0021-9673(26)00680-1",
         "sourceNewestDate": "2026-09-01",
@@ -32383,7 +32353,7 @@
       ],
       "ingestionStatus": "Active monitoring",
       "confidenceUse": "High for biomedical separation and bioanalytical-method evidence.",
-      "lastChecked": "2026-09-09T02:48:16+00:00",
+      "lastChecked": "2026-09-09T03:19:32+00:00",
       "collectionStatus": "extracted",
       "collectionDetail": "Collected the complete 370-day window: 381 DOI records from Crossref journal metadata.",
       "extractedRecords": 381,
@@ -34327,12 +34297,6 @@
           "sourceUrl": "https://doi.org/10.1016/j.jchromb.2025.124792"
         },
         {
-          "title": "Therapeutic effects of Panax ginseng polysaccharides on qi deficiency diabetes: Insights from microbiomics and metabolomics",
-          "date": "2025-12-01",
-          "doi": "10.1016/j.jchromb.2025.124781",
-          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2025.124781"
-        },
-        {
           "title": "Eco-friendly microextraction technique using SFO-DLLME coupled with HPTLC for plasma analysis of metformin and imeglimin",
           "date": "2025-12-01",
           "doi": "10.1016/j.jchromb.2025.124791",
@@ -34700,7 +34664,7 @@
       "trendCollectionDetail": "Collected rolling publication counts from Crossref journal metadata.",
       "itemEvidence": {
         "scope": "complete_370_day_window",
-        "queryExecutedAt": "2026-09-09T02:48:16+00:00",
+        "queryExecutedAt": "2026-09-09T03:19:32+00:00",
         "sourceResultCount": 381,
         "sourceNewestDoi": "10.1016/s1570-0232(26)00321-1",
         "sourceNewestDate": "2026-09-01",
@@ -34747,7 +34711,7 @@
       ],
       "ingestionStatus": "Active monitoring",
       "confidenceUse": "High for peer-reviewed MS technology and application direction.",
-      "lastChecked": "2026-09-09T02:48:16+00:00",
+      "lastChecked": "2026-09-09T03:19:32+00:00",
       "collectionStatus": "extracted",
       "collectionDetail": "Collected the complete 370-day window: 372 DOI records from Crossref journal metadata.",
       "extractedRecords": 372,
@@ -37004,7 +36968,7 @@
       "trendCollectionDetail": "Collected rolling publication counts from Crossref journal metadata.",
       "itemEvidence": {
         "scope": "complete_370_day_window",
-        "queryExecutedAt": "2026-09-09T02:48:16+00:00",
+        "queryExecutedAt": "2026-09-09T03:19:32+00:00",
         "sourceResultCount": 372,
         "sourceNewestDoi": "10.1021/jasms.6c00292",
         "sourceNewestDate": "2026-09-08",
@@ -37052,7 +37016,7 @@
       ],
       "ingestionStatus": "Active monitoring",
       "confidenceUse": "High for cross-market analytical and bioanalytical evidence.",
-      "lastChecked": "2026-09-09T02:48:16+00:00",
+      "lastChecked": "2026-09-09T03:19:32+00:00",
       "collectionStatus": "extracted",
       "collectionDetail": "Collected the complete 370-day window: 694 DOI records from Crossref journal metadata.",
       "extractedRecords": 694,
@@ -41241,7 +41205,7 @@
       "trendCollectionDetail": "Collected rolling publication counts from Crossref journal metadata.",
       "itemEvidence": {
         "scope": "complete_370_day_window",
-        "queryExecutedAt": "2026-09-09T02:48:16+00:00",
+        "queryExecutedAt": "2026-09-09T03:19:32+00:00",
         "sourceResultCount": 694,
         "sourceNewestDoi": "10.1007/s00216-026-06808-4",
         "sourceNewestDate": "2026-09-08",
@@ -41287,7 +41251,7 @@
       ],
       "ingestionStatus": "Active monitoring",
       "confidenceUse": "High for pharmaceutical analytical-method and validation evidence.",
-      "lastChecked": "2026-09-09T02:48:16+00:00",
+      "lastChecked": "2026-09-09T03:19:32+00:00",
       "collectionStatus": "extracted",
       "collectionDetail": "Collected the complete 370-day window: 510 DOI records from Crossref journal metadata.",
       "extractedRecords": 510,
@@ -44372,7 +44336,7 @@
       "trendCollectionDetail": "Collected rolling publication counts from Crossref journal metadata.",
       "itemEvidence": {
         "scope": "complete_370_day_window",
-        "queryExecutedAt": "2026-09-09T02:48:16+00:00",
+        "queryExecutedAt": "2026-09-09T03:19:32+00:00",
         "sourceResultCount": 510,
         "sourceNewestDoi": "10.1016/s0731-7085(26)00233-5",
         "sourceNewestDate": "2026-09-01",
@@ -44419,7 +44383,7 @@
       ],
       "ingestionStatus": "Active monitoring",
       "confidenceUse": "High for analytical-method direction across environmental, food, clinical, and academic markets.",
-      "lastChecked": "2026-09-09T02:48:16+00:00",
+      "lastChecked": "2026-09-09T03:19:32+00:00",
       "collectionStatus": "extracted",
       "collectionDetail": "Collected the complete 370-day window: 1767 DOI records from Crossref journal metadata.",
       "extractedRecords": 1767,
@@ -50695,12 +50659,6 @@
           "sourceUrl": "https://doi.org/10.1016/j.talanta.2025.128766"
         },
         {
-          "title": "Smart and sustainable 3D-printed electrochemical device for diclofenac remediation and monitoring in water",
-          "date": "2026-01-01",
-          "doi": "10.1016/j.talanta.2025.128597",
-          "sourceUrl": "https://doi.org/10.1016/j.talanta.2025.128597"
-        },
-        {
           "title": "Lanthanum strontium cobalt ferrite [La0.6Sr0.4Co0.2Fe0.8O3-δ] alloyed impedimetric sensing platform for human papillomavirus type 16 mutant DNA detection",
           "date": "2026-01-01",
           "doi": "10.1016/j.talanta.2025.128765",
@@ -55052,7 +55010,7 @@
       "trendCollectionDetail": "Collected rolling publication counts from Crossref journal metadata.",
       "itemEvidence": {
         "scope": "complete_370_day_window",
-        "queryExecutedAt": "2026-09-09T02:48:16+00:00",
+        "queryExecutedAt": "2026-09-09T03:19:32+00:00",
         "sourceResultCount": 1767,
         "sourceNewestDoi": "10.1016/s0039-9140(26)00637-5",
         "sourceNewestDate": "2026-09-01",
