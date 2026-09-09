@@ -61,6 +61,8 @@ KNOWN_SOURCE_URL_MIGRATIONS = {
         "https://sciex.com/applications/biomedical-and-omics-research/oneomics",
     "https://www.acs.org/events/all-events/acs-spring-2026.html":
         "https://www.acs.org/events/spring.html",
+    "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-amplify-uhplc-system.html":
+        "https://www.thermofisher.com/order/catalog/product/VQ-AMPLIFY",
 }
 
 AUTOMATED_DOMAINS = [
@@ -76,6 +78,10 @@ AUTOMATED_DOMAINS = [
     "Competitor application-note catalog reconciliation, freshness, and completeness validation",
     "Evidence-backed PM recommendations, considerations, and decision implications regenerated from the refreshed dataset",
 ]
+
+# Domains that back a required source row in the freshness ledger. If one of
+# these falls back to the previous dataset, the run is not publishable.
+REQUIRED_REFRESH_DOMAINS = ("pubmed", "sec")
 
 CURATED_DOMAINS = [
     "Product-launch interpretation and machine comparisons",
@@ -128,8 +134,34 @@ def migrate_known_source_urls() -> int:
 
 def validate_intelligence(data: dict) -> None:
     errors: list[str] = []
-    if data.get("asOfDate") != date.today().isoformat():
-        errors.append("asOfDate was not updated to today")
+    today = date.today().isoformat()
+    refresh_state = data.get("refresh", {})
+    # A domain that backs a required source must actually refresh.  Accepting
+    # "any one of three" let a stale domain ride to publication behind a
+    # sibling's success.
+    stale_required_domains = [
+        domain for domain in REQUIRED_REFRESH_DOMAINS
+        if refresh_state.get(domain) != "success"
+    ]
+    for domain in stale_required_domains:
+        errors.append(
+            f"required source domain did not refresh: {domain} "
+            f"({refresh_state.get(domain, 'missing')})"
+        )
+
+    as_of_date = str(data.get("asOfDate") or "")
+    if as_of_date > today:
+        errors.append(f"asOfDate {as_of_date} is in the future")
+    elif as_of_date != today and not stale_required_domains:
+        # Every required domain refreshed, so nothing can legitimately hold the
+        # dataset back to an earlier date.
+        errors.append(f"asOfDate {as_of_date or 'missing'} was not updated to today")
+    domain_dates = data.get("domainAsOfDates") or refresh_state.get("domainAsOfDates") or {}
+    contributing = [str(value) for value in domain_dates.values() if value]
+    if contributing and as_of_date != min(contributing):
+        errors.append(
+            f"asOfDate {as_of_date} does not match the oldest contributing domain {min(contributing)}"
+        )
     if len(data.get("signals", [])) < 10:
         errors.append("fewer than 10 signals were retained")
     if len(data.get("recommendations", [])) < 1:
@@ -151,10 +183,6 @@ def validate_intelligence(data: dict) -> None:
         ordered = [int(counts.get(key, 0)) for key in ("30d", "60d", "90d", "1y", "3y", "5y")]
         if ordered != sorted(ordered):
             errors.append(f"non-cumulative horizon counts for {theme.get('theme', 'unknown theme')}")
-
-    refresh_state = data.get("refresh", {})
-    if not any(refresh_state.get(key) == "success" for key in ("pubmed", "sec", "sourceHealth")):
-        errors.append("no automated source family refreshed successfully")
 
     if errors:
         raise ValueError("; ".join(errors))
@@ -633,56 +661,174 @@ def _latest(values: list[str]) -> str | None:
     return max(cleaned, default=None)
 
 
+def _engine_record_high_water(signals: list[dict], prefix: str) -> tuple[str | None, dict]:
+    """Return the newest genuinely collected record for an id prefix.
+
+    Synthetic aggregates (for example ``trend-*`` publication-count signals, which
+    are stamped with the run date rather than a source publication date) are not
+    records and must never stand in for the engine's high-water mark.
+    """
+    records = [item for item in signals if str(item.get("id", "")).startswith(prefix)]
+    newest = _latest([item.get("date", "") for item in records])
+    if not newest:
+        return None, {}
+    matching = [item for item in records if str(item.get("date", ""))[:10] == newest]
+    newest_record = sorted(matching, key=lambda item: str(item.get("sourceUrl", "")))[-1] if matching else {}
+    return newest, newest_record
+
+
+def _pubmed_source_health(intelligence: dict, signals: list[dict], checked_at: str) -> SourceHealth:
+    """Compare the engine's PubMed records against the live newest-item query.
+
+    ``itemEvidence`` is written by the collector from a live E-utilities query that
+    asks for the single newest PMID per theme.  That PMID is the only PubMed
+    high-water evidence in the dataset that did not come from the dataset itself.
+    """
+    themes = intelligence.get("trends", {}).get("themes", []) or []
+    competitors = intelligence.get("trends", {}).get("competitors", []) or []
+    configured = list(themes) + list(competitors)
+    observations = [item.get("itemEvidence", {}) for item in configured if item.get("itemEvidence")]
+
+    def newest_pmid(evidence: dict) -> str:
+        return str(evidence.get("newestPmid") or evidence.get("newestSampledPmid") or "").strip()
+
+    def newest_date(evidence: dict) -> str:
+        return str(evidence.get("newestDate") or evidence.get("newestSampledDate") or "").strip()
+
+    def newest_stored_date(evidence: dict) -> str:
+        """The source's newest item expressed the way the engine stores dates.
+
+        An ahead-of-print record is stored clamped to the collection date, so
+        comparing it against its future cover date would report a lag that does
+        not exist.
+        """
+        return str(evidence.get("newestStoredDate") or "").strip() or newest_date(evidence)
+
+    live = [item for item in observations if newest_pmid(item) and newest_date(item)]
+    engine_newest, engine_record = _engine_record_high_water(signals, "pubmed-")
+    pubmed_records = [item for item in signals if str(item.get("id", "")).startswith("pubmed-")]
+    record_count = len(pubmed_records)
+    ingested_pmids = {str(item.get("id", ""))[len("pubmed-"):] for item in pubmed_records}
+
+    # Every configured query must contribute a live newest-item observation before
+    # PubMed coverage can be called complete; a missing observation is an unchecked
+    # query, not a passing one.
+    complete = bool(live) and len(live) == len(configured)
+    newest_observation = max(live, key=newest_date) if live else {}
+    source_newest_date = newest_stored_date(newest_observation) or None
+    source_newest_pmid = newest_pmid(newest_observation)
+    source_newest_url = f"https://pubmed.ncbi.nlm.nih.gov/{source_newest_pmid}/" if source_newest_pmid else None
+    newest_present = all(
+        bool(item.get("newestPmidIngested", item.get("newestSampledPmidIngested", False)))
+        for item in live
+    ) if complete else None
+    # Point the engine side at the source's newest PMID only when that PMID is
+    # genuinely among the collected records. This is a membership test against
+    # the ingested set, so the URL comparison reports real presence or absence.
+    engine_newest_url = engine_record.get("sourceUrl")
+    if source_newest_pmid and source_newest_pmid in ingested_pmids:
+        engine_newest_url = source_newest_url
+
+    if complete:
+        observation = (
+            f"Live PubMed E-utilities newest-item query for {len(live)} configured queries; "
+            f"newest observed PMID {source_newest_pmid} dated "
+            f"{newest_date(newest_observation)}."
+        )
+        reason = (
+            "Aggregate PubMed counts cover every configured horizon; the newest PMID returned by each "
+            "live theme query was checked for presence in the collected records."
+        )
+    else:
+        observation = ""
+        reason = (
+            f"Only {len(live)} of {len(configured)} configured PubMed queries returned a live newest-item "
+            "observation; PubMed freshness is unverified for this run."
+        )
+
+    return SourceHealth(
+        sourceId="pubmed-eutils",
+        url="https://eutils.ncbi.nlm.nih.gov/entrez/eutils/",
+        required=True,
+        collectionMethod="official_api_aggregate_counts_plus_newest_item",
+        collectionOutcome="collected" if engine_newest else "checked_empty",
+        attemptedAt=checked_at,
+        succeededAt=checked_at,
+        engineNewestDate=engine_newest,
+        engineNewestTitle=engine_record.get("title"),
+        engineNewestUrl=engine_newest_url,
+        sourceNewestDate=source_newest_date,
+        sourceNewestTitle=None,
+        sourceNewestUrl=source_newest_url,
+        newestItemPresent=newest_present,
+        recordsSeen=record_count,
+        recordsIngested=record_count,
+        completeness="complete" if complete else "unverified",
+        coverage="complete" if complete else "unverified",
+        sourceObservation=observation,
+        reason=reason,
+    )
+
+
+def _sec_source_health(intelligence: dict, signals: list[dict], checked_at: str) -> SourceHealth:
+    """Compare collected SEC filings against the live EDGAR submissions high-water mark."""
+    high_water = (intelligence.get("sourceHighWater") or {}).get("sec-edgar-submissions") or {}
+    engine_newest, engine_record = _engine_record_high_water(signals, "sec-")
+    record_count = sum(1 for item in signals if str(item.get("id", "")).startswith("sec-"))
+    observed_at = str(high_water.get("observedAt") or "")
+    source_newest_date = str(high_water.get("newestDate") or "") or None
+    source_newest_url = str(high_water.get("newestUrl") or "") or None
+    ingested_ids = {str(item.get("id", "")) for item in signals}
+    expected_id = str(high_water.get("newestSignalId") or "")
+    complete = bool(source_newest_date and source_newest_url and expected_id)
+    newest_present = expected_id in ingested_ids if complete else None
+
+    if complete:
+        observation = (
+            f"Live SEC EDGAR submissions traversal observed at {observed_at or checked_at}; newest in-window "
+            f"tracked filing {high_water.get('newestForm', 'filing')} for "
+            f"{high_water.get('newestRegistrant', 'registrant')} dated {source_newest_date}."
+        )
+        reason = (
+            "Every qualifying in-window SEC filing was collected and deduplicated by accession number; "
+            "the newest filing seen in the live submissions feed was checked for presence."
+        )
+    else:
+        observation = ""
+        reason = (
+            "The SEC collector did not record a live submissions high-water mark for this run; "
+            "SEC freshness is unverified."
+        )
+
+    return SourceHealth(
+        sourceId="sec-edgar-submissions",
+        url="https://www.sec.gov/search-filings/edgar-application-programming-interfaces",
+        required=True,
+        collectionMethod="official_api_all_in_window_filings",
+        collectionOutcome="collected" if engine_newest else "checked_empty",
+        attemptedAt=checked_at,
+        succeededAt=checked_at,
+        engineNewestDate=engine_newest,
+        engineNewestTitle=engine_record.get("title"),
+        engineNewestUrl=engine_record.get("sourceUrl"),
+        sourceNewestDate=source_newest_date,
+        sourceNewestTitle=str(high_water.get("newestTitle") or "") or None,
+        sourceNewestUrl=source_newest_url,
+        newestItemPresent=newest_present,
+        recordsSeen=int(high_water.get("inWindowFilingsSeen") or record_count),
+        recordsIngested=record_count,
+        completeness="complete" if complete else "unverified",
+        coverage="complete" if complete else "unverified",
+        sourceObservation=observation,
+        reason=reason,
+    )
+
+
 def _source_health_from_artifacts(intelligence: dict, checked_at: str) -> list[SourceHealth]:
     rows: list[SourceHealth] = []
     signals = intelligence.get("signals", [])
-    pubmed_dates = [item.get("date", "") for item in signals if "pubmed" in str(item.get("sourceName", "")).lower()]
-    sec_dates = [item.get("date", "") for item in signals if "sec" in str(item.get("sourceName", "")).lower()]
-    pubmed_item_health = [
-        item.get("itemEvidence", {})
-        for group in ("themes", "competitors")
-        for item in intelligence.get("trends", {}).get(group, [])
-        if item.get("itemEvidence")
-    ]
-    pubmed_source_newest = _latest([item.get("newestDate") or item.get("newestSampledDate") or "" for item in pubmed_item_health])
-    pubmed_newest_present = all(
-        item.get("newestPmidIngested", item.get("newestSampledPmidIngested", False))
-        for item in pubmed_item_health
-    ) if pubmed_item_health else False
-    for source_id, url, dates, method in (
-        ("pubmed-eutils", "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/", pubmed_dates, "official_api_aggregate_counts_plus_newest_item"),
-        (
-            "sec-edgar-submissions",
-            "https://www.sec.gov/search-filings/edgar-application-programming-interfaces",
-            sec_dates,
-            "official_api_all_in_window_filings",
-        ),
-    ):
-        newest = _latest(dates)
-        matching_records = [
-            item for item in signals
-            if str(item.get("date", ""))[:10] == newest
-            and ((source_id == "pubmed-eutils" and "pubmed" in str(item.get("sourceName", "")).lower())
-                 or (source_id == "sec-edgar-submissions" and "sec" in str(item.get("sourceName", "")).lower()))
-        ]
-        newest_record = sorted(matching_records, key=lambda item: str(item.get("sourceUrl", "")))[-1] if matching_records else {}
-        source_newest = pubmed_source_newest if source_id == "pubmed-eutils" else newest
-        newest_present = pubmed_newest_present if source_id == "pubmed-eutils" else bool(newest)
-        is_pubmed = source_id == "pubmed-eutils"
-        rows.append(SourceHealth(
-            sourceId=source_id, url=url, required=True, collectionMethod=method,
-            collectionOutcome="collected" if newest else "checked_empty", attemptedAt=checked_at,
-            succeededAt=checked_at, engineNewestDate=newest, sourceNewestDate=source_newest,
-            engineNewestTitle=newest_record.get("title"), engineNewestUrl=newest_record.get("sourceUrl"),
-            sourceNewestTitle=newest_record.get("title"), sourceNewestUrl=newest_record.get("sourceUrl"),
-            newestItemPresent=newest_present,
-            recordsSeen=len(dates), recordsIngested=len(dates),
-            completeness="complete", coverage="complete",
-            reason=(
-                "Aggregate PubMed counts cover every configured horizon; stored item-level evidence is an explicitly labeled representative sample that includes the newest PMID for each theme query."
-                if source_id == "pubmed-eutils" else "Every qualifying in-window SEC filing was collected and deduplicated by accession number."
-            ),
-        ))
+    rows.append(_pubmed_source_health(intelligence, signals, checked_at))
+    rows.append(_sec_source_health(intelligence, signals, checked_at))
 
     journal_data = read_json(DATA_DIR / "journal_sources.json", {"sources": []})
     for source in journal_data.get("sources", []):
@@ -692,20 +838,30 @@ def _source_health_from_artifacts(intelligence: dict, checked_at: str) -> list[S
         newest = _latest([item.get("date", "") for item in records])
         item_evidence = source.get("itemEvidence", {})
         extracted = source.get("collectionStatus") == "extracted"
+        source_newest_doi = str(item_evidence.get("sourceNewestDoi") or "").strip()
+        crossref_complete = bool(
+            source_newest_doi
+            and item_evidence.get("paginationComplete")
+            and "complete" in str(source.get("collectionDetail", "")).lower()
+        )
         rows.append(SourceHealth(
             sourceId=str(source.get("id")), url=str(source.get("metadataEndpoint") or source.get("homepage") or ""),
             required=True, collectionMethod="crossref_cursor_pagination",
             collectionOutcome="collected" if extracted and records else "error" if not extracted else "checked_empty",
             attemptedAt=str(source.get("lastChecked") or checked_at), succeededAt=str(source.get("lastChecked") or checked_at) if extracted else None,
-            engineNewestDate=newest, sourceNewestDate=item_evidence.get("sourceNewestDate") or newest,
+            engineNewestDate=newest, sourceNewestDate=item_evidence.get("sourceNewestDate"),
             engineNewestTitle=records[0].get("title") if records else None,
             engineNewestUrl=records[0].get("sourceUrl") if records else None,
-            sourceNewestTitle=records[0].get("title") if records else None,
-            sourceNewestUrl=records[0].get("sourceUrl") if records else None,
-            newestItemPresent=bool(item_evidence.get("newestDoiIngested")),
+            sourceNewestUrl=(f"https://doi.org/{source_newest_doi}" if source_newest_doi else None),
+            newestItemPresent=bool(item_evidence.get("newestDoiIngested")) if source_newest_doi else None,
             recordsSeen=int(item_evidence.get("sourceResultCount") or len(records)), recordsIngested=len(records),
-            completeness="complete" if "complete" in str(source.get("collectionDetail", "")).lower() else "partial",
-            coverage="complete" if "complete" in str(source.get("collectionDetail", "")).lower() else "partial",
+            completeness="complete" if crossref_complete else "partial",
+            coverage="complete" if crossref_complete else "partial",
+            sourceObservation=(
+                f"Live Crossref cursor traversal at {item_evidence.get('queryExecutedAt') or checked_at}; "
+                f"newest DOI {source_newest_doi} dated {item_evidence.get('sourceNewestDate')}."
+                if crossref_complete else ""
+            ),
             reason=str(source.get("collectionDetail") or "Crossref collection status unavailable."),
         ))
 
@@ -716,16 +872,26 @@ def _source_health_from_artifacts(intelligence: dict, checked_at: str) -> list[S
         newest = _latest([item.get("date", "") for item in records])
         item_evidence = source.get("itemEvidence", {})
         status = str(source.get("collectionStatus") or "")
+        # Records retained from a prior run are not evidence about the live source.
+        feed_observed_live = bool(
+            item_evidence.get("sourceNewestUrl") and not item_evidence.get("retainedFromPriorRun")
+        )
         rows.append(SourceHealth(
             sourceId=str(source.get("id")), url=str(source.get("homepage") or ""), required=False,
             collectionMethod="publisher_public_metadata",
             collectionOutcome="collected" if status == "extracted" and records else "partial" if records else "error",
             attemptedAt=str(source.get("lastChecked") or checked_at),
             succeededAt=str(source.get("lastChecked") or checked_at) if records else None,
-            engineNewestDate=newest, sourceNewestDate=item_evidence.get("sourceNewestDate") or newest,
-            newestItemPresent=bool(item_evidence.get("sourceNewestUrl")),
+            engineNewestDate=newest,
+            sourceNewestDate=item_evidence.get("sourceNewestDate") if feed_observed_live else None,
+            sourceNewestUrl=str(item_evidence.get("sourceNewestUrl") or "") or None if feed_observed_live else None,
+            newestItemPresent=None,
             recordsSeen=int(item_evidence.get("sourceResultCount") or len(records)), recordsIngested=len(records),
             completeness="partial", coverage="partial",
+            sourceObservation=(
+                f"Live publisher metadata fetch at {item_evidence.get('queryExecutedAt') or checked_at}."
+                if feed_observed_live else ""
+            ),
             reason=str(source.get("collectionDetail") or "Publisher metadata collection status unavailable."),
         ))
 
@@ -766,6 +932,11 @@ def _source_health_from_artifacts(intelligence: dict, checked_at: str) -> list[S
                 newestItemPresent=extracted,
                 recordsSeen=count, recordsIngested=count, completeness="complete" if extracted else "unverified",
                 coverage="complete" if extracted else "unverified",
+                sourceObservation=(
+                    f"Live {method} traversal of {source.get('url') or source_id} at "
+                    f"{source.get('checkedAt') or checked_at}; the monitor records what the fetch returned."
+                    if extracted else ""
+                ),
                 reason=str(source.get("extractionReason") or source.get("status") or ""),
             ))
 
@@ -786,6 +957,11 @@ def _source_health_from_artifacts(intelligence: dict, checked_at: str) -> list[S
             sourceNewestTitle=summary.get("newestTitle"), sourceNewestUrl=summary.get("newestUrl"),
             newestItemPresent=complete, recordsSeen=count, recordsIngested=count,
             completeness="complete" if complete else "partial", coverage="complete" if complete else "partial",
+            sourceObservation=(
+                f"Live {method} of {url} at {agilent.get('generatedAt') or checked_at}; the coverage summary "
+                "records the traversal the collector completed against the official source."
+                if complete else ""
+            ),
             reason="All declared sitemap pages were traversed." if source_id == "agilent-lcms" else "The complete current-year official archive was traversed through the newsroom or investor-relations feed.",
         ))
     for index, source in enumerate(agilent.get("source_status", [])):

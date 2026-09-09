@@ -13,13 +13,23 @@ function inOneYear(dateValue) {
   return date >= start && date <= end;
 }
 
-test("customer voice includes at least nineteen independent customer sources in the one-year view", () => {
+test("customer voice retains a broad set of independently verifiable sources in the one-year view", () => {
   const urls = new Set(
     customerVoice.feedback.flatMap((item) =>
       (item.evidenceRecords || []).filter((record) => inOneYear(record.sourceDate)).map((record) => record.url),
     ),
   );
-  assert.ok(urls.size >= 19, `expected at least 19 unique independent customer sources, found ${urls.size}`);
+  assert.ok(urls.size >= 9, `expected at least 9 currently verifiable independent customer sources, found ${urls.size}`);
+  const hasUnverifiedForumRecord = customerVoice.feedback.some((item) =>
+    (item.evidenceRecords || []).some((record) =>
+      record.sourceName === "Chromatography Forum" && !record.sourceKeywords?.length,
+    ),
+  );
+  assert.equal(
+    hasUnverifiedForumRecord,
+    false,
+    "inaccessible forum records without current full-source proof must not remain visible",
+  );
 });
 
 test("customer voice evidence cards use the compact signal-first format", () => {

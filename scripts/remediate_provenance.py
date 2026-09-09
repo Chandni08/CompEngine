@@ -21,6 +21,17 @@ EXPORTS = ROOT / "exports"
 RETRIEVED_AT = utc_now()
 
 
+def observed_at(records: list[dict[str, Any]]) -> str | None:
+    """Return when the underlying content was last actually seen at the source.
+
+    ``lastSeenAt`` is written by the collector only for records it re-fetched and
+    confirmed.  A record the collector did not reach keeps its earlier value, so
+    this is the honest content date even on a run that touches every record.
+    """
+    seen = [str(record.get("lastSeenAt") or "") for record in records if record.get("lastSeenAt")]
+    return max(seen) if seen else None
+
+
 def excerpt(text: str, limit: int = 15) -> str:
     """Return a short, non-invented excerpt suitable for a provenance card."""
     return " ".join(str(text or "").split()[:limit])
@@ -42,6 +53,8 @@ def repair_intelligence() -> dict[str, int]:
     for signal in data.get("signals", []):
         signal.setdefault("claimID", signal.get("id"))
         signal.setdefault("retrievalDate", data.get("generatedAt") or RETRIEVED_AT)
+        signal["contentAsOf"] = signal.get("retrievalDate")
+        signal["stampedAt"] = RETRIEVED_AT
         signal.setdefault("sourceDate", signal.get("date"))
         signal.setdefault("sourceDateType", "publication")
         signal.setdefault("languageType", "analyst_paraphrase")
@@ -149,7 +162,17 @@ def repair_customer_voice() -> dict[str, int]:
             None,
         )
         item["claimID"] = item.get("id")
-        item["retrievalDate"] = data.get("generatedAt") or RETRIEVED_AT
+        # retrievalDate is when this record's content was last read from the
+        # source.  Stamping it with the run timestamp restated every record as
+        # freshly retrieved, including records no collector reached this run.
+        content_as_of = (
+            observed_at(records)
+            or item.get("dateCaptured")
+            or item.get("retrievalDate")
+        )
+        item["contentAsOf"] = content_as_of
+        item["retrievalDate"] = content_as_of
+        item["stampedAt"] = RETRIEVED_AT
         item["sourceDate"] = next((r.get("sourceDate") for r in records if r.get("sourceDate")), None)
         item["sourceDateType"] = "publication"
         item["primarySourceUrl"] = item.get("sourceUrl") or next((r.get("url") for r in records), "")
@@ -170,12 +193,23 @@ def repair_customer_voice() -> dict[str, int]:
             item["evidenceStatus"] = "partial"
             synthesized += 1
         for record in records:
-            record.setdefault("retrievalDate", data.get("generatedAt") or RETRIEVED_AT)
+            record["contentAsOf"] = (
+                record.get("lastSeenAt")
+                or record.get("retrievalDate")
+                or record.get("firstSeenAt")
+            )
+            record.setdefault("retrievalDate", record.get("contentAsOf") or RETRIEVED_AT)
+            record["stampedAt"] = RETRIEVED_AT
             if record.get("dateType"):
                 record["dateType"] = str(record["dateType"]).lower()
 
     data["schemaVersion"] = 2
     data["provenanceRemediatedAt"] = RETRIEVED_AT
+    data["stampedAt"] = RETRIEVED_AT
+    data["contentAsOf"] = max(
+        (str(item.get("contentAsOf") or "") for item in data.get("feedback", [])),
+        default="",
+    ) or None
     write_json("customer_voice.json", data)
     return {"verbatimQuotes": verbatim, "analystOrDirectional": synthesized}
 

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-26T14:52:23+00:00",
+  "generatedAt": "2026-09-09T02:48:54+00:00",
   "source": "User-provided Waters Next Gen LC conference screenshots",
   "scope": "Conference and event websites to monitor for competitor launches, application themes, sponsor activity, posters, talks, abstracts, and workflow messaging.",
   "events": [
@@ -30,7 +30,7 @@
       ],
       "monitoringUse": "Track biologics characterization requirements and regulatory language that may change LC and LC-MS roadmap priorities.",
       "health": "good",
-      "lastChecked": "2026-08-26T14:52:23+00:00",
+      "lastChecked": "2026-09-09T02:48:54+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -42,7 +42,7 @@
           "url": "https://www.casss.org/meetings-and-events/event/2026/01/27/default-calendar/wcbp-2026",
           "finalUrl": "https://www.casss.org/meetings-and-events/event/2026/01/27/default-calendar/wcbp-2026",
           "status": 200,
-          "pageFingerprint": "56300ac4de3ef1c7"
+          "pageFingerprint": "e2d5236065c935eb"
         }
       ],
       "contentRecords": [
@@ -126,7 +126,7 @@
       ],
       "monitoringUse": "Monitor automation and informatics claims that influence LC workflow differentiation.",
       "health": "good",
-      "lastChecked": "2026-08-26T14:52:23+00:00",
+      "lastChecked": "2026-09-09T02:48:54+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -138,7 +138,7 @@
           "url": "https://www.slas.org/events-calendar/slas2026-international-conference-exhibition/",
           "finalUrl": "https://www.slas.org/events-calendar/slas2026-international-conference-exhibition/",
           "status": 200,
-          "pageFingerprint": "771abb3dd38b800c"
+          "pageFingerprint": "31a1e0dd44b590d0"
         }
       ],
       "contentRecords": [
@@ -188,130 +188,6 @@
       "contentRecordCount": 6
     },
     {
-      "id": "mrna-analytical-development-2026",
-      "eventName": "mRNA Analytical Development & QC Summit",
-      "audienceSize": 80,
-      "audienceDescription": "Analytical quality leaders for mRNA characterization and control.",
-      "website": "https://mrna-analytical-development.com/",
-      "tier": "Tier 2",
-      "quarter": "Q1 2026",
-      "startDate": "2026-02-24",
-      "endDate": "2026-02-26",
-      "marketSegments": [
-        "Biopharma",
-        "CDMO"
-      ],
-      "technologyFocus": [
-        "LC-MS",
-        "LNP",
-        "RNA therapeutics",
-        "QC"
-      ],
-      "signalCoverage": [
-        "RNA analytical methods",
-        "LNP workflow needs",
-        "QC pain points",
-        "Emerging application pull"
-      ],
-      "monitoringUse": "Track LNP and RNA analytics requirements for LC-MS workflow prioritization.",
-      "health": "good",
-      "lastChecked": "2026-08-26T14:52:23+00:00",
-      "surfaces": [
-        "Market intelligence",
-        "Application trends"
-      ],
-      "collectionStatus": "extracted",
-      "collectionDetail": "1 of 1 official endpoints reachable; 11 public program-content links extracted.",
-      "monitoredEndpoints": [
-        {
-          "url": "https://mrna-analytical-development.com/",
-          "finalUrl": "https://mrna-analytical-development.com/",
-          "status": 200,
-          "pageFingerprint": "0186fe924ebca0ce"
-        }
-      ],
-      "contentRecords": [
-        {
-          "id": "358aee70750c2322b901",
-          "title": "2026 Speakers",
-          "recordType": "Public conference program link",
-          "canonicalUrl": "https://mrna-analytical-development.com/speakers/",
-          "sourcePageUrl": "https://mrna-analytical-development.com/"
-        },
-        {
-          "id": "2dc448a2c6731c7e0d47",
-          "title": "Download the 2026 Agenda",
-          "recordType": "Public conference program link",
-          "canonicalUrl": "https://mrna-analytical-development.com/full-event-guide/",
-          "sourcePageUrl": "https://mrna-analytical-development.com/"
-        },
-        {
-          "id": "eaf453ccd8fefbe8f780",
-          "title": "Diane McCarthy Vice President - Global Biologics U.S. Pharmacopeia",
-          "recordType": "Public conference program link",
-          "canonicalUrl": "https://mrna-analytical-development.com/speaker/diane-mccarthy/",
-          "sourcePageUrl": "https://mrna-analytical-development.com/"
-        },
-        {
-          "id": "84ac798a937db551af0b",
-          "title": "Bohdan Andreiuk Senior Scientist, New Modality Preformulation & LNP Formulation AstraZeneca",
-          "recordType": "Public conference program link",
-          "canonicalUrl": "https://mrna-analytical-development.com/speaker/bohdan-andreiuk/",
-          "sourcePageUrl": "https://mrna-analytical-development.com/"
-        },
-        {
-          "id": "6d91fb55135aadf8ee3c",
-          "title": "Yurong Guo Senior Director - Analytical Development & Quality Control Arcturus Therapeutics",
-          "recordType": "Public conference program link",
-          "canonicalUrl": "https://mrna-analytical-development.com/speaker/yurong-guo/",
-          "sourcePageUrl": "https://mrna-analytical-development.com/"
-        },
-        {
-          "id": "0e895523257393f009be",
-          "title": "Jean-Francois Dierick Strategic Analytical Validation & Lifecycle Lead GlaxoSmithKline",
-          "recordType": "Public conference program link",
-          "canonicalUrl": "https://mrna-analytical-development.com/speaker/jean-francois-dierick/",
-          "sourcePageUrl": "https://mrna-analytical-development.com/"
-        },
-        {
-          "id": "70071e2e904346fabc76",
-          "title": "Benjamin Hall Associate Director Tessera Therapeutics",
-          "recordType": "Public conference program link",
-          "canonicalUrl": "https://mrna-analytical-development.com/speaker/benjamin-hall/",
-          "sourcePageUrl": "https://mrna-analytical-development.com/"
-        },
-        {
-          "id": "abbf9513b23cb6de5788",
-          "title": "Samuel Valentin QC Analyst Associate Takeda Pharmaceutical",
-          "recordType": "Public conference program link",
-          "canonicalUrl": "https://mrna-analytical-development.com/speaker/samuel-valentin/",
-          "sourcePageUrl": "https://mrna-analytical-development.com/"
-        },
-        {
-          "id": "43e3ef1874d423191739",
-          "title": "Stefan Heinz Director - Analytical Science & Strategy CureVac SE",
-          "recordType": "Public conference program link",
-          "canonicalUrl": "https://mrna-analytical-development.com/speaker/stefan-heinz/",
-          "sourcePageUrl": "https://mrna-analytical-development.com/"
-        },
-        {
-          "id": "da6396ddd35f90fbcc8f",
-          "title": "Charles Kline Associate Vice President - Regulatory Affairs & Chemistry Manufacturing Controls Merck & Co",
-          "recordType": "Public conference program link",
-          "canonicalUrl": "https://mrna-analytical-development.com/speaker/charles-kline/",
-          "sourcePageUrl": "https://mrna-analytical-development.com/"
-        },
-        {
-          "id": "ee59ef0a41b65039ac81",
-          "title": "Explore Sponsorship Options",
-          "recordType": "Public conference program link",
-          "canonicalUrl": "https://mrna-analytical-development.com/why-partner/",
-          "sourcePageUrl": "https://mrna-analytical-development.com/"
-        }
-      ],
-      "contentRecordCount": 11
-    },
-    {
       "id": "bioprocessing-summit-eu-2026",
       "eventName": "Bioprocessing Summit EU",
       "audienceSize": 1200,
@@ -339,7 +215,7 @@
       ],
       "monitoringUse": "Monitor bioprocess analytics demand and competitor workflow messaging.",
       "health": "good",
-      "lastChecked": "2026-08-26T14:52:23+00:00",
+      "lastChecked": "2026-09-09T02:48:54+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -351,7 +227,7 @@
           "url": "https://www.bioprocessingeurope.com/",
           "finalUrl": "https://www.bioprocessingeurope.com/",
           "status": 200,
-          "pageFingerprint": "008aee8cffae564c"
+          "pageFingerprint": "2a88485429892a31"
         }
       ],
       "contentRecords": [
@@ -456,52 +332,23 @@
       ],
       "monitoringUse": "Track broad chemistry application themes and early methods that may become product requirements.",
       "health": "good",
-      "lastChecked": "2026-08-26T14:52:23+00:00",
+      "lastChecked": "2026-09-09T02:48:54+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
       ],
-      "collectionStatus": "extracted",
-      "collectionDetail": "1 of 1 official endpoints reachable; 4 public program-content links extracted.",
+      "collectionStatus": "partial",
+      "collectionDetail": "1 of 1 official endpoints reachable; 0 public program-content links extracted.",
       "monitoredEndpoints": [
         {
           "url": "https://www.acs.org/events/spring.html",
           "finalUrl": "https://www.acs.org/events/spring.html",
           "status": 200,
-          "pageFingerprint": "252dec3d765a99e7"
+          "pageFingerprint": "d713178d201e02b4"
         }
       ],
-      "contentRecords": [
-        {
-          "id": "bfdd11d7e0b9c55697b2",
-          "title": "Submit an Abstract",
-          "recordType": "Public conference program link",
-          "canonicalUrl": "https://www.acs.org/events/spring/presenters/submit-an-abstract.html",
-          "sourcePageUrl": "https://www.acs.org/events/spring.html"
-        },
-        {
-          "id": "7b4b5c01fe23b0992558",
-          "title": "Abstract Submission",
-          "recordType": "Public conference program link",
-          "canonicalUrl": "https://callforabstracts.acs.org/acsspring2027",
-          "sourcePageUrl": "https://www.acs.org/events/spring.html"
-        },
-        {
-          "id": "32f92e02523f593c72f8",
-          "title": "Exhibitor &amp; Sponsor Prospectus",
-          "recordType": "Public conference program link",
-          "canonicalUrl": "https://www.acs.org/events/acs-meetings/exhibit-and-sponsor/prospectus-spring-2027.html",
-          "sourcePageUrl": "https://www.acs.org/events/spring.html"
-        },
-        {
-          "id": "e5944113a1ff81876828",
-          "title": "View All Sponsors",
-          "recordType": "Public conference program link",
-          "canonicalUrl": "https://www.acs.org/events/fall/sponsors.html",
-          "sourcePageUrl": "https://www.acs.org/events/spring.html"
-        }
-      ],
-      "contentRecordCount": 4
+      "contentRecords": [],
+      "contentRecordCount": 0
     },
     {
       "id": "analytica-2026",
@@ -533,7 +380,7 @@
       ],
       "monitoringUse": "Monitor global instrument launches and competitor positioning in lab technology.",
       "health": "good",
-      "lastChecked": "2026-08-26T14:52:23+00:00",
+      "lastChecked": "2026-09-09T02:48:54+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -545,7 +392,7 @@
           "url": "https://analytica.de/en/munich/",
           "finalUrl": "https://analytica.de/en/munich/",
           "status": 200,
-          "pageFingerprint": "1eadf3b7484a00d3"
+          "pageFingerprint": "0e9ada89eac1ba95"
         }
       ],
       "contentRecords": [
@@ -669,7 +516,7 @@
       ],
       "monitoringUse": "Track ADC workflow requirements for biopharma LC-MS capability planning.",
       "health": "good",
-      "lastChecked": "2026-08-26T14:52:23+00:00",
+      "lastChecked": "2026-09-09T02:48:54+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -681,7 +528,7 @@
           "url": "https://adc-analytical.com/",
           "finalUrl": "https://adc-analytical.com/",
           "status": 200,
-          "pageFingerprint": "b17d079e86b9ffaf"
+          "pageFingerprint": "f9aac22eaed27847"
         }
       ],
       "contentRecords": [
@@ -776,7 +623,7 @@
       ],
       "monitoringUse": "Track biologics workflow themes and partnership/customer language.",
       "health": "good",
-      "lastChecked": "2026-08-26T14:52:23+00:00",
+      "lastChecked": "2026-09-09T02:48:54+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -950,7 +797,7 @@
       ],
       "monitoringUse": "Monitor oligo, peptide, mRNA, and LNP analytical workflow signals.",
       "health": "good",
-      "lastChecked": "2026-08-26T14:52:23+00:00",
+      "lastChecked": "2026-09-09T02:48:54+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -962,7 +809,7 @@
           "url": "https://informaconnect.com/tides/",
           "finalUrl": "https://informaconnect.com/tides/",
           "status": 200,
-          "pageFingerprint": "0d3fb84e3e804c84"
+          "pageFingerprint": "2c35b40485240e43"
         }
       ],
       "contentRecords": [
@@ -1065,7 +912,7 @@
       ],
       "monitoringUse": "Track emerging therapy areas that create analytical workflow pull.",
       "health": "good",
-      "lastChecked": "2026-08-26T14:52:23+00:00",
+      "lastChecked": "2026-09-09T02:48:54+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -1077,7 +924,7 @@
           "url": "https://annualmeeting.asgct.org/",
           "finalUrl": "https://annualmeeting.asgct.org/",
           "status": 200,
-          "pageFingerprint": "e386598899222b7c"
+          "pageFingerprint": "4af36a86dea552c3"
         }
       ],
       "contentRecords": [
@@ -1188,7 +1035,7 @@
       ],
       "monitoringUse": "Track European automation and informatics needs relevant to LC workflows.",
       "health": "good",
-      "lastChecked": "2026-08-26T14:52:23+00:00",
+      "lastChecked": "2026-09-09T02:48:54+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -1200,7 +1047,7 @@
           "url": "https://www.slas.org/events-calendar/slas-europe-2026-conference-and-exhibition/",
           "finalUrl": "https://www.slas.org/events-calendar/slas-europe-2026-conference-and-exhibition/",
           "status": 200,
-          "pageFingerprint": "5a081af1492f7994"
+          "pageFingerprint": "cf2bd198c9d5a08f"
         }
       ],
       "contentRecords": [
@@ -1284,38 +1131,23 @@
       ],
       "monitoringUse": "Use as a Waters-owned customer signal source for LC-MS roadmap questions.",
       "health": "manual",
-      "lastChecked": "2026-08-26T14:52:23+00:00",
+      "lastChecked": "2026-09-09T02:48:54+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
       ],
-      "collectionStatus": "extracted",
-      "collectionDetail": "1 of 1 official endpoints reachable; 2 public program-content links extracted.",
+      "collectionStatus": "partial",
+      "collectionDetail": "1 of 1 official endpoints reachable; 0 public program-content links extracted.",
       "monitoredEndpoints": [
         {
           "url": "https://cvent.me/lKEada",
           "finalUrl": "https://web.cvent.com/event/aa60970c-53a0-466e-87f7-5af317a3dc9a/summary",
           "status": 200,
-          "pageFingerprint": "1c3ee2928593b72f"
+          "pageFingerprint": "fc14cc5642cb65e5"
         }
       ],
-      "contentRecords": [
-        {
-          "id": "787f2f11c62584bc3535",
-          "title": "2026 AGENDA",
-          "recordType": "Public conference program link",
-          "canonicalUrl": "https://web.cvent.com/event/aa60970c-53a0-466e-87f7-5af317a3dc9a/websitePage:63b18f5a-fb55-4f72-bf3a-7bc42220a948",
-          "sourcePageUrl": "https://web.cvent.com/event/aa60970c-53a0-466e-87f7-5af317a3dc9a/summary"
-        },
-        {
-          "id": "9109f41bf306b5485cff",
-          "title": "FIND OUT MORE",
-          "recordType": "Public conference program link",
-          "canonicalUrl": "https://web.cvent.com/event/7d18baaa-010f-49b5-8c0b-629d1c057512/summary?session=c8139cf9-3718-45d5-94e6-657a4dbc5cf8",
-          "sourcePageUrl": "https://web.cvent.com/event/aa60970c-53a0-466e-87f7-5af317a3dc9a/summary"
-        }
-      ],
-      "contentRecordCount": 2
+      "contentRecords": [],
+      "contentRecordCount": 0
     },
     {
       "id": "asms-2026",
@@ -1359,21 +1191,21 @@
       "whatToMeasure": "Poster and oral titles by vendor and instrument, corporate breakfast seminars, repeated methods, new performance claims, and direct competitor comparisons.",
       "whyItMatters": "ASMS provides the densest annual view of vendor LC-MS proof, including head-to-head posters that may reveal competitive performance claims before formal product literature.",
       "health": "good",
-      "lastChecked": "2026-08-26T14:52:23+00:00",
+      "lastChecked": "2026-09-09T02:48:54+00:00",
       "collectionStatus": "extracted",
-      "collectionDetail": "2 of 2 official endpoints reachable; 37 public program-content links extracted.",
+      "collectionDetail": "2 of 2 official endpoints reachable; 38 public program-content links extracted.",
       "monitoredEndpoints": [
         {
           "url": "https://www.asms.org/conferences/annual-conference",
           "finalUrl": "https://www.asms.org/conferences/annual-conference",
           "status": 200,
-          "pageFingerprint": "5a0c938e2d612991"
+          "pageFingerprint": "d6fd53d52addf3f6"
         },
         {
           "url": "https://www.asms.org/conferences/annual-conference/conference-program",
           "finalUrl": "https://www.asms.org/conferences/annual-conference/conference-program",
           "status": 200,
-          "pageFingerprint": "d8226767c877d989"
+          "pageFingerprint": "57445393e471b31d"
         }
       ],
       "surfaces": [
@@ -1627,6 +1459,13 @@
           "sourcePageUrl": "https://www.asms.org/conferences/annual-conference/conference-program"
         },
         {
+          "id": "0dc7c221496d4e816b2b",
+          "title": "PDF",
+          "recordType": "Public conference program link",
+          "canonicalUrl": "https://www.asms.org/docs/default-source/conference/74th-asms-final-program_as-of-may-8-2026.pdf?sfvrsn=1234fc3_0",
+          "sourcePageUrl": "https://www.asms.org/conferences/annual-conference"
+        },
+        {
           "id": "8115363ad4c72f8c0708",
           "title": "Detailed Program PDF",
           "recordType": "Public conference program link",
@@ -1641,7 +1480,7 @@
           "sourcePageUrl": "https://www.asms.org/conferences/annual-conference/conference-program"
         }
       ],
-      "contentRecordCount": 37
+      "contentRecordCount": 38
     },
     {
       "id": "hplc-2026",
@@ -1686,7 +1525,7 @@
       "whatToMeasure": "Abstract and poster themes in dwell volume, dispersion, columns, multidimensional LC, hyphenated detection, method transfer, and vendor seminars.",
       "whyItMatters": "The HPLC series is the most direct scientific source for separation-performance and column-technology changes that can become LC product requirements.",
       "health": "good",
-      "lastChecked": "2026-08-26T14:52:23+00:00",
+      "lastChecked": "2026-09-09T02:48:54+00:00",
       "collectionStatus": "extracted",
       "collectionDetail": "2 of 2 official endpoints reachable; 43 public program-content links extracted.",
       "monitoredEndpoints": [
@@ -1694,13 +1533,13 @@
           "url": "https://hplc2026-symposium.org/",
           "finalUrl": "https://hplc2026-symposium.org/",
           "status": 200,
-          "pageFingerprint": "aaa5a393b176154d"
+          "pageFingerprint": "b9d74c042a8ffd66"
         },
         {
           "url": "https://hplc-symposium.org/2028",
           "finalUrl": "https://hplc-symposium.org/2028",
           "status": 200,
-          "pageFingerprint": "1e5a088654459946"
+          "pageFingerprint": "812713ea69e1dabe"
         }
       ],
       "surfaces": [
@@ -1892,7 +1731,7 @@
         },
         {
           "id": "9ed5d2d1f7971e261753",
-          "title": "strings.skip_to_content",
+          "title": "Skip to content",
           "recordType": "Public conference program link",
           "canonicalUrl": "https://hplc-symposium.org/2028",
           "sourcePageUrl": "https://hplc-symposium.org/2028"
@@ -2003,10 +1842,10 @@
           "sourcePageUrl": "https://hplc-symposium.org/2028"
         },
         {
-          "id": "900e53a2e26501036cb0",
+          "id": "83c205700aece9723414",
           "title": "Sitemap",
           "recordType": "Public conference program link",
-          "canonicalUrl": "https://hplc-symposium.org/sitemap-hplc28.xml",
+          "canonicalUrl": "https://hplc-symposium.org/2028/sitemap.xml",
           "sourcePageUrl": "https://hplc-symposium.org/2028"
         }
       ],
@@ -2039,7 +1878,7 @@
       ],
       "monitoringUse": "Track omics application pull and informatics expectations.",
       "health": "good",
-      "lastChecked": "2026-08-26T14:52:23+00:00",
+      "lastChecked": "2026-09-09T02:48:54+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -2051,7 +1890,7 @@
           "url": "https://metabolomicssociety.org/",
           "finalUrl": "https://metabolomicssociety.org/",
           "status": 200,
-          "pageFingerprint": "ae7854cd08102833"
+          "pageFingerprint": "d06789a500491623"
         }
       ],
       "contentRecords": [
@@ -2091,7 +1930,7 @@
       ],
       "monitoringUse": "Track DMPK/bioanalysis requirements that influence LC-MS product expectations.",
       "health": "good",
-      "lastChecked": "2026-08-26T14:52:23+00:00",
+      "lastChecked": "2026-09-09T02:48:54+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -2103,7 +1942,7 @@
           "url": "https://issxmeetings.org/2026-euro/home",
           "finalUrl": "https://issxmeetings.org/2026-euro/home",
           "status": 200,
-          "pageFingerprint": "eb5e8f2ae0b2746f"
+          "pageFingerprint": "5f76c1e9bb111685"
         }
       ],
       "contentRecords": [
@@ -2200,7 +2039,7 @@
       ],
       "monitoringUse": "Monitor analytics needs in bioprocessing and CMC workflows.",
       "health": "good",
-      "lastChecked": "2026-08-26T14:52:23+00:00",
+      "lastChecked": "2026-09-09T02:48:54+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -2212,7 +2051,7 @@
           "url": "https://www.bioprocessingsummit.com/",
           "finalUrl": "https://www.bioprocessingsummit.com/",
           "status": 200,
-          "pageFingerprint": "57191fbc6464df10"
+          "pageFingerprint": "7459e1622fec32ac"
         }
       ],
       "contentRecords": [
@@ -2365,7 +2204,7 @@
       "whatToMeasure": "Instrument and acquisition advances, application-session concentration, vendor-authored posters, and repeated global MS workflow themes.",
       "whyItMatters": "IMSC adds a global, research-led view of MS direction that complements the vendor-heavy ASMS signal.",
       "health": "good",
-      "lastChecked": "2026-08-26T14:52:23+00:00",
+      "lastChecked": "2026-09-09T02:48:54+00:00",
       "collectionStatus": "partial",
       "collectionDetail": "1 of 1 official endpoints reachable; 0 public program-content links extracted.",
       "monitoredEndpoints": [
@@ -2373,7 +2212,7 @@
           "url": "https://www.imss.nl/",
           "finalUrl": "https://www.imss.nl/",
           "status": 200,
-          "pageFingerprint": "3ce80333a708d91c"
+          "pageFingerprint": "b9bf2a4f721eda92"
         }
       ],
       "surfaces": [
@@ -2410,73 +2249,23 @@
       ],
       "monitoringUse": "Track chemistry and analytical methods that could create future workflow demand.",
       "health": "manual",
-      "lastChecked": "2026-08-26T14:52:23+00:00",
+      "lastChecked": "2026-09-09T02:48:54+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
       ],
-      "collectionStatus": "extracted",
-      "collectionDetail": "1 of 1 official endpoints reachable; 7 public program-content links extracted.",
+      "collectionStatus": "partial",
+      "collectionDetail": "1 of 1 official endpoints reachable; 0 public program-content links extracted.",
       "monitoredEndpoints": [
         {
           "url": "https://www.acs.org/events/all-events/acs-fall-2026.html",
           "finalUrl": "https://www.acs.org/events/all-events/acs-fall-2026.html",
           "status": 200,
-          "pageFingerprint": "3137ac8716e104cb"
+          "pageFingerprint": "11ba48c0113d441d"
         }
       ],
-      "contentRecords": [
-        {
-          "id": "78da61f4f8188b3f0bb7",
-          "title": "Become an Exhibitor or Sponsor",
-          "recordType": "Public conference program link",
-          "canonicalUrl": "https://www.acs.org/events/acs-meetings/exhibit-and-sponsor.html",
-          "sourcePageUrl": "https://www.acs.org/events/all-events/acs-fall-2026.html"
-        },
-        {
-          "id": "3e8a37bd1352816fd00f",
-          "title": "Career Courses &amp; Workshops",
-          "recordType": "Public conference program link",
-          "canonicalUrl": "https://www.acs.org/careers/courses-workshops.html",
-          "sourcePageUrl": "https://www.acs.org/events/all-events/acs-fall-2026.html"
-        },
-        {
-          "id": "a12d913b8d21a8c09d70",
-          "title": "Submit an Abstract",
-          "recordType": "Public conference program link",
-          "canonicalUrl": "https://www.acs.org/events/programming-resources/submission-user-guide.html",
-          "sourcePageUrl": "https://www.acs.org/events/all-events/acs-fall-2026.html"
-        },
-        {
-          "id": "e1b3baaec5369bd57d4e",
-          "title": "Visa Letters",
-          "recordType": "Public conference program link",
-          "canonicalUrl": "https://www.acs.org/events/programming-resources/visa-letters.html",
-          "sourcePageUrl": "https://www.acs.org/events/all-events/acs-fall-2026.html"
-        },
-        {
-          "id": "213055f58f8f509918f1",
-          "title": "Faculty Professional Development",
-          "recordType": "Public conference program link",
-          "canonicalUrl": "https://www.acs.org/education/educators/coursesworkshops/higher-ed-workshops.html",
-          "sourcePageUrl": "https://www.acs.org/events/all-events/acs-fall-2026.html"
-        },
-        {
-          "id": "8c8bfbe48a478e96f003",
-          "title": "ACS Approval Program ACS-approved bachelor’s degree programs",
-          "recordType": "Public conference program link",
-          "canonicalUrl": "https://www.acs.org/education/policies/acs-approval-program.html",
-          "sourcePageUrl": "https://www.acs.org/events/all-events/acs-fall-2026.html"
-        },
-        {
-          "id": "ce687584abb600585a96",
-          "title": "C&amp;EN Webinar On-Demand SESSION 2: Global Regulatory Frameworks for Microplastic Analysis in Drinking Water",
-          "recordType": "Public conference program link",
-          "canonicalUrl": "https://www.acs.org/events/all-events/session-2-global-regulatory-frameworks-for-microplastic-analysis-in-drinking-water.html",
-          "sourcePageUrl": "https://www.acs.org/events/all-events/acs-fall-2026.html"
-        }
-      ],
-      "contentRecordCount": 7
+      "contentRecords": [],
+      "contentRecordCount": 0
     },
     {
       "id": "casss-ms-2026",
@@ -2504,19 +2293,19 @@
       ],
       "monitoringUse": "Track high-specificity biopharma LC-MS use cases and QC expectations.",
       "health": "good",
-      "lastChecked": "2026-08-26T14:52:23+00:00",
+      "lastChecked": "2026-09-09T02:48:54+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
       ],
       "collectionStatus": "extracted",
-      "collectionDetail": "1 of 1 official endpoints reachable; 24 public program-content links extracted.",
+      "collectionDetail": "1 of 1 official endpoints reachable; 23 public program-content links extracted.",
       "monitoredEndpoints": [
         {
           "url": "https://www.casss.org/meetings-and-events/multi-day-symposia/mass-spectrometry",
           "finalUrl": "https://www.casss.org/meetings-and-events/symposia/mass-spectrometry",
           "status": 200,
-          "pageFingerprint": "715442de4afa5a3b"
+          "pageFingerprint": "6f35b2ecd4dbcff5"
         }
       ],
       "contentRecords": [
@@ -2654,13 +2443,6 @@
           "sourcePageUrl": "https://www.casss.org/meetings-and-events/symposia/mass-spectrometry"
         },
         {
-          "id": "97cdc21bfc9ef5141ca3",
-          "title": "Whitty-L&#233;veill&#233; Laurence, Merck &amp; Co., Inc., 2025 (1999642 KB)",
-          "recordType": "Public conference program link",
-          "canonicalUrl": "https://www.casss.org/docs/default-source/mass-spec/2025-speaker-presentations/whitty-léveillé-laurence-merck-co-inc-2025.pdf?sfvrsn=f1e4a7a1_5",
-          "sourcePageUrl": "https://www.casss.org/meetings-and-events/symposia/mass-spectrometry"
-        },
-        {
           "id": "bc5c2b4387b92391e6c1",
           "title": "Xiao Yongsheng, WuXi Biologics, 2025 (5695040 KB)",
           "recordType": "Public conference program link",
@@ -2689,7 +2471,7 @@
           "sourcePageUrl": "https://www.casss.org/meetings-and-events/symposia/mass-spectrometry"
         }
       ],
-      "contentRecordCount": 24
+      "contentRecordCount": 23
     },
     {
       "id": "lab-of-the-future-eu-2026",
@@ -2718,7 +2500,7 @@
       ],
       "monitoringUse": "Track software and automation themes that shape LC ecosystem expectations.",
       "health": "blocked",
-      "lastChecked": "2026-08-26T14:52:23+00:00",
+      "lastChecked": "2026-09-09T02:48:54+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -2730,7 +2512,7 @@
           "url": "https://www.lab-of-the-future.com/europe/",
           "finalUrl": "https://www.lab-of-the-future.com/europe/",
           "status": 200,
-          "pageFingerprint": "593fa1b68655b470"
+          "pageFingerprint": "e15ef6e72dedcba8"
         }
       ],
       "contentRecords": [
@@ -2812,21 +2594,21 @@
       "whatToMeasure": "Poster counts by assay area and vendor, clinical-use status, validation claims, automation, turnaround time, and laboratory implementation barriers.",
       "whyItMatters": "MSACL separates early research from clinically available assays, providing direct evidence of what LC-MS workflows are approaching routine clinical use.",
       "health": "good",
-      "lastChecked": "2026-08-26T14:52:23+00:00",
+      "lastChecked": "2026-09-09T02:48:54+00:00",
       "collectionStatus": "extracted",
-      "collectionDetail": "2 of 2 official endpoints reachable; 127 public program-content links extracted.",
+      "collectionDetail": "2 of 2 official endpoints reachable; 137 public program-content links extracted.",
       "monitoredEndpoints": [
         {
           "url": "https://www.msacl.org/",
           "finalUrl": "https://www.msacl.org/",
           "status": 200,
-          "pageFingerprint": "b746d4808437a011"
+          "pageFingerprint": "45a3a36426a4e902"
         },
         {
           "url": "https://www.msacl.org/program/",
           "finalUrl": "https://www.msacl.org/program/",
           "status": 200,
-          "pageFingerprint": "845cbc7234a9b66c"
+          "pageFingerprint": "c56c7d94efabc45e"
         }
       ],
       "surfaces": [
@@ -2861,13 +2643,6 @@
           "recordType": "Public conference program link",
           "canonicalUrl": "https://www.msacl.org/index.php?header=MSACL_2026&tab=Details&subtab=Workshops_:_Industry",
           "sourcePageUrl": "https://www.msacl.org/"
-        },
-        {
-          "id": "89826f34160bda8f691c",
-          "title": "Booth Tour Overview",
-          "recordType": "Public conference program link",
-          "canonicalUrl": "https://www.msacl.org/index.php?header=MSACL_2026&tab=Details&subtab=Guided_Poster_and_Booth_Tours",
-          "sourcePageUrl": "https://www.msacl.org/program/"
         },
         {
           "id": "d52eaa64ec57abecb5c5",
@@ -3178,6 +2953,27 @@
           "sourcePageUrl": "https://www.msacl.org/program/"
         },
         {
+          "id": "4fef9843ff99ed0152b6",
+          "title": "Detecting Protein Misfolding Before Amyloid Deposition: A Structural Proteomics Blood Test for Early Identification of ATTR Cardiomyopath",
+          "recordType": "Public conference program link",
+          "canonicalUrl": "https://www.msacl.org/workshop_presentation_summary.php?workshop_id=189&presenter_id=109",
+          "sourcePageUrl": "https://www.msacl.org/program/"
+        },
+        {
+          "id": "3d561ce61ea047c0c336",
+          "title": "Developing a Novel Assay Targeting Peptides and Glycopeptides for Congenital Disorders of Glycosylation",
+          "recordType": "Public conference program link",
+          "canonicalUrl": "https://www.msacl.org/workshop_presentation_summary.php?workshop_id=189&presenter_id=3227",
+          "sourcePageUrl": "https://www.msacl.org/program/"
+        },
+        {
+          "id": "89826f34160bda8f691c",
+          "title": "Booth Tour Overview",
+          "recordType": "Public conference program link",
+          "canonicalUrl": "https://www.msacl.org/index.php?header=MSACL_2026&tab=Details&subtab=Guided_Poster_and_Booth_Tours",
+          "sourcePageUrl": "https://www.msacl.org/program/"
+        },
+        {
           "id": "402041fd759a6fc4410f",
           "title": "Doctor did you get it all?: Mass spectrometry in the operating room; adding a new dimension to the surgeon’s field of vision",
           "recordType": "Public conference program link",
@@ -3192,6 +2988,20 @@
           "sourcePageUrl": "https://www.msacl.org/program/"
         },
         {
+          "id": "1e0a7852f1ee35992b96",
+          "title": "Making a Fluid Transition: Adapting an LC-HRAM Toxicology Method from Urine to Serum",
+          "recordType": "Public conference program link",
+          "canonicalUrl": "https://www.msacl.org/workshop_presentation_summary.php?workshop_id=182&presenter_id=4055",
+          "sourcePageUrl": "https://www.msacl.org/program/"
+        },
+        {
+          "id": "1bb2ad97c340253f73f4",
+          "title": "Stepping Up from MS/MS to MS3 to Solve Low-LLOQ Hair Drug Testing Challenges",
+          "recordType": "Public conference program link",
+          "canonicalUrl": "https://www.msacl.org/workshop_presentation_summary.php?workshop_id=182&presenter_id=3189",
+          "sourcePageUrl": "https://www.msacl.org/program/"
+        },
+        {
           "id": "9e3e11b1a1d5eed8c7f1",
           "title": "Pre-Register",
           "recordType": "Public conference program link",
@@ -3203,6 +3013,13 @@
           "title": "From Instrument Data to Analytical Operations: A Framework for Governed, Scalable Testing Built Around the Result",
           "recordType": "Public conference program link",
           "canonicalUrl": "https://www.msacl.org/workshop_presentation_summary.php?workshop_id=184&presenter_id=2982",
+          "sourcePageUrl": "https://www.msacl.org/program/"
+        },
+        {
+          "id": "b01b8459d30dbaa63b45",
+          "title": "Pre-Register",
+          "recordType": "Public conference program link",
+          "canonicalUrl": "https://s1107300821.t.eloqua.com/e/f2.aspx?elqFormName=ERRE-Pre-RegistrationForm&elqSiteID=1107300821&utm_campaign=V1_26_MSACL_SE_AF&eventDate=Wednesday%2C%20October%207%2C%202026&eventTitle=Agilent%20Industry%20Workshop%20at%20MSACL&eventTime=8%3A00%20a.m.%20-%209%3A00%20a.m.&lang=English&dietaryRequirements=Yes&location=Salon%20Bonaventure%2C%20Hotel%20Level%20%28Track%205%29&productID=6475A_LCTQ",
           "sourcePageUrl": "https://www.msacl.org/program/"
         },
         {
@@ -3221,9 +3038,23 @@
         },
         {
           "id": "f646c675bbae52050717",
-          "title": "TBD",
+          "title": "Empowering chemical exposomics with large-scale, multi-site cohorts",
           "recordType": "Public conference program link",
           "canonicalUrl": "https://www.msacl.org/workshop_presentation_summary.php?workshop_id=187&presenter_id=3917",
+          "sourcePageUrl": "https://www.msacl.org/program/"
+        },
+        {
+          "id": "8f909eb82ac320c66fa9",
+          "title": "Confident quantitation and discovery with the SCIEX ZenoTOF 8600 system",
+          "recordType": "Public conference program link",
+          "canonicalUrl": "https://www.msacl.org/workshop_presentation_summary.php?workshop_id=187&presenter_id=4117",
+          "sourcePageUrl": "https://www.msacl.org/program/"
+        },
+        {
+          "id": "8f4cc0d8d4bc97db2709",
+          "title": "View Abstract",
+          "recordType": "Public conference program link",
+          "canonicalUrl": "https://custom.cvent.com/1FD9C80743AF4F289234B8686462A9DC/files/3c53ddce23014a309f72490874692db8.pdf",
           "sourcePageUrl": "https://www.msacl.org/program/"
         },
         {
@@ -3388,6 +3219,13 @@
           "sourcePageUrl": "https://www.msacl.org/program/"
         },
         {
+          "id": "c80925c8659480608321",
+          "title": "View Abstract",
+          "recordType": "Public conference program link",
+          "canonicalUrl": "https://custom.cvent.com/1FD9C80743AF4F289234B8686462A9DC/files/a800c02318cd4c4bb10a8220a0e3a8ed.pdf",
+          "sourcePageUrl": "https://www.msacl.org/program/"
+        },
+        {
           "id": "3ae15407a51d1e9a4508",
           "title": "Achieving Maximum Uptime and Performance Through Advanced Long Life Column Hardware",
           "recordType": "Public conference program link",
@@ -3483,6 +3321,20 @@
           "title": "Advancing Rare Disease Screening: Development of a Multi-Analyte Panel in Dried Blood Spots for Expanded Newborn Screening of Treatable Neurometabolic Disorders",
           "recordType": "Public conference program link",
           "canonicalUrl": "https://www.msacl.org/view_abstract/view_abstract_in_program.php?id=2890&event=2026",
+          "sourcePageUrl": "https://www.msacl.org/program/"
+        },
+        {
+          "id": "5d04f3fdaaef95001b84",
+          "title": "Reference Measurement Values as Quality Anchors: Integrating Metrology and EQA",
+          "recordType": "Public conference program link",
+          "canonicalUrl": "https://www.msacl.org/workshop_presentation_summary.php?workshop_id=192&presenter_id=4113",
+          "sourcePageUrl": "https://www.msacl.org/program/"
+        },
+        {
+          "id": "fcc0c5c361f52ae20fd7",
+          "title": "Clinical Mass Spectrometry Through the Lens of External Quality Assessment",
+          "recordType": "Public conference program link",
+          "canonicalUrl": "https://www.msacl.org/workshop_presentation_summary.php?workshop_id=192&presenter_id=18",
           "sourcePageUrl": "https://www.msacl.org/program/"
         },
         {
@@ -3718,13 +3570,13 @@
         },
         {
           "id": "31735804a412ca5655ef",
-          "title": "Defining the in vivo 3D Proteome: Plasma Protein Structural Signatures for Alzheimer’s Disease Diagnosis",
+          "title": "Defining the in vivo 3D Proteome: Plasma Protein Structural Signatures for Alzheimer&rsquo;s Disease Diagnosis",
           "recordType": "Public conference program link",
           "canonicalUrl": "https://www.msacl.org/view_abstract/view_abstract_in_program.php?id=2826&event=2026",
           "sourcePageUrl": "https://www.msacl.org/program/"
         }
       ],
-      "contentRecordCount": 127
+      "contentRecordCount": 137
     },
     {
       "id": "issx-na-2026",
@@ -3752,7 +3604,7 @@
       ],
       "monitoringUse": "Track DMPK and bioanalysis workflow needs for LC-MS roadmap implications.",
       "health": "good",
-      "lastChecked": "2026-08-26T14:52:23+00:00",
+      "lastChecked": "2026-09-09T02:48:54+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -3764,7 +3616,7 @@
           "url": "https://issxmeetings.org/2026-na/home",
           "finalUrl": "https://issxmeetings.org/2026-na/home",
           "status": 200,
-          "pageFingerprint": "11a44f2bfe9b19f3"
+          "pageFingerprint": "48617baaed3c127c"
         }
       ],
       "contentRecords": [
@@ -3842,7 +3694,7 @@
       ],
       "monitoringUse": "Track pharma CMC and bioanalysis trends that influence roadmap needs.",
       "health": "manual",
-      "lastChecked": "2026-08-26T14:52:23+00:00",
+      "lastChecked": "2026-09-09T02:48:54+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -3854,7 +3706,7 @@
           "url": "https://www.aaps.org/pharmsci/annual-meeting",
           "finalUrl": "https://www.aaps.org/pharmsci/annual-meeting",
           "status": 200,
-          "pageFingerprint": "09acbcf78aef8c21"
+          "pageFingerprint": "2617f87698fdf7a0"
         }
       ],
       "contentRecords": [
@@ -3995,19 +3847,19 @@
       ],
       "monitoringUse": "Monitor European oligo, peptide, mRNA, and LNP analytical workflow signals.",
       "health": "good",
-      "lastChecked": "2026-08-26T14:52:23+00:00",
+      "lastChecked": "2026-09-09T02:48:54+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
       ],
       "collectionStatus": "extracted",
-      "collectionDetail": "1 of 1 official endpoints reachable; 18 public program-content links extracted.",
+      "collectionDetail": "1 of 1 official endpoints reachable; 20 public program-content links extracted.",
       "monitoredEndpoints": [
         {
           "url": "https://informaconnect.com/tides-europe/",
           "finalUrl": "https://informaconnect.com/tides-europe/",
           "status": 200,
-          "pageFingerprint": "8ae980f1b81b8338"
+          "pageFingerprint": "6223f4d96f22febd"
         }
       ],
       "contentRecords": [
@@ -4117,6 +3969,20 @@
           "sourcePageUrl": "https://informaconnect.com/tides-europe/"
         },
         {
+          "id": "ab4c4c4b02572a8a0d68",
+          "title": "Learn More",
+          "recordType": "Public conference program link",
+          "canonicalUrl": "https://informaconnect.com/tides-europe/agenda/2/?searchInput=&stream=24&stream=23",
+          "sourcePageUrl": "https://informaconnect.com/tides-europe/"
+        },
+        {
+          "id": "1774134707c712a83fe2",
+          "title": "Learn More",
+          "recordType": "Public conference program link",
+          "canonicalUrl": "https://informaconnect.com/tides-europe/agenda/2/",
+          "sourcePageUrl": "https://informaconnect.com/tides-europe/"
+        },
+        {
           "id": "8848bddd5194abd5bc1c",
           "title": "Showcase at the event",
           "recordType": "Public conference program link",
@@ -4138,7 +4004,7 @@
           "sourcePageUrl": "https://informaconnect.com/tides-europe/"
         }
       ],
-      "contentRecordCount": 18
+      "contentRecordCount": 20
     },
     {
       "id": "rafa-2026",
@@ -4168,19 +4034,19 @@
       ],
       "monitoringUse": "Track contaminant and food safety methods relevant to LC-MS/MS demand.",
       "health": "good",
-      "lastChecked": "2026-08-26T14:52:23+00:00",
+      "lastChecked": "2026-09-09T02:48:54+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
       ],
       "collectionStatus": "extracted",
-      "collectionDetail": "1 of 1 official endpoints reachable; 11 public program-content links extracted.",
+      "collectionDetail": "1 of 1 official endpoints reachable; 12 public program-content links extracted.",
       "monitoredEndpoints": [
         {
           "url": "https://www.rafa2026.eu/",
           "finalUrl": "https://www.rafa2026.eu/",
           "status": 200,
-          "pageFingerprint": "4c084a9f84c9f1b3"
+          "pageFingerprint": "11bbf12b423672f8"
         }
       ],
       "contentRecords": [
@@ -4217,6 +4083,13 @@
           "title": "Social programme",
           "recordType": "Public conference program link",
           "canonicalUrl": "https://www.rafa2026.eu/social_programme.html",
+          "sourcePageUrl": "https://www.rafa2026.eu/"
+        },
+        {
+          "id": "d9c4425c2319ff6b76b0",
+          "title": "Vendor seminars",
+          "recordType": "Public conference program link",
+          "canonicalUrl": "https://www.rafa2026.eu/vendor_seminars.html",
           "sourcePageUrl": "https://www.rafa2026.eu/"
         },
         {
@@ -4262,7 +4135,7 @@
           "sourcePageUrl": "https://www.rafa2026.eu/"
         }
       ],
-      "contentRecordCount": 11
+      "contentRecordCount": 12
     },
     {
       "id": "pegs-eu-2026",
@@ -4289,7 +4162,7 @@
       ],
       "monitoringUse": "Track European biologics characterization and analytical workflow needs.",
       "health": "good",
-      "lastChecked": "2026-08-26T14:52:23+00:00",
+      "lastChecked": "2026-09-09T02:48:54+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -4301,7 +4174,7 @@
           "url": "https://www.pegsummiteurope.com/",
           "finalUrl": "https://www.pegsummiteurope.com/",
           "status": 200,
-          "pageFingerprint": "c88cc09fd37d3f07"
+          "pageFingerprint": "83ef3b16c24713b4"
         }
       ],
       "contentRecords": [
@@ -4384,7 +4257,7 @@
         },
         {
           "id": "e88696a15a811a7de8ef",
-          "title": "Final Agenda Now Available View Brochure",
+          "title": "Updated Agenda Now Available View Brochure",
           "recordType": "Public conference program link",
           "canonicalUrl": "https://www.pegsummiteurope.com/2026-brochure-download-short-form",
           "sourcePageUrl": "https://www.pegsummiteurope.com/"
@@ -4440,7 +4313,7 @@
       "whatToMeasure": "Repeated bioanalytical problems, modality-specific methods, validation and data-integrity discussions, sponsor presence, and LC-MS case-study themes.",
       "whyItMatters": "EBF provides industry-led evidence of regulated bioanalysis practice across pharma and CRO laboratories, including issues not visible in publication-volume data.",
       "health": "good",
-      "lastChecked": "2026-08-26T14:52:23+00:00",
+      "lastChecked": "2026-09-09T02:48:54+00:00",
       "collectionStatus": "extracted",
       "collectionDetail": "2 of 2 official endpoints reachable; 5 public program-content links extracted.",
       "monitoredEndpoints": [
@@ -4448,13 +4321,13 @@
           "url": "https://e-b-f.eu/meetings/",
           "finalUrl": "https://e-b-f.eu/meetings/",
           "status": 200,
-          "pageFingerprint": "6d5124e39d1c579a"
+          "pageFingerprint": "f86627480c95e4b8"
         },
         {
           "url": "https://meetings.e-b-f.eu/open/",
           "finalUrl": "https://meetings.e-b-f.eu/open/",
           "status": 200,
-          "pageFingerprint": "48f4cafc37a0ce43"
+          "pageFingerprint": "530aa69eb01137d1"
         }
       ],
       "surfaces": [
@@ -4528,7 +4401,7 @@
       ],
       "monitoringUse": "Track environmental testing demand and regulatory method shifts.",
       "health": "good",
-      "lastChecked": "2026-08-26T14:52:23+00:00",
+      "lastChecked": "2026-09-09T02:48:54+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -4540,7 +4413,7 @@
           "url": "https://www.setac.org/discover-events/global-meetings/setac-north-america-47th-annual-meeting/program/daily-schedule.html",
           "finalUrl": "https://www.setac.org/discover-events/global-meetings/setac-north-america-47th-annual-meeting/program/daily-schedule.html",
           "status": 200,
-          "pageFingerprint": "7a367f6fdeeeae3b"
+          "pageFingerprint": "d867848c2cbd4583"
         }
       ],
       "contentRecords": [
@@ -4650,7 +4523,7 @@
       ],
       "monitoringUse": "Track adjacent MS imaging trends that may influence informatics and application positioning.",
       "health": "good",
-      "lastChecked": "2026-08-26T14:52:23+00:00",
+      "lastChecked": "2026-09-09T02:48:54+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -4662,7 +4535,7 @@
           "url": "https://www.msimaging.science/",
           "finalUrl": "https://www.msimaging.science/",
           "status": 200,
-          "pageFingerprint": "07947eea07bc4646"
+          "pageFingerprint": "19be8af2b9edc540"
         }
       ],
       "contentRecords": [

@@ -1,212 +1,282 @@
 {
   "snapshotSchemaVersion": 2,
   "observationType": "sitemap_inventory",
-  "capturedAt": "2026-08-26T15:10:34+00:00",
+  "capturedAt": "2026-09-09T03:09:57+00:00",
   "productInventoryInitialized": true,
   "pressIndexInitialized": true,
   "products": {
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/triple-quadrupole-lc-ms/6475-triple-quadrupole-lc-ms": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-supplies-accessories": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-supplies-accessories/cleaning-maintenance-supplies-for-lc-ms": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/high-throughput-lc-ms/rapidfire-cartridges": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/quadrupole-time-of-flight-lc-ms/revident-lc-q-tof": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/high-throughput-lc-ms": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-solvents": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-application-solutions/pesticides-tmrm-database-for-triple-quadrupole-lc-ms": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-ion-sources/atmospheric-pressure-chemical-ionization-source-apci": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-application-solutions/metabolomics-dmrm-database-method": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-application-solutions/comprehensive-veterinary-drug-dmrm-solution": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/triple-quadrupole-lc-ms/ultivo-triple-quadrupole-lc-ms-lc-tq": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/high-throughput-lc-ms/rapidfire-integrator-software": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-solvents/infinitylab-methanol-for-lc-ms": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/quadrupole-time-of-flight-lc-ms": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-solvents/infinitylab-water-for-lc-ms": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-supplies-accessories/tuning-performance-standards-for-lc-ms": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/quadrupole-time-of-flight-lc-ms/6545xt-advancebio-lc-q-tof": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-ion-sources/nanospray-source": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/high-throughput-lc-ms/rapidfire-400": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/time-of-flight-lc-ms/6230-time-of-flight-tof-lc-ms": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-supplies-accessories/instrument-supplies-for-lc-ms": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-application-solutions/veterinary-drug-tmrm-database-for-triple-quadrupole-lc-ms": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/time-of-flight-lc-ms": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/quadrupole-time-of-flight-lc-ms/6530-q-tof-lc-ms": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/triple-quadrupole-lc-ms/6495-triple-quadrupole-lc-ms": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-ion-sources/jet-stream-technology-ion-source-ajs": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/single-quadrupole-lc-ms": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/high-throughput-lc-ms/streamselect-lc-ms-system": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-ion-sources/electrospray-esi-source": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-solvents/solvent-additives": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-ion-sources/capillary-electrospray-source": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-ion-sources": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-ion-sources/multimode-source": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/quadrupole-time-of-flight-lc-ms/6560-ion-mobility-lc-q-tof": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/triple-quadrupole-lc-ms": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-application-solutions/forensic-toxicology-tmrm-database-for-triple-quadrupole-lc-ms": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-supplies-accessories/vacuum-pump-supplies-for-lc-ms": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/single-quadrupole-lc-ms/pro-iq-series": "2026-05-09",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/quadrupole-time-of-flight-lc-ms/exd-cell-for-lc-q-tof": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-application-solutions/pfas-mrm-database-for-lc-tq": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/quadrupole-time-of-flight-lc-ms/6546-lc-q-tof": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/high-throughput-lc-ms/rapidfire-analyzer-software": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-application-solutions": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-supplies-accessories/quiet-cover-for-lc-ms": "2026-07-05",
-    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-solvents/infinitylab-acetonitrile-for-lc-ms": "2026-07-05"
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-ion-sources": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-supplies-accessories/instrument-supplies-for-lc-ms": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-solvents": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-supplies-accessories/cleaning-maintenance-supplies-for-lc-ms": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-ion-sources/atmospheric-pressure-chemical-ionization-source-apci": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-application-solutions": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-application-solutions/comprehensive-veterinary-drug-dmrm-solution": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/high-throughput-lc-ms/rapidfire-integrator-software": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/single-quadrupole-lc-ms/pro-iq-series": "2026-08-08",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/quadrupole-time-of-flight-lc-ms/exd-cell-for-lc-q-tof": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-supplies-accessories": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-ion-sources/capillary-electrospray-source": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/triple-quadrupole-lc-ms/6475-triple-quadrupole-lc-ms": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-ion-sources/electrospray-esi-source": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/triple-quadrupole-lc-ms": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-application-solutions/metabolomics-dmrm-database-method": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-application-solutions/veterinary-drug-tmrm-database-for-triple-quadrupole-lc-ms": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/high-throughput-lc-ms/rapidfire-400": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/quadrupole-time-of-flight-lc-ms/6546-lc-q-tof": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/high-throughput-lc-ms": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-application-solutions/pesticides-tmrm-database-for-triple-quadrupole-lc-ms": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/time-of-flight-lc-ms": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/high-throughput-lc-ms/rapidfire-analyzer-software": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/quadrupole-time-of-flight-lc-ms": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/high-throughput-lc-ms/rapidfire-cartridges": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/triple-quadrupole-lc-ms/6495-triple-quadrupole-lc-ms": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/quadrupole-time-of-flight-lc-ms/revident-lc-q-tof": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-ion-sources/multimode-source": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-supplies-accessories/quiet-cover-for-lc-ms": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-application-solutions/forensic-toxicology-tmrm-database-for-triple-quadrupole-lc-ms": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/time-of-flight-lc-ms/6230-time-of-flight-tof-lc-ms": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-solvents/infinitylab-methanol-for-lc-ms": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-ion-sources/nanospray-source": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-supplies-accessories/vacuum-pump-supplies-for-lc-ms": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/quadrupole-time-of-flight-lc-ms/6530-q-tof-lc-ms": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/quadrupole-time-of-flight-lc-ms/6545xt-advancebio-lc-q-tof": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-solvents/infinitylab-water-for-lc-ms": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-solvents/infinitylab-acetonitrile-for-lc-ms": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/high-throughput-lc-ms/streamselect-lc-ms-system": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/single-quadrupole-lc-ms": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-solvents/solvent-additives": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/quadrupole-time-of-flight-lc-ms/6560-ion-mobility-lc-q-tof": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/triple-quadrupole-lc-ms/ultivo-triple-quadrupole-lc-ms-lc-tq": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-ion-sources/jet-stream-technology-ion-source-ajs": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-supplies-accessories/tuning-performance-standards-for-lc-ms": "2026-08-29",
+    "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-application-solutions/pfas-mrm-database-for-lc-tq": "2026-08-29"
   },
   "pressReleases": {
-    "https://www.agilent.com/about/newsroom/presrel/2026/29jul-ca26028.html": {
-      "date": "2026-07-29",
-      "title": "Agilent Research Catalyst Award Presented to Eastern Institute of Technology, Ningbo",
-      "url": "https://www.agilent.com/about/newsroom/presrel/2026/29jul-ca26028.html",
+    "https://www.agilent.com/about/newsroom/presrel/2026/08sep-gp26017.html": {
+      "date": "2026-09-08",
+      "title": "Agilent Announces Retirement of Board Chair Koh Boon Hwee, Appointment of Glenn Boehnlein to Board of Directors",
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/08sep-gp26017.html",
       "classification": "corporate",
-      "pageTitle": "Agilent Research Catalyst Award Presented to Eastern Institute of Technology, Ningbo",
-      "excerpt": "Skip to main content ABOUT AGILENT CONTACT US UNITED STATES ACCOUNT PRODUCTS APPLICATIONS & INDUSTRIES TRAINING & EVENTS SERVICES SUPPORT & RESOURCES ORDER CENTER | 0 Home About Newsroom Press Releases 2026 Agilent Research Catalyst Award Presented to Eastern Institute of Technology, Ningbo Newsroom Press Releases Media Coverage Media Rooms Awards PR Contacts Subscribe Investor Relations Share: Press Release Agilent Research Catalyst Award Presented to Eastern Institute of Technology, Ningbo Eastern Institute of Technology professor recognized for advancing PFAS and emerging contaminant analysis SANTA CLARA, Calif., July 29, 2026 Agilent Technologies Inc. (NYSE: A) today announced that the Eastern Institute of Technology, Ningbo has received an Agilent Research Catalyst (ARC) Award on behalf of Professor Zongwei Cai. The award recognizes Professor Cai's innovative research focused on developing advanced analytical approaches for detecting per- and polyfluoroalkyl substances (PFAS) and other emerging contaminants, a growing area of importance for environmental and public health research. Professor Cai is a globally recognized leader in environmental and bioanalytical chemistry. His research focuses on advancing analytical methods to detect trace environmental contaminants, including PFAS, endocrine-disrupting chemicals, and persistent organic pollutants. By combining high-sensitivity analytical techniques with organoid-based toxicological models, his work aims to improve understanding of how environmental contaminants affect human health. The awarded research combines advanced mass spectrometry techniques, innovative sample preparation methods, and organoid-based toxicology platforms to link chemical detection with biological impact. Professor Cai's team aims to develop a more comprehensive framework for assessing environmental contaminants and their potential health effects. \u201cPFAS and other emerging contaminants are increasingly recognized as critical environmental and public health challenges worldwide. Detecting these contaminants at trace levels requires continuous innovation in analytical science. Agilent has played a pioneering role in addressing PFAS background contamination, setting an important foundation for high-quality PFAS analysis. Through the ARC program, we are excited to expand our research using Agilent\u2019s advanced mass spectrometry and cellu",
+      "sourceId": "agilent-investor-news",
+      "sourceName": "Agilent investor relations news",
       "signalType": "Press release",
       "marketSegment": "Corporate",
       "technology": "Portfolio",
       "theme": "Corporate strategic activity",
       "intent": "Corporate strategic activity",
-      "summary": "Agilent Research Catalyst Award Presented to Eastern Institute of Technology, Ningbo",
-      "sourceId": "agilent-newsroom",
-      "sourceName": "Agilent official newsroom"
+      "summary": "Agilent Announces Retirement of Board Chair Koh Boon Hwee, Appointment of Glenn Boehnlein to Board of Directors"
+    },
+    "https://www.agilent.com/about/newsroom/presrel/2026/04sep-ca26030.html": {
+      "date": "2026-09-04",
+      "title": "Agilent Expands Digital Pathology Offering with U.S. Launch of the Agilent S540MD Slide Scanner System",
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/04sep-ca26030.html",
+      "classification": "product",
+      "sourceId": "agilent-investor-news",
+      "sourceName": "Agilent investor relations news",
+      "signalType": "Product release",
+      "marketSegment": "Corporate",
+      "technology": "Portfolio",
+      "theme": "Product and workflow expansion",
+      "intent": "Product and portfolio expansion",
+      "summary": "Agilent Expands Digital Pathology Offering with U.S. Launch of the Agilent S540MD Slide Scanner System"
+    },
+    "https://www.agilent.com/about/newsroom/presrel/2026/01sep-ca26029.html": {
+      "date": "2026-09-01",
+      "title": "Agilent Introduces the Cary 635 FTIR Spectrometer",
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/01sep-ca26029.html",
+      "classification": "product",
+      "sourceId": "agilent-investor-news",
+      "sourceName": "Agilent investor relations news",
+      "signalType": "Product release",
+      "marketSegment": "Corporate",
+      "technology": "Portfolio",
+      "theme": "Product and workflow expansion",
+      "intent": "Product and portfolio expansion",
+      "summary": "Agilent Introduces the Cary 635 FTIR Spectrometer"
+    },
+    "https://www.agilent.com/about/newsroom/presrel/2026/26aug-gp26016.html": {
+      "date": "2026-08-26",
+      "title": "Agilent Reports Third-Quarter Fiscal Year 2026 Financial Results",
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/26aug-gp26016.html",
+      "classification": "corporate",
+      "sourceId": "agilent-investor-news",
+      "sourceName": "Agilent investor relations news",
+      "signalType": "Quarterly earnings result",
+      "marketSegment": "Corporate",
+      "technology": "Portfolio",
+      "theme": "Quarterly earnings and end-market demand",
+      "intent": "Corporate performance and investment capacity",
+      "summary": "Agilent reported $1.88 billion of Q3 revenue, 7.3% core growth, broad-based operating-group growth, and higher fiscal 2026 revenue, margin, and non-GAAP EPS guidance.",
+      "earningsMetrics": [
+        {
+          "label": "Q3 revenue",
+          "value": "$1.88B",
+          "change": "+8.1% reported / +7.3% core year over year"
+        },
+        {
+          "label": "Non-GAAP operating margin",
+          "value": "28.3%",
+          "change": "+320 bps year over year; includes ~110 bps tariff-refund benefit"
+        },
+        {
+          "label": "Life Sciences and Diagnostics",
+          "value": "$746M",
+          "change": "+11% reported / +10% core; 23.5% operating margin"
+        },
+        {
+          "label": "CrossLab",
+          "value": "$786M",
+          "change": "+6% reported / +5% core; 34.3% operating margin"
+        },
+        {
+          "label": "Applied Markets",
+          "value": "$346M",
+          "change": "+7% reported / +7% core; 24.9% operating margin"
+        },
+        {
+          "label": "FY26 revenue outlook",
+          "value": "$7.49\u2013$7.51B",
+          "change": "+5.8% to +6.0% core; midpoint raised 65 bps"
+        }
+      ],
+      "pmInsights": [
+        "All three operating groups grew on both reported and core bases; Life Sciences and Diagnostics led at 10% core growth.",
+        "CrossLab remained Agilent's largest operating group and posted a 34.3% operating margin, reinforcing the strategic importance of service, uptime, compliance, and lifecycle economics.",
+        "Agilent raised full-year revenue, operating-margin, and non-GAAP EPS guidance, increasing the financial capacity available for priority workflows and commercial execution.",
+        "Tariff refunds contributed about 110 basis points to Q3 non-GAAP operating margin and $0.06 to non-GAAP EPS, so the headline margin expansion is not fully operational."
+      ],
+      "watersPmImplication": "Pressure-test Waters' instrument, service, informatics, and application proof as one lifecycle proposition. Track whether Agilent converts stronger LDG growth and CrossLab economics into bundled regulated-workflow offers.",
+      "evidenceBoundary": "Agilent's filed release does not separately report LC or LC-MS revenue, units, pricing, or market share. Operating-group growth and raised guidance are corporate capacity signals, not direct evidence of LC market-share gain."
+    },
+    "https://www.agilent.com/about/newsroom/presrel/2026/29jul-ca26028.html": {
+      "date": "2026-07-29",
+      "title": "Agilent Research Catalyst Award Presented to Eastern Institute of Technology, Ningbo",
+      "url": "https://www.agilent.com/about/newsroom/presrel/2026/29jul-ca26028.html",
+      "classification": "corporate",
+      "sourceId": "agilent-investor-news",
+      "sourceName": "Agilent investor relations news",
+      "signalType": "Press release",
+      "marketSegment": "Corporate",
+      "technology": "Portfolio",
+      "theme": "Corporate strategic activity",
+      "intent": "Corporate strategic activity",
+      "summary": "Agilent Research Catalyst Award Presented to Eastern Institute of Technology, Ningbo"
     },
     "https://www.agilent.com/about/newsroom/presrel/2026/28jul-gp26015.html": {
       "date": "2026-07-28",
       "title": "Agilent to Announce Third-Quarter Fiscal Year 2026 Financial Results on Aug. 26",
       "url": "https://www.agilent.com/about/newsroom/presrel/2026/28jul-gp26015.html",
       "classification": "corporate",
-      "pageTitle": "Agilent to Announce Third-Quarter Fiscal Year 2026 Financial Results on Aug. 26",
-      "excerpt": "Skip to main content ABOUT AGILENT CONTACT US UNITED STATES ACCOUNT PRODUCTS APPLICATIONS & INDUSTRIES TRAINING & EVENTS SERVICES SUPPORT & RESOURCES ORDER CENTER | 0 Home About Newsroom Press Releases 2026 Agilent to Announce Third-Quarter Fiscal Year 2026 Financial Results on Aug. 26 Newsroom Press Releases Media Coverage Media Rooms Awards PR Contacts Subscribe Investor Relations Share: Press Release Agilent to Announce Third-Quarter Fiscal Year 2026 Financial Results on Aug. 26 SANTA CLARA, Calif., July 28, 2026 Agilent Technologies Inc. (NYSE: A) will release financial results for the third quarter of fiscal year 2026 after the stock market closes on Wednesday, Aug. 26. The company will host a conference call to discuss the results at 1:30 p.m. PDT the same day. To join the listen-only conference call webcast, click the link on the Events section of Agilent\u2019s Investor Relations website. A recording of the call will also be available on the website for 90 days. About Agilent Technologies Agilent Technologies, Inc. (NYSE: A) is a global leader in analytical and clinical laboratory technologies, delivering insights and innovation that help our customers bring great science to life. Agilent\u2019s full range of solutions includes instruments, software, services, and expertise that provide trusted answers to our customers' most challenging questions. The company generated revenue of $6.95 billion in fiscal year 2025 and employs approximately 18,000 people worldwide. Information about Agilent is available at www.agilent.com. To receive the latest Agilent news, subscribe to the Agilent Newsroom. Follow Agilent on LinkedIn and Facebook. Investor Contact Tejas Savant Agilent Technologies Inc. +1 917-574-4018 tejas.savant@agilent.com Media Contact Christian Col\u00f3n Agilent Technologies Inc. +1 302-867-4117 christian.colon@agilent.com Newsroom Highlights Previous From Instruments to Workflows: What Actually Changes When AI Comes to the Lab Article Agilent Ranks Among World's Best Employers Award Bringing Great Science to Life - Sustainably 2024 ESG Report AI is a Transformative Enabler that\u2019s Reshaping How Science is Conducted in Labs Article Agilent Reports Second-Quarter Fiscal Year 2026 Financial Results Press Release Agilent Named to Newsweek's List of America's Greenest Companies 2026 Award From Instruments to Workflows: What Actually Changes When AI Comes to the La",
+      "sourceId": "agilent-investor-news",
+      "sourceName": "Agilent investor relations news",
       "signalType": "Earnings event announcement",
       "marketSegment": "Corporate",
       "technology": "Portfolio",
       "theme": "Upcoming earnings event",
       "intent": "Investor communication",
-      "summary": "Agilent to Announce Third-Quarter Fiscal Year 2026 Financial Results on Aug. 26",
-      "sourceId": "agilent-newsroom",
-      "sourceName": "Agilent official newsroom"
+      "summary": "Agilent to Announce Third-Quarter Fiscal Year 2026 Financial Results on Aug. 26"
     },
     "https://www.agilent.com/about/newsroom/presrel/2026/23jul-ca26027.html": {
       "date": "2026-07-23",
       "title": "Agilent Receives EU Approval for PD-L1 IHC 22C3 pharmDx in Epithelial Ovarian, Fallopian Tube, or Primary Peritoneal Carcinoma",
       "url": "https://www.agilent.com/about/newsroom/presrel/2026/23jul-ca26027.html",
       "classification": "product",
+      "sourceId": "agilent-investor-news",
+      "sourceName": "Agilent investor relations news",
       "signalType": "Regulatory approval",
       "marketSegment": "Clinical",
       "technology": "Diagnostics",
       "theme": "Regulatory expansion",
       "intent": "Expand approved clinical use",
-      "summary": "Agilent Receives EU Approval for PD-L1 IHC 22C3 pharmDx in Epithelial Ovarian, Fallopian Tube, or Primary Peritoneal Carcinoma",
-      "sourceId": "agilent-newsroom",
-      "sourceName": "Agilent official newsroom"
+      "summary": "Agilent Receives EU Approval for PD-L1 IHC 22C3 pharmDx in Epithelial Ovarian, Fallopian Tube, or Primary Peritoneal Carcinoma"
     },
     "https://www.agilent.com/about/newsroom/presrel/2026/14jul-ca26026.html": {
       "date": "2026-07-14",
       "title": "Agilent Receives FDA Approval for PD-L1 IHC 28-8 pharmDx in Esophageal Squamous Cell Carcinoma (ESCC), Gastric, Gastroesophageal Junction (GEJ), and Esophageal Adenocarcinoma",
       "url": "https://www.agilent.com/about/newsroom/presrel/2026/14jul-ca26026.html",
       "classification": "product",
-      "pageTitle": "Agilent Receives FDA Approval for PD-L1 IHC 28-8 pharmDx in Esophageal Squamous Cell Carcinoma (ESCC), Gastric, Gastroesophageal Junction (GEJ), and Esophageal Adenocarcinoma",
-      "excerpt": "Skip to main content ABOUT AGILENT CONTACT US UNITED STATES ACCOUNT PRODUCTS APPLICATIONS & INDUSTRIES TRAINING & EVENTS SERVICES SUPPORT & RESOURCES ORDER CENTER | 0 Home About Newsroom Press Releases 2026 Agilent Receives FDA Approval for PD-L1 IHC 28-8 pharmDx in Esophageal Squamous Cell Carcinoma (ESCC), Gastric, Gastroesophageal Junction (GEJ), and Esophageal Adenocarcinoma Newsroom Press Releases Media Coverage Media Rooms Awards PR Contacts Subscribe Investor Relations Share: Press Release Agilent Receives FDA Approval for PD-L1 IHC 28-8 pharmDx in Esophageal Squamous Cell Carcinoma (ESCC), Gastric, Gastroesophageal Junction (GEJ), and Esophageal Adenocarcinoma Test enables identification of patients whose tumors express PD-L1 and who may be eligible for treatment with OPDIVO\u00ae (nivolumab) or OPDIVO QVANTIG\u00ae SANTA CLARA, Calif., July 14, 2026 Agilent Technologies Inc. (NYSE: A) today announced that it has received U.S. Food and Drug Administration (FDA) approval for the PD\u2011L1 IHC 28\u20118 pharmDx assay as a companion diagnostic to identify patients with esophageal squamous cell carcinoma (ESCC), gastric, gastroesophageal junction (GEJ), and esophageal adenocarcinoma who may be eligible for treatment with OPDIVO\u00ae (nivolumab) or OPDIVO QVANTIG\u00ae (nivolumab and hyaluronidase\u2011nvhy), Bristol Myers Squibb\u2019s PD\u20111\u2011targeted immunotherapeutic agents. PD-L1 IHC 28-8 pharmDx is approved for exclusive use with the Agilent Autostainer Link 48 advanced staining solution. PD\u2011L1 IHC 28\u20118 pharmDx, Code SK005, is an FDA\u2011approved diagnostic aid for detecting PD\u2011L1 expression (Combined Positive Score [CPS] \u2265 1) in these tumor types for patients being considered for treatment with OPDIVO\u00ae or OPDIVO QVANTIG\u00ae. PD\u2011L1 expression is determined using CPS, which measures PD\u2011L1 staining in tumor and immune cells relative to the total number of viable tumor cells. \u201cThis FDA approval highlights the critical role of validated diagnostics in advancing precision oncology,\u201d said Majken Nielsen, vice president and general manager of Agilent\u2019s Clinical Diagnostics Division. \u201cBy expanding the indications for PD\u2011L1 IHC 28\u20118 pharmDx, we are supporting pathologists and clinicians with an FDA\u2011approved test designed to help guide treatment decisions for patients with gastric and esophageal cancers. This milestone reflects Agilent\u2019s ongoing commitment to delivering high\u2011quality diagnostics that enable",
+      "sourceId": "agilent-investor-news",
+      "sourceName": "Agilent investor relations news",
       "signalType": "Regulatory approval",
       "marketSegment": "Clinical",
       "technology": "Diagnostics",
       "theme": "Regulatory expansion",
       "intent": "Expand approved clinical use",
-      "summary": "Agilent Receives FDA Approval for PD-L1 IHC 28-8 pharmDx in Esophageal Squamous Cell Carcinoma (ESCC), Gastric, Gastroesophageal Junction (GEJ), and Esophageal Adenocarcinoma",
-      "sourceId": "agilent-newsroom",
-      "sourceName": "Agilent official newsroom"
+      "summary": "Agilent Receives FDA Approval for PD-L1 IHC 28-8 pharmDx in Esophageal Squamous Cell Carcinoma (ESCC), Gastric, Gastroesophageal Junction (GEJ), and Esophageal Adenocarcinoma"
     },
     "https://www.agilent.com/about/newsroom/presrel/2026/08jul-ca26025.html": {
       "date": "2026-07-08",
       "title": "Agilent Expands Altura Portfolio with Inert Size Exclusion and PLRP-S Columns for Biotherapeutic Analysis",
       "url": "https://www.agilent.com/about/newsroom/presrel/2026/08jul-ca26025.html",
       "classification": "product",
+      "sourceId": "agilent-investor-news",
+      "sourceName": "Agilent investor relations news",
       "signalType": "Product release",
       "marketSegment": "Biopharma",
       "technology": "LC/UHPLC",
       "theme": "Product and workflow expansion",
       "intent": "Product and portfolio expansion",
-      "summary": "Agilent Expands Altura Portfolio with Inert Size Exclusion and PLRP-S Columns for Biotherapeutic Analysis",
-      "sourceId": "agilent-newsroom",
-      "sourceName": "Agilent official newsroom"
+      "summary": "Agilent Expands Altura Portfolio with Inert Size Exclusion and PLRP-S Columns for Biotherapeutic Analysis"
     },
     "https://www.agilent.com/about/newsroom/presrel/2026/01jul-ca26024.html": {
       "date": "2026-07-01",
       "title": "Agilent Launches AI-Driven Analysis Module for Agilent xCELLigence RTCA eSight",
       "url": "https://www.agilent.com/about/newsroom/presrel/2026/01jul-ca26024.html",
       "classification": "product",
-      "pageTitle": "Agilent Launches AI-Driven Analysis Module for Agilent xCELLigence RTCA eSight",
-      "excerpt": "Skip to main content ABOUT AGILENT CONTACT US UNITED STATES ACCOUNT PRODUCTS APPLICATIONS & INDUSTRIES TRAINING & EVENTS SERVICES SUPPORT & RESOURCES ORDER CENTER | 0 Home About Newsroom Press Releases 2026 Agilent Launches AI-Driven Analysis Module for Agilent xCELLigence RTCA eSight Newsroom Press Releases Media Coverage Media Rooms Awards PR Contacts Subscribe Investor Relations Share: Press Release Agilent Launches AI-Driven Analysis Module for Agilent xCELLigence RTCA eSight Simplifying label-free imaging analysis for more confident real-time cell analysis SANTA CLARA, Calif., July 01, 2026 Agilent Technologies Inc. (NYSE: A) today announced the launch of Agilent xCELLigence RTCA eSight AI, a new AI-powered software module that simplifies label-free imaging analysis by reducing manual cell segmentation steps and parameter tuning and supporting more consistent results. The software upgrade enhances the unique dual-readout capabilities of the Agilent xCELLigence RTCA eSight instrument with AI-driven cell imaging analysis, enabling researchers to gain imaging and impedance insights from the same cells in the same experiment with greater speed and confidence. This streamlined, integrated approach is expected to provide biopharma researchers with a more complete view of cell behavior while reducing variability across users and conditions. Traditional cell segmentation workflows rely on time-consuming and subjective manual setup and analysis steps that increase variability, error and rework, slowing experimental timelines while also requiring a higher level of experimental expertise to achieve consistent results. As biopharma research increasingly demands more complex experiments, higher throughput and greater consistency, integrated workflows are key to efficient scientific progress. AI-driven imaging analysis can help reduce variability across users while decreasing time spent on manual analysis. By replacing subjective, user-influenced thresholding and manual parameter tuning with a one-click approach, the new module delivers standardized analysis across skill levels, experiments and datasets. eSight imaging AI analysis is designed to ensure confident, reliable performance across users, cell types and assay conditions, providing the robustness and accuracy essential for real-world science and users with varying levels of imaging expertise. The new module i",
+      "sourceId": "agilent-investor-news",
+      "sourceName": "Agilent investor relations news",
       "signalType": "Product release",
       "marketSegment": "Corporate",
       "technology": "Software",
       "theme": "Product and workflow expansion",
       "intent": "Product and portfolio expansion",
-      "summary": "Agilent Launches AI-Driven Analysis Module for Agilent xCELLigence RTCA eSight",
-      "sourceId": "agilent-newsroom",
-      "sourceName": "Agilent official newsroom"
+      "summary": "Agilent Launches AI-Driven Analysis Module for Agilent xCELLigence RTCA eSight"
     },
-    "https://www.agilent.com/about/newsroom/presrel/2026/25jun-gp26014.html": {
+    "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Completes-Acquisition-of-Biocare-Medical/default.aspx": {
       "date": "2026-06-25",
       "title": "Agilent Completes Acquisition of Biocare Medical",
-      "url": "https://www.agilent.com/about/newsroom/presrel/2026/25jun-gp26014.html",
+      "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Completes-Acquisition-of-Biocare-Medical/default.aspx",
+      "sourceId": "agilent-investor-news",
+      "sourceName": "Agilent investor relations news",
       "classification": "corporate",
       "signalType": "Acquisition",
       "marketSegment": "Corporate",
       "technology": "Portfolio",
       "theme": "Portfolio expansion through acquisition",
       "intent": "Capability and market expansion",
-      "summary": "Agilent Completes Acquisition of Biocare Medical",
-      "sourceId": "agilent-newsroom",
-      "sourceName": "Agilent official newsroom"
+      "summary": "Agilent Completes Acquisition of Biocare Medical"
     },
-    "https://www.agilent.com/about/newsroom/presrel/2026/03jun-gp26013.html": {
+    "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-OpenAI-BCG-Collaborate-to-Accelerate-Customer-Focused-AI-Driven-Scientific-Innovation/default.aspx": {
       "date": "2026-06-03",
       "title": "Agilent, OpenAI, BCG Collaborate to Accelerate Customer-Focused, AI-Driven Scientific Innovation",
-      "url": "https://www.agilent.com/about/newsroom/presrel/2026/03jun-gp26013.html",
+      "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-OpenAI-BCG-Collaborate-to-Accelerate-Customer-Focused-AI-Driven-Scientific-Innovation/default.aspx",
+      "sourceId": "agilent-investor-news",
+      "sourceName": "Agilent investor relations news",
       "classification": "corporate",
-      "pageTitle": "Agilent, OpenAI, BCG Collaborate to Accelerate Customer-Focused, AI-Driven Scientific Innovation",
-      "excerpt": "Skip to main content ABOUT AGILENT CONTACT US UNITED STATES ACCOUNT PRODUCTS APPLICATIONS & INDUSTRIES TRAINING & EVENTS SERVICES SUPPORT & RESOURCES ORDER CENTER | 0 Home About Newsroom Press Releases 2026 Agilent, OpenAI, BCG Collaborate to Accelerate Customer-Focused, AI-Driven Scientific Innovation Newsroom Press Releases Media Coverage Media Rooms Awards PR Contacts Subscribe Investor Relations Share: Press Release Agilent, OpenAI, BCG Collaborate to Accelerate Customer-Focused, AI-Driven Scientific Innovation SANTA CLARA, Calif., June 03, 2026 Agilent Technologies Inc. (NYSE: A) today announced a collaboration with OpenAI and Boston Consulting Group (BCG) to accelerate the deployment of artificial intelligence (AI) across the company\u2019s products, operations, and customer workflows. \u201cAI is a top priority, and this partnership reflects both our ambition and our execution commitment \u2014 to build the enduring capability, operating model, and capacity required to consistently deliver AI\u2011driven innovation value for our customers,\u201d said Padraig McDonnell, president and CEO of Agilent. \u201cThrough this collaboration with OpenAI and BCG, we are accelerating deployment of AI across our business while advancing more intelligent instruments, software, and services. Our focus is simple: deliver faster, highest-quality insights to help our customers make better decisions.\u201d \u201cBy bringing advanced AI capabilities into Agilent\u2019s innovation and operations, we\u2019re enabling teams to unlock new insights, accelerate discovery, and build more intelligent, adaptive solutions,\u201d said Ashley Kramer, VP of Enterprise at OpenAI. \u201cWe are focused on outcomes while building the capabilities Agilent needs to lead in an AI-enabled future.\u201d \u201cTogether, we will help Agilent turn AI into a competitive advantage \u2014 moving from pilots to scaled deployment and redefining how value is created across the enterprise,\u201d said Matthew Kropp, a managing director and senior partner at BCG and Chief AI Officer at BCG X. Agilent has prioritized initial use cases designed to materially enhance the customer experience and accelerate its new product pipeline, with plans to expand these efforts significantly over the next six to 12 months. By combining Agilent\u2019s scientific expertise and data assets with OpenAI\u2019s advanced AI research and deployment capabilities and BCG\u2019s experience in large-scale transformation, the ",
       "signalType": "Press release",
       "marketSegment": "Corporate",
       "technology": "Software",
       "theme": "Corporate strategic activity",
       "intent": "Corporate strategic activity",
-      "summary": "Agilent, OpenAI, BCG Collaborate to Accelerate Customer-Focused, AI-Driven Scientific Innovation",
-      "sourceId": "agilent-newsroom",
-      "sourceName": "Agilent official newsroom"
+      "summary": "Agilent, OpenAI, BCG Collaborate to Accelerate Customer-Focused, AI-Driven Scientific Innovation"
     },
-    "https://www.agilent.com/about/newsroom/presrel/2026/02jun-ca26023.html": {
+    "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Receives-FDA-Approval-for-Expanded-Use-of-PD-L1-IHC-22C3-pharmDx-on-Dako-Omnis-in-Esophageal-Squamous-Cell-Carcinoma-Triple-Negative-Breast-Cancer-Cervical-Cancer-and-Gastric-or-Gastroesophageal-Junction-Adenocarcinoma/default.aspx": {
       "date": "2026-06-02",
       "title": "Agilent Receives FDA Approval for Expanded Use of PD-L1 IHC 22C3 pharmDx on Dako Omnis in Esophageal Squamous Cell Carcinoma, Triple-Negative Breast Cancer, Cervical Cancer, and Gastric or Gastroesophageal Junction Adenocarcinoma",
-      "url": "https://www.agilent.com/about/newsroom/presrel/2026/02jun-ca26023.html",
+      "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Receives-FDA-Approval-for-Expanded-Use-of-PD-L1-IHC-22C3-pharmDx-on-Dako-Omnis-in-Esophageal-Squamous-Cell-Carcinoma-Triple-Negative-Breast-Cancer-Cervical-Cancer-and-Gastric-or-Gastroesophageal-Junction-Adenocarcinoma/default.aspx",
+      "sourceId": "agilent-investor-news",
+      "sourceName": "Agilent investor relations news",
       "classification": "product",
       "signalType": "Regulatory approval",
       "marketSegment": "Clinical",
       "technology": "Diagnostics",
       "theme": "Regulatory expansion",
       "intent": "Expand approved clinical use",
-      "summary": "Agilent Receives FDA Approval for Expanded Use of PD-L1 IHC 22C3 pharmDx on Dako Omnis in Esophageal Squamous Cell Carcinoma, Triple-Negative Breast Cancer, Cervical Cancer, and Gastric or Gastroesophageal Junction Adenocarcinoma",
-      "sourceId": "agilent-newsroom",
-      "sourceName": "Agilent official newsroom"
-    },
-    "https://www.agilent.com/about/newsroom/presrel/2026/01jun-ca26022.html": {
-      "date": "2026-06-01",
-      "title": "Agilent and Sound Analytics Collaborate to Advance LC/MS Workflows for Drug Metabolism Research",
-      "url": "https://www.agilent.com/about/newsroom/presrel/2026/01jun-ca26022.html",
-      "classification": "product",
-      "pageTitle": "Agilent and Sound Analytics Collaborate to Advance LC/MS Workflows for Drug Metabolism Research",
-      "excerpt": "Skip to main content ABOUT AGILENT CONTACT US UNITED STATES ACCOUNT PRODUCTS APPLICATIONS & INDUSTRIES TRAINING & EVENTS SERVICES SUPPORT & RESOURCES ORDER CENTER | 0 Home About Newsroom Press Releases 2026 Agilent and Sound Analytics Collaborate to Advance LC/MS Workflows for Drug Metabolism Research Newsroom Press Releases Media Coverage Media Rooms Awards PR Contacts Subscribe Investor Relations Share: Press Release Agilent and Sound Analytics Collaborate to Advance LC/MS Workflows for Drug Metabolism Research SANTA CLARA, Calif., June 01, 2026 Agilent Technologies Inc. and Sound Analytics, LLC, today announced a collaboration to deliver an integrated liquid chromatography\u2013triple quadrupole mass spectrometry (LC/MS) workflow designed to support drug metabolism and pharmacokinetics (DMPK) laboratories in biopharma and pharmaceutical research. The joint solution combines Agilent\u2019s 1290 Infinity III Liquid Chromatography system and 6495D triple quadrupole mass spectrometer with LeadScape\u2122 for Agilent software, developed by Sound Analytics. Together, the systems are designed to help DMPK laboratories improve efficiency, data quality, and ease of adoption within existing workflows. \u201cAs biopharma and pharmaceutical organizations work to accelerate drug development timelines, DMPK laboratories face increasing pressure to generate high\u2011quality data quickly and reliably,\u201d said Iris Mangelschots, vice president and general manager of the Liquid Phase Division at Agilent. \u201cThis collaboration reflects Agilent\u2019s focus on delivering integrated analytical workflows that help scientists move from detection to decision with confidence.\u201d The integrated workflow enables DMPK laboratories to utilize Agilent\u2019s LC and triple quadrupole MS systems alongside LeadScape for Agilent software, supporting routine and high\u2011throughput drug metabolism analysis within established laboratory workflows. The solution is designed to help laboratories balance sensitivity, speed, and robustness with system uptime and ease of operation. \u201cSound Analytics has a long history of supporting efficient workflows for DMPK laboratories,\u201d said Wayne Lootsma, president of Sound Analytics. \u201cWorking with Agilent allows us to expand the options available to LeadScape users by combining our software with reliable, high\u2011performance LC/MS systems, helping laboratories integrate new tools within established work",
-      "signalType": "Product release",
-      "marketSegment": "Corporate",
-      "technology": "Portfolio",
-      "theme": "Product and workflow expansion",
-      "intent": "Product and portfolio expansion",
-      "summary": "Agilent and Sound Analytics Collaborate to Advance LC/MS Workflows for Drug Metabolism Research",
-      "sourceId": "agilent-newsroom",
-      "sourceName": "Agilent official newsroom"
+      "summary": "Agilent Receives FDA Approval for Expanded Use of PD-L1 IHC 22C3 pharmDx on Dako Omnis in Esophageal Squamous Cell Carcinoma, Triple-Negative Breast Cancer, Cervical Cancer, and Gastric or Gastroesophageal Junction Adenocarcinoma"
     },
     "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Introduces-OpenLab-Sync-to-Support-Guided-Digital-Execution-in-the-Laboratory/default.aspx": {
       "date": "2026-05-28",
@@ -239,17 +309,17 @@
         {
           "label": "Life Sciences and Diagnostics revenue",
           "value": "$732M",
-          "detail": "+12% reported / +9% core year over year"
+          "change": "+12% reported / +9% core year over year"
         },
         {
           "label": "CrossLab revenue",
           "value": "$759M",
-          "detail": "+6% reported / +2% core; 32.0% operating margin"
+          "change": "+6% reported / +2% core; 32.0% operating margin"
         },
         {
           "label": "Applied Markets revenue",
           "value": "$344M",
-          "detail": "+14% reported / +11% core year over year"
+          "change": "+14% reported / +11% core year over year"
         }
       ],
       "pmInsights": [
@@ -572,7 +642,400 @@
   },
   "unverifiedInventoryChanges": {
     "new": [],
-    "updated": [],
+    "updated": [
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-ion-sources",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "LC/MS ion source, Ion Source Technology | Agilent",
+        "pageExcerpt": "Skip to main content Skip to main content ABOUT AGILENT CONTACT US SELECT COUNTRY ACCOUNT PRODUCTS APPLICATIONS & INDUSTRIES TRAINING & EVENTS SERVICES SUPPORT & RESOURCES ORDER CENTER | 0 Home Products Liquid Chromatography/Mass Spectrometry (LC/MS) LC/MS Ion Sources if(typeof seoImageData != 'undefined'){ seoImageData=seoImageData+\"*$*\"+'/cs/publishingimages/LC_MS-Ion-Sources-groupBanner.jpg'; } LC/MS Ion Sources LC/MS Ionization Source Technology for Consistent Results The Agilent liquid chromatography/mass spectrometry (LC/MS) ion source portfolio enables analysis of a wide range of samples quickly and accurately. These easily interchangeable ion sources for Agilent LC/MS systems will meet your performance goals and align with your analytical requirements, providing the best flexibility, performance and robustness for your LC/MS analyses. Technologies include the robust electrospray ionization (ESI) source, an atmospheric pressure chemical ionization (APCI) source, as well as a multimode source for added flexibility. For highest-sensitivity applications, the Jet Stream ion source extends the use of electrospray ionization. Agilent ion source technology also includes nanospray ionization for low-flow applications, and a Capillary electrophoresis\u2013mass spectrometry (CE/MS) source for capillary electrophoresis. LC/MS Ion Sources Products 1 - 6 of 6 results | Sort Alphabetically 0 product selected. Clear All COMPARE Headquarters | Other sites 5301 Stevens Creek Blvd. Santa Clara, CA 95051 United States Worldwide Emails Worldwide Numbers ABOUT AGILENT Newsroom Company Informa"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-supplies-accessories/instrument-supplies-for-lc-ms",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Capillaries, Nebulizer Needles, Instrument Supplies for LC/MS | Agilent",
+        "pageExcerpt": "Skip to main content Skip to main content ABOUT AGILENT CONTACT US UNITED STATES ACCOUNT PRODUCTS APPLICATIONS & INDUSTRIES TRAINING & EVENTS SERVICES SUPPORT & RESOURCES ORDER CENTER | 0 Home Products Liquid Chromatography/Mass Spectrometry (LC/MS) LC/MS Supplies & Consumables LC/MS Supplies & Accessories Instrument Supplies for LC/MS Ultivo LC/TQ - compact and powerful triple quadrupole\u200b Instrument Supplies for LC/MS Agilent manufactures and stocks a range of high-quality supplies for LC/MS to ensure continued high levels of system performance. These supplies include common parts such as ion injectors, capillaries, electron multipliers, and nebulizer needles. LC/MS source supplies ensure the highest levels of source longevity, consistency, and integrity. Agilent also provides gas purifiers including moisture, hydrocarbon, and universal traps and a range of specialist tools suitable for LC/MS calibration, operation, and maintenance. All components and supplies are precision-engineered to Agilent's exacting quality standards. LC/MS Supplies & Accessories PRODUCT DETAILS Product Details Features News Literature Tools Features Supplies for nebulizers including ferrules and needles Skimmers of different sizes Performance maintenance kits for Edwards and MS40+ pumps Return to top News New Agilent ion injectors meet full RoHS compliance without sacrificing performance Introducing the new FS ion injector (p/n G3911-30000) and the ion injector (p/n G3911-30001) for Ultivo and MSD iQ. Search the part numbers or check out our new Quick Reference Guide (5994-7489EN) to find out more."
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms\" on this server. Reference #18.9009c617.1788923165.16925d54 https://errors.edgesuite.net/18.9009c617.1788923165.16925d54"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-solvents",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-solvents\" on this server. Reference #18.9009c617.1788923171.169295b8 https://errors.edgesuite.net/18.9009c617.1788923171.169295b8"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-supplies-accessories/cleaning-maintenance-supplies-for-lc-ms",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-supplies-accessories/cleaning-maintenance-supplies-for-lc-ms\" on this server. Reference #18.9009c617.1788923176.1692c1ee https://errors.edgesuite.net/18.9009c617.1788923176.1692c1ee"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-ion-sources/atmospheric-pressure-chemical-ionization-source-apci",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-ion-sources/atmospheric-pressure-chemical-ionization-source-apci\" on this server. Reference #18.9009c617.1788923180.1692ec4d https://errors.edgesuite.net/18.9009c617.1788923180.1692ec4d"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-application-solutions",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-application-solutions\" on this server. Reference #18.9009c617.1788923188.169335d1 https://errors.edgesuite.net/18.9009c617.1788923188.169335d1"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-application-solutions/comprehensive-veterinary-drug-dmrm-solution",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-application-solutions/comprehensive-veterinary-drug-dmrm-solution\" on this server. Reference #18.9009c617.1788923193.16935a74 https://errors.edgesuite.net/18.9009c617.1788923193.16935a74"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/high-throughput-lc-ms/rapidfire-integrator-software",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/high-throughput-lc-ms/rapidfire-integrator-software\" on this server. Reference #18.9009c617.1788923196.16938eb0 https://errors.edgesuite.net/18.9009c617.1788923196.16938eb0"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/single-quadrupole-lc-ms/pro-iq-series",
+        "lastmod": "2026-08-08",
+        "previousLastmod": "2026-05-09",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/single-quadrupole-lc-ms/pro-iq-series\" on this server. Reference #18.9009c617.1788923202.1693ce3e https://errors.edgesuite.net/18.9009c617.1788923202.1693ce3e"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/quadrupole-time-of-flight-lc-ms/exd-cell-for-lc-q-tof",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/quadrupole-time-of-flight-lc-ms/exd-cell-for-lc-q-tof\" on this server. Reference #18.9009c617.1788923205.169406df https://errors.edgesuite.net/18.9009c617.1788923205.169406df"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-supplies-accessories",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-supplies-accessories\" on this server. Reference #18.9009c617.1788923210.16943c0f https://errors.edgesuite.net/18.9009c617.1788923210.16943c0f"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-ion-sources/capillary-electrospray-source",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-ion-sources/capillary-electrospray-source\" on this server. Reference #18.9009c617.1788923215.16947d11 https://errors.edgesuite.net/18.9009c617.1788923215.16947d11"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/triple-quadrupole-lc-ms/6475-triple-quadrupole-lc-ms",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/triple-quadrupole-lc-ms/6475-triple-quadrupole-lc-ms\" on this server. Reference #18.9009c617.1788923219.1694a8a8 https://errors.edgesuite.net/18.9009c617.1788923219.1694a8a8"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-ion-sources/electrospray-esi-source",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-ion-sources/electrospray-esi-source\" on this server. Reference #18.9009c617.1788923223.1694e1c1 https://errors.edgesuite.net/18.9009c617.1788923223.1694e1c1"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/triple-quadrupole-lc-ms",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/triple-quadrupole-lc-ms\" on this server. Reference #18.9009c617.1788923229.16952f7a https://errors.edgesuite.net/18.9009c617.1788923229.16952f7a"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-application-solutions/metabolomics-dmrm-database-method",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-application-solutions/metabolomics-dmrm-database-method\" on this server. Reference #18.9009c617.1788923236.16957f57 https://errors.edgesuite.net/18.9009c617.1788923236.16957f57"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-application-solutions/veterinary-drug-tmrm-database-for-triple-quadrupole-lc-ms",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-application-solutions/veterinary-drug-tmrm-database-for-triple-quadrupole-lc-ms\" on this server. Reference #18.9009c617.1788923243.1695dfa3 https://errors.edgesuite.net/18.9009c617.1788923243.1695dfa3"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/high-throughput-lc-ms/rapidfire-400",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/high-throughput-lc-ms/rapidfire-400\" on this server. Reference #18.9009c617.1788923252.169641bd https://errors.edgesuite.net/18.9009c617.1788923252.169641bd"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/quadrupole-time-of-flight-lc-ms/6546-lc-q-tof",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/quadrupole-time-of-flight-lc-ms/6546-lc-q-tof\" on this server. Reference #18.9009c617.1788923256.16966401 https://errors.edgesuite.net/18.9009c617.1788923256.16966401"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/high-throughput-lc-ms",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/high-throughput-lc-ms\" on this server. Reference #18.9009c617.1788923261.16968917 https://errors.edgesuite.net/18.9009c617.1788923261.16968917"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-application-solutions/pesticides-tmrm-database-for-triple-quadrupole-lc-ms",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-application-solutions/pesticides-tmrm-database-for-triple-quadrupole-lc-ms\" on this server. Reference #18.9009c617.1788923266.1696baec https://errors.edgesuite.net/18.9009c617.1788923266.1696baec"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/time-of-flight-lc-ms",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/time-of-flight-lc-ms\" on this server. Reference #18.9009c617.1788923270.1696dd01 https://errors.edgesuite.net/18.9009c617.1788923270.1696dd01"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories\" on this server. Reference #18.9009c617.1788923274.169703e5 https://errors.edgesuite.net/18.9009c617.1788923274.169703e5"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/high-throughput-lc-ms/rapidfire-analyzer-software",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/high-throughput-lc-ms/rapidfire-analyzer-software\" on this server. Reference #18.9009c617.1788923279.16973480 https://errors.edgesuite.net/18.9009c617.1788923279.16973480"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/quadrupole-time-of-flight-lc-ms",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/quadrupole-time-of-flight-lc-ms\" on this server. Reference #18.9009c617.1788923283.16975a93 https://errors.edgesuite.net/18.9009c617.1788923283.16975a93"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/high-throughput-lc-ms/rapidfire-cartridges",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/high-throughput-lc-ms/rapidfire-cartridges\" on this server. Reference #18.9009c617.1788923287.16978740 https://errors.edgesuite.net/18.9009c617.1788923287.16978740"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/triple-quadrupole-lc-ms/6495-triple-quadrupole-lc-ms",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/triple-quadrupole-lc-ms/6495-triple-quadrupole-lc-ms\" on this server. Reference #18.9009c617.1788923292.1697bed9 https://errors.edgesuite.net/18.9009c617.1788923292.1697bed9"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/quadrupole-time-of-flight-lc-ms/revident-lc-q-tof",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/quadrupole-time-of-flight-lc-ms/revident-lc-q-tof\" on this server. Reference #18.9009c617.1788923298.1697fe4f https://errors.edgesuite.net/18.9009c617.1788923298.1697fe4f"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-ion-sources/multimode-source",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-ion-sources/multimode-source\" on this server. Reference #18.9009c617.1788923302.169824ba https://errors.edgesuite.net/18.9009c617.1788923302.169824ba"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-supplies-accessories/quiet-cover-for-lc-ms",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-supplies-accessories/quiet-cover-for-lc-ms\" on this server. Reference #18.9009c617.1788923306.16984d8f https://errors.edgesuite.net/18.9009c617.1788923306.16984d8f"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-application-solutions/forensic-toxicology-tmrm-database-for-triple-quadrupole-lc-ms",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-application-solutions/forensic-toxicology-tmrm-database-for-triple-quadrupole-lc-ms\" on this server. Reference #18.9009c617.1788923311.16988897 https://errors.edgesuite.net/18.9009c617.1788923311.16988897"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/time-of-flight-lc-ms/6230-time-of-flight-tof-lc-ms",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/time-of-flight-lc-ms/6230-time-of-flight-tof-lc-ms\" on this server. Reference #18.9009c617.1788923315.1698b914 https://errors.edgesuite.net/18.9009c617.1788923315.1698b914"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-solvents/infinitylab-methanol-for-lc-ms",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-solvents/infinitylab-methanol-for-lc-ms\" on this server. Reference #18.9009c617.1788923321.1698f5b6 https://errors.edgesuite.net/18.9009c617.1788923321.1698f5b6"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-ion-sources/nanospray-source",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-ion-sources/nanospray-source\" on this server. Reference #18.9009c617.1788923325.16993430 https://errors.edgesuite.net/18.9009c617.1788923325.16993430"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-supplies-accessories/vacuum-pump-supplies-for-lc-ms",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-supplies-accessories/vacuum-pump-supplies-for-lc-ms\" on this server. Reference #18.9009c617.1788923330.1699737e https://errors.edgesuite.net/18.9009c617.1788923330.1699737e"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/quadrupole-time-of-flight-lc-ms/6530-q-tof-lc-ms",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/quadrupole-time-of-flight-lc-ms/6530-q-tof-lc-ms\" on this server. Reference #18.9009c617.1788923336.1699b08c https://errors.edgesuite.net/18.9009c617.1788923336.1699b08c"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/quadrupole-time-of-flight-lc-ms/6545xt-advancebio-lc-q-tof",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/quadrupole-time-of-flight-lc-ms/6545xt-advancebio-lc-q-tof\" on this server. Reference #18.9009c617.1788923341.1699dd0f https://errors.edgesuite.net/18.9009c617.1788923341.1699dd0f"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-solvents/infinitylab-water-for-lc-ms",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-solvents/infinitylab-water-for-lc-ms\" on this server. Reference #18.9009c617.1788923345.1699fcb9 https://errors.edgesuite.net/18.9009c617.1788923345.1699fcb9"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-solvents/infinitylab-acetonitrile-for-lc-ms",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-solvents/infinitylab-acetonitrile-for-lc-ms\" on this server. Reference #18.9009c617.1788923350.169a2219 https://errors.edgesuite.net/18.9009c617.1788923350.169a2219"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/high-throughput-lc-ms/streamselect-lc-ms-system",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/high-throughput-lc-ms/streamselect-lc-ms-system\" on this server. Reference #18.9009c617.1788923354.169a4434 https://errors.edgesuite.net/18.9009c617.1788923354.169a4434"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments\" on this server. Reference #18.9009c617.1788923358.169a6726 https://errors.edgesuite.net/18.9009c617.1788923358.169a6726"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/single-quadrupole-lc-ms",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/single-quadrupole-lc-ms\" on this server. Reference #18.9009c617.1788923364.169a98e2 https://errors.edgesuite.net/18.9009c617.1788923364.169a98e2"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-solvents/solvent-additives",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-solvents/solvent-additives\" on this server. Reference #18.9009c617.1788923369.169ac8e3 https://errors.edgesuite.net/18.9009c617.1788923369.169ac8e3"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/quadrupole-time-of-flight-lc-ms/6560-ion-mobility-lc-q-tof",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/quadrupole-time-of-flight-lc-ms/6560-ion-mobility-lc-q-tof\" on this server. Reference #18.9009c617.1788923373.169af20d https://errors.edgesuite.net/18.9009c617.1788923373.169af20d"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/triple-quadrupole-lc-ms/ultivo-triple-quadrupole-lc-ms-lc-tq",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-instruments/triple-quadrupole-lc-ms/ultivo-triple-quadrupole-lc-ms-lc-tq\" on this server. Reference #18.9009c617.1788923379.169b2237 https://errors.edgesuite.net/18.9009c617.1788923379.169b2237"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-ion-sources/jet-stream-technology-ion-source-ajs",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-ion-sources/jet-stream-technology-ion-source-ajs\" on this server. Reference #18.9009c617.1788923387.169b6e7b https://errors.edgesuite.net/18.9009c617.1788923387.169b6e7b"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-supplies-accessories/tuning-performance-standards-for-lc-ms",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-supplies-accessories/lc-ms-supplies-accessories/tuning-performance-standards-for-lc-ms\" on this server. Reference #18.9009c617.1788923391.169b919d https://errors.edgesuite.net/18.9009c617.1788923391.169b919d"
+      },
+      {
+        "url": "https://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-application-solutions/pfas-mrm-database-for-lc-tq",
+        "lastmod": "2026-08-29",
+        "previousLastmod": "2026-07-05",
+        "category": "LC/MS",
+        "pageTitle": "Access Denied",
+        "pageExcerpt": "Access Denied You don't have permission to access \"http://www.agilent.com/en/product/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-application-solutions/pfas-mrm-database-for-lc-tq\" on this server. Reference #18.9009c617.1788923395.169bb46f https://errors.edgesuite.net/18.9009c617.1788923395.169bb46f"
+      }
+    ],
     "missing": []
   }
 }

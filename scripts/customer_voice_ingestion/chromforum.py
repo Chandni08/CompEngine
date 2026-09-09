@@ -84,6 +84,7 @@ def collect(client: RobotsAwareClient | None = None) -> list[EvidenceRecord]:
     # only within the same board page, never ahead of a newer page.
     topic_candidates: list[tuple[int, int, int, str]] = []
     records: list[EvidenceRecord] = []
+    successful_pages = 0
 
     expanded_seeds: list[str] = []
     for seed in seeds:
@@ -102,6 +103,7 @@ def collect(client: RobotsAwareClient | None = None) -> list[EvidenceRecord]:
         html = public_html(response)
         if not html or response is None:
             continue
+        successful_pages += 1
         parser = parse_page(response.url, html)
         if urlsplit(response.url).path.lower() == "/viewforum.php":
             for link_index, (link, anchor) in enumerate(parser.links):
@@ -125,6 +127,8 @@ def collect(client: RobotsAwareClient | None = None) -> list[EvidenceRecord]:
         if record:
             records.append(record)
             seen.add(record.url)
+    if expanded_seeds and successful_pages == 0:
+        raise RuntimeError("Chromatography Forum returned no permitted readable page; current evidence cannot be validated")
     if records:
         try:
             cursors = json.loads(CURSOR_FILE.read_text(encoding="utf-8")) if CURSOR_FILE.exists() else {}

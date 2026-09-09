@@ -53,18 +53,33 @@ class SourceHealth:
     completeness: str = "unverified"
     coverage: str = "unverified"
     reason: str = ""
+    # How the sourceNewest* fields were obtained.  A row that cannot name an
+    # observation of the live source has not verified anything, so it must not
+    # claim complete traversal.  See _assert_independent_observation below.
+    sourceObservation: str = ""
     state: str = "UNVERIFIED"
 
     def __post_init__(self) -> None:
         if self.collectionOutcome not in OUTCOMES:
             raise ValueError(f"unsupported collection outcome: {self.collectionOutcome}")
+        self._assert_independent_observation()
         source_newest = _date(self.sourceNewestDate)
         engine_newest = _date(self.engineNewestDate)
+        # An explicitly supplied newestItemPresent is an ingestion fact the
+        # collector established against the live source; never overwrite it with
+        # a weaker comparison derived from the stored dataset.
+        derived = self.newestItemPresent
         if source_newest and engine_newest:
             self.lagDays = max(0, (source_newest - engine_newest).days)
-            self.newestItemPresent = engine_newest >= source_newest
+            derived = engine_newest >= source_newest
         if self.sourceNewestUrl and self.engineNewestUrl:
-            self.newestItemPresent = self.sourceNewestUrl.rstrip("/") == self.engineNewestUrl.rstrip("/")
+            derived = self.sourceNewestUrl.rstrip("/") == self.engineNewestUrl.rstrip("/")
+        if self.newestItemPresent is None:
+            self.newestItemPresent = derived
+        elif self.newestItemPresent and derived is False:
+            # The claim and the stored evidence disagree; do not publish the
+            # optimistic reading.
+            self.newestItemPresent = False
         if self.collectionOutcome == "disabled":
             self.state = "DISABLED"
         elif self.collectionOutcome == "skipped_missing_credentials":
@@ -85,6 +100,28 @@ class SourceHealth:
             self.state = "CURRENT" if self.completeness == "complete" and self.coverage == "complete" and self.newestItemPresent is True else "PARTIAL"
         if self.state not in STATES:
             raise ValueError(f"unsupported source state: {self.state}")
+
+    def _assert_independent_observation(self) -> None:
+        """Refuse to treat the stored dataset as evidence about the live source.
+
+        A row whose sourceNewest* fields were copied from the same record as its
+        engineNewest* fields compares the dataset with itself and can never fail.
+        Such a row is unverified, whatever the collector claimed.
+        """
+        same_url = bool(self.sourceNewestUrl) and self.sourceNewestUrl == self.engineNewestUrl
+        same_title = bool(self.sourceNewestTitle) and self.sourceNewestTitle == self.engineNewestTitle
+        if (same_url or same_title) and not self.sourceObservation:
+            self.completeness = "unverified"
+            self.coverage = "unverified"
+            self.newestItemPresent = None
+            self.sourceNewestDate = None
+            self.sourceNewestTitle = None
+            self.sourceNewestUrl = None
+            note = (
+                "Source-side high-water fields were derived from the stored dataset rather than "
+                "from an observation of the live source; freshness is unverified."
+            )
+            self.reason = f"{self.reason} {note}".strip() if self.reason else note
 
     def to_dict(self) -> dict[str, Any]:
         row = asdict(self)

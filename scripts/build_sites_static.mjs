@@ -16,7 +16,12 @@ await cp(sourceRoot, clientRoot, {
   recursive: true,
   filter(source) {
     const relative = path.relative(sourceRoot, source);
-    return relative !== ".vercel" && !relative.startsWith(`.vercel${path.sep}`);
+    const segments = relative.split(path.sep);
+    return (
+      relative !== ".vercel"
+      && !relative.startsWith(`.vercel${path.sep}`)
+      && !segments.some((segment) => segment === ".env" || segment.startsWith(".env."))
+    );
   },
 });
 

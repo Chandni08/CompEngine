@@ -9,6 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
 import check_links  # noqa: E402
+import collect_competitors  # noqa: E402
 import collect_scientific_sources  # noqa: E402
 import refresh_daily  # noqa: E402
 
@@ -84,6 +85,36 @@ class DailyRefreshResilienceTests(unittest.TestCase):
 
         self.assertEqual(target, "https://www.msacl.org/index.php?header=MSACL_2026&tab=Agenda")
 
+    def test_retired_conference_document_is_not_republished_from_stale_index(self):
+        body = '''<a href="https://www.casss.org/docs/default-source/mass-spec/2025-speaker-presentations/whitty-l&amp;#233;veill&amp;#233;-laurence-merck-co-inc-2025.pdf?sfvrsn=f1e4a7a1_5">Whitty-L&#233;veill&#233; Laurence, 2025 presentation</a>'''
+
+        records = collect_scientific_sources.extract_conference_records(
+            "https://www.casss.org/meetings-and-events/symposia/mass-spectrometry",
+            body,
+            "casss-mass-spec",
+        )
+
+        self.assertEqual(records, [])
+
+    def test_malformed_retired_conference_document_is_removed_from_retained_cache(self):
+        self.assertTrue(
+            collect_scientific_sources.retired_conference_content_url(
+                "https://www.casss.org/docs/default-source/mass-spec/2025-speaker-presentations/whitty-l&"
+            )
+        )
+
+    def test_retired_thermo_product_page_migrates_to_current_catalog(self):
+        retired = "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-amplify-uhplc-system.html"
+
+        self.assertEqual(
+            refresh_daily.KNOWN_SOURCE_URL_MIGRATIONS[retired],
+            "https://www.thermofisher.com/order/catalog/product/VQ-AMPLIFY",
+        )
+        self.assertEqual(
+            collect_competitors.canonical_thermo_product_url(retired),
+            "https://www.thermofisher.com/order/catalog/product/VQ-AMPLIFY",
+        )
+
     def test_fda_abuse_detection_redirect_is_blocked_not_dead(self):
         current = [{
             "url": "https://www.fda.gov/example",
@@ -112,9 +143,15 @@ class DailyRefreshResilienceTests(unittest.TestCase):
                 {"theme": f"Theme {index}", "counts": {key: index for key in ("30d", "60d", "90d", "1y", "3y", "5y")}}
                 for index in range(5)
             ]},
-            "refresh": {"pubmed": "success"},
+            "refresh": {domain: "success" for domain in refresh_daily.REQUIRED_REFRESH_DOMAINS},
         }
         refresh_daily.validate_intelligence(base)
+
+        for domain in refresh_daily.REQUIRED_REFRESH_DOMAINS:
+            retained = copy.deepcopy(base)
+            retained["refresh"][domain] = "retained_last_good_data"
+            with self.assertRaisesRegex(ValueError, f"required source domain did not refresh: {domain}"):
+                refresh_daily.validate_intelligence(retained)
 
         stale = copy.deepcopy(base)
         stale["recommendations"][0]["canonicalDecision"]["generatedAt"] = "2020-01-01T00:00:00+00:00"

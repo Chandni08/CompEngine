@@ -218,9 +218,15 @@ class CompletenessTests(unittest.TestCase):
         }
         competitor = {"id": "example", "name": "Example Corp", "cik": "0000000123"}
         with patch.object(collect_real_data, "COMPETITORS", [competitor]), patch.object(collect_real_data, "fetch_json", return_value={"name": "Example Corp", "filings": {"recent": recent}}), patch.object(collect_real_data.time, "sleep", return_value=None):
-            signals = collect_real_data.collect_sec_signals()
+            signals, high_water = collect_real_data.collect_sec_signals()
         self.assertEqual(len(signals), 12)
         self.assertEqual(len({item["id"] for item in signals}), 12)
+        # The high-water mark is read from the live feed, so the freshness ledger
+        # can test the collected records against something other than itself.
+        self.assertEqual(high_water["newestDate"], "2026-07-01")
+        self.assertEqual(high_water["inWindowFilingsSeen"], 13)
+        self.assertIn(high_water["newestSignalId"], {item["id"] for item in signals})
+        self.assertTrue(high_water["newestUrl"].startswith("https://www.sec.gov/Archives/edgar/data/123/"))
 
 
 class CoverageIntegrityTests(unittest.TestCase):

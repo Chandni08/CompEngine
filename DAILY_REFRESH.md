@@ -20,6 +20,14 @@ The website includes a fail-safe daily refresh pipeline.
 
 The collector preserves the human-reviewed product launches, product comparisons, partnerships, conference preparation, customer voice, and PM recommendations already in the data files.
 
+## Dataset Date and Source Verification
+
+`asOfDate` describes the data, not the run. When a domain cannot be collected it falls back to the previous dataset and contributes that dataset's date, and the published `asOfDate` is the oldest contributing domain: the dataset as a whole is only current as of its least current part. Per-domain dates are recorded in `domainAsOfDates`. The publish gate rejects a future `asOfDate`, an `asOfDate` that disagrees with the contributing domains, and any run in which a domain backing a required source fell back to retained data.
+
+Every source row in `data/source_health.json` must compare the collected records against an observation of the *live* source, recorded in `sourceObservation`. A row whose source-side high-water fields were copied from the stored dataset is reported as unverified rather than current: comparing the dataset with itself can never fail, so it proves nothing. For PubMed the independent evidence is the live newest-PMID query per configured theme; for SEC EDGAR it is the newest in-window filing observed in the live submissions feed, stored in `sourceHighWater`.
+
+Records carry both `contentAsOf`, when the content was last actually read from the source, and `stampedAt`, when the provenance pass last ran. A provenance pass never advances `contentAsOf` or `retrievalDate` for a record no collector reached.
+
 ## Three-Year Historical Coverage
 
 The supported historical horizon begins in July 2023. Each daily refresh keeps:
@@ -88,12 +96,18 @@ node scripts/validate_thermo_monitoring.mjs
 
 `scripts/score.py` replaces the former confidence, impact, and urgency fields with one auditable `priorityScore` from 0 to 100:
 
-- Source authority: 30 points. SEC filings and official press releases score highest, PubMed is medium authority, and public forums are low-but-real.
-- Recency: 25 points. Evidence decays from the dataset's `asOfDate` with a 180-day half-life.
-- LC relevance: 30 points. Explicit references to LC, HPLC, UHPLC/UPLC, LC-MS, columns, pumps, and chromatography software contribute weighted points.
-- Corroboration: 15 points. More unique source records supporting the same theme increase the contribution logarithmically.
+- Source authority: 25 points. Resolved from the publisher host and the record kind, not from substring matches on concatenated text. Government and regulatory filings score highest, then peer-reviewed records, then dated official announcements. A monitored catalogue page scores low: it proves a URL exists, not that anything was announced.
+- Evidence status: 15 points. `verified` scores full, `partial` scores 8, and `unsupported`, `contradicted`, or `unreachable` score zero.
+- Recency: 20 points. Evidence decays from the dataset's `asOfDate` with a 180-day half-life, but only from an *event* date. A record whose date is an ingestion or retrieval timestamp scores zero recency, because that date records when the crawler looked rather than when anything happened. A date that cannot be parsed also scores zero rather than being treated as today's.
+- LC relevance: 25 points. The strongest matched term sets the base and each further distinct term adds two points, so records do not all saturate at the cap.
+- Corroboration: 15 points. Counted from distinct *organizations* represented in a theme, never from the number of records. A theme carrying two hundred pages from one vendor is not corroborated. Where every organization is describing itself — vendor pages, or a registrant's own filings — the contribution is capped at 7 because issuer self-description is not independent confirmation. PubMed and SEC are treated as registries rather than publishers, so each paper counts as its own author group and each filing as its own registrant.
 
-Scores of 75-100 are High, 50-74 are Medium, and 0-49 are Low. Each signal stores the four contributions in `scoreBreakdown`. The scorer refuses to write the dataset if more than 20% of signals share one integer score.
+Scores of 75-100 are High, 50-74 are Medium, and 0-49 are Low. Each signal stores the five contributions in `scoreBreakdown`, each with the basis on which it was awarded.
+
+The scorer refuses to write the dataset in two cases:
+
+- Records classified `unsupported` rank at or above records classified `verified`. A ranking that points the reader at the weakest evidence is not publishable.
+- More than 25% of *distinct input combinations* collapse onto one integer score. This measures distinct inputs rather than raw signals: records with identical inputs are expected to tie, so a large set of genuinely indistinguishable sitemap pages cannot halt the refresh for agreeing with each other.
 
 ## Local Daily Schedule
 

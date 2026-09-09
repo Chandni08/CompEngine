@@ -209,12 +209,50 @@ def resolve_public_link(page_url: str, href: str) -> str:
     fabricated conference-host URL. Recognize that form before resolving normal
     relative and protocol-relative links.
     """
-    candidate = html.unescape(str(href or "")).strip()
+    candidate = fully_unescape(str(href or "")).strip()
     if not candidate or candidate.lower().startswith(("mailto:", "tel:", "javascript:", "data:")):
         return ""
     if re.match(r"^www\.[a-z0-9](?:[a-z0-9.-]*[a-z0-9])?\.[a-z]{2,}(?:[/?#]|$)", candidate, re.I):
         candidate = f"https://{candidate}"
     return canonical_link(urljoin(page_url, candidate))
+
+
+RETIRED_CONFERENCE_CONTENT_URLS = {
+    "https://www.casss.org/docs/default-source/mass-spec/2025-speaker-presentations/whitty-léveillé-laurence-merck-co-inc-2025.pdf",
+}
+
+# The organizer retired this event microsite after the February 2026 summit.
+# Keeping the dead host in the active monitor would make both the source-health
+# ledger and the page's public evidence library claim coverage that no longer
+# exists. The broader Hanson Wade RNA calendar remains monitored elsewhere.
+RETIRED_CONFERENCE_SOURCE_IDS = {
+    "mrna-analytical-development-2026",
+}
+
+
+def fully_unescape(value: str) -> str:
+    """Decode publisher links that are HTML-escaped more than once."""
+    decoded = value
+    for _ in range(3):
+        next_value = html.unescape(decoded)
+        if next_value == decoded:
+            break
+        decoded = next_value
+    return decoded
+
+
+def retired_conference_content_url(url: str) -> bool:
+    decoded = fully_unescape(str(url or ""))
+    without_query = decoded.split("?", 1)[0]
+    if without_query in RETIRED_CONFERENCE_CONTENT_URLS:
+        return True
+    # A prior collector decoded the publisher's double-escaped accent only
+    # once, so URL parsing treated ``#233`` as a fragment and persisted a
+    # malformed ``whitty-l&`` URL. Retire that exact document stem as well.
+    return (
+        "/2025-speaker-presentations/whitty-l" in without_query.lower()
+        and "casss.org" in without_query.lower()
+    )
 
 
 def extract_conference_records(page_url: str, body: str, event_id: str) -> list[dict[str, str]]:
@@ -232,6 +270,8 @@ def extract_conference_records(page_url: str, body: str, event_id: str) -> list[
         title = re.sub(r"\s+", " ", title).strip()
         target = resolve_public_link(page_url, href)
         if not title or not target.startswith("http") or not CONFERENCE_CONTENT_TERMS.search(f"{title} {target}"):
+            continue
+        if retired_conference_content_url(target):
             continue
         if target in seen:
             continue
@@ -830,7 +870,10 @@ def collect_conferences(conference_data: dict[str, Any]) -> tuple[list[dict[str,
     checked_at = utc_now()
     for event in conference_data.get("events", []):
         prior_checked = str(event.get("lastChecked") or "")
-        prior_records = list(event.get("contentRecords") or [])
+        prior_records = [
+            record for record in (event.get("contentRecords") or [])
+            if not retired_conference_content_url(record.get("canonicalUrl", ""))
+        ]
         prior_endpoints = list(event.get("monitoredEndpoints") or [])
         try:
             prior_age_days = (date.today() - date.fromisoformat(prior_checked[:10])).days
@@ -978,10 +1021,17 @@ def upsert_catalog(catalog: dict[str, Any], entries: list[dict[str, Any]]) -> No
 def main(*, trade_only: bool = False) -> int:
     journal_data = read_json(JOURNAL_FILE)
     conference_data = read_json(CONFERENCE_FILE)
+    conference_data["events"] = [
+        event for event in conference_data.get("events", [])
+        if event.get("id") not in RETIRED_CONFERENCE_SOURCE_IDS
+    ]
     source_catalog = read_json(SOURCE_CATALOG_FILE)
     source_catalog["sources"] = [
         source for source in source_catalog.get("sources", [])
-        if source.get("id") != "usp-232-233-elemental-impurities"
+        if source.get("id") not in {
+            "usp-232-233-elemental-impurities",
+            "conference-mrna-analytical-development-2026",
+        }
     ]
 
     trade_entries, trade_sources = collect_trade_sources(journal_data)

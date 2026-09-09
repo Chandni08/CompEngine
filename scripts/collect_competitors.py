@@ -72,6 +72,10 @@ THERMO_TECHNICAL_FEEDS = (
 THERMO_IR_NEWS_PAGE = "https://ir.thermofisher.com/investors/news-events/news/default.aspx"
 THERMO_IR_FEED = "https://ir.thermofisher.com/feed/PressRelease.svc/GetPressReleaseList"
 THERMO_PRESS_BROWSER_CACHE_FILE = DATA_DIR / "thermo_press_browser_validation.json"
+THERMO_RETIRED_PRODUCT_URLS = {
+    "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-amplify-uhplc-system.html":
+        "https://www.thermofisher.com/order/catalog/product/VQ-AMPLIFY",
+}
 
 
 def utc_now() -> str:
@@ -113,6 +117,11 @@ def fetch(url: str, timeout: int = 60) -> tuple[int | None, str, str]:
 def clean_text(value: str) -> str:
     without_tags = re.sub(r"<[^>]+>", " ", value)
     return re.sub(r"\s+", " ", html.unescape(without_tags)).strip()
+
+
+def canonical_thermo_product_url(url: str) -> str:
+    """Keep retired sitemap locations from re-entering the published inventory."""
+    return THERMO_RETIRED_PRODUCT_URLS.get(url, url)
 
 
 def parse_date(value: str) -> str:
@@ -693,7 +702,7 @@ def collect_thermo() -> dict[str, object]:
     if product_status == 200:
         try:
             products = {
-                row["loc"]: row.get("lastmod", "")[:10]
+                canonical_thermo_product_url(row["loc"]): row.get("lastmod", "")[:10]
                 for row in parse_sitemap(product_body)
                 if thermo_product_page(row.get("loc", ""))
             }

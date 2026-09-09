@@ -11395,6 +11395,17 @@ function renderCustomerPmInsights(items) {
     : `<div class="empty">No ${state.view === "Marketing" ? "PMM" : "PM"} insight matches the current customer-voice filters.</div>`;
 }
 
+function customerVoiceProvenanceTitle(item) {
+  // Content age and stamp age are different facts; showing only one lets a
+  // provenance pass read as a re-read of the source.
+  const contentAsOf = item.contentAsOf || item.retrievalDate;
+  return [
+    `Source published ${item.sourceDate ? formatDate(item.sourceDate) : "date not established"}`,
+    `Content last read ${contentAsOf ? formatDate(contentAsOf) : "date not established"}`,
+    `Provenance stamped ${item.stampedAt ? formatDate(item.stampedAt) : "date not established"}`,
+  ].join(" · ");
+}
+
 function renderCustomerEvidenceTable(items) {
   byId("customerEvidenceTable").innerHTML = items.length
     ? items
@@ -11404,7 +11415,7 @@ function renderCustomerEvidenceTable(items) {
           const primary = links[0];
           return `
             <tr>
-              <td>${formatDate(customerVoiceEvidenceDate(item))}</td>
+              <td title="${escapeHtml(customerVoiceProvenanceTitle(item))}">${formatDate(customerVoiceEvidenceDate(item))}</td>
               <td><strong>${escapeHtml(item.company)}:</strong> ${escapeHtml(item.product)}</td>
               <td>${escapeHtml(item.sentiment)}</td>
               <td>${escapeHtml(item.category)}</td>
@@ -11450,7 +11461,7 @@ function exportCustomerVoiceSummary() {
   const rows = currentCustomerVoiceItems();
   const snapshot = competitiveMethodology.snapshotMetadata(state.data);
   const topDecision = recommendationsByConfidence(currentSignals())[0];
-  const headers = ["Snapshot ID", "As-of timestamp", "Decision owner", "Required go/no-go output", "Newest evidence date", "Company", "Product", "Sentiment", "Category", "Lab type", "User role", "Buying priority", "Product maturity", "Geography", "Confidence", "Language type", "Customer language", "Claim ID", "Evidence status", "Primary source URL", "Retrieval date", "Source date", "Caveat", "PM interpretation"];
+  const headers = ["Snapshot ID", "As-of timestamp", "Decision owner", "Required go/no-go output", "Newest evidence date", "Company", "Product", "Sentiment", "Category", "Lab type", "User role", "Buying priority", "Product maturity", "Geography", "Confidence", "Language type", "Customer language", "Claim ID", "Evidence status", "Primary source URL", "Content as of", "Stamped at", "Retrieval date", "Source date", "Caveat", "PM interpretation"];
   const body = rows.map((item) => [
     snapshot.snapshotId,
     snapshot.asOfTimestamp,
@@ -11472,6 +11483,8 @@ function exportCustomerVoiceSummary() {
     item.claimID || item.id,
     item.evidenceStatus || "partial",
     customerVoiceSourceLinks(item)[0]?.url || "",
+    item.contentAsOf || item.retrievalDate || "Not established",
+    item.stampedAt || "Not established",
     item.retrievalDate || snapshot.asOfTimestamp,
     item.sourceDate || customerVoiceEvidenceDate(item),
     item.caveat || (item.languageType === "verbatim_quote" ? "" : "Analyst language; recurrence does not establish prevalence."),
@@ -13010,6 +13023,7 @@ function renderHiringPatterns() {
 function signalScoreBreakdownMarkup(signal) {
   const breakdown = signal.scoreBreakdown || {};
   const authority = breakdown.sourceAuthority || {};
+  const evidence = breakdown.evidenceStrength || {};
   const recency = breakdown.recency || {};
   const relevance = breakdown.lcRelevance || {};
   const corroboration = breakdown.corroboration || {};
@@ -13018,6 +13032,13 @@ function signalScoreBreakdownMarkup(signal) {
   const matchedTerms = Array.isArray(relevance.matchedTerms) && relevance.matchedTerms.length
     ? relevance.matchedTerms.join(", ")
     : "No direct LC terms";
+  // Recency is only established from an event date; the scorer records why when
+  // it is not, and stating "0 days old" instead would read as brand new.
+  const recencyDetail = recency.ageDays === null || recency.ageDays === undefined
+    ? escapeHtml(recency.basis || "Recency not established")
+    : `${Number(recency.ageDays)} days old · ${Number(recency.halfLifeDays || 180)}-day half-life`;
+  const organizations = Number(corroboration.organizationCount || 0);
+  const independent = Number(corroboration.independentOrganizations || 0);
   return `
     <div class="signal-priority">
       <span class="signal-tier ${escapeHtml(tierClass)}">${escapeHtml(tier)}</span>
@@ -13026,10 +13047,11 @@ function signalScoreBreakdownMarkup(signal) {
     <details class="signal-score-detail">
       <summary>Score breakdown</summary>
       <dl>
-        <div><dt>Source authority</dt><dd>${Number(authority.contribution || 0)}/${Number(authority.max || 30)} · ${escapeHtml(authority.rating || "Unrated")} · ${escapeHtml(authority.basis || "No basis recorded")}</dd></div>
-        <div><dt>Recency</dt><dd>${Number(recency.contribution || 0)}/${Number(recency.max || 25)} · ${Number(recency.ageDays || 0)} days old · ${Number(recency.halfLifeDays || 180)}-day half-life</dd></div>
-        <div><dt>LC relevance</dt><dd>${Number(relevance.contribution || 0)}/${Number(relevance.max || 30)} · ${escapeHtml(matchedTerms)}</dd></div>
-        <div><dt>Corroboration</dt><dd>${Number(corroboration.contribution || 0)}/${Number(corroboration.max || 15)} · ${Number(corroboration.independentSources || 0)} independent source records for ${escapeHtml(corroboration.theme || signal.theme || "this theme")}</dd></div>
+        <div><dt>Source authority</dt><dd>${Number(authority.contribution || 0)}/${Number(authority.max || 25)} · ${escapeHtml(authority.rating || "Unrated")} · ${escapeHtml(authority.basis || "No basis recorded")}</dd></div>
+        <div><dt>Evidence status</dt><dd>${Number(evidence.contribution || 0)}/${Number(evidence.max || 15)} · ${escapeHtml(evidence.status || "unrecorded")} · ${escapeHtml(evidence.basis || "No basis recorded")}</dd></div>
+        <div><dt>Recency</dt><dd>${Number(recency.contribution || 0)}/${Number(recency.max || 20)} · ${recencyDetail}</dd></div>
+        <div><dt>LC relevance</dt><dd>${Number(relevance.contribution || 0)}/${Number(relevance.max || 25)} · ${escapeHtml(matchedTerms)}</dd></div>
+        <div><dt>Corroboration</dt><dd>${Number(corroboration.contribution || 0)}/${Number(corroboration.max || 15)} · ${organizations} organization${organizations === 1 ? "" : "s"} in ${escapeHtml(corroboration.theme || signal.theme || "this theme")}, ${independent} not issuer-controlled</dd></div>
       </dl>
     </details>
   `;

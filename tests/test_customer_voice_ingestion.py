@@ -12,6 +12,7 @@ from datetime import datetime, timezone
 from scripts.collect_customer_voice import (
     ADAPTERS,
     prune_expired_unverifiable_reddit_feedback,
+    prune_expired_unverifiable_source_feedback,
     prune_out_of_scope_labwrench_feedback,
     reconcile_selectscience_review_keywords,
 )
@@ -30,6 +31,12 @@ class CustomerVoiceScopeTests(unittest.TestCase):
         self.assertFalse(chromforum.in_scope("https://www.chromforum.org/search.php?keywords=Waters"))
         self.assertFalse(chromforum.in_scope("https://www.chromforum.org/viewtopic.php?t=8508&sid=secret"))
         self.assertFalse(chromforum.in_scope("https://www.chromforum.org/download/file.php?id=1"))
+
+    def test_chromforum_adapter_reports_total_access_failure(self) -> None:
+        client = Mock()
+        client.get.return_value = None
+        with self.assertRaisesRegex(RuntimeError, "current evidence cannot be validated"):
+            chromforum.collect(client)
 
     def test_selectscience_scope_allows_only_products_and_articles(self) -> None:
         self.assertTrue(selectscience.in_scope("https://www.selectscience.net/product/example"))
@@ -121,6 +128,44 @@ class CustomerVoiceSchemaTests(unittest.TestCase):
         self.assertEqual((removed_records, removed_feedback), (2, 1))
         self.assertEqual([item["id"] for item in data["feedback"]], ["mixed", "current-reddit"])
         self.assertEqual(data["feedback"][0]["evidenceRecords"], [{"url": forum_url, "sourceType": "community_forum"}])
+
+    def test_expired_unverifiable_forum_source_fails_closed_when_adapter_is_blocked(self) -> None:
+        expired_url = "https://www.chromforum.org/viewtopic.php?t=expired"
+        current_url = "https://www.chromforum.org/viewtopic.php?t=current"
+        data = {"feedback": [
+            {
+                "id": "expired-forum",
+                "sourceIds": ["chromforum-lc-discussions"],
+                "evidenceRecords": [{"url": expired_url, "sourceType": "community_forum"}],
+            },
+            {
+                "id": "current-forum",
+                "sourceIds": ["chromforum-lc-discussions"],
+                "evidenceRecords": [{"url": current_url, "sourceType": "community_forum"}],
+            },
+            {
+                "id": "different-source",
+                "sourceIds": ["selectscience-reviews"],
+                "evidenceRecords": [{"url": "https://www.selectscience.net/product/example", "sourceType": "structured_review"}],
+            },
+        ]}
+        cache = {
+            "maxAgeDays": 30,
+            "sources": [
+                {"url": expired_url, "validatedAt": "2026-07-01", "validationMethod": "full_source_text"},
+                {"url": current_url, "validatedAt": "2026-08-20", "validationMethod": "full_source_text"},
+            ],
+        }
+
+        removed_records, removed_feedback = prune_expired_unverifiable_source_feedback(
+            data,
+            cache,
+            {"chromforum-lc-discussions"},
+            now=datetime(2026, 8, 27, 12, 0, tzinfo=timezone.utc),
+        )
+
+        self.assertEqual((removed_records, removed_feedback), (1, 1))
+        self.assertEqual([item["id"] for item in data["feedback"]], ["current-forum", "different-source"])
 
     def test_legacy_labwrench_navigation_noise_is_pruned(self) -> None:
         data = {"feedback": [

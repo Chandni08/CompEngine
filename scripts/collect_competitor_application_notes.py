@@ -15,6 +15,7 @@ from collections import Counter
 from datetime import date, datetime, timezone
 from pathlib import Path
 from urllib.parse import urlsplit, urlunsplit
+from zoneinfo import ZoneInfo
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -29,8 +30,9 @@ def utc_now() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
 
 
-def utc_today() -> date:
-    return datetime.now(timezone.utc).date()
+def business_today() -> date:
+    """Return the dashboard's reporting date in its canonical timezone."""
+    return datetime.now(ZoneInfo("America/New_York")).date()
 
 
 def read_json(path: Path, default: object) -> object:
@@ -74,7 +76,7 @@ def products_from_title(title: str) -> str:
 
 def note_from_discovery(competitor: str, item: dict[str, object]) -> dict[str, object]:
     title = str(item.get("title") or "Untitled application note").strip()
-    published = str(item.get("date") or utc_today().isoformat())[:10]
+    published = str(item.get("date") or business_today().isoformat())[:10]
     source_url = str(item.get("url") or item.get("sourceUrl") or "")
     market = str(item.get("marketSegment") or "Cross-market")
     technology = str(item.get("technology") or "LC/LC-MS")
@@ -95,7 +97,7 @@ def note_from_discovery(competitor: str, item: dict[str, object]) -> dict[str, o
         "sourceUrl": source_url,
         "sourceId": item.get("sourceId"),
         "sourceName": item.get("sourceName"),
-        "ingestionDate": utc_today().isoformat(),
+        "ingestionDate": business_today().isoformat(),
     }
 
 
@@ -192,7 +194,7 @@ def collect() -> dict[str, object]:
             "sourceNewestDate": source_newest,
             "catalogNewestDate": catalog_newest,
             "newestDiscoveredPresent": not source_newest or (catalog_newest is not None and catalog_newest >= source_newest),
-            "freshnessStatus": "current" if catalog_newest and (utc_today() - date.fromisoformat(catalog_newest)).days <= 400 else "stale",
+            "freshnessStatus": "current" if catalog_newest and (business_today() - date.fromisoformat(catalog_newest)).days <= 400 else "stale",
             "completenessStatus": completeness_status,
         })
 
@@ -201,7 +203,7 @@ def collect() -> dict[str, object]:
     catalog.update({
         "schemaVersion": 3,
         "generatedAt": now,
-        "asOfDate": utc_today().isoformat(),
+        "asOfDate": business_today().isoformat(),
         "refreshContract": {
             "catalogMaxAgeHours": 36,
             "competitorNewestRecordMaxAgeDays": 400,

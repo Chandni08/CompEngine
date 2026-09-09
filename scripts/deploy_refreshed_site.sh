@@ -21,7 +21,9 @@ node --test "$ROOT"/tests/*.test.mjs
 
 echo "$(date -Iseconds) Publishing refreshed data"
 deployment_output=$(
-  cd "$DEPLOY_ROOT"
+  # The linked Vercel project's Root Directory is ``deploy-site``. Invoke the
+  # CLI from the repository root so Vercel resolves that path exactly once.
+  cd "$ROOT"
   npx --yes "vercel@$VERCEL_VERSION" deploy --prod --yes
 )
 printf '%s\n' "$deployment_output"
@@ -34,7 +36,7 @@ fi
 
 echo "$(date -Iseconds) Pointing the Waters URL to the refreshed build"
 (
-  cd "$DEPLOY_ROOT"
+  cd "$ROOT"
   npx --yes "vercel@$VERCEL_VERSION" alias set "$deployment_url" "$WATERS_HOST"
 )
 

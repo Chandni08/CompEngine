@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-26T15:13:02.998Z",
+  "generatedAt": "2026-09-09T03:15:33.169Z",
   "maxAgeDays": 30,
   "sources": [
     {
@@ -23,58 +23,6 @@
       "validationMethod": "full_source_text"
     },
     {
-      "url": "https://www.chromforum.org/viewtopic.php?p=455950",
-      "validatedKeywords": [
-        "HPLC",
-        "LC-MS",
-        "chromatography",
-        "carryover",
-        "software",
-        "training"
-      ],
-      "validatedAt": "2026-08-23",
-      "validationMethod": "full_source_text"
-    },
-    {
-      "url": "https://www.chromforum.org/viewtopic.php?p=463166",
-      "validatedKeywords": [
-        "Agilent",
-        "LC-MS",
-        "chromatography",
-        "software",
-        "training",
-        "cost"
-      ],
-      "validatedAt": "2026-08-23",
-      "validationMethod": "full_source_text"
-    },
-    {
-      "url": "https://www.chromforum.org/viewtopic.php?p=463296",
-      "validatedKeywords": [
-        "LC-MS",
-        "chromatography",
-        "pressure",
-        "software",
-        "troubleshoot",
-        "troubleshooting",
-        "training"
-      ],
-      "validatedAt": "2026-08-23",
-      "validationMethod": "full_source_text"
-    },
-    {
-      "url": "https://www.chromforum.org/viewtopic.php?t=109914",
-      "validatedKeywords": [
-        "HPLC",
-        "LC-MS",
-        "chromatography",
-        "software",
-        "training"
-      ],
-      "validatedAt": "2026-08-23",
-      "validationMethod": "full_source_text"
-    },
-    {
       "url": "https://www.chromforum.org/viewtopic.php?t=114464",
       "validatedKeywords": [
         "Agilent",
@@ -90,373 +38,13 @@
       "validationMethod": "full_source_text"
     },
     {
-      "url": "https://www.chromforum.org/viewtopic.php?t=119394",
-      "validatedKeywords": [
-        "Shimadzu",
-        "HPLC",
-        "LC-MS",
-        "chromatography",
-        "carryover",
-        "autosampler",
-        "pressure",
-        "leak"
-      ],
-      "validatedAt": "2026-08-23",
-      "validationMethod": "full_source_text"
-    },
-    {
-      "url": "https://www.chromforum.org/viewtopic.php?t=120115",
-      "validatedKeywords": [
-        "Shimadzu",
-        "HPLC",
-        "LC-MS",
-        "chromatography",
-        "software",
-        "service",
-        "training"
-      ],
-      "validatedAt": "2026-08-23",
-      "validationMethod": "full_source_text"
-    },
-    {
-      "url": "https://www.chromforum.org/viewtopic.php?t=12125",
-      "validatedKeywords": [
-        "Waters",
-        "Agilent",
-        "Thermo",
-        "LC-MS",
-        "chromatography",
-        "software",
-        "data export",
-        "export"
-      ],
-      "validatedAt": "2026-08-23",
-      "validationMethod": "full_source_text"
-    },
-    {
-      "url": "https://www.chromforum.org/viewtopic.php?t=122219",
-      "validatedKeywords": [
-        "Agilent",
-        "HPLC",
-        "LC-MS",
-        "chromatography",
-        "software",
-        "service",
-        "setup",
-        "training"
-      ],
-      "validatedAt": "2026-08-23",
-      "validationMethod": "full_source_text"
-    },
-    {
-      "url": "https://www.chromforum.org/viewtopic.php?t=122273",
-      "validatedKeywords": [
-        "Waters",
-        "HPLC",
-        "LC-MS",
-        "chromatography",
-        "pressure",
-        "leak",
-        "software",
-        "training"
-      ],
-      "validatedAt": "2026-08-23",
-      "validationMethod": "full_source_text"
-    },
-    {
-      "url": "https://www.chromforum.org/viewtopic.php?t=122288",
-      "validatedKeywords": [
-        "Waters",
-        "HPLC",
-        "LC-MS",
-        "chromatography",
-        "pressure",
-        "software",
-        "training"
-      ],
-      "validatedAt": "2026-08-23",
-      "validationMethod": "full_source_text"
-    },
-    {
-      "url": "https://www.chromforum.org/viewtopic.php?t=122309",
-      "validatedKeywords": [
-        "Shimadzu",
-        "HPLC",
-        "LC-MS",
-        "chromatography",
-        "autosampler",
-        "software",
-        "training"
-      ],
-      "validatedAt": "2026-08-23",
-      "validationMethod": "full_source_text"
-    },
-    {
-      "url": "https://www.chromforum.org/viewtopic.php?t=122324",
-      "validatedKeywords": [
-        "Agilent",
-        "HPLC",
-        "LC-MS",
-        "chromatography",
-        "autosampler",
-        "pressure",
-        "software",
-        "training"
-      ],
-      "validatedAt": "2026-08-23",
-      "validationMethod": "full_source_text"
-    },
-    {
-      "url": "https://www.chromforum.org/viewtopic.php?t=122334",
-      "validatedKeywords": [
-        "Agilent",
-        "HPLC",
-        "LC-MS",
-        "chromatography",
-        "pressure",
-        "software",
-        "setup",
-        "training"
-      ],
-      "validatedAt": "2026-08-23",
-      "validationMethod": "full_source_text"
-    },
-    {
-      "url": "https://www.chromforum.org/viewtopic.php?t=122404",
-      "validatedKeywords": [
-        "Waters",
-        "HPLC",
-        "LC-MS",
-        "chromatography",
-        "software",
-        "troubleshoot",
-        "training"
-      ],
-      "validatedAt": "2026-08-23",
-      "validationMethod": "full_source_text"
-    },
-    {
-      "url": "https://www.chromforum.org/viewtopic.php?t=122410",
-      "validatedKeywords": [
-        "Waters",
-        "Agilent",
-        "Shimadzu",
-        "HPLC",
-        "LC-MS",
-        "chromatography",
-        "pressure",
-        "software"
-      ],
-      "validatedAt": "2026-08-23",
-      "validationMethod": "full_source_text"
-    },
-    {
-      "url": "https://www.chromforum.org/viewtopic.php?t=122419",
-      "validatedKeywords": [
-        "Thermo",
-        "Vanquish",
-        "Shimadzu",
-        "HPLC",
-        "UHPLC",
-        "LC-MS",
-        "chromatography",
-        "autosampler"
-      ],
-      "validatedAt": "2026-08-23",
-      "validationMethod": "full_source_text"
-    },
-    {
-      "url": "https://www.chromforum.org/viewtopic.php?t=122420",
-      "validatedKeywords": [
-        "Agilent",
-        "HPLC",
-        "LC-MS",
-        "chromatography",
-        "software",
-        "troubleshoot",
-        "troubleshooting",
-        "training"
-      ],
-      "validatedAt": "2026-08-23",
-      "validationMethod": "full_source_text"
-    },
-    {
-      "url": "https://www.chromforum.org/viewtopic.php?t=122426",
-      "validatedKeywords": [
-        "Agilent",
-        "HPLC",
-        "LC-MS",
-        "chromatography",
-        "software",
-        "training"
-      ],
-      "validatedAt": "2026-08-23",
-      "validationMethod": "full_source_text"
-    },
-    {
-      "url": "https://www.chromforum.org/viewtopic.php?t=122460",
-      "validatedKeywords": [
-        "Waters",
-        "HPLC",
-        "LC-MS",
-        "chromatography",
-        "software",
-        "service",
-        "training"
-      ],
-      "validatedAt": "2026-08-23",
-      "validationMethod": "full_source_text"
-    },
-    {
-      "url": "https://www.chromforum.org/viewtopic.php?t=122479",
-      "validatedKeywords": [
-        "Waters",
-        "Alliance",
-        "Agilent",
-        "Shimadzu",
-        "Nexera",
-        "HPLC",
-        "LC-MS",
-        "chromatography"
-      ],
-      "validatedAt": "2026-08-23",
-      "validationMethod": "full_source_text"
-    },
-    {
-      "url": "https://www.chromforum.org/viewtopic.php?t=122481",
-      "validatedKeywords": [
-        "Waters",
-        "Agilent",
-        "HPLC",
-        "LC-MS",
-        "chromatography",
-        "software",
-        "training",
-        "cost"
-      ],
-      "validatedAt": "2026-08-23",
-      "validationMethod": "full_source_text"
-    },
-    {
-      "url": "https://www.chromforum.org/viewtopic.php?t=14128",
-      "validatedKeywords": [
-        "Waters",
-        "HPLC",
-        "LC-MS",
-        "chromatography",
-        "software",
-        "training"
-      ],
-      "validatedAt": "2026-08-23",
-      "validationMethod": "full_source_text"
-    },
-    {
-      "url": "https://www.chromforum.org/viewtopic.php?t=23778",
-      "validatedKeywords": [
-        "Shimadzu",
-        "HPLC",
-        "LC-MS",
-        "chromatography",
-        "software",
-        "training"
-      ],
-      "validatedAt": "2026-08-23",
-      "validationMethod": "full_source_text"
-    },
-    {
-      "url": "https://www.chromforum.org/viewtopic.php?t=24303",
-      "validatedKeywords": [
-        "Agilent",
-        "HPLC",
-        "LC-MS",
-        "chromatography",
-        "autosampler",
-        "software",
-        "training"
-      ],
-      "validatedAt": "2026-08-23",
-      "validationMethod": "full_source_text"
-    },
-    {
-      "url": "https://www.chromforum.org/viewtopic.php?t=3574",
-      "validatedKeywords": [
-        "HPLC",
-        "LC-MS",
-        "chromatography",
-        "method transfer",
-        "software",
-        "training"
-      ],
-      "validatedAt": "2026-08-23",
-      "validationMethod": "full_source_text"
-    },
-    {
-      "url": "https://www.chromforum.org/viewtopic.php?t=45171",
-      "validatedKeywords": [
-        "LC-MS",
-        "chromatography",
-        "software",
-        "training"
-      ],
-      "validatedAt": "2026-08-23",
-      "validationMethod": "full_source_text"
-    },
-    {
-      "url": "https://www.chromforum.org/viewtopic.php?t=46491",
-      "validatedKeywords": [
-        "HPLC",
-        "UHPLC",
-        "LC-MS",
-        "chromatography",
-        "software",
-        "training"
-      ],
-      "validatedAt": "2026-08-23",
-      "validationMethod": "full_source_text"
-    },
-    {
-      "url": "https://www.chromforum.org/viewtopic.php?t=83684",
-      "validatedKeywords": [
-        "Waters",
-        "ACQUITY",
-        "HPLC",
-        "LC-MS",
-        "chromatography",
-        "pressure",
-        "software",
-        "training"
-      ],
-      "validatedAt": "2026-08-23",
-      "validationMethod": "full_source_text"
-    },
-    {
       "url": "https://www.chromforum.org/viewtopic.php?t=8508",
       "validatedKeywords": [
-        "Waters",
-        "ACQUITY",
-        "Agilent",
-        "Thermo",
-        "Shimadzu",
-        "HPLC",
-        "UHPLC",
-        "LC-MS"
+        "Agilent 1200",
+        "Waters UPLC",
+        "ThermoFisher"
       ],
-      "validatedAt": "2026-08-23",
-      "validationMethod": "full_source_text"
-    },
-    {
-      "url": "https://www.chromforum.org/viewtopic.php?t=89794",
-      "validatedKeywords": [
-        "Waters",
-        "ACQUITY",
-        "HPLC",
-        "LC-MS",
-        "chromatography",
-        "pressure",
-        "leak",
-        "software"
-      ],
-      "validatedAt": "2026-08-23",
+      "validatedAt": "2026-07-17",
       "validationMethod": "full_source_text"
     },
     {
@@ -469,7 +57,7 @@
         "service",
         "pressure"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -483,7 +71,7 @@
         "software",
         "pressure"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -497,7 +85,7 @@
         "maintenance",
         "service"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -509,7 +97,7 @@
         "service",
         "pressure"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -523,7 +111,7 @@
         "seal wash",
         "service"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -538,7 +126,7 @@
         "pressure",
         "troubleshooting"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -553,7 +141,7 @@
         "SCIEX",
         "HPLC"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -887,7 +475,7 @@
         "review",
         "easy to use"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -897,7 +485,7 @@
         "review",
         "reproducible"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -906,7 +494,7 @@
         "ACQUITY",
         "review"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -915,7 +503,7 @@
         "ACQUITY",
         "review"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -924,7 +512,7 @@
         "ACQUITY",
         "review"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -934,7 +522,7 @@
         "LC-MS",
         "review"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -944,7 +532,7 @@
         "HPLC",
         "review"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -953,7 +541,7 @@
         "ACQUITY",
         "review"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -962,7 +550,7 @@
         "ACQUITY",
         "review"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -973,7 +561,7 @@
         "review",
         "reliable"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -982,7 +570,7 @@
         "ACQUITY",
         "review"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -992,7 +580,7 @@
         "ACQUITY",
         "review"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1002,7 +590,7 @@
         "review",
         "reliable"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1012,7 +600,7 @@
         "HPLC",
         "review"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1022,7 +610,7 @@
         "review",
         "reproducible"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1031,7 +619,7 @@
         "ACQUITY",
         "review"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1042,7 +630,7 @@
         "software",
         "easy to use"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1052,7 +640,7 @@
         "review",
         "training"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1061,7 +649,7 @@
         "ACQUITY",
         "review"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1073,7 +661,7 @@
         "review",
         "software"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1082,7 +670,7 @@
         "ACQUITY",
         "review"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1094,7 +682,7 @@
         "reliable",
         "service"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1104,7 +692,7 @@
         "review",
         "reproducible"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1117,7 +705,7 @@
         "ease of use",
         "robustness"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1128,7 +716,7 @@
         "review",
         "service"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1137,7 +725,7 @@
         "Agilent",
         "review"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1149,7 +737,7 @@
         "service",
         "easy to use"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1160,7 +748,7 @@
         "software",
         "setup"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1169,7 +757,7 @@
         "Agilent",
         "review"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1181,7 +769,7 @@
         "troubleshooting",
         "pressure"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1191,7 +779,7 @@
         "review",
         "reliable"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1202,7 +790,7 @@
         "review",
         "easy to use"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1212,7 +800,7 @@
         "HPLC",
         "review"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1224,7 +812,7 @@
         "user-friendly",
         "robustness"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1234,7 +822,7 @@
         "review",
         "user friendly"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1243,7 +831,7 @@
         "HPLC",
         "review"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1252,7 +840,7 @@
         "HPLC",
         "review"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1264,7 +852,7 @@
         "maintenance",
         "user-friendly"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1275,7 +863,7 @@
         "HPLC",
         "review"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1285,7 +873,7 @@
         "review",
         "service"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1295,7 +883,7 @@
         "review",
         "easy to use"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1306,7 +894,7 @@
         "review",
         "cost"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1317,7 +905,7 @@
         "user friendly",
         "easy to use"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1330,7 +918,7 @@
         "software",
         "user-friendly"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1340,7 +928,7 @@
         "review",
         "robustness"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1349,7 +937,7 @@
         "review",
         "easy to use"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1361,7 +949,7 @@
         "HPLC",
         "review"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1370,7 +958,7 @@
         "review",
         "easy to use"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1380,7 +968,7 @@
         "review",
         "user-friendly"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1390,7 +978,7 @@
         "review",
         "service"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1399,7 +987,7 @@
         "HPLC",
         "review"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1409,7 +997,7 @@
         "review",
         "service"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1420,7 +1008,7 @@
         "service",
         "easy to use"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1433,7 +1021,7 @@
         "service",
         "easy to use"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1444,7 +1032,7 @@
         "data processing",
         "easy to use"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1456,7 +1044,7 @@
         "software",
         "user-friendly"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1467,7 +1055,7 @@
         "software",
         "service"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1478,7 +1066,7 @@
         "service",
         "easy to use"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1488,7 +1076,7 @@
         "UHPLC",
         "review"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1498,7 +1086,7 @@
         "UHPLC",
         "review"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1509,7 +1097,7 @@
         "review",
         "software"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1521,7 +1109,7 @@
         "review",
         "reliable"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1535,7 +1123,7 @@
         "easy to use",
         "reproducible"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1545,7 +1133,7 @@
         "UHPLC",
         "review"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1556,7 +1144,7 @@
         "UHPLC",
         "review"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1569,7 +1157,7 @@
         "review",
         "reproducible"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1581,7 +1169,7 @@
         "review",
         "cost"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1593,7 +1181,7 @@
         "review",
         "service"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1605,7 +1193,7 @@
         "review",
         "user friendly"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1616,7 +1204,7 @@
         "UHPLC",
         "review"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1631,7 +1219,7 @@
         "validated method",
         "robustness"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1642,7 +1230,7 @@
         "UHPLC",
         "review"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1655,7 +1243,7 @@
         "review",
         "maintenance"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1667,7 +1255,7 @@
         "review",
         "software"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1677,7 +1265,7 @@
         "review",
         "easy to use"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1687,7 +1275,7 @@
         "review",
         "user friendly"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1699,7 +1287,7 @@
         "service",
         "maintenance"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1710,7 +1298,7 @@
         "user friendly",
         "cost"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1719,7 +1307,7 @@
         "HPLC",
         "review"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1730,7 +1318,7 @@
         "software",
         "service"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1742,7 +1330,7 @@
         "user friendly",
         "reproducible"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1754,7 +1342,7 @@
         "export",
         "easy to use"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1763,7 +1351,7 @@
         "HPLC",
         "review"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1777,7 +1365,7 @@
         "pressure",
         "easy to use"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1791,7 +1379,7 @@
         "troubleshoot",
         "troubleshooting"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1803,7 +1391,7 @@
         "UHPLC",
         "review"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1815,7 +1403,7 @@
         "UHPLC",
         "review"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1829,7 +1417,7 @@
         "software",
         "easy to use"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1843,7 +1431,7 @@
         "training",
         "robustness"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1856,7 +1444,7 @@
         "review",
         "easy to use"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1869,7 +1457,7 @@
         "review",
         "easy to use"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1882,7 +1470,7 @@
         "review",
         "reliable"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1895,7 +1483,7 @@
         "review",
         "ease of use"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1908,7 +1496,7 @@
         "review",
         "ease of use"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1921,7 +1509,7 @@
         "review",
         "easy to use"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1936,7 +1524,7 @@
         "software",
         "lab advisor"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1949,7 +1537,7 @@
         "review",
         "user-friendly"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1961,7 +1549,7 @@
         "UHPLC",
         "review"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1973,7 +1561,7 @@
         "UHPLC",
         "review"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -1988,7 +1576,7 @@
         "service",
         "maintenance"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -2001,7 +1589,7 @@
         "review",
         "easy to use"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -2014,7 +1602,7 @@
         "LC-MS",
         "review"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -2028,7 +1616,7 @@
         "ease of use",
         "pressure"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -2040,7 +1628,7 @@
         "UHPLC",
         "review"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -2055,7 +1643,7 @@
         "service",
         "autosampler"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -2067,7 +1655,7 @@
         "UHPLC",
         "review"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -2080,7 +1668,7 @@
         "software",
         "user-friendly"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -2091,7 +1679,7 @@
         "HPLC",
         "review"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -2103,7 +1691,7 @@
         "review",
         "reliable"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -2114,7 +1702,7 @@
         "HPLC",
         "review"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -2126,7 +1714,7 @@
         "review",
         "reproducible"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -2138,7 +1726,7 @@
         "review",
         "easy to use"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -2150,7 +1738,7 @@
         "review",
         "reproducible"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -2164,7 +1752,7 @@
         "carryover",
         "user-friendly"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -2175,7 +1763,7 @@
         "HPLC",
         "review"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     },
     {
@@ -2189,7 +1777,7 @@
         "service",
         "maintenance"
       ],
-      "validatedAt": "2026-08-26",
+      "validatedAt": "2026-09-09",
       "validationMethod": "full_source_text"
     }
   ]

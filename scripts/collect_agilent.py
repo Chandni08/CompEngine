@@ -292,6 +292,38 @@ def cached_browser_verified_releases(now: datetime | None = None) -> dict[str, d
 
 
 def earnings_enrichment(title: str) -> dict:
+    if "Third-Quarter Fiscal Year 2026" in title:
+        return {
+            "theme": "Quarterly earnings and end-market demand",
+            "intent": "Corporate performance and investment capacity",
+            "summary": (
+                "Agilent reported $1.88 billion of Q3 revenue, 7.3% core growth, "
+                "broad-based operating-group growth, and higher fiscal 2026 revenue, "
+                "margin, and non-GAAP EPS guidance."
+            ),
+            "earningsMetrics": [
+                {"label": "Q3 revenue", "value": "$1.88B", "change": "+8.1% reported / +7.3% core year over year"},
+                {"label": "Non-GAAP operating margin", "value": "28.3%", "change": "+320 bps year over year; includes ~110 bps tariff-refund benefit"},
+                {"label": "Life Sciences and Diagnostics", "value": "$746M", "change": "+11% reported / +10% core; 23.5% operating margin"},
+                {"label": "CrossLab", "value": "$786M", "change": "+6% reported / +5% core; 34.3% operating margin"},
+                {"label": "Applied Markets", "value": "$346M", "change": "+7% reported / +7% core; 24.9% operating margin"},
+                {"label": "FY26 revenue outlook", "value": "$7.49–$7.51B", "change": "+5.8% to +6.0% core; midpoint raised 65 bps"},
+            ],
+            "pmInsights": [
+                "All three operating groups grew on both reported and core bases; Life Sciences and Diagnostics led at 10% core growth.",
+                "CrossLab remained Agilent's largest operating group and posted a 34.3% operating margin, reinforcing the strategic importance of service, uptime, compliance, and lifecycle economics.",
+                "Agilent raised full-year revenue, operating-margin, and non-GAAP EPS guidance, increasing the financial capacity available for priority workflows and commercial execution.",
+                "Tariff refunds contributed about 110 basis points to Q3 non-GAAP operating margin and $0.06 to non-GAAP EPS, so the headline margin expansion is not fully operational.",
+            ],
+            "watersPmImplication": (
+                "Pressure-test Waters' instrument, service, informatics, and application proof as one lifecycle proposition. "
+                "Track whether Agilent converts stronger LDG growth and CrossLab economics into bundled regulated-workflow offers."
+            ),
+            "evidenceBoundary": (
+                "Agilent's filed release does not separately report LC or LC-MS revenue, units, pricing, or market share. "
+                "Operating-group growth and raised guidance are corporate capacity signals, not direct evidence of LC market-share gain."
+            ),
+        }
     if "Second-Quarter Fiscal Year 2026" not in title:
         return {
             "theme": "Quarterly earnings and end-market demand",
@@ -304,9 +336,9 @@ def earnings_enrichment(title: str) -> dict:
         "intent": "Corporate performance and investment capacity",
         "summary": "Agilent paired broad-based revenue growth with higher Life Sciences and Diagnostics, CrossLab, and Applied Markets performance while raising fiscal 2026 revenue, margin, and EPS guidance.",
         "earningsMetrics": [
-            {"label": "Life Sciences and Diagnostics revenue", "value": "$732M", "detail": "+12% reported / +9% core year over year"},
-            {"label": "CrossLab revenue", "value": "$759M", "detail": "+6% reported / +2% core; 32.0% operating margin"},
-            {"label": "Applied Markets revenue", "value": "$344M", "detail": "+14% reported / +11% core year over year"},
+            {"label": "Life Sciences and Diagnostics revenue", "value": "$732M", "change": "+12% reported / +9% core year over year"},
+            {"label": "CrossLab revenue", "value": "$759M", "change": "+6% reported / +2% core; 32.0% operating margin"},
+            {"label": "Applied Markets revenue", "value": "$344M", "change": "+14% reported / +11% core year over year"},
         ],
         "pmInsights": [
             "All three operating groups grew; Life Sciences and Diagnostics and Applied Markets posted the strongest core growth.",

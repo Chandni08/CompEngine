@@ -60,8 +60,8 @@ test("daily publication validates, deploys, aliases, and verifies the Waters sit
 });
 
 test("cloud refresh schedule validates before saving or deploying data", () => {
-  assert.match(workflow, /cron: "0 11 \* \* \*"/);
-  assert.match(workflow, /cron: "0 12 \* \* \*"/);
+  assert.match(workflow, /cron: "17 11 \* \* \*"/);
+  assert.match(workflow, /cron: "17 12 \* \* \*"/);
   assert.match(workflow, /TZ=America\/New_York date \+%H/);
   assert.match(workflow, /outputs:\s+should_run:/);
   assert.match(workflow, /if: needs\.schedule_gate\.outputs\.should_run == 'true'/);

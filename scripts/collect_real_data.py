@@ -14,19 +14,27 @@ from datetime import date, datetime, timedelta, timezone
 from html.parser import HTMLParser
 from pathlib import Path
 
-from provenance import pubmed_esearch_url, pubmed_provenance
+from provenance import pubmed_esearch_url, pubmed_provenance, utc_now
 
 
 TODAY = date.today()
 OUT = Path(__file__).resolve().parents[1] / "data" / "intelligence.json"
 PUBMED_OBSERVATIONS = Path(__file__).resolve().parents[1] / "data" / "pubmed_query_observations.json"
 USER_AGENT = "WatersCompetitiveIntelligenceEngine/0.2 (+https://www.waters.com/)"
+PUBMED_MIN_INTERVAL_SECONDS = 0.36
+PUBMED_MAX_ATTEMPTS = 5
+_last_pubmed_request_at = 0.0
 AUTOMATED_PUBMED_PREFIXES = ("pubmed-", "trend-")
 AUTOMATED_SEC_PREFIXES = ("sec-",)
 REVVITY_Q2_2026_ACCESSION = "0000031791-26-000022"
 REVVITY_Q2_2026_EXHIBIT_URL = (
     "https://www.sec.gov/Archives/edgar/data/31791/000003179126000022/"
     "q22026pressrelease.htm"
+)
+AGILENT_Q3_2026_ACCESSION = "0001090872-26-000062"
+AGILENT_Q3_2026_EXHIBIT_URL = (
+    "https://www.sec.gov/Archives/edgar/data/1090872/000109087226000062/"
+    "exhibit991-q326pressrelease.htm"
 )
 
 HORIZONS = {
@@ -295,13 +303,37 @@ def fetch_json(url: str, timeout: int = 20) -> dict:
     return {}
 
 
+def _wait_for_pubmed_slot() -> None:
+    """Keep unauthenticated E-utilities traffic below NCBI's 3 req/s limit."""
+    global _last_pubmed_request_at
+    elapsed = time.monotonic() - _last_pubmed_request_at
+    if elapsed < PUBMED_MIN_INTERVAL_SECONDS:
+        time.sleep(PUBMED_MIN_INTERVAL_SECONDS - elapsed)
+    _last_pubmed_request_at = time.monotonic()
+
+
+def pubmed_fetch_json(url: str) -> dict:
+    """Fetch PubMed JSON with rate limiting and bounded transient retries."""
+    for attempt in range(PUBMED_MAX_ATTEMPTS):
+        _wait_for_pubmed_slot()
+        status, body = fetch(url)
+        if status and 200 <= status < 300 and body:
+            try:
+                return json.loads(body.decode("utf-8", errors="replace"))
+            except json.JSONDecodeError:
+                pass
+        if attempt < PUBMED_MAX_ATTEMPTS - 1:
+            time.sleep(min(2 ** attempt, 4))
+    return {}
+
+
 def pubmed_count(query: str, start: date, end: date = TODAY) -> int:
     term = f'({query}) AND ("{start:%Y/%m/%d}"[Date - Publication] : "{end:%Y/%m/%d}"[Date - Publication])'
     url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?" + urllib.parse.urlencode(
         {"db": "pubmed", "term": term, "retmode": "json", "retmax": 0}
     )
     for attempt in range(3):
-        data = fetch_json(url)
+        data = pubmed_fetch_json(url)
         try:
             count = int(data.get("esearchresult", {}).get("count", 0))
         except (TypeError, ValueError):
@@ -351,7 +383,7 @@ def pubmed_ids(query: str, years: int = 5, retmax: int = 6) -> list[str]:
     url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?" + urllib.parse.urlencode(
         {"db": "pubmed", "term": term, "retmode": "json", "retmax": retmax, "sort": "pub+date"}
     )
-    data = fetch_json(url)
+    data = pubmed_fetch_json(url)
     return data.get("esearchresult", {}).get("idlist", [])
 
 
@@ -361,7 +393,7 @@ def pubmed_ids_between(query: str, start: date, end: date, retmax: int = 2) -> l
     url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?" + urllib.parse.urlencode(
         {"db": "pubmed", "term": term, "retmode": "json", "retmax": retmax, "sort": "pub+date"}
     )
-    data = fetch_json(url)
+    data = pubmed_fetch_json(url)
     return data.get("esearchresult", {}).get("idlist", [])
 
 
@@ -383,25 +415,49 @@ def pubmed_summaries(ids: list[str]) -> list[dict]:
     url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?" + urllib.parse.urlencode(
         {"db": "pubmed", "id": ",".join(ids), "retmode": "json"}
     )
-    data = fetch_json(url)
+    data = pubmed_fetch_json(url)
     result = data.get("result", {})
     return [result.get(uid, {}) for uid in result.get("uids", []) if result.get(uid)]
 
 
-def clean_pubdate(raw: str) -> str:
+def parse_pubdate(raw: str) -> str:
+    """Parse a PubMed pubdate without rejecting ahead-of-print future dates."""
     match = re.search(r"\d{4}(?:\s+[A-Za-z]{3})?(?:\s+\d{1,2})?", raw or "")
     if not match:
         return ""
     text = match.group(0)
     for fmt in ("%Y %b %d", "%Y %b", "%Y"):
         try:
-            parsed = datetime.strptime(text, fmt)
-            if parsed.date() > TODAY:
-                return ""
-            return f"{parsed:%Y-%m-%d}"
+            return f"{datetime.strptime(text, fmt):%Y-%m-%d}"
         except ValueError:
             continue
     return ""
+
+
+def clean_pubdate(raw: str) -> str:
+    """Parse a pubdate for storage on a signal, excluding future dates.
+
+    Stored signal dates drive recency scoring and horizon filters, so an
+    ahead-of-print date is not usable there.  Use parse_pubdate when the question
+    is what the source actually returned.
+    """
+    parsed = parse_pubdate(raw)
+    if not parsed or date.fromisoformat(parsed) > TODAY:
+        return ""
+    return parsed
+
+
+def signal_pubdate(raw: str) -> str:
+    """Return a storable date for a record PubMed dated ahead of print.
+
+    Such a record exists now, so dropping it loses a real newest item; clamping
+    it to today keeps horizon filters and recency scoring sound without
+    discarding the observation.
+    """
+    parsed = parse_pubdate(raw)
+    if not parsed:
+        return ""
+    return parsed if date.fromisoformat(parsed) <= TODAY else f"{TODAY:%Y-%m-%d}"
 
 
 def infer_theme(text: str) -> tuple[str, str, str]:
@@ -478,7 +534,7 @@ def collect_pubmed_signals() -> tuple[list[dict], dict]:
             title = re.sub(r"\s+", " ", item.get("title", "")).strip().rstrip(".")
             if not title:
                 continue
-            date_str = clean_pubdate(item.get("pubdate", ""))
+            date_str = signal_pubdate(item.get("pubdate", ""))
             if not date_str:
                 continue
             theme, technology, segment = infer_theme(f"{title} {item.get('fulljournalname', '')}")
@@ -503,9 +559,9 @@ def collect_pubmed_signals() -> tuple[list[dict], dict]:
             )
         newest_item = max(
             (
-                {"pmid": str(item.get("uid", "")), "date": clean_pubdate(item.get("pubdate", ""))}
+                {"pmid": str(item.get("uid", "")), "date": parse_pubdate(item.get("pubdate", ""))}
                 for item in summaries
-                if item.get("uid") and clean_pubdate(item.get("pubdate", ""))
+                if item.get("uid") and parse_pubdate(item.get("pubdate", ""))
             ),
             key=lambda item: item["date"],
             default={"pmid": None, "date": None},
@@ -530,7 +586,10 @@ def collect_pubmed_signals() -> tuple[list[dict], dict]:
         latest_summaries = pubmed_summaries(latest_ids)
         latest_summary = latest_summaries[0] if latest_summaries else {}
         latest_pmid = str(latest_summary.get("uid") or "")
-        latest_date = clean_pubdate(latest_summary.get("pubdate", ""))
+        latest_raw_pubdate = latest_summary.get("pubdate", "")
+        # The observed date is what PubMed returned; the stored date is clamped.
+        latest_observed_date = parse_pubdate(latest_raw_pubdate)
+        latest_date = signal_pubdate(latest_raw_pubdate)
         latest_ingested = False
         if latest_pmid and latest_date:
             if latest_pmid not in seen_pmids:
@@ -562,7 +621,11 @@ def collect_pubmed_signals() -> tuple[list[dict], dict]:
                     "queryExecutedAt": query_provenance["1y"]["retrievedAt"],
                     "currentResultCount": one_year,
                     "newestPmid": latest_pmid or None,
-                    "newestDate": latest_date or None,
+                    "newestDate": latest_observed_date or None,
+                    "newestStoredDate": latest_date or None,
+                    "newestAheadOfPrint": bool(
+                        latest_observed_date and latest_observed_date != latest_date
+                    ),
                     "newestPmidIngested": latest_ingested,
                 },
             }
@@ -653,8 +716,47 @@ def revvity_q2_2026_earnings_enrichment() -> dict:
     }
 
 
-def collect_sec_signals() -> list[dict]:
+def agilent_q3_2026_sec_enrichment() -> dict:
+    """Attach the filed Q3 release and preserve its LC/LC-MS evidence boundary."""
+    return {
+        "category": "Corporate intelligence",
+        "signalType": "SEC earnings filing",
+        "title": "Agilent furnished Q3 FY2026 earnings results on Form 8-K",
+        "summary": (
+            "Agilent's August 26 Form 8-K furnished the official Q3 release: $1.88 billion "
+            "of revenue, 7.3% core growth, 28.3% non-GAAP operating margin, broad-based "
+            "operating-group growth, and raised fiscal 2026 guidance."
+        ),
+        "sourceName": "SEC EDGAR Exhibit 99.1",
+        "sourceUrl": AGILENT_Q3_2026_EXHIBIT_URL,
+        "marketSegment": "Corporate",
+        "technology": "Portfolio",
+        "theme": "Filed quarterly earnings evidence",
+        "intent": "Corporate performance and investment capacity",
+        "recommendation": (
+            "Use the segment and margin disclosures to assess competitive investment capacity and lifecycle economics; "
+            "do not infer LC or LC-MS share because the filed release does not disclose it."
+        ),
+        "supportingExcerpt": (
+            "Revenue of $1.88 billion ... growth of 8.1% reported and up 7.3% core"
+        ),
+        "sourceLocation": "Form 8-K Item 2.02 and Exhibit 99.1 opening highlights",
+        "evidenceBoundary": (
+            "The filed release does not separately report LC or LC-MS revenue, units, pricing, or market share."
+        ),
+    }
+
+
+def collect_sec_signals() -> tuple[list[dict], dict]:
+    """Collect in-window filings and record the live submissions high-water mark.
+
+    The high-water mark is read from the live EDGAR response, not from the
+    dataset, so the freshness ledger can test the collected records against an
+    independent observation of the source.
+    """
     signals: list[dict] = []
+    high_water: dict = {}
+    in_window_seen = 0
     earliest_supported = TODAY - timedelta(days=HORIZONS["3y"])
     canonical_registrants = {
         "0000313616": "Danaher Corporation",
@@ -684,7 +786,28 @@ def collect_sec_signals() -> list[dict]:
         for form, filing_date, accession, document in zip(forms, dates, accessions, documents):
             if form not in limits or filing_date < earliest_supported.isoformat():
                 continue
-            if not accession or accession in seen_accessions:
+            if not accession:
+                continue
+            # Observe the live feed's newest in-window tracked filing before any
+            # engine-side dedupe or limit is applied.
+            in_window_seen += 1
+            if filing_date > str(high_water.get("newestDate") or ""):
+                accession_path_observed = accession.replace("-", "")
+                high_water = {
+                    "observedAt": utc_now(),
+                    "endpoint": "https://data.sec.gov/",
+                    "newestDate": filing_date,
+                    "newestForm": form,
+                    "newestRegistrant": registrant,
+                    "newestAccession": accession,
+                    "newestTitle": f"{registrant} filed {form}",
+                    "newestUrl": (
+                        f"https://www.sec.gov/Archives/edgar/data/{int(cik)}/"
+                        f"{accession_path_observed}/{document}"
+                    ),
+                    "newestSignalId": f"sec-{competitor['id']}-{accession}",
+                }
+            if accession in seen_accessions:
                 continue
             if added_by_form[form] >= limits[form]:
                 continue
@@ -718,12 +841,16 @@ def collect_sec_signals() -> list[dict]:
                 }
             if accession == REVVITY_Q2_2026_ACCESSION:
                 signal.update(revvity_q2_2026_earnings_enrichment())
+            if accession == AGILENT_Q3_2026_ACCESSION:
+                signal.update(agilent_q3_2026_sec_enrichment())
             signals.append(signal)
             added_by_form[form] += 1
             if all(added_by_form[key] >= limits[key] for key in limits):
                 break
         time.sleep(0.2)
-    return signals
+    if high_water:
+        high_water["inWindowFilingsSeen"] = in_window_seen
+    return signals, high_water
 
 
 def build_recommendations(signals: list[dict], trends: dict) -> list[dict]:
@@ -781,8 +908,13 @@ def deduplicate_signals(signals: list[dict]) -> list[dict]:
 def main() -> None:
     existing = load_existing_data()
     existing_signals = existing.get("signals", [])
+    today = f"{TODAY:%Y-%m-%d}"
+    # The date the retained data was last genuinely current. Falling back to
+    # today would silently restamp stale data as fresh, so an unreadable or
+    # absent previous dataset is treated as having no established as-of date.
+    retained_as_of = str(existing.get("asOfDate") or "") or None
     pubmed_signals, trends = collect_pubmed_signals()
-    sec_signals = collect_sec_signals()
+    sec_signals, sec_high_water = collect_sec_signals()
     pubmed_refresh_ok = len(trends.get("themes", [])) >= len(THEMES) and all(
         int(theme.get("counts", {}).get("5y", 0)) > 0 for theme in trends.get("themes", [])
     )
@@ -793,6 +925,7 @@ def main() -> None:
         trends = existing.get("trends", trends)
     if not sec_refresh_ok:
         sec_signals = [signal for signal in existing_signals if signal_has_prefix(signal, AUTOMATED_SEC_PREFIXES)]
+        sec_high_water = (existing.get("sourceHighWater") or {}).get("sec-edgar-submissions") or {}
 
     curated_signals = [
         signal
@@ -805,9 +938,22 @@ def main() -> None:
     if not source_health_ok and existing.get("sourceHealth"):
         refreshed_source_health = existing["sourceHealth"]
 
+    # asOfDate describes the data, not the run.  A domain that fell back to the
+    # previous dataset contributes that dataset's date, and the published
+    # asOfDate is the oldest contributing domain: the dataset as a whole is only
+    # current as of its least current part.
+    domain_as_of = {
+        "pubmed": today if pubmed_refresh_ok else retained_as_of,
+        "sec": today if sec_refresh_ok else retained_as_of,
+        "sourceHealth": today if source_health_ok else retained_as_of,
+    }
+    contributing = [value for value in domain_as_of.values() if value]
+    as_of_date = min(contributing) if contributing else today
+
     data = {
-        "generatedAt": datetime.now().isoformat(timespec="seconds"),
-        "asOfDate": f"{TODAY:%Y-%m-%d}",
+        "generatedAt": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "asOfDate": as_of_date,
+        "domainAsOfDates": domain_as_of,
         "competitors": [
             {key: value for key, value in competitor.items() if key != "queries"}
             for competitor in COMPETITORS
@@ -817,11 +963,15 @@ def main() -> None:
         "trends": trends,
         "signals": signals,
         "recommendations": existing.get("recommendations") or build_recommendations(signals, trends),
+        "sourceHighWater": {
+            "sec-edgar-submissions": sec_high_water,
+        },
         "refresh": {
             "cadence": "daily",
             "pubmed": "success" if pubmed_refresh_ok else "retained_last_good_data",
             "sec": "success" if sec_refresh_ok else "retained_last_good_data",
             "sourceHealth": "success" if source_health_ok else "retained_last_good_data",
+            "domainAsOfDates": domain_as_of,
             "curatedSignalsPreserved": len(curated_signals),
         },
         "notes": [

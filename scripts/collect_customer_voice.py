@@ -443,6 +443,59 @@ def prune_expired_unverifiable_reddit_feedback(
     return records_removed, feedback_removed
 
 
+def prune_expired_unverifiable_source_feedback(
+    data: dict[str, Any],
+    validation_cache: dict[str, Any],
+    unavailable_source_ids: set[str],
+    now: datetime | None = None,
+) -> tuple[int, int]:
+    """Fail closed when a source is unavailable and its proof cache is expired.
+
+    This is used for public adapters such as ChromForum that can become fully
+    inaccessible behind a WAF. Records with a still-current full-source cache
+    remain eligible until the configured TTL; older or never-validated records
+    are removed from analytical panels during the same refresh.
+    """
+    now = now or datetime.now(timezone.utc)
+    max_age_days = float(validation_cache.get("maxAgeDays", 30))
+    cache_by_url = {
+        canonical_url(str(item.get("url") or "")): item
+        for item in validation_cache.get("sources", [])
+        if item.get("url")
+    }
+
+    def cache_is_current(record: dict[str, Any]) -> bool:
+        entry = cache_by_url.get(canonical_url(str(record.get("url") or "")))
+        if not entry or entry.get("validationMethod") != "full_source_text":
+            return False
+        validated_date = str(entry.get("validatedAt") or "")[:10]
+        try:
+            validated_at = datetime.fromisoformat(f"{validated_date}T23:59:59+00:00")
+        except ValueError:
+            return False
+        age_days = (now - validated_at).total_seconds() / 86_400
+        return age_days <= max_age_days
+
+    kept_feedback: list[dict[str, Any]] = []
+    records_removed = 0
+    feedback_removed = 0
+    for feedback in data.get("feedback", []):
+        source_ids = set(feedback.get("sourceIds") or [])
+        if not source_ids.intersection(unavailable_source_ids):
+            kept_feedback.append(feedback)
+            continue
+        records = feedback.get("evidenceRecords") or []
+        retained_records = [record for record in records if cache_is_current(record)]
+        records_removed += len(records) - len(retained_records)
+        if records and not retained_records:
+            feedback_removed += 1
+            continue
+        feedback["evidenceRecords"] = retained_records
+        kept_feedback.append(feedback)
+    data["feedback"] = kept_feedback
+    return records_removed, feedback_removed
+
+
 def _adapter_outcome(adapter_name: str, records: list[EvidenceRecord], errors: dict[str, str]) -> tuple[str, str, str]:
     env_names = {
         "chromforum": "CUSTOMER_VOICE_CHROMFORUM_ENABLED",
@@ -536,6 +589,8 @@ def main() -> int:
     out_of_scope_removed = prune_out_of_scope_labwrench_feedback(data)
     expired_reddit_records_removed = 0
     expired_reddit_feedback_removed = 0
+    expired_unverifiable_source_records_removed = 0
+    expired_unverifiable_source_feedback_removed = 0
     reddit_credentials_available = bool(
         os.getenv("REDDIT_CLIENT_ID", "").strip()
         and os.getenv("REDDIT_CLIENT_SECRET", "").strip()
@@ -544,6 +599,16 @@ def main() -> int:
         validation_cache = read_json(VALIDATION_CACHE_FILE) if VALIDATION_CACHE_FILE.exists() else {}
         expired_reddit_records_removed, expired_reddit_feedback_removed = (
             prune_expired_unverifiable_reddit_feedback(data, validation_cache)
+        )
+    if "chromforum" in errors:
+        validation_cache = read_json(VALIDATION_CACHE_FILE) if VALIDATION_CACHE_FILE.exists() else {}
+        (
+            expired_unverifiable_source_records_removed,
+            expired_unverifiable_source_feedback_removed,
+        ) = prune_expired_unverifiable_source_feedback(
+            data,
+            validation_cache,
+            {SOURCE_DEFINITIONS["chromforum"]["id"]},
         )
     update_source_registry(data, results, errors, selected_adapters)
     data["generatedAt"] = utc_now()
@@ -561,6 +626,8 @@ def main() -> int:
         "outOfScopeRecordsRemoved": out_of_scope_removed,
         "expiredUnverifiableRedditRecordsRemoved": expired_reddit_records_removed,
         "expiredUnverifiableRedditFeedbackRemoved": expired_reddit_feedback_removed,
+        "expiredUnverifiableSourceRecordsRemoved": expired_unverifiable_source_records_removed,
+        "expiredUnverifiableSourceFeedbackRemoved": expired_unverifiable_source_feedback_removed,
         "adapterRecordCounts": {name: len(records) for name, records in results.items()},
         "skippedAdapterErrors": errors,
         "completedAt": utc_now(),

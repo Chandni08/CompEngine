@@ -10,7 +10,7 @@ import scripts.collect_competitor_application_notes as catalog_collector
 
 class CompetitorApplicationNoteRefreshTests(unittest.TestCase):
     def test_full_monitor_inventory_is_merged_into_catalog(self):
-        today = datetime.now(timezone.utc).date().isoformat()
+        today = catalog_collector.business_today().isoformat()
         now = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -60,6 +60,7 @@ class CompetitorApplicationNoteRefreshTests(unittest.TestCase):
             self.assertEqual(thermo["inventoryRecordsSeen"], 1)
             self.assertEqual(thermo["completenessStatus"], "registered_only")
             self.assertFalse(result["analysisBoundary"]["trendEligible"])
+            self.assertEqual(result["asOfDate"], catalog_collector.business_today().isoformat())
 
 
 if __name__ == "__main__":

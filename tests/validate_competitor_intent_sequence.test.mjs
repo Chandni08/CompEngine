@@ -60,7 +60,9 @@ test("Agilent synthesis covers every current launch, strategic move, newsroom up
   const agilentFilings = filings.insights.filter((item) => item.competitor === "Agilent");
   assert.equal(agilentLaunches.length, 2);
   assert.ok(agilentMoves.length >= 5, `expected at least five current strategic moves, found ${agilentMoves.length}`);
-  assert.equal(agilentFilings.length, 2);
+  assert.ok(agilentFilings.length >= 4, `expected the two Q2 and two Q3 Agilent filing insights, found ${agilentFilings.length}`);
+  assert.ok(agilentFilings.some((item) => item.id === "agilent-q3-2026-broad-growth-raised-guidance"));
+  assert.ok(agilentFilings.some((item) => item.id === "agilent-q3-2026-crosslab-lifecycle-economics"));
   assert.match(app, /type: "Newsroom update"/);
 
   [
