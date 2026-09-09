@@ -43,8 +43,6 @@ The dashboard must not expose a longer horizon unless the refresh pipeline conta
 
 `.github/workflows/daily-content-refresh.yml` owns data refresh and can also be started manually from GitHub Actions. It never deploys a website.
 
-`.github/workflows/deploy-latest-data.yml` owns deployment. It starts automatically only after a data-refresh run publishes an immutable validated commit reference, and it can also be started manually for a specific validated commit or branch.
-
 The scheduled job targets `7:17 AM America/New_York` year-round. Three offset-aware UTC triggers cover daylight and standard time plus a same-day fallback. The gate uses the cron expression and the published dataset date instead of the runner's start hour, so a GitHub scheduling delay cannot cause a needed refresh to be skipped.
 
 The scheduler runs entirely on GitHub-hosted infrastructure. It does not require Codex, a ChatGPT session, or a powered-on laptop.
@@ -54,13 +52,7 @@ The data-refresh workflow uses these source credentials when enabled:
 - `REDDIT_CLIENT_ID`
 - `REDDIT_CLIENT_SECRET`
 
-The Vercel deployment job owns these platform-specific credentials:
-
-- `VERCEL_TOKEN`
-- `VERCEL_ORG_ID`
-- `VERCEL_PROJECT_ID`
-
-The data workflow and the local scheduler use the same portable batch entry point, `scripts/run_daily_refresh.sh`. GitHub passes `--refresh-only`; deployment is owned by a separate workflow. The data-refresh job:
+The data workflow and the local scheduler use the same portable batch entry point, `scripts/run_daily_refresh.sh`. GitHub passes `--refresh-only`; the data-refresh job:
 
 1. Runs `scripts/refresh_daily.py` through the available Python 3 executable.
 2. Collects the automated public-source data.
@@ -73,9 +65,8 @@ The data workflow and the local scheduler use the same portable batch entry poin
 9. Restores every data artifact from the last good dataset if collection, high-water verification, or validation fails.
 10. Synchronizes `data/` with `deploy-site/data/`.
 11. Commits the validated data to the repository.
-12. Uploads `validated-data-ref`, containing the exact immutable commit SHA that downstream deployment jobs must consume.
 
-The deployment workflow resolves that reference and fans out into independent platform jobs. The current `deploy_vercel` job checks out the exact validated commit, validates `deploy-site/`, deploys it, assigns `waters-nextgen-competitive-engine.vercel.app`, and verifies the live dataset date and refresh timestamp. A future platform is added as a sibling job with its own credentials, concurrency group, deployment command, and verification; it must check out the same resolved commit SHA. One platform's failure does not roll back the validated data commit or prevent sibling platforms from completing.
+Website deployment is intentionally not scheduled by this workflow. Use the manual deployment process when a validated data or interface update should be published.
 
 The link gate distinguishes a proven dead link from access-control behavior. HTTP 404/410 responses normally fail publication. The only exceptions remain blocked and visibly unverified: a domain-wide FDA 404 pattern that was healthy before the GitHub-runner anomaly began, and an allowlisted publisher URL that changes from a recorded bot challenge to a runner-only 404. These exceptions never promote a URL to healthy and do not weaken required-source high-water checks.
 

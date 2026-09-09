@@ -49,8 +49,6 @@ jobs:
     if: needs.schedule_gate.outputs.should_run == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 60
-    outputs:
-      data_commit: ${{ steps.save.outputs.data_commit }}
     steps:
       - name: Check out the website
         uses: actions/checkout@v7
@@ -101,7 +99,6 @@ jobs:
         run: python -m unittest tests/test_customer_voice_ingestion.py tests/test_daily_refresh_resilience.py
 
       - name: Save the validated daily data
-        id: save
         env:
           DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
         run: |
@@ -110,20 +107,3 @@ jobs:
           git add data deploy-site/data
           git diff --cached --quiet || git commit -m "data: daily competitive-intelligence refresh"
           git push origin "HEAD:$DEFAULT_BRANCH"
-          data_commit=$(git rev-parse HEAD)
-          echo "data_commit=$data_commit" >> "$GITHUB_OUTPUT"
-
-      - name: Write the validated data reference
-        env:
-          DATA_COMMIT: ${{ steps.save.outputs.data_commit }}
-        run: |
-          mkdir -p "$RUNNER_TEMP/validated-data-ref"
-          printf '%s\n' "$DATA_COMMIT" > "$RUNNER_TEMP/validated-data-ref/data_commit.txt"
-
-      - name: Publish the validated data reference
-        uses: actions/upload-artifact@v7
-        with:
-          name: validated-data-ref
-          path: ${{ runner.temp }}/validated-data-ref/data_commit.txt
-          if-no-files-found: error
-          retention-days: 14
