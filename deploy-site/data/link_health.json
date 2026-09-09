@@ -305,7 +305,7 @@
   },
   {
     "url": "https://api.crossref.org/journals/0039-9140/works",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://api.crossref.org/journals/0039-9140/works",
     "checkedAt": "2026-09-09T11:32:14+00:00",
     "status": "blocked",
@@ -617,7 +617,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22Agilent+1290%22+OR+%22Agilent+InfinityLab%22+OR+%22Agilent+LC%2FMS%22+OR+%22Agilent+6495%22+OR+%22Ultivo%22%29+AND+%28%222021%2F08%2F04%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F03%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 200,
+    "httpStatus": 429,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22Agilent+1290%22+OR+%22Agilent+InfinityLab%22+OR+%22Agilent+LC%2FMS%22+OR+%22Agilent+6495%22+OR+%22Ultivo%22%29+AND+%28%222021%2F08%2F04%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F03%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T11:32:16+00:00",
     "status": "ok",
@@ -801,7 +801,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22Agilent+1290%22+OR+%22Agilent+InfinityLab%22+OR+%22Agilent+LC%2FMS%22+OR+%22Agilent+6495%22+OR+%22Ultivo%22%29+AND+%28%222023%2F08%2F05%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F04%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22Agilent+1290%22+OR+%22Agilent+InfinityLab%22+OR+%22Agilent+LC%2FMS%22+OR+%22Agilent+6495%22+OR+%22Ultivo%22%29+AND+%28%222023%2F08%2F05%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F04%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T11:32:19+00:00",
     "status": "blocked",
@@ -817,7 +817,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22Agilent+1290%22+OR+%22Agilent+InfinityLab%22+OR+%22Agilent+LC%2FMS%22+OR+%22Agilent+6495%22+OR+%22Ultivo%22%29+AND+%28%222023%2F08%2F07%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F06%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22Agilent+1290%22+OR+%22Agilent+InfinityLab%22+OR+%22Agilent+LC%2FMS%22+OR+%22Agilent+6495%22+OR+%22Ultivo%22%29+AND+%28%222023%2F08%2F07%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F06%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T11:32:19+00:00",
     "status": "blocked",
@@ -833,7 +833,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22Agilent+1290%22+OR+%22Agilent+InfinityLab%22+OR+%22Agilent+LC%2FMS%22+OR+%22Agilent+6495%22+OR+%22Ultivo%22%29+AND+%28%222023%2F08%2F09%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F08%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22Agilent+1290%22+OR+%22Agilent+InfinityLab%22+OR+%22Agilent+LC%2FMS%22+OR+%22Agilent+6495%22+OR+%22Ultivo%22%29+AND+%28%222023%2F08%2F09%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F08%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T11:32:19+00:00",
     "status": "blocked",
@@ -961,7 +961,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22Agilent+1290%22+OR+%22Agilent+InfinityLab%22+OR+%22Agilent+LC%2FMS%22+OR+%22Agilent+6495%22+OR+%22Ultivo%22%29+AND+%28%222025%2F08%2F02%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F02%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 200,
+    "httpStatus": 429,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22Agilent+1290%22+OR+%22Agilent+InfinityLab%22+OR+%22Agilent+LC%2FMS%22+OR+%22Agilent+6495%22+OR+%22Ultivo%22%29+AND+%28%222025%2F08%2F02%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F02%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T11:32:20+00:00",
     "status": "ok",
@@ -4905,7 +4905,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22Shimadzu+LCMS%22+OR+%22Shimadzu+Nexera%22+OR+%22LCMS-8060%22+OR+%22LCMS-9030%22+OR+%22LCMS-9050%22%29+AND+%28%222021%2F08%2F13%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F12%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 200,
+    "httpStatus": 429,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22Shimadzu+LCMS%22+OR+%22Shimadzu+Nexera%22+OR+%22LCMS-8060%22+OR+%22LCMS-9030%22+OR+%22LCMS-9050%22%29+AND+%28%222021%2F08%2F13%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F12%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T11:32:56+00:00",
     "status": "ok",
@@ -4913,7 +4913,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22Shimadzu+LCMS%22+OR+%22Shimadzu+Nexera%22+OR+%22LCMS-8060%22+OR+%22LCMS-9030%22+OR+%22LCMS-9050%22%29+AND+%28%222021%2F08%2F14%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F13%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 200,
+    "httpStatus": 429,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22Shimadzu+LCMS%22+OR+%22Shimadzu+Nexera%22+OR+%22LCMS-8060%22+OR+%22LCMS-9030%22+OR+%22LCMS-9050%22%29+AND+%28%222021%2F08%2F14%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F13%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T11:32:57+00:00",
     "status": "ok",
@@ -8641,7 +8641,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28PFAS+OR+%22per-+and+polyfluoroalkyl%22%29+AND+%28%22LC-MS%22+OR+%22LC-MS%2FMS%22+OR+chromatography%29%29+AND+%28%222026%2F05%2F19%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F17%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28PFAS+OR+%22per-+and+polyfluoroalkyl%22%29+AND+%28%22LC-MS%22+OR+%22LC-MS%2FMS%22+OR+chromatography%29%29+AND+%28%222026%2F05%2F19%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F17%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T11:33:32+00:00",
     "status": "blocked",
@@ -8649,7 +8649,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28PFAS+OR+%22per-+and+polyfluoroalkyl%22%29+AND+%28%22LC-MS%22+OR+%22LC-MS%2FMS%22+OR+chromatography%29%29+AND+%28%222026%2F05%2F22%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F20%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28PFAS+OR+%22per-+and+polyfluoroalkyl%22%29+AND+%28%22LC-MS%22+OR+%22LC-MS%2FMS%22+OR+chromatography%29%29+AND+%28%222026%2F05%2F22%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F20%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T11:33:33+00:00",
     "status": "blocked",
@@ -8661,6 +8661,14 @@
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28PFAS+OR+%22per-+and+polyfluoroalkyl%22%29+AND+%28%22LC-MS%22+OR+%22LC-MS%2FMS%22+OR+chromatography%29%29+AND+%28%222026%2F05%2F29%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F27%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T11:33:33+00:00",
     "status": "blocked",
+    "reason": ""
+  },
+  {
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28PFAS+OR+%22per-+and+polyfluoroalkyl%22%29+AND+%28%22LC-MS%22+OR+%22LC-MS%2FMS%22+OR+chromatography%29%29+AND+%28%222026%2F05%2F29%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F27%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
+    "httpStatus": 200,
+    "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28PFAS+OR+%22per-+and+polyfluoroalkyl%22%29+AND+%28%22LC-MS%22+OR+%22LC-MS%2FMS%22+OR+chromatography%29%29+AND+%28%222026%2F05%2F29%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F27%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
+    "checkedAt": "2026-09-01T15:47:45+00:00",
+    "status": "ok",
     "reason": ""
   },
   {
@@ -12512,6 +12520,12 @@
     "reason": ""
   },
   {
+    "url": "https://perkinelmer.com.cn/library/monitoring-cyanotoxins-in-drinking-water-by-LC-MS-MS.html",
+    "httpStatus": null,
+    "checkedAt": "2026-09-01T15:48:02+00:00",
+    "status": "blocked"
+  },
+  {
     "url": "https://pubmed.ncbi.nlm.nih.gov/",
     "httpStatus": 403,
     "finalUrl": "https://pubmed.ncbi.nlm.nih.gov/",
@@ -12656,7 +12670,7 @@
     "reason": ""
   },
   {
-    "url": "https://pubmed.ncbi.nlm.nih.gov/40180450/",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/40203020/",
     "httpStatus": 403,
     "finalUrl": "https://pubmed.ncbi.nlm.nih.gov/40180450/",
     "checkedAt": "2026-09-09T11:34:09+00:00",
@@ -12680,7 +12694,7 @@
     "reason": ""
   },
   {
-    "url": "https://pubmed.ncbi.nlm.nih.gov/40841006/",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/40203633/",
     "httpStatus": 403,
     "finalUrl": "https://pubmed.ncbi.nlm.nih.gov/40841006/",
     "checkedAt": "2026-09-09T11:34:09+00:00",
@@ -12768,7 +12782,7 @@
     "reason": ""
   },
   {
-    "url": "https://pubmed.ncbi.nlm.nih.gov/42601686/",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/42646505/",
     "httpStatus": 403,
     "finalUrl": "https://pubmed.ncbi.nlm.nih.gov/42601686/",
     "checkedAt": "2026-09-09T11:34:10+00:00",
@@ -24321,7 +24335,7 @@
   },
   {
     "url": "https://ted.europa.eu/en/",
-    "httpStatus": 202,
+    "httpStatus": 200,
     "finalUrl": "https://ted.europa.eu/en/",
     "checkedAt": "2026-09-09T11:35:46+00:00",
     "status": "ok",
@@ -24476,7 +24490,7 @@
     "reason": ""
   },
   {
-    "url": "https://www.acs.org/events/all-events/acs-fall-2026.html",
+    "url": "https://www.acs.org/events/fall.html",
     "httpStatus": 200,
     "finalUrl": "https://www.acs.org/events/all-events/acs-fall-2026.html",
     "checkedAt": "2026-09-09T11:35:48+00:00",
@@ -28202,7 +28216,7 @@
     "reason": ""
   },
   {
-    "url": "https://www.perkinelmer.com/library/abr-determination-of-antimony-speciation-in-soil-using-hplc-icp-ms.html",
+    "url": "https://www.perkinelmer.com/library/an-introduction-to-lc-ms-ms.html",
     "httpStatus": 200,
     "finalUrl": "https://www.perkinelmer.com/library/abr-determination-of-antimony-speciation-in-soil-using-hplc-icp-ms.html",
     "checkedAt": "2026-09-09T11:36:23+00:00",
@@ -28382,7 +28396,7 @@
     "reason": ""
   },
   {
-    "url": "https://www.perkinelmer.com/library/app-fast-reliable-honey-authenticity-testing-for-3-methoxytyramine-analysis-on-the-qsight-500-lc-msms.html",
+    "url": "https://www.perkinelmer.com/library/basics-of-hplc-troubleshooting.html",
     "httpStatus": 200,
     "finalUrl": "https://www.perkinelmer.com/library/app-fast-reliable-honey-authenticity-testing-for-3-methoxytyramine-analysis-on-the-qsight-500-lc-msms.html",
     "checkedAt": "2026-09-09T11:36:29+00:00",
@@ -28430,7 +28444,7 @@
     "reason": ""
   },
   {
-    "url": "https://www.perkinelmer.com/library/app-reliable-and-robus-lc-msms-workflow-for-fosetyl-ai-and-metabolites-in-fruit-matrices.html",
+    "url": "https://www.perkinelmer.com/library/choosing-the-right-hplc-columns-webinar.html",
     "httpStatus": 200,
     "finalUrl": "https://www.perkinelmer.com/library/app-reliable-and-robus-lc-msms-workflow-for-fosetyl-ai-and-metabolites-in-fruit-matrices.html",
     "checkedAt": "2026-09-09T11:36:43+00:00",
@@ -28454,7 +28468,7 @@
     "reason": ""
   },
   {
-    "url": "https://www.perkinelmer.com/library/bro-enhancing-food-testing-productivity-lc-ms-ms.html",
+    "url": "https://www.perkinelmer.com/library/complex-matrices-how-the-perkinelmer-qsight-lc-ms-ms-can-help-tackle-the-toughest-samples.html",
     "httpStatus": 200,
     "finalUrl": "https://www.perkinelmer.com/library/bro-enhancing-food-testing-productivity-lc-ms-ms.html",
     "checkedAt": "2026-09-09T11:36:45+00:00",
@@ -28462,7 +28476,7 @@
     "reason": ""
   },
   {
-    "url": "https://www.perkinelmer.com/library/bro-lc-300-hplc-uhplc-systems-interactive-brochure.html",
+    "url": "https://www.perkinelmer.com/library/customer-lc-ms-ms-spotlight-professor-sabra-botch-jones.html",
     "httpStatus": 200,
     "finalUrl": "https://www.perkinelmer.com/library/bro-lc-300-hplc-uhplc-systems-interactive-brochure.html",
     "checkedAt": "2026-09-09T11:36:46+00:00",
@@ -28470,7 +28484,7 @@
     "reason": ""
   },
   {
-    "url": "https://www.perkinelmer.com/library/bro-nexsar-hplc-icp-ms-speciation-solution.html",
+    "url": "https://www.perkinelmer.com/library/determination-of-emerging-contaminants-in-water-by-lc-ms-ms.html",
     "httpStatus": 200,
     "finalUrl": "https://www.perkinelmer.com/library/bro-nexsar-hplc-icp-ms-speciation-solution.html",
     "checkedAt": "2026-09-09T11:36:47+00:00",
@@ -28478,7 +28492,7 @@
     "reason": ""
   },
   {
-    "url": "https://www.perkinelmer.com/library/bro-productivity-power-two-qsight-lc-ms-ms-system.html",
+    "url": "https://www.perkinelmer.com/library/intro-to-hplc-column-selection.html",
     "httpStatus": 200,
     "finalUrl": "https://www.perkinelmer.com/library/bro-productivity-power-two-qsight-lc-ms-ms-system.html",
     "checkedAt": "2026-09-09T11:36:47+00:00",
@@ -28510,7 +28524,7 @@
     "reason": ""
   },
   {
-    "url": "https://www.perkinelmer.com/library/cus-how-tera-environnement-is-shaping-the-future-of-pfas-air-monitoring-with-the-qsight-lcmsms.html",
+    "url": "https://www.perkinelmer.com/library/introduction-to-hplc.html",
     "httpStatus": 200,
     "finalUrl": "https://www.perkinelmer.com/library/cus-how-tera-environnement-is-shaping-the-future-of-pfas-air-monitoring-with-the-qsight-lcmsms.html",
     "checkedAt": "2026-09-09T11:36:49+00:00",
@@ -28558,7 +28572,7 @@
     "reason": ""
   },
   {
-    "url": "https://www.perkinelmer.com/library/fly-perkinelmer-pfas-qsight-lc-ms-quantitative-workflow.html",
+    "url": "https://www.perkinelmer.com/library/lc-ms-ms-tour-video-dr-niladri-chatterjee-icar-cift.html",
     "httpStatus": 200,
     "finalUrl": "https://www.perkinelmer.com/library/fly-perkinelmer-pfas-qsight-lc-ms-quantitative-workflow.html",
     "checkedAt": "2026-09-09T11:36:52+00:00",
@@ -29494,7 +29508,7 @@
     "reason": ""
   },
   {
-    "url": "https://www.sec.gov/Archives/edgar/data/1090872/000109087226000052/a-20260520.htm",
+    "url": "https://www.sec.gov/Archives/edgar/data/1090872/000109087226000052/exhibit991-q226pressrelease.htm",
     "httpStatus": 403,
     "finalUrl": "https://www.sec.gov/Archives/edgar/data/1090872/000109087226000052/a-20260520.htm",
     "checkedAt": "2026-09-09T11:37:12+00:00",
@@ -30167,7 +30181,7 @@
   },
   {
     "url": "https://www.sec.gov/Archives/edgar/data/31791/000003179126000027/revv-20260705.htm",
-    "httpStatus": 403,
+    "httpStatus": 429,
     "finalUrl": "https://www.sec.gov/Archives/edgar/data/31791/000003179126000027/revv-20260705.htm",
     "checkedAt": "2026-09-09T11:37:15+00:00",
     "status": "blocked",
@@ -30199,7 +30213,7 @@
   },
   {
     "url": "https://www.sec.gov/Archives/edgar/data/31791/000115752324000146/a53889507.htm",
-    "httpStatus": 403,
+    "httpStatus": 429,
     "finalUrl": "https://www.sec.gov/Archives/edgar/data/31791/000115752324000146/a53889507.htm",
     "checkedAt": "2026-09-09T11:37:15+00:00",
     "status": "blocked",
@@ -30207,7 +30221,7 @@
   },
   {
     "url": "https://www.sec.gov/Archives/edgar/data/31791/000119312524110060/d817018d8k.htm",
-    "httpStatus": 403,
+    "httpStatus": 429,
     "finalUrl": "https://www.sec.gov/Archives/edgar/data/31791/000119312524110060/d817018d8k.htm",
     "checkedAt": "2026-09-09T11:37:15+00:00",
     "status": "blocked",
@@ -30215,7 +30229,7 @@
   },
   {
     "url": "https://www.sec.gov/Archives/edgar/data/31791/000119312525002871/d915642d8k.htm",
-    "httpStatus": 403,
+    "httpStatus": 429,
     "finalUrl": "https://www.sec.gov/Archives/edgar/data/31791/000119312525002871/d915642d8k.htm",
     "checkedAt": "2026-09-09T11:37:15+00:00",
     "status": "blocked",
@@ -30223,7 +30237,7 @@
   },
   {
     "url": "https://www.sec.gov/Archives/edgar/data/31791/000119312525096747/d900630d8k.htm",
-    "httpStatus": 403,
+    "httpStatus": 429,
     "finalUrl": "https://www.sec.gov/Archives/edgar/data/31791/000119312525096747/d900630d8k.htm",
     "checkedAt": "2026-09-09T11:37:15+00:00",
     "status": "blocked",
@@ -30231,7 +30245,7 @@
   },
   {
     "url": "https://www.sec.gov/Archives/edgar/data/31791/000119312525249958/d52648d8k.htm",
-    "httpStatus": 403,
+    "httpStatus": 429,
     "finalUrl": "https://www.sec.gov/Archives/edgar/data/31791/000119312525249958/d52648d8k.htm",
     "checkedAt": "2026-09-09T11:37:16+00:00",
     "status": "blocked",
@@ -30239,7 +30253,7 @@
   },
   {
     "url": "https://www.sec.gov/Archives/edgar/data/31791/000119312526201401/d146870d8k.htm",
-    "httpStatus": 403,
+    "httpStatus": 429,
     "finalUrl": "https://www.sec.gov/Archives/edgar/data/31791/000119312526201401/d146870d8k.htm",
     "checkedAt": "2026-09-09T11:37:16+00:00",
     "status": "blocked",
@@ -30247,7 +30261,7 @@
   },
   {
     "url": "https://www.sec.gov/Archives/edgar/data/31791/000162828024018795/pki-20240429.htm",
-    "httpStatus": 403,
+    "httpStatus": 429,
     "finalUrl": "https://www.sec.gov/Archives/edgar/data/31791/000162828024018795/pki-20240429.htm",
     "checkedAt": "2026-09-09T11:37:16+00:00",
     "status": "blocked",
@@ -30255,7 +30269,7 @@
   },
   {
     "url": "https://www.sec.gov/Archives/edgar/data/97745/000009774523000065/tmo-20231025.htm",
-    "httpStatus": 403,
+    "httpStatus": 429,
     "finalUrl": "https://www.sec.gov/Archives/edgar/data/97745/000009774523000065/tmo-20231025.htm",
     "checkedAt": "2026-09-09T11:37:16+00:00",
     "status": "blocked",
@@ -30263,7 +30277,7 @@
   },
   {
     "url": "https://www.sec.gov/Archives/edgar/data/97745/000009774523000069/tmo-20230930.htm",
-    "httpStatus": 403,
+    "httpStatus": 429,
     "finalUrl": "https://www.sec.gov/Archives/edgar/data/97745/000009774523000069/tmo-20230930.htm",
     "checkedAt": "2026-09-09T11:37:16+00:00",
     "status": "blocked",
@@ -30271,7 +30285,7 @@
   },
   {
     "url": "https://www.sec.gov/Archives/edgar/data/97745/000009774523000072/tmo-20231107.htm",
-    "httpStatus": 403,
+    "httpStatus": 429,
     "finalUrl": "https://www.sec.gov/Archives/edgar/data/97745/000009774523000072/tmo-20231107.htm",
     "checkedAt": "2026-09-09T11:37:16+00:00",
     "status": "blocked",
@@ -30279,7 +30293,7 @@
   },
   {
     "url": "https://www.sec.gov/Archives/edgar/data/97745/000009774524000003/tmo-20240131.htm",
-    "httpStatus": 403,
+    "httpStatus": 429,
     "finalUrl": "https://www.sec.gov/Archives/edgar/data/97745/000009774524000003/tmo-20240131.htm",
     "checkedAt": "2026-09-09T11:37:16+00:00",
     "status": "blocked",
@@ -30287,7 +30301,7 @@
   },
   {
     "url": "https://www.sec.gov/Archives/edgar/data/97745/000009774524000007/tmo-20231231.htm",
-    "httpStatus": 403,
+    "httpStatus": 429,
     "finalUrl": "https://www.sec.gov/Archives/edgar/data/97745/000009774524000007/tmo-20231231.htm",
     "checkedAt": "2026-09-09T11:37:16+00:00",
     "status": "blocked",
@@ -30303,7 +30317,7 @@
   },
   {
     "url": "https://www.sec.gov/Archives/edgar/data/97745/000009774524000023/tmo-20240330.htm",
-    "httpStatus": 403,
+    "httpStatus": 429,
     "finalUrl": "https://www.sec.gov/Archives/edgar/data/97745/000009774524000023/tmo-20240330.htm",
     "checkedAt": "2026-09-09T11:37:16+00:00",
     "status": "blocked",
@@ -31743,7 +31757,7 @@
   },
   {
     "url": "https://www.setac.org/discover-events/global-meetings/setac-north-america-47th-annual-meeting/program/plenary-speakers.html",
-    "httpStatus": 200,
+    "httpStatus": 429,
     "finalUrl": "https://www.setac.org/discover-events/global-meetings/setac-north-america-47th-annual-meeting/program/plenary-speakers.html",
     "checkedAt": "2026-09-09T11:37:27+00:00",
     "status": "ok",

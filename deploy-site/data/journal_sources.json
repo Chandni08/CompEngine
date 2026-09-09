@@ -5342,8 +5342,8 @@
         "Application trends"
       ],
       "collectionStatus": "extracted",
-      "collectionDetail": "1 of 1 publisher-owned endpoints reachable; 2 dated public records available.",
-      "extractedRecords": 2,
+      "collectionDetail": "1 of 1 publisher-owned endpoints reachable; 3 dated public records available.",
+      "extractedRecords": 3,
       "recentRecords": [
         {
           "title": "AI Fills The Decision-Making Gaps In Process Analytical Technology",
@@ -5364,9 +5364,9 @@
         "asOf": "2026-09-09",
         "last30Days": 2,
         "prior30Days": 0,
-        "last90Days": 2,
+        "last90Days": 3,
         "prior90Days": 0,
-        "trailing12Months": 2,
+        "trailing12Months": 3,
         "change90Pct": null,
         "direction": "Insufficient prior-period data",
         "comparisonBasis": "Dated public records captured from publisher-owned feeds, sitemaps, or listing pages; availability varies by publisher."
@@ -5376,7 +5376,7 @@
           "url": "https://www.pharmaceuticalonline.com/",
           "finalUrl": "https://www.pharmaceuticalonline.com/",
           "status": 200,
-          "recordsExtracted": 2
+          "recordsExtracted": 3
         }
       ],
       "itemEvidence": {

@@ -5,7 +5,8 @@ import test from "node:test";
 const root = new URL("../", import.meta.url);
 const refreshRunner = await readFile(new URL("scripts/run_daily_refresh.sh", root), "utf8");
 const deployRunner = await readFile(new URL("scripts/deploy_refreshed_site.sh", root), "utf8");
-const workflow = await readFile(new URL(".github/workflows/daily-content-refresh.yml", root), "utf8");
+const refreshWorkflow = await readFile(new URL(".github/workflows/daily-content-refresh.yml", root), "utf8");
+const deploymentWorkflow = await readFile(new URL(".github/workflows/deploy-latest-data.yml", root), "utf8");
 const launchAgent = await readFile(new URL("config/com.waters.competition-engine.daily-refresh.plist", root), "utf8");
 const refreshPipeline = await readFile(new URL("scripts/refresh_daily.py", root), "utf8");
 const deployValidator = await readFile(new URL("deploy-site/scripts/validate_deploy.mjs", root), "utf8");
@@ -28,7 +29,7 @@ test("publishable exports and panel manifests are built only after the final sou
   assert.ok(pptxBuild > sourceGate);
   assert.ok(manifestBuild > sourceGate);
   assert.match(refreshPipeline, /SKIP_REFRESH_EXPORTS/);
-  assert.match(workflow, /SKIP_REFRESH_EXPORTS: "1"/);
+  assert.match(refreshWorkflow, /SKIP_REFRESH_EXPORTS: "1"/);
 });
 
 test("deployment synchronization includes nested source snapshots", () => {

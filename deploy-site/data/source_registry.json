@@ -724,8 +724,8 @@
       "sourceNewestUrl": "https://www.pharmaceuticalonline.com/doc/ai-fills-the-decision-making-gaps-in-process-analytical-technology-0001",
       "lagDays": 0,
       "newestItemPresent": true,
-      "recordsSeen": 2,
-      "recordsIngested": 2,
+      "recordsSeen": 3,
+      "recordsIngested": 3,
       "completeness": "partial",
       "coverage": "partial",
       "reason": "1 of 1 publisher-owned endpoints reachable; 2 dated public records available.",
@@ -736,8 +736,8 @@
       "baseUrl": "https://www.pharmaceuticalonline.com/",
       "method": "publisher_public_metadata",
       "cadence": "daily",
-      "sourceCount": 2,
-      "engineCount": 2,
+      "sourceCount": 3,
+      "engineCount": 3,
       "estimatedMissingCount": 0,
       "freshnessStatus": "PARTIAL",
       "completenessStatus": "PARTIAL",
@@ -3952,6 +3952,11 @@
       "registryStatus": "MANUAL_EVIDENCE_ONLY"
     },
     {
+      "domain": "acs.digitellinc.com",
+      "referenceCount": 4,
+      "registryStatus": "MANUAL_EVIDENCE_ONLY"
+    },
+    {
       "domain": "acs.org",
       "referenceCount": 29,
       "registryStatus": "REGISTERED"
@@ -4382,6 +4387,11 @@
       "registryStatus": "REGISTERED"
     },
     {
+      "domain": "perkinelmer.com.cn",
+      "referenceCount": 2,
+      "registryStatus": "MANUAL_EVIDENCE_ONLY"
+    },
+    {
       "domain": "pharmaceuticalonline.com",
       "referenceCount": 18,
       "registryStatus": "REGISTERED"
@@ -4569,6 +4579,11 @@
     {
       "domain": "wwwn.cdc.gov",
       "referenceCount": 3,
+      "registryStatus": "MANUAL_EVIDENCE_ONLY"
+    },
+    {
+      "domain": "youtube.com",
+      "referenceCount": 4,
       "registryStatus": "MANUAL_EVIDENCE_ONLY"
     }
   ]

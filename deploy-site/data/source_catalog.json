@@ -5685,8 +5685,8 @@
       "whyItMatters": "Track how vendors package LC, informatics, consumables, and services for pharma workflows and regulated environments.",
       "nextAction": "Review new dated records for workflow needs, buying criteria, emerging applications, and competitor positioning.",
       "extractionStatus": "extracted",
-      "extractionReason": "1 of 1 publisher-owned endpoints reachable; 2 dated public records available.",
-      "extractedRecords": 2,
+      "extractionReason": "1 of 1 publisher-owned endpoints reachable; 3 dated public records available.",
+      "extractedRecords": 3,
       "fetchMethod": "publisher_public_metadata",
       "lastExtractionCheck": "2026-09-09T11:15:15+00:00",
       "monitoringUrls": [

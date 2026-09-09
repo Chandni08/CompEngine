@@ -377,7 +377,7 @@
           "3y": 1544,
           "5y": 2250
         },
-        "strengthScore": 64,
+        "strengthScore": 65,
         "source": "PubMed",
         "query": "(oligonucleotide OR \"nucleic acid\" OR siRNA) AND (\"LC-MS\" OR chromatography OR \"mass spectrometry\")",
         "queryProvenance": {
@@ -496,7 +496,7 @@
           "3y": 729,
           "5y": 977
         },
-        "strengthScore": 70,
+        "strengthScore": 71,
         "source": "PubMed",
         "query": "(PFAS OR \"per- and polyfluoroalkyl\") AND (\"LC-MS\" OR \"LC-MS/MS\" OR chromatography)",
         "queryProvenance": {
@@ -734,7 +734,7 @@
           "3y": 2778,
           "5y": 3959
         },
-        "strengthScore": 63,
+        "strengthScore": 64,
         "source": "PubMed",
         "query": "(\"laboratory automation\" OR \"workflow software\" OR \"AI\") AND (\"LC-MS\" OR chromatography OR \"mass spectrometry\")",
         "queryProvenance": {
@@ -3868,6 +3868,389 @@
       "caveat": ""
     },
     {
+      "id": "agilent-monitor-press-release-c498d8ad5b4b",
+      "date": "2026-09-01",
+      "competitor": "Agilent",
+      "category": "Product intelligence",
+      "signalType": "Product release",
+      "title": "Agilent Introduces the Cary 635 FTIR Spectrometer",
+      "summary": "Agilent Introduces the Cary 635 FTIR Spectrometer",
+      "sourceName": "Agilent investor relations news",
+      "sourceUrl": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Introduces-the-Cary-635-FTIR-Spectrometer/default.aspx",
+      "geography": "Global",
+      "marketSegment": "Corporate",
+      "technology": "Portfolio",
+      "theme": "Product and workflow expansion",
+      "evidenceCount": 1,
+      "intent": "Product and portfolio expansion",
+      "recommendation": "Review the release for concrete product, partnership, portfolio, and market-positioning implications for Waters.",
+      "priorityScore": 52,
+      "tier": "Medium",
+      "scoreBreakdown": {
+        "sourceAuthority": {
+          "rating": "Medium-low",
+          "contribution": 12,
+          "max": 30,
+          "basis": "Other public source"
+        },
+        "recency": {
+          "ageDays": 0,
+          "contribution": 25.0,
+          "max": 25,
+          "halfLifeDays": 180
+        },
+        "lcRelevance": {
+          "matchedTerms": [],
+          "contribution": 0,
+          "max": 30
+        },
+        "corroboration": {
+          "theme": "Product and workflow expansion",
+          "independentSources": 13,
+          "contribution": 15,
+          "max": 15
+        }
+      },
+      "claimID": "agilent-monitor-press-release-c498d8ad5b4b",
+      "retrievalDate": "2026-09-01T15:44:31",
+      "sourceDate": "2026-09-01",
+      "sourceDateType": "publication",
+      "languageType": "analyst_paraphrase",
+      "evidenceStatus": "partial",
+      "caveat": ""
+    },
+    {
+      "id": "thermo-fisher-monitor-press-release-8eda4d5cc00a",
+      "date": "2026-09-01",
+      "competitor": "Thermo Fisher",
+      "category": "Corporate intelligence",
+      "signalType": "Press release",
+      "title": "Thermo Fisher Scientific to Present at the Morgan Stanley 24th Annual Global Healthcare Conference on September 15, 2026",
+      "summary": "Thermo Fisher Scientific Inc. (NYSE: TMO), the world leader in serving science, announced that Marc N.",
+      "earningsMetrics": [],
+      "pmInsights": [],
+      "watersPmImplication": "",
+      "evidenceBoundary": "",
+      "sourceName": "Thermo Fisher investor relations news",
+      "sourceUrl": "https://ir.thermofisher.com/investors/news-events/news/news-details/2026/Thermo-Fisher-Scientific-to-Present-at-the-Morgan-Stanley-24th-Annual-Global-Healthcare-Conference-on-September-15-2026/default.aspx",
+      "geography": "Global",
+      "marketSegment": "Pharma",
+      "technology": "LC/UHPLC",
+      "theme": "Corporate strategy",
+      "evidenceCount": 1,
+      "intent": "Corporate strategic activity",
+      "recommendation": "Review the release for concrete product, workflow, partnership, and market-positioning implications for Waters.",
+      "priorityScore": 83,
+      "tier": "High",
+      "scoreBreakdown": {
+        "sourceAuthority": {
+          "rating": "High",
+          "contribution": 28,
+          "max": 30,
+          "basis": "Official press release or newsroom"
+        },
+        "recency": {
+          "ageDays": 0,
+          "contribution": 25.0,
+          "max": 25,
+          "halfLifeDays": 180
+        },
+        "lcRelevance": {
+          "matchedTerms": [
+            "UHPLC/UPLC",
+            "LC/HPLC"
+          ],
+          "contribution": 15,
+          "max": 30
+        },
+        "corroboration": {
+          "theme": "Corporate strategy",
+          "independentSources": 25,
+          "contribution": 15,
+          "max": 15
+        }
+      },
+      "claimID": "thermo-fisher-monitor-press-release-8eda4d5cc00a",
+      "retrievalDate": "2026-09-01T15:44:31",
+      "sourceDate": "2026-09-01",
+      "sourceDateType": "publication",
+      "languageType": "analyst_paraphrase",
+      "evidenceStatus": "partial",
+      "caveat": ""
+    },
+    {
+      "id": "shimadzu-monitor-press-release-e4b1f9851959",
+      "date": "2026-09-01",
+      "competitor": "Shimadzu",
+      "category": "Product intelligence",
+      "signalType": "Press release",
+      "title": "Release of Combustion Ion Chromatograph System with More Efficient Analytical Operations For PFAS Analysis and Other Environmental Regulatory Applications",
+      "summary": "Official dated release extracted from Shimadzu's press or news index.",
+      "earningsMetrics": [],
+      "pmInsights": [],
+      "watersPmImplication": "",
+      "evidenceBoundary": "",
+      "sourceName": "Shimadzu official press releases",
+      "sourceUrl": "https://www.shimadzu.com/news/2026/k9mzc2osgbgrbtny.html",
+      "geography": "Global",
+      "marketSegment": "Pharma",
+      "technology": "LC-MS",
+      "theme": "Product release",
+      "evidenceCount": 1,
+      "intent": "Product and portfolio expansion",
+      "recommendation": "Review the release for concrete product, workflow, partnership, and market-positioning implications for Waters.",
+      "priorityScore": 90,
+      "tier": "High",
+      "scoreBreakdown": {
+        "sourceAuthority": {
+          "rating": "High",
+          "contribution": 28,
+          "max": 30,
+          "basis": "Official press release or newsroom"
+        },
+        "recency": {
+          "ageDays": 0,
+          "contribution": 25.0,
+          "max": 25,
+          "halfLifeDays": 180
+        },
+        "lcRelevance": {
+          "matchedTerms": [
+            "LC-MS",
+            "LC/HPLC",
+            "chromatography"
+          ],
+          "contribution": 22,
+          "max": 30
+        },
+        "corroboration": {
+          "theme": "Product release",
+          "independentSources": 12,
+          "contribution": 14.8,
+          "max": 15
+        }
+      },
+      "claimID": "shimadzu-monitor-press-release-e4b1f9851959",
+      "retrievalDate": "2026-09-01T15:44:31",
+      "sourceDate": "2026-09-01",
+      "sourceDateType": "publication",
+      "languageType": "analyst_paraphrase",
+      "evidenceStatus": "partial",
+      "caveat": ""
+    },
+    {
+      "id": "pubmed-42677658",
+      "date": "2026-08-26",
+      "competitor": "Market-wide",
+      "category": "Scientific application intelligence",
+      "signalType": "Scientific publication",
+      "title": "Integrated Metabolomics, Transcriptomics, and Functional Validation Suggest Oxidoreductase-Associated Strictinin Accumulation in Individual Large Tea Trees from Yunnan",
+      "summary": "Newest PubMed item returned for the Oligonucleotide and nucleic-acid analytics query.",
+      "sourceName": "PubMed",
+      "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/42677658/",
+      "geography": "Global",
+      "marketSegment": "Biopharma",
+      "technology": "LC-MS",
+      "theme": "Oligonucleotide and nucleic-acid analytics",
+      "evidenceCount": 1,
+      "intent": "Newest-item freshness verification",
+      "priorityScore": 68,
+      "tier": "Medium",
+      "scoreBreakdown": {
+        "sourceAuthority": {
+          "rating": "Medium",
+          "contribution": 20,
+          "max": 30,
+          "basis": "PubMed scientific record"
+        },
+        "recency": {
+          "ageDays": 6,
+          "contribution": 24.43,
+          "max": 25,
+          "halfLifeDays": 180
+        },
+        "lcRelevance": {
+          "matchedTerms": [
+            "LC-MS",
+            "LC/HPLC"
+          ],
+          "contribution": 17,
+          "max": 30
+        },
+        "corroboration": {
+          "theme": "Oligonucleotide and nucleic-acid analytics",
+          "independentSources": 2,
+          "contribution": 6.34,
+          "max": 15
+        }
+      },
+      "claimID": "pubmed-42677658",
+      "retrievalDate": "2026-09-01T15:44:31",
+      "sourceDate": "2026-08-26",
+      "sourceDateType": "publication",
+      "languageType": "analyst_paraphrase",
+      "evidenceStatus": "verified",
+      "caveat": "",
+      "supportingExcerpt": "Integrated Metabolomics, Transcriptomics, and Functional Validation Suggest Oxidoreductase-Associated Strictinin Accumulation in Individual Large Tea Trees",
+      "sourceLocation": "PubMed record title"
+    },
+    {
+      "id": "pubmed-42677672",
+      "date": "2026-08-26",
+      "competitor": "Market-wide",
+      "category": "Scientific application intelligence",
+      "signalType": "Scientific publication",
+      "title": "Combating Fusarium Wilt: A Metabologenomics Approach Identifies Stendomycins as Promising Sustainable Biocontrol Agents",
+      "summary": "Newest PubMed item returned for the High-resolution proteomics and metabolomics query.",
+      "sourceName": "PubMed",
+      "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/42677672/",
+      "geography": "Global",
+      "marketSegment": "Academic",
+      "technology": "LC-MS",
+      "theme": "High-resolution proteomics and metabolomics",
+      "evidenceCount": 1,
+      "intent": "Newest-item freshness verification",
+      "priorityScore": 68,
+      "tier": "Medium",
+      "scoreBreakdown": {
+        "sourceAuthority": {
+          "rating": "Medium",
+          "contribution": 20,
+          "max": 30,
+          "basis": "PubMed scientific record"
+        },
+        "recency": {
+          "ageDays": 6,
+          "contribution": 24.43,
+          "max": 25,
+          "halfLifeDays": 180
+        },
+        "lcRelevance": {
+          "matchedTerms": [
+            "LC-MS",
+            "LC/HPLC"
+          ],
+          "contribution": 17,
+          "max": 30
+        },
+        "corroboration": {
+          "theme": "High-resolution proteomics and metabolomics",
+          "independentSources": 2,
+          "contribution": 6.34,
+          "max": 15
+        }
+      },
+      "claimID": "pubmed-42677672",
+      "retrievalDate": "2026-09-01T15:44:31",
+      "sourceDate": "2026-08-26",
+      "sourceDateType": "publication",
+      "languageType": "analyst_paraphrase",
+      "evidenceStatus": "verified",
+      "caveat": "",
+      "supportingExcerpt": "Combating Fusarium Wilt: A Metabologenomics Approach Identifies Stendomycins as Promising Sustainable Biocontrol Agents",
+      "sourceLocation": "PubMed record title"
+    },
+    {
+      "id": "sec-agilent-0001090872-26-000062",
+      "date": "2026-08-26",
+      "competitor": "Agilent",
+      "registrant": "Agilent Technologies, Inc.",
+      "relatedOperatingBusiness": null,
+      "attributionBoundary": "The earnings evidence is Agilent Technologies, Inc.'s SEC-filed Exhibit 99.1.",
+      "category": "Corporate intelligence",
+      "signalType": "SEC earnings filing",
+      "title": "Agilent Reports Third-Quarter Fiscal Year 2026 Financial Results",
+      "summary": "Agilent reported $1.88 billion of Q3 revenue, 7.3% core growth, broad-based operating-group growth, and higher fiscal 2026 revenue, margin, and non-GAAP EPS guidance.",
+      "sourceName": "SEC EDGAR Exhibit 99.1",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1090872/000109087226000062/exhibit991-q326pressrelease.htm",
+      "geography": "Global",
+      "marketSegment": "Corporate",
+      "technology": "Portfolio",
+      "theme": "Filed quarterly earnings evidence",
+      "evidenceCount": 1,
+      "intent": "Corporate performance and investment capacity",
+      "recommendation": "Use the filed segment and margin disclosures to assess competitive investment capacity and lifecycle economics; do not infer LC or LC-MS share because the exhibit does not disclose it.",
+      "earningsMetrics": [
+        {
+          "label": "Q3 revenue",
+          "value": "$1.88B",
+          "change": "+8.1% reported / +7.3% core year over year"
+        },
+        {
+          "label": "Non-GAAP operating margin",
+          "value": "28.3%",
+          "change": "+320 bps year over year; includes ~110 bps tariff-refund benefit"
+        },
+        {
+          "label": "Life Sciences and Diagnostics",
+          "value": "$746M",
+          "change": "+11% reported / +10% core; 23.5% operating margin"
+        },
+        {
+          "label": "CrossLab",
+          "value": "$786M",
+          "change": "+6% reported / +5% core; 34.3% operating margin"
+        },
+        {
+          "label": "Applied Markets",
+          "value": "$346M",
+          "change": "+7% reported / +7% core; 24.9% operating margin"
+        },
+        {
+          "label": "FY26 revenue outlook",
+          "value": "$7.49–$7.51B",
+          "change": "+5.8% to +6.0% core; midpoint raised 65 bps"
+        }
+      ],
+      "pmInsights": [
+        "All three operating groups grew on both reported and core bases; Life Sciences and Diagnostics led at 10% core growth.",
+        "CrossLab remained Agilent's largest operating group and posted a 34.3% operating margin, reinforcing the strategic importance of service, uptime, compliance, and lifecycle economics.",
+        "Agilent raised full-year revenue, operating-margin, and non-GAAP EPS guidance, increasing the financial capacity available for priority workflows and commercial execution.",
+        "Tariff refunds contributed about 110 basis points to Q3 non-GAAP operating margin and $0.06 to non-GAAP EPS, so the headline margin expansion is not fully operational."
+      ],
+      "watersPmImplication": "Pressure-test Waters' instrument, service, informatics, and application proof as one lifecycle proposition. Track whether Agilent converts stronger LDG growth and CrossLab economics into bundled regulated-workflow offers.",
+      "evidenceBoundary": "Agilent's filed release does not separately report LC or LC-MS revenue, units, pricing, or market share. Operating-group growth and raised guidance are corporate capacity signals, not direct evidence of LC market-share gain.",
+      "supportingExcerpt": "Revenue of $1.88 billion ... growth of 8.1% reported and up 7.3% core",
+      "sourceLocation": "SEC Exhibit 99.1 opening highlights and financial highlights",
+      "evidenceStatus": "verified",
+      "priorityScore": 78,
+      "tier": "High",
+      "scoreBreakdown": {
+        "sourceAuthority": {
+          "rating": "High",
+          "contribution": 30,
+          "max": 30,
+          "basis": "SEC filing"
+        },
+        "recency": {
+          "ageDays": 6,
+          "contribution": 24.43,
+          "max": 25,
+          "halfLifeDays": 180
+        },
+        "lcRelevance": {
+          "matchedTerms": [
+            "LC-MS",
+            "LC/HPLC"
+          ],
+          "contribution": 17,
+          "max": 30
+        },
+        "corroboration": {
+          "theme": "Filed quarterly earnings evidence",
+          "independentSources": 2,
+          "contribution": 6.34,
+          "max": 15
+        }
+      },
+      "claimID": "sec-agilent-0001090872-26-000062",
+      "retrievalDate": "2026-09-01T15:44:31",
+      "sourceDate": "2026-08-26",
+      "sourceDateType": "publication",
+      "languageType": "analyst_paraphrase",
+      "caveat": ""
+    },
+    {
       "id": "thermo-fisher-monitor-technical-insight-1680d220e681",
       "date": "2026-08-25",
       "competitor": "Thermo Fisher",
@@ -4698,6 +5081,62 @@
       "languageType": "analyst_paraphrase",
       "evidenceStatus": "partial",
       "caveat": "Do not attribute this filing to PerkinElmer; use Revvity as the registrant."
+    },
+    {
+      "id": "pubmed-42653737",
+      "date": "2026-08-06",
+      "competitor": "Agilent",
+      "category": "Scientific application intelligence",
+      "signalType": "Scientific publication",
+      "title": "System Performance Check (SPC): A Readiness Companion to Multi-Attribute Method (MAM) Analysis in Biopharmaceutical Quality Control",
+      "summary": "PubMed record mentioning Agilent query terms in Pharmaceuticals (Basel, Switzerland).",
+      "sourceName": "PubMed",
+      "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/42653737/",
+      "geography": "Global",
+      "marketSegment": "Pharma",
+      "technology": "LC-MS",
+      "theme": "Scientific application activity",
+      "evidenceCount": 1,
+      "intent": "Application pull-through or workflow visibility",
+      "priorityScore": 72,
+      "tier": "Medium",
+      "scoreBreakdown": {
+        "sourceAuthority": {
+          "rating": "Medium",
+          "contribution": 20,
+          "max": 30,
+          "basis": "PubMed scientific record"
+        },
+        "recency": {
+          "ageDays": 26,
+          "contribution": 22.62,
+          "max": 25,
+          "halfLifeDays": 180
+        },
+        "lcRelevance": {
+          "matchedTerms": [
+            "LC-MS",
+            "LC/HPLC"
+          ],
+          "contribution": 17,
+          "max": 30
+        },
+        "corroboration": {
+          "theme": "Scientific application activity",
+          "independentSources": 7,
+          "contribution": 12.0,
+          "max": 15
+        }
+      },
+      "claimID": "pubmed-42653737",
+      "retrievalDate": "2026-09-01T15:44:31",
+      "sourceDate": "2026-08-06",
+      "sourceDateType": "publication",
+      "languageType": "analyst_paraphrase",
+      "evidenceStatus": "verified",
+      "caveat": "",
+      "supportingExcerpt": "System Performance Check (SPC): A Readiness Companion to Multi-Attribute Method (MAM) Analysis in Biopharmaceutical Quality",
+      "sourceLocation": "PubMed record title"
     },
     {
       "id": "shimadzu-monitor-press-release-29cd6074d29d",
@@ -10555,6 +10994,63 @@
       "retrievalDate": "2026-09-09T11:29:45+00:00",
       "contentAsOf": "2026-09-09T11:29:45+00:00",
       "stampedAt": "2026-09-09T11:37:44Z",
+      "sourceDate": "2026-07-23",
+      "sourceDateType": "publication",
+      "languageType": "analyst_paraphrase",
+      "evidenceStatus": "verified",
+      "caveat": "",
+      "supportingExcerpt": "Gas Chromatography Method for Quantitation of Residual Solvent Impurities in Nanoformulations",
+      "sourceLocation": "PubMed record title"
+    },
+    {
+      "id": "pubmed-42646505",
+      "date": "2026-07-23",
+      "competitor": "PerkinElmer",
+      "category": "Scientific application intelligence",
+      "signalType": "Scientific publication",
+      "title": "Gas Chromatography Method for Quantitation of Residual Solvent Impurities in Nanoformulations",
+      "summary": "PubMed record mentioning PerkinElmer query terms in Methods and protocols.",
+      "sourceName": "PubMed",
+      "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/42646505/",
+      "geography": "Global",
+      "marketSegment": "Pharma",
+      "technology": "LC-MS",
+      "theme": "Scientific application activity",
+      "evidenceCount": 1,
+      "intent": "Application pull-through or workflow visibility",
+      "priorityScore": 75,
+      "tier": "High",
+      "scoreBreakdown": {
+        "sourceAuthority": {
+          "rating": "Medium",
+          "contribution": 20,
+          "max": 30,
+          "basis": "PubMed scientific record"
+        },
+        "recency": {
+          "ageDays": 40,
+          "contribution": 21.43,
+          "max": 25,
+          "halfLifeDays": 180
+        },
+        "lcRelevance": {
+          "matchedTerms": [
+            "LC-MS",
+            "LC/HPLC",
+            "chromatography"
+          ],
+          "contribution": 22,
+          "max": 30
+        },
+        "corroboration": {
+          "theme": "Scientific application activity",
+          "independentSources": 7,
+          "contribution": 12.0,
+          "max": 15
+        }
+      },
+      "claimID": "pubmed-42646505",
+      "retrievalDate": "2026-09-01T15:44:31",
       "sourceDate": "2026-07-23",
       "sourceDateType": "publication",
       "languageType": "analyst_paraphrase",
@@ -20172,22 +20668,25 @@
       "stampedAt": "2026-09-09T11:37:44Z"
     },
     {
-      "id": "agilent-monitor-press-release-bfb6111c07ab",
+      "id": "sec-agilent-0001090872-26-000052",
       "date": "2026-05-27",
       "competitor": "Agilent",
+      "registrant": "Agilent Technologies, Inc.",
+      "relatedOperatingBusiness": null,
+      "attributionBoundary": "The earnings evidence is Agilent Technologies, Inc.'s SEC-filed Exhibit 99.1.",
       "category": "Corporate intelligence",
-      "signalType": "Quarterly earnings result",
+      "signalType": "SEC earnings filing",
       "title": "Agilent Reports Second-Quarter Fiscal Year 2026 Financial Results",
       "summary": "Agilent paired broad-based revenue growth with higher Life Sciences and Diagnostics, CrossLab, and Applied Markets performance while raising fiscal 2026 revenue, margin, and EPS guidance.",
-      "sourceName": "Agilent investor relations news",
-      "sourceUrl": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Reports-Second-Quarter-Fiscal-Year-2026-Financial-Results/default.aspx",
+      "sourceName": "SEC EDGAR Exhibit 99.1",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1090872/000109087226000052/exhibit991-q226pressrelease.htm",
       "geography": "Global",
       "marketSegment": "Corporate",
       "technology": "Portfolio",
-      "theme": "Quarterly earnings and end-market demand",
+      "theme": "Filed quarterly earnings evidence",
       "evidenceCount": 1,
       "intent": "Corporate performance and investment capacity",
-      "recommendation": "Review the release for concrete product, partnership, portfolio, and market-positioning implications for Waters.",
+      "recommendation": "Use the filed operating-group disclosures to assess demand and investment capacity without inferring LC share.",
       "earningsMetrics": [
         {
           "label": "Life Sciences and Diagnostics revenue",
@@ -20338,7 +20837,6 @@
       "sourceDate": "2026-05-27",
       "sourceDateType": "publication",
       "languageType": "analyst_paraphrase",
-      "evidenceStatus": "partial",
       "caveat": ""
     },
     {
@@ -27532,13 +28030,13 @@
       "stampedAt": "2026-09-09T11:37:44Z"
     },
     {
-      "id": "pubmed-41422727",
+      "id": "pubmed-42666400",
       "date": "2026-01-01",
-      "competitor": "Agilent",
+      "competitor": "SCIEX",
       "category": "Scientific application intelligence",
       "signalType": "Scientific publication",
-      "title": "Fuzheng Kang'ai Formula suppresses NSCLC by inducing a functional crosstalk between autophagy and ferroptosis via EZH2/DOT1L/H3K79me2 signaling",
-      "summary": "PubMed record mentioning Agilent query terms in Phytomedicine : international journal of phytotherapy and phytopharmacology.",
+      "title": "Multidimensional characterization of heterogeneity in pesticide co-exposure patterns",
+      "summary": "PubMed record mentioning SCIEX query terms in Frontiers in chemistry.",
       "sourceName": "PubMed",
       "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/41422727/",
       "geography": "Global",
@@ -27803,7 +28301,7 @@
       "languageType": "analyst_paraphrase",
       "evidenceStatus": "verified",
       "caveat": "",
-      "supportingExcerpt": "A new frame shift pathogenic variant (c.773dupT) in the BCKDHB gene caused MSUD in an",
+      "supportingExcerpt": "Multidimensional characterization of heterogeneity in pesticide co-exposure patterns",
       "sourceLocation": "PubMed record title"
     },
     {
@@ -29798,6 +30296,62 @@
       "sourceLocation": "PubMed record title"
     },
     {
+      "id": "pubmed-40203020",
+      "date": "2025-08-18",
+      "competitor": "Shimadzu",
+      "category": "Scientific application intelligence",
+      "signalType": "Scientific publication",
+      "title": "Building a Bridge Between Ambient MS and LC-MS by Non-Exhaustive Microdesorption",
+      "summary": "PubMed record mentioning Shimadzu query terms in Angewandte Chemie (International ed. in English).",
+      "sourceName": "PubMed",
+      "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/40203020/",
+      "geography": "Global",
+      "marketSegment": "Biopharma",
+      "technology": "LC-MS",
+      "theme": "LNP and RNA therapeutics workflows",
+      "evidenceCount": 1,
+      "intent": "Application pull-through or workflow visibility",
+      "priorityScore": 55,
+      "tier": "Medium",
+      "scoreBreakdown": {
+        "sourceAuthority": {
+          "rating": "Medium",
+          "contribution": 20,
+          "max": 30,
+          "basis": "PubMed scientific record"
+        },
+        "recency": {
+          "ageDays": 379,
+          "contribution": 5.81,
+          "max": 25,
+          "halfLifeDays": 180
+        },
+        "lcRelevance": {
+          "matchedTerms": [
+            "LC-MS",
+            "LC/HPLC"
+          ],
+          "contribution": 17,
+          "max": 30
+        },
+        "corroboration": {
+          "theme": "LNP and RNA therapeutics workflows",
+          "independentSources": 8,
+          "contribution": 12.68,
+          "max": 15
+        }
+      },
+      "claimID": "pubmed-40203020",
+      "retrievalDate": "2026-09-01T15:44:31",
+      "sourceDate": "2025-08-18",
+      "sourceDateType": "publication",
+      "languageType": "analyst_paraphrase",
+      "evidenceStatus": "verified",
+      "caveat": "",
+      "supportingExcerpt": "Building a Bridge Between Ambient MS and LC-MS by Non-Exhaustive Microdesorption",
+      "sourceLocation": "PubMed record title"
+    },
+    {
       "id": "sec-perkinelmer-0000031791-25-000026",
       "date": "2025-08-05",
       "competitor": "Revvity, Inc.",
@@ -30699,6 +31253,63 @@
       "retrievalDate": "2026-09-09T11:29:45+00:00",
       "contentAsOf": "2026-09-09T11:29:45+00:00",
       "stampedAt": "2026-09-09T11:37:44Z",
+      "sourceDate": "2025-06-21",
+      "sourceDateType": "publication",
+      "languageType": "analyst_paraphrase",
+      "evidenceStatus": "verified",
+      "caveat": "",
+      "supportingExcerpt": "Determination of haloacetic acids in municipal tap water and swimming pool water using portable capillary",
+      "sourceLocation": "PubMed record title"
+    },
+    {
+      "id": "pubmed-40203633",
+      "date": "2025-06-21",
+      "competitor": "Shimadzu",
+      "category": "Scientific application intelligence",
+      "signalType": "Scientific publication",
+      "title": "Determination of haloacetic acids in municipal tap water and swimming pool water using portable capillary liquid chromatography - mass spectrometry",
+      "summary": "PubMed record mentioning Shimadzu query terms in Journal of chromatography. A.",
+      "sourceName": "PubMed",
+      "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/40203633/",
+      "geography": "Global",
+      "marketSegment": "Biopharma",
+      "technology": "LC-MS",
+      "theme": "LNP and RNA therapeutics workflows",
+      "evidenceCount": 1,
+      "intent": "Application pull-through or workflow visibility",
+      "priorityScore": 59,
+      "tier": "Medium",
+      "scoreBreakdown": {
+        "sourceAuthority": {
+          "rating": "Medium",
+          "contribution": 20,
+          "max": 30,
+          "basis": "PubMed scientific record"
+        },
+        "recency": {
+          "ageDays": 437,
+          "contribution": 4.65,
+          "max": 25,
+          "halfLifeDays": 180
+        },
+        "lcRelevance": {
+          "matchedTerms": [
+            "LC-MS",
+            "LC/HPLC",
+            "chromatography"
+          ],
+          "contribution": 22,
+          "max": 30
+        },
+        "corroboration": {
+          "theme": "LNP and RNA therapeutics workflows",
+          "independentSources": 8,
+          "contribution": 12.68,
+          "max": 15
+        }
+      },
+      "claimID": "pubmed-40203633",
+      "retrievalDate": "2026-09-01T15:44:31",
       "sourceDate": "2025-06-21",
       "sourceDateType": "publication",
       "languageType": "analyst_paraphrase",

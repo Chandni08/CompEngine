@@ -317,98 +317,97 @@
           "label": "FDA Warning Letter index: analytical and laboratory operators",
           "url": "https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/compliance-actions-and-activities/warning-letters/datatables-data?_format=xlsx&page=0",
           "sourceKeywords": [
-            "chromatography",
             "analytical",
             "laboratory",
             "Good Laboratory Practice"
           ],
           "recordType": "Official FDA Warning Letter bulk index",
-          "sourceDate": "2025-09-17",
+          "sourceDate": "2026-03-09",
           "dateType": "published",
           "sourceType": "regulatory",
           "sourceCredibility": 1.0,
           "sourceName": "U.S. FDA Warning Letters bulk download",
-          "excerpt": "BRS Analytical Services, LLC — CGMP/Finished Pharmaceuticals/Adulterated (2025-09-17) | Chromatography Institute of America dba Compounder’s International Analytical Laboratory — CGMP/Finished Pharmaceutical/API/Adulterated (2025-08-20) | Shiva Analyticals Private Limited — CGMP/Finished Pharmaceuticals/Adulterated (2025-07-23) | Jiangsu Kerbio Medical Technology Group Co. — Good Laboratory Practice (GLP) for Nonclinical Laboratory Studies (2025-07-11) | Green Wave Analytical, LLC — CGMP/Finished Pharmaceuticals/Adulterated (2022-08-19) | Clinical Resolution Laboratory Inc. — CGMP/Finished Pharmaceuticals/Adulterated (2022-03-01) | Toxikon Corporation/Labcorp Bedford LLC — Good Laboratory Practice (GLP) (2022-02-10) | Coastal E-Liquid Laboratory/GC Vapors LLC — Family Smoking Prevention and Tobacco Control Act/Adulterated/Misbranded (2021-01-15)",
+          "excerpt": "Vedic Lifesciences Pvt. Ltd. — Good Laboratory Practice (GLP) for Nonclinical Laboratory Studies (2026-03-09) | ABR Laboratory LLC — CGMP/Finished Pharmaceutical/Adulterated (2025-02-10) | Analytical Food Laboratories, Inc. — CGMP/Finished Pharmaceuticals/Adulterated (2024-10-10) | Spirochaete Research Labs, LLC aka Scitus Laboratory Products — Unapproved New Drugs/Misbranded (2024-03-08) | Samm Solutions, Inc., d.b.a. BTS Research — Good Laboratory Practice (GLP) for Nonclinical Laboratory Studies (2023-10-20) | Missouri Analytical Laboratories Inc — CGMP/Active Pharmaceutical Ingredient (API)/Adulterated (2021-09-30) | Marcus Research Laboratory, Inc. — CGMP/Active Pharmaceutical Ingredient (API)/Adulterated (2021-09-30) | Adamson Analytical Laboratories, Inc. — CGMP/Finished Pharmaceuticals/Adulterated (2021-08-17)",
           "regulatoryEntries": [
             {
-              "Posted Date": "10/21/2025",
-              "Letter Issue Date": "09/17/2025",
-              "Company Name": "BRS Analytical Services, LLC",
+              "Posted Date": "03/17/2026",
+              "Letter Issue Date": "03/09/2026",
+              "Company Name": "Vedic Lifesciences Pvt. Ltd.",
               "Issuing Office": "Center for Drug Evaluation and Research (CDER)",
-              "Subject": "CGMP/Finished Pharmaceuticals/Adulterated",
-              "Response Letter": "",
-              "Closeout Letter": "",
-              "date": "2025-09-17"
-            },
-            {
-              "Posted Date": "09/02/2025",
-              "Letter Issue Date": "08/20/2025",
-              "Company Name": "Chromatography Institute of America dba Compounder’s International Analytical Laboratory",
-              "Issuing Office": "Center for Drug Evaluation and Research (CDER)",
-              "Subject": "CGMP/Finished Pharmaceutical/API/Adulterated",
-              "Response Letter": "",
-              "Closeout Letter": "",
-              "date": "2025-08-20"
-            },
-            {
-              "Posted Date": "07/29/2025",
-              "Letter Issue Date": "07/23/2025",
-              "Company Name": "Shiva Analyticals Private Limited",
-              "Issuing Office": "Center for Drug Evaluation and Research (CDER)",
-              "Subject": "CGMP/Finished Pharmaceuticals/Adulterated",
-              "Response Letter": "",
-              "Closeout Letter": "",
-              "date": "2025-07-23"
-            },
-            {
-              "Posted Date": "08/26/2025",
-              "Letter Issue Date": "07/11/2025",
-              "Company Name": "Jiangsu Kerbio Medical Technology Group Co.",
-              "Issuing Office": "Center for Devices and Radiological Health",
               "Subject": "Good Laboratory Practice (GLP) for Nonclinical Laboratory Studies",
               "Response Letter": "",
               "Closeout Letter": "",
-              "date": "2025-07-11"
+              "date": "2026-03-09"
             },
             {
-              "Posted Date": "08/30/2022",
-              "Letter Issue Date": "08/19/2022",
-              "Company Name": "Green Wave Analytical, LLC",
+              "Posted Date": "02/18/2025",
+              "Letter Issue Date": "02/10/2025",
+              "Company Name": "ABR Laboratory LLC",
+              "Issuing Office": "Center for Drug Evaluation and Research (CDER)",
+              "Subject": "CGMP/Finished Pharmaceutical/Adulterated",
+              "Response Letter": "",
+              "Closeout Letter": "",
+              "date": "2025-02-10"
+            },
+            {
+              "Posted Date": "11/05/2024",
+              "Letter Issue Date": "10/10/2024",
+              "Company Name": "Analytical Food Laboratories, Inc.",
+              "Issuing Office": "Center for Drug Evaluation and Research (CDER)",
+              "Subject": "CGMP/Finished Pharmaceuticals/Adulterated",
+              "Response Letter": "",
+              "Closeout Letter": "",
+              "date": "2024-10-10"
+            },
+            {
+              "Posted Date": "03/12/2024",
+              "Letter Issue Date": "03/08/2024",
+              "Company Name": "Spirochaete Research Labs, LLC aka Scitus Laboratory Products",
+              "Issuing Office": "Center for Drug Evaluation and Research | CDER",
+              "Subject": "Unapproved New Drugs/Misbranded",
+              "Response Letter": "",
+              "Closeout Letter": "",
+              "date": "2024-03-08"
+            },
+            {
+              "Posted Date": "10/31/2023",
+              "Letter Issue Date": "10/20/2023",
+              "Company Name": "Samm Solutions, Inc., d.b.a. BTS Research",
+              "Issuing Office": "Center for Drug Evaluation and Research | CDER",
+              "Subject": "Good Laboratory Practice (GLP) for Nonclinical Laboratory Studies",
+              "Response Letter": "",
+              "Closeout Letter": "",
+              "date": "2023-10-20"
+            },
+            {
+              "Posted Date": "10/12/2021",
+              "Letter Issue Date": "09/30/2021",
+              "Company Name": "Missouri Analytical Laboratories Inc",
+              "Issuing Office": "Division of Pharmaceutical Quality Operations III",
+              "Subject": "CGMP/Active Pharmaceutical Ingredient (API)/Adulterated",
+              "Response Letter": "",
+              "Closeout Letter": "10/15/2024",
+              "date": "2021-09-30"
+            },
+            {
+              "Posted Date": "10/19/2021",
+              "Letter Issue Date": "09/30/2021",
+              "Company Name": "Marcus Research Laboratory, Inc.",
+              "Issuing Office": "Division of Pharmaceutical Quality Operations III",
+              "Subject": "CGMP/Active Pharmaceutical Ingredient (API)/Adulterated",
+              "Response Letter": "",
+              "Closeout Letter": "10/04/2024",
+              "date": "2021-09-30"
+            },
+            {
+              "Posted Date": "11/09/2021",
+              "Letter Issue Date": "08/17/2021",
+              "Company Name": "Adamson Analytical Laboratories, Inc.",
               "Issuing Office": "Division of Pharmaceutical Quality Operations IV",
               "Subject": "CGMP/Finished Pharmaceuticals/Adulterated",
               "Response Letter": "",
               "Closeout Letter": "",
-              "date": "2022-08-19"
-            },
-            {
-              "Posted Date": "04/26/2022",
-              "Letter Issue Date": "03/01/2022",
-              "Company Name": "Clinical Resolution Laboratory Inc.",
-              "Issuing Office": "Division of Pharmaceutical Quality Operations IV",
-              "Subject": "CGMP/Finished Pharmaceuticals/Adulterated",
-              "Response Letter": "",
-              "Closeout Letter": "",
-              "date": "2022-03-01"
-            },
-            {
-              "Posted Date": "02/22/2022",
-              "Letter Issue Date": "02/10/2022",
-              "Company Name": "Toxikon Corporation/Labcorp Bedford LLC",
-              "Issuing Office": "Center for Biologics Evaluation and Research",
-              "Subject": "Good Laboratory Practice (GLP)",
-              "Response Letter": "",
-              "Closeout Letter": "11/02/2022",
-              "date": "2022-02-10"
-            },
-            {
-              "Posted Date": "01/15/2021",
-              "Letter Issue Date": "01/15/2021",
-              "Company Name": "Coastal E-Liquid Laboratory/GC Vapors LLC",
-              "Issuing Office": "Center for Tobacco Products",
-              "Subject": "Family Smoking Prevention and Tobacco Control Act/Adulterated/Misbranded",
-              "Response Letter": "",
-              "Closeout Letter": "",
-              "date": "2021-01-15"
+              "date": "2021-08-17"
             }
           ],
           "regulatoryDataset": "warning_letters",
@@ -424,7 +423,7 @@
       "category": "Regulated laboratory controls / data integrity",
       "estimatedMentions5y": 1,
       "theme": "Regulated laboratory controls / data integrity",
-      "customerLanguageSignal": "BRS Analytical Services, LLC — CGMP/Finished Pharmaceuticals/Adulterated (2025-09-17) | Chromatography Institute of America dba Compounder’s International Analytical Laboratory — CGMP/Finished Pharmaceutical/API/Adulterated (2025-08-20) | Shiva Analyticals Private Limited — CGMP/Finished Pharmaceuticals/Adulterated (2025-07-23) | Jiangsu Kerbio Medical Technology Group Co. — Good Laboratory Practice (GLP) for Nonclinical Laboratory Studies (2025-07-11) | Green Wave Analytical, LLC — CGMP/Finishe",
+      "customerLanguageSignal": "Vedic Lifesciences Pvt. Ltd. — Good Laboratory Practice (GLP) for Nonclinical Laboratory Studies (2026-03-09) | ABR Laboratory LLC — CGMP/Finished Pharmaceutical/Adulterated (2025-02-10) | Analytical Food Laboratories, Inc. — CGMP/Finished Pharmaceuticals/Adulterated (2024-10-10) | Spirochaete Research Labs, LLC aka Scitus Laboratory Products — Unapproved New Drugs/Misbranded (2024-03-08) | Samm Solutions, Inc., d.b.a. BTS Research — Good Laboratory Practice (GLP) for Nonclinical Laboratory Stud",
       "pmInterpretation": "Map recurring FDA laboratory-control findings to instrument, software, and review controls.",
       "labType": "Pharma",
       "userRole": "FDA inspection finding",
@@ -8881,7 +8880,7 @@
       "reddit": 0.55
     },
     "recordsAdded": 0,
-    "recordsEnriched": 118,
+    "recordsEnriched": 123,
     "schemaFieldsMigrated": 0,
     "sourceIdentityRepairs": 234,
     "sourceKeywordRepairs": 1,
