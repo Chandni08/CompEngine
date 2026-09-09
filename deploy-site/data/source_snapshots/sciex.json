@@ -109,6 +109,13 @@
   "unverifiedInventoryChanges": {
     "new": [],
     "updated": [],
-    "missing": []
+    "missing": [
+      {
+        "url": "https://sciex.com/applications/biomedical-and-omics-research/oneomics",
+        "lastmod": "",
+        "category": "LC/MS",
+        "verification": "manual confirmation required"
+      }
+    ]
   }
 }

@@ -1808,18 +1808,18 @@
     {
       "url": "https://www.investor.agilent.com/news-and-events/news/default.aspx",
       "fetchMethod": "official_ir_news_api",
-      "httpStatus": 200,
-      "status": "available",
-      "sourceQuality": "reliable",
+      "httpStatus": 429,
+      "status": "collection_review_needed",
+      "sourceQuality": "unverified",
       "reliabilityNote": "Official Agilent investor-relations news feed; 10-second crawl delay applied.",
       "checkedAt": "2026-09-09T03:05:35+00:00"
     },
     {
       "url": "https://www.investor.agilent.com/overview/default.aspx",
-      "fetchMethod": "real_browser",
-      "httpStatus": 200,
-      "status": "available",
-      "sourceQuality": "reliable",
+      "fetchMethod": "investor_page",
+      "httpStatus": 429,
+      "status": "collection_review_needed",
+      "sourceQuality": "unverified",
       "reliabilityNote": "Investor relations source; 10-second crawl delay applied.",
       "checkedAt": "2026-09-09T03:05:51+00:00"
     },

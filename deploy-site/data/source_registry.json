@@ -2064,7 +2064,7 @@
       "sourceId": "agilent-attempt-7",
       "url": "https://www.investor.agilent.com/overview/default.aspx",
       "required": false,
-      "collectionMethod": "real_browser",
+      "collectionMethod": "investor_page",
       "collectionOutcome": "checked_empty",
       "attemptedAt": "2026-09-09T03:05:51+00:00",
       "succeededAt": "2026-09-09T03:05:51+00:00",
@@ -2086,7 +2086,7 @@
       "sourceName": "Agilent Attempt 7",
       "sourceType": "public_source",
       "baseUrl": "https://www.investor.agilent.com/overview/default.aspx",
-      "method": "real_browser",
+      "method": "investor_page",
       "cadence": "daily",
       "sourceCount": 0,
       "engineCount": 0,
@@ -5012,7 +5012,7 @@
     },
     {
       "sourceId": "conference-acs-spring-2026",
-      "url": "https://www.acs.org/events/spring.html",
+      "url": "https://www.acs.org/events/all-events/acs-spring-2026.html",
       "required": true,
       "collectionMethod": "official_conference_endpoint_monitor",
       "collectionOutcome": "checked_empty",
@@ -5035,7 +5035,7 @@
       "state": "CURRENT",
       "sourceName": "ACS Spring (American Chemical Society)",
       "sourceType": "Conference/poster",
-      "baseUrl": "https://www.acs.org/events/spring.html",
+      "baseUrl": "https://www.acs.org/events/all-events/acs-spring-2026.html",
       "method": "official_conference_endpoint_monitor",
       "cadence": "weekly",
       "sourceCount": 0,
@@ -6344,11 +6344,6 @@
       "registryStatus": "MANUAL_EVIDENCE_ONLY"
     },
     {
-      "domain": "info.indigobio.com",
-      "referenceCount": 4,
-      "registryStatus": "MANUAL_EVIDENCE_ONLY"
-    },
-    {
       "domain": "informaconnect.com",
       "referenceCount": 188,
       "registryStatus": "REGISTERED"
@@ -6420,7 +6415,7 @@
     },
     {
       "domain": "labwrench.com",
-      "referenceCount": 51,
+      "referenceCount": 46,
       "registryStatus": "REGISTERED"
     },
     {
@@ -6480,7 +6475,7 @@
     },
     {
       "domain": "patents.google.com",
-      "referenceCount": 57,
+      "referenceCount": 15,
       "registryStatus": "MANUAL_EVIDENCE_ONLY"
     },
     {
@@ -6570,7 +6565,7 @@
     },
     {
       "domain": "selectscience.net",
-      "referenceCount": 848,
+      "referenceCount": 732,
       "registryStatus": "REGISTERED"
     },
     {

@@ -1816,7 +1816,7 @@
     },
     {
       "url": "https://www.investor.agilent.com/overview/default.aspx",
-      "fetchMethod": "real_browser",
+      "fetchMethod": "investor_page",
       "httpStatus": 200,
       "status": "available",
       "sourceQuality": "reliable",

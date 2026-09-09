@@ -6943,6 +6943,12 @@
           "sourceUrl": "https://doi.org/10.1021/acs.analchem.5c08210"
         },
         {
+          "title": "Triplet Reservoir Dynamics and Near-Infrared Electrochemiluminescence of Platinum–Acetylide Oligomers",
+          "date": "2026-08-20",
+          "doi": "10.1021/acs.analchem.6c03420",
+          "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c03420"
+        },
+        {
           "title": "Visualizing Polymer Cross-linking Density: A Universal Fluorescence Strategy Based on Aggregation-Induced Emission",
           "date": "2026-08-20",
           "doi": "10.1021/acs.analchem.6c04654",
@@ -8527,16 +8533,16 @@
           "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c02340"
         },
         {
-          "title": "HaloTag-Based FACS-Compatible Assay for Intracellular Haloalkane Detection with a Potential Application to Halogenase Screening",
-          "date": "2026-07-24",
-          "doi": "10.1021/acs.analchem.6c02230",
-          "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c02230"
-        },
-        {
           "title": "Ultrasensitive SERS Detection and AI-Assisted Differentiation of Structurally Similar Pollutants on Flexible Aluminum Substrates",
           "date": "2026-07-24",
           "doi": "10.1021/acs.analchem.6c01951",
           "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c01951"
+        },
+        {
+          "title": "HaloTag-Based FACS-Compatible Assay for Intracellular Haloalkane Detection with a Potential Application to Halogenase Screening",
+          "date": "2026-07-24",
+          "doi": "10.1021/acs.analchem.6c02230",
+          "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c02230"
         },
         {
           "title": "Classification of <i>N</i> -Nitrosamines and Other Nitroso Compounds by Using Tandem Mass Spectrometry Experiments Based on Collision- Activated Dissociation",
@@ -9781,6 +9787,12 @@
           "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c02064"
         },
         {
+          "title": "Machine Learning-Assisted Nanopore for Enhanced Fingerprinting Analysis of Functional Glycans",
+          "date": "2026-06-30",
+          "doi": "10.1021/acs.analchem.6c03225",
+          "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c03225"
+        },
+        {
           "title": "One-Step Chemoenzymatic Labeling and Oxime-Reversible Enrichment for O-GlcNAcylation Profiling under Oxidative Stress",
           "date": "2026-06-30",
           "doi": "10.1021/acs.analchem.6c02009",
@@ -10697,6 +10709,12 @@
           "date": "2026-06-16",
           "doi": "10.1021/acs.analchem.6c01229",
           "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c01229"
+        },
+        {
+          "title": "Streamlined Dual-Readout HPV-16 DNA Sensor Empowered by the Intrinsic Colorimetric and Electrochemiluminescent Activities of Nanocrystalline PCN-224",
+          "date": "2026-06-16",
+          "doi": "10.1021/acs.analchem.6c02325",
+          "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c02325"
         },
         {
           "title": "An Organelle-Orthogonal Dual-Response Probe for In Situ Monitoring of Mitochondrial H <sub>2</sub> O <sub>2</sub> and Lipid Droplet Polarity in Ferroptosis",
@@ -16051,6 +16069,12 @@
           "sourceUrl": "https://doi.org/10.1021/acs.analchem.5c06392"
         },
         {
+          "title": "Stem-Engineered Aptamers with Enhanced Stability and Affinity for Tumor-Targeted Imaging",
+          "date": "2026-03-18",
+          "doi": "10.1021/acs.analchem.5c06759",
+          "sourceUrl": "https://doi.org/10.1021/acs.analchem.5c06759"
+        },
+        {
           "title": "Comparison of Liquid Chromatography- and Nano-Electrospray Ionization-Mass Spectrometry Approaches for Single-Cell Metabolomics",
           "date": "2026-03-18",
           "doi": "10.1021/acs.analchem.5c06318",
@@ -17345,6 +17369,12 @@
           "date": "2026-02-25",
           "doi": "10.1021/acs.analchem.5c07275",
           "sourceUrl": "https://doi.org/10.1021/acs.analchem.5c07275"
+        },
+        {
+          "title": "Endogenous Enzyme-Driven 3D DNA Nanomachines for Simultaneous Intracellular Imaging of miRNA-155 and miRNA-21",
+          "date": "2026-02-25",
+          "doi": "10.1021/acs.analchem.5c07813",
+          "sourceUrl": "https://doi.org/10.1021/acs.analchem.5c07813"
         },
         {
           "title": "Detection of Gaseous Mercuric Halides Using Acetate and Iodide Chemical Ionization Mass Spectrometry",
@@ -34297,6 +34327,12 @@
           "sourceUrl": "https://doi.org/10.1016/j.jchromb.2025.124792"
         },
         {
+          "title": "Therapeutic effects of Panax ginseng polysaccharides on qi deficiency diabetes: Insights from microbiomics and metabolomics",
+          "date": "2025-12-01",
+          "doi": "10.1016/j.jchromb.2025.124781",
+          "sourceUrl": "https://doi.org/10.1016/j.jchromb.2025.124781"
+        },
+        {
           "title": "Eco-friendly microextraction technique using SFO-DLLME coupled with HPTLC for plasma analysis of metformin and imeglimin",
           "date": "2025-12-01",
           "doi": "10.1016/j.jchromb.2025.124791",
@@ -50657,6 +50693,12 @@
           "date": "2026-01-01",
           "doi": "10.1016/j.talanta.2025.128766",
           "sourceUrl": "https://doi.org/10.1016/j.talanta.2025.128766"
+        },
+        {
+          "title": "Smart and sustainable 3D-printed electrochemical device for diclofenac remediation and monitoring in water",
+          "date": "2026-01-01",
+          "doi": "10.1016/j.talanta.2025.128597",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2025.128597"
         },
         {
           "title": "Lanthanum strontium cobalt ferrite [La0.6Sr0.4Co0.2Fe0.8O3-δ] alloyed impedimetric sensing platform for human papillomavirus type 16 mutant DNA detection",

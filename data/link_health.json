@@ -697,7 +697,7 @@
   },
   {
     "url": "https://api.crossref.org/journals/1044-0305/works",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://api.crossref.org/journals/1044-0305/works",
     "checkedAt": "2026-09-09T03:10:06+00:00",
     "status": "blocked",
@@ -1545,7 +1545,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22Agilent+1290%22+OR+%22Agilent+InfinityLab%22+OR+%22Agilent+LC%2FMS%22+OR+%22Agilent+6495%22+OR+%22Ultivo%22%29+AND+%28%222023%2F08%2F05%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F04%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22Agilent+1290%22+OR+%22Agilent+InfinityLab%22+OR+%22Agilent+LC%2FMS%22+OR+%22Agilent+6495%22+OR+%22Ultivo%22%29+AND+%28%222023%2F08%2F05%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F04%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:10:14+00:00",
     "status": "blocked",
@@ -1561,7 +1561,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22Agilent+1290%22+OR+%22Agilent+InfinityLab%22+OR+%22Agilent+LC%2FMS%22+OR+%22Agilent+6495%22+OR+%22Ultivo%22%29+AND+%28%222023%2F08%2F07%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F06%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22Agilent+1290%22+OR+%22Agilent+InfinityLab%22+OR+%22Agilent+LC%2FMS%22+OR+%22Agilent+6495%22+OR+%22Ultivo%22%29+AND+%28%222023%2F08%2F07%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F06%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:10:14+00:00",
     "status": "blocked",
@@ -1721,7 +1721,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22Agilent+1290%22+OR+%22Agilent+InfinityLab%22+OR+%22Agilent+LC%2FMS%22+OR+%22Agilent+6495%22+OR+%22Ultivo%22%29+AND+%28%222025%2F08%2F05%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F05%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 200,
+    "httpStatus": 429,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22Agilent+1290%22+OR+%22Agilent+InfinityLab%22+OR+%22Agilent+LC%2FMS%22+OR+%22Agilent+6495%22+OR+%22Ultivo%22%29+AND+%28%222025%2F08%2F05%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F05%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:10:16+00:00",
     "status": "ok",
@@ -1745,7 +1745,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22Agilent+1290%22+OR+%22Agilent+InfinityLab%22+OR+%22Agilent+LC%2FMS%22+OR+%22Agilent+6495%22+OR+%22Ultivo%22%29+AND+%28%222025%2F08%2F08%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F08%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22Agilent+1290%22+OR+%22Agilent+InfinityLab%22+OR+%22Agilent+LC%2FMS%22+OR+%22Agilent+6495%22+OR+%22Ultivo%22%29+AND+%28%222025%2F08%2F08%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F08%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:10:16+00:00",
     "status": "blocked",
@@ -3361,7 +3361,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22PerkinElmer+QSight%22+OR+%22PerkinElmer+LC%22+OR+%22PerkinElmer+chromatography%22%29+AND+%28%222021%2F08%2F01%22%5BDate+-+Publication%5D+%3A+%222026%2F07%2F31%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22PerkinElmer+QSight%22+OR+%22PerkinElmer+LC%22+OR+%22PerkinElmer+chromatography%22%29+AND+%28%222021%2F08%2F01%22%5BDate+-+Publication%5D+%3A+%222026%2F07%2F31%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:10:32+00:00",
     "status": "blocked",
@@ -3417,7 +3417,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22PerkinElmer+QSight%22+OR+%22PerkinElmer+LC%22+OR+%22PerkinElmer+chromatography%22%29+AND+%28%222021%2F08%2F08%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F07%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22PerkinElmer+QSight%22+OR+%22PerkinElmer+LC%22+OR+%22PerkinElmer+chromatography%22%29+AND+%28%222021%2F08%2F08%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F07%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:10:33+00:00",
     "status": "blocked",
@@ -3449,7 +3449,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22PerkinElmer+QSight%22+OR+%22PerkinElmer+LC%22+OR+%22PerkinElmer+chromatography%22%29+AND+%28%222021%2F08%2F13%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F12%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22PerkinElmer+QSight%22+OR+%22PerkinElmer+LC%22+OR+%22PerkinElmer+chromatography%22%29+AND+%28%222021%2F08%2F13%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F12%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:10:33+00:00",
     "status": "blocked",
@@ -3465,7 +3465,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22PerkinElmer+QSight%22+OR+%22PerkinElmer+LC%22+OR+%22PerkinElmer+chromatography%22%29+AND+%28%222021%2F08%2F15%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F14%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22PerkinElmer+QSight%22+OR+%22PerkinElmer+LC%22+OR+%22PerkinElmer+chromatography%22%29+AND+%28%222021%2F08%2F15%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F14%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:10:34+00:00",
     "status": "blocked",
@@ -3561,7 +3561,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22PerkinElmer+QSight%22+OR+%22PerkinElmer+LC%22+OR+%22PerkinElmer+chromatography%22%29+AND+%28%222023%2F08%2F05%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F04%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22PerkinElmer+QSight%22+OR+%22PerkinElmer+LC%22+OR+%22PerkinElmer+chromatography%22%29+AND+%28%222023%2F08%2F05%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F04%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:10:35+00:00",
     "status": "blocked",
@@ -3577,7 +3577,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22PerkinElmer+QSight%22+OR+%22PerkinElmer+LC%22+OR+%22PerkinElmer+chromatography%22%29+AND+%28%222023%2F08%2F07%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F06%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22PerkinElmer+QSight%22+OR+%22PerkinElmer+LC%22+OR+%22PerkinElmer+chromatography%22%29+AND+%28%222023%2F08%2F07%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F06%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:10:35+00:00",
     "status": "blocked",
@@ -3585,7 +3585,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22PerkinElmer+QSight%22+OR+%22PerkinElmer+LC%22+OR+%22PerkinElmer+chromatography%22%29+AND+%28%222023%2F08%2F08%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F07%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22PerkinElmer+QSight%22+OR+%22PerkinElmer+LC%22+OR+%22PerkinElmer+chromatography%22%29+AND+%28%222023%2F08%2F08%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F07%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:10:35+00:00",
     "status": "blocked",
@@ -3593,7 +3593,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22PerkinElmer+QSight%22+OR+%22PerkinElmer+LC%22+OR+%22PerkinElmer+chromatography%22%29+AND+%28%222023%2F08%2F09%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F08%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22PerkinElmer+QSight%22+OR+%22PerkinElmer+LC%22+OR+%22PerkinElmer+chromatography%22%29+AND+%28%222023%2F08%2F09%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F08%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:10:36+00:00",
     "status": "blocked",
@@ -3753,7 +3753,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22PerkinElmer+QSight%22+OR+%22PerkinElmer+LC%22+OR+%22PerkinElmer+chromatography%22%29+AND+%28%222025%2F08%2F07%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F07%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22PerkinElmer+QSight%22+OR+%22PerkinElmer+LC%22+OR+%22PerkinElmer+chromatography%22%29+AND+%28%222025%2F08%2F07%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F07%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:10:38+00:00",
     "status": "blocked",
@@ -3761,7 +3761,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22PerkinElmer+QSight%22+OR+%22PerkinElmer+LC%22+OR+%22PerkinElmer+chromatography%22%29+AND+%28%222025%2F08%2F08%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F08%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22PerkinElmer+QSight%22+OR+%22PerkinElmer+LC%22+OR+%22PerkinElmer+chromatography%22%29+AND+%28%222025%2F08%2F08%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F08%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:10:38+00:00",
     "status": "blocked",
@@ -3769,7 +3769,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22PerkinElmer+QSight%22+OR+%22PerkinElmer+LC%22+OR+%22PerkinElmer+chromatography%22%29+AND+%28%222025%2F08%2F09%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F09%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22PerkinElmer+QSight%22+OR+%22PerkinElmer+LC%22+OR+%22PerkinElmer+chromatography%22%29+AND+%28%222025%2F08%2F09%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F09%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:10:38+00:00",
     "status": "blocked",
@@ -5193,7 +5193,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22SCIEX%22+OR+%22ZenoTOF%22+OR+%22TripleTOF%22+OR+%22QTRAP%22+OR+%22Echo+MS%22%29+AND+%28%222026%2F06%2F30%22%5BDate+-+Publication%5D+%3A+%222026%2F07%2F30%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22SCIEX%22+OR+%22ZenoTOF%22+OR+%22TripleTOF%22+OR+%22QTRAP%22+OR+%22Echo+MS%22%29+AND+%28%222026%2F06%2F30%22%5BDate+-+Publication%5D+%3A+%222026%2F07%2F30%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:10:50+00:00",
     "status": "blocked",
@@ -5201,7 +5201,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22SCIEX%22+OR+%22ZenoTOF%22+OR+%22TripleTOF%22+OR+%22QTRAP%22+OR+%22Echo+MS%22%29+AND+%28%222026%2F07%2F01%22%5BDate+-+Publication%5D+%3A+%222026%2F07%2F31%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22SCIEX%22+OR+%22ZenoTOF%22+OR+%22TripleTOF%22+OR+%22QTRAP%22+OR+%22Echo+MS%22%29+AND+%28%222026%2F07%2F01%22%5BDate+-+Publication%5D+%3A+%222026%2F07%2F31%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:10:50+00:00",
     "status": "blocked",
@@ -5209,7 +5209,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22SCIEX%22+OR+%22ZenoTOF%22+OR+%22TripleTOF%22+OR+%22QTRAP%22+OR+%22Echo+MS%22%29+AND+%28%222026%2F07%2F02%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F01%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22SCIEX%22+OR+%22ZenoTOF%22+OR+%22TripleTOF%22+OR+%22QTRAP%22+OR+%22Echo+MS%22%29+AND+%28%222026%2F07%2F02%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F01%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:10:50+00:00",
     "status": "blocked",
@@ -5305,7 +5305,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22SCIEX%22+OR+%22ZenoTOF%22+OR+%22TripleTOF%22+OR+%22QTRAP%22+OR+%22Echo+MS%22%29+AND+%28%222026%2F07%2F14%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F13%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22SCIEX%22+OR+%22ZenoTOF%22+OR+%22TripleTOF%22+OR+%22QTRAP%22+OR+%22Echo+MS%22%29+AND+%28%222026%2F07%2F14%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F13%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:10:51+00:00",
     "status": "blocked",
@@ -5321,7 +5321,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22SCIEX%22+OR+%22ZenoTOF%22+OR+%22TripleTOF%22+OR+%22QTRAP%22+OR+%22Echo+MS%22%29+AND+%28%222026%2F07%2F16%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F15%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22SCIEX%22+OR+%22ZenoTOF%22+OR+%22TripleTOF%22+OR+%22QTRAP%22+OR+%22Echo+MS%22%29+AND+%28%222026%2F07%2F16%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F15%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:10:51+00:00",
     "status": "blocked",
@@ -5329,7 +5329,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22SCIEX%22+OR+%22ZenoTOF%22+OR+%22TripleTOF%22+OR+%22QTRAP%22+OR+%22Echo+MS%22%29+AND+%28%222026%2F07%2F17%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F16%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22SCIEX%22+OR+%22ZenoTOF%22+OR+%22TripleTOF%22+OR+%22QTRAP%22+OR+%22Echo+MS%22%29+AND+%28%222026%2F07%2F17%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F16%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:10:52+00:00",
     "status": "blocked",
@@ -5449,7 +5449,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22Shimadzu+LCMS%22+OR+%22Shimadzu+Nexera%22+OR+%22LCMS-8060%22+OR+%22LCMS-9030%22+OR+%22LCMS-9050%22%29+AND+%28%222021%2F08%2F10%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F09%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22Shimadzu+LCMS%22+OR+%22Shimadzu+Nexera%22+OR+%22LCMS-8060%22+OR+%22LCMS-9030%22+OR+%22LCMS-9050%22%29+AND+%28%222021%2F08%2F10%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F09%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:10:53+00:00",
     "status": "blocked",
@@ -5457,7 +5457,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22Shimadzu+LCMS%22+OR+%22Shimadzu+Nexera%22+OR+%22LCMS-8060%22+OR+%22LCMS-9030%22+OR+%22LCMS-9050%22%29+AND+%28%222021%2F08%2F11%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F10%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22Shimadzu+LCMS%22+OR+%22Shimadzu+Nexera%22+OR+%22LCMS-8060%22+OR+%22LCMS-9030%22+OR+%22LCMS-9050%22%29+AND+%28%222021%2F08%2F11%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F10%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:10:53+00:00",
     "status": "blocked",
@@ -5473,7 +5473,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22Shimadzu+LCMS%22+OR+%22Shimadzu+Nexera%22+OR+%22LCMS-8060%22+OR+%22LCMS-9030%22+OR+%22LCMS-9050%22%29+AND+%28%222021%2F08%2F14%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F13%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%22Shimadzu+LCMS%22+OR+%22Shimadzu+Nexera%22+OR+%22LCMS-8060%22+OR+%22LCMS-9030%22+OR+%22LCMS-9050%22%29+AND+%28%222021%2F08%2F14%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F13%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:10:53+00:00",
     "status": "blocked",
@@ -6737,7 +6737,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28%22laboratory+automation%22+OR+%22workflow+software%22+OR+%22AI%22%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222025%2F08%2F02%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F02%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28%22laboratory+automation%22+OR+%22workflow+software%22+OR+%22AI%22%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222025%2F08%2F02%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F02%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:11:06+00:00",
     "status": "blocked",
@@ -6753,7 +6753,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28%22laboratory+automation%22+OR+%22workflow+software%22+OR+%22AI%22%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222025%2F08%2F04%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F04%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28%22laboratory+automation%22+OR+%22workflow+software%22+OR+%22AI%22%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222025%2F08%2F04%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F04%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:11:06+00:00",
     "status": "blocked",
@@ -6761,7 +6761,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28%22laboratory+automation%22+OR+%22workflow+software%22+OR+%22AI%22%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222025%2F08%2F05%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F05%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28%22laboratory+automation%22+OR+%22workflow+software%22+OR+%22AI%22%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222025%2F08%2F05%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F05%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:11:06+00:00",
     "status": "blocked",
@@ -6769,7 +6769,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28%22laboratory+automation%22+OR+%22workflow+software%22+OR+%22AI%22%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222025%2F08%2F06%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F06%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28%22laboratory+automation%22+OR+%22workflow+software%22+OR+%22AI%22%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222025%2F08%2F06%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F06%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:11:06+00:00",
     "status": "blocked",
@@ -6849,7 +6849,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28%22laboratory+automation%22+OR+%22workflow+software%22+OR+%22AI%22%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222025%2F08%2F17%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F17%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28%22laboratory+automation%22+OR+%22workflow+software%22+OR+%22AI%22%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222025%2F08%2F17%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F17%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:11:06+00:00",
     "status": "blocked",
@@ -6857,7 +6857,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28%22laboratory+automation%22+OR+%22workflow+software%22+OR+%22AI%22%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222025%2F08%2F20%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F20%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28%22laboratory+automation%22+OR+%22workflow+software%22+OR+%22AI%22%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222025%2F08%2F20%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F20%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:11:07+00:00",
     "status": "blocked",
@@ -6905,7 +6905,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28%22laboratory+automation%22+OR+%22workflow+software%22+OR+%22AI%22%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222026%2F05%2F04%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F02%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28%22laboratory+automation%22+OR+%22workflow+software%22+OR+%22AI%22%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222026%2F05%2F04%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F02%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:11:07+00:00",
     "status": "blocked",
@@ -6985,7 +6985,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28%22laboratory+automation%22+OR+%22workflow+software%22+OR+%22AI%22%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222026%2F05%2F15%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F13%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28%22laboratory+automation%22+OR+%22workflow+software%22+OR+%22AI%22%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222026%2F05%2F15%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F13%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:11:08+00:00",
     "status": "blocked",
@@ -6993,7 +6993,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28%22laboratory+automation%22+OR+%22workflow+software%22+OR+%22AI%22%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222026%2F05%2F16%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F14%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28%22laboratory+automation%22+OR+%22workflow+software%22+OR+%22AI%22%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222026%2F05%2F16%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F14%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:11:08+00:00",
     "status": "blocked",
@@ -7017,7 +7017,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28%22laboratory+automation%22+OR+%22workflow+software%22+OR+%22AI%22%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222026%2F05%2F19%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F17%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28%22laboratory+automation%22+OR+%22workflow+software%22+OR+%22AI%22%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222026%2F05%2F19%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F17%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:11:08+00:00",
     "status": "blocked",
@@ -7105,7 +7105,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28%22laboratory+automation%22+OR+%22workflow+software%22+OR+%22AI%22%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222026%2F06%2F08%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F07%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28%22laboratory+automation%22+OR+%22workflow+software%22+OR+%22AI%22%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222026%2F06%2F08%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F07%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:11:09+00:00",
     "status": "blocked",
@@ -7113,7 +7113,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28%22laboratory+automation%22+OR+%22workflow+software%22+OR+%22AI%22%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222026%2F06%2F09%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F08%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28%22laboratory+automation%22+OR+%22workflow+software%22+OR+%22AI%22%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222026%2F06%2F09%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F08%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:11:09+00:00",
     "status": "blocked",
@@ -8393,7 +8393,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28PFAS+OR+%22per-+and+polyfluoroalkyl%22%29+AND+%28%22LC-MS%22+OR+%22LC-MS%2FMS%22+OR+chromatography%29%29+AND+%28%222021%2F07%2F31%22%5BDate+-+Publication%5D+%3A+%222026%2F07%2F30%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28PFAS+OR+%22per-+and+polyfluoroalkyl%22%29+AND+%28%22LC-MS%22+OR+%22LC-MS%2FMS%22+OR+chromatography%29%29+AND+%28%222021%2F07%2F31%22%5BDate+-+Publication%5D+%3A+%222026%2F07%2F30%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:11:19+00:00",
     "status": "blocked",
@@ -8401,7 +8401,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28PFAS+OR+%22per-+and+polyfluoroalkyl%22%29+AND+%28%22LC-MS%22+OR+%22LC-MS%2FMS%22+OR+chromatography%29%29+AND+%28%222021%2F08%2F01%22%5BDate+-+Publication%5D+%3A+%222026%2F07%2F31%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28PFAS+OR+%22per-+and+polyfluoroalkyl%22%29+AND+%28%22LC-MS%22+OR+%22LC-MS%2FMS%22+OR+chromatography%29%29+AND+%28%222021%2F08%2F01%22%5BDate+-+Publication%5D+%3A+%222026%2F07%2F31%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:11:20+00:00",
     "status": "blocked",
@@ -8497,7 +8497,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28PFAS+OR+%22per-+and+polyfluoroalkyl%22%29+AND+%28%22LC-MS%22+OR+%22LC-MS%2FMS%22+OR+chromatography%29%29+AND+%28%222021%2F08%2F14%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F13%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28PFAS+OR+%22per-+and+polyfluoroalkyl%22%29+AND+%28%22LC-MS%22+OR+%22LC-MS%2FMS%22+OR+chromatography%29%29+AND+%28%222021%2F08%2F14%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F13%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:11:20+00:00",
     "status": "blocked",
@@ -8513,7 +8513,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28PFAS+OR+%22per-+and+polyfluoroalkyl%22%29+AND+%28%22LC-MS%22+OR+%22LC-MS%2FMS%22+OR+chromatography%29%29+AND+%28%222021%2F08%2F16%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F15%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28PFAS+OR+%22per-+and+polyfluoroalkyl%22%29+AND+%28%22LC-MS%22+OR+%22LC-MS%2FMS%22+OR+chromatography%29%29+AND+%28%222021%2F08%2F16%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F15%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:11:20+00:00",
     "status": "blocked",
@@ -8529,7 +8529,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28PFAS+OR+%22per-+and+polyfluoroalkyl%22%29+AND+%28%22LC-MS%22+OR+%22LC-MS%2FMS%22+OR+chromatography%29%29+AND+%28%222021%2F08%2F18%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F17%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28PFAS+OR+%22per-+and+polyfluoroalkyl%22%29+AND+%28%22LC-MS%22+OR+%22LC-MS%2FMS%22+OR+chromatography%29%29+AND+%28%222021%2F08%2F18%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F17%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:11:21+00:00",
     "status": "blocked",
@@ -8697,7 +8697,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28PFAS+OR+%22per-+and+polyfluoroalkyl%22%29+AND+%28%22LC-MS%22+OR+%22LC-MS%2FMS%22+OR+chromatography%29%29+AND+%28%222023%2F08%2F18%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F17%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28PFAS+OR+%22per-+and+polyfluoroalkyl%22%29+AND+%28%22LC-MS%22+OR+%22LC-MS%2FMS%22+OR+chromatography%29%29+AND+%28%222023%2F08%2F18%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F17%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:11:23+00:00",
     "status": "blocked",
@@ -8705,7 +8705,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28PFAS+OR+%22per-+and+polyfluoroalkyl%22%29+AND+%28%22LC-MS%22+OR+%22LC-MS%2FMS%22+OR+chromatography%29%29+AND+%28%222023%2F08%2F21%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F20%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28PFAS+OR+%22per-+and+polyfluoroalkyl%22%29+AND+%28%22LC-MS%22+OR+%22LC-MS%2FMS%22+OR+chromatography%29%29+AND+%28%222023%2F08%2F21%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F20%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:11:23+00:00",
     "status": "blocked",
@@ -8729,7 +8729,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28PFAS+OR+%22per-+and+polyfluoroalkyl%22%29+AND+%28%22LC-MS%22+OR+%22LC-MS%2FMS%22+OR+chromatography%29%29+AND+%28%222025%2F07%2F30%22%5BDate+-+Publication%5D+%3A+%222026%2F07%2F30%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28PFAS+OR+%22per-+and+polyfluoroalkyl%22%29+AND+%28%22LC-MS%22+OR+%22LC-MS%2FMS%22+OR+chromatography%29%29+AND+%28%222025%2F07%2F30%22%5BDate+-+Publication%5D+%3A+%222026%2F07%2F30%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:11:23+00:00",
     "status": "blocked",
@@ -10073,7 +10073,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28oligonucleotide+OR+%22nucleic+acid%22+OR+siRNA%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222026%2F06%2F01%22%5BDate+-+Publication%5D+%3A+%222026%2F07%2F31%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28oligonucleotide+OR+%22nucleic+acid%22+OR+siRNA%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222026%2F06%2F01%22%5BDate+-+Publication%5D+%3A+%222026%2F07%2F31%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:11:36+00:00",
     "status": "blocked",
@@ -10081,7 +10081,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28oligonucleotide+OR+%22nucleic+acid%22+OR+siRNA%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222026%2F06%2F02%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F01%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28oligonucleotide+OR+%22nucleic+acid%22+OR+siRNA%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222026%2F06%2F02%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F01%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:11:36+00:00",
     "status": "blocked",
@@ -10089,7 +10089,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28oligonucleotide+OR+%22nucleic+acid%22+OR+siRNA%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222026%2F06%2F03%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F02%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28oligonucleotide+OR+%22nucleic+acid%22+OR+siRNA%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222026%2F06%2F03%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F02%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:11:36+00:00",
     "status": "blocked",
@@ -10217,7 +10217,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28oligonucleotide+OR+%22nucleic+acid%22+OR+siRNA%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222026%2F06%2F21%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F20%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28oligonucleotide+OR+%22nucleic+acid%22+OR+siRNA%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222026%2F06%2F21%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F20%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:11:38+00:00",
     "status": "blocked",
@@ -10233,7 +10233,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28oligonucleotide+OR+%22nucleic+acid%22+OR+siRNA%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222026%2F06%2F30%22%5BDate+-+Publication%5D+%3A+%222026%2F07%2F30%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28oligonucleotide+OR+%22nucleic+acid%22+OR+siRNA%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222026%2F06%2F30%22%5BDate+-+Publication%5D+%3A+%222026%2F07%2F30%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:11:38+00:00",
     "status": "blocked",
@@ -10257,7 +10257,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28oligonucleotide+OR+%22nucleic+acid%22+OR+siRNA%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222026%2F07%2F03%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F02%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28oligonucleotide+OR+%22nucleic+acid%22+OR+siRNA%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222026%2F07%2F03%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F02%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:11:38+00:00",
     "status": "blocked",
@@ -10377,7 +10377,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28oligonucleotide+OR+%22nucleic+acid%22+OR+siRNA%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222026%2F07%2F18%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F17%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28oligonucleotide+OR+%22nucleic+acid%22+OR+siRNA%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222026%2F07%2F18%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F17%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:11:39+00:00",
     "status": "blocked",
@@ -10385,7 +10385,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28oligonucleotide+OR+%22nucleic+acid%22+OR+siRNA%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222026%2F07%2F21%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F20%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28oligonucleotide+OR+%22nucleic+acid%22+OR+siRNA%29+AND+%28%22LC-MS%22+OR+chromatography+OR+%22mass+spectrometry%22%29%29+AND+%28%222026%2F07%2F21%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F20%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:11:39+00:00",
     "status": "blocked",
@@ -10441,7 +10441,7 @@
   },
   {
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28proteomics+OR+metabolomics%29+AND+%28%22LC-MS%22+OR+Orbitrap+OR+%22mass+spectrometry%22%29%29+AND+%28%222021%2F08%2F04%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F03%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
-    "httpStatus": 429,
+    "httpStatus": 200,
     "finalUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%28%28proteomics+OR+metabolomics%29+AND+%28%22LC-MS%22+OR+Orbitrap+OR+%22mass+spectrometry%22%29%29+AND+%28%222021%2F08%2F04%22%5BDate+-+Publication%5D+%3A+%222026%2F08%2F03%22%5BDate+-+Publication%5D%29&retmode=json&retmax=0",
     "checkedAt": "2026-09-09T03:11:39+00:00",
     "status": "blocked",
@@ -12353,7 +12353,7 @@
   },
   {
     "url": "https://ir.waters.com/News--Events/newsroom/news-details/2015/Waters-Introduces-the-New-ACQUITY-Arc-System-Designed-as-a-Bridge-between-HPLC-and-UPLC-Methods/default.aspx",
-    "httpStatus": 200,
+    "httpStatus": 429,
     "finalUrl": "https://ir.waters.com/News--Events/newsroom/news-details/2015/Waters-Introduces-the-New-ACQUITY-Arc-System-Designed-as-a-Bridge-between-HPLC-and-UPLC-Methods/default.aspx",
     "checkedAt": "2026-09-09T03:11:59+00:00",
     "status": "blocked",
@@ -12361,7 +12361,7 @@
   },
   {
     "url": "https://ir.waters.com/News--Events/newsroom/news-details/2020/Waters-Introduces-the-New-Arc-High-Performance-Liquid-Chromatograph-to-Help-Laboratories-Meet-Quality-and-Production-Targets/default.aspx",
-    "httpStatus": 200,
+    "httpStatus": 429,
     "finalUrl": "https://ir.waters.com/News--Events/newsroom/news-details/2020/Waters-Introduces-the-New-Arc-High-Performance-Liquid-Chromatograph-to-Help-Laboratories-Meet-Quality-and-Production-Targets/default.aspx",
     "checkedAt": "2026-09-09T03:11:59+00:00",
     "status": "blocked",
@@ -12369,7 +12369,7 @@
   },
   {
     "url": "https://ir.waters.com/News--Events/newsroom/news-details/2021/Waters-Arc-Premier-System-Delivers-Increased-Precision-and-Certainty-in-Chromatographic-Results/default.aspx",
-    "httpStatus": 200,
+    "httpStatus": 429,
     "finalUrl": "https://ir.waters.com/News--Events/newsroom/news-details/2021/Waters-Arc-Premier-System-Delivers-Increased-Precision-and-Certainty-in-Chromatographic-Results/default.aspx",
     "checkedAt": "2026-09-09T03:11:59+00:00",
     "status": "blocked",
@@ -12377,7 +12377,7 @@
   },
   {
     "url": "https://ir.waters.com/News--Events/newsroom/news-details/2021/Waters-BioAccord-System-with-ACQUITY-Premier-Brings-Greater-Simplicity-Accuracy-and-Reproducibility-to-Multi-Attribute-Monitoring-of-Biopharmaceuticals/default.aspx",
-    "httpStatus": 200,
+    "httpStatus": 429,
     "finalUrl": "https://ir.waters.com/News--Events/newsroom/news-details/2021/Waters-BioAccord-System-with-ACQUITY-Premier-Brings-Greater-Simplicity-Accuracy-and-Reproducibility-to-Multi-Attribute-Monitoring-of-Biopharmaceuticals/default.aspx",
     "checkedAt": "2026-09-09T03:11:59+00:00",
     "status": "blocked",
@@ -12385,7 +12385,7 @@
   },
   {
     "url": "https://ir.waters.com/News--Events/newsroom/news-details/2022/Waters-Introduces-Xevo-TQ-Absolute--The-Most-Sensitive-and-Compact-Benchtop-Tandem-Quadrupole-Mass-Spectrometer/default.aspx",
-    "httpStatus": 200,
+    "httpStatus": 429,
     "finalUrl": "https://ir.waters.com/News--Events/newsroom/news-details/2022/Waters-Introduces-Xevo-TQ-Absolute--The-Most-Sensitive-and-Compact-Benchtop-Tandem-Quadrupole-Mass-Spectrometer/default.aspx",
     "checkedAt": "2026-09-09T03:11:59+00:00",
     "status": "blocked",
@@ -12393,7 +12393,7 @@
   },
   {
     "url": "https://ir.waters.com/News--Events/newsroom/news-details/2023/Waters-Introduces-Next-Generation-Alliance-iS-HPLC-System-Aimed-at-Reducing-Up-to-40-of-Common-Lab-Errors/default.aspx",
-    "httpStatus": 200,
+    "httpStatus": 429,
     "finalUrl": "https://ir.waters.com/News--Events/newsroom/news-details/2023/Waters-Introduces-Next-Generation-Alliance-iS-HPLC-System-Aimed-at-Reducing-Up-to-40-of-Common-Lab-Errors/default.aspx",
     "checkedAt": "2026-09-09T03:12:00+00:00",
     "status": "blocked",
@@ -12401,7 +12401,7 @@
   },
   {
     "url": "https://ir.waters.com/News--Events/newsroom/news-details/2024/Waters-ACQUITY-QDa-II-Mass-Detector-Delivers-Wider-Range-of-Chemical-Analysis-within-Cost-Effective-Lower-Energy-Instrument/default.aspx",
-    "httpStatus": 200,
+    "httpStatus": 429,
     "finalUrl": "https://ir.waters.com/News--Events/newsroom/news-details/2024/Waters-ACQUITY-QDa-II-Mass-Detector-Delivers-Wider-Range-of-Chemical-Analysis-within-Cost-Effective-Lower-Energy-Instrument/default.aspx",
     "checkedAt": "2026-09-09T03:12:00+00:00",
     "status": "blocked",
@@ -12409,7 +12409,7 @@
   },
   {
     "url": "https://ir.waters.com/News--Events/newsroom/news-details/2024/Waters-Launches-Alliance-iS-Bio-HPLC-System-to-Help-Biopharma-QC-Labs-Increase-Efficiency-and-Reduce-Errors/default.aspx",
-    "httpStatus": 200,
+    "httpStatus": 429,
     "finalUrl": "https://ir.waters.com/News--Events/newsroom/news-details/2024/Waters-Launches-Alliance-iS-Bio-HPLC-System-to-Help-Biopharma-QC-Labs-Increase-Efficiency-and-Reduce-Errors/default.aspx",
     "checkedAt": "2026-09-09T03:12:00+00:00",
     "status": "blocked",
@@ -12417,7 +12417,7 @@
   },
   {
     "url": "https://ir.waters.com/News--Events/newsroom/news-details/2024/Waters-Sets-New-Standards-for-High-Resolution-Performance-and-Speed-with-Xevo-MRT-Mass-Spectrometer/default.aspx",
-    "httpStatus": 200,
+    "httpStatus": 429,
     "finalUrl": "https://ir.waters.com/News--Events/newsroom/news-details/2024/Waters-Sets-New-Standards-for-High-Resolution-Performance-and-Speed-with-Xevo-MRT-Mass-Spectrometer/default.aspx",
     "checkedAt": "2026-09-09T03:12:00+00:00",
     "status": "blocked",
@@ -12425,7 +12425,7 @@
   },
   {
     "url": "https://ir.waters.com/News--Events/newsroom/news-details/2025/Waters-Sets-a-New-Benchmark-for-Robustness-and-Sensitivity-for-High-Throughput-Labs-with-the-Xevo-TQ-Absolute-XR-Mass-Spectrometer/default.aspx",
-    "httpStatus": 200,
+    "httpStatus": 429,
     "finalUrl": "https://ir.waters.com/News--Events/newsroom/news-details/2025/Waters-Sets-a-New-Benchmark-for-Robustness-and-Sensitivity-for-High-Throughput-Labs-with-the-Xevo-TQ-Absolute-XR-Mass-Spectrometer/default.aspx",
     "checkedAt": "2026-09-09T03:12:00+00:00",
     "status": "blocked",
@@ -12641,7 +12641,7 @@
   },
   {
     "url": "https://patents.google.com/patent/EP4437580A1/en",
-    "httpStatus": 200,
+    "httpStatus": 503,
     "finalUrl": "https://patents.google.com/patent/EP4437580A1/en",
     "checkedAt": "2026-09-09T03:12:02+00:00",
     "status": "ok",
@@ -12649,7 +12649,7 @@
   },
   {
     "url": "https://patents.google.com/patent/GB2641122A/en",
-    "httpStatus": 200,
+    "httpStatus": 503,
     "finalUrl": "https://patents.google.com/patent/GB2641122A/en",
     "checkedAt": "2026-09-09T03:12:02+00:00",
     "status": "ok",
@@ -12657,7 +12657,7 @@
   },
   {
     "url": "https://patents.google.com/patent/GB2700180A/en",
-    "httpStatus": 200,
+    "httpStatus": 503,
     "finalUrl": "https://patents.google.com/patent/GB2700180A/en",
     "checkedAt": "2026-09-09T03:12:02+00:00",
     "status": "ok",
@@ -12665,7 +12665,7 @@
   },
   {
     "url": "https://patents.google.com/patent/JP2026036533A/en",
-    "httpStatus": 200,
+    "httpStatus": 503,
     "finalUrl": "https://patents.google.com/patent/JP2026036533A/en",
     "checkedAt": "2026-09-09T03:12:02+00:00",
     "status": "ok",
@@ -12673,7 +12673,7 @@
   },
   {
     "url": "https://patents.google.com/patent/US11961727B2/en",
-    "httpStatus": 200,
+    "httpStatus": 503,
     "finalUrl": "https://patents.google.com/patent/US11961727B2/en",
     "checkedAt": "2026-09-09T03:12:02+00:00",
     "status": "ok",
@@ -12681,7 +12681,7 @@
   },
   {
     "url": "https://patents.google.com/patent/US12051584B2/en",
-    "httpStatus": 200,
+    "httpStatus": 503,
     "finalUrl": "https://patents.google.com/patent/US12051584B2/en",
     "checkedAt": "2026-09-09T03:12:02+00:00",
     "status": "ok",
@@ -12689,7 +12689,7 @@
   },
   {
     "url": "https://patents.google.com/patent/US12374536B2/en",
-    "httpStatus": 200,
+    "httpStatus": 503,
     "finalUrl": "https://patents.google.com/patent/US12374536B2/en",
     "checkedAt": "2026-09-09T03:12:03+00:00",
     "status": "ok",
@@ -12697,7 +12697,7 @@
   },
   {
     "url": "https://patents.google.com/patent/US12387925B2/en",
-    "httpStatus": 200,
+    "httpStatus": 503,
     "finalUrl": "https://patents.google.com/patent/US12387925B2/en",
     "checkedAt": "2026-09-09T03:12:03+00:00",
     "status": "ok",
@@ -12705,7 +12705,7 @@
   },
   {
     "url": "https://patents.google.com/patent/US12512308B2/en",
-    "httpStatus": 200,
+    "httpStatus": 503,
     "finalUrl": "https://patents.google.com/patent/US12512308B2/en",
     "checkedAt": "2026-09-09T03:12:03+00:00",
     "status": "ok",
@@ -12713,7 +12713,7 @@
   },
   {
     "url": "https://patents.google.com/patent/US12531224B2/en",
-    "httpStatus": 200,
+    "httpStatus": 503,
     "finalUrl": "https://patents.google.com/patent/US12531224B2/en",
     "checkedAt": "2026-09-09T03:12:03+00:00",
     "status": "ok",
@@ -12721,7 +12721,7 @@
   },
   {
     "url": "https://patents.google.com/patent/US12546753B2/en",
-    "httpStatus": 200,
+    "httpStatus": 503,
     "finalUrl": "https://patents.google.com/patent/US12546753B2/en",
     "checkedAt": "2026-09-09T03:12:03+00:00",
     "status": "ok",
@@ -12729,7 +12729,7 @@
   },
   {
     "url": "https://patents.google.com/patent/US12548747B2/en",
-    "httpStatus": 200,
+    "httpStatus": 503,
     "finalUrl": "https://patents.google.com/patent/US12548747B2/en",
     "checkedAt": "2026-09-09T03:12:03+00:00",
     "status": "ok",
@@ -12737,7 +12737,7 @@
   },
   {
     "url": "https://patents.google.com/patent/US20240159720A1/en",
-    "httpStatus": 200,
+    "httpStatus": 503,
     "finalUrl": "https://patents.google.com/patent/US20240159720A1/en",
     "checkedAt": "2026-09-09T03:12:03+00:00",
     "status": "ok",
@@ -12745,7 +12745,7 @@
   },
   {
     "url": "https://patents.google.com/patent/US20250079143A1/en",
-    "httpStatus": 200,
+    "httpStatus": 503,
     "finalUrl": "https://patents.google.com/patent/US20250079143A1/en",
     "checkedAt": "2026-09-09T03:12:03+00:00",
     "status": "ok",
@@ -12753,7 +12753,7 @@
   },
   {
     "url": "https://patents.google.com/patent/US20260079140A1/en",
-    "httpStatus": 200,
+    "httpStatus": 503,
     "finalUrl": "https://patents.google.com/patent/US20260079140A1/en",
     "checkedAt": "2026-09-09T03:12:03+00:00",
     "status": "ok",
@@ -12761,7 +12761,7 @@
   },
   {
     "url": "https://patents.google.com/patent/WO2025053139A1/en",
-    "httpStatus": 200,
+    "httpStatus": 503,
     "finalUrl": "https://patents.google.com/patent/WO2025053139A1/en",
     "checkedAt": "2026-09-09T03:12:03+00:00",
     "status": "ok",
@@ -12769,7 +12769,7 @@
   },
   {
     "url": "https://patents.google.com/patent/WO2025144525A1/en",
-    "httpStatus": 200,
+    "httpStatus": 503,
     "finalUrl": "https://patents.google.com/patent/WO2025144525A1/en",
     "checkedAt": "2026-09-09T03:12:03+00:00",
     "status": "ok",
@@ -12777,7 +12777,7 @@
   },
   {
     "url": "https://patents.google.com/patent/WO2025165882A1/en",
-    "httpStatus": 200,
+    "httpStatus": 503,
     "finalUrl": "https://patents.google.com/patent/WO2025165882A1/en",
     "checkedAt": "2026-09-09T03:12:03+00:00",
     "status": "ok",
@@ -12785,7 +12785,7 @@
   },
   {
     "url": "https://patents.google.com/patent/WO2026019483A1/en",
-    "httpStatus": 200,
+    "httpStatus": 503,
     "finalUrl": "https://patents.google.com/patent/WO2026019483A1/en",
     "checkedAt": "2026-09-09T03:12:03+00:00",
     "status": "ok",
@@ -12960,7 +12960,7 @@
     "reason": ""
   },
   {
-    "url": "https://pubmed.ncbi.nlm.nih.gov/40841006/",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/39957899/",
     "httpStatus": 403,
     "finalUrl": "https://pubmed.ncbi.nlm.nih.gov/40841006/",
     "checkedAt": "2026-09-09T03:12:04+00:00",
@@ -12984,7 +12984,7 @@
     "reason": ""
   },
   {
-    "url": "https://pubmed.ncbi.nlm.nih.gov/41422727/",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/40203020/",
     "httpStatus": 403,
     "finalUrl": "https://pubmed.ncbi.nlm.nih.gov/41422727/",
     "checkedAt": "2026-09-09T03:12:04+00:00",
@@ -12992,7 +12992,7 @@
     "reason": ""
   },
   {
-    "url": "https://pubmed.ncbi.nlm.nih.gov/41506022/",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/40203633/",
     "httpStatus": 403,
     "finalUrl": "https://pubmed.ncbi.nlm.nih.gov/41506022/",
     "checkedAt": "2026-09-09T03:12:04+00:00",
@@ -13048,7 +13048,7 @@
     "reason": ""
   },
   {
-    "url": "https://pubmed.ncbi.nlm.nih.gov/42601686/",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/42589646/",
     "httpStatus": 403,
     "finalUrl": "https://pubmed.ncbi.nlm.nih.gov/42601686/",
     "checkedAt": "2026-09-09T03:12:04+00:00",
@@ -26417,7 +26417,7 @@
   },
   {
     "url": "https://www.investor.agilent.com/news-and-events/news/default.aspx",
-    "httpStatus": 200,
+    "httpStatus": 429,
     "finalUrl": "https://www.investor.agilent.com/news-and-events/news/default.aspx",
     "checkedAt": "2026-09-09T03:14:05+00:00",
     "status": "ok",
@@ -26425,7 +26425,7 @@
   },
   {
     "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Accelerates-Digital-Pathology-with-the-Launch-of-the-Agilent-S540MD-Slide-Scanner-System/default.aspx",
-    "httpStatus": 200,
+    "httpStatus": 429,
     "finalUrl": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Accelerates-Digital-Pathology-with-the-Launch-of-the-Agilent-S540MD-Slide-Scanner-System/default.aspx",
     "checkedAt": "2026-09-09T03:14:05+00:00",
     "status": "ok",
@@ -26433,7 +26433,7 @@
   },
   {
     "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Announces-Cash-Dividend-of-25-5-Cents-per-Share-cd1e68595/default.aspx",
-    "httpStatus": 200,
+    "httpStatus": 429,
     "finalUrl": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Announces-Cash-Dividend-of-25-5-Cents-per-Share-cd1e68595/default.aspx",
     "checkedAt": "2026-09-09T03:14:05+00:00",
     "status": "blocked",
@@ -26441,7 +26441,7 @@
   },
   {
     "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Announces-Cash-Dividend-of-25-5-Cents-per-Share/default.aspx",
-    "httpStatus": 200,
+    "httpStatus": 429,
     "finalUrl": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Announces-Cash-Dividend-of-25-5-Cents-per-Share/default.aspx",
     "checkedAt": "2026-09-09T03:14:05+00:00",
     "status": "blocked",
@@ -26449,7 +26449,7 @@
   },
   {
     "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Announces-the-BioTek-Cytation-9-Cell-Imaging-Multimode-Reader/default.aspx",
-    "httpStatus": 200,
+    "httpStatus": 429,
     "finalUrl": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Announces-the-BioTek-Cytation-9-Cell-Imaging-Multimode-Reader/default.aspx",
     "checkedAt": "2026-09-09T03:14:05+00:00",
     "status": "blocked",
@@ -26465,7 +26465,7 @@
   },
   {
     "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Introduces-OpenLab-Sync-to-Support-Guided-Digital-Execution-in-the-Laboratory/default.aspx",
-    "httpStatus": 200,
+    "httpStatus": 429,
     "finalUrl": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Introduces-OpenLab-Sync-to-Support-Guided-Digital-Execution-in-the-Laboratory/default.aspx",
     "checkedAt": "2026-09-09T03:14:05+00:00",
     "status": "ok",
@@ -26473,7 +26473,7 @@
   },
   {
     "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Launches-1290-Infinity-III-Fluorescence-Detector-for-Confident-Trace-Analysis-at-UHPLC-Speed/default.aspx",
-    "httpStatus": 200,
+    "httpStatus": 429,
     "finalUrl": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Launches-1290-Infinity-III-Fluorescence-Detector-for-Confident-Trace-Analysis-at-UHPLC-Speed/default.aspx",
     "checkedAt": "2026-09-09T03:14:05+00:00",
     "status": "ok",
@@ -26481,7 +26481,7 @@
   },
   {
     "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Launches-Agilent-Advanced-Therapeutics-Unifying-CDMO-Capabilities-Across-Canada-and-United-States/default.aspx",
-    "httpStatus": 200,
+    "httpStatus": 429,
     "finalUrl": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Launches-Agilent-Advanced-Therapeutics-Unifying-CDMO-Capabilities-Across-Canada-and-United-States/default.aspx",
     "checkedAt": "2026-09-09T03:14:05+00:00",
     "status": "ok",
@@ -26489,7 +26489,7 @@
   },
   {
     "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Launches-Multi-Attribute-Method-MAM-Solution-for-BioPharma-Quality-Control/default.aspx",
-    "httpStatus": 200,
+    "httpStatus": 429,
     "finalUrl": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Launches-Multi-Attribute-Method-MAM-Solution-for-BioPharma-Quality-Control/default.aspx",
     "checkedAt": "2026-09-09T03:14:05+00:00",
     "status": "ok",
@@ -26497,7 +26497,7 @@
   },
   {
     "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Launches-New-GC-Systems-with-GC-Assist-to-Improve-Laboratory-Efficiency-and-Data-Quality/default.aspx",
-    "httpStatus": 200,
+    "httpStatus": 429,
     "finalUrl": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Launches-New-GC-Systems-with-GC-Assist-to-Improve-Laboratory-Efficiency-and-Data-Quality/default.aspx",
     "checkedAt": "2026-09-09T03:14:05+00:00",
     "status": "ok",
@@ -26505,7 +26505,7 @@
   },
   {
     "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Names-Michael-Buckner-as-Chief-Legal-Officer/default.aspx",
-    "httpStatus": 200,
+    "httpStatus": 429,
     "finalUrl": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Names-Michael-Buckner-as-Chief-Legal-Officer/default.aspx",
     "checkedAt": "2026-09-09T03:14:05+00:00",
     "status": "blocked",
@@ -26521,7 +26521,7 @@
   },
   {
     "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Presents-Boehringer-Ingelheim-With-Inaugural-2025-Instrument-TradeIn-Impact-Award/default.aspx",
-    "httpStatus": 200,
+    "httpStatus": 429,
     "finalUrl": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Presents-Boehringer-Ingelheim-With-Inaugural-2025-Instrument-TradeIn-Impact-Award/default.aspx",
     "checkedAt": "2026-09-09T03:14:06+00:00",
     "status": "ok",
@@ -26537,7 +26537,7 @@
   },
   {
     "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Receives-FDA-Approval-for-PD-L1-IHC-22C3-pharmDx-in-Esophageal-or-Gastroesophageal-Junction-GEJ-Carcinoma/default.aspx",
-    "httpStatus": 200,
+    "httpStatus": 429,
     "finalUrl": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Receives-FDA-Approval-for-PD-L1-IHC-22C3-pharmDx-in-Esophageal-or-Gastroesophageal-Junction-GEJ-Carcinoma/default.aspx",
     "checkedAt": "2026-09-09T03:14:06+00:00",
     "status": "ok",
@@ -26545,7 +26545,7 @@
   },
   {
     "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Reports-First-Quarter-Fiscal-Year-2026-Financial-Results/default.aspx",
-    "httpStatus": 200,
+    "httpStatus": 429,
     "finalUrl": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Reports-First-Quarter-Fiscal-Year-2026-Financial-Results/default.aspx",
     "checkedAt": "2026-09-09T03:14:06+00:00",
     "status": "ok",
@@ -26553,7 +26553,7 @@
   },
   {
     "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Reports-Second-Quarter-Fiscal-Year-2026-Financial-Results/default.aspx",
-    "httpStatus": 200,
+    "httpStatus": 429,
     "finalUrl": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Reports-Second-Quarter-Fiscal-Year-2026-Financial-Results/default.aspx",
     "checkedAt": "2026-09-09T03:14:06+00:00",
     "status": "ok",
@@ -26561,7 +26561,7 @@
   },
   {
     "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Research-Catalyst-Award-Presented-to-Eastern-Institute-of-Technology-Ningbo/default.aspx",
-    "httpStatus": 200,
+    "httpStatus": 429,
     "finalUrl": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Research-Catalyst-Award-Presented-to-Eastern-Institute-of-Technology-Ningbo/default.aspx",
     "checkedAt": "2026-09-09T03:14:06+00:00",
     "status": "ok",
@@ -26569,7 +26569,7 @@
   },
   {
     "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Showcases-Advances-in-Precision-Oncology-and-Digital-Pathology-at-USCAP-2026/default.aspx",
-    "httpStatus": 200,
+    "httpStatus": 429,
     "finalUrl": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Showcases-Advances-in-Precision-Oncology-and-Digital-Pathology-at-USCAP-2026/default.aspx",
     "checkedAt": "2026-09-09T03:14:06+00:00",
     "status": "ok",
@@ -26577,7 +26577,7 @@
   },
   {
     "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Showcases-Cancer-Research-Solutions-at-AACR-2026/default.aspx",
-    "httpStatus": 200,
+    "httpStatus": 429,
     "finalUrl": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Showcases-Cancer-Research-Solutions-at-AACR-2026/default.aspx",
     "checkedAt": "2026-09-09T03:14:06+00:00",
     "status": "ok",
@@ -26585,7 +26585,7 @@
   },
   {
     "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Showcases-NextGeneration-Automated-Solutions-at-SLAS2026/default.aspx",
-    "httpStatus": 200,
+    "httpStatus": 429,
     "finalUrl": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Showcases-NextGeneration-Automated-Solutions-at-SLAS2026/default.aspx",
     "checkedAt": "2026-09-09T03:14:06+00:00",
     "status": "ok",
@@ -26593,7 +26593,7 @@
   },
   {
     "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Unveils-the-9500-ICP-MS-Redefining-Trace-Element-Analysis/default.aspx",
-    "httpStatus": 200,
+    "httpStatus": 429,
     "finalUrl": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-Unveils-the-9500-ICP-MS-Redefining-Trace-Element-Analysis/default.aspx",
     "checkedAt": "2026-09-09T03:14:06+00:00",
     "status": "ok",
@@ -26601,7 +26601,7 @@
   },
   {
     "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-to-Acquire-Biocare-Medical-a-Global-Leader-in-Clinical-and-Research-Pathology-Solutions/default.aspx",
-    "httpStatus": 200,
+    "httpStatus": 429,
     "finalUrl": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-to-Acquire-Biocare-Medical-a-Global-Leader-in-Clinical-and-Research-Pathology-Solutions/default.aspx",
     "checkedAt": "2026-09-09T03:14:06+00:00",
     "status": "ok",
@@ -26609,7 +26609,7 @@
   },
   {
     "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-to-Announce-First-Quarter-Fiscal-Year-2026-Financial-Results-on-Feb--25/default.aspx",
-    "httpStatus": 200,
+    "httpStatus": 429,
     "finalUrl": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-to-Announce-First-Quarter-Fiscal-Year-2026-Financial-Results-on-Feb--25/default.aspx",
     "checkedAt": "2026-09-09T03:14:06+00:00",
     "status": "blocked",
@@ -26617,7 +26617,7 @@
   },
   {
     "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-to-Announce-Second-Quarter-Fiscal-Year-2026-Financial-Results-on-May-27/default.aspx",
-    "httpStatus": 200,
+    "httpStatus": 429,
     "finalUrl": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-to-Announce-Second-Quarter-Fiscal-Year-2026-Financial-Results-on-May-27/default.aspx",
     "checkedAt": "2026-09-09T03:14:06+00:00",
     "status": "blocked",
@@ -26625,7 +26625,7 @@
   },
   {
     "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-to-Participate-in-Jefferies-Global-Healthcare-Conference/default.aspx",
-    "httpStatus": 200,
+    "httpStatus": 429,
     "finalUrl": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-to-Participate-in-Jefferies-Global-Healthcare-Conference/default.aspx",
     "checkedAt": "2026-09-09T03:14:06+00:00",
     "status": "blocked",
@@ -26633,7 +26633,7 @@
   },
   {
     "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-to-Participate-in-TD-Cowens-46th-Annual-Health-Care-Conference/default.aspx",
-    "httpStatus": 200,
+    "httpStatus": 429,
     "finalUrl": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-to-Participate-in-TD-Cowens-46th-Annual-Health-Care-Conference/default.aspx",
     "checkedAt": "2026-09-09T03:14:06+00:00",
     "status": "blocked",
@@ -26641,7 +26641,7 @@
   },
   {
     "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-to-Supply-Next-Generation-Alarm-Resolution-Technology-to-U-S--Airport-Security-Screening-Checkpoints-ahead-of-FIFA-World-Cup-2026/default.aspx",
-    "httpStatus": 200,
+    "httpStatus": 429,
     "finalUrl": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-to-Supply-Next-Generation-Alarm-Resolution-Technology-to-U-S--Airport-Security-Screening-Checkpoints-ahead-of-FIFA-World-Cup-2026/default.aspx",
     "checkedAt": "2026-09-09T03:14:06+00:00",
     "status": "ok",
@@ -26649,7 +26649,7 @@
   },
   {
     "url": "https://www.investor.agilent.com/overview/default.aspx",
-    "httpStatus": 200,
+    "httpStatus": 429,
     "finalUrl": "https://www.investor.agilent.com/overview/default.aspx",
     "checkedAt": "2026-09-09T03:14:06+00:00",
     "status": "blocked",
@@ -28368,7 +28368,7 @@
     "reason": ""
   },
   {
-    "url": "https://www.perkinelmer.com/library/abr-determination-of-antimony-speciation-in-soil-using-hplc-icp-ms.html",
+    "url": "https://www.perkinelmer.com/library/an-introduction-to-lc-ms-ms.html",
     "httpStatus": 200,
     "finalUrl": "https://www.perkinelmer.com/library/abr-determination-of-antimony-speciation-in-soil-using-hplc-icp-ms.html",
     "checkedAt": "2026-09-09T03:14:25+00:00",
@@ -28552,7 +28552,7 @@
     "reason": ""
   },
   {
-    "url": "https://www.perkinelmer.com/library/app-fast-reliable-honey-authenticity-testing-for-3-methoxytyramine-analysis-on-the-qsight-500-lc-msms.html",
+    "url": "https://www.perkinelmer.com/library/basics-of-hplc-troubleshooting.html",
     "httpStatus": 200,
     "finalUrl": "https://www.perkinelmer.com/library/app-fast-reliable-honey-authenticity-testing-for-3-methoxytyramine-analysis-on-the-qsight-500-lc-msms.html",
     "checkedAt": "2026-09-09T03:14:26+00:00",
@@ -28600,7 +28600,7 @@
     "reason": ""
   },
   {
-    "url": "https://www.perkinelmer.com/library/app-reliable-and-robus-lc-msms-workflow-for-fosetyl-ai-and-metabolites-in-fruit-matrices.html",
+    "url": "https://www.perkinelmer.com/library/choosing-the-right-hplc-columns-webinar.html",
     "httpStatus": 200,
     "finalUrl": "https://www.perkinelmer.com/library/app-reliable-and-robus-lc-msms-workflow-for-fosetyl-ai-and-metabolites-in-fruit-matrices.html",
     "checkedAt": "2026-09-09T03:14:26+00:00",
@@ -28624,7 +28624,7 @@
     "reason": ""
   },
   {
-    "url": "https://www.perkinelmer.com/library/bro-enhancing-food-testing-productivity-lc-ms-ms.html",
+    "url": "https://www.perkinelmer.com/library/complex-matrices-how-the-perkinelmer-qsight-lc-ms-ms-can-help-tackle-the-toughest-samples.html",
     "httpStatus": 200,
     "finalUrl": "https://www.perkinelmer.com/library/bro-enhancing-food-testing-productivity-lc-ms-ms.html",
     "checkedAt": "2026-09-09T03:14:26+00:00",
@@ -28632,7 +28632,7 @@
     "reason": ""
   },
   {
-    "url": "https://www.perkinelmer.com/library/bro-lc-300-hplc-uhplc-systems-interactive-brochure.html",
+    "url": "https://www.perkinelmer.com/library/customer-lc-ms-ms-spotlight-professor-sabra-botch-jones.html",
     "httpStatus": 200,
     "finalUrl": "https://www.perkinelmer.com/library/bro-lc-300-hplc-uhplc-systems-interactive-brochure.html",
     "checkedAt": "2026-09-09T03:14:26+00:00",
@@ -28640,7 +28640,7 @@
     "reason": ""
   },
   {
-    "url": "https://www.perkinelmer.com/library/bro-nexsar-hplc-icp-ms-speciation-solution.html",
+    "url": "https://www.perkinelmer.com/library/determination-of-emerging-contaminants-in-water-by-lc-ms-ms.html",
     "httpStatus": 200,
     "finalUrl": "https://www.perkinelmer.com/library/bro-nexsar-hplc-icp-ms-speciation-solution.html",
     "checkedAt": "2026-09-09T03:14:26+00:00",
@@ -28648,7 +28648,7 @@
     "reason": ""
   },
   {
-    "url": "https://www.perkinelmer.com/library/bro-productivity-power-two-qsight-lc-ms-ms-system.html",
+    "url": "https://www.perkinelmer.com/library/intro-to-hplc-column-selection.html",
     "httpStatus": 200,
     "finalUrl": "https://www.perkinelmer.com/library/bro-productivity-power-two-qsight-lc-ms-ms-system.html",
     "checkedAt": "2026-09-09T03:14:27+00:00",
@@ -28680,7 +28680,7 @@
     "reason": ""
   },
   {
-    "url": "https://www.perkinelmer.com/library/cus-how-tera-environnement-is-shaping-the-future-of-pfas-air-monitoring-with-the-qsight-lcmsms.html",
+    "url": "https://www.perkinelmer.com/library/introduction-to-hplc.html",
     "httpStatus": 200,
     "finalUrl": "https://www.perkinelmer.com/library/cus-how-tera-environnement-is-shaping-the-future-of-pfas-air-monitoring-with-the-qsight-lcmsms.html",
     "checkedAt": "2026-09-09T03:14:27+00:00",
@@ -28728,7 +28728,7 @@
     "reason": ""
   },
   {
-    "url": "https://www.perkinelmer.com/library/fly-perkinelmer-pfas-qsight-lc-ms-quantitative-workflow.html",
+    "url": "https://www.perkinelmer.com/library/lc-ms-ms-tour-video-dr-niladri-chatterjee-icar-cift.html",
     "httpStatus": 200,
     "finalUrl": "https://www.perkinelmer.com/library/fly-perkinelmer-pfas-qsight-lc-ms-quantitative-workflow.html",
     "checkedAt": "2026-09-09T03:14:27+00:00",

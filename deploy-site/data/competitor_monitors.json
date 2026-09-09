@@ -322,7 +322,6 @@
           "sourceName": "Thermo Fisher investor relations news"
         }
       ],
-      "new_technical_insights": [],
       "technical_insights": [
         {
           "date": "2026-08-25",
@@ -1319,7 +1318,14 @@
       "unverified_inventory_changes": {
         "new": [],
         "updated": [],
-        "missing": []
+        "missing": [
+          {
+            "url": "https://sciex.com/applications/biomedical-and-omics-research/oneomics",
+            "lastmod": "",
+            "category": "LC/MS",
+            "verification": "manual confirmation required"
+          }
+        ]
       },
       "new_press_releases": [
         {

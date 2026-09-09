@@ -53,8 +53,8 @@
       "type": "Investor relations news",
       "url": "https://ir.thermofisher.com/investors/news-events/news/default.aspx",
       "coverage": "Earnings, investor events, corporate strategy, product, partnership, and investment announcements",
-      "httpStatus": 403,
-      "status": "blocked",
+      "httpStatus": 200,
+      "status": "live",
       "sourceQuality": "standard",
       "collectionStatus": "blocked_by_access_control",
       "reliabilityNote": "A blocked fetch is not counted as a healthy extraction.",
@@ -1183,8 +1183,8 @@
           "sampleStrategy": "Up to two newest PubMed records per calendar-year slice in the rolling three-year window.",
           "queryExecutedAt": "2026-09-09T03:02:02.844291Z",
           "currentResultCount": 4,
-          "newestSampledPmid": "42601686",
-          "newestSampledDate": "2026-08-14",
+          "newestSampledPmid": "40203020",
+          "newestSampledDate": "2025-08-18",
           "newestSampledPmidIngested": true
         }
       },
@@ -1307,7 +1307,7 @@
         "competitor": "PerkinElmer",
         "technology": "LC-MS",
         "counts": {
-          "30d": 0,
+          "30d": 1,
           "60d": 3,
           "90d": 4,
           "1y": 12,
@@ -4689,6 +4689,62 @@
       "languageType": "analyst_paraphrase",
       "evidenceStatus": "partial",
       "caveat": "Do not attribute this filing to PerkinElmer; use Revvity as the registrant."
+    },
+    {
+      "id": "pubmed-42589646",
+      "date": "2026-08-04",
+      "competitor": "Agilent",
+      "category": "Scientific application intelligence",
+      "signalType": "Scientific publication",
+      "title": "Plasma Metabolic Features Associated with Developmental Regression in Autism Spectrum Disorder: A Pilot Untargeted Metabolomics Study",
+      "summary": "PubMed record mentioning Agilent query terms in International journal of molecular sciences.",
+      "sourceName": "PubMed",
+      "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/42589646/",
+      "geography": "Global",
+      "marketSegment": "Biopharma",
+      "technology": "LC-MS",
+      "theme": "LNP and RNA therapeutics workflows",
+      "evidenceCount": 1,
+      "intent": "Application pull-through or workflow visibility",
+      "priorityScore": 74,
+      "tier": "Medium",
+      "scoreBreakdown": {
+        "sourceAuthority": {
+          "rating": "Medium",
+          "contribution": 20,
+          "max": 30,
+          "basis": "PubMed scientific record"
+        },
+        "recency": {
+          "ageDays": 16,
+          "contribution": 23.51,
+          "max": 25,
+          "halfLifeDays": 180
+        },
+        "lcRelevance": {
+          "matchedTerms": [
+            "LC-MS",
+            "LC/HPLC"
+          ],
+          "contribution": 17,
+          "max": 30
+        },
+        "corroboration": {
+          "theme": "LNP and RNA therapeutics workflows",
+          "independentSources": 9,
+          "contribution": 13.29,
+          "max": 15
+        }
+      },
+      "claimID": "pubmed-42589646",
+      "retrievalDate": "2026-08-20T10:40:36",
+      "sourceDate": "2026-08-04",
+      "sourceDateType": "publication",
+      "languageType": "analyst_paraphrase",
+      "evidenceStatus": "verified",
+      "caveat": "",
+      "supportingExcerpt": "Plasma Metabolic Features Associated with Developmental Regression in Autism Spectrum Disorder: A Pilot Untargeted Metabolomics",
+      "sourceLocation": "PubMed record title"
     },
     {
       "id": "shimadzu-monitor-press-release-29cd6074d29d",
@@ -19064,7 +19120,7 @@
       "id": "perkinelmer-monitor-press-release-07686a3d3560",
       "date": "2026-06-08",
       "competitor": "PerkinElmer",
-      "category": "Product intelligence",
+      "category": "Corporate intelligence",
       "signalType": "Press release",
       "title": "Project Farma Expands PMIS Offering with Oracle Primavera Cloud to Address Growing Pharma Capital Project Complexity",
       "summary": "Official dated release extracted from PerkinElmer's newsroom.",
@@ -19075,7 +19131,7 @@
       "geography": "Global",
       "marketSegment": "Pharma",
       "technology": "LC-MS",
-      "theme": "Product and workflow expansion",
+      "theme": "Corporate activity",
       "evidenceCount": 1,
       "intent": "Official product, portfolio, regulatory, or corporate activity",
       "recommendation": "Review the release for concrete implications for Waters products, workflows, partnerships, and market access.",
@@ -22230,6 +22286,62 @@
       "languageType": "analyst_paraphrase",
       "evidenceStatus": "partial",
       "caveat": ""
+    },
+    {
+      "id": "pubmed-42222305",
+      "date": "2026-05-01",
+      "competitor": "Thermo Fisher",
+      "category": "Scientific application intelligence",
+      "signalType": "Scientific publication",
+      "title": "Extraction and determination of sartans: Recent advances and analytical perspectives",
+      "summary": "PubMed record mentioning Thermo Fisher query terms in Journal of pharmaceutical analysis.",
+      "sourceName": "PubMed",
+      "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/42222305/",
+      "geography": "Global",
+      "marketSegment": "Biopharma",
+      "technology": "LC-MS",
+      "theme": "LNP and RNA therapeutics workflows",
+      "evidenceCount": 1,
+      "intent": "Application pull-through or workflow visibility",
+      "priorityScore": 67,
+      "tier": "Medium",
+      "scoreBreakdown": {
+        "sourceAuthority": {
+          "rating": "Medium",
+          "contribution": 20,
+          "max": 30,
+          "basis": "PubMed scientific record"
+        },
+        "recency": {
+          "ageDays": 111,
+          "contribution": 16.3,
+          "max": 25,
+          "halfLifeDays": 180
+        },
+        "lcRelevance": {
+          "matchedTerms": [
+            "LC-MS",
+            "LC/HPLC"
+          ],
+          "contribution": 17,
+          "max": 30
+        },
+        "corroboration": {
+          "theme": "LNP and RNA therapeutics workflows",
+          "independentSources": 9,
+          "contribution": 13.29,
+          "max": 15
+        }
+      },
+      "claimID": "pubmed-42222305",
+      "retrievalDate": "2026-08-20T10:40:36",
+      "sourceDate": "2026-05-01",
+      "sourceDateType": "publication",
+      "languageType": "analyst_paraphrase",
+      "evidenceStatus": "verified",
+      "caveat": "",
+      "supportingExcerpt": "Extraction and determination of sartans: Recent advances and analytical perspectives",
+      "sourceLocation": "PubMed record title"
     },
     {
       "id": "pubmed-42232243",
@@ -29789,6 +29901,62 @@
       "sourceLocation": "PubMed record title"
     },
     {
+      "id": "pubmed-40203020",
+      "date": "2025-08-18",
+      "competitor": "Shimadzu",
+      "category": "Scientific application intelligence",
+      "signalType": "Scientific publication",
+      "title": "Building a Bridge Between Ambient MS and LC-MS by Non-Exhaustive Microdesorption",
+      "summary": "PubMed record mentioning Shimadzu query terms in Angewandte Chemie (International ed. in English).",
+      "sourceName": "PubMed",
+      "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/40203020/",
+      "geography": "Global",
+      "marketSegment": "Biopharma",
+      "technology": "LC-MS",
+      "theme": "LNP and RNA therapeutics workflows",
+      "evidenceCount": 1,
+      "intent": "Application pull-through or workflow visibility",
+      "priorityScore": 56,
+      "tier": "Medium",
+      "scoreBreakdown": {
+        "sourceAuthority": {
+          "rating": "Medium",
+          "contribution": 20,
+          "max": 30,
+          "basis": "PubMed scientific record"
+        },
+        "recency": {
+          "ageDays": 367,
+          "contribution": 6.08,
+          "max": 25,
+          "halfLifeDays": 180
+        },
+        "lcRelevance": {
+          "matchedTerms": [
+            "LC-MS",
+            "LC/HPLC"
+          ],
+          "contribution": 17,
+          "max": 30
+        },
+        "corroboration": {
+          "theme": "LNP and RNA therapeutics workflows",
+          "independentSources": 9,
+          "contribution": 13.29,
+          "max": 15
+        }
+      },
+      "claimID": "pubmed-40203020",
+      "retrievalDate": "2026-08-20T10:40:36",
+      "sourceDate": "2025-08-18",
+      "sourceDateType": "publication",
+      "languageType": "analyst_paraphrase",
+      "evidenceStatus": "verified",
+      "caveat": "",
+      "supportingExcerpt": "Building a Bridge Between Ambient MS and LC-MS by Non-Exhaustive Microdesorption",
+      "sourceLocation": "PubMed record title"
+    },
+    {
       "id": "sec-perkinelmer-0000031791-25-000026",
       "date": "2025-08-05",
       "competitor": "Revvity, Inc.",
@@ -30690,6 +30858,63 @@
       "retrievalDate": "2026-09-09T03:03:24+00:00",
       "contentAsOf": "2026-09-09T03:03:24+00:00",
       "stampedAt": "2026-09-09T03:15:17Z",
+      "sourceDate": "2025-06-21",
+      "sourceDateType": "publication",
+      "languageType": "analyst_paraphrase",
+      "evidenceStatus": "verified",
+      "caveat": "",
+      "supportingExcerpt": "Determination of haloacetic acids in municipal tap water and swimming pool water using portable capillary",
+      "sourceLocation": "PubMed record title"
+    },
+    {
+      "id": "pubmed-40203633",
+      "date": "2025-06-21",
+      "competitor": "Shimadzu",
+      "category": "Scientific application intelligence",
+      "signalType": "Scientific publication",
+      "title": "Determination of haloacetic acids in municipal tap water and swimming pool water using portable capillary liquid chromatography - mass spectrometry",
+      "summary": "PubMed record mentioning Shimadzu query terms in Journal of chromatography. A.",
+      "sourceName": "PubMed",
+      "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/40203633/",
+      "geography": "Global",
+      "marketSegment": "Biopharma",
+      "technology": "LC-MS",
+      "theme": "LNP and RNA therapeutics workflows",
+      "evidenceCount": 1,
+      "intent": "Application pull-through or workflow visibility",
+      "priorityScore": 60,
+      "tier": "Medium",
+      "scoreBreakdown": {
+        "sourceAuthority": {
+          "rating": "Medium",
+          "contribution": 20,
+          "max": 30,
+          "basis": "PubMed scientific record"
+        },
+        "recency": {
+          "ageDays": 425,
+          "contribution": 4.87,
+          "max": 25,
+          "halfLifeDays": 180
+        },
+        "lcRelevance": {
+          "matchedTerms": [
+            "LC-MS",
+            "LC/HPLC",
+            "chromatography"
+          ],
+          "contribution": 22,
+          "max": 30
+        },
+        "corroboration": {
+          "theme": "LNP and RNA therapeutics workflows",
+          "independentSources": 9,
+          "contribution": 13.29,
+          "max": 15
+        }
+      },
+      "claimID": "pubmed-40203633",
+      "retrievalDate": "2026-08-20T10:40:36",
       "sourceDate": "2025-06-21",
       "sourceDateType": "publication",
       "languageType": "analyst_paraphrase",
@@ -33208,21 +33433,19 @@
       "caveat": "Do not attribute this filing to PerkinElmer; use Revvity as the registrant."
     },
     {
-      "id": "perkinelmer-monitor-press-release-9125fdcfa22f",
-      "date": "2025-01-02",
-      "competitor": "PerkinElmer",
-      "category": "Corporate intelligence",
-      "signalType": "Press release",
-      "title": "PerkinElmer and Shandong University School of Public Health Sign Cooperation Project on Mass Spectrometry Technology Application in Public Health",
-      "summary": "Official dated release extracted from PerkinElmer's newsroom.",
-      "sourceName": "PerkinElmer official newsroom",
-      "sourceUrl": "https://www.perkinelmer.com/corporate-and-newsroom/perkinelmer-and-shandong-university-school-public-health-sign-cooperation-project-mass-spectrometry",
-      "sourceTitleVerified": true,
-      "titleSource": "page_content_url_match",
+      "id": "pubmed-39759287",
+      "date": "2024-12-30",
+      "competitor": "Agilent",
+      "category": "Scientific application intelligence",
+      "signalType": "Scientific publication",
+      "title": "Lipid imbalance and inflammatory oxylipin cascade at the maternal-fetal interface in recurrent spontaneous abortion",
+      "summary": "PubMed record mentioning Agilent query terms in Heliyon.",
+      "sourceName": "PubMed",
+      "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/39759287/",
       "geography": "Global",
-      "marketSegment": "Pharma",
+      "marketSegment": "Biopharma",
       "technology": "LC-MS",
-      "theme": "Corporate activity",
+      "theme": "LNP and RNA therapeutics workflows",
       "evidenceCount": 1,
       "intent": "Official product, portfolio, regulatory, or corporate activity",
       "recommendation": "Review the release for concrete implications for Waters products, workflows, partnerships, and market access.",
@@ -40415,7 +40638,7 @@
       },
       {
         "url": "https://www.investor.agilent.com/overview/default.aspx",
-        "fetchMethod": "real_browser",
+        "fetchMethod": "investor_page",
         "httpStatus": 200,
         "status": "available",
         "sourceQuality": "reliable",
