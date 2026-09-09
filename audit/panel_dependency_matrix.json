@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-09T11:38:05+00:00",
+  "generatedAt": "2026-09-09T13:37:13+00:00",
   "sources": [
     {
       "sourceId": "pubmed-eutils",
@@ -3325,7 +3325,7 @@
     },
     {
       "sourceId": "agilent-attempt-7",
-      "collector": "real_browser",
+      "collector": "investor_page",
       "dataFiles": [
         "data/intelligence.json",
         "data/source_catalog.json",
@@ -3363,7 +3363,7 @@
       ],
       "dependencyChain": [
         "https://www.investor.agilent.com/overview/default.aspx",
-        "real_browser",
+        "investor_page",
         "normalized source record",
         "data/intelligence.json",
         "data/source_catalog.json",

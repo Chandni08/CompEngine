@@ -126,16 +126,16 @@
     },
     {
       "id": "fda-new-biologic-approvals",
-      "name": "FDA NME and New Biologic Approvals",
+      "name": "FDA Novel Drug Approvals for 2026",
       "publisher": "U.S. Food and Drug Administration",
       "marketSegments": ["Pharma", "Biopharma"],
       "sourceType": "Regulatory dataset",
       "signalCategory": "New molecular entities and biologics",
-      "description": "Downloadable compilation of CDER new molecular entity drug and new biologic approvals.",
+      "description": "Current FDA listing of CDER novel drug and therapeutic biologic approvals for 2026.",
       "whatToMeasure": "Approval counts and modality shifts that create new characterization, impurity, and bioanalytical workloads.",
       "refreshCadence": "Monthly review",
-      "accessType": "Downloadable dataset",
-      "url": "https://www.fda.gov/drugs/drug-approvals-and-databases/compilation-cder-new-molecular-entity-nme-drug-and-new-biologic-approvals",
+      "accessType": "Public approval listing",
+      "url": "https://www.fda.gov/drugs/novel-drug-approvals-fda/novel-drug-approvals-2026",
       "whyItMatters": "Provides a regulated pipeline outcome rather than a publication proxy."
     },
     {

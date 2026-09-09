@@ -44,8 +44,9 @@ test("Agilent Q2 result is sourced from its SEC-filed earnings exhibit", async (
   assert.equal(earnings.date, "2026-05-27");
   assert.match(
     earnings.sourceUrl,
-    /^https:\/\/(?:www\.investor\.agilent\.com\/|www\.agilent\.com\/about\/newsroom\/)/,
+    /^https:\/\/www\.sec\.gov\/Archives\/edgar\/data\/1090872\//,
   );
+  assert.equal(earnings.sourceName, "SEC EDGAR Exhibit 99.1");
   assert.equal(earnings.earningsMetrics.length, 3);
   assert.equal(earnings.pmInsights.length, 3);
   assert.match(earnings.evidenceBoundary, /does not separately report LC or LC-MS revenue/i);
@@ -94,13 +95,9 @@ test("SEC Filing Insights renders only SEC-filed earnings sources", async () => 
   assert.doesNotMatch(renderer, /currentEarningsSignals\(competitorIntentSignals/);
 });
 
-test("Agilent Q3 result and August 26 SEC filing expose source-grounded PM insights", async () => {
+test("Agilent Q3 SEC filing exposes source-grounded PM insights", async () => {
   const intelligence = JSON.parse(await read("data/intelligence.json"));
   const filings = JSON.parse(await read("data/filing_insights.json"));
-  const earnings = intelligence.signals.find(
-    (signal) => signal.competitor === "Agilent"
-      && signal.title === "Agilent Reports Third-Quarter Fiscal Year 2026 Financial Results",
-  );
   const secSignal = intelligence.signals.find(
     (signal) => signal.id === "sec-agilent-0001090872-26-000062",
   );
@@ -110,22 +107,13 @@ test("Agilent Q3 result and August 26 SEC filing expose source-grounded PM insig
       && insight.sourceUrl.includes("000109087226000062"),
   );
 
-  assert.ok(earnings, "the official Agilent Q3 result must be present in intelligence.json");
-  assert.equal(earnings.date, "2026-08-26");
-  assert.match(
-    earnings.sourceUrl,
-    /^https:\/\/(?:www\.investor\.agilent\.com\/|www\.agilent\.com\/about\/newsroom\/)/,
-  );
-  assert.equal(earnings.signalType, "Quarterly earnings result");
-  assert.equal(earnings.earningsMetrics.length, 6);
-  assert.equal(earnings.pmInsights.length, 4);
-  assert.match(earnings.summary, /\$1\.88 billion/);
-  assert.match(earnings.evidenceBoundary, /does not separately report LC or LC-MS revenue/);
-
   assert.ok(secSignal, "the August 26 Agilent Form 8-K must be collected from SEC submissions");
   assert.equal(secSignal.signalType, "SEC earnings filing");
   assert.match(secSignal.sourceUrl, /exhibit991-q326pressrelease\.htm$/);
   assert.match(secSignal.summary, /7\.3% core growth/);
+  assert.equal(secSignal.earningsMetrics.length, 6);
+  assert.equal(secSignal.pmInsights.length, 4);
+  assert.match(secSignal.evidenceBoundary, /does not separately report LC or LC-MS revenue/);
 
   assert.equal(q3Insights.length, 2, "two PM-ready insights must be tied to the filed exhibit");
   assert.ok(q3Insights.every((insight) => insight.evidenceStatus === "verified"));

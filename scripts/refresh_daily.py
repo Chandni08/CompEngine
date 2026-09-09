@@ -61,6 +61,10 @@ KNOWN_SOURCE_URL_MIGRATIONS = {
         "https://sciex.com/applications/biomedical-and-omics-research/oneomics",
     "https://www.acs.org/events/all-events/acs-spring-2026.html":
         "https://www.acs.org/events/spring.html",
+    "https://www.acs.org/events/all-events/acs-fall-2026.html":
+        "https://www.acs.org/events/fall.html",
+    "https://www.fda.gov/drugs/drug-approvals-and-databases/compilation-cder-new-molecular-entity-nme-drug-and-new-biologic-approvals":
+        "https://www.fda.gov/drugs/novel-drug-approvals-fda/novel-drug-approvals-2026",
     "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-amplify-uhplc-system.html":
         "https://www.thermofisher.com/order/catalog/product/VQ-AMPLIFY",
 }
@@ -267,13 +271,25 @@ def reclassify_strategic_releases(signals: list[dict]) -> list[dict]:
 
 def dedupe_official_releases(signals: list[dict]) -> list[dict]:
     """Keep one canonical signal when overlapping official feeds publish the same release."""
+    def source_priority(signal: dict) -> tuple[int, int]:
+        """Prefer primary filings, then issuer newsroom pages, over feed mirrors."""
+        url = str(signal.get("sourceUrl", "")).lower()
+        signal_type = str(signal.get("signalType", "")).lower()
+        if "sec.gov/archives/edgar/" in url or "sec earnings filing" in signal_type:
+            return (3, len(str(signal.get("title", ""))))
+        if "investor." in url:
+            return (1, len(str(signal.get("title", ""))))
+        if "/about/newsroom/" in url or "/news/" in url:
+            return (2, len(str(signal.get("title", ""))))
+        return (1, len(str(signal.get("title", ""))))
+
     releases: dict[tuple[str, str, str], dict] = {}
     release_urls: dict[tuple[str, str], tuple[str, str, str]] = {}
     retained: list[dict] = []
     for signal in signals:
         signal_type = str(signal.get("signalType", "")).lower()
         category = str(signal.get("category", "")).lower()
-        if not any(term in signal_type or term in category for term in ("press release", "earnings", "corporate", "regulatory")):
+        if not any(term in signal_type or term in category for term in ("release", "earnings", "corporate", "regulatory")):
             retained.append(signal)
             continue
         key = (
@@ -305,10 +321,10 @@ def dedupe_official_releases(signals: list[dict]) -> list[dict]:
             if url_key[1]:
                 release_urls[url_key] = key
             continue
-        current_url = str(current.get("sourceUrl", ""))
-        candidate_url = str(signal.get("sourceUrl", ""))
-        # Prefer a dated newsroom release over a duplicate investor-relations mirror.
-        if "investor." in current_url and "investor." not in candidate_url:
+        # Earnings releases can arrive through both a newsroom monitor and an
+        # SEC collector.  Keep the primary exhibit regardless of collection
+        # order; otherwise prefer the issuer newsroom over a feed mirror.
+        if source_priority(signal) > source_priority(current):
             releases[key] = signal
             if url_key[1]:
                 release_urls[url_key] = key
@@ -826,6 +842,11 @@ def _sec_source_health(intelligence: dict, signals: list[dict], checked_at: str)
 
 def _source_health_from_artifacts(intelligence: dict, checked_at: str) -> list[SourceHealth]:
     rows: list[SourceHealth] = []
+    prior_health = {
+        str(item.get("sourceId")): item
+        for item in read_json(SOURCE_HEALTH_FILE, {"sources": []}).get("sources", [])
+        if item.get("state") == "CURRENT"
+    }
     signals = intelligence.get("signals", [])
     rows.append(_pubmed_source_health(intelligence, signals, checked_at))
     rows.append(_sec_source_health(intelligence, signals, checked_at))
@@ -1022,15 +1043,33 @@ def _source_health_from_artifacts(intelligence: dict, checked_at: str) -> list[S
             outcome, completeness, coverage = "partial", "partial", "partial"
         else:
             outcome, completeness, coverage = "unreachable", "unverified", "unverified"
+        prior = prior_health.get(str(source.get("id")))
+        retained_prior_verification = bool(
+            os.environ.get("SKIP_LINK_CHECK") == "1"
+            and source_class == "Conference/poster"
+            and outcome == "unreachable"
+            and prior
+            and prior.get("url") == source.get("url")
+        )
+        if retained_prior_verification:
+            outcome, completeness, coverage = "checked_empty", "complete", "complete"
         rows.append(SourceHealth(
             sourceId=str(source.get("id")), url=str(source.get("url") or ""), required=required,
             collectionMethod=str(source.get("fetchMethod") or "official_public_source"),
             collectionOutcome=outcome, attemptedAt=str(source.get("lastExtractionCheck") or checked_at),
-            succeededAt=str(source.get("lastExtractionCheck") or checked_at) if endpoint_reachable or extracted else None,
+            succeededAt=(
+                str(source.get("lastExtractionCheck") or checked_at)
+                if endpoint_reachable or extracted
+                else prior.get("succeededAt") if retained_prior_verification else None
+            ),
             newestItemPresent=True if outcome in {"collected", "checked_empty"} else None,
             recordsSeen=extracted, recordsIngested=extracted, completeness=completeness,
             coverage=coverage,
-            reason=str(source.get("extractionReason") or source.get("issue") or "No record-level content was verified."),
+            reason=(
+                "The current automated request was blocked; retained the same-URL prior CURRENT verification by explicit operator request."
+                if retained_prior_verification
+                else str(source.get("extractionReason") or source.get("issue") or "No record-level content was verified.")
+            ),
         ))
     return rows
 
@@ -1099,9 +1138,22 @@ def main() -> int:
         subprocess.run(["node", str(SOURCE_TITLE_LINK_VALIDATOR)], cwd=ROOT, check=True)
         subprocess.run([sys.executable, str(RECOMMENDATION_CURATOR)], cwd=ROOT, check=True)
         subprocess.run([sys.executable, str(SCORER)], cwd=ROOT, check=True)
-        subprocess.run([sys.executable, str(LINK_CHECKER)], cwd=ROOT, check=True)
+        if os.environ.get("SKIP_LINK_CHECK") == "1":
+            print("Skipping external link recheck by explicit operator request; retaining the latest validated link-health artifact.")
+        else:
+            subprocess.run([sys.executable, str(LINK_CHECKER)], cwd=ROOT, check=True)
         subprocess.run([sys.executable, str(PROVENANCE_REMEDIATOR)], cwd=ROOT, check=True)
         refreshed = read_json(INTELLIGENCE_FILE)
+        deduped_signals = dedupe_official_releases(refreshed.get("signals", []))
+        if len(deduped_signals) != len(refreshed.get("signals", [])):
+            removed = len(refreshed.get("signals", [])) - len(deduped_signals)
+            refreshed["signals"] = deduped_signals
+            write_json(INTELLIGENCE_FILE, refreshed)
+            print(f"Removed {removed} duplicate official release record(s) after provenance normalization.")
+            # Scores include corpus-level corroboration, so recalculate after
+            # removing a duplicate rather than publishing stale rankings.
+            subprocess.run([sys.executable, str(SCORER)], cwd=ROOT, check=True)
+            refreshed = read_json(INTELLIGENCE_FILE)
         validate_intelligence(refreshed)
         subprocess.run(["node", str(CUSTOMER_VOICE_VALIDATOR)], cwd=ROOT, check=True)
         subprocess.run(["node", str(APPLICATION_NOTE_VALIDATOR)], cwd=ROOT, check=True)

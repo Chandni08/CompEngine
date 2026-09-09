@@ -1,7 +1,7 @@
 {
   "snapshotSchemaVersion": 2,
   "observationType": "sitemap_inventory",
-  "capturedAt": "2026-09-09T11:32:08+00:00",
+  "capturedAt": "2026-09-09T13:36:50+00:00",
   "initialized": true,
   "products": {
     "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-horizon-uhplc-system.html": "2026-07-15",
@@ -663,148 +663,8 @@
   },
   "technicalFeedVersion": 3,
   "unverifiedInventoryChanges": {
-    "new": [
-      {
-        "url": "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-amplify-uhplc-system.html",
-        "lastmod": "2026-06-29",
-        "category": "LC/MS"
-      },
-      {
-        "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/orbitrap-tribrid-mass-spectrometers/orbitrap-tribrid-apex-mass-spectrometer.html",
-        "lastmod": "2026-08-14",
-        "category": "LC/MS"
-      }
-    ],
-    "updated": [
-      {
-        "url": "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-horizon-uhplc-system.html",
-        "lastmod": "2026-07-15",
-        "previousLastmod": "2026-03-23",
-        "category": "LC/MS"
-      },
-      {
-        "url": "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-flex-uhplc-system.html",
-        "lastmod": "2026-07-15",
-        "previousLastmod": "2026-03-24",
-        "category": "LC/MS"
-      },
-      {
-        "url": "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-core-hplc-system.html",
-        "lastmod": "2026-07-15",
-        "previousLastmod": "2026-04-21",
-        "category": "LC/MS"
-      },
-      {
-        "url": "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-duo-uhplc-dual-lc-system.html",
-        "lastmod": "2026-07-16",
-        "previousLastmod": "2025-09-23",
-        "category": "LC/MS"
-      },
-      {
-        "url": "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-neo-uhplc-system.html",
-        "lastmod": "2026-07-15",
-        "previousLastmod": "2026-03-24",
-        "category": "Nano-LC",
-        "monitoringFamily": "thermo-vanquish-neo-nano-lc",
-        "monitoringFamilyName": "Thermo Scientific Vanquish Neo nano-LC",
-        "technology": "Nano-LC",
-        "marketSegments": [
-          "Biopharma",
-          "Academic"
-        ]
-      },
-      {
-        "url": "https://www.thermofisher.com/us/en/home/industrial/chromatography/ion-chromatography-ic/ion-chromatography-systems/instrument-selection/ics-6000.html",
-        "lastmod": "2026-08-12",
-        "previousLastmod": "2026-03-23",
-        "category": "Ion chromatography",
-        "monitoringFamily": "thermo-dionex-ion-chromatography",
-        "monitoringFamilyName": "Thermo Scientific Dionex ion chromatography",
-        "technology": "Ion chromatography",
-        "marketSegments": [
-          "Environmental",
-          "Food & Beverage"
-        ]
-      },
-      {
-        "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms.html",
-        "lastmod": "2026-07-10",
-        "previousLastmod": "2026-04-28",
-        "category": "LC/MS"
-      },
-      {
-        "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/orbitrap-exploris-mass-spectrometers.html",
-        "lastmod": "2026-06-30",
-        "previousLastmod": "2026-04-24",
-        "category": "LC/MS"
-      },
-      {
-        "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/orbitrap-exploris-mass-spectrometers/orbitrap-exploris-480-mass-spectrometers.html",
-        "lastmod": "2026-06-30",
-        "previousLastmod": "2026-05-04",
-        "category": "LC/MS"
-      },
-      {
-        "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/orbitrap-exploris-mass-spectrometers/orbitrap-exploris-240-mass-spectrometers.html",
-        "lastmod": "2026-06-30",
-        "previousLastmod": "2026-05-14",
-        "category": "LC/MS"
-      },
-      {
-        "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/orbitrap-exploris-mass-spectrometers/orbitrap-exploris-120-mass-spectrometers.html",
-        "lastmod": "2026-06-30",
-        "previousLastmod": "2026-04-20",
-        "category": "LC/MS"
-      },
-      {
-        "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/q-exactive-orbitrap-mass-spectrometers.html",
-        "lastmod": "2026-07-09",
-        "previousLastmod": "2026-04-22",
-        "category": "LC/MS"
-      },
-      {
-        "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/orbitrap-tribrid-mass-spectrometers/orbitrap-eclipse-tribrid-mass-spectrometer.html",
-        "lastmod": "2026-05-26",
-        "previousLastmod": "2026-04-22",
-        "category": "LC/MS"
-      },
-      {
-        "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/orbitrap-excedion-pro-mass-spectrometer.html",
-        "lastmod": "2026-06-29",
-        "previousLastmod": "2026-03-27",
-        "category": "LC/MS"
-      },
-      {
-        "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/orbitrap-excedion-pro-mass-spectrometer/orbitrap-excedion-pro-ms.html",
-        "lastmod": "2026-05-22",
-        "previousLastmod": "2026-03-27",
-        "category": "LC/MS"
-      },
-      {
-        "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/orbitrap-lc-ms/orbitrap-excedion-pro-mass-spectrometer/orbitrap-excedion-pro-biopharma-ms.html",
-        "lastmod": "2026-06-29",
-        "previousLastmod": "2026-03-27",
-        "category": "LC/MS"
-      },
-      {
-        "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/triple-quadrupole-lc-ms/tsq-quantis-triple-quadrupole-ms.html",
-        "lastmod": "2026-08-06",
-        "previousLastmod": "2025-11-04",
-        "category": "LC/MS"
-      },
-      {
-        "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/triple-quadrupole-lc-ms/tsq-altis-triple-quadrupole-ms.html",
-        "lastmod": "2026-08-03",
-        "previousLastmod": "2026-04-09",
-        "category": "LC/MS"
-      },
-      {
-        "url": "https://www.thermofisher.com/us/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-systems/triple-quadrupole-lc-ms/tsq-certis-triple-quadripole-ms.html",
-        "lastmod": "2026-07-10",
-        "previousLastmod": "2026-05-08",
-        "category": "LC/MS"
-      }
-    ],
+    "new": [],
+    "updated": [],
     "missing": []
   }
 }

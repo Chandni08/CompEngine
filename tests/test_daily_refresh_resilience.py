@@ -15,6 +15,59 @@ import refresh_daily  # noqa: E402
 
 
 class DailyRefreshResilienceTests(unittest.TestCase):
+    def test_release_deduplication_prefers_sec_earnings_exhibit(self):
+        title = "Agilent Reports Third-Quarter Fiscal Year 2026 Financial Results"
+        newsroom = {
+            "id": "agilent-newsroom",
+            "competitor": "Agilent",
+            "date": "2026-08-26",
+            "title": title,
+            "signalType": "Quarterly earnings result",
+            "category": "Corporate intelligence",
+            "sourceUrl": "https://www.agilent.com/about/newsroom/presrel/2026/example.html",
+        }
+        sec = {
+            "id": "agilent-sec",
+            "competitor": "Agilent",
+            "date": "2026-08-26",
+            "title": title,
+            "signalType": "SEC earnings filing",
+            "category": "Corporate intelligence",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1090872/example/exhibit991.htm",
+        }
+
+        for ordered in ([newsroom, sec], [sec, newsroom]):
+            result = refresh_daily.dedupe_official_releases(ordered)
+            self.assertEqual([item["id"] for item in result], ["agilent-sec"])
+
+    def test_release_deduplication_recognizes_product_release_label(self):
+        title = "Agilent Introduces the Cary 635 FTIR Spectrometer"
+        newsroom = {
+            "id": "agilent-newsroom-product-release",
+            "competitor": "Agilent",
+            "date": "2026-09-01",
+            "title": title,
+            "signalType": "Product release",
+            "category": "Product intelligence",
+            "sourceUrl": "https://www.agilent.com/about/newsroom/presrel/2026/example.html",
+        }
+        investor_feed = {
+            "id": "agilent-investor-product-release",
+            "competitor": "Agilent",
+            "date": "2026-09-01",
+            "title": title,
+            "signalType": "Product release",
+            "category": "Product intelligence",
+            "sourceUrl": "https://www.investor.agilent.com/news/example/default.aspx",
+        }
+
+        for ordered in ([newsroom, investor_feed], [investor_feed, newsroom]):
+            result = refresh_daily.dedupe_official_releases(ordered)
+            self.assertEqual(
+                [item["id"] for item in result],
+                ["agilent-newsroom-product-release"],
+            )
+
     def test_domain_wide_runner_anomaly_can_continue_across_days(self):
         urls = [f"https://www.fda.gov/example-{index}" for index in range(5)]
         current = [

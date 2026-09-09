@@ -31,10 +31,20 @@ REVVITY_Q2_2026_EXHIBIT_URL = (
     "https://www.sec.gov/Archives/edgar/data/31791/000003179126000022/"
     "q22026pressrelease.htm"
 )
+AGILENT_Q2_2026_ACCESSION = "0001090872-26-000052"
+AGILENT_Q2_2026_EXHIBIT_URL = (
+    "https://www.sec.gov/Archives/edgar/data/1090872/000109087226000052/"
+    "exhibit991-q226pressrelease.htm"
+)
 AGILENT_Q3_2026_ACCESSION = "0001090872-26-000062"
 AGILENT_Q3_2026_EXHIBIT_URL = (
     "https://www.sec.gov/Archives/edgar/data/1090872/000109087226000062/"
     "exhibit991-q326pressrelease.htm"
+)
+THERMO_Q2_2026_ACCESSION = "0000097745-26-000138"
+THERMO_Q2_2026_EXHIBIT_URL = (
+    "https://www.sec.gov/Archives/edgar/data/97745/000009774526000138/"
+    "q22026earnings8kex99_1.htm"
 )
 
 HORIZONS = {
@@ -728,17 +738,67 @@ def revvity_q2_2026_earnings_enrichment() -> dict:
     }
 
 
-def agilent_q3_2026_sec_enrichment() -> dict:
-    """Attach the filed Q3 release and preserve its LC/LC-MS evidence boundary."""
+def agilent_q2_2026_sec_enrichment() -> dict:
+    """Use the filed Q2 earnings exhibit as the canonical earnings evidence."""
     return {
+        "competitor": "Agilent",
+        "registrant": "Agilent Technologies, Inc.",
+        "relatedOperatingBusiness": None,
         "category": "Corporate intelligence",
         "signalType": "SEC earnings filing",
-        "title": "Agilent furnished Q3 FY2026 earnings results on Form 8-K",
+        "title": "Agilent Reports Second-Quarter Fiscal Year 2026 Financial Results",
+        "summary": "Agilent reported broad-based operating-group growth and raised fiscal 2026 guidance.",
+        "earningsMetrics": [
+            {"label": "Life Sciences and Diagnostics revenue", "value": "$732M", "change": "+12% reported / +9% core"},
+            {"label": "CrossLab revenue", "value": "$759M", "change": "+6% reported / +2% core"},
+            {"label": "Applied Markets revenue", "value": "$344M", "change": "+14% reported / +11% core"},
+        ],
+        "pmInsights": [
+            "All three operating groups grew, led by Life Sciences and Diagnostics and Applied Markets.",
+            "CrossLab remained Agilent's largest reported group and carried a 32.0% operating margin.",
+            "Raised guidance increased Agilent's capacity to invest behind priority workflows.",
+        ],
+        "evidenceBoundary": "The filed release does not separately report LC or LC-MS revenue, units, pricing, or market share.",
+        "sourceName": "SEC EDGAR Exhibit 99.1",
+        "sourceUrl": AGILENT_Q2_2026_EXHIBIT_URL,
+        "marketSegment": "Corporate",
+        "technology": "Portfolio",
+        "theme": "Filed quarterly earnings evidence",
+        "intent": "Corporate performance and investment capacity",
+        "supportingExcerpt": "Life Sciences and Diagnostics revenue was $732 million; CrossLab revenue was $759 million",
+        "sourceLocation": "SEC Exhibit 99.1 financial highlights",
+        "evidenceStatus": "verified",
+    }
+
+
+def agilent_q3_2026_sec_enrichment() -> dict:
+    """Use the filed Q3 earnings exhibit as the canonical earnings evidence."""
+    return {
+        "competitor": "Agilent",
+        "registrant": "Agilent Technologies, Inc.",
+        "relatedOperatingBusiness": None,
+        "category": "Corporate intelligence",
+        "signalType": "SEC earnings filing",
+        "title": "Agilent Reports Third-Quarter Fiscal Year 2026 Financial Results",
         "summary": (
             "Agilent's August 26 Form 8-K furnished the official Q3 release: $1.88 billion "
             "of revenue, 7.3% core growth, 28.3% non-GAAP operating margin, broad-based "
             "operating-group growth, and raised fiscal 2026 guidance."
         ),
+        "earningsMetrics": [
+            {"label": "Q3 revenue", "value": "$1.88B", "change": "+8.1% reported / +7.3% core"},
+            {"label": "Non-GAAP operating margin", "value": "28.3%", "change": "+320 bps year over year"},
+            {"label": "Life Sciences and Diagnostics", "value": "$746M", "change": "+11% reported / +10% core"},
+            {"label": "CrossLab", "value": "$786M", "change": "+6% reported / +5% core"},
+            {"label": "Applied Markets", "value": "$346M", "change": "+7% reported / +7% core"},
+            {"label": "FY26 revenue outlook", "value": "$7.49–$7.51B", "change": "midpoint raised"},
+        ],
+        "pmInsights": [
+            "All three operating groups grew on both reported and core bases.",
+            "CrossLab remained Agilent's largest operating group and posted a 34.3% operating margin.",
+            "Agilent raised full-year revenue, operating-margin, and non-GAAP EPS guidance.",
+            "Tariff refunds contributed to Q3 non-GAAP operating-margin expansion.",
+        ],
         "sourceName": "SEC EDGAR Exhibit 99.1",
         "sourceUrl": AGILENT_Q3_2026_EXHIBIT_URL,
         "marketSegment": "Corporate",
@@ -756,6 +816,39 @@ def agilent_q3_2026_sec_enrichment() -> dict:
         "evidenceBoundary": (
             "The filed release does not separately report LC or LC-MS revenue, units, pricing, or market share."
         ),
+    }
+
+
+def thermo_q2_2026_sec_enrichment() -> dict:
+    """Use Thermo Fisher's filed Exhibit 99.1 for the Q2 PM readout."""
+    return {
+        "competitor": "Thermo Fisher",
+        "registrant": "Thermo Fisher Scientific Inc.",
+        "relatedOperatingBusiness": None,
+        "category": "Corporate intelligence",
+        "signalType": "SEC earnings filing",
+        "title": "Thermo Fisher Scientific Reports Second Quarter 2026 Results",
+        "summary": "Thermo paired higher Analytical Instruments revenue and margin with AI-enabled Orbitrap launches and new customer infrastructure.",
+        "earningsMetrics": [
+            {"label": "Analytical Instruments revenue", "value": "$1.847B", "change": "+6.9% YoY"},
+            {"label": "Analytical Instruments segment income", "value": "$424M", "change": "+30.5% YoY"},
+            {"label": "Analytical Instruments margin", "value": "23.0%", "change": "+4.2 pts YoY"},
+        ],
+        "pmInsights": [
+            "Analytical Instruments revenue increased 6.9% and segment margin expanded 4.2 points.",
+            "New Orbitrap platforms combine AI-driven analytics with priority application workflows.",
+            "New customer infrastructure extends Thermo into pharma and biotech co-development.",
+        ],
+        "evidenceBoundary": "The filed exhibit does not separate LC or chromatography revenue; Analytical Instruments performance is not evidence of LC share gain.",
+        "sourceName": "SEC EDGAR Exhibit 99.1",
+        "sourceUrl": THERMO_Q2_2026_EXHIBIT_URL,
+        "marketSegment": "Corporate",
+        "technology": "Portfolio",
+        "theme": "Filed quarterly earnings evidence",
+        "intent": "Corporate performance and investment capacity",
+        "supportingExcerpt": "Analytical Instruments operating income increased 30% and adjusted operating margin increased 420 basis points",
+        "sourceLocation": "SEC Exhibit 99.1 segment results and business highlights",
+        "evidenceStatus": "verified",
     }
 
 
@@ -853,8 +946,12 @@ def collect_sec_signals() -> tuple[list[dict], dict]:
                 }
             if accession == REVVITY_Q2_2026_ACCESSION:
                 signal.update(revvity_q2_2026_earnings_enrichment())
+            if accession == AGILENT_Q2_2026_ACCESSION:
+                signal.update(agilent_q2_2026_sec_enrichment())
             if accession == AGILENT_Q3_2026_ACCESSION:
                 signal.update(agilent_q3_2026_sec_enrichment())
+            if accession == THERMO_Q2_2026_ACCESSION:
+                signal.update(thermo_q2_2026_sec_enrichment())
             signals.append(signal)
             added_by_form[form] += 1
             if all(added_by_form[key] >= limits[key] for key in limits):

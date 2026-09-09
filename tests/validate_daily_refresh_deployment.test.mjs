@@ -60,19 +60,42 @@ test("daily publication validates, deploys, aliases, and verifies the Waters sit
   assert.match(deployRunner, /live refresh status is not publishable/);
 });
 
-test("cloud refresh schedule validates before saving or deploying data", () => {
-  assert.match(workflow, /cron: "17 11 \* \* \*"/);
-  assert.match(workflow, /cron: "17 12 \* \* \*"/);
-  assert.match(workflow, /TZ=America\/New_York date \+%H/);
-  assert.match(workflow, /outputs:\s+should_run:/);
-  assert.match(workflow, /if: needs\.schedule_gate\.outputs\.should_run == 'true'/);
-  assert.match(workflow, /actions\/upload-artifact@v7/);
-  assert.match(workflow, /scripts\/run_daily_refresh\.sh --refresh-only/);
-  assert.match(workflow, /VERCEL_TOKEN/);
-  assert.match(workflow, /vercel@57\.0\.0 deploy --prod --yes/);
-  assert.match(workflow, /datasetAsOfDate/);
-  assert.doesNotMatch(workflow, /relying on the Vercel Git integration/);
-  assert.ok(workflow.indexOf("Validate the production package") < workflow.indexOf("Save the validated daily data"));
-  assert.ok(workflow.indexOf("Run ingestion regression checks") < workflow.indexOf("Save the validated daily data"));
-  assert.ok(workflow.indexOf("Save the validated daily data") < workflow.indexOf("Deploy the validated build to Vercel"));
+test("cloud data refresh collects, transforms, validates, and publishes only an immutable data reference", () => {
+  assert.match(refreshWorkflow, /name: Daily competitive-intelligence data refresh/);
+  assert.match(refreshWorkflow, /cron: "17 11 \* \* \*"/);
+  assert.match(refreshWorkflow, /cron: "17 12 \* \* \*"/);
+  assert.match(refreshWorkflow, /EVENT_SCHEDULE: \$\{\{ github\.event\.schedule \}\}/);
+  assert.match(refreshWorkflow, /TZ=America\/New_York date \+%H/);
+  assert.match(refreshWorkflow, /refresh_data:/);
+  assert.match(refreshWorkflow, /if: needs\.schedule_gate\.outputs\.should_run == 'true'/);
+  assert.match(refreshWorkflow, /scripts\/run_daily_refresh\.sh --refresh-only/);
+  assert.match(refreshWorkflow, /Save the validated daily data/);
+  assert.match(refreshWorkflow, /git push origin "HEAD:\$DEFAULT_BRANCH"/);
+  assert.match(refreshWorkflow, /name: validated-data-ref/);
+  assert.match(refreshWorkflow, /data_commit\.txt/);
+  assert.match(refreshWorkflow, /actions\/upload-artifact@v7/);
+  assert.doesNotMatch(refreshWorkflow, /VERCEL_TOKEN/);
+  assert.doesNotMatch(refreshWorkflow, /Deploy the validated build/);
+  assert.ok(refreshWorkflow.indexOf("Validate the production package") < refreshWorkflow.indexOf("Save the validated daily data"));
+  assert.ok(refreshWorkflow.indexOf("Run ingestion regression checks") < refreshWorkflow.indexOf("Save the validated daily data"));
+});
+
+test("platform deployments consume the same immutable validated data commit independently", () => {
+  assert.match(deploymentWorkflow, /workflow_run:/);
+  assert.match(deploymentWorkflow, /Daily competitive-intelligence data refresh/);
+  assert.match(deploymentWorkflow, /data_ref:/);
+  assert.match(deploymentWorkflow, /actions\/download-artifact@v7/);
+  assert.match(deploymentWorkflow, /name: validated-data-ref/);
+  assert.match(deploymentWorkflow, /resolve_data_commit:/);
+  assert.match(deploymentWorkflow, /deploy_vercel:/);
+  assert.match(deploymentWorkflow, /ref: \$\{\{ needs\.resolve_data_commit\.outputs\.data_commit \}\}/);
+  assert.match(deploymentWorkflow, /group: deploy-vercel-production/);
+  assert.match(deploymentWorkflow, /VERCEL_TOKEN/);
+  assert.match(deploymentWorkflow, /vercel@59\.10\.0 build --prod --yes/);
+  assert.match(deploymentWorkflow, /vercel@59\.10\.0 deploy --prebuilt --prod --yes --skip-domain/);
+  assert.match(deploymentWorkflow, /mktemp -d "\$RUNNER_TEMP\/vercel-prebuilt/);
+  assert.match(deploymentWorkflow, /datasetAsOfDate/);
+  assert.doesNotMatch(deploymentWorkflow, /run_daily_refresh/);
+  assert.doesNotMatch(deploymentWorkflow, /git push/);
+  assert.doesNotMatch(deploymentWorkflow, /REDDIT_CLIENT_ID/);
 });
