@@ -231,7 +231,7 @@
       "startDate": "2026-08-23",
       "endDate": "2026-08-27",
       "tier": "Tier 2",
-      "website": "https://www.acs.org/events/all-events/acs-fall-2026.html",
+      "website": "https://www.acs.org/events/fall.html",
       "marketSegments": [
         "Academic",
         "Pharma",
@@ -328,7 +328,7 @@
       "monitoringLinks": [
         {
           "label": "2026 meeting",
-          "url": "https://www.acs.org/events/all-events/acs-fall-2026.html"
+          "url": "https://www.acs.org/events/fall.html"
         },
         {
           "label": "Expo and exhibitors",

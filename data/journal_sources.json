@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-09T03:19:32+00:00",
+  "generatedAt": "2026-09-09T11:15:27+00:00",
   "purpose": "Publication, forum, webinar, and trade-media source map for Waters Next Gen LC competitive intelligence.",
   "sources": [
     {
@@ -29,7 +29,7 @@
       "confidenceUse": "High for topic trend monitoring; validate any customer claim with article-level source review.",
       "sourceClass": "Trade, forum, and learning source",
       "collectorType": "public-content-feed",
-      "lastChecked": "2026-09-09T03:19:20+00:00",
+      "lastChecked": "2026-09-09T11:15:15+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -124,7 +124,7 @@
         }
       ],
       "contentTrend": {
-        "asOf": "2026-09-08",
+        "asOf": "2026-09-09",
         "last30Days": 0,
         "prior30Days": 7,
         "last90Days": 9,
@@ -144,7 +144,7 @@
       ],
       "itemEvidence": {
         "scope": "publisher_owned_public_metadata",
-        "queryExecutedAt": "2026-09-09T03:19:20+00:00",
+        "queryExecutedAt": "2026-09-09T11:15:15+00:00",
         "sourceResultCount": 12,
         "sourceNewestUrl": "https://www.chromatographyonline.com/view/uhplc-ms-ms-reveals-rice-pdd-s-role-trna-tags",
         "sourceNewestDate": "2026-07-30",
@@ -178,7 +178,7 @@
       "confidenceUse": "High for market and workflow direction; use with launch and customer evidence before changing roadmap priority.",
       "sourceClass": "Trade, forum, and learning source",
       "collectorType": "public-content-feed",
-      "lastChecked": "2026-09-09T03:19:20+00:00",
+      "lastChecked": "2026-09-09T11:15:15+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -203,7 +203,7 @@
         }
       ],
       "contentTrend": {
-        "asOf": "2026-09-08",
+        "asOf": "2026-09-09",
         "last30Days": 2,
         "prior30Days": 0,
         "last90Days": 2,
@@ -223,7 +223,7 @@
       ],
       "itemEvidence": {
         "scope": "publisher_owned_public_metadata",
-        "queryExecutedAt": "2026-09-09T03:19:20+00:00",
+        "queryExecutedAt": "2026-09-09T11:15:15+00:00",
         "sourceResultCount": 2,
         "sourceNewestUrl": "https://www.biopharminternational.com/view/aptar-pharma-and-aceso-therapeutics-partner-to-advance-inhaled-antisense-oligonucleotide-for-cystic-fibrosis",
         "sourceNewestDate": "2026-09-08",
@@ -257,7 +257,7 @@
       "confidenceUse": "Medium-high for application and training signals; validate commercial importance with customer evidence.",
       "sourceClass": "Trade, forum, and learning source",
       "collectorType": "public-content-feed",
-      "lastChecked": "2026-09-09T03:19:20+00:00",
+      "lastChecked": "2026-09-09T11:15:15+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -3768,13 +3768,13 @@
         }
       ],
       "contentTrend": {
-        "asOf": "2026-09-08",
-        "last30Days": 53,
-        "prior30Days": 76,
-        "last90Days": 199,
-        "prior90Days": 191,
+        "asOf": "2026-09-09",
+        "last30Days": 49,
+        "prior30Days": 80,
+        "last90Days": 196,
+        "prior90Days": 194,
         "trailing12Months": 500,
-        "change90Pct": 4,
+        "change90Pct": 1,
         "direction": "Stable source activity",
         "comparisonBasis": "Dated public records captured from publisher-owned feeds, sitemaps, or listing pages; availability varies by publisher."
       },
@@ -3788,7 +3788,7 @@
       ],
       "itemEvidence": {
         "scope": "publisher_owned_public_metadata",
-        "queryExecutedAt": "2026-09-09T03:19:20+00:00",
+        "queryExecutedAt": "2026-09-09T11:15:15+00:00",
         "sourceResultCount": 500,
         "sourceNewestUrl": "https://www.sepscience.com/eppendorf-launches-centrifuge-5811-r-for-multipurpose-refrigerated-benchtop-workflows-12731",
         "sourceNewestDate": "2026-09-08",
@@ -3822,7 +3822,7 @@
       "confidenceUse": "Medium for customer-language and education themes; avoid treating discussion volume as market share.",
       "sourceClass": "Trade, forum, and learning source",
       "collectorType": "public-content-feed",
-      "lastChecked": "2026-09-09T03:19:20+00:00",
+      "lastChecked": "2026-09-09T11:15:15+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -3868,7 +3868,7 @@
         }
       ],
       "contentTrend": {
-        "asOf": "2026-09-08",
+        "asOf": "2026-09-09",
         "last30Days": 1,
         "prior30Days": 1,
         "last90Days": 3,
@@ -3900,7 +3900,7 @@
       ],
       "itemEvidence": {
         "scope": "publisher_owned_public_metadata",
-        "queryExecutedAt": "2026-09-09T03:19:20+00:00",
+        "queryExecutedAt": "2026-09-09T11:15:15+00:00",
         "sourceResultCount": 5,
         "sourceNewestUrl": "https://www.labroots.com/trending/chemistry-and-physics/30888/pfas-regulations-driving-chromatography-procurement-federal-agencies-2",
         "sourceNewestDate": "2026-08-12",
@@ -3934,7 +3934,7 @@
       "confidenceUse": "High for buying-criteria context; validate product-specific claims with direct source links.",
       "sourceClass": "Trade, forum, and learning source",
       "collectorType": "public-content-feed",
-      "lastChecked": "2026-09-09T03:19:20+00:00",
+      "lastChecked": "2026-09-09T11:15:15+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -5282,7 +5282,7 @@
         }
       ],
       "contentTrend": {
-        "asOf": "2026-09-08",
+        "asOf": "2026-09-09",
         "last30Days": 17,
         "prior30Days": 26,
         "last90Days": 54,
@@ -5302,7 +5302,7 @@
       ],
       "itemEvidence": {
         "scope": "publisher_owned_public_metadata",
-        "queryExecutedAt": "2026-09-09T03:19:20+00:00",
+        "queryExecutedAt": "2026-09-09T11:15:15+00:00",
         "sourceResultCount": 191,
         "sourceNewestUrl": "https://www.labmanager.com/purdue-researchers-eliminate-lc-ms-sample-preparation-with-spatial-extraction-tool-35895",
         "sourceNewestDate": "2026-09-06",
@@ -5336,7 +5336,7 @@
       "confidenceUse": "Medium for messaging and sponsor activity; distinguish editorial coverage from sponsored content.",
       "sourceClass": "Trade, forum, and learning source",
       "collectorType": "public-content-feed",
-      "lastChecked": "2026-09-09T03:19:20+00:00",
+      "lastChecked": "2026-09-09T11:15:15+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -5361,7 +5361,7 @@
         }
       ],
       "contentTrend": {
-        "asOf": "2026-09-08",
+        "asOf": "2026-09-09",
         "last30Days": 2,
         "prior30Days": 0,
         "last90Days": 2,
@@ -5381,7 +5381,7 @@
       ],
       "itemEvidence": {
         "scope": "publisher_owned_public_metadata",
-        "queryExecutedAt": "2026-09-09T03:19:20+00:00",
+        "queryExecutedAt": "2026-09-09T11:15:15+00:00",
         "sourceResultCount": 2,
         "sourceNewestUrl": "https://www.pharmaceuticalonline.com/doc/ai-fills-the-decision-making-gaps-in-process-analytical-technology-0001",
         "sourceNewestDate": "2026-09-08",
@@ -5415,7 +5415,7 @@
       "confidenceUse": "Medium-high for strategic narrative; pair with product launches and application notes.",
       "sourceClass": "Trade, forum, and learning source",
       "collectorType": "public-content-feed",
-      "lastChecked": "2026-09-09T03:19:20+00:00",
+      "lastChecked": "2026-09-09T11:15:15+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -5454,7 +5454,7 @@
         }
       ],
       "contentTrend": {
-        "asOf": "2026-09-08",
+        "asOf": "2026-09-09",
         "last30Days": 1,
         "prior30Days": 2,
         "last90Days": 3,
@@ -5474,7 +5474,7 @@
       ],
       "itemEvidence": {
         "scope": "publisher_owned_public_metadata",
-        "queryExecutedAt": "2026-09-09T03:19:20+00:00",
+        "queryExecutedAt": "2026-09-09T11:15:15+00:00",
         "sourceResultCount": 4,
         "sourceNewestUrl": "https://theanalyticalscientist.com/issues/2026/articles/september/gcxgc-detective-stories-the-smell-of-adventure/",
         "sourceNewestDate": "2026-09-07",
@@ -5508,15 +5508,22 @@
       "confidenceUse": "Medium-high for regional and regulatory context; validate with official regulatory sources when used for compliance decisions.",
       "sourceClass": "Trade, forum, and learning source",
       "collectorType": "public-content-feed",
-      "lastChecked": "2026-09-09T03:19:20+00:00",
+      "lastChecked": "2026-09-09T11:15:15+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
       ],
       "collectionStatus": "extracted",
-      "collectionDetail": "1 of 1 publisher-owned endpoints reachable; 29 dated public records available.",
-      "extractedRecords": 29,
+      "collectionDetail": "1 of 1 publisher-owned endpoints reachable; 30 dated public records available.",
+      "extractedRecords": 30,
       "recentRecords": [
+        {
+          "title": "Optimising Efficiency And Yield Through Bioprocessing Automation",
+          "date": "2026-09-09",
+          "sourceUrl": "https://www.europeanpharmaceuticalreview.com/bioprocessing/optimising-efficiency-and-yield-through-bioprocessing-automation/2136421.article",
+          "recordType": "European Pharmaceutical Review public content record",
+          "dateBasis": "last_modified"
+        },
         {
           "title": "Implementing Reporter Assay Based Mat For Rapid Pyrogen Detection",
           "date": "2026-09-04",
@@ -5722,13 +5729,13 @@
         }
       ],
       "contentTrend": {
-        "asOf": "2026-09-08",
+        "asOf": "2026-09-09",
         "last30Days": 9,
-        "prior30Days": 1,
-        "last90Days": 13,
+        "prior30Days": 2,
+        "last90Days": 14,
         "prior90Days": 16,
-        "trailing12Months": 29,
-        "change90Pct": -19,
+        "trailing12Months": 30,
+        "change90Pct": -12,
         "direction": "Lower source activity",
         "comparisonBasis": "Dated public records captured from publisher-owned feeds, sitemaps, or listing pages; availability varies by publisher."
       },
@@ -5737,15 +5744,15 @@
           "url": "https://www.europeanpharmaceuticalreview.com/googlesitemap.aspx?year=2026",
           "finalUrl": "https://www.europeanpharmaceuticalreview.com/googlesitemap.aspx?year=2026",
           "status": 200,
-          "recordsExtracted": 357
+          "recordsExtracted": 358
         }
       ],
       "itemEvidence": {
         "scope": "publisher_owned_public_metadata",
-        "queryExecutedAt": "2026-09-09T03:19:20+00:00",
-        "sourceResultCount": 29,
-        "sourceNewestUrl": "https://www.europeanpharmaceuticalreview.com/webinars/implementing-reporter-assay-based-mat-for-rapid-pyrogen-detection/2135806.article",
-        "sourceNewestDate": "2026-09-04",
+        "queryExecutedAt": "2026-09-09T11:15:15+00:00",
+        "sourceResultCount": 30,
+        "sourceNewestUrl": "https://www.europeanpharmaceuticalreview.com/bioprocessing/optimising-efficiency-and-yield-through-bioprocessing-automation/2136421.article",
+        "sourceNewestDate": "2026-09-09",
         "retainedFromPriorRun": false
       }
     },
@@ -5776,7 +5783,7 @@
       "confidenceUse": "Medium-high for pharma analytical trend monitoring; distinguish editorial evidence from sponsored material.",
       "sourceClass": "Trade, forum, and learning source",
       "collectorType": "public-content-feed",
-      "lastChecked": "2026-09-09T03:19:20+00:00",
+      "lastChecked": "2026-09-09T11:15:15+00:00",
       "surfaces": [
         "Market intelligence",
         "Application trends"
@@ -5892,7 +5899,7 @@
         }
       ],
       "contentTrend": {
-        "asOf": "2026-09-08",
+        "asOf": "2026-09-09",
         "last30Days": 4,
         "prior30Days": 0,
         "last90Days": 11,
@@ -5912,7 +5919,7 @@
       ],
       "itemEvidence": {
         "scope": "publisher_owned_public_metadata",
-        "queryExecutedAt": "2026-09-09T03:19:20+00:00",
+        "queryExecutedAt": "2026-09-09T11:15:15+00:00",
         "sourceResultCount": 15,
         "sourceNewestUrl": "https://www.americanpharmaceuticalreview.com/Specialty/Chromatography/Featured-Articles/627968-Oral-Absorption-of-Peptides-and-Proteins-and-Their-Role-in-Drug-Pharmacokinetics/",
         "sourceNewestDate": "2026-09-08",
@@ -5959,11 +5966,41 @@
       ],
       "ingestionStatus": "Active monitoring",
       "confidenceUse": "High for peer-reviewed scientific direction; article-level applicability and method comparability still require review.",
-      "lastChecked": "2026-09-09T03:19:32+00:00",
+      "lastChecked": "2026-09-09T11:15:27+00:00",
       "collectionStatus": "extracted",
-      "collectionDetail": "Collected the complete 370-day window: 3468 DOI records from Crossref journal metadata.",
-      "extractedRecords": 3468,
+      "collectionDetail": "Collected the complete 370-day window: 3466 DOI records from Crossref journal metadata.",
+      "extractedRecords": 3466,
       "recentRecords": [
+        {
+          "title": "An All-in-One Optical Emission Platform for On-Site Sensitive Detection of Selenium in Selenium-Enriched Food: Integrating Digestion, HS-SPME, and Microplasma OES",
+          "date": "2026-09-09",
+          "doi": "10.1021/acs.analchem.6c05230",
+          "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c05230"
+        },
+        {
+          "title": "Solvent-Engineered Fe-Doped CuCo Prussian Blue Analogue Nanozyme with Enhanced Catalytic Activity for Dual-Mode Colorimetric and Electrochemical Immunoassays",
+          "date": "2026-09-09",
+          "doi": "10.1021/acs.analchem.6c04348",
+          "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c04348"
+        },
+        {
+          "title": "A Fluorinated Cyclorhodium Probe Enables Separation-Free 19F NMR Enantiodifferentiation of Chiral Amines and Nitriles",
+          "date": "2026-09-09",
+          "doi": "10.1021/acs.analchem.6c04189",
+          "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c04189"
+        },
+        {
+          "title": "Silver Ion–Regulated Luminescence of Chiral Au-Cysteine Nanoflowers for Highly Effective Enantioselective Recognition of Glutamine",
+          "date": "2026-09-09",
+          "doi": "10.1021/acs.analchem.6c03808",
+          "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c03808"
+        },
+        {
+          "title": "Covalent Organic Framework-Based Solid Phase Microextraction Coating for Rapid Screening and Quantification of Drugs of Abuse and Artificial Sweeteners in Surface Waters",
+          "date": "2026-09-09",
+          "doi": "10.1021/acs.analchem.6c00227",
+          "sourceUrl": "https://doi.org/10.1021/acs.analchem.6c00227"
+        },
         {
           "title": "Issue Editorial Masthead",
           "date": "2026-09-08",
@@ -26729,48 +26766,6 @@
           "date": "2025-09-04",
           "doi": "10.1021/acs.analchem.5c00168",
           "sourceUrl": "https://doi.org/10.1021/acs.analchem.5c00168"
-        },
-        {
-          "title": "Atomic Engineering of a FeFe Dual Single-Atom Nanozyme for Enhanced Peroxidase-like Activities To Build Chemical Tongue for Discrimination of Aromatic Amines",
-          "date": "2025-09-03",
-          "doi": "10.1021/acs.analchem.5c03978",
-          "sourceUrl": "https://doi.org/10.1021/acs.analchem.5c03978"
-        },
-        {
-          "title": "Single-Electrode High-Throughput Dual-Color Electrochemiluminescence Array Biosensor: Portable Parallel Screening of Marine Pathogens",
-          "date": "2025-09-03",
-          "doi": "10.1021/acs.analchem.5c03878",
-          "sourceUrl": "https://doi.org/10.1021/acs.analchem.5c03878"
-        },
-        {
-          "title": "Ion Luminescent Micelles: A Surfactant-Mediated Double-End Signal Amplification Strategy for Portable Detection of Phoxim",
-          "date": "2025-09-03",
-          "doi": "10.1021/acs.analchem.5c03514",
-          "sourceUrl": "https://doi.org/10.1021/acs.analchem.5c03514"
-        },
-        {
-          "title": "Identifying the Oxidase-like Behavior of N-Doped Carbon Nanozymes via Postsynthetic Modification for Colorimetric Sensing",
-          "date": "2025-09-03",
-          "doi": "10.1021/acs.analchem.5c03334",
-          "sourceUrl": "https://doi.org/10.1021/acs.analchem.5c03334"
-        },
-        {
-          "title": "Endogenous Enzyme Stimulation of Localized Catalytic DNA Assembly for High-Contrast microRNA Imaging and Reliable Evaluation of Drug Resistance",
-          "date": "2025-09-03",
-          "doi": "10.1021/acs.analchem.5c03309",
-          "sourceUrl": "https://doi.org/10.1021/acs.analchem.5c03309"
-        },
-        {
-          "title": "Benchmark for Quantitative Global and Redox Proteomics Analysis by Combining Protein-Aggregation Capture and Data Independent Acquisition",
-          "date": "2025-09-03",
-          "doi": "10.1021/acs.analchem.5c03294",
-          "sourceUrl": "https://doi.org/10.1021/acs.analchem.5c03294"
-        },
-        {
-          "title": "Harnessing Energy Enrichment Strategy for Designing Innovative Sandwich-Structured Upconversion Nanoprobes",
-          "date": "2025-09-03",
-          "doi": "10.1021/acs.analchem.5c01789",
-          "sourceUrl": "https://doi.org/10.1021/acs.analchem.5c01789"
         }
       ],
       "metadataEndpoint": "https://api.crossref.org/journals/0003-2700/works",
@@ -26779,23 +26774,23 @@
         "Application trends"
       ],
       "publicationTrend": {
-        "asOf": "2026-09-08",
-        "last30Days": 294,
-        "prior30Days": 261,
-        "last90Days": 837,
-        "prior90Days": 885,
-        "trailing12Months": 3432,
-        "change90Pct": -5,
+        "asOf": "2026-09-09",
+        "last30Days": 284,
+        "prior30Days": 274,
+        "last90Days": 824,
+        "prior90Days": 895,
+        "trailing12Months": 3421,
+        "change90Pct": -8,
         "direction": "Stable publication pace",
         "comparisonBasis": "Crossref publication counts: latest 90 days versus the preceding 90 days."
       },
       "trendCollectionDetail": "Collected rolling publication counts from Crossref journal metadata.",
       "itemEvidence": {
         "scope": "complete_370_day_window",
-        "queryExecutedAt": "2026-09-09T03:19:32+00:00",
-        "sourceResultCount": 3468,
-        "sourceNewestDoi": "10.1021/acv098i035_2125929",
-        "sourceNewestDate": "2026-09-08",
+        "queryExecutedAt": "2026-09-09T11:15:27+00:00",
+        "sourceResultCount": 3466,
+        "sourceNewestDoi": "10.1021/acs.analchem.6c05230",
+        "sourceNewestDate": "2026-09-09",
         "newestDoiIngested": true,
         "paginationComplete": true
       }
@@ -26840,7 +26835,7 @@
       ],
       "ingestionStatus": "Active monitoring",
       "confidenceUse": "High for chromatography science and method-performance evidence.",
-      "lastChecked": "2026-09-09T03:19:32+00:00",
+      "lastChecked": "2026-09-09T11:15:27+00:00",
       "collectionStatus": "extracted",
       "collectionDetail": "Collected the complete 370-day window: 907 DOI records from Crossref journal metadata.",
       "extractedRecords": 907,
@@ -32294,7 +32289,7 @@
         "Application trends"
       ],
       "publicationTrend": {
-        "asOf": "2026-09-08",
+        "asOf": "2026-09-09",
         "last30Days": 124,
         "prior30Days": 125,
         "last90Days": 307,
@@ -32307,7 +32302,7 @@
       "trendCollectionDetail": "Collected rolling publication counts from Crossref journal metadata.",
       "itemEvidence": {
         "scope": "complete_370_day_window",
-        "queryExecutedAt": "2026-09-09T03:19:32+00:00",
+        "queryExecutedAt": "2026-09-09T11:15:27+00:00",
         "sourceResultCount": 907,
         "sourceNewestDoi": "10.1016/s0021-9673(26)00680-1",
         "sourceNewestDate": "2026-09-01",
@@ -32353,7 +32348,7 @@
       ],
       "ingestionStatus": "Active monitoring",
       "confidenceUse": "High for biomedical separation and bioanalytical-method evidence.",
-      "lastChecked": "2026-09-09T03:19:32+00:00",
+      "lastChecked": "2026-09-09T11:15:27+00:00",
       "collectionStatus": "extracted",
       "collectionDetail": "Collected the complete 370-day window: 381 DOI records from Crossref journal metadata.",
       "extractedRecords": 381,
@@ -34651,7 +34646,7 @@
         "Application trends"
       ],
       "publicationTrend": {
-        "asOf": "2026-09-08",
+        "asOf": "2026-09-09",
         "last30Days": 69,
         "prior30Days": 12,
         "last90Days": 91,
@@ -34664,7 +34659,7 @@
       "trendCollectionDetail": "Collected rolling publication counts from Crossref journal metadata.",
       "itemEvidence": {
         "scope": "complete_370_day_window",
-        "queryExecutedAt": "2026-09-09T03:19:32+00:00",
+        "queryExecutedAt": "2026-09-09T11:15:27+00:00",
         "sourceResultCount": 381,
         "sourceNewestDoi": "10.1016/s1570-0232(26)00321-1",
         "sourceNewestDate": "2026-09-01",
@@ -34711,10 +34706,10 @@
       ],
       "ingestionStatus": "Active monitoring",
       "confidenceUse": "High for peer-reviewed MS technology and application direction.",
-      "lastChecked": "2026-09-09T03:19:32+00:00",
+      "lastChecked": "2026-09-09T11:15:27+00:00",
       "collectionStatus": "extracted",
-      "collectionDetail": "Collected the complete 370-day window: 372 DOI records from Crossref journal metadata.",
-      "extractedRecords": 372,
+      "collectionDetail": "Collected the complete 370-day window: 369 DOI records from Crossref journal metadata.",
+      "extractedRecords": 369,
       "recentRecords": [
         {
           "title": "Modeling Energy Transfer Efficiency in Collision-Induced Dissociation and Unfolding Using Molecular Dynamics Simulations",
@@ -36929,24 +36924,6 @@
           "date": "2025-09-04",
           "doi": "10.1021/jasms.4c00427",
           "sourceUrl": "https://doi.org/10.1021/jasms.4c00427"
-        },
-        {
-          "title": "Issue Editorial Masthead",
-          "date": "2025-09-03",
-          "doi": "10.1021/jsv036i009_1979091",
-          "sourceUrl": "https://doi.org/10.1021/jsv036i009_1979091"
-        },
-        {
-          "title": "Issue Publication Information",
-          "date": "2025-09-03",
-          "doi": "10.1021/jsv036i009_1979090",
-          "sourceUrl": "https://doi.org/10.1021/jsv036i009_1979090"
-        },
-        {
-          "title": "An Online Buffer Exchange Platform for Charge Detection Mass Spectrometry Analysis of AAVs and AAV-Antibody Complexes",
-          "date": "2025-09-03",
-          "doi": "10.1021/jasms.5c00206",
-          "sourceUrl": "https://doi.org/10.1021/jasms.5c00206"
         }
       ],
       "metadataEndpoint": "https://api.crossref.org/journals/1044-0305/works",
@@ -36955,21 +36932,21 @@
         "Application trends"
       ],
       "publicationTrend": {
-        "asOf": "2026-09-08",
+        "asOf": "2026-09-09",
         "last30Days": 39,
         "prior30Days": 28,
         "last90Days": 99,
-        "prior90Days": 80,
-        "trailing12Months": 361,
-        "change90Pct": 24,
+        "prior90Days": 79,
+        "trailing12Months": 358,
+        "change90Pct": 25,
         "direction": "Higher publication pace",
         "comparisonBasis": "Crossref publication counts: latest 90 days versus the preceding 90 days."
       },
       "trendCollectionDetail": "Collected rolling publication counts from Crossref journal metadata.",
       "itemEvidence": {
         "scope": "complete_370_day_window",
-        "queryExecutedAt": "2026-09-09T03:19:32+00:00",
-        "sourceResultCount": 372,
+        "queryExecutedAt": "2026-09-09T11:15:27+00:00",
+        "sourceResultCount": 369,
         "sourceNewestDoi": "10.1021/jasms.6c00292",
         "sourceNewestDate": "2026-09-08",
         "newestDoiIngested": true,
@@ -37016,11 +36993,23 @@
       ],
       "ingestionStatus": "Active monitoring",
       "confidenceUse": "High for cross-market analytical and bioanalytical evidence.",
-      "lastChecked": "2026-09-09T03:19:32+00:00",
+      "lastChecked": "2026-09-09T11:15:27+00:00",
       "collectionStatus": "extracted",
-      "collectionDetail": "Collected the complete 370-day window: 694 DOI records from Crossref journal metadata.",
-      "extractedRecords": 694,
+      "collectionDetail": "Collected the complete 370-day window: 695 DOI records from Crossref journal metadata.",
+      "extractedRecords": 695,
       "recentRecords": [
+        {
+          "title": "Establishment of H1R-SNAP-tag/CMC and screening for anti-allergic active ingredients targeting H1R",
+          "date": "2026-09-09",
+          "doi": "10.1007/s00216-026-06799-2",
+          "sourceUrl": "https://doi.org/10.1007/s00216-026-06799-2"
+        },
+        {
+          "title": "Controlled modification of the hydrophilicity of polyethylene terephthalate micro- and nanoplastic particles and their analysis in bottled drinking water",
+          "date": "2026-09-09",
+          "doi": "10.1007/s00216-026-06788-5",
+          "sourceUrl": "https://doi.org/10.1007/s00216-026-06788-5"
+        },
         {
           "title": "Antigen-binding-enhanced divalent nanobody-based immunomagnetic separation coupled with ATP bioluminescence for viable Salmonella detection",
           "date": "2026-09-08",
@@ -41178,12 +41167,6 @@
           "date": "2025-09-05",
           "doi": "10.1007/s00216-025-06093-7",
           "sourceUrl": "https://doi.org/10.1007/s00216-025-06093-7"
-        },
-        {
-          "title": "Novel spectrophotometric approaches for analysis of solifenacin and silodosin in pharmaceutical preparations, human plasma, and environmental water samples: assessment of the methods’ greenness and practicality",
-          "date": "2025-09-03",
-          "doi": "10.1007/s00216-025-06076-8",
-          "sourceUrl": "https://doi.org/10.1007/s00216-025-06076-8"
         }
       ],
       "metadataEndpoint": "https://api.crossref.org/journals/1618-2642/works",
@@ -41192,23 +41175,23 @@
         "Application trends"
       ],
       "publicationTrend": {
-        "asOf": "2026-09-08",
+        "asOf": "2026-09-09",
         "last30Days": 72,
         "prior30Days": 60,
-        "last90Days": 190,
-        "prior90Days": 165,
+        "last90Days": 191,
+        "prior90Days": 164,
         "trailing12Months": 689,
-        "change90Pct": 15,
+        "change90Pct": 16,
         "direction": "Higher publication pace",
         "comparisonBasis": "Crossref publication counts: latest 90 days versus the preceding 90 days."
       },
       "trendCollectionDetail": "Collected rolling publication counts from Crossref journal metadata.",
       "itemEvidence": {
         "scope": "complete_370_day_window",
-        "queryExecutedAt": "2026-09-09T03:19:32+00:00",
-        "sourceResultCount": 694,
-        "sourceNewestDoi": "10.1007/s00216-026-06808-4",
-        "sourceNewestDate": "2026-09-08",
+        "queryExecutedAt": "2026-09-09T11:15:27+00:00",
+        "sourceResultCount": 695,
+        "sourceNewestDoi": "10.1007/s00216-026-06799-2",
+        "sourceNewestDate": "2026-09-09",
         "newestDoiIngested": true,
         "paginationComplete": true
       }
@@ -41251,7 +41234,7 @@
       ],
       "ingestionStatus": "Active monitoring",
       "confidenceUse": "High for pharmaceutical analytical-method and validation evidence.",
-      "lastChecked": "2026-09-09T03:19:32+00:00",
+      "lastChecked": "2026-09-09T11:15:27+00:00",
       "collectionStatus": "extracted",
       "collectionDetail": "Collected the complete 370-day window: 510 DOI records from Crossref journal metadata.",
       "extractedRecords": 510,
@@ -44323,7 +44306,7 @@
         "Application trends"
       ],
       "publicationTrend": {
-        "asOf": "2026-09-08",
+        "asOf": "2026-09-09",
         "last30Days": 56,
         "prior30Days": 31,
         "last90Days": 112,
@@ -44336,7 +44319,7 @@
       "trendCollectionDetail": "Collected rolling publication counts from Crossref journal metadata.",
       "itemEvidence": {
         "scope": "complete_370_day_window",
-        "queryExecutedAt": "2026-09-09T03:19:32+00:00",
+        "queryExecutedAt": "2026-09-09T11:15:27+00:00",
         "sourceResultCount": 510,
         "sourceNewestDoi": "10.1016/s0731-7085(26)00233-5",
         "sourceNewestDate": "2026-09-01",
@@ -44383,10 +44366,10 @@
       ],
       "ingestionStatus": "Active monitoring",
       "confidenceUse": "High for analytical-method direction across environmental, food, clinical, and academic markets.",
-      "lastChecked": "2026-09-09T03:19:32+00:00",
+      "lastChecked": "2026-09-09T11:15:27+00:00",
       "collectionStatus": "extracted",
-      "collectionDetail": "Collected the complete 370-day window: 1767 DOI records from Crossref journal metadata.",
-      "extractedRecords": 1767,
+      "collectionDetail": "Collected the complete 370-day window: 1770 DOI records from Crossref journal metadata.",
+      "extractedRecords": 1770,
       "recentRecords": [
         {
           "title": "Editorial Board",
@@ -44407,6 +44390,18 @@
           "sourceUrl": "https://doi.org/10.1016/s0039-9140(26)00634-x"
         },
         {
+          "title": "Numerically guided development of a microfluidic lab-on-chip platform for Cherenkov detection of β-emitting radionuclides",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.130607",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.130607"
+        },
+        {
+          "title": "Identification of Melanotransferrin (MFI2) as a Membrane Target and an MFI2-Directed Aptamer as a Theranostic Tool for Pancreatic Ductal Adenocarcinoma",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.130606",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.130606"
+        },
+        {
           "title": "Surface-engineered porous silicon nanoparticles amplifying [Ru(bpy)3]2+ electrochemiluminescence for ultrasensitive immunoassay",
           "date": "2026-09-01",
           "doi": "10.1016/j.talanta.2026.130604",
@@ -44423,6 +44418,12 @@
           "date": "2026-09-01",
           "doi": "10.1016/j.talanta.2026.130599",
           "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.130599"
+        },
+        {
+          "title": "Development and Validation of an Environmentally Friendly Spectrofluorimetric Method for Dimethindene Maleate Determination: Application to Dosage Forms and Biological Fluids",
+          "date": "2026-09-01",
+          "doi": "10.1016/j.talanta.2026.130598",
+          "sourceUrl": "https://doi.org/10.1016/j.talanta.2026.130598"
         },
         {
           "title": "Differential characterization of the chemical profiles of porcini mushrooms using a combination of GC–MS, LC-MS/MS, and infrared spectroscopy with chemometrics",
@@ -54997,21 +54998,21 @@
         "Application trends"
       ],
       "publicationTrend": {
-        "asOf": "2026-09-08",
-        "last30Days": 105,
+        "asOf": "2026-09-09",
+        "last30Days": 108,
         "prior30Days": 192,
-        "last90Days": 347,
+        "last90Days": 350,
         "prior90Days": 333,
-        "trailing12Months": 1767,
-        "change90Pct": 4,
+        "trailing12Months": 1770,
+        "change90Pct": 5,
         "direction": "Stable publication pace",
         "comparisonBasis": "Crossref publication counts: latest 90 days versus the preceding 90 days."
       },
       "trendCollectionDetail": "Collected rolling publication counts from Crossref journal metadata.",
       "itemEvidence": {
         "scope": "complete_370_day_window",
-        "queryExecutedAt": "2026-09-09T03:19:32+00:00",
-        "sourceResultCount": 1767,
+        "queryExecutedAt": "2026-09-09T11:15:27+00:00",
+        "sourceResultCount": 1770,
         "sourceNewestDoi": "10.1016/s0039-9140(26)00637-5",
         "sourceNewestDate": "2026-09-01",
         "newestDoiIngested": true,

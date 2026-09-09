@@ -1,7 +1,7 @@
 {
   "snapshotSchemaVersion": 2,
   "observationType": "sitemap_inventory",
-  "capturedAt": "2026-09-09T03:35:51+00:00",
+  "capturedAt": "2026-09-09T11:32:08+00:00",
   "initialized": true,
   "products": {
     "https://www.thermofisher.com/us/en/home/industrial/chromatography/liquid-chromatography-lc/hplc-uhplc-systems/vanquish-horizon-uhplc-system.html": "2026-07-15",
@@ -648,6 +648,16 @@
       "sourceId": "thermo-ms-insights",
       "sourceName": "Thermo Fisher mass spectrometry insights",
       "technology": "LC-MS",
+      "marketSegment": "Clinical"
+    },
+    "https://www.thermofisher.com/blog/analyteguru/high-resolution-mass-spectrometry-in-forensic-toxicology/": {
+      "date": "2026-09-09",
+      "title": "High-Resolution Mass Spectrometry in Forensic Toxicology",
+      "url": "https://www.thermofisher.com/blog/analyteguru/high-resolution-mass-spectrometry-in-forensic-toxicology/",
+      "classification": "technical",
+      "sourceId": "thermo-ms-insights",
+      "sourceName": "Thermo Fisher mass spectrometry insights",
+      "technology": "LC/UHPLC",
       "marketSegment": "Clinical"
     }
   },

@@ -559,12 +559,20 @@ def collect_pubmed_signals() -> tuple[list[dict], dict]:
             )
         newest_item = max(
             (
-                {"pmid": str(item.get("uid", "")), "date": parse_pubdate(item.get("pubdate", ""))}
+                {
+                    "pmid": str(item.get("uid", "")),
+                    "date": parse_pubdate(item.get("pubdate", "")),
+                    # PubMed can publish a future issue/cover date for an
+                    # already indexed article. Keep the observed date for
+                    # provenance, but compare freshness against the same
+                    # clamped date stored on the signal.
+                    "storedDate": signal_pubdate(item.get("pubdate", "")),
+                }
                 for item in summaries
                 if item.get("uid") and parse_pubdate(item.get("pubdate", ""))
             ),
             key=lambda item: item["date"],
-            default={"pmid": None, "date": None},
+            default={"pmid": None, "date": None, "storedDate": None},
         )
         trends["competitors"][-1]["itemEvidence"] = {
             "scope": "representative_sample",
@@ -573,6 +581,10 @@ def collect_pubmed_signals() -> tuple[list[dict], dict]:
             "currentResultCount": counts["1y"],
             "newestSampledPmid": newest_item["pmid"],
             "newestSampledDate": newest_item["date"],
+            "newestStoredDate": newest_item["storedDate"],
+            "newestAheadOfPrint": bool(
+                newest_item["date"] and newest_item["date"] != newest_item["storedDate"]
+            ),
             "newestSampledPmidIngested": bool(newest_item["pmid"] and f"pubmed-{newest_item['pmid']}" in {signal["id"] for signal in signals}),
         }
         time.sleep(0.25)

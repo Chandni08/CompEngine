@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-09T03:41:12+00:00",
+  "generatedAt": "2026-09-09T11:38:05+00:00",
   "sources": [
     {
       "sourceId": "pubmed-eutils",
@@ -4742,7 +4742,7 @@
         "refresh-status"
       ],
       "dependencyChain": [
-        "https://www.acs.org/events/all-events/acs-fall-2026.html",
+        "https://www.acs.org/events/fall.html",
         "official_conference_endpoint_monitor",
         "normalized source record",
         "data/conference_sources.json",

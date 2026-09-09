@@ -1,10 +1,10 @@
 {
   "cadence": "daily",
   "status": "success",
-  "datasetAsOfDate": "2026-09-08",
-  "lastAttemptAt": "2026-09-09T03:41:12+00:00",
-  "lastSuccessfulRefreshAt": "2026-09-09T03:41:12+00:00",
-  "startedAt": "2026-09-09T03:19:20+00:00",
+  "datasetAsOfDate": "2026-09-09",
+  "lastAttemptAt": "2026-09-09T11:38:05+00:00",
+  "lastSuccessfulRefreshAt": "2026-09-09T11:38:05+00:00",
+  "startedAt": "2026-09-09T11:15:15+00:00",
   "automatedDomains": [
     "PubMed publication trends and competitor-linked publications",
     "SEC filing discovery",
@@ -25,8 +25,8 @@
     "PM recommendation frameworks, internal decision gates, and validation methods"
   ],
   "message": "Automated refresh completed (PubMed: success, SEC: success, source checks: success, Agilent: success); all required sources verified.",
-  "buildPublishedAt": "2026-09-09T03:41:12+00:00",
-  "sourcesVerifiedAt": "2026-09-09T03:41:06+00:00",
+  "buildPublishedAt": "2026-09-09T11:38:05+00:00",
+  "sourcesVerifiedAt": "2026-09-09T11:37:59+00:00",
   "allRequiredSourcesCurrent": true,
   "requiredSourceBlockers": [],
   "countsByState": {

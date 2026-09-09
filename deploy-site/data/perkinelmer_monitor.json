@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-09-09T03:33:29+00:00",
+  "generatedAt": "2026-09-09T11:29:45+00:00",
   "competitor": "PerkinElmer",
-  "windowStart": "2023-09-09",
+  "windowStart": "2023-09-10",
   "newsroom": [
     {
       "url": "https://www.perkinelmer.com/corporate-and-newsroom/perkinelmer-completes-acquisition-simotech",
@@ -482,8 +482,8 @@
       "sourceId": "perkinelmer-news",
       "url": "https://www.perkinelmer.com/corporate-and-newsroom",
       "method": "official_sitemap_and_public_pages",
-      "attemptedAt": "2026-09-09T03:33:29+00:00",
-      "succeededAt": "2026-09-09T03:33:29+00:00",
+      "attemptedAt": "2026-09-09T11:29:45+00:00",
+      "succeededAt": "2026-09-09T11:29:45+00:00",
       "recordsSeen": 10,
       "recordsIngested": 10,
       "engineNewestDate": "2026-09-03",
@@ -497,8 +497,8 @@
       "sourceId": "perkinelmer-lc-products",
       "url": "https://www.perkinelmer.com/category/liquid-chromatography",
       "method": "official_sitemap",
-      "attemptedAt": "2026-09-09T03:33:29+00:00",
-      "succeededAt": "2026-09-09T03:33:29+00:00",
+      "attemptedAt": "2026-09-09T11:29:45+00:00",
+      "succeededAt": "2026-09-09T11:29:45+00:00",
       "recordsSeen": 65,
       "recordsIngested": 65,
       "engineNewestDate": "2026-04-24",

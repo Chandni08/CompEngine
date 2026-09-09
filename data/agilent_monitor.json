@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-09T03:35:49+00:00",
+  "generatedAt": "2026-09-09T11:32:05+00:00",
   "baselineCreated": {
     "productInventory": false,
     "pressIndex": false
@@ -391,20 +391,6 @@
       "theme": "Corporate strategic activity",
       "intent": "Corporate strategic activity",
       "summary": "Agilent to Supply Next Generation Alarm Resolution Technology to U.S. Airport Security Screening Checkpoints ahead of FIFA World Cup 2026"
-    },
-    {
-      "date": "2026-05-11",
-      "title": "Agilent to Participate in Jefferies Global Healthcare Conference",
-      "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-to-Participate-in-Jefferies-Global-Healthcare-Conference/default.aspx",
-      "sourceId": "agilent-investor-news",
-      "sourceName": "Agilent investor relations news",
-      "classification": "corporate",
-      "signalType": "Press release",
-      "marketSegment": "Corporate",
-      "technology": "Portfolio",
-      "theme": "Corporate strategic activity",
-      "intent": "Corporate strategic activity",
-      "summary": "Agilent to Participate in Jefferies Global Healthcare Conference"
     }
   ],
   "recent_press_releases": [
@@ -765,20 +751,6 @@
       "theme": "Corporate strategic activity",
       "intent": "Corporate strategic activity",
       "summary": "Agilent to Supply Next Generation Alarm Resolution Technology to U.S. Airport Security Screening Checkpoints ahead of FIFA World Cup 2026"
-    },
-    {
-      "date": "2026-05-11",
-      "title": "Agilent to Participate in Jefferies Global Healthcare Conference",
-      "url": "https://www.investor.agilent.com/news-and-events/news/news-details/2026/Agilent-to-Participate-in-Jefferies-Global-Healthcare-Conference/default.aspx",
-      "sourceId": "agilent-investor-news",
-      "sourceName": "Agilent investor relations news",
-      "classification": "corporate",
-      "signalType": "Press release",
-      "marketSegment": "Corporate",
-      "technology": "Portfolio",
-      "theme": "Corporate strategic activity",
-      "intent": "Corporate strategic activity",
-      "summary": "Agilent to Participate in Jefferies Global Healthcare Conference"
     }
   ],
   "all_press_releases": [
@@ -1374,7 +1346,7 @@
       "status": "available",
       "sourceQuality": "reliable",
       "reliabilityNote": "Authoritative sitemap index.",
-      "checkedAt": "2026-09-09T03:35:25+00:00"
+      "checkedAt": "2026-09-09T11:31:40+00:00"
     },
     {
       "url": "https://www.agilent.com/pim_commerce01.xml",
@@ -1383,7 +1355,7 @@
       "status": "available",
       "sourceQuality": "reliable",
       "reliabilityNote": "Authoritative product inventory.",
-      "checkedAt": "2026-09-09T03:35:26+00:00"
+      "checkedAt": "2026-09-09T11:31:42+00:00"
     },
     {
       "url": "https://www.agilent.com/pim_commerce1.xml",
@@ -1392,7 +1364,7 @@
       "status": "available",
       "sourceQuality": "reliable",
       "reliabilityNote": "Authoritative product inventory.",
-      "checkedAt": "2026-09-09T03:35:27+00:00"
+      "checkedAt": "2026-09-09T11:31:43+00:00"
     },
     {
       "url": "https://www.agilent.com/products0.xml",
@@ -1401,7 +1373,7 @@
       "status": "available",
       "sourceQuality": "reliable",
       "reliabilityNote": "Authoritative product inventory.",
-      "checkedAt": "2026-09-09T03:35:29+00:00"
+      "checkedAt": "2026-09-09T11:31:44+00:00"
     },
     {
       "url": "https://www.agilent.com/about/newsroom/presrel.html",
@@ -1410,7 +1382,7 @@
       "status": "available",
       "sourceQuality": "reliable",
       "reliabilityNote": "Authoritative dated press-release index.",
-      "checkedAt": "2026-09-09T03:35:36+00:00"
+      "checkedAt": "2026-09-09T11:31:52+00:00"
     },
     {
       "url": "https://www.investor.agilent.com/news-and-events/news/default.aspx",
@@ -1419,7 +1391,7 @@
       "status": "available",
       "sourceQuality": "reliable",
       "reliabilityNote": "Official Agilent investor-relations news feed; 10-second crawl delay applied.",
-      "checkedAt": "2026-09-09T03:35:36+00:00"
+      "checkedAt": "2026-09-09T11:31:52+00:00"
     },
     {
       "url": "https://www.investor.agilent.com/overview/default.aspx",
@@ -1428,7 +1400,7 @@
       "status": "available",
       "sourceQuality": "reliable",
       "reliabilityNote": "Investor relations source; 10-second crawl delay applied.",
-      "checkedAt": "2026-09-09T03:35:49+00:00"
+      "checkedAt": "2026-09-09T11:32:05+00:00"
     }
   ],
   "monitoringNote": "Agilent WAF responses do not affect source quality. Authoritative sitemap and press indexes are monitored with an honest crawler identity."
