@@ -1255,6 +1255,55 @@ select {
   padding-left: 20px;
 }
 
+.pmm-share-action-grid .pmm-content-plan-list {
+  list-style: none;
+  gap: 9px;
+  padding-left: 0;
+}
+
+.pmm-content-plan-item {
+  display: grid;
+  gap: 7px;
+  border: 1px solid #d7e4e9;
+  border-radius: 8px;
+  padding: 9px;
+  background: #f7fafb;
+}
+
+.pmm-content-plan-item p {
+  margin: 0;
+}
+
+.pmm-content-plan-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.pmm-content-plan-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #c9dde5;
+  border-radius: 999px;
+  padding: 3px 7px;
+  background: #ffffff;
+}
+
+.pmm-content-plan-meta small {
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.pmm-content-plan-meta strong {
+  color: var(--blue);
+  font-size: 11px;
+  line-height: 1.25;
+}
+
 .pmm-take-share-play {
   border-left: 4px solid var(--gold) !important;
   background: #fffaf0 !important;

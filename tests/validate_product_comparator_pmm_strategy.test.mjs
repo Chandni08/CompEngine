@@ -16,6 +16,12 @@ test("Product Marketing comparator adds product-level strategy, content, and tak
   assert.match(app, /Competitor product marketing strategy/);
   assert.match(app, /Compared with Waters product content/);
   assert.match(app, /Product content to create/);
+  assert.match(app, /function marketingContentPlanMetadata\(item\)/);
+  assert.match(app, /function marketingContentPlanListMarkup\(items\)/);
+  assert.match(app, /Primary channel/);
+  assert.match(app, /Resource type/);
+  assert.match(app, /marketingContentPlanListMarkup\(lens\.contentTypes\)/);
+  assert.match(app, /marketingContentPlanListMarkup\(play\.contentTypes\)/);
   assert.match(app, /Product-level PMM take-share play/);
   assert.match(app, /External product content indicates positioning activity—not preference, adoption, or share movement/);
   assert.match(app, /Exact product source:/);
@@ -30,6 +36,7 @@ test("product-level PMM strategy is evidence-linked and source/deployment mirror
   assert.match(app, /featureProfile\?\.rows/);
   assert.match(app, /waters\.artifacts/);
   assert.match(css, /\.pmm-share-strategy/);
+  assert.match(css, /\.pmm-content-plan-meta/);
   assert.equal(deployApp, app);
   assert.equal(deployCss, css);
 });

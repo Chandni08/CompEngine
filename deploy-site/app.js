@@ -1424,6 +1424,64 @@ function marketingProductContentModel(launch, waters, comparison, featureProfile
   return { competitorItems, watersItems, competitorTypes, watersTypes, comparisonRead };
 }
 
+function marketingContentPlanMetadata(item) {
+  const text = String(item || "").toLowerCase();
+  const resourceType = /customer validation story.*webinar|case study.*webinar/.test(text)
+    ? "Customer story / webinar"
+    : /demonstration.*battlecard|battlecard.*demonstration/.test(text)
+      ? "Demo / battlecard"
+      : /application note.*claims matrix/.test(text)
+        ? "Application note / claims matrix"
+        : /landing page/.test(text)
+          ? "Landing page"
+          : /workflow hub/.test(text)
+            ? "Workflow hub"
+            : /application note/.test(text)
+              ? "Application note"
+              : /proof pack/.test(text)
+                ? "Proof pack"
+                : /proof brief|evidence brief/.test(text)
+                  ? "Comparative proof brief"
+                  : /case study|customer validation story/.test(text)
+                    ? "Customer case study"
+                    : /webinar/.test(text)
+                      ? "Expert webinar"
+                      : /demonstration|demo video/.test(text)
+                        ? "Demonstration video"
+                        : /calculator/.test(text)
+                          ? "Interactive calculator"
+                          : /migration guide/.test(text)
+                            ? "Migration guide"
+                            : /modernization guide|replacement guide|buyer guide/.test(text)
+                              ? "Buyer guide"
+                              : /battlecard/.test(text)
+                                ? "Battlecard"
+                                : /seller|talk track|role-based.*narrative|activation sequence/.test(text)
+                                  ? "Seller enablement kit"
+                                  : "Content asset";
+  const channel = /seller|battlecard|talk track|field/.test(text)
+    ? "Sales enablement"
+    : /webinar|event/.test(text)
+      ? "Webinar / events"
+      : /email|nurture/.test(text)
+        ? "Email / nurture"
+        : /landing page|workflow hub|calculator|method-readiness page/.test(text)
+          ? "Website"
+          : /case study|customer validation story|customer proof/.test(text)
+            ? "Customer proof"
+            : /application note|proof brief|evidence brief|proof pack|claims matrix|guide/.test(text)
+              ? "Resource library"
+              : "Integrated campaign";
+  return { channel, resourceType };
+}
+
+function marketingContentPlanListMarkup(items) {
+  return `<ul class="pmm-content-plan-list">${items.map((item) => {
+    const metadata = marketingContentPlanMetadata(item);
+    return `<li class="pmm-content-plan-item"><div class="pmm-content-plan-meta"><span><small>Primary channel</small><strong>${escapeHtml(metadata.channel)}</strong></span><span><small>Resource type</small><strong>${escapeHtml(metadata.resourceType)}</strong></span></div><p>${escapeHtml(item)}</p></li>`;
+  }).join("")}</ul>`;
+}
+
 function marketingProductShareStrategyMarkup(launch, waters, comparison, featureProfile) {
   const lens = marketingProductStrategyLens(launch, waters, comparison);
   const content = marketingProductContentModel(launch, waters, comparison, featureProfile);
@@ -1442,7 +1500,7 @@ function marketingProductShareStrategyMarkup(launch, waters, comparison, feature
       <article><span>Compared with Waters product content</span><strong>${escapeHtml(content.comparisonRead)}</strong><p>${content.watersItems.length} matched ${escapeHtml(waters.product)} asset${content.watersItems.length === 1 ? "" : "s"} · ${escapeHtml(watersMix)}.</p>${marketingContentEvidenceLinksMarkup(content.watersItems, "Waters product examples")}</article>
     </div>
     <div class="pmm-share-action-grid">
-      <article><span>Product content to create</span><ul>${lens.contentTypes.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></article>
+      <article><span>Product content to create</span>${marketingContentPlanListMarkup(lens.contentTypes)}</article>
       <article class="pmm-take-share-play"><span>Product-level PMM take-share play</span><ol>${takeShare.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ol><small>Recommended account-conversion strategy; not a forecast or claim that share gain has occurred.</small></article>
     </div>
   </section>`;
@@ -9928,7 +9986,7 @@ function marketingShareStrategyMarkup(profile) {
       <article><span>Compared with Waters external content</span><strong>${escapeHtml(content.workflowProofGap)}</strong><p>${content.watersItems.length} matched Waters external asset${content.watersItems.length === 1 ? "" : "s"} · ${escapeHtml(watersMix)}.</p>${marketingContentEvidenceLinksMarkup(content.watersItems, "Waters examples")}</article>
     </div>
     <div class="pmm-share-action-grid">
-      <article><span>Content types to create</span><ul>${play.contentTypes.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></article>
+      <article><span>Content types to create</span>${marketingContentPlanListMarkup(play.contentTypes)}</article>
       <article class="pmm-take-share-play"><span>PMM take-share play</span><ol>${play.takeShare.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ol><small>Recommended strategy; not a forecast or claim that share gain has occurred.</small></article>
     </div>
   </section>`;
