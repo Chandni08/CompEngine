@@ -10,14 +10,15 @@ const launchAgent = await readFile(new URL("config/com.waters.competition-engine
 const refreshPipeline = await readFile(new URL("scripts/refresh_daily.py", root), "utf8");
 const deployValidator = await readFile(new URL("deploy-site/scripts/validate_deploy.mjs", root), "utf8");
 
-test("daily refresh publishes only after the collector succeeds", () => {
+test("daily refresh runs the collector without invoking deployment", () => {
   assert.match(refreshRunner, /\.daily-refresh\.lock/);
   assert.match(refreshRunner, /COMPETITION_ENGINE_ROOT/);
   assert.match(refreshRunner, /COMPETITION_ENGINE_PYTHON/);
-  assert.match(refreshRunner, /--refresh-only/);
   assert.match(refreshRunner, /if \[\[ \$refresh_status -ne 0 \]\]/);
-  assert.match(refreshRunner, /deploy_refreshed_site\.sh/);
-  assert.ok(refreshRunner.indexOf("deploy_refreshed_site.sh") > refreshRunner.indexOf("refresh_daily.py"));
+  assert.match(refreshRunner, /website deployment was not started/);
+  assert.doesNotMatch(refreshRunner, /deploy_refreshed_site\.sh/);
+  assert.doesNotMatch(refreshRunner, /PUBLISH=/);
+  assert.doesNotMatch(refreshRunner, /--refresh-only/);
 });
 
 test("publishable exports and panel manifests are built only after the final source gate", () => {
@@ -46,7 +47,7 @@ test("the OS schedule wakes Codex before its end-to-end automation runs", () => 
   assert.match(launchAgent, /<key>Minute<\/key>\s*<integer>10<\/integer>/);
 });
 
-test("daily publication validates, deploys, aliases, and verifies the Waters site", () => {
+test("the separate manual deployment validates, deploys, aliases, and verifies the Waters site", () => {
   assert.match(deployRunner, /validate_deploy\.mjs/);
   assert.match(deployValidator, /validate_source_title_links\.mjs/);
   assert.match(refreshPipeline, /SOURCE_TITLE_LINK_VALIDATOR/);
@@ -72,7 +73,9 @@ test("cloud data refresh collects, validates, and commits the refreshed data wit
   assert.doesNotMatch(refreshWorkflow, /date \+%H/);
   assert.match(refreshWorkflow, /refresh_data:/);
   assert.match(refreshWorkflow, /if: needs\.schedule_gate\.outputs\.should_run == 'true'/);
-  assert.match(refreshWorkflow, /scripts\/run_daily_refresh\.sh --refresh-only/);
+  assert.match(refreshWorkflow, /scripts\/run_daily_refresh\.sh/);
+  assert.doesNotMatch(refreshWorkflow, /--refresh-only/);
+  assert.doesNotMatch(refreshWorkflow, /deploy_refreshed_site\.sh/);
   assert.match(refreshWorkflow, /Save the validated daily data/);
   assert.match(refreshWorkflow, /git push origin "HEAD:\$DEFAULT_BRANCH"/);
   assert.doesNotMatch(refreshWorkflow, /validated-data-ref/);

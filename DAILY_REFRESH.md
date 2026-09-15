@@ -89,7 +89,7 @@ The data-refresh workflow uses these source credentials when enabled:
 - `REDDIT_CLIENT_ID`
 - `REDDIT_CLIENT_SECRET`
 
-The data workflow and the local scheduler use the same portable batch entry point, `scripts/run_daily_refresh.sh`. GitHub passes `--refresh-only`; the data-refresh job:
+The data workflow and local manual runs use the same refresh-only batch entry point, `scripts/run_daily_refresh.sh`. The data-refresh job:
 
 1. Runs `scripts/refresh_daily.py` through the available Python 3 executable.
 2. Collects the automated public-source data.
@@ -157,15 +157,15 @@ On this Mac, `com.waters.competition-engine.daily-refresh` may wake the Codex de
 
 `scripts/run_daily_refresh.sh` provides the equivalent wrapper for a manual local run.
 
-To run the complete refresh and validation batch without deploying, use:
+To run the complete refresh and validation batch, use:
 
 ```bash
-scripts/run_daily_refresh.sh --refresh-only
+scripts/run_daily_refresh.sh
 ```
 
 The script derives the repository root from its own location. `COMPETITION_ENGINE_ROOT` and `COMPETITION_ENGINE_PYTHON` are optional overrides for non-standard installations.
 
-GitHub Actions emits a deployment reference only after the complete data refresh and every data-quality gate succeed. A partial refresh never triggers deployment: every required source must prove complete traversal and exact newest-item presence. Failed collection, blocked pagination, stale high-water marks, or validation failures leave the canonical validated commit and production builds unchanged. Deployment failures are reported per platform and do not change data-refresh success.
+No refresh entry point invokes website deployment. Every required source must prove complete traversal and exact newest-item presence before refreshed data can be committed. Failed collection, blocked pagination, stale high-water marks, or validation failures leave the canonical validated commit and production builds unchanged. Publishing the validated snapshot requires a separate manual run of `scripts/deploy_refreshed_site.sh`.
 
 The dashboard reads `data/refresh_status.json` and shows whether the daily refresh is current, overdue, or failed. A page left open checks hourly for a newly published dataset and reloads when one is available.
 

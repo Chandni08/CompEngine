@@ -7,16 +7,11 @@ ROOT="${COMPETITION_ENGINE_ROOT:-$(dirname -- "$SCRIPT_DIR")}" # Repository root
 PYTHON="${COMPETITION_ENGINE_PYTHON:-$(command -v python3 || true)}"
 LOG_DIR="$ROOT/logs"
 LOCK_DIR="$LOG_DIR/.daily-refresh.lock"
-PUBLISH=1
 
-case "${1:-}" in
-  "") ;;
-  --refresh-only) PUBLISH=0 ;;
-  *)
-    echo "Usage: $0 [--refresh-only]" >&2
-    exit 2
-    ;;
-esac
+if [[ $# -ne 0 ]]; then
+  echo "Usage: $0" >&2
+  exit 2
+fi
 
 mkdir -p "$LOG_DIR"
 cd "$ROOT" || exit 1
@@ -54,17 +49,9 @@ else
 fi
 refresh_status=$?
 if [[ $refresh_status -ne 0 ]]; then
-  echo "$(date -Iseconds) Daily refresh failed validation; the live site was not changed" >&2
+  echo "$(date -Iseconds) Daily refresh failed validation; refreshed data was not published" >&2
   exit $refresh_status
 fi
 
-if [[ $PUBLISH -eq 0 ]]; then
-  echo "$(date -Iseconds) Daily refresh passed; publication is delegated to the calling scheduler"
-  exit 0
-fi
-
-echo "$(date -Iseconds) Daily refresh passed; publishing validated data"
-"$ROOT/scripts/deploy_refreshed_site.sh"
-deploy_status=$?
-echo "$(date -Iseconds) Daily refresh and deployment finished with status $deploy_status"
-exit $deploy_status
+echo "$(date -Iseconds) Daily refresh passed; website deployment was not started"
+exit 0
