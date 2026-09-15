@@ -52,7 +52,10 @@ CORROBORATION_MAX = 15
 
 # Date types that record when something happened.  "ingestion" and "retrieval"
 # record when the collector looked, which says nothing about the event's age.
-EVENT_DATE_TYPES = {"publication", "launch", "filing", "effective"}
+# A detected change is dated: the observation bounds when it happened, between
+# the previous successful check and this one. An inventory observation is not —
+# "this URL is in the sitemap" says nothing about when anything occurred.
+EVENT_DATE_TYPES = {"publication", "launch", "filing", "effective", "change_detection"}
 OBSERVATION_DATE_TYPES = {"ingestion", "retrieval"}
 
 GOVERNMENT_HOSTS = ("sec.gov", "fda.gov", "europa.eu", "usp.org", "ich.org", "nist.gov")
@@ -73,6 +76,9 @@ DATED_ANNOUNCEMENT_TYPES = {
     "press release", "product release", "acquisition", "regulatory approval",
     "earnings event announcement", "quarterly earnings result",
     "official technical insight",
+    # A permanent redirect between official product pages is the vendor itself
+    # retiring or superseding a product, observed on a known date.
+    "source page redirected",
 }
 INVENTORY_TYPES = {"monitored product page", "product page added", "product page updated"}
 
@@ -210,7 +216,10 @@ def recency(signal: dict[str, Any], as_of: date) -> dict[str, object]:
         "max": RECENCY_MAX,
         "halfLifeDays": RECENCY_HALF_LIFE_DAYS,
         "dateType": date_type if date_type in EVENT_DATE_TYPES else "publication",
-        "basis": f"Event dated {signal_date.isoformat()}",
+        "basis": (
+            f"Change detected {signal_date.isoformat()}, bounded by the previous check"
+            if date_type == "change_detection" else f"Event dated {signal_date.isoformat()}"
+        ),
     }
 
 

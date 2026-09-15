@@ -16,6 +16,8 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlencode, urljoin, urlparse
 
+from link_changes import attach_product_change_evidence, warm_content_hashes
+
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT / "data"
@@ -85,6 +87,17 @@ class HostThrottle:
 
 
 THROTTLE = HostThrottle()
+
+# Page-diff request budgets per run. Agilent applies a 10-second crawl delay on
+# investor pages, so these stay deliberately small.
+PAGE_DIFF_BUDGET = 20
+BASELINE_WARM_BUDGET = 8
+
+
+def fetch_page_text(url: str) -> tuple[int | None, str]:
+    """Adapter for the shared page-diff collector: bytes in, decoded text out."""
+    status, body = fetch(url, timeout=45)
+    return status, body.decode("utf-8", errors="replace") if body else ""
 
 
 def fetch(url: str, timeout: int = 60) -> tuple[int | None, bytes]:
@@ -711,8 +724,44 @@ def monitor() -> dict:
         "missing": discontinued_products,
     }
     # Sitemap observations alone cannot substantiate "added", "updated", or
-    # "removed" page-content claims.  A future page-diff collector may promote an
-    # observation by attaching a complete changeEvidence object.
+    # "removed" page-content claims, so fetch the affected pages and build the
+    # before/after artifact the publish gate requires. Without this the filter
+    # below discards every product change.
+    previous_hashes = previous.get("productContentHashes", {}) or {}
+    current_hashes = dict(previous_hashes)
+    evidence_spend = 0
+    withheld: dict[str, list[dict]] = {}
+    buckets = {"new_products": new_products, "updated_products": updated_products, "discontinued_products": discontinued_products}
+    for label, bucket in (("added", "new_products"), ("updated", "updated_products"), ("removed", "discontinued_products")):
+        substantiated, spent, unproven = attach_product_change_evidence(
+            buckets[bucket],
+            kind=label,
+            fetch_page=fetch_page_text,
+            previous_hashes=previous_hashes,
+            current_hashes=current_hashes,
+            budget=max(0, PAGE_DIFF_BUDGET - evidence_spend),
+        )
+        evidence_spend += spent
+        withheld[bucket] = unproven
+        buckets[bucket] = substantiated
+    new_products, updated_products, discontinued_products = (
+        buckets["new_products"], buckets["updated_products"], buckets["discontinued_products"]
+    )
+
+    warm_spend = warm_content_hashes(
+        sorted(products),
+        fetch_page=fetch_page_text,
+        previous_hashes=previous_hashes,
+        current_hashes=current_hashes,
+        budget=BASELINE_WARM_BUDGET,
+    )
+    unverified_inventory_changes["withheldForMissingEvidence"] = withheld
+    unverified_inventory_changes["pageDiffRequests"] = evidence_spend + warm_spend
+    unverified_inventory_changes["contentBaselineCoverage"] = {
+        "hashed": sum(1 for url in products if url in current_hashes),
+        "tracked": len(products),
+    }
+
     new_products = [item for item in new_products if item.get("changeEvidence")]
     updated_products = [item for item in updated_products if item.get("changeEvidence")]
     discontinued_products = [item for item in discontinued_products if item.get("changeEvidence")]
@@ -726,6 +775,7 @@ def monitor() -> dict:
             "snapshotSchemaVersion": 2,
             "observationType": "sitemap_inventory",
             "capturedAt": utc_now(),
+            "productContentHashes": current_hashes,
             "productInventoryInitialized": previous_product_initialized or product_success,
             "pressIndexInitialized": previous_press_initialized or press_success,
             "products": products,

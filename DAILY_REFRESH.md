@@ -28,6 +28,43 @@ Every source row in `data/source_health.json` must compare the collected records
 
 Records carry both `contentAsOf`, when the content was last actually read from the source, and `stampedAt`, when the provenance pass last ran. A provenance pass never advances `contentAsOf` or `retrievalDate` for a record no collector reached.
 
+## Link Updates
+
+A tracked link can change in three ways, and the refresh has to notice all three.
+
+**A link dies.** `scripts/check_links.py` fails publication on any 404/410, DNS failure, or redirect into an error or sign-in destination.
+
+**A link moves.** Sitemap diffing cannot see this: the URL stays listed and still answers 200 once the redirect is followed. The checker therefore compares the requested URL with the served URL on every successful request and classifies the difference:
+
+- `normalized` — a locale prefix, scheme, trailing slash, index document, or tracking parameter. The stored URL is rewritten in place across `data/`, and the rewrite is listed under `rewrittenLinks` in `data/link_redirects.json`. Sitemap snapshots under `data/source_snapshots/` are never rewritten: the collectors diff them by exact URL string, so canonicalising a key there would invent a change on the next run.
+- `moved` — the same site now serves that address from a different path. For a vendor product page this is a lifecycle event: a retirement, a successor, or a family consolidation. It is reported, never silently followed.
+- `offsite` — the address now resolves to a different domain.
+- `resolved` — a DOI or other persistent-identifier resolver reaching its publisher, which is the mechanism working rather than a link update.
+
+`merge_link_redirects` turns each `moved` or `offsite` link that the dataset actually cites into a `Source page redirected` signal carrying both addresses, so a product retirement surfaces for review instead of leaving the dashboard showing a superseded product as current.
+
+**A page changes at a stable address.** The competitor and Agilent monitors detect sitemap additions, removals, and `lastmod` changes, but the publish gate requires a real before/after artifact (`provenance.valid_change_evidence`). The collectors fetch the affected pages, hash their visible text, and attach that evidence:
+
+- an addition needs HTTP 200 and readable content;
+- a removal needs a 404/410, or a content change on a page that left the sitemap but still answers;
+- a `lastmod` bump is only a change if the content hash actually differs.
+
+Volatile markup — CSRF tokens, session identifiers, timestamps — is stripped before hashing so a page does not appear to change on every request. Hashes are stored in each snapshot's `productContentHashes`; each run also seeds baselines for a rotating slice of pages that have never been hashed, so a first-ever `lastmod` change has something to compare against. Both collectors work within a per-run request budget, and observations that could not be substantiated stay visible under `unverified_inventory_changes.withheldForMissingEvidence` rather than disappearing.
+
+### Link-check coverage
+
+The walk is recursive and reads URLs in both key and value position, so tracked pages inside `data/source_snapshots/` are covered. Bulk journal records are rendered by the dashboard, so they are no longer skipped outright: a deterministic rotating slice is checked each day and the whole set is covered every `BULK_ROTATION_DAYS`. Bucketing is by a stable hash of the URL rather than list position, so coverage stays even as records are added and removed.
+
+### Required sources
+
+A source marked `required` blocks publication when it is not current. Conference sources are required by default, with one exception: an organiser that publishes its programme only through an event platform, with no machine-readable public page, is monitored for context and cannot gate the refresh. `conference-acs-*` is currently the only such case — the ACS Spring and Fall sources carry `required: false` in `data/source_catalog.json` with the reason in `requiredRationale`, and `conference_source_is_required` applies that default by id prefix so a future year's event id cannot silently reinstate the block. An explicit value in the catalog always wins.
+
+Non-required means "does not block", never "reported as healthy": an unreachable optional source still appears in `data/source_health.json` with its real state and reason.
+
+### Press index coverage
+
+Shimadzu and SCIEX publish dated releases on a year-scoped index. The collectors read every year the rolling replay window still reaches into — so from January the previous year stays in scope — and follow the index's own pagination, bounded by `PRESS_INDEX_MAX_PAGES`. An index that loads and parses but holds no in-scope release reports `checked_empty`, which is a successful check; only an unreachable index, or one that yields no parseable entries at all, reports `blocked`. Requiring records here used to fail the entire refresh for the first days of every January.
+
 ## Three-Year Historical Coverage
 
 The supported historical horizon begins in July 2023. Each daily refresh keeps:
@@ -67,6 +104,8 @@ The data workflow and the local scheduler use the same portable batch entry poin
 11. Commits the validated data to the repository.
 
 Website deployment is intentionally not scheduled by this workflow. Use the manual deployment process when a validated data or interface update should be published.
+
+`SKIP_LINK_CHECK=1` skips the external recheck and retains the last validated link-health artifact. It never promotes a source: a required source that is unreachable now stays unverified and still blocks publication, because carrying a previous run's result forward for a source that cannot be reached today is a verification the run did not perform.
 
 The link gate distinguishes a proven dead link from access-control behavior. HTTP 404/410 responses normally fail publication. The only exceptions remain blocked and visibly unverified: a domain-wide FDA 404 pattern that was healthy before the GitHub-runner anomaly began, and an allowlisted publisher URL that changes from a recorded bot challenge to a runner-only 404. These exceptions never promote a URL to healthy and do not weaken required-source high-water checks.
 

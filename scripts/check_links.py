@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 import re
 import socket
@@ -17,10 +18,26 @@ import certifi
 import requests
 from urllib.parse import urlparse
 
+from link_changes import (
+    REDIRECT_MOVED,
+    REDIRECT_NORMALIZED,
+    REDIRECT_OFFSITE,
+    REDIRECT_RESOLVED,
+    REDIRECT_SAME,
+    canonical_link,
+    classify_redirect,
+)
+
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT / "data"
 OUTPUT_FILE = DATA_DIR / "link_health.json"
+REDIRECT_FILE = DATA_DIR / "link_redirects.json"
+# Sitemap snapshots must mirror exactly what the source listed, because the
+# collectors diff them by URL string. Canonicalising a key here would make the
+# next run report the original URL as newly added and the rewritten one as
+# missing, inventing a change that never happened.
+NO_REWRITE_DIRS = {"source_snapshots"}
 TIMEOUT_SECONDS = 30
 MAX_WORKERS = 12
 USER_AGENT = (
@@ -30,11 +47,13 @@ USER_AGENT = (
 )
 URL_PATTERN = re.compile(r"https?://[^\s\"'<>]+", re.IGNORECASE)
 TRAILING_PUNCTUATION = ".,;:!?)]}"
-# Bulk journal item links were obtained from Crossref's official API during the
-# same run. Re-requesting thousands of DOI redirects here is redundant, slow,
-# and liable to trigger publisher rate limits. Their API endpoint and any links
-# promoted into user-facing evidence remain part of the ordinary link check.
+# Bulk journal item links come from Crossref's official API during the same run.
+# Re-requesting every DOI daily is slow and trips publisher rate limits, but the
+# dashboard renders these records, so skipping them entirely left thousands of
+# displayed links unverified. Check a deterministic rotating slice instead: every
+# link is covered over BULK_ROTATION_DAYS, and the daily request budget is bounded.
 BULK_API_RECORD_KEYS = {"recentRecords"}
+BULK_ROTATION_DAYS = 14
 DOMAIN_WIDE_404_HOSTS = {"fda.gov"}
 MIN_DOMAIN_WIDE_404S = 5
 DOMAIN_WIDE_404_REASON_PREFIX = "Domain-wide 404 anomaly:"
@@ -58,6 +77,10 @@ def urls_in_value(value: Any) -> set[str]:
         for key, child in value.items():
             if key in BULK_API_RECORD_KEYS:
                 continue
+            # Sitemap snapshots and content-hash maps are keyed *by* the tracked
+            # URL, so a values-only walk missed every page under monitoring.
+            if isinstance(key, str) and key.startswith(("http://", "https://")):
+                urls.update(match.rstrip(TRAILING_PUNCTUATION) for match in URL_PATTERN.findall(key))
             urls.update(urls_in_value(child))
     elif isinstance(value, list):
         for child in value:
@@ -67,16 +90,57 @@ def urls_in_value(value: Any) -> set[str]:
     return {url for url in urls if url.startswith(("http://", "https://"))}
 
 
-def collect_urls() -> list[str]:
+def bulk_urls_in_value(value: Any) -> set[str]:
+    """URLs that live only under a bulk-record key, which the main walk skips."""
     urls: set[str] = set()
-    for path in sorted(DATA_DIR.glob("*.json")):
-        if path == OUTPUT_FILE:
+    if isinstance(value, dict):
+        for key, child in value.items():
+            urls.update(urls_in_value(child) if key in BULK_API_RECORD_KEYS else bulk_urls_in_value(child))
+            if key in BULK_API_RECORD_KEYS and isinstance(child, dict):
+                urls.update(k for k in child if isinstance(k, str) and k.startswith(("http://", "https://")))
+    elif isinstance(value, list):
+        for child in value:
+            urls.update(bulk_urls_in_value(child))
+    return urls
+
+
+def rotating_slice(urls: set[str], day_index: int, buckets: int = BULK_ROTATION_DAYS) -> set[str]:
+    """Deterministically select today's share of a large URL set.
+
+    Bucketing by a stable hash of the URL — not by list position — keeps a URL in
+    the same bucket as the collection grows, so coverage stays even instead of
+    reshuffling every time a record is added or removed.
+    """
+    if buckets < 1:
+        return set(urls)
+    today_bucket = day_index % buckets
+    return {
+        url for url in urls
+        if int(hashlib.sha256(url.encode("utf-8")).hexdigest(), 16) % buckets == today_bucket
+    }
+
+
+def collect_urls(day_index: int | None = None) -> list[str]:
+    """Every URL the dashboard can surface, minus today's unsampled bulk records.
+
+    The walk is recursive: nested directories such as data/source_snapshots/ hold
+    tracked competitor URLs and were previously never checked.
+    """
+    urls: set[str] = set()
+    bulk: set[str] = set()
+    for path in sorted(DATA_DIR.rglob("*.json")):
+        if path in {OUTPUT_FILE, REDIRECT_FILE}:
             continue
         try:
-            urls.update(urls_in_value(json.loads(path.read_text(encoding="utf-8"))))
+            value = json.loads(path.read_text(encoding="utf-8"))
         except (OSError, json.JSONDecodeError) as error:
             raise RuntimeError(f"Cannot read {path.relative_to(ROOT)}: {error}") from error
-    return sorted(urls)
+        urls.update(urls_in_value(value))
+        bulk.update(bulk_urls_in_value(value))
+    if day_index is None:
+        day_index = datetime.now(timezone.utc).toordinal()
+    sampled = rotating_slice(bulk - urls, day_index)
+    return sorted(urls | sampled)
 
 
 def read_previous_results() -> list[dict[str, object]]:
@@ -121,7 +185,13 @@ def semantic_redirect_status(requested_url: str, final_url: str) -> tuple[str | 
     final_host = (final.hostname or "").lower().removeprefix("www.")
     if (final_host, final_path) in KNOWN_ACCESS_CONTROL_DESTINATIONS:
         return "blocked", f"Redirected to the publisher's access-control destination: {final_url}"
-    if any(marker in final_path for marker in ("custom404", "/404", "/login", "/signin", "/sign-in")):
+    # "/error404" and "/page-not-found" are error destinations too; matching only
+    # "/404" let a redirect into an error page read as an ordinary page move.
+    error_markers = (
+        "custom404", "/404", "error404", "/error/", "page-not-found", "pagenotfound",
+        "not-found", "/login", "/signin", "/sign-in",
+    )
+    if any(marker in final_path for marker in error_markers):
         return "mislink", f"Redirected to non-evidence destination: {final_url}"
     requested_path = (requested.path or "/").rstrip("/")
     if requested_path and requested_path != "/" and final_path.rstrip("/") in {"", "/"}:
@@ -181,13 +251,21 @@ def check_url(url: str) -> dict[str, object]:
         response.close()
         semantic_status = redirect_status or body_status
         semantic_reason = redirect_reason or body_reason
+        status = semantic_status or classify_http_status(http_status)
+        # A redirect is only a link update if the request actually succeeded;
+        # a bot challenge served from a login page says nothing about the target.
+        redirect_kind, redirect_reason_text = (
+            classify_redirect(url, final_url) if status == "ok" else (REDIRECT_SAME, "")
+        )
         return {
             "url": url,
             "httpStatus": http_status,
             "finalUrl": final_url,
             "checkedAt": checked_at,
-            "status": semantic_status or classify_http_status(http_status),
+            "status": status,
             "reason": semantic_reason,
+            "redirectKind": redirect_kind,
+            "redirectReason": redirect_reason_text,
         }
     except (requests.Timeout, TimeoutError, socket.timeout):
         # A timeout does not prove that the cited page disappeared. Treat it
@@ -204,6 +282,8 @@ def check_url(url: str) -> dict[str, object]:
         "httpStatus": None,
         "checkedAt": checked_at,
         "status": status,
+        "redirectKind": REDIRECT_SAME,
+        "redirectReason": "",
     }
 
 
@@ -326,6 +406,101 @@ def reclassify_waf_404_transitions(
     return reclassified
 
 
+def rewrite_urls_in_value(value: Any, replacements: dict[str, str]) -> tuple[Any, int]:
+    """Replace superseded URLs throughout a JSON document."""
+    if isinstance(value, dict):
+        changed = 0
+        result = {}
+        for key, child in value.items():
+            result[key], child_changed = rewrite_urls_in_value(child, replacements)
+            changed += child_changed
+        return result, changed
+    if isinstance(value, list):
+        changed = 0
+        items = []
+        for child in value:
+            item, child_changed = rewrite_urls_in_value(child, replacements)
+            items.append(item)
+            changed += child_changed
+        return items, changed
+    if isinstance(value, str) and value in replacements:
+        return replacements[value], 1
+    return value, 0
+
+
+def apply_url_replacements(replacements: dict[str, str]) -> int:
+    """Update stored URLs that differ from the served address only in presentation.
+
+    Only ``normalized`` redirects are rewritten. A ``moved`` redirect changes which
+    page is being cited, so it is reported for review rather than silently
+    following the vendor to a different product.
+    """
+    if not replacements:
+        return 0
+    total = 0
+    for path in sorted(DATA_DIR.rglob("*.json")):
+        if path in {OUTPUT_FILE, REDIRECT_FILE}:
+            continue
+        if any(part in NO_REWRITE_DIRS for part in path.relative_to(DATA_DIR).parts[:-1]):
+            continue
+        try:
+            value = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        updated, changed = rewrite_urls_in_value(value, replacements)
+        if not changed:
+            continue
+        temporary = path.with_suffix(".json.tmp")
+        temporary.write_text(json.dumps(updated, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+        temporary.replace(path)
+        total += changed
+    return total
+
+
+def write_redirect_report(results: list[dict[str, object]]) -> dict[str, object]:
+    """Persist the redirects that change which page a citation points at.
+
+    A vendor product page that redirects to a different product is a lifecycle
+    event — a retirement, a successor, or a family consolidation. The pipeline
+    already observed it on every run and discarded it; this artifact is what the
+    refresh merges into the dataset as reviewable signals.
+    """
+    moved = [
+        {
+            "url": str(result["url"]),
+            "finalUrl": str(result.get("finalUrl") or ""),
+            "redirectKind": str(result.get("redirectKind") or ""),
+            "reason": str(result.get("redirectReason") or ""),
+            "httpStatus": result.get("httpStatus"),
+            "observedAt": str(result.get("checkedAt") or ""),
+        }
+        for result in results
+        if result.get("redirectKind") in {REDIRECT_MOVED, REDIRECT_OFFSITE}
+    ]
+    moved.sort(key=lambda item: item["url"])
+    report = {
+        "generatedAt": utc_now(),
+        "schemaVersion": 1,
+        "rewrittenLinks": [
+            {
+                "url": str(result["url"]),
+                "reason": str(result.get("redirectReason") or ""),
+            }
+            for result in results
+            if result.get("redirectResolved")
+        ],
+        "counts": {
+            kind: sum(1 for result in results if result.get("redirectKind") == kind)
+            for kind in (REDIRECT_SAME, REDIRECT_RESOLVED, REDIRECT_NORMALIZED, REDIRECT_MOVED, REDIRECT_OFFSITE)
+        },
+        "movedLinks": moved,
+    }
+    temporary = REDIRECT_FILE.with_suffix(".json.tmp")
+    temporary.write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    temporary.replace(REDIRECT_FILE)
+    return report
+
+
 def write_results(results: list[dict[str, object]]) -> None:
     temporary = OUTPUT_FILE.with_suffix(".json.tmp")
     temporary.write_text(json.dumps(results, indent=2) + "\n", encoding="utf-8")
@@ -343,6 +518,18 @@ def print_failure_table(results: list[dict[str, object]], status_name: str, head
     for result in failures:
         status = result["httpStatus"] if result["httpStatus"] is not None else "network failure"
         print(f"| {status} | {result['url']} |")
+
+
+def print_redirect_table(report: dict[str, object]) -> None:
+    moved = report.get("movedLinks") or []
+    print("\nLinks that now serve a different page")
+    print("| Stored URL | Now serves |")
+    print("| --- | --- |")
+    if not moved:
+        print("| — | None |")
+        return
+    for item in moved:
+        print(f"| {item['url']} | {item['finalUrl']} |")
 
 
 def main() -> int:
@@ -374,12 +561,40 @@ def main() -> int:
             f"Reclassified {waf_anomaly_count} WAF response-transition 404s as blocked; "
             "the affected links remain unverified."
         )
+    normalized = {
+        str(result["url"]): canonical_link(str(result.get("finalUrl") or ""))
+        for result in results
+        if result.get("redirectKind") == REDIRECT_NORMALIZED and result.get("finalUrl")
+    }
+    normalized = {before: after for before, after in normalized.items() if before != after}
+    rewritten = apply_url_replacements(normalized)
+    if rewritten:
+        print(
+            f"Updated {rewritten} stored reference(s) across {len(normalized)} URL(s) that "
+            "differ from the served address only in presentation."
+        )
+        for result in results:
+            if str(result["url"]) in normalized:
+                result["url"] = normalized[str(result["url"])]
+                # The stored URL now matches what the server serves. Keep the
+                # classification so the report still records what was rewritten
+                # rather than reporting zero normalizations every run.
+                result["redirectKind"] = REDIRECT_NORMALIZED
+                result["redirectResolved"] = True
+
     write_results(results)
+    report = write_redirect_report(results)
     print_failure_table(results, "dead", "Dead links")
     print_failure_table(results, "mislink", "Semantic mislinks")
+    print_redirect_table(report)
 
     counts = {status: sum(result["status"] == status for result in results) for status in ("ok", "blocked", "dead", "mislink")}
     print(f"\nLink check complete: {counts['ok']} ok, {counts['blocked']} blocked, {counts['dead']} dead, {counts['mislink']} mislinks.")
+    print(
+        "Redirects: "
+        + ", ".join(f"{count} {kind}" for kind, count in report["counts"].items() if count)
+        + "."
+    )
     if counts["dead"] or counts["mislink"]:
         print("Link check failed: remove or replace every dead or semantically incorrect URL before publishing.", file=sys.stderr)
         return 1

@@ -23,6 +23,8 @@ from urllib.parse import urlencode, urljoin, urlparse
 import certifi
 import requests
 
+from link_changes import attach_product_change_evidence, warm_content_hashes
+
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT / "data"
@@ -43,6 +45,11 @@ REQUEST_HEADERS = {
 }
 TECHNICAL_FEED_VERSION = 3
 RECENT_RELEASE_REPLAY_DAYS = 120
+# Page-diff request budgets per competitor per run. Changed pages are fetched
+# first; whatever is left seeds baselines for pages that have never been hashed,
+# so a future last-modified change has something to diff against.
+PAGE_DIFF_BUDGET = 40
+BASELINE_WARM_BUDGET = 12
 RELEVANCE_PATTERN = re.compile(
     r"\b(?:lc[/-]?ms(?:/ms)?|hplc|uhplc|uplc|liquid chromatograph(?:y|er)?|"
     r"mass spectrom(?:etry|eter)|nexera|labsolutions|zenotof|novus|sciex os|"
@@ -162,12 +169,114 @@ def source_status(
         "url": url,
         "fetchMethod": method,
         "httpStatus": http_status,
-        "status": "available" if extraction_status == "extracted" else "collection_review_needed",
+        "status": "available" if extraction_status in {"extracted", "checked_empty"} else "collection_review_needed",
         "extractionStatus": extraction_status,
         "extractionReason": reason,
         "extractedRecords": records,
         "checkedAt": utc_now(),
     }
+
+
+PRESS_INDEX_MAX_PAGES = 12
+
+
+def press_index_years(today: date | None = None) -> list[int]:
+    """Years whose press index must be read for the replay window to be complete.
+
+    A single current-year index goes empty every 1 January, which used to fail
+    the whole refresh. The previous year stays in scope for as long as the
+    rolling replay window still reaches into it.
+    """
+    today = today or date.today()
+    earliest = today - timedelta(days=RECENT_RELEASE_REPLAY_DAYS)
+    return sorted({today.year, earliest.year}, reverse=True)
+
+
+def next_page_links(page_url: str, body: str) -> list[str]:
+    """Find pagination links that stay within the same index."""
+    base = urlparse(page_url)
+    base_path = base.path.rstrip("/")
+    candidates: list[str] = []
+    for match in re.finditer(r'<a\b[^>]*href="([^"]+)"[^>]*>', body, re.I):
+        href = html.unescape(match.group(1))
+        tag = match.group(0)
+        absolute = urljoin(page_url, href)
+        parsed = urlparse(absolute)
+        if parsed.netloc and parsed.netloc != base.netloc:
+            continue
+        is_next = re.search(r'rel="[^"]*\bnext\b', tag, re.I)
+        # ?page=2 / &p=3 on this index, or /page/2 appended to its path
+        is_paged = re.search(r"[?&](?:page|p|pg|start|offset)=\d+", absolute, re.I) or re.search(
+            rf"^{re.escape(base_path)}/(?:page/)?\d+/?$", parsed.path.rstrip("/"), re.I
+        )
+        if is_next or is_paged:
+            candidates.append(absolute.split("#", 1)[0])
+    ordered: list[str] = []
+    for url in candidates:
+        if url not in ordered and url != page_url:
+            ordered.append(url)
+    return ordered
+
+
+def collect_press_index(
+    index_url_for_year,
+    parse,
+    years: list[int] | None = None,
+    max_pages: int = PRESS_INDEX_MAX_PAGES,
+) -> tuple[int | None, dict[str, dict[str, str]], int, list[str]]:
+    """Read every in-scope year of a dated press index, following its pagination.
+
+    Returns the representative HTTP status, the merged releases, the number of
+    index entries seen across all pages, and the pages actually fetched.
+    """
+    releases: dict[str, dict[str, str]] = {}
+    entries = 0
+    visited: list[str] = []
+    seen: set[str] = set()
+    first_status: int | None = None
+
+    for year in years or press_index_years():
+        queue = [index_url_for_year(year)]
+        while queue and len(visited) < max_pages:
+            url = queue.pop(0)
+            if url in seen:
+                continue
+            seen.add(url)
+            status, body, _detail = fetch(url)
+            visited.append(url)
+            if first_status is None or (first_status != 200 and status == 200):
+                first_status = status
+            if status != 200:
+                continue
+            page_releases, page_entries = parse(body)
+            releases.update(page_releases)
+            entries += page_entries
+            for follow_up in next_page_links(url, body):
+                if follow_up not in seen:
+                    queue.append(follow_up)
+    return first_status, releases, entries, visited
+
+
+def press_extraction_status(http_status: int | None, entries: int, releases: int) -> tuple[str, str]:
+    """Separate an unreadable index from one that is readable and simply empty.
+
+    Treating "no records" as blocked is what made the first days of a new year
+    fail the entire refresh. A parser that stopped matching still reports blocked,
+    because an index that loads with zero parseable entries is a broken reader.
+    """
+    if http_status != 200:
+        return "blocked", f"Dated press index unavailable: HTTP {http_status or 'request error'}."
+    if entries == 0:
+        return "blocked", (
+            "The dated press index loaded but produced no parseable entries; "
+            "the index layout has probably changed."
+        )
+    if releases == 0:
+        return "checked_empty", (
+            f"The dated press index loaded with {entries} entries, none of which are "
+            "in-scope releases for this window."
+        )
+    return "extracted", f"Official dated press index parsed; {releases} relevant releases extracted."
 
 
 def relevant_release(title: str) -> bool:
@@ -336,22 +445,31 @@ def cached_thermo_browser_verified_releases(now: datetime | None = None) -> dict
     return releases
 
 
-def parse_shimadzu_releases(body: str) -> dict[str, dict[str, str]]:
+def parse_shimadzu_releases(body: str) -> tuple[dict[str, dict[str, str]], int]:
+    """Parse the Shimadzu news index.
+
+    Returns the releases plus the number of entries the index actually contained,
+    so an index that loads but yields nothing can be told apart from a parser that
+    stopped matching after a site redesign.
+    """
     releases: dict[str, dict[str, str]] = {}
     blocks = re.split(r'<li class="updateInformation-list-item">', body, flags=re.I)[1:]
     for block in blocks:
         date_match = re.search(r'updateInformation-list-item-date">(.*?)</span>', block, re.I | re.S)
         title_match = re.search(r'updateInformation-list-item-main-text">(.*?)</p>', block, re.I | re.S)
-        url_match = re.search(rf'href="(/news/{CURRENT_YEAR}/[^\"]+\.html)"', block, re.I)
+        # Any four-digit year: coupling this to the current year made every
+        # January silently drop the entire index.
+        url_match = re.search(r'href="(/news/\d{4}/[^\"]+\.html)"', block, re.I)
         if not (date_match and title_match and url_match):
             continue
         title = clean_text(title_match.group(1))
         url = urljoin("https://www.shimadzu.com", url_match.group(1))
         releases[url] = normalize_release(url, title, parse_date(date_match.group(1)))
-    return releases
+    return releases, len(blocks)
 
 
-def parse_sciex_releases(body: str) -> dict[str, dict[str, str]]:
+def parse_sciex_releases(body: str) -> tuple[dict[str, dict[str, str]], int]:
+    """Parse the SCIEX press index; see parse_shimadzu_releases for the count."""
     releases: dict[str, dict[str, str]] = {}
     blocks = re.findall(
         r'<div class="tw-flex tw-flex-col md:tw-flex-row.*?tw-border-t">(.*?)'
@@ -361,13 +479,13 @@ def parse_sciex_releases(body: str) -> dict[str, dict[str, str]]:
     )
     for block in blocks:
         paragraphs = re.findall(r"<p[^>]*>(.*?)</p>", block, re.I | re.S)
-        url_match = re.search(rf'href="([^\"]+/press-releases/{CURRENT_YEAR}/[^\"]+)"', block, re.I)
+        url_match = re.search(r'href="([^\"]+/press-releases/\d{4}/[^\"]+)"', block, re.I)
         if len(paragraphs) < 2 or not url_match:
             continue
         title = clean_text(paragraphs[1])
         url = url_match.group(1).replace("sciex.com//", "sciex.com/")
         releases[url] = normalize_release(url, title, parse_date(paragraphs[0]))
-    return releases
+    return releases, len(blocks)
 
 
 def canonical_url(url: str) -> str:
@@ -613,6 +731,52 @@ def monitor_delta(
         "updated": updated_products,
         "missing": discontinued_products,
     }
+
+    # Substantiate the sitemap observations by fetching the affected pages. The
+    # publish gate requires a real before/after artifact, so without this step
+    # every product change is filtered out below and never becomes a signal.
+    def fetch_page(url: str) -> tuple[int | None, str]:
+        status, body, _final = fetch(url, timeout=45)
+        return status, body
+
+    previous_hashes = previous.get("productContentHashes", {}) or {}
+    current_hashes = dict(previous_hashes)
+    budget = PAGE_DIFF_BUDGET
+    evidence_spend = 0
+    withheld: dict[str, list[dict[str, Any]]] = {}
+    for label, bucket in (("added", "new_products"), ("updated", "updated_products"), ("removed", "discontinued_products")):
+        source_items = {"new_products": new_products, "updated_products": updated_products, "discontinued_products": discontinued_products}[bucket]
+        substantiated, spent, unproven = attach_product_change_evidence(
+            source_items,
+            kind=label,
+            fetch_page=fetch_page,
+            previous_hashes=previous_hashes,
+            current_hashes=current_hashes,
+            budget=max(0, budget - evidence_spend),
+        )
+        evidence_spend += spent
+        withheld[bucket] = unproven
+        if bucket == "new_products":
+            new_products = substantiated
+        elif bucket == "updated_products":
+            updated_products = substantiated
+        else:
+            discontinued_products = substantiated
+
+    warm_spend = warm_content_hashes(
+        sorted(products),
+        fetch_page=fetch_page,
+        previous_hashes=previous_hashes,
+        current_hashes=current_hashes,
+        budget=max(0, BASELINE_WARM_BUDGET - max(0, evidence_spend - PAGE_DIFF_BUDGET)),
+    )
+    unverified_inventory_changes["withheldForMissingEvidence"] = withheld
+    unverified_inventory_changes["pageDiffRequests"] = evidence_spend + warm_spend
+    unverified_inventory_changes["contentBaselineCoverage"] = {
+        "hashed": sum(1 for url in products if url in current_hashes),
+        "tracked": len(products),
+    }
+
     new_products = [item for item in new_products if item.get("changeEvidence")]
     updated_products = [item for item in updated_products if item.get("changeEvidence")]
     discontinued_products = [item for item in discontinued_products if item.get("changeEvidence")]
@@ -624,6 +788,7 @@ def monitor_delta(
         "capturedAt": utc_now(),
         "initialized": True,
         "products": products,
+        "productContentHashes": current_hashes,
         "productMetadata": product_metadata,
         "monitoredFamilies": monitored_families,
         "pressReleases": releases,
@@ -837,6 +1002,7 @@ def collect_shimadzu() -> dict[str, object]:
     statuses: list[dict[str, object]] = []
     product_url = "https://www.shimadzu.com/an/sitemap.xml"
     press_url = f"https://www.shimadzu.com/news/{CURRENT_YEAR}/index.html"
+    press_years = press_index_years()
     product_status, product_body, product_detail = fetch(product_url, timeout=120)
     products: dict[str, str] = {}
     if product_status == 200:
@@ -846,9 +1012,17 @@ def collect_shimadzu() -> dict[str, object]:
             products = {}
     statuses.append(source_status("shimadzu-lcms", product_url, "product_sitemap_xml", product_status, "extracted" if products else "blocked", f"Official analytical sitemap parsed; {len(products)} LC/LC-MS/software product pages tracked." if products else f"Analytical sitemap unavailable or invalid: {product_detail or product_status}", len(products)))
 
-    press_status, press_body, press_detail = fetch(press_url)
-    releases = parse_shimadzu_releases(press_body) if press_status == 200 else {}
-    statuses.append(source_status("shimadzu-news", press_url, "dated_press_index", press_status, "extracted" if releases else "blocked", f"Official dated news index parsed; {len(releases)} relevant releases extracted." if releases else f"Dated news index unavailable or contained no usable LC/MS records: {press_detail or press_status}", len(releases)))
+    press_status, releases, entries, pages = collect_press_index(
+        lambda year: f"https://www.shimadzu.com/news/{year}/index.html",
+        parse_shimadzu_releases,
+        press_years,
+    )
+    extraction, reason = press_extraction_status(press_status, entries, len(releases))
+    statuses.append(source_status(
+        "shimadzu-news", press_url, "dated_press_index", press_status, extraction,
+        f"{reason} Covered {len(press_years)} year(s) across {len(pages)} index page(s).",
+        len(releases),
+    ))
     return monitor_delta("shimadzu", products, releases, statuses)
 
 
@@ -856,6 +1030,7 @@ def collect_sciex() -> dict[str, object]:
     statuses: list[dict[str, object]] = []
     product_url = "https://www.sciex.com/sitemap.xml"
     press_url = f"https://sciex.com/about-us/press-releases/{CURRENT_YEAR}"
+    press_years = press_index_years()
     product_status, product_body, product_detail = fetch(product_url, timeout=120)
     products: dict[str, str] = {}
     if product_status == 200:
@@ -865,9 +1040,17 @@ def collect_sciex() -> dict[str, object]:
             products = {}
     statuses.append(source_status("sciex-products", product_url, "product_sitemap_xml", product_status, "extracted" if products else "blocked", f"Official sitemap parsed; {len(products)} MS/LC/software product pages tracked." if products else f"Sitemap unavailable or invalid: {product_detail or product_status}", len(products)))
 
-    press_status, press_body, press_detail = fetch(press_url, timeout=90)
-    releases = parse_sciex_releases(press_body) if press_status == 200 else {}
-    statuses.append(source_status("sciex-news", press_url, "dated_press_index", press_status, "extracted" if releases else "blocked", f"Official dated press index parsed; {len(releases)} relevant releases extracted." if releases else f"Dated press index unavailable or contained no usable records: {press_detail or press_status}", len(releases)))
+    press_status, releases, entries, pages = collect_press_index(
+        lambda year: f"https://sciex.com/about-us/press-releases/{year}",
+        parse_sciex_releases,
+        press_years,
+    )
+    extraction, reason = press_extraction_status(press_status, entries, len(releases))
+    statuses.append(source_status(
+        "sciex-news", press_url, "dated_press_index", press_status, extraction,
+        f"{reason} Covered {len(press_years)} year(s) across {len(pages)} index page(s).",
+        len(releases),
+    ))
     return monitor_delta("sciex", products, releases, statuses)
 
 

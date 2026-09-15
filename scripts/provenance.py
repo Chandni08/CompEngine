@@ -14,7 +14,13 @@ from urllib.parse import urlencode
 
 
 LANGUAGE_TYPES = {"verbatim_quote", "analyst_paraphrase", "directional_synthesis"}
-DATE_TYPES = {"publication", "launch", "filing", "effective", "ingestion", "retrieval"}
+# "change_detection" dates a *detected change*, not an observation of existence:
+# the value bounds when the change happened, between the previous successful
+# check and this one. That is dated evidence; "ingestion" is not.
+DATE_TYPES = {
+    "publication", "launch", "filing", "effective",
+    "ingestion", "retrieval", "change_detection",
+}
 EVIDENCE_STATUSES = {
     "verified",
     "partial",

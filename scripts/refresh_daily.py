@@ -12,6 +12,7 @@ import subprocess
 import sys
 import tempfile
 from datetime import date, datetime, timezone
+from urllib.parse import urlparse
 from pathlib import Path
 
 from provenance import valid_change_evidence
@@ -49,6 +50,7 @@ AGILENT_MONITOR_FILE = DATA_DIR / "agilent_monitor.json"
 COMPETITOR_MONITOR_FILE = DATA_DIR / "competitor_monitors.json"
 PERKINELMER_MONITOR_FILE = DATA_DIR / "perkinelmer_monitor.json"
 SOURCE_HEALTH_FILE = DATA_DIR / "source_health.json"
+LINK_REDIRECT_FILE = DATA_DIR / "link_redirects.json"
 
 KNOWN_SOURCE_URL_MIGRATIONS = {
     "https://jobs.perkinelmer.com/job/woodbridge/product-director-lc-lcms/43930/94486435280":
@@ -223,12 +225,19 @@ def validate_competitor_monitor(data: dict) -> None:
     }
     for competitor, required_sources in critical_sources.items():
         statuses = competitors[competitor].get("source_status", [])
-        extracted = {
-            str(status.get("sourceId"))
-            for status in statuses
-            if status.get("extractionStatus") == "extracted"
-        }
-        missing = sorted(required_sources.difference(extracted))
+        # A dated press index that loads and parses but holds no in-scope release
+        # is a successful check, not a failure. Requiring records here meant the
+        # first days of every January failed the entire refresh. A product
+        # sitemap still has to yield records: an empty one is always a fault.
+        healthy_outcomes = {"extracted"}
+        by_id = {str(status.get("sourceId")): status for status in statuses}
+        collected: set[str] = set()
+        for source_id, status in by_id.items():
+            outcome = str(status.get("extractionStatus") or "")
+            allowed = healthy_outcomes | ({"checked_empty"} if source_id.endswith("-news") else set())
+            if outcome in allowed:
+                collected.add(source_id)
+        missing = sorted(required_sources.difference(collected))
         if missing:
             raise ValueError(
                 f"{competitor} critical source refresh incomplete: {', '.join(missing)}. "
@@ -336,9 +345,24 @@ def signal_id(prefix: str, url: str) -> str:
     return f"agilent-monitor-{prefix}-{digest}"
 
 
+INDEX_DOCUMENT = re.compile(r"^(?:index|default)\.(?:html?|php|aspx)$", re.I)
+
+
 def product_name(url: str) -> str:
-    slug = url.rstrip("/").rsplit("/", 1)[-1]
-    return slug.replace("-", " ").strip().title() or "Agilent LC/MS product page"
+    """Name a product from its URL.
+
+    Directory-style pages end in index.html and vendors append tracking
+    parameters, so take the last meaningful path segment rather than the last
+    path component, which produced names like "Index.Html?From=Mpeb".
+    """
+    path = urlparse(str(url or "")).path
+    segments = [segment for segment in path.split("/") if segment]
+    while segments and INDEX_DOCUMENT.match(segments[-1]):
+        segments.pop()
+    if not segments:
+        return "Agilent LC/MS product page"
+    slug = re.sub(r"\.(?:html?|php|aspx)$", "", segments[-1], flags=re.I)
+    return slug.replace("-", " ").replace("_", " ").strip().title() or "Agilent LC/MS product page"
 
 
 def competitor_signal_id(competitor: str, kind: str, key: str) -> str:
@@ -614,6 +638,125 @@ def merge_agilent_changes(intelligence: dict, monitor: dict) -> None:
         "changesDetected": len(additions),
         "sourceStatus": monitor.get("source_status", []),
     }
+
+
+# Conference sources default to required, but a few organisers publish their
+# programme only through an event platform with no machine-readable public page.
+# Those are monitored for context and must not gate publication. Matching by
+# prefix keeps next year's event id from silently reinstating the block.
+OPTIONAL_CONFERENCE_SOURCE_PREFIXES = ("conference-acs-",)
+
+
+def conference_source_is_required(source: dict) -> bool:
+    """Whether a conference source may block publication.
+
+    An explicit ``required`` value in the catalog always wins; the prefix list is
+    only the default for sources that have never carried one.
+    """
+    declared = source.get("required")
+    if declared is not None:
+        return bool(declared)
+    source_id = str(source.get("id") or "")
+    return not source_id.startswith(OPTIONAL_CONFERENCE_SOURCE_PREFIXES)
+
+
+PRODUCT_PATH_MARKERS = ("/product", "/products", "/systems", "/software", "/instrument")
+
+
+def _looks_like_product_page(url: str) -> bool:
+    path = urlparse(str(url or "")).path.lower()
+    return any(marker in path for marker in PRODUCT_PATH_MARKERS)
+
+
+def merge_link_redirects(intelligence: dict, report: dict) -> int:
+    """Turn links that now serve a different page into reviewable signals.
+
+    The link checker has always observed these redirects and thrown them away.
+    For a vendor product page a permanent redirect is a lifecycle event — a
+    retirement, a successor, or a family consolidation — and it is invisible to
+    sitemap diffing, because the URL stays listed and still answers 200.
+    """
+    moved = report.get("movedLinks") or []
+    if not moved:
+        return 0
+
+    signals = intelligence.get("signals", [])
+    by_source_url = {str(item.get("sourceUrl") or ""): item for item in signals}
+    existing_ids = {str(item.get("id") or "") for item in signals}
+    today = date.today().isoformat()
+    additions: list[dict] = []
+
+    for entry in moved:
+        url = str(entry.get("url") or "")
+        final_url = str(entry.get("finalUrl") or "")
+        cited = by_source_url.get(url)
+        if not cited or not final_url:
+            # Only report a redirect for a link the dashboard actually cites.
+            continue
+        competitor = str(cited.get("competitor") or "Market-wide")
+        product = product_name(url)
+        successor = product_name(final_url)
+        offsite = entry.get("redirectKind") == "offsite"
+        signal_id = signal_id_for_redirect(url, final_url)
+        if signal_id in existing_ids:
+            continue
+        if offsite:
+            summary = (
+                f"The cited page now resolves to a different domain ({final_url}). "
+                "Confirm whether the source was transferred, syndicated, or withdrawn."
+            )
+            intent = "Cited source moved to another domain"
+        elif _looks_like_product_page(url):
+            summary = (
+                f"The official page for {product} permanently redirects to {successor}. "
+                "A vendor redirect between product pages usually marks a retirement, a "
+                "successor product, or a family consolidation; it is not visible in the "
+                "sitemap, which still lists the old address."
+            )
+            intent = "Official product page redirected to another product"
+        else:
+            summary = (
+                f"The cited page now redirects to {final_url}. "
+                f"{entry.get('reason') or 'The publisher moved the content.'}"
+            )
+            intent = "Cited source page redirected"
+        additions.append({
+            "id": signal_id,
+            "date": str(entry.get("observedAt") or today)[:10],
+            "competitor": competitor,
+            "category": "Product intelligence" if _looks_like_product_page(url) else "Market intelligence",
+            "signalType": "Source page redirected",
+            "title": f"{competitor} {product} page now redirects to {successor}",
+            "summary": summary,
+            "sourceName": str(cited.get("sourceName") or "Official source"),
+            "sourceUrl": final_url,
+            "previousSourceUrl": url,
+            "redirectKind": str(entry.get("redirectKind") or ""),
+            "redirectReason": str(entry.get("reason") or ""),
+            "geography": str(cited.get("geography") or "Global"),
+            "marketSegment": str(cited.get("marketSegment") or "Pharma"),
+            "technology": cited.get("technology") or technology_for_url(url),
+            "theme": "Portfolio lifecycle change",
+            "evidenceCount": 1,
+            "intent": intent,
+            "sourceDate": str(entry.get("observedAt") or today)[:10],
+            "sourceDateType": "change_detection",
+            "evidenceStatus": "partial",
+            "recommendation": (
+                "Open both addresses and confirm the lifecycle status in an official "
+                "announcement before treating the redirect as a discontinuation."
+            ),
+        })
+        existing_ids.add(signal_id)
+
+    if additions:
+        intelligence["signals"] = signals + additions
+    return len(additions)
+
+
+def signal_id_for_redirect(url: str, final_url: str) -> str:
+    digest = hashlib.sha256(f"{url}|{final_url}".encode("utf-8")).hexdigest()[:12]
+    return f"redirect-{digest}"
 
 
 def merge_perkinelmer_changes(intelligence: dict, monitor: dict) -> None:
@@ -1032,7 +1175,10 @@ def _source_health_from_artifacts(intelligence: dict, checked_at: str) -> list[S
         endpoint_reachable = bool(source.get("endpointReachable")) or int(source.get("endpointReachabilityCount") or 0) > 0
         extraction_status = str(source.get("extractionStatus") or "")
         content_verified = bool(source.get("contentVerified"))
-        required = bool(source.get("required", source_class == "Conference/poster"))
+        required = (
+            conference_source_is_required(source) if source_class == "Conference/poster"
+            else bool(source.get("required", False))
+        )
         if extracted > 0 and extraction_status == "extracted":
             outcome, completeness, coverage = "collected", "complete", "complete"
         elif source_class == "Conference/poster" and endpoint_reachable:
@@ -1044,15 +1190,20 @@ def _source_health_from_artifacts(intelligence: dict, checked_at: str) -> list[S
         else:
             outcome, completeness, coverage = "unreachable", "unverified", "unverified"
         prior = prior_health.get(str(source.get("id")))
+        # Skipping the link recheck must not manufacture a verification. Carrying
+        # a prior run's result forward for a source that is unreachable *now* is
+        # the same self-comparison the ledger exists to prevent, so the retained
+        # row stays explicitly unverified and a required source still blocks.
         retained_prior_verification = bool(
             os.environ.get("SKIP_LINK_CHECK") == "1"
             and source_class == "Conference/poster"
             and outcome == "unreachable"
+            and not required
             and prior
             and prior.get("url") == source.get("url")
         )
         if retained_prior_verification:
-            outcome, completeness, coverage = "checked_empty", "complete", "complete"
+            outcome, completeness, coverage = "partial", "unverified", "unverified"
         rows.append(SourceHealth(
             sourceId=str(source.get("id")), url=str(source.get("url") or ""), required=required,
             collectionMethod=str(source.get("fetchMethod") or "official_public_source"),
@@ -1142,16 +1293,27 @@ def main() -> int:
             print("Skipping external link recheck by explicit operator request; retaining the latest validated link-health artifact.")
         else:
             subprocess.run([sys.executable, str(LINK_CHECKER)], cwd=ROOT, check=True)
+        # The link checker records which cited pages now serve a different
+        # address. Merge those before provenance normalization so the new
+        # records pick up the same provenance fields as every other signal.
+        refreshed = read_json(INTELLIGENCE_FILE)
+        redirect_signals = merge_link_redirects(refreshed, read_json(LINK_REDIRECT_FILE))
+        if redirect_signals:
+            write_json(INTELLIGENCE_FILE, refreshed)
+            print(f"Merged {redirect_signals} redirected-source signal(s) from the link check.")
         subprocess.run([sys.executable, str(PROVENANCE_REMEDIATOR)], cwd=ROOT, check=True)
         refreshed = read_json(INTELLIGENCE_FILE)
         deduped_signals = dedupe_official_releases(refreshed.get("signals", []))
+        rescore_needed = bool(redirect_signals)
         if len(deduped_signals) != len(refreshed.get("signals", [])):
             removed = len(refreshed.get("signals", [])) - len(deduped_signals)
             refreshed["signals"] = deduped_signals
             write_json(INTELLIGENCE_FILE, refreshed)
             print(f"Removed {removed} duplicate official release record(s) after provenance normalization.")
-            # Scores include corpus-level corroboration, so recalculate after
-            # removing a duplicate rather than publishing stale rankings.
+            rescore_needed = True
+        if rescore_needed:
+            # Scores include corpus-level corroboration, so recalculate after the
+            # signal set changes rather than publishing stale rankings.
             subprocess.run([sys.executable, str(SCORER)], cwd=ROOT, check=True)
             refreshed = read_json(INTELLIGENCE_FILE)
         validate_intelligence(refreshed)

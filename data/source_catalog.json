@@ -1238,7 +1238,7 @@
         },
         {
           "id": "c35a3aa8b5486b9c84a9",
-          "title": "Csaba Horv\u00e1th Young Scientist Award",
+          "title": "Csaba Horváth Young Scientist Award",
           "recordType": "Public conference program link",
           "canonicalUrl": "https://hplc2026-symposium.org/awards/csaba-horvath-young-scientist-award",
           "sourcePageUrl": "https://hplc2026-symposium.org/"
@@ -1839,7 +1839,7 @@
         },
         {
           "id": "402041fd759a6fc4410f",
-          "title": "Doctor did you get it all?: Mass spectrometry in the operating room; adding a new dimension to the surgeon\u2019s field of vision",
+          "title": "Doctor did you get it all?: Mass spectrometry in the operating room; adding a new dimension to the surgeon’s field of vision",
           "recordType": "Public conference program link",
           "canonicalUrl": "https://www.msacl.org/workshop_presentation_summary.php?workshop_id=183&presenter_id=3380",
           "sourcePageUrl": "https://www.msacl.org/program/"
@@ -1937,7 +1937,7 @@
         },
         {
           "id": "7720490e20a8c5d35d93",
-          "title": "Cross-Population Validation of LC\u2013MS Glycoprotein Biomarker Panels for High-Sensitivity Detection of Early-Stage Ovarian Cancer",
+          "title": "Cross-Population Validation of LC–MS Glycoprotein Biomarker Panels for High-Sensitivity Detection of Early-Stage Ovarian Cancer",
           "recordType": "Public conference program link",
           "canonicalUrl": "https://www.msacl.org/view_abstract/view_abstract_in_program.php?id=2798&event=2026",
           "sourcePageUrl": "https://www.msacl.org/program/"
@@ -2028,7 +2028,7 @@
         },
         {
           "id": "2a183bec1b0358dc01b9",
-          "title": "Dude, Where\u2019s my Peak? Best Practices for Optimizing and Troubleshooting Chromatography",
+          "title": "Dude, Where’s my Peak? Best Practices for Optimizing and Troubleshooting Chromatography",
           "recordType": "Public conference program link",
           "canonicalUrl": "https://www.msacl.org/view_abstract/view_abstract_in_program.php?id=2757&event=2026",
           "sourcePageUrl": "https://www.msacl.org/program/"
@@ -2070,7 +2070,7 @@
         },
         {
           "id": "393c4976f16b4c4bdb7b",
-          "title": "Clinically Adapted Rapid Evaporative Ionization Mass Spectrometry for Ex Vivo Tumor\u2013Healthy Tissue Discrimination in Head and Neck Cancer",
+          "title": "Clinically Adapted Rapid Evaporative Ionization Mass Spectrometry for Ex Vivo Tumor–Healthy Tissue Discrimination in Head and Neck Cancer",
           "recordType": "Public conference program link",
           "canonicalUrl": "https://www.msacl.org/view_abstract/view_abstract_in_program.php?id=2847&event=2026",
           "sourcePageUrl": "https://www.msacl.org/program/"
@@ -2315,14 +2315,14 @@
         },
         {
           "id": "3299a5c7b371c859e13d",
-          "title": "Identifying a Breath Volatile Signature for Parkinson\u2019s Disease: The Panorama Pilot Study",
+          "title": "Identifying a Breath Volatile Signature for Parkinson’s Disease: The Panorama Pilot Study",
           "recordType": "Public conference program link",
           "canonicalUrl": "https://www.msacl.org/view_abstract/view_abstract_in_program.php?id=2848&event=2026",
           "sourcePageUrl": "https://www.msacl.org/program/"
         },
         {
           "id": "afc3a892890a9f0fd7ac",
-          "title": "\u201cGoldilocks\u201d in Bioanalysis of Hypoglycemic Drugs in Human Serum or Plasma by LC-MS/MS",
+          "title": "“Goldilocks” in Bioanalysis of Hypoglycemic Drugs in Human Serum or Plasma by LC-MS/MS",
           "recordType": "Public conference program link",
           "canonicalUrl": "https://www.msacl.org/view_abstract/view_abstract_in_program.php?id=2874&event=2026",
           "sourcePageUrl": "https://www.msacl.org/program/"
@@ -2427,7 +2427,7 @@
         },
         {
           "id": "5c24dcd187d4c065e423",
-          "title": "MRMpipe Software for Clinical LC\u2013MS/MS Analysis: Multi-Site Validation on 1,595 Samples Across 8 Hospitals and Six Clinical Cohorts",
+          "title": "MRMpipe Software for Clinical LC–MS/MS Analysis: Multi-Site Validation on 1,595 Samples Across 8 Hospitals and Six Clinical Cohorts",
           "recordType": "Public conference program link",
           "canonicalUrl": "https://www.msacl.org/view_abstract/view_abstract_in_program.php?id=2802&event=2026",
           "sourcePageUrl": "https://www.msacl.org/program/"
@@ -2568,7 +2568,7 @@
       "endpointReachable": true,
       "contentVerified": false,
       "fullContentVerified": false,
-      "documentIdentifier": "USP\u2013NF General Chapter <621>",
+      "documentIdentifier": "USP–NF General Chapter <621>",
       "revisionDate": null,
       "effectiveDate": null,
       "publicAccessScope": "Public preview only; full compendial text is not verified by this collector.",
@@ -2614,7 +2614,7 @@
       "endpointReachable": true,
       "contentVerified": false,
       "fullContentVerified": false,
-      "documentIdentifier": "USP\u2013NF General Chapter <1058>",
+      "documentIdentifier": "USP–NF General Chapter <1058>",
       "revisionDate": null,
       "effectiveDate": null,
       "publicAccessScope": "Public preview only; full compendial text is not verified by this collector.",
@@ -3146,7 +3146,9 @@
       ],
       "currentAttemptReachabilityCount": 0,
       "lastAttemptAt": "2026-09-09T13:31:38+00:00",
-      "lastAttemptStatus": "blocked"
+      "lastAttemptStatus": "blocked",
+      "required": false,
+      "requiredRationale": "ACS publishes its program through an event platform rather than a machine-readable public page; no official endpoint has been reachable. Monitored for context, but it does not gate publication."
     },
     {
       "id": "conference-analytica-2026",
@@ -4286,7 +4288,9 @@
       ],
       "currentAttemptReachabilityCount": 0,
       "lastAttemptAt": "2026-09-09T13:31:38+00:00",
-      "lastAttemptStatus": "blocked"
+      "lastAttemptStatus": "blocked",
+      "required": false,
+      "requiredRationale": "ACS publishes its program through an event platform rather than a machine-readable public page; no official endpoint has been reachable. Monitored for context, but it does not gate publication."
     },
     {
       "id": "conference-casss-ms-2026",
@@ -4902,7 +4906,7 @@
         },
         {
           "id": "b54a74eba8f2aebaf9b7",
-          "title": "Claudia H\u00f6bartner, Ph.D. Professor of Organic Chemistry University of W\u00fcrzburg",
+          "title": "Claudia Höbartner, Ph.D. Professor of Organic Chemistry University of Würzburg",
           "recordType": "Public conference program link",
           "canonicalUrl": "https://informaconnect.com/tides-europe/speakers/claudia-hbartner-phd/",
           "sourcePageUrl": "https://informaconnect.com/tides-europe/"
@@ -4930,7 +4934,7 @@
         },
         {
           "id": "5e406ffcbb28dcebaffb",
-          "title": "El Djouhar Reka\u00ef, PhD Process &amp; Analytical Development Director at PolyPeptide Group PolyPeptide Group",
+          "title": "El Djouhar Rekaï, PhD Process &amp; Analytical Development Director at PolyPeptide Group PolyPeptide Group",
           "recordType": "Public conference program link",
           "canonicalUrl": "https://informaconnect.com/tides-europe/speakers/el-djouhar-reka-phd/",
           "sourcePageUrl": "https://informaconnect.com/tides-europe/"
