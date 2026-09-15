@@ -2,9 +2,10 @@ name: Daily competitive-intelligence data refresh
 
 on:
   schedule:
-    # Avoid GitHub's top-of-hour scheduler congestion. These cover 7:17 AM
-    # New York across daylight-saving transitions; the 8:17 AM EDT trigger is
-    # retained as a same-day fallback if GitHub drops or the first run fails.
+    # Avoid GitHub's top-of-hour scheduler congestion. These provide two daily
+    # refresh opportunities around 7–8 AM New York time. GitHub may start a
+    # scheduled event hours late, so the gate below relies on dataset freshness
+    # rather than the runner's actual start hour.
     - cron: "17 11 * * *"
     - cron: "17 12 * * *"
   workflow_dispatch:
@@ -24,24 +25,25 @@ jobs:
     steps:
       - name: Check out refresh state
         uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.repository.default_branch }}
 
-      - name: Decide whether this is the 7 AM New York run
+      - name: Decide whether today's dataset needs a refresh
         id: gate
         env:
           EVENT_NAME: ${{ github.event_name }}
-          EVENT_SCHEDULE: ${{ github.event.schedule }}
         run: |
-          local_hour=$(TZ=America/New_York date +%H)
           local_date=$(TZ=America/New_York date +%F)
-          dataset_date=$(python -c 'import json; print(json.load(open("data/refresh_status.json")).get("datasetAsOfDate", ""))')
-          if [ "$EVENT_NAME" != "schedule" ] || [ "$local_hour" = "07" ]; then
+          dataset_date=$(python -c 'import json; print(json.load(open("data/refresh_status.json")).get("datasetAsOfDate", ""))' 2>/dev/null || true)
+          if [ "$EVENT_NAME" != "schedule" ]; then
             echo "should_run=true" >> "$GITHUB_OUTPUT"
-          elif [ "$local_hour" = "08" ] && [ "$dataset_date" != "$local_date" ]; then
+            echo "Running because this workflow was started manually"
+          elif [ "$dataset_date" != "$local_date" ]; then
             echo "should_run=true" >> "$GITHUB_OUTPUT"
-            echo "Running the 8 AM fallback because no successful dataset is published for $local_date"
+            echo "Running because no successful dataset is published for $local_date"
           else
             echo "should_run=false" >> "$GITHUB_OUTPUT"
-            echo "Skipping: local hour is $local_hour and dataset date is ${dataset_date:-missing}"
+            echo "Skipping because a successful dataset is already published for $local_date"
           fi
 
   refresh_data:

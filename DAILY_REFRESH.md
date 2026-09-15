@@ -80,7 +80,7 @@ The dashboard must not expose a longer horizon unless the refresh pipeline conta
 
 `.github/workflows/daily-content-refresh.yml` owns data refresh and can also be started manually from GitHub Actions. It never deploys a website.
 
-The scheduled job targets `7:17 AM America/New_York` year-round. Three offset-aware UTC triggers cover daylight and standard time plus a same-day fallback. The gate uses the cron expression and the published dataset date instead of the runner's start hour, so a GitHub scheduling delay cannot cause a needed refresh to be skipped.
+The scheduled job targets the early morning in `America/New_York`. Two UTC triggers provide same-day refresh opportunities across daylight-saving transitions and scheduler delays. The gate compares the published dataset date with the current New York date instead of checking the runner's start hour. Any delayed trigger therefore runs while the dataset is stale, and a later trigger skips after that day's refresh succeeds.
 
 The scheduler runs entirely on GitHub-hosted infrastructure. It does not require Codex, a ChatGPT session, or a powered-on laptop.
 

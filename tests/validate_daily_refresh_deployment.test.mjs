@@ -63,8 +63,13 @@ test("cloud data refresh collects, validates, and commits the refreshed data wit
   assert.match(refreshWorkflow, /name: Daily competitive-intelligence data refresh/);
   assert.match(refreshWorkflow, /cron: "17 11 \* \* \*"/);
   assert.match(refreshWorkflow, /cron: "17 12 \* \* \*"/);
-  assert.match(refreshWorkflow, /EVENT_SCHEDULE: \$\{\{ github\.event\.schedule \}\}/);
-  assert.match(refreshWorkflow, /TZ=America\/New_York date \+%H/);
+  assert.match(refreshWorkflow, /TZ=America\/New_York date \+%F/);
+  assert.match(refreshWorkflow, /elif \[ "\$dataset_date" != "\$local_date" \]; then/);
+  assert.match(refreshWorkflow, /Running because no successful dataset is published/);
+  assert.match(refreshWorkflow, /Check out refresh state[\s\S]*?ref: \$\{\{ github\.event\.repository\.default_branch \}\}/);
+  assert.match(refreshWorkflow, /dataset_date=.*2>\/dev\/null \|\| true/);
+  assert.doesNotMatch(refreshWorkflow, /local_hour=/);
+  assert.doesNotMatch(refreshWorkflow, /date \+%H/);
   assert.match(refreshWorkflow, /refresh_data:/);
   assert.match(refreshWorkflow, /if: needs\.schedule_gate\.outputs\.should_run == 'true'/);
   assert.match(refreshWorkflow, /scripts\/run_daily_refresh\.sh --refresh-only/);
