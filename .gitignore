@@ -1,9 +1,18 @@
 node_modules/
 dist/
+build/
+coverage/
+.next/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.eslintcache
+*.tsbuildinfo
 .wrangler/
 .pw-browsers/
 audit-output/
 logs/
+*.log
 .codex-pptx-tmp/
 tmp/
 output/
@@ -15,3 +24,22 @@ __pycache__/
 data/conference_catalog.runtime.json
 .vercel
 .env*
+
+# Generated audit reports. Keep the audit scripts and authored Markdown reports.
+/audit/*.csv
+/audit/*.json
+
+# Generated acceptance renders and test output. Keep scenario fixtures and tests.
+/artifacts/**/*.png
+/artifacts/**/*.jpg
+/artifacts/**/*.jpeg
+/artifacts/**/*.webp
+/artifacts/**/*.pptx
+/artifacts/**/*.docx
+/artifacts/**/*.pdf
+/artifacts/**/*.csv
+/artifacts/**/*.tap
+/artifacts/**/source-link-results.json
+
+# Unreferenced duplicate; the downloadable presentation lives under exports/.
+/deploy-site/waters-nextgen-leadership-brief.pptx
